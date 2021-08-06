@@ -6,11 +6,11 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\FieldType\Mapper;
+namespace Ibexa\ContentForms\FieldType\Mapper;
 
-use EzSystems\EzPlatformContentForms\Data\Content\FieldData;
-use EzSystems\EzPlatformContentForms\FieldType\FieldValueFormMapperInterface;
-use EzSystems\EzPlatformContentForms\Form\Type\FieldType\TextLineFieldType;
+use Ibexa\Contracts\ContentForms\Data\Content\FieldData;
+use Ibexa\Contracts\ContentForms\FieldType\FieldValueFormMapperInterface;
+use Ibexa\ContentForms\Form\Type\FieldType\TextLineFieldType;
 use Symfony\Component\Form\FormInterface;
 
 /**
@@ -42,3 +42,5 @@ class TextLineFormMapper implements FieldValueFormMapperInterface
             );
     }
 }
+
+class_alias(TextLineFormMapper::class, 'EzSystems\EzPlatformContentForms\FieldType\Mapper\TextLineFormMapper');

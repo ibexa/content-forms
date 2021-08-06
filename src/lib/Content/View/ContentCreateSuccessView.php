@@ -6,7 +6,7 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\Content\View;
+namespace Ibexa\ContentForms\Content\View;
 
 use eZ\Publish\API\Repository\Values\Content\Location;
 use eZ\Publish\Core\MVC\Symfony\View\BaseView;
@@ -48,3 +48,5 @@ class ContentCreateSuccessView extends BaseView implements LocationValueView
         return $this->location;
     }
 }
+
+class_alias(ContentCreateSuccessView::class, 'EzSystems\EzPlatformContentForms\Content\View\ContentCreateSuccessView');

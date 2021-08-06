@@ -6,7 +6,7 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\Form\Type;
+namespace Ibexa\ContentForms\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -34,3 +34,5 @@ class SwitcherType extends AbstractType
         $resolver->setDefault('required', false);
     }
 }
+
+class_alias(SwitcherType::class, 'EzSystems\EzPlatformContentForms\Form\Type\SwitcherType');

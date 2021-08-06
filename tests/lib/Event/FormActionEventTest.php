@@ -6,9 +6,9 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\Tests\Event;
+namespace Ibexa\Tests\ContentForms\Event;
 
-use EzSystems\EzPlatformContentForms\Event\FormActionEvent;
+use Ibexa\ContentForms\Event\FormActionEvent;
 use PHPUnit\Framework\TestCase;
 use stdClass;
 use Symfony\Component\HttpFoundation\Response;
@@ -72,3 +72,5 @@ class FormActionEventTest extends TestCase
         self::assertSame($objectOption, $event->getOption('obj'));
     }
 }
+
+class_alias(FormActionEventTest::class, 'EzSystems\EzPlatformContentForms\Tests\Event\FormActionEventTest');

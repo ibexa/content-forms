@@ -6,7 +6,7 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\Form\EventSubscriber;
+namespace Ibexa\ContentForms\Form\EventSubscriber;
 
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Form\Event\PostSubmitEvent;
@@ -58,3 +58,5 @@ class SuppressValidationSubscriber implements EventSubscriberInterface
         }
     }
 }
+
+class_alias(SuppressValidationSubscriber::class, 'EzSystems\EzPlatformContentForms\Form\EventSubscriber\SuppressValidationSubscriber');

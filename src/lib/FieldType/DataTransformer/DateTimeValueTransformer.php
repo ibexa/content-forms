@@ -6,7 +6,7 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\FieldType\DataTransformer;
+namespace Ibexa\ContentForms\FieldType\DataTransformer;
 
 use eZ\Publish\Core\FieldType\DateAndTime\Value;
 use Symfony\Component\Form\DataTransformerInterface;
@@ -65,3 +65,5 @@ class DateTimeValueTransformer implements DataTransformerInterface
         return Value::fromTimestamp($value);
     }
 }
+
+class_alias(DateTimeValueTransformer::class, 'EzSystems\EzPlatformContentForms\FieldType\DataTransformer\DateTimeValueTransformer');

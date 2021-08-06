@@ -6,7 +6,7 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\Form\Type\Content;
+namespace Ibexa\ContentForms\Form\Type\Content;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
@@ -63,3 +63,5 @@ class BaseContentType extends AbstractType
             ->setRequired(['languageCode', 'mainLanguageCode']);
     }
 }
+
+class_alias(BaseContentType::class, 'EzSystems\EzPlatformContentForms\Form\Type\Content\BaseContentType');

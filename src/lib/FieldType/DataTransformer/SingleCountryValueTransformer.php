@@ -6,7 +6,7 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\FieldType\DataTransformer;
+namespace Ibexa\ContentForms\FieldType\DataTransformer;
 
 use eZ\Publish\Core\FieldType\Country\Value;
 use Symfony\Component\Form\DataTransformerInterface;
@@ -62,3 +62,5 @@ class SingleCountryValueTransformer implements DataTransformerInterface
         return new Value([$value => $this->countriesInfo[$value]]);
     }
 }
+
+class_alias(SingleCountryValueTransformer::class, 'EzSystems\EzPlatformContentForms\FieldType\DataTransformer\SingleCountryValueTransformer');

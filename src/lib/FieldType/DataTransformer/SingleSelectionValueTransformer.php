@@ -6,7 +6,7 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\FieldType\DataTransformer;
+namespace Ibexa\ContentForms\FieldType\DataTransformer;
 
 use eZ\Publish\Core\FieldType\Selection\Value;
 use Symfony\Component\Form\DataTransformerInterface;
@@ -38,3 +38,5 @@ class SingleSelectionValueTransformer implements DataTransformerInterface
         return new Value([(int)$value]);
     }
 }
+
+class_alias(SingleSelectionValueTransformer::class, 'EzSystems\EzPlatformContentForms\FieldType\DataTransformer\SingleSelectionValueTransformer');

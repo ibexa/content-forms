@@ -6,8 +6,10 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\Validator\Constraints;
+namespace Ibexa\ContentForms\Validator\Constraints;
 
 class UserAccountPassword extends Password
 {
 }
+
+class_alias(UserAccountPassword::class, 'EzSystems\EzPlatformContentForms\Validator\Constraints\UserAccountPassword');

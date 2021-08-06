@@ -6,7 +6,7 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\Form\Type;
+namespace Ibexa\ContentForms\Form\Type;
 
 use eZ\Publish\API\Repository\Exceptions\NotFoundException;
 use eZ\Publish\API\Repository\Exceptions\UnauthorizedException;
@@ -54,3 +54,5 @@ class LocationType extends AbstractType
         return HiddenType::class;
     }
 }
+
+class_alias(LocationType::class, 'EzSystems\EzPlatformContentForms\Form\Type\LocationType');

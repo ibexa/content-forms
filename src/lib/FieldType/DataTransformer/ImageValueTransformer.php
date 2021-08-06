@@ -6,7 +6,7 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\FieldType\DataTransformer;
+namespace Ibexa\ContentForms\FieldType\DataTransformer;
 
 use eZ\Publish\Core\FieldType\Image\Value;
 use Symfony\Component\Form\DataTransformerInterface;
@@ -61,3 +61,5 @@ class ImageValueTransformer extends AbstractBinaryBaseTransformer implements Dat
         return $valueObject;
     }
 }
+
+class_alias(ImageValueTransformer::class, 'EzSystems\EzPlatformContentForms\FieldType\DataTransformer\ImageValueTransformer');

@@ -6,11 +6,11 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\FieldType\Mapper;
+namespace Ibexa\ContentForms\FieldType\Mapper;
 
-use EzSystems\EzPlatformContentForms\Data\Content\FieldData;
-use EzSystems\EzPlatformContentForms\FieldType\FieldValueFormMapperInterface;
-use EzSystems\EzPlatformContentForms\Form\Type\FieldType\KeywordFieldType;
+use Ibexa\Contracts\ContentForms\Data\Content\FieldData;
+use Ibexa\Contracts\ContentForms\FieldType\FieldValueFormMapperInterface;
+use Ibexa\ContentForms\Form\Type\FieldType\KeywordFieldType;
 use Symfony\Component\Form\FormInterface;
 
 /**
@@ -39,3 +39,5 @@ class KeywordFormMapper implements FieldValueFormMapperInterface
             );
     }
 }
+
+class_alias(KeywordFormMapper::class, 'EzSystems\EzPlatformContentForms\FieldType\Mapper\KeywordFormMapper');

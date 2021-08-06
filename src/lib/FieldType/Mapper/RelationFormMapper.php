@@ -6,10 +6,10 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\FieldType\Mapper;
+namespace Ibexa\ContentForms\FieldType\Mapper;
 
-use EzSystems\EzPlatformContentForms\Data\Content\FieldData;
-use EzSystems\EzPlatformContentForms\Form\Type\FieldType\RelationFieldType;
+use Ibexa\Contracts\ContentForms\Data\Content\FieldData;
+use Ibexa\ContentForms\Form\Type\FieldType\RelationFieldType;
 use Symfony\Component\Form\FormInterface;
 
 class RelationFormMapper extends AbstractRelationFormMapper
@@ -34,3 +34,5 @@ class RelationFormMapper extends AbstractRelationFormMapper
             );
     }
 }
+
+class_alias(RelationFormMapper::class, 'EzSystems\EzPlatformContentForms\FieldType\Mapper\RelationFormMapper');

@@ -6,7 +6,7 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\FieldType\DataTransformer;
+namespace Ibexa\ContentForms\FieldType\DataTransformer;
 
 use eZ\Publish\Core\FieldType\BinaryFile\Value;
 use Symfony\Component\Form\DataTransformerInterface;
@@ -55,3 +55,5 @@ class BinaryFileValueTransformer extends AbstractBinaryBaseTransformer implement
         return $valueObject;
     }
 }
+
+class_alias(BinaryFileValueTransformer::class, 'EzSystems\EzPlatformContentForms\FieldType\DataTransformer\BinaryFileValueTransformer');

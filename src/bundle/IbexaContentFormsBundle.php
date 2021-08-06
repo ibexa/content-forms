@@ -6,17 +6,17 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentFormsBundle;
+namespace Ibexa\Bundle\ContentForms;
 
-use EzSystems\EzPlatformContentFormsBundle\DependencyInjection\Compiler\FieldTypeFormMapperDispatcherPass;
-use EzSystems\EzPlatformContentFormsBundle\DependencyInjection\Configuration\Parser\ContentCreateView;
-use EzSystems\EzPlatformContentFormsBundle\DependencyInjection\Configuration\Parser\ContentEdit;
-use EzSystems\EzPlatformContentFormsBundle\DependencyInjection\Configuration\Parser\ContentEditView;
-use EzSystems\EzPlatformContentFormsBundle\DependencyInjection\Configuration\Parser\UserEdit;
+use Ibexa\Bundle\ContentForms\DependencyInjection\Compiler\FieldTypeFormMapperDispatcherPass;
+use Ibexa\Bundle\ContentForms\DependencyInjection\Configuration\Parser\ContentCreateView;
+use Ibexa\Bundle\ContentForms\DependencyInjection\Configuration\Parser\ContentEdit;
+use Ibexa\Bundle\ContentForms\DependencyInjection\Configuration\Parser\ContentEditView;
+use Ibexa\Bundle\ContentForms\DependencyInjection\Configuration\Parser\UserEdit;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
-class EzPlatformContentFormsBundle extends Bundle
+class IbexaContentFormsBundle extends Bundle
 {
     public function build(ContainerBuilder $container)
     {
@@ -31,3 +31,5 @@ class EzPlatformContentFormsBundle extends Bundle
         $eZExtension->addDefaultSettings(__DIR__ . '/Resources/config', ['ezpublish_default_settings.yaml']);
     }
 }
+
+class_alias(IbexaContentFormsBundle::class, 'EzSystems\EzPlatformContentFormsBundle\EzPlatformContentFormsBundle');

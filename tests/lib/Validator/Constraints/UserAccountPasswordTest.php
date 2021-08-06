@@ -6,10 +6,10 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\Tests\Validator\Constraints;
+namespace Ibexa\Tests\ContentForms\Validator\Constraints;
 
-use EzSystems\EzPlatformContentForms\Validator\Constraints\UserAccountPassword;
-use EzSystems\EzPlatformContentForms\Validator\Constraints\UserAccountPasswordValidator;
+use Ibexa\ContentForms\Validator\Constraints\UserAccountPassword;
+use Ibexa\ContentForms\Validator\Constraints\UserAccountPasswordValidator;
 use PHPUnit\Framework\TestCase;
 
 class UserAccountPasswordTest extends TestCase
@@ -37,3 +37,5 @@ class UserAccountPasswordTest extends TestCase
         $this->assertSame([UserAccountPassword::CLASS_CONSTRAINT, UserAccountPassword::PROPERTY_CONSTRAINT], $this->constraint->getTargets());
     }
 }
+
+class_alias(UserAccountPasswordTest::class, 'EzSystems\EzPlatformContentForms\Tests\Validator\Constraints\UserAccountPasswordTest');

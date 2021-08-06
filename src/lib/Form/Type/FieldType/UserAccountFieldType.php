@@ -6,10 +6,10 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\Form\Type\FieldType;
+namespace Ibexa\ContentForms\Form\Type\FieldType;
 
-use EzSystems\EzPlatformContentForms\Data\User\UserAccountFieldData;
-use EzSystems\EzPlatformContentForms\Form\Type\SwitcherType;
+use Ibexa\ContentForms\Data\User\UserAccountFieldData;
+use Ibexa\ContentForms\Form\Type\SwitcherType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
@@ -70,3 +70,5 @@ class UserAccountFieldType extends AbstractType
             ->setAllowedValues('intent', ['register', 'create', 'update']);
     }
 }
+
+class_alias(UserAccountFieldType::class, 'EzSystems\EzPlatformContentForms\Form\Type\FieldType\UserAccountFieldType');

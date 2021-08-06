@@ -6,12 +6,12 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\Content\View\Provider\ContentEditView;
+namespace Ibexa\ContentForms\Content\View\Provider\ContentEditView;
 
 use eZ\Publish\Core\MVC\Symfony\Matcher\MatcherFactoryInterface;
 use eZ\Publish\Core\MVC\Symfony\View\View;
 use eZ\Publish\Core\MVC\Symfony\View\ViewProvider;
-use EzSystems\EzPlatformContentForms\Content\View\ContentEditView;
+use Ibexa\ContentForms\Content\View\ContentEditView;
 use Symfony\Component\HttpKernel\Controller\ControllerReference;
 
 /**
@@ -65,3 +65,5 @@ class Configured implements ViewProvider
         return $view;
     }
 }
+
+class_alias(Configured::class, 'EzSystems\EzPlatformContentForms\Content\View\Provider\ContentEditView\Configured');

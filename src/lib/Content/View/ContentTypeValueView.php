@@ -6,7 +6,7 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\Content\View;
+namespace Ibexa\ContentForms\Content\View;
 
 use eZ\Publish\API\Repository\Values\ContentType\ContentType;
 
@@ -22,3 +22,5 @@ interface ContentTypeValueView
      */
     public function getContentType(): ContentType;
 }
+
+class_alias(ContentTypeValueView::class, 'EzSystems\EzPlatformContentForms\Content\View\ContentTypeValueView');

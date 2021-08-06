@@ -6,11 +6,11 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\FieldType\Mapper;
+namespace Ibexa\ContentForms\FieldType\Mapper;
 
-use EzSystems\EzPlatformContentForms\Data\Content\FieldData;
-use EzSystems\EzPlatformContentForms\FieldType\FieldValueFormMapperInterface;
-use EzSystems\EzPlatformContentForms\Form\Type\FieldType\SelectionFieldType;
+use Ibexa\Contracts\ContentForms\Data\Content\FieldData;
+use Ibexa\Contracts\ContentForms\FieldType\FieldValueFormMapperInterface;
+use Ibexa\ContentForms\Form\Type\FieldType\SelectionFieldType;
 use Symfony\Component\Form\FormInterface;
 
 class SelectionFormMapper implements FieldValueFormMapperInterface
@@ -47,3 +47,5 @@ class SelectionFormMapper implements FieldValueFormMapperInterface
             );
     }
 }
+
+class_alias(SelectionFormMapper::class, 'EzSystems\EzPlatformContentForms\FieldType\Mapper\SelectionFormMapper');

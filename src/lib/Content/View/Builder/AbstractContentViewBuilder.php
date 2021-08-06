@@ -6,7 +6,7 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\Content\View\Builder;
+namespace Ibexa\ContentForms\Content\View\Builder;
 
 use eZ\Publish\API\Repository\ContentService;
 use eZ\Publish\API\Repository\Repository;
@@ -18,7 +18,7 @@ use eZ\Publish\Core\MVC\ConfigResolverInterface;
 use eZ\Publish\Core\MVC\Symfony\Locale\UserLanguagePreferenceProviderInterface;
 use eZ\Publish\Core\MVC\Symfony\View\Configurator;
 use eZ\Publish\Core\MVC\Symfony\View\ParametersInjector;
-use EzSystems\EzPlatformContentForms\Form\ActionDispatcher\ActionDispatcherInterface;
+use Ibexa\ContentForms\Form\ActionDispatcher\ActionDispatcherInterface;
 use Symfony\Component\Form\Form;
 
 /*
@@ -149,3 +149,5 @@ abstract class AbstractContentViewBuilder
         return $groupedFieldsList;
     }
 }
+
+class_alias(AbstractContentViewBuilder::class, 'EzSystems\EzPlatformContentForms\Content\View\Builder\AbstractContentViewBuilder');

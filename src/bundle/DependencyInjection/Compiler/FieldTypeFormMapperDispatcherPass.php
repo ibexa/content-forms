@@ -6,7 +6,7 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentFormsBundle\DependencyInjection\Compiler;
+namespace Ibexa\Bundle\ContentForms\DependencyInjection\Compiler;
 
 use LogicException;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
@@ -76,3 +76,5 @@ class FieldTypeFormMapperDispatcherPass implements CompilerPassInterface
         );
     }
 }
+
+class_alias(FieldTypeFormMapperDispatcherPass::class, 'EzSystems\EzPlatformContentFormsBundle\DependencyInjection\Compiler\FieldTypeFormMapperDispatcherPass');
