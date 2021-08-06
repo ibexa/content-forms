@@ -1,8 +1,11 @@
 {
-    "name": "ezsystems/ezplatform-content-forms",
-    "description": "Use Symfony Forms with eZ Platform Content & User objects",
+    "name": "ibexa/content-forms",
+    "description": "Use Symfony Forms with Ibexa Content & User objects",
     "license": "GPL-2.0-only",
-    "type": "ezplatform-bundle",
+    "type": "ibexa-bundle",
+    "replace": {
+        "ezsystems/ezplatform-content-forms": "*"
+    },
     "require": {
         "php": "^7.3",
         "ext-json": "*",
@@ -34,18 +37,23 @@
         "psr-4": {
             "EzSystems\\EzPlatformContentFormsBundle\\": "src/bundle/",
             "EzSystems\\EzPlatformContentForms\\": "src/lib/",
-            "EzSystems\\EzPlatformContentForms\\Features\\": "features/"
+            "EzSystems\\EzPlatformContentForms\\Features\\": "features/",
+            "Ibexa\\ContentForms\\": "src/lib/",
+            "Ibexa\\Bundle\\ContentForms\\": "src/bundle/",
+            "Ibexa\\Contracts\\ContentForms\\": "src/contracts/"
         }
     },
     "autoload-dev": {
         "psr-4": {
             "EzSystems\\EzPlatformContentForms\\Tests\\": "tests/lib/",
-            "EzSystems\\EzPlatformContentFormsBundle\\Tests\\": "tests/bundle/"
+            "EzSystems\\EzPlatformContentFormsBundle\\Tests\\": "tests/bundle/",
+            "Ibexa\\Tests\\Bundle\\ContentForms\\": "tests/bundle/",
+            "Ibexa\\Tests\\ContentForms\\": "tests/lib/"
         }
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "2.0.x-dev"
+            "dev-main": "4.0.x-dev"
         }
     },
     "scripts": {
