@@ -6,7 +6,7 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\Content\View\Builder;
+namespace Ibexa\ContentForms\Content\View\Builder;
 
 use eZ\Publish\API\Repository\Exceptions\UnauthorizedException;
 use eZ\Publish\API\Repository\Values\Content\Content;
@@ -15,8 +15,8 @@ use eZ\Publish\API\Repository\Values\Content\Location;
 use eZ\Publish\API\Repository\Values\ContentType\ContentType;
 use eZ\Publish\Core\Base\Exceptions\InvalidArgumentException;
 use eZ\Publish\Core\MVC\Symfony\View\Builder\ViewBuilder;
-use EzSystems\EzPlatformContentForms\Content\View\ContentEditSuccessView;
-use EzSystems\EzPlatformContentForms\Content\View\ContentEditView;
+use Ibexa\ContentForms\Content\View\ContentEditSuccessView;
+use Ibexa\ContentForms\Content\View\ContentEditView;
 use Symfony\Component\Form\FormError;
 
 /**
@@ -214,3 +214,5 @@ class ContentEditViewBuilder extends AbstractContentViewBuilder implements ViewB
         return null;
     }
 }
+
+class_alias(ContentEditViewBuilder::class, 'EzSystems\EzPlatformContentForms\Content\View\Builder\ContentEditViewBuilder');

@@ -6,14 +6,14 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\Content\View\Builder;
+namespace Ibexa\ContentForms\Content\View\Builder;
 
 use eZ\Publish\API\Repository\Values\Content\Location;
 use eZ\Publish\API\Repository\Values\ContentType\ContentType;
 use eZ\Publish\Core\Base\Exceptions\InvalidArgumentException;
 use eZ\Publish\Core\MVC\Symfony\View\Builder\ViewBuilder;
-use EzSystems\EzPlatformContentForms\Content\View\ContentCreateSuccessView;
-use EzSystems\EzPlatformContentForms\Content\View\ContentCreateView;
+use Ibexa\ContentForms\Content\View\ContentCreateSuccessView;
+use Ibexa\ContentForms\Content\View\ContentCreateView;
 
 /**
  * Builds ContentCreateView objects.
@@ -149,3 +149,5 @@ class ContentCreateViewBuilder extends AbstractContentViewBuilder implements Vie
         );
     }
 }
+
+class_alias(ContentCreateViewBuilder::class, 'EzSystems\EzPlatformContentForms\Content\View\Builder\ContentCreateViewBuilder');

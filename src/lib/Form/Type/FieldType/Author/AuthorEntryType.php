@@ -6,7 +6,7 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\Form\Type\FieldType\Author;
+namespace Ibexa\ContentForms\Form\Type\FieldType\Author;
 
 use eZ\Publish\Core\FieldType\Author\Author;
 use Symfony\Component\Form\AbstractType;
@@ -79,3 +79,5 @@ class AuthorEntryType extends AbstractType
         ]);
     }
 }
+
+class_alias(AuthorEntryType::class, 'EzSystems\EzPlatformContentForms\Form\Type\FieldType\Author\AuthorEntryType');

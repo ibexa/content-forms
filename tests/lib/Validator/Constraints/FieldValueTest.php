@@ -6,9 +6,9 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\Tests\Validator\Constraints;
+namespace Ibexa\Tests\ContentForms\Validator\Constraints;
 
-use EzSystems\EzPlatformContentForms\Validator\Constraints\FieldValue;
+use Ibexa\ContentForms\Validator\Constraints\FieldValue;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Validator\Constraint;
 
@@ -32,3 +32,5 @@ class FieldValueTest extends TestCase
         self::assertSame(Constraint::CLASS_CONSTRAINT, $constraint->getTargets());
     }
 }
+
+class_alias(FieldValueTest::class, 'EzSystems\EzPlatformContentForms\Tests\Validator\Constraints\FieldValueTest');

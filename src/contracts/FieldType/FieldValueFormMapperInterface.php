@@ -6,9 +6,9 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\FieldType;
+namespace Ibexa\Contracts\ContentForms\FieldType;
 
-use EzSystems\EzPlatformContentForms\Data\Content\FieldData;
+use Ibexa\Contracts\ContentForms\Data\Content\FieldData;
 use Symfony\Component\Form\FormInterface;
 
 interface FieldValueFormMapperInterface
@@ -27,3 +27,5 @@ class_alias(
     FieldValueFormMapperInterface::class,
     \EzSystems\RepositoryForms\FieldType\FieldValueFormMapperInterface::class
 );
+
+class_alias(FieldValueFormMapperInterface::class, 'EzSystems\EzPlatformContentForms\FieldType\FieldValueFormMapperInterface');

@@ -6,11 +6,11 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\Tests\FieldType\Mapper;
+namespace Ibexa\Tests\ContentForms\FieldType\Mapper;
 
 use eZ\Publish\API\Repository\FieldType;
 use eZ\Publish\API\Repository\FieldTypeService;
-use EzSystems\EzPlatformContentForms\Data\Content\FieldData;
+use Ibexa\Contracts\ContentForms\Data\Content\FieldData;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Form\FormConfigInterface;
 use Symfony\Component\Form\FormFactoryInterface;
@@ -64,3 +64,5 @@ abstract class BaseMapperTest extends TestCase
             ->getMock();
     }
 }
+
+class_alias(BaseMapperTest::class, 'EzSystems\EzPlatformContentForms\Tests\FieldType\Mapper\BaseMapperTest');

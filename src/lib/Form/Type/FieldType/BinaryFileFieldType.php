@@ -6,7 +6,7 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\Form\Type\FieldType;
+namespace Ibexa\ContentForms\Form\Type\FieldType;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -36,3 +36,5 @@ class BinaryFileFieldType extends AbstractType
         $resolver->setDefaults(['translation_domain' => 'ezplatform_content_forms_fieldtype']);
     }
 }
+
+class_alias(BinaryFileFieldType::class, 'EzSystems\EzPlatformContentForms\Form\Type\FieldType\BinaryFileFieldType');

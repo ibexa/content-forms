@@ -6,10 +6,10 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\Form\Type\Content;
+namespace Ibexa\ContentForms\Form\Type\Content;
 
-use EzSystems\EzPlatformContentForms\Data\Content\FieldData;
-use EzSystems\EzPlatformContentForms\FieldType\FieldTypeFormMapperDispatcherInterface;
+use Ibexa\Contracts\ContentForms\Data\Content\FieldData;
+use Ibexa\ContentForms\FieldType\FieldTypeFormMapperDispatcherInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
@@ -66,3 +66,5 @@ class ContentFieldType extends AbstractType
         });
     }
 }
+
+class_alias(ContentFieldType::class, 'EzSystems\EzPlatformContentForms\Form\Type\Content\ContentFieldType');

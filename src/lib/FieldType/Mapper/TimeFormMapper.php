@@ -6,11 +6,11 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\FieldType\Mapper;
+namespace Ibexa\ContentForms\FieldType\Mapper;
 
-use EzSystems\EzPlatformContentForms\Data\Content\FieldData;
-use EzSystems\EzPlatformContentForms\FieldType\FieldValueFormMapperInterface;
-use EzSystems\EzPlatformContentForms\Form\Type\FieldType\TimeFieldType;
+use Ibexa\Contracts\ContentForms\Data\Content\FieldData;
+use Ibexa\Contracts\ContentForms\FieldType\FieldValueFormMapperInterface;
+use Ibexa\ContentForms\Form\Type\FieldType\TimeFieldType;
 use Symfony\Component\Form\FormInterface;
 
 /**
@@ -37,3 +37,5 @@ class TimeFormMapper implements FieldValueFormMapperInterface
             );
     }
 }
+
+class_alias(TimeFormMapper::class, 'EzSystems\EzPlatformContentForms\FieldType\Mapper\TimeFormMapper');

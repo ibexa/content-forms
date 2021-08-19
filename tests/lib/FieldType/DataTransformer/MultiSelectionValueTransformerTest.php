@@ -6,10 +6,10 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\Tests\FieldType\DataTransformer;
+namespace Ibexa\Tests\ContentForms\FieldType\DataTransformer;
 
 use eZ\Publish\Core\FieldType\Selection\Value;
-use EzSystems\EzPlatformContentForms\FieldType\DataTransformer\MultiSelectionValueTransformer;
+use Ibexa\ContentForms\FieldType\DataTransformer\MultiSelectionValueTransformer;
 use PHPUnit\Framework\TestCase;
 
 class MultiSelectionValueTransformerTest extends TestCase
@@ -71,3 +71,5 @@ class MultiSelectionValueTransformerTest extends TestCase
         self::assertNull($transformer->reverseTransform(null));
     }
 }
+
+class_alias(MultiSelectionValueTransformerTest::class, 'EzSystems\EzPlatformContentForms\Tests\FieldType\DataTransformer\MultiSelectionValueTransformerTest');

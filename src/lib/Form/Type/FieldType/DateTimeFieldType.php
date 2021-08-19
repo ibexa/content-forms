@@ -6,9 +6,9 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\Form\Type\FieldType;
+namespace Ibexa\ContentForms\Form\Type\FieldType;
 
-use EzSystems\EzPlatformContentForms\FieldType\DataTransformer\DateTimeValueTransformer;
+use Ibexa\ContentForms\FieldType\DataTransformer\DateTimeValueTransformer;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -54,3 +54,5 @@ class DateTimeFieldType extends AbstractType
             ->setAllowedTypes('with_seconds', 'bool');
     }
 }
+
+class_alias(DateTimeFieldType::class, 'EzSystems\EzPlatformContentForms\Form\Type\FieldType\DateTimeFieldType');

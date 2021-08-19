@@ -6,7 +6,7 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\FieldType\DataTransformer;
+namespace Ibexa\ContentForms\FieldType\DataTransformer;
 
 use eZ\Publish\Core\FieldType\Author\Author;
 use eZ\Publish\Core\FieldType\Author\Value;
@@ -53,3 +53,5 @@ class AuthorValueTransformer implements DataTransformerInterface
         return new Value($authors);
     }
 }
+
+class_alias(AuthorValueTransformer::class, 'EzSystems\EzPlatformContentForms\FieldType\DataTransformer\AuthorValueTransformer');

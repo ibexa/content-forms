@@ -6,13 +6,13 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\Validator\Constraints;
+namespace Ibexa\ContentForms\Validator\Constraints;
 
 use eZ\Publish\API\Repository\Values\ContentType\FieldDefinition;
 use eZ\Publish\API\Repository\Values\ValueObject;
 use eZ\Publish\Core\FieldType\ValidationError;
 use eZ\Publish\SPI\FieldType\Value;
-use EzSystems\EzPlatformContentForms\Data\Content\FieldData;
+use Ibexa\Contracts\ContentForms\Data\Content\FieldData;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\Util\PropertyPath;
 
@@ -96,3 +96,5 @@ class FieldValueValidator extends FieldTypeValidator
             : PropertyPath::append($basePath, $errorTarget);
     }
 }
+
+class_alias(FieldValueValidator::class, 'EzSystems\EzPlatformContentForms\Validator\Constraints\FieldValueValidator');

@@ -6,11 +6,11 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\FieldType\Mapper;
+namespace Ibexa\ContentForms\FieldType\Mapper;
 
-use EzSystems\EzPlatformContentForms\Data\Content\FieldData;
-use EzSystems\EzPlatformContentForms\FieldType\FieldValueFormMapperInterface;
-use EzSystems\EzPlatformContentForms\Form\Type\FieldType\DateTimeFieldType;
+use Ibexa\Contracts\ContentForms\Data\Content\FieldData;
+use Ibexa\Contracts\ContentForms\FieldType\FieldValueFormMapperInterface;
+use Ibexa\ContentForms\Form\Type\FieldType\DateTimeFieldType;
 use Symfony\Component\Form\FormInterface;
 
 /**
@@ -41,3 +41,5 @@ class DateTimeFormMapper implements FieldValueFormMapperInterface
             );
     }
 }
+
+class_alias(DateTimeFormMapper::class, 'EzSystems\EzPlatformContentForms\FieldType\Mapper\DateTimeFormMapper');

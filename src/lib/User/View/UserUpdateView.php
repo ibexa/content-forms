@@ -6,10 +6,12 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\User\View;
+namespace Ibexa\ContentForms\User\View;
 
 use eZ\Publish\Core\MVC\Symfony\View\BaseView;
 
 class UserUpdateView extends BaseView
 {
 }
+
+class_alias(UserUpdateView::class, 'EzSystems\EzPlatformContentForms\User\View\UserUpdateView');

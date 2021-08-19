@@ -6,7 +6,7 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\Validator\Constraints;
+namespace Ibexa\ContentForms\Validator\Constraints;
 
 use JMS\TranslationBundle\Translation\TranslationContainerInterface;
 use JMS\TranslationBundle\Model\Message;
@@ -31,3 +31,5 @@ class FieldValueValidatorMessages implements TranslationContainerInterface
         ];
     }
 }
+
+class_alias(FieldValueValidatorMessages::class, 'EzSystems\EzPlatformContentForms\Validator\Constraints\FieldValueValidatorMessages');

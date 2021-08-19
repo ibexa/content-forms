@@ -6,12 +6,12 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\Form\EventSubscriber;
+namespace Ibexa\ContentForms\Form\EventSubscriber;
 
 use eZ\Publish\Core\FieldType\User\Value;
-use EzSystems\EzPlatformContentForms\Data\User\UserAccountFieldData;
-use EzSystems\EzPlatformContentForms\Data\User\UserCreateData;
-use EzSystems\EzPlatformContentForms\Data\User\UserUpdateData;
+use Ibexa\ContentForms\Data\User\UserAccountFieldData;
+use Ibexa\ContentForms\Data\User\UserCreateData;
+use Ibexa\ContentForms\Data\User\UserUpdateData;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
@@ -109,3 +109,5 @@ class UserFieldsSubscriber implements EventSubscriberInterface
         }
     }
 }
+
+class_alias(UserFieldsSubscriber::class, 'EzSystems\EzPlatformContentForms\Form\EventSubscriber\UserFieldsSubscriber');

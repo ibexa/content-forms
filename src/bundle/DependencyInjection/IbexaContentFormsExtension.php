@@ -6,7 +6,7 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentFormsBundle\DependencyInjection;
+namespace Ibexa\Bundle\ContentForms\DependencyInjection;
 
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -14,7 +14,7 @@ use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
 use Symfony\Component\DependencyInjection\Loader;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 
-class EzPlatformContentFormsExtension extends Extension implements PrependExtensionInterface
+class IbexaContentFormsExtension extends Extension implements PrependExtensionInterface
 {
     public function load(array $configs, ContainerBuilder $container): void
     {
@@ -48,3 +48,5 @@ class EzPlatformContentFormsExtension extends Extension implements PrependExtens
         ]);
     }
 }
+
+class_alias(IbexaContentFormsExtension::class, 'EzSystems\EzPlatformContentFormsBundle\DependencyInjection\EzPlatformContentFormsExtension');

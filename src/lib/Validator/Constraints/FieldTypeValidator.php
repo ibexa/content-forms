@@ -6,10 +6,10 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\Validator\Constraints;
+namespace Ibexa\ContentForms\Validator\Constraints;
 
 use eZ\Publish\API\Repository\FieldTypeService;
-use EzSystems\EzPlatformContentForms\Validator\ValidationErrorsProcessor;
+use Ibexa\ContentForms\Validator\ValidationErrorsProcessor;
 use Symfony\Component\Validator\ConstraintValidator;
 
 abstract class FieldTypeValidator extends ConstraintValidator
@@ -60,3 +60,5 @@ abstract class FieldTypeValidator extends ConstraintValidator
         });
     }
 }
+
+class_alias(FieldTypeValidator::class, 'EzSystems\EzPlatformContentForms\Validator\Constraints\FieldTypeValidator');

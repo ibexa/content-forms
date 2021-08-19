@@ -6,15 +6,15 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\EventListener;
+namespace Ibexa\ContentForms\EventListener;
 
-use EzSystems\EzPlatformContentForms\Content\View\ContentCreateDraftView;
-use EzSystems\EzPlatformContentForms\User;
+use Ibexa\ContentForms\Content\View\ContentCreateDraftView;
+use Ibexa\ContentForms\User;
 use eZ\Publish\Core\MVC\ConfigResolverInterface;
 use eZ\Publish\Core\MVC\Symfony\Event\PreContentViewEvent;
 use eZ\Publish\Core\MVC\Symfony\MVCEvents;
-use EzSystems\EzPlatformContentForms\User\View\UserCreateView;
-use EzSystems\EzPlatformContentForms\User\View\UserUpdateView;
+use Ibexa\ContentForms\User\View\UserCreateView;
+use Ibexa\ContentForms\User\View\UserUpdateView;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 /**
@@ -65,3 +65,5 @@ class ViewTemplatesListener implements EventSubscriberInterface
         ];
     }
 }
+
+class_alias(ViewTemplatesListener::class, 'EzSystems\EzPlatformContentForms\EventListener\ViewTemplatesListener');

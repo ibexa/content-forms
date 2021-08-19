@@ -6,7 +6,7 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\ConfigResolver;
+namespace Ibexa\ContentForms\ConfigResolver;
 
 class MaxUploadSize
 {
@@ -69,3 +69,5 @@ class MaxUploadSize
         return (int) $value;
     }
 }
+
+class_alias(MaxUploadSize::class, 'EzSystems\EzPlatformContentForms\ConfigResolver\MaxUploadSize');

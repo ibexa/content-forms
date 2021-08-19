@@ -6,7 +6,7 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\Content\View;
+namespace Ibexa\ContentForms\Content\View;
 
 use eZ\Publish\API\Repository\Values\Content\Location;
 use eZ\Publish\Core\MVC\Symfony\View\BaseView;
@@ -26,7 +26,7 @@ class ContentEditSuccessView extends BaseView implements LocationValueView
      */
     public function __construct(Response $response)
     {
-        parent::__construct('@EzPlatformContentForms/http/302_empty_content.html.twig');
+        parent::__construct('@IbexaContentForms/http/302_empty_content.html.twig');
 
         $this->setResponse($response);
         $this->setControllerReference(new ControllerReference('ez_content_edit:editVersionDraftSuccessAction'));
@@ -48,3 +48,5 @@ class ContentEditSuccessView extends BaseView implements LocationValueView
         return $this->location;
     }
 }
+
+class_alias(ContentEditSuccessView::class, 'EzSystems\EzPlatformContentForms\Content\View\ContentEditSuccessView');

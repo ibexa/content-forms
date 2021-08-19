@@ -6,10 +6,10 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\Validator\Constraints;
+namespace Ibexa\ContentForms\Validator\Constraints;
 
-use EzSystems\EzPlatformContentForms\Data\User\UserAccountFieldData;
-use EzSystems\EzPlatformContentForms\Validator\ValidationErrorsProcessor;
+use Ibexa\ContentForms\Data\User\UserAccountFieldData;
+use Ibexa\ContentForms\Validator\ValidationErrorsProcessor;
 use Symfony\Component\Validator\Constraint;
 
 class UserAccountPasswordValidator extends PasswordValidator
@@ -36,3 +36,5 @@ class UserAccountPasswordValidator extends PasswordValidator
         });
     }
 }
+
+class_alias(UserAccountPasswordValidator::class, 'EzSystems\EzPlatformContentForms\Validator\Constraints\UserAccountPasswordValidator');

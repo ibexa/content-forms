@@ -6,7 +6,7 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\Data\Content;
+namespace Ibexa\Contracts\ContentForms\Data\Content;
 
 use eZ\Publish\API\Repository\Values\ValueObject;
 
@@ -41,3 +41,5 @@ class_alias(
     FieldData::class,
     \EzSystems\RepositoryForms\Data\Content\FieldData::class
 );
+
+class_alias(FieldData::class, 'EzSystems\EzPlatformContentForms\Data\Content\FieldData');
