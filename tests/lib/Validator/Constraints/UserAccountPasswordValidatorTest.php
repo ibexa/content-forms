@@ -6,15 +6,15 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\Tests\Validator\Constraints;
+namespace Ibexa\Tests\ContentForms\Validator\Constraints;
 
 use eZ\Publish\API\Repository\UserService;
 use eZ\Publish\API\Repository\Values\ContentType\ContentType;
 use eZ\Publish\API\Repository\Values\User\PasswordValidationContext;
 use eZ\Publish\Core\FieldType\ValidationError;
-use EzSystems\EzPlatformContentForms\Data\User\UserAccountFieldData;
-use EzSystems\EzPlatformContentForms\Validator\Constraints\UserAccountPassword;
-use EzSystems\EzPlatformContentForms\Validator\Constraints\UserAccountPasswordValidator;
+use Ibexa\ContentForms\Data\User\UserAccountFieldData;
+use Ibexa\ContentForms\Validator\Constraints\UserAccountPassword;
+use Ibexa\ContentForms\Validator\Constraints\UserAccountPasswordValidator;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
 use Symfony\Component\Validator\Violation\ConstraintViolationBuilderInterface;
@@ -133,3 +133,5 @@ class UserAccountPasswordValidatorTest extends TestCase
         ]));
     }
 }
+
+class_alias(UserAccountPasswordValidatorTest::class, 'EzSystems\EzPlatformContentForms\Tests\Validator\Constraints\UserAccountPasswordValidatorTest');

@@ -6,13 +6,13 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\Tests\FieldType\DataTransformer;
+namespace Ibexa\Tests\ContentForms\FieldType\DataTransformer;
 
 use DateTime;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Form\Exception\TransformationFailedException;
 use eZ\Publish\Core\FieldType\Time\Value;
-use EzSystems\EzPlatformContentForms\FieldType\DataTransformer\TimeValueTransformer;
+use Ibexa\ContentForms\FieldType\DataTransformer\TimeValueTransformer;
 
 class TimeValueTransformerTest extends TestCase
 {
@@ -50,3 +50,5 @@ class TimeValueTransformerTest extends TestCase
         $transformer->transform((object) ['time' => 1]);
     }
 }
+
+class_alias(TimeValueTransformerTest::class, 'EzSystems\EzPlatformContentForms\Tests\FieldType\DataTransformer\TimeValueTransformerTest');

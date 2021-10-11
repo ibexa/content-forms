@@ -6,7 +6,7 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\Form\ActionDispatcher;
+namespace Ibexa\ContentForms\Form\ActionDispatcher;
 
 use eZ\Publish\API\Repository\Values\ValueObject;
 use Symfony\Component\Form\FormInterface;
@@ -38,3 +38,5 @@ interface ActionDispatcherInterface
      */
     public function getResponse();
 }
+
+class_alias(ActionDispatcherInterface::class, 'EzSystems\EzPlatformContentForms\Form\ActionDispatcher\ActionDispatcherInterface');

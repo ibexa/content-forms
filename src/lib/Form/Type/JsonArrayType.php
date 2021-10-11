@@ -6,9 +6,9 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\Form\Type;
+namespace Ibexa\ContentForms\Form\Type;
 
-use EzSystems\EzPlatformContentForms\Form\Transformer\JsonToArrayTransformer;
+use Ibexa\ContentForms\Form\Transformer\JsonToArrayTransformer;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -25,3 +25,5 @@ final class JsonArrayType extends AbstractType
         $builder->addModelTransformer(new JsonToArrayTransformer());
     }
 }
+
+class_alias(JsonArrayType::class, 'EzSystems\EzPlatformContentForms\Form\Type\JsonArrayType');

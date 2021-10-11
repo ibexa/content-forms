@@ -6,7 +6,7 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\Data\Mapper;
+namespace Ibexa\ContentForms\Data\Mapper;
 
 use eZ\Publish\API\Repository\Values\ValueObject;
 
@@ -25,3 +25,5 @@ interface FormDataMapperInterface
      */
     public function mapToFormData(ValueObject $repositoryValueObject, array $params = []);
 }
+
+class_alias(FormDataMapperInterface::class, 'EzSystems\EzPlatformContentForms\Data\Mapper\FormDataMapperInterface');

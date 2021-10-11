@@ -6,7 +6,7 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\Content\View;
+namespace Ibexa\ContentForms\Content\View;
 
 use eZ\Publish\API\Repository\Values\Content\Language;
 use eZ\Publish\API\Repository\Values\Content\Location;
@@ -93,3 +93,5 @@ class ContentCreateView extends BaseView implements LocationValueView, ContentTy
         $this->form = $form;
     }
 }
+
+class_alias(ContentCreateView::class, 'EzSystems\EzPlatformContentForms\Content\View\ContentCreateView');

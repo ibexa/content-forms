@@ -6,14 +6,14 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\FieldType\Mapper;
+namespace Ibexa\ContentForms\FieldType\Mapper;
 
 use eZ\Publish\API\Repository\FieldTypeService;
 use eZ\Publish\Core\FieldType\BinaryFile\Value;
-use EzSystems\EzPlatformContentForms\Data\Content\FieldData;
-use EzSystems\EzPlatformContentForms\FieldType\DataTransformer\BinaryFileValueTransformer;
-use EzSystems\EzPlatformContentForms\FieldType\FieldValueFormMapperInterface;
-use EzSystems\EzPlatformContentForms\Form\Type\FieldType\BinaryFileFieldType;
+use Ibexa\Contracts\ContentForms\Data\Content\FieldData;
+use Ibexa\ContentForms\FieldType\DataTransformer\BinaryFileValueTransformer;
+use Ibexa\Contracts\ContentForms\FieldType\FieldValueFormMapperInterface;
+use Ibexa\ContentForms\Form\Type\FieldType\BinaryFileFieldType;
 use Symfony\Component\Form\FormInterface;
 
 class BinaryFileFormMapper implements FieldValueFormMapperInterface
@@ -49,3 +49,5 @@ class BinaryFileFormMapper implements FieldValueFormMapperInterface
             );
     }
 }
+
+class_alias(BinaryFileFormMapper::class, 'EzSystems\EzPlatformContentForms\FieldType\Mapper\BinaryFileFormMapper');

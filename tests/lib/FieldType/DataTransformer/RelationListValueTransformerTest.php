@@ -6,10 +6,10 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\Tests\FieldType\DataTransformer;
+namespace Ibexa\Tests\ContentForms\FieldType\DataTransformer;
 
 use eZ\Publish\Core\FieldType\RelationList\Value;
-use EzSystems\EzPlatformContentForms\FieldType\DataTransformer\RelationListValueTransformer;
+use Ibexa\ContentForms\FieldType\DataTransformer\RelationListValueTransformer;
 use PHPUnit\Framework\TestCase;
 
 final class RelationListValueTransformerTest extends TestCase
@@ -40,3 +40,5 @@ final class RelationListValueTransformerTest extends TestCase
         ];
     }
 }
+
+class_alias(RelationListValueTransformerTest::class, 'EzSystems\EzPlatformContentForms\Tests\FieldType\DataTransformer\RelationListValueTransformerTest');

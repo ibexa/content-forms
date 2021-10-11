@@ -6,7 +6,7 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\User\View;
+namespace Ibexa\ContentForms\User\View;
 
 use EzSystems\EzPlatformUser\View\Register\FormView as BaseUserRegisterFormView;
 
@@ -16,3 +16,5 @@ use EzSystems\EzPlatformUser\View\Register\FormView as BaseUserRegisterFormView;
 class UserRegisterFormView extends BaseUserRegisterFormView
 {
 }
+
+class_alias(UserRegisterFormView::class, 'EzSystems\EzPlatformContentForms\User\View\UserRegisterFormView');

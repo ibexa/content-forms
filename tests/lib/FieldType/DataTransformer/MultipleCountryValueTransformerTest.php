@@ -6,10 +6,10 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\Tests\FieldType\DataTransformer;
+namespace Ibexa\Tests\ContentForms\FieldType\DataTransformer;
 
 use eZ\Publish\Core\FieldType\Country\Value;
-use EzSystems\EzPlatformContentForms\FieldType\DataTransformer\MultipleCountryValueTransformer;
+use Ibexa\ContentForms\FieldType\DataTransformer\MultipleCountryValueTransformer;
 use PHPUnit\Framework\TestCase;
 
 class MultipleCountryValueTransformerTest extends TestCase
@@ -116,3 +116,5 @@ class MultipleCountryValueTransformerTest extends TestCase
         self::assertNull($transformer->reverseTransform($value));
     }
 }
+
+class_alias(MultipleCountryValueTransformerTest::class, 'EzSystems\EzPlatformContentForms\Tests\FieldType\DataTransformer\MultipleCountryValueTransformerTest');

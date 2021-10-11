@@ -6,7 +6,7 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\Behat\Context;
+namespace Ibexa\ContentForms\Behat\Context;
 
 use Behat\Behat\Context\Context;
 use Behat\Behat\Context\SnippetAcceptingContext;
@@ -391,3 +391,5 @@ class UserRegistrationContext extends RawMinkContext implements Context, Snippet
         );
     }
 }
+
+class_alias(UserRegistrationContext::class, 'EzSystems\EzPlatformContentForms\Behat\Context\UserRegistrationContext');

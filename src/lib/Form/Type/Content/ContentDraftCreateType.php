@@ -6,7 +6,7 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\Form\Type\Content;
+namespace Ibexa\ContentForms\Form\Type\Content;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -73,3 +73,5 @@ class ContentDraftCreateType extends AbstractType
         $resolver->setDefaults(['translation_domain' => 'ezplatform_content_forms_content']);
     }
 }
+
+class_alias(ContentDraftCreateType::class, 'EzSystems\EzPlatformContentForms\Form\Type\Content\ContentDraftCreateType');

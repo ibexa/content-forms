@@ -6,7 +6,7 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\FieldType\DataTransformer;
+namespace Ibexa\ContentForms\FieldType\DataTransformer;
 
 use eZ\Publish\Core\FieldType\Selection\Value;
 use Symfony\Component\Form\DataTransformerInterface;
@@ -38,3 +38,5 @@ class MultiSelectionValueTransformer implements DataTransformerInterface
         return new Value($value);
     }
 }
+
+class_alias(MultiSelectionValueTransformer::class, 'EzSystems\EzPlatformContentForms\FieldType\DataTransformer\MultiSelectionValueTransformer');

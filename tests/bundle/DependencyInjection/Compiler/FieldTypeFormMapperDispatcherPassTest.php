@@ -6,9 +6,9 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentFormsBundle\Tests\DependencyInjection\Compiler;
+namespace Ibexa\Tests\Bundle\ContentForms\DependencyInjection\Compiler;
 
-use EzSystems\EzPlatformContentFormsBundle\DependencyInjection\Compiler\FieldTypeFormMapperDispatcherPass;
+use Ibexa\Bundle\ContentForms\DependencyInjection\Compiler\FieldTypeFormMapperDispatcherPass;
 use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractCompilerPassTestCase;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
@@ -56,3 +56,5 @@ class FieldTypeFormMapperDispatcherPassTest extends AbstractCompilerPassTestCase
         ];
     }
 }
+
+class_alias(FieldTypeFormMapperDispatcherPassTest::class, 'EzSystems\EzPlatformContentFormsBundle\Tests\DependencyInjection\Compiler\FieldTypeFormMapperDispatcherPassTest');

@@ -6,7 +6,7 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentFormsBundle\Controller;
+namespace Ibexa\Bundle\ContentForms\Controller;
 
 use eZ\Bundle\EzPublishCoreBundle\Controller;
 use EzSystems\EzPlatformUserBundle\Controller\UserRegisterController as BaseUserRegisterController;
@@ -51,3 +51,5 @@ class UserRegisterController extends Controller
         return $this->userRegisterController->registerConfirmAction();
     }
 }
+
+class_alias(UserRegisterController::class, 'EzSystems\EzPlatformContentFormsBundle\Controller\UserRegisterController');

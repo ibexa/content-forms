@@ -6,7 +6,7 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\Behat\Context;
+namespace Ibexa\ContentForms\Behat\Context;
 
 use Behat\Behat\Context\Context;
 use Behat\Behat\Context\SnippetAcceptingContext;
@@ -55,3 +55,5 @@ class PagelayoutContext extends RawMinkContext implements Context, SnippetAccept
                 : $this->configResolver->getParameter('pagelayout', null, 'site');
     }
 }
+
+class_alias(PagelayoutContext::class, 'EzSystems\EzPlatformContentForms\Behat\Context\PagelayoutContext');
