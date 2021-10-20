@@ -6,7 +6,7 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\Content\View;
+namespace Ibexa\ContentForms\Content\View;
 
 use eZ\Publish\Core\MVC\Symfony\View\BaseView;
 use eZ\Publish\Core\MVC\Symfony\View\View;
@@ -14,3 +14,5 @@ use eZ\Publish\Core\MVC\Symfony\View\View;
 class ContentCreateDraftView extends BaseView implements View
 {
 }
+
+class_alias(ContentCreateDraftView::class, 'EzSystems\EzPlatformContentForms\Content\View\ContentCreateDraftView');

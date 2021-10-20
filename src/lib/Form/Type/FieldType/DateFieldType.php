@@ -6,9 +6,9 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\Form\Type\FieldType;
+namespace Ibexa\ContentForms\Form\Type\FieldType;
 
-use EzSystems\EzPlatformContentForms\FieldType\DataTransformer\DateValueTransformer;
+use Ibexa\ContentForms\FieldType\DataTransformer\DateValueTransformer;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -58,3 +58,5 @@ class DateFieldType extends AbstractType
         $view->vars['isEditView'] = \in_array($request->attributes->get('_route'), self::EDIT_VIEWS);
     }
 }
+
+class_alias(DateFieldType::class, 'EzSystems\EzPlatformContentForms\Form\Type\FieldType\DateFieldType');

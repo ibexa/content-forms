@@ -6,7 +6,7 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\Content\View\Filter;
+namespace Ibexa\ContentForms\Content\View\Filter;
 
 use eZ\Publish\API\Repository\ContentService;
 use eZ\Publish\API\Repository\ContentTypeService;
@@ -15,9 +15,9 @@ use eZ\Publish\API\Repository\Values\ContentType\ContentType;
 use eZ\Publish\Core\MVC\Symfony\Locale\UserLanguagePreferenceProviderInterface;
 use eZ\Publish\Core\MVC\Symfony\View\Event\FilterViewBuilderParametersEvent;
 use eZ\Publish\Core\MVC\Symfony\View\ViewEvents;
-use EzSystems\EzPlatformContentForms\Data\Content\ContentUpdateData;
-use EzSystems\EzPlatformContentForms\Data\Mapper\ContentUpdateMapper;
-use EzSystems\EzPlatformContentForms\Form\Type\Content\ContentEditType;
+use Ibexa\ContentForms\Data\Content\ContentUpdateData;
+use Ibexa\ContentForms\Data\Mapper\ContentUpdateMapper;
+use Ibexa\ContentForms\Form\Type\Content\ContentEditType;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\Form\FormInterface;
@@ -143,3 +143,5 @@ class ContentEditViewFilter implements EventSubscriberInterface
         );
     }
 }
+
+class_alias(ContentEditViewFilter::class, 'EzSystems\EzPlatformContentForms\Content\View\Filter\ContentEditViewFilter');

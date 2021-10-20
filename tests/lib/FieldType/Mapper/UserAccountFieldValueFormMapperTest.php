@@ -6,12 +6,12 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\Tests\FieldType\Mapper;
+namespace Ibexa\Tests\ContentForms\FieldType\Mapper;
 
 use eZ\Publish\API\Repository\Values\ContentType\ContentType;
 use eZ\Publish\Core\Repository\Values\ContentType\FieldDefinition;
-use EzSystems\EzPlatformContentForms\Data\User\UserCreateData;
-use EzSystems\EzPlatformContentForms\FieldType\Mapper\UserAccountFieldValueFormMapper;
+use Ibexa\ContentForms\Data\User\UserCreateData;
+use Ibexa\ContentForms\FieldType\Mapper\UserAccountFieldValueFormMapper;
 use Symfony\Component\Form\FormConfigInterface;
 use Symfony\Component\Form\FormInterface;
 
@@ -84,3 +84,5 @@ class UserAccountFieldValueFormMapperTest extends BaseMapperTest
         $mapper->mapFieldValueForm($this->fieldForm, $this->data);
     }
 }
+
+class_alias(UserAccountFieldValueFormMapperTest::class, 'EzSystems\EzPlatformContentForms\Tests\FieldType\Mapper\UserAccountFieldValueFormMapperTest');

@@ -6,7 +6,7 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\Data\User;
+namespace Ibexa\ContentForms\Data\User;
 
 /**
  * User account field data value object.
@@ -42,3 +42,5 @@ class UserAccountFieldData
         $this->enabled = $enabled;
     }
 }
+
+class_alias(UserAccountFieldData::class, 'EzSystems\EzPlatformContentForms\Data\User\UserAccountFieldData');

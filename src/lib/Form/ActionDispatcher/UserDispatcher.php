@@ -6,9 +6,9 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\Form\ActionDispatcher;
+namespace Ibexa\ContentForms\Form\ActionDispatcher;
 
-use EzSystems\EzPlatformContentForms\Event\ContentFormEvents;
+use Ibexa\ContentForms\Event\ContentFormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class UserDispatcher extends AbstractActionDispatcher
@@ -22,3 +22,5 @@ class UserDispatcher extends AbstractActionDispatcher
         return ContentFormEvents::USER_EDIT;
     }
 }
+
+class_alias(UserDispatcher::class, 'EzSystems\EzPlatformContentForms\Form\ActionDispatcher\UserDispatcher');

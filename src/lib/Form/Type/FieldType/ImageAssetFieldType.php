@@ -6,13 +6,13 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\Form\Type\FieldType;
+namespace Ibexa\ContentForms\Form\Type\FieldType;
 
 use eZ\Publish\API\Repository\ContentService;
 use eZ\Publish\API\Repository\Exceptions\NotFoundException;
 use eZ\Publish\API\Repository\Exceptions\UnauthorizedException;
 use eZ\Publish\Core\FieldType\ImageAsset\AssetMapper;
-use EzSystems\EzPlatformContentForms\ConfigResolver\MaxUploadSize;
+use Ibexa\ContentForms\ConfigResolver\MaxUploadSize;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
@@ -138,3 +138,5 @@ class ImageAssetFieldType extends AbstractType
         return $this->maxUploadSize->get();
     }
 }
+
+class_alias(ImageAssetFieldType::class, 'EzSystems\EzPlatformContentForms\Form\Type\FieldType\ImageAssetFieldType');

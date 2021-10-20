@@ -6,13 +6,13 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\Data\Mapper;
+namespace Ibexa\ContentForms\Data\Mapper;
 
 use eZ\Publish\API\Repository\Values\Content\Field;
 use eZ\Publish\API\Repository\Values\ContentType\ContentType;
 use eZ\Publish\API\Repository\Values\User\UserGroup;
-use EzSystems\EzPlatformContentForms\Data\Content\FieldData;
-use EzSystems\EzPlatformContentForms\Data\User\UserCreateData;
+use Ibexa\Contracts\ContentForms\Data\Content\FieldData;
+use Ibexa\ContentForms\Data\User\UserCreateData;
 use Symfony\Component\OptionsResolver\Exception\AccessException;
 use Symfony\Component\OptionsResolver\Exception\InvalidOptionsException;
 use Symfony\Component\OptionsResolver\Exception\MissingOptionsException;
@@ -67,3 +67,5 @@ class UserCreateMapper
         $optionsResolver->setRequired('mainLanguageCode');
     }
 }
+
+class_alias(UserCreateMapper::class, 'EzSystems\EzPlatformContentForms\Data\Mapper\UserCreateMapper');

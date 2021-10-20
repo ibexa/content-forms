@@ -6,7 +6,7 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\Form\Type\FieldType;
+namespace Ibexa\ContentForms\Form\Type\FieldType;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -94,3 +94,5 @@ class MediaFieldType extends AbstractType
         $resolver->setDefaults(['translation_domain' => 'ezplatform_content_forms_fieldtype']);
     }
 }
+
+class_alias(MediaFieldType::class, 'EzSystems\EzPlatformContentForms\Form\Type\FieldType\MediaFieldType');

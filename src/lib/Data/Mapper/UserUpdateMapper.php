@@ -6,12 +6,12 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\Data\Mapper;
+namespace Ibexa\ContentForms\Data\Mapper;
 
 use eZ\Publish\API\Repository\Values\ContentType\ContentType;
 use eZ\Publish\API\Repository\Values\User\User;
-use EzSystems\EzPlatformContentForms\Data\Content\FieldData;
-use EzSystems\EzPlatformContentForms\Data\User\UserUpdateData;
+use Ibexa\Contracts\ContentForms\Data\Content\FieldData;
+use Ibexa\ContentForms\Data\User\UserUpdateData;
 use Symfony\Component\OptionsResolver\Exception\AccessException;
 use Symfony\Component\OptionsResolver\Exception\InvalidOptionsException;
 use Symfony\Component\OptionsResolver\Exception\MissingOptionsException;
@@ -72,3 +72,5 @@ class UserUpdateMapper
             ->setRequired(['languageCode']);
     }
 }
+
+class_alias(UserUpdateMapper::class, 'EzSystems\EzPlatformContentForms\Data\Mapper\UserUpdateMapper');

@@ -6,7 +6,7 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\Content\View;
+namespace Ibexa\ContentForms\Content\View;
 
 use eZ\Publish\API\Repository\Values\Content\Content;
 use eZ\Publish\API\Repository\Values\Content\Language;
@@ -96,3 +96,5 @@ class ContentEditView extends BaseView implements ContentValueView, LocationValu
         $this->form = $form;
     }
 }
+
+class_alias(ContentEditView::class, 'EzSystems\EzPlatformContentForms\Content\View\ContentEditView');

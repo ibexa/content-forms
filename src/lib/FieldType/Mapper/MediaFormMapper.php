@@ -6,15 +6,15 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\FieldType\Mapper;
+namespace Ibexa\ContentForms\FieldType\Mapper;
 
 use eZ\Publish\API\Repository\FieldTypeService;
 use eZ\Publish\Core\FieldType\Media\Type;
 use eZ\Publish\Core\FieldType\Media\Value;
-use EzSystems\EzPlatformContentForms\Data\Content\FieldData;
-use EzSystems\EzPlatformContentForms\FieldType\DataTransformer\MediaValueTransformer;
-use EzSystems\EzPlatformContentForms\FieldType\FieldValueFormMapperInterface;
-use EzSystems\EzPlatformContentForms\Form\Type\FieldType\MediaFieldType;
+use Ibexa\Contracts\ContentForms\Data\Content\FieldData;
+use Ibexa\ContentForms\FieldType\DataTransformer\MediaValueTransformer;
+use Ibexa\Contracts\ContentForms\FieldType\FieldValueFormMapperInterface;
+use Ibexa\ContentForms\Form\Type\FieldType\MediaFieldType;
 use Symfony\Component\Form\FormInterface;
 
 class MediaFormMapper implements FieldValueFormMapperInterface
@@ -60,3 +60,5 @@ class MediaFormMapper implements FieldValueFormMapperInterface
             );
     }
 }
+
+class_alias(MediaFormMapper::class, 'EzSystems\EzPlatformContentForms\FieldType\Mapper\MediaFormMapper');

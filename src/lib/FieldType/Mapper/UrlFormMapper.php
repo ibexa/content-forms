@@ -6,11 +6,11 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\FieldType\Mapper;
+namespace Ibexa\ContentForms\FieldType\Mapper;
 
-use EzSystems\EzPlatformContentForms\Data\Content\FieldData;
-use EzSystems\EzPlatformContentForms\FieldType\FieldValueFormMapperInterface;
-use EzSystems\EzPlatformContentForms\Form\Type\FieldType\UrlFieldType;
+use Ibexa\Contracts\ContentForms\Data\Content\FieldData;
+use Ibexa\Contracts\ContentForms\FieldType\FieldValueFormMapperInterface;
+use Ibexa\ContentForms\Form\Type\FieldType\UrlFieldType;
 use Symfony\Component\Form\FormInterface;
 
 /**
@@ -39,3 +39,5 @@ class UrlFormMapper implements FieldValueFormMapperInterface
             );
     }
 }
+
+class_alias(UrlFormMapper::class, 'EzSystems\EzPlatformContentForms\FieldType\Mapper\UrlFormMapper');

@@ -6,10 +6,10 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\Form\ActionDispatcher;
+namespace Ibexa\ContentForms\Form\ActionDispatcher;
 
 use eZ\Publish\API\Repository\Values\ValueObject;
-use EzSystems\EzPlatformContentForms\Event\FormActionEvent;
+use Ibexa\ContentForms\Event\FormActionEvent;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -91,3 +91,5 @@ abstract class AbstractActionDispatcher implements ActionDispatcherInterface
         return $this->response;
     }
 }
+
+class_alias(AbstractActionDispatcher::class, 'EzSystems\EzPlatformContentForms\Form\ActionDispatcher\AbstractActionDispatcher');

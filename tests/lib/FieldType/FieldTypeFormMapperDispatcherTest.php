@@ -6,13 +6,13 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\Tests\FieldType;
+namespace Ibexa\Tests\ContentForms\FieldType;
 
 use eZ\Publish\API\Repository\Values\Content\Field;
 use eZ\Publish\Core\Repository\Values\ContentType\FieldDefinition;
-use EzSystems\EzPlatformContentForms\Data\Content\FieldData;
-use EzSystems\EzPlatformContentForms\FieldType\FieldTypeFormMapperDispatcher;
-use EzSystems\EzPlatformContentForms\FieldType\FieldValueFormMapperInterface;
+use Ibexa\Contracts\ContentForms\Data\Content\FieldData;
+use Ibexa\ContentForms\FieldType\FieldTypeFormMapperDispatcher;
+use Ibexa\Contracts\ContentForms\FieldType\FieldValueFormMapperInterface;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Form\FormInterface;
 
@@ -49,3 +49,5 @@ class FieldTypeFormMapperDispatcherTest extends TestCase
         $this->dispatcher->map($formMock, $data);
     }
 }
+
+class_alias(FieldTypeFormMapperDispatcherTest::class, 'EzSystems\EzPlatformContentForms\Tests\FieldType\FieldTypeFormMapperDispatcherTest');

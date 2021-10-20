@@ -6,7 +6,9 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\Data\Content;
+namespace Ibexa\ContentForms\Data\Content;
+
+use Ibexa\Contracts\ContentForms\Data\Content\FieldData;
 
 trait ContentData
 {
@@ -20,3 +22,5 @@ trait ContentData
         $this->fieldsData[$fieldData->fieldDefinition->identifier] = $fieldData;
     }
 }
+
+class_alias(ContentData::class, 'EzSystems\EzPlatformContentForms\Data\Content\ContentData');

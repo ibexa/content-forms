@@ -6,7 +6,7 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\Data;
+namespace Ibexa\ContentForms\Data;
 
 use eZ\Publish\Core\Repository\Values\Content\ContentUpdateStruct;
 
@@ -24,3 +24,5 @@ class ContentTranslationData extends ContentUpdateStruct implements NewnessCheck
         return false;
     }
 }
+
+class_alias(ContentTranslationData::class, 'EzSystems\EzPlatformContentForms\Data\ContentTranslationData');

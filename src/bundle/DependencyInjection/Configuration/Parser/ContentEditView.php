@@ -6,7 +6,7 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentFormsBundle\DependencyInjection\Configuration\Parser;
+namespace Ibexa\Bundle\ContentForms\DependencyInjection\Configuration\Parser;
 
 use eZ\Bundle\EzPublishCoreBundle\DependencyInjection\Configuration\Parser\View;
 
@@ -15,3 +15,5 @@ class ContentEditView extends View
     const NODE_KEY = 'content_edit_view';
     const INFO = 'Template selection settings when displaying a content edit form';
 }
+
+class_alias(ContentEditView::class, 'EzSystems\EzPlatformContentFormsBundle\DependencyInjection\Configuration\Parser\ContentEditView');

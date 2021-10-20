@@ -6,7 +6,7 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\Data\Content;
+namespace Ibexa\ContentForms\Data\Content;
 
 use eZ\Publish\API\Repository\Values\ValueObject;
 
@@ -20,3 +20,5 @@ class CreateContentDraftData extends ValueObject
 
     public $toLanguage;
 }
+
+class_alias(CreateContentDraftData::class, 'EzSystems\EzPlatformContentForms\Data\Content\CreateContentDraftData');

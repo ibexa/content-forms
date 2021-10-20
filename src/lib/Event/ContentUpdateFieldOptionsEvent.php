@@ -6,11 +6,11 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\Event;
+namespace Ibexa\ContentForms\Event;
 
 use eZ\Publish\API\Repository\Values\Content\Content;
 use eZ\Publish\API\Repository\Values\Content\ContentUpdateStruct;
-use EzSystems\EzPlatformContentForms\Data\Content\FieldData;
+use Ibexa\Contracts\ContentForms\Data\Content\FieldData;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Contracts\EventDispatcher\Event;
 
@@ -85,3 +85,5 @@ final class ContentUpdateFieldOptionsEvent extends Event
         return $this->options[$option] ?? null;
     }
 }
+
+class_alias(ContentUpdateFieldOptionsEvent::class, 'EzSystems\EzPlatformContentForms\Event\ContentUpdateFieldOptionsEvent');

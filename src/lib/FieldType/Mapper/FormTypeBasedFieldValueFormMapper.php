@@ -6,12 +6,12 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\FieldType\Mapper;
+namespace Ibexa\ContentForms\FieldType\Mapper;
 
 use eZ\Publish\API\Repository\FieldTypeService;
-use EzSystems\EzPlatformContentForms\Data\Content\FieldData;
-use EzSystems\EzPlatformContentForms\FieldType\DataTransformer\FieldValueTransformer;
-use EzSystems\EzPlatformContentForms\FieldType\FieldValueFormMapperInterface;
+use Ibexa\Contracts\ContentForms\Data\Content\FieldData;
+use Ibexa\ContentForms\FieldType\DataTransformer\FieldValueTransformer;
+use Ibexa\Contracts\ContentForms\FieldType\FieldValueFormMapperInterface;
 use Symfony\Component\Form\FormInterface;
 
 /**
@@ -83,3 +83,5 @@ final class FormTypeBasedFieldValueFormMapper implements FieldValueFormMapperInt
             );
     }
 }
+
+class_alias(FormTypeBasedFieldValueFormMapper::class, 'EzSystems\EzPlatformContentForms\FieldType\Mapper\FormTypeBasedFieldValueFormMapper');

@@ -6,14 +6,14 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\FieldType\Mapper;
+namespace Ibexa\ContentForms\FieldType\Mapper;
 
 use eZ\Publish\API\Repository\ContentTypeService;
 use eZ\Publish\API\Repository\Exceptions\NotFoundException;
 use eZ\Publish\API\Repository\Exceptions\UnauthorizedException;
 use eZ\Publish\API\Repository\LocationService;
 use eZ\Publish\API\Repository\Values\Content\Location;
-use EzSystems\EzPlatformContentForms\FieldType\FieldValueFormMapperInterface;
+use Ibexa\Contracts\ContentForms\FieldType\FieldValueFormMapperInterface;
 
 abstract class AbstractRelationFormMapper implements FieldValueFormMapperInterface
 {
@@ -74,3 +74,5 @@ abstract class AbstractRelationFormMapper implements FieldValueFormMapperInterfa
         return null;
     }
 }
+
+class_alias(AbstractRelationFormMapper::class, 'EzSystems\EzPlatformContentForms\FieldType\Mapper\AbstractRelationFormMapper');

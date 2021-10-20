@@ -6,7 +6,7 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\Event;
+namespace Ibexa\ContentForms\Event;
 
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormInterface;
@@ -164,3 +164,5 @@ class FormActionEvent extends FormEvent
         $this->payloads[$name] = $payload;
     }
 }
+
+class_alias(FormActionEvent::class, 'EzSystems\EzPlatformContentForms\Event\FormActionEvent');

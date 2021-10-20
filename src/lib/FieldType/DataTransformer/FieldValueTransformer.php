@@ -6,7 +6,7 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\FieldType\DataTransformer;
+namespace Ibexa\ContentForms\FieldType\DataTransformer;
 
 use eZ\Publish\API\Repository\FieldType;
 use eZ\Publish\SPI\FieldType\Value;
@@ -62,3 +62,5 @@ class FieldValueTransformer implements DataTransformerInterface
         return $this->fieldType->fromHash($value);
     }
 }
+
+class_alias(FieldValueTransformer::class, 'EzSystems\EzPlatformContentForms\FieldType\DataTransformer\FieldValueTransformer');

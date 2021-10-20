@@ -6,10 +6,10 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\Form\Type\FieldType;
+namespace Ibexa\ContentForms\Form\Type\FieldType;
 
 use eZ\Publish\API\Repository\FieldTypeService;
-use EzSystems\EzPlatformContentForms\FieldType\DataTransformer\FieldValueTransformer;
+use Ibexa\ContentForms\FieldType\DataTransformer\FieldValueTransformer;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -75,3 +75,5 @@ class TextLineFieldType extends AbstractType
             ->setAllowedTypes('max', ['integer', 'null']);
     }
 }
+
+class_alias(TextLineFieldType::class, 'EzSystems\EzPlatformContentForms\Form\Type\FieldType\TextLineFieldType');

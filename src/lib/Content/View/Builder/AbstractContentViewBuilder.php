@@ -6,7 +6,7 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\Content\View\Builder;
+namespace Ibexa\ContentForms\Content\View\Builder;
 
 use eZ\Publish\API\Repository\ContentService;
 use eZ\Publish\API\Repository\Repository;
@@ -111,3 +111,5 @@ abstract class AbstractContentViewBuilder
             'No language information provided. Are you missing language or languageCode parameters?');
     }
 }
+
+class_alias(AbstractContentViewBuilder::class, 'EzSystems\EzPlatformContentForms\Content\View\Builder\AbstractContentViewBuilder');
