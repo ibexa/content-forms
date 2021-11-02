@@ -6,9 +6,9 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\Form\Type\FieldType;
+namespace Ibexa\ContentForms\Form\Type\FieldType;
 
-use EzSystems\EzPlatformContentForms\FieldType\DataTransformer\KeywordValueTransformer;
+use Ibexa\ContentForms\FieldType\DataTransformer\KeywordValueTransformer;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -38,3 +38,5 @@ class KeywordFieldType extends AbstractType
         $builder->addModelTransformer(new KeywordValueTransformer());
     }
 }
+
+class_alias(KeywordFieldType::class, 'EzSystems\EzPlatformContentForms\Form\Type\FieldType\KeywordFieldType');

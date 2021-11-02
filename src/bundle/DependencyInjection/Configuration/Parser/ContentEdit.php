@@ -6,7 +6,7 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentFormsBundle\DependencyInjection\Configuration\Parser;
+namespace Ibexa\Bundle\ContentForms\DependencyInjection\Configuration\Parser;
 
 use eZ\Bundle\EzPublishCoreBundle\DependencyInjection\Configuration\AbstractParser;
 use eZ\Bundle\EzPublishCoreBundle\DependencyInjection\Configuration\SiteAccessAware\ContextualizerInterface;
@@ -77,3 +77,5 @@ class ContentEdit extends AbstractParser
         }
     }
 }
+
+class_alias(ContentEdit::class, 'EzSystems\EzPlatformContentFormsBundle\DependencyInjection\Configuration\Parser\ContentEdit');

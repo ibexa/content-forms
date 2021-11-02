@@ -6,10 +6,10 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\Tests\FieldType\DataTransformer;
+namespace Ibexa\Tests\ContentForms\FieldType\DataTransformer;
 
 use eZ\Publish\Core\FieldType\Selection\Value;
-use EzSystems\EzPlatformContentForms\FieldType\DataTransformer\SingleSelectionValueTransformer;
+use Ibexa\ContentForms\FieldType\DataTransformer\SingleSelectionValueTransformer;
 use PHPUnit\Framework\TestCase;
 
 class SingleSelectionValueTransformerTest extends TestCase
@@ -67,3 +67,5 @@ class SingleSelectionValueTransformerTest extends TestCase
         self::assertNull($transformer->reverseTransform(null));
     }
 }
+
+class_alias(SingleSelectionValueTransformerTest::class, 'EzSystems\EzPlatformContentForms\Tests\FieldType\DataTransformer\SingleSelectionValueTransformerTest');

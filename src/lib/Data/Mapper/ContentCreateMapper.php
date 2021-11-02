@@ -6,12 +6,12 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\Data\Mapper;
+namespace Ibexa\ContentForms\Data\Mapper;
 
 use eZ\Publish\API\Repository\Values\Content\Field;
 use eZ\Publish\API\Repository\Values\ValueObject;
-use EzSystems\EzPlatformContentForms\Data\Content\ContentCreateData;
-use EzSystems\EzPlatformContentForms\Data\Content\FieldData;
+use Ibexa\ContentForms\Data\Content\ContentCreateData;
+use Ibexa\Contracts\ContentForms\Data\Content\FieldData;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
@@ -56,3 +56,5 @@ class ContentCreateMapper implements FormDataMapperInterface
             ->setAllowedTypes('parentLocation', '\eZ\Publish\API\Repository\Values\Content\LocationCreateStruct');
     }
 }
+
+class_alias(ContentCreateMapper::class, 'EzSystems\EzPlatformContentForms\Data\Mapper\ContentCreateMapper');

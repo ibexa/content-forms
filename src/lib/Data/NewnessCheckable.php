@@ -6,7 +6,7 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\Data;
+namespace Ibexa\ContentForms\Data;
 
 interface NewnessCheckable
 {
@@ -17,3 +17,5 @@ interface NewnessCheckable
      */
     public function isNew();
 }
+
+class_alias(NewnessCheckable::class, 'EzSystems\EzPlatformContentForms\Data\NewnessCheckable');

@@ -6,7 +6,7 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\Form\Transformer;
+namespace Ibexa\ContentForms\Form\Transformer;
 
 use Symfony\Component\Form\DataTransformerInterface;
 use Symfony\Component\Form\Exception\TransformationFailedException;
@@ -51,3 +51,5 @@ final class JsonToArrayTransformer implements DataTransformerInterface
         return $decoded;
     }
 }
+
+class_alias(JsonToArrayTransformer::class, 'EzSystems\EzPlatformContentForms\Form\Transformer\JsonToArrayTransformer');

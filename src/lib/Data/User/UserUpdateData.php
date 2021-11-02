@@ -6,11 +6,11 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\Data\User;
+namespace Ibexa\ContentForms\Data\User;
 
 use eZ\Publish\API\Repository\Values\User\UserUpdateStruct;
-use EzSystems\EzPlatformContentForms\Data\Content\ContentData;
-use EzSystems\EzPlatformContentForms\Data\NewnessCheckable;
+use Ibexa\ContentForms\Data\Content\ContentData;
+use Ibexa\ContentForms\Data\NewnessCheckable;
 
 /**
  * @property \EzSystems\EzPlatformContentForms\Data\Content\FieldData[] $fieldsData
@@ -35,3 +35,5 @@ class UserUpdateData extends UserUpdateStruct implements NewnessCheckable
         return false;
     }
 }
+
+class_alias(UserUpdateData::class, 'EzSystems\EzPlatformContentForms\Data\User\UserUpdateData');

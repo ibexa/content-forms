@@ -6,10 +6,10 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\FieldType\Mapper;
+namespace Ibexa\ContentForms\FieldType\Mapper;
 
-use EzSystems\EzPlatformContentForms\Data\Content\FieldData;
-use EzSystems\EzPlatformContentForms\Form\Type\FieldType\RelationListFieldType;
+use Ibexa\Contracts\ContentForms\Data\Content\FieldData;
+use Ibexa\ContentForms\Form\Type\FieldType\RelationListFieldType;
 use Symfony\Component\Form\FormInterface;
 
 class RelationListFormMapper extends AbstractRelationFormMapper
@@ -38,3 +38,5 @@ class RelationListFormMapper extends AbstractRelationFormMapper
             );
     }
 }
+
+class_alias(RelationListFormMapper::class, 'EzSystems\EzPlatformContentForms\FieldType\Mapper\RelationListFormMapper');

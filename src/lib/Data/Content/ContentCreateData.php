@@ -6,11 +6,11 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\Data\Content;
+namespace Ibexa\ContentForms\Data\Content;
 
 use eZ\Publish\API\Repository\Values\Content\LocationCreateStruct;
 use eZ\Publish\Core\Repository\Values\Content\ContentCreateStruct;
-use EzSystems\EzPlatformContentForms\Data\NewnessCheckable;
+use Ibexa\ContentForms\Data\NewnessCheckable;
 
 /**
  * @property \EzSystems\EzPlatformContentForms\Data\Content\FieldData[] $fieldsData
@@ -48,3 +48,5 @@ class ContentCreateData extends ContentCreateStruct implements NewnessCheckable
         $this->locationStructs[] = $locationStruct;
     }
 }
+
+class_alias(ContentCreateData::class, 'EzSystems\EzPlatformContentForms\Data\Content\ContentCreateData');

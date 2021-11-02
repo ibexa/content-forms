@@ -6,7 +6,7 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\FieldType\DataTransformer;
+namespace Ibexa\ContentForms\FieldType\DataTransformer;
 
 use eZ\Publish\API\Repository\Exceptions\InvalidArgumentException;
 use eZ\Publish\Core\FieldType\Date\Value;
@@ -67,3 +67,5 @@ class DateValueTransformer implements DataTransformerInterface
         return Value::fromTimestamp($value);
     }
 }
+
+class_alias(DateValueTransformer::class, 'EzSystems\EzPlatformContentForms\FieldType\DataTransformer\DateValueTransformer');

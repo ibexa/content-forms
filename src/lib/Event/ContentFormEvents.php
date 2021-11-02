@@ -6,7 +6,7 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\Event;
+namespace Ibexa\ContentForms\Event;
 
 final class ContentFormEvents
 {
@@ -65,3 +65,5 @@ final class ContentFormEvents
      */
     const CONTENT_CREATE_FIELD_OPTIONS = 'content.create.field.options';
 }
+
+class_alias(ContentFormEvents::class, 'EzSystems\EzPlatformContentForms\Event\ContentFormEvents');

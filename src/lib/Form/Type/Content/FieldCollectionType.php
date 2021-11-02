@@ -6,11 +6,11 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\Form\Type\Content;
+namespace Ibexa\ContentForms\Form\Type\Content;
 
-use EzSystems\EzPlatformContentForms\Event\ContentCreateFieldOptionsEvent;
-use EzSystems\EzPlatformContentForms\Event\ContentFormEvents;
-use EzSystems\EzPlatformContentForms\Event\ContentUpdateFieldOptionsEvent;
+use Ibexa\ContentForms\Event\ContentCreateFieldOptionsEvent;
+use Ibexa\ContentForms\Event\ContentFormEvents;
+use Ibexa\ContentForms\Event\ContentUpdateFieldOptionsEvent;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
@@ -93,3 +93,5 @@ class FieldCollectionType extends CollectionType
         return !empty($entryOptions['content']) && !empty($entryOptions['contentUpdateStruct']);
     }
 }
+
+class_alias(FieldCollectionType::class, 'EzSystems\EzPlatformContentForms\Form\Type\Content\FieldCollectionType');

@@ -6,10 +6,10 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\Form\Type\FieldType;
+namespace Ibexa\ContentForms\Form\Type\FieldType;
 
-use EzSystems\EzPlatformContentForms\FieldType\DataTransformer\MultipleCountryValueTransformer;
-use EzSystems\EzPlatformContentForms\FieldType\DataTransformer\SingleCountryValueTransformer;
+use Ibexa\ContentForms\FieldType\DataTransformer\MultipleCountryValueTransformer;
+use Ibexa\ContentForms\FieldType\DataTransformer\SingleCountryValueTransformer;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -73,3 +73,5 @@ class CountryFieldType extends AbstractType
         return $choices;
     }
 }
+
+class_alias(CountryFieldType::class, 'EzSystems\EzPlatformContentForms\Form\Type\FieldType\CountryFieldType');

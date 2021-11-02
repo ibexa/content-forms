@@ -6,10 +6,10 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\Form\ActionDispatcher;
+namespace Ibexa\ContentForms\Form\ActionDispatcher;
 
 use eZ\Publish\API\Repository\Values\Content\Location;
-use EzSystems\EzPlatformContentForms\Event\ContentFormEvents;
+use Ibexa\ContentForms\Event\ContentFormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ContentDispatcher extends AbstractActionDispatcher
@@ -26,3 +26,5 @@ class ContentDispatcher extends AbstractActionDispatcher
         return ContentFormEvents::CONTENT_EDIT;
     }
 }
+
+class_alias(ContentDispatcher::class, 'EzSystems\EzPlatformContentForms\Form\ActionDispatcher\ContentDispatcher');

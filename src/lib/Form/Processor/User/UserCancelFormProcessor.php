@@ -6,12 +6,12 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\Form\Processor\User;
+namespace Ibexa\ContentForms\Form\Processor\User;
 
-use EzSystems\EzPlatformContentForms\Data\User\UserCreateData;
-use EzSystems\EzPlatformContentForms\Data\User\UserUpdateData;
-use EzSystems\EzPlatformContentForms\Event\ContentFormEvents;
-use EzSystems\EzPlatformContentForms\Event\FormActionEvent;
+use Ibexa\ContentForms\Data\User\UserCreateData;
+use Ibexa\ContentForms\Data\User\UserUpdateData;
+use Ibexa\ContentForms\Event\ContentFormEvents;
+use Ibexa\ContentForms\Event\FormActionEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
@@ -56,3 +56,5 @@ class UserCancelFormProcessor implements EventSubscriberInterface
         $event->setResponse($response);
     }
 }
+
+class_alias(UserCancelFormProcessor::class, 'EzSystems\EzPlatformContentForms\Form\Processor\User\UserCancelFormProcessor');

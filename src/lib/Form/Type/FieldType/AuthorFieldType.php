@@ -6,14 +6,14 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\Form\Type\FieldType;
+namespace Ibexa\ContentForms\Form\Type\FieldType;
 
 use eZ\Publish\API\Repository\Exceptions\NotFoundException;
 use eZ\Publish\API\Repository\Repository;
 use eZ\Publish\Core\FieldType\Author\Type as AuthorType;
 use eZ\Publish\Core\FieldType\Author\Author;
 use eZ\Publish\Core\FieldType\Author\Value;
-use EzSystems\EzPlatformContentForms\Form\Type\FieldType\Author\AuthorCollectionType;
+use Ibexa\ContentForms\Form\Type\FieldType\Author\AuthorCollectionType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\CallbackTransformer;
 use Symfony\Component\Form\DataTransformerInterface;
@@ -157,3 +157,5 @@ class AuthorFieldType extends AbstractType
         return $author;
     }
 }
+
+class_alias(AuthorFieldType::class, 'EzSystems\EzPlatformContentForms\Form\Type\FieldType\AuthorFieldType');

@@ -6,7 +6,7 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\Behat\Context;
+namespace Ibexa\ContentForms\Behat\Context;
 
 use Behat\Behat\Context\Context;
 use Behat\Behat\Context\SnippetAcceptingContext;
@@ -149,3 +149,5 @@ final class ContentTypeContext extends RawMinkContext implements Context, Snippe
         );
     }
 }
+
+class_alias(ContentTypeContext::class, 'EzSystems\EzPlatformContentForms\Behat\Context\ContentTypeContext');

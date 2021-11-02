@@ -6,10 +6,10 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\Tests\FieldType\Mapper;
+namespace Ibexa\Tests\ContentForms\FieldType\Mapper;
 
 use eZ\Publish\Core\Repository\Values\ContentType\FieldDefinition;
-use EzSystems\EzPlatformContentForms\FieldType\Mapper\FormTypeBasedFieldValueFormMapper;
+use Ibexa\ContentForms\FieldType\Mapper\FormTypeBasedFieldValueFormMapper;
 
 class FormTypeBasedFieldValueFormMapperTest extends BaseMapperTest
 {
@@ -62,3 +62,5 @@ class FormTypeBasedFieldValueFormMapperTest extends BaseMapperTest
         $mapper->mapFieldValueForm($this->fieldForm, $this->data);
     }
 }
+
+class_alias(FormTypeBasedFieldValueFormMapperTest::class, 'EzSystems\EzPlatformContentForms\Tests\FieldType\Mapper\FormTypeBasedFieldValueFormMapperTest');

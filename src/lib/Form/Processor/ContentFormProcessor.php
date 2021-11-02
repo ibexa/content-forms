@@ -6,7 +6,7 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\Form\Processor;
+namespace Ibexa\ContentForms\Form\Processor;
 
 use eZ\Publish\API\Repository\ContentService;
 use eZ\Publish\API\Repository\LocationService;
@@ -14,11 +14,11 @@ use eZ\Publish\API\Repository\Values\Content\Content;
 use eZ\Publish\API\Repository\Values\Content\ContentStruct;
 use eZ\Publish\API\Repository\Values\Content\Location;
 use eZ\Publish\Core\Base\Exceptions\InvalidArgumentException;
-use EzSystems\EzPlatformContentForms\Data\Content\ContentCreateData;
-use EzSystems\EzPlatformContentForms\Data\Content\ContentUpdateData;
-use EzSystems\EzPlatformContentForms\Data\NewnessCheckable;
-use EzSystems\EzPlatformContentForms\Event\ContentFormEvents;
-use EzSystems\EzPlatformContentForms\Event\FormActionEvent;
+use Ibexa\ContentForms\Data\Content\ContentCreateData;
+use Ibexa\ContentForms\Data\Content\ContentUpdateData;
+use Ibexa\ContentForms\Data\NewnessCheckable;
+use Ibexa\ContentForms\Event\ContentFormEvents;
+use Ibexa\ContentForms\Event\FormActionEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
@@ -292,3 +292,5 @@ class ContentFormProcessor implements EventSubscriberInterface
         return $referrerLocation ?? $this->locationService->loadLocation($content->contentInfo->mainLocationId);
     }
 }
+
+class_alias(ContentFormProcessor::class, 'EzSystems\EzPlatformContentForms\Form\Processor\ContentFormProcessor');

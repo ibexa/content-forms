@@ -6,12 +6,12 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\Form\Processor;
+namespace Ibexa\ContentForms\Form\Processor;
 
 use eZ\Publish\API\Repository\LocationService;
 use eZ\Publish\API\Repository\URLAliasService;
-use EzSystems\EzPlatformContentForms\Event\ContentFormEvents;
-use EzSystems\EzPlatformContentForms\Event\FormActionEvent;
+use Ibexa\ContentForms\Event\ContentFormEvents;
+use Ibexa\ContentForms\Event\FormActionEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Routing\RouterInterface;
@@ -106,3 +106,5 @@ class SystemUrlRedirectProcessor implements EventSubscriberInterface
         $event->setResponse(new RedirectResponse($this->urlAliasService->reverseLookup($location)->path));
     }
 }
+
+class_alias(SystemUrlRedirectProcessor::class, 'EzSystems\EzPlatformContentForms\Form\Processor\SystemUrlRedirectProcessor');

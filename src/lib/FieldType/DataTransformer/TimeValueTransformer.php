@@ -6,7 +6,7 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\FieldType\DataTransformer;
+namespace Ibexa\ContentForms\FieldType\DataTransformer;
 
 use eZ\Publish\Core\FieldType\Time\Value;
 use Symfony\Component\Form\DataTransformerInterface;
@@ -61,3 +61,5 @@ class TimeValueTransformer implements DataTransformerInterface
         return new Value($value);
     }
 }
+
+class_alias(TimeValueTransformer::class, 'EzSystems\EzPlatformContentForms\FieldType\DataTransformer\TimeValueTransformer');

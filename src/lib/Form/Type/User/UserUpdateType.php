@@ -6,9 +6,9 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\Form\Type\User;
+namespace Ibexa\ContentForms\Form\Type\User;
 
-use EzSystems\EzPlatformContentForms\Data\User\UserUpdateData;
+use Ibexa\ContentForms\Data\User\UserUpdateData;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -52,3 +52,5 @@ class UserUpdateType extends AbstractType
             ]);
     }
 }
+
+class_alias(UserUpdateType::class, 'EzSystems\EzPlatformContentForms\Form\Type\User\UserUpdateType');

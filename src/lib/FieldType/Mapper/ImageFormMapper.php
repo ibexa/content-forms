@@ -6,14 +6,14 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\FieldType\Mapper;
+namespace Ibexa\ContentForms\FieldType\Mapper;
 
 use eZ\Publish\API\Repository\FieldTypeService;
 use eZ\Publish\Core\FieldType\Image\Value;
-use EzSystems\EzPlatformContentForms\Data\Content\FieldData;
-use EzSystems\EzPlatformContentForms\FieldType\DataTransformer\ImageValueTransformer;
-use EzSystems\EzPlatformContentForms\FieldType\FieldValueFormMapperInterface;
-use EzSystems\EzPlatformContentForms\Form\Type\FieldType\ImageFieldType;
+use Ibexa\Contracts\ContentForms\Data\Content\FieldData;
+use Ibexa\ContentForms\FieldType\DataTransformer\ImageValueTransformer;
+use Ibexa\Contracts\ContentForms\FieldType\FieldValueFormMapperInterface;
+use Ibexa\ContentForms\Form\Type\FieldType\ImageFieldType;
 use Symfony\Component\Form\FormInterface;
 
 class ImageFormMapper implements FieldValueFormMapperInterface
@@ -51,3 +51,5 @@ class ImageFormMapper implements FieldValueFormMapperInterface
             );
     }
 }
+
+class_alias(ImageFormMapper::class, 'EzSystems\EzPlatformContentForms\FieldType\Mapper\ImageFormMapper');

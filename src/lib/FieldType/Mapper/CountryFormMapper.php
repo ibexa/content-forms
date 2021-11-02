@@ -6,11 +6,11 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\FieldType\Mapper;
+namespace Ibexa\ContentForms\FieldType\Mapper;
 
-use EzSystems\EzPlatformContentForms\Data\Content\FieldData;
-use EzSystems\EzPlatformContentForms\FieldType\FieldValueFormMapperInterface;
-use EzSystems\EzPlatformContentForms\Form\Type\FieldType\CountryFieldType;
+use Ibexa\Contracts\ContentForms\Data\Content\FieldData;
+use Ibexa\Contracts\ContentForms\FieldType\FieldValueFormMapperInterface;
+use Ibexa\ContentForms\Form\Type\FieldType\CountryFieldType;
 use Symfony\Component\Form\FormInterface;
 
 class CountryFormMapper implements FieldValueFormMapperInterface
@@ -34,3 +34,5 @@ class CountryFormMapper implements FieldValueFormMapperInterface
             );
     }
 }
+
+class_alias(CountryFormMapper::class, 'EzSystems\EzPlatformContentForms\FieldType\Mapper\CountryFormMapper');

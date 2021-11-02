@@ -6,19 +6,19 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentFormsBundle\Controller;
+namespace Ibexa\Bundle\ContentForms\Controller;
 
 use eZ\Bundle\EzPublishCoreBundle\Controller;
 use eZ\Publish\API\Repository\ContentService;
 use eZ\Publish\API\Repository\ContentTypeService;
-use EzSystems\EzPlatformContentForms\Content\View\ContentCreateDraftView;
-use EzSystems\EzPlatformContentForms\Content\View\ContentCreateSuccessView;
-use EzSystems\EzPlatformContentForms\Content\View\ContentCreateView;
-use EzSystems\EzPlatformContentForms\Content\View\ContentEditSuccessView;
-use EzSystems\EzPlatformContentForms\Content\View\ContentEditView;
-use EzSystems\EzPlatformContentForms\Data\Content\CreateContentDraftData;
-use EzSystems\EzPlatformContentForms\Form\ActionDispatcher\ActionDispatcherInterface;
-use EzSystems\EzPlatformContentForms\Form\Type\Content\ContentDraftCreateType;
+use Ibexa\ContentForms\Content\View\ContentCreateDraftView;
+use Ibexa\ContentForms\Content\View\ContentCreateSuccessView;
+use Ibexa\ContentForms\Content\View\ContentCreateView;
+use Ibexa\ContentForms\Content\View\ContentEditSuccessView;
+use Ibexa\ContentForms\Content\View\ContentEditView;
+use Ibexa\ContentForms\Data\Content\CreateContentDraftData;
+use Ibexa\ContentForms\Form\ActionDispatcher\ActionDispatcherInterface;
+use Ibexa\ContentForms\Form\Type\Content\ContentDraftCreateType;
 use Symfony\Component\HttpFoundation\Request;
 
 class ContentEditController extends Controller
@@ -147,3 +147,5 @@ class ContentEditController extends Controller
         return $view;
     }
 }
+
+class_alias(ContentEditController::class, 'EzSystems\EzPlatformContentFormsBundle\Controller\ContentEditController');

@@ -6,7 +6,7 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\Validator;
+namespace Ibexa\ContentForms\Validator;
 
 use eZ\Publish\API\Repository\Values\Translation\Plural;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
@@ -61,3 +61,5 @@ final class ValidationErrorsProcessor
         }
     }
 }
+
+class_alias(ValidationErrorsProcessor::class, 'EzSystems\EzPlatformContentForms\Validator\ValidationErrorsProcessor');

@@ -6,7 +6,7 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentFormsBundle\Controller;
+namespace Ibexa\Bundle\ContentForms\Controller;
 
 use eZ\Bundle\EzPublishCoreBundle\Controller;
 use eZ\Publish\API\Repository\ContentTypeService;
@@ -19,13 +19,13 @@ use eZ\Publish\API\Repository\UserService;
 use eZ\Publish\Core\Base\Exceptions\InvalidArgumentException;
 use eZ\Publish\Core\Base\Exceptions\InvalidArgumentType;
 use eZ\Publish\Core\MVC\Symfony\Locale\UserLanguagePreferenceProviderInterface;
-use EzSystems\EzPlatformContentForms\Data\Mapper\UserCreateMapper;
-use EzSystems\EzPlatformContentForms\Data\Mapper\UserUpdateMapper;
-use EzSystems\EzPlatformContentForms\Form\ActionDispatcher\ActionDispatcherInterface;
-use EzSystems\EzPlatformContentForms\Form\Type\User\UserCreateType;
-use EzSystems\EzPlatformContentForms\Form\Type\User\UserUpdateType;
-use EzSystems\EzPlatformContentForms\User\View\UserCreateView;
-use EzSystems\EzPlatformContentForms\User\View\UserUpdateView;
+use Ibexa\ContentForms\Data\Mapper\UserCreateMapper;
+use Ibexa\ContentForms\Data\Mapper\UserUpdateMapper;
+use Ibexa\ContentForms\Form\ActionDispatcher\ActionDispatcherInterface;
+use Ibexa\ContentForms\Form\Type\User\UserCreateType;
+use Ibexa\ContentForms\Form\Type\User\UserUpdateType;
+use Ibexa\ContentForms\User\View\UserCreateView;
+use Ibexa\ContentForms\User\View\UserUpdateView;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\OptionsResolver\Exception\AccessException;
@@ -222,3 +222,5 @@ class UserController extends Controller
         );
     }
 }
+
+class_alias(UserController::class, 'EzSystems\EzPlatformContentFormsBundle\Controller\UserController');

@@ -6,7 +6,7 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\FieldType\DataTransformer;
+namespace Ibexa\ContentForms\FieldType\DataTransformer;
 
 use eZ\Publish\API\Repository\FieldType;
 use eZ\Publish\Core\FieldType\Value;
@@ -82,3 +82,5 @@ abstract class AbstractBinaryBaseTransformer
         return new $this->valueClass($properties);
     }
 }
+
+class_alias(AbstractBinaryBaseTransformer::class, 'EzSystems\EzPlatformContentForms\FieldType\DataTransformer\AbstractBinaryBaseTransformer');

@@ -6,7 +6,7 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\FieldType\DataTransformer;
+namespace Ibexa\ContentForms\FieldType\DataTransformer;
 
 use eZ\Publish\Core\FieldType\Relation\Value;
 use Symfony\Component\Form\DataTransformerInterface;
@@ -35,3 +35,5 @@ class RelationValueTransformer implements DataTransformerInterface
         return new Value($value);
     }
 }
+
+class_alias(RelationValueTransformer::class, 'EzSystems\EzPlatformContentForms\FieldType\DataTransformer\RelationValueTransformer');

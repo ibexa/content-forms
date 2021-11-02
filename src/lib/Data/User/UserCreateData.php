@@ -6,13 +6,13 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\Data\User;
+namespace Ibexa\ContentForms\Data\User;
 
 use eZ\Publish\API\Repository\Values\User\UserGroup;
 use eZ\Publish\Core\Repository\Values\User\UserCreateStruct;
-use EzSystems\EzPlatformContentForms\Data\Content\ContentData;
-use EzSystems\EzPlatformContentForms\Data\Content\FieldData;
-use EzSystems\EzPlatformContentForms\Data\NewnessCheckable;
+use Ibexa\ContentForms\Data\Content\ContentData;
+use Ibexa\Contracts\ContentForms\Data\Content\FieldData;
+use Ibexa\ContentForms\Data\NewnessCheckable;
 
 /**
  * @property FieldData[] $fieldsData
@@ -57,3 +57,5 @@ class UserCreateData extends UserCreateStruct implements NewnessCheckable
         $this->parentGroups = $parentGroups;
     }
 }
+
+class_alias(UserCreateData::class, 'EzSystems\EzPlatformContentForms\Data\User\UserCreateData');

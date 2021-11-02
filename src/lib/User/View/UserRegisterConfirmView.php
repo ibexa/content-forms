@@ -6,7 +6,7 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\User\View;
+namespace Ibexa\ContentForms\User\View;
 
 use EzSystems\EzPlatformUser\View\Register\ConfirmView as BaseRegisterConfirmView;
 
@@ -16,3 +16,5 @@ use EzSystems\EzPlatformUser\View\Register\ConfirmView as BaseRegisterConfirmVie
 class UserRegisterConfirmView extends BaseRegisterConfirmView
 {
 }
+
+class_alias(UserRegisterConfirmView::class, 'EzSystems\EzPlatformContentForms\User\View\UserRegisterConfirmView');

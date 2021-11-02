@@ -6,10 +6,10 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\Form\Type\Content;
+namespace Ibexa\ContentForms\Form\Type\Content;
 
 use eZ\Publish\API\Repository\Values\Content\ContentStruct;
-use EzSystems\EzPlatformContentForms\Form\EventSubscriber\SuppressValidationSubscriber;
+use Ibexa\ContentForms\Form\EventSubscriber\SuppressValidationSubscriber;
 use JMS\TranslationBundle\Annotation\Desc;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -79,3 +79,5 @@ class ContentEditType extends AbstractType
             ]);
     }
 }
+
+class_alias(ContentEditType::class, 'EzSystems\EzPlatformContentForms\Form\Type\Content\ContentEditType');

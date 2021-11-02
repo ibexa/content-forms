@@ -6,10 +6,10 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\Data\Content;
+namespace Ibexa\ContentForms\Data\Content;
 
 use eZ\Publish\Core\Repository\Values\Content\ContentUpdateStruct;
-use EzSystems\EzPlatformContentForms\Data\NewnessCheckable;
+use Ibexa\ContentForms\Data\NewnessCheckable;
 
 /**
  * @property \EzSystems\EzPlatformContentForms\Data\Content\FieldData[] $fieldsData
@@ -26,3 +26,5 @@ class ContentUpdateData extends ContentUpdateStruct implements NewnessCheckable
         return false;
     }
 }
+
+class_alias(ContentUpdateData::class, 'EzSystems\EzPlatformContentForms\Data\Content\ContentUpdateData');

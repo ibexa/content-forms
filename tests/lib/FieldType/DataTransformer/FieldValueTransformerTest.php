@@ -6,11 +6,11 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\Tests\FieldType\DataTransformer;
+namespace Ibexa\Tests\ContentForms\FieldType\DataTransformer;
 
 use eZ\Publish\API\Repository\FieldType;
 use eZ\Publish\SPI\FieldType\Value;
-use EzSystems\EzPlatformContentForms\FieldType\DataTransformer\FieldValueTransformer;
+use Ibexa\ContentForms\FieldType\DataTransformer\FieldValueTransformer;
 use PHPUnit\Framework\TestCase;
 use stdClass;
 
@@ -84,3 +84,5 @@ class FieldValueTransformerTest extends TestCase
         $this->assertSame($expected, $result);
     }
 }
+
+class_alias(FieldValueTransformerTest::class, 'EzSystems\EzPlatformContentForms\Tests\FieldType\DataTransformer\FieldValueTransformerTest');

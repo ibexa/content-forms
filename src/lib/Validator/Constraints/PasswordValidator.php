@@ -6,11 +6,11 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\Validator\Constraints;
+namespace Ibexa\ContentForms\Validator\Constraints;
 
 use eZ\Publish\API\Repository\UserService;
 use eZ\Publish\API\Repository\Values\User\PasswordValidationContext;
-use EzSystems\EzPlatformContentForms\Validator\ValidationErrorsProcessor;
+use Ibexa\ContentForms\Validator\ValidationErrorsProcessor;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 
@@ -55,3 +55,5 @@ class PasswordValidator extends ConstraintValidator
         return new ValidationErrorsProcessor($this->context);
     }
 }
+
+class_alias(PasswordValidator::class, 'EzSystems\EzPlatformContentForms\Validator\Constraints\PasswordValidator');

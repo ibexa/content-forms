@@ -6,14 +6,14 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\Form\Type\FieldType;
+namespace Ibexa\ContentForms\Form\Type\FieldType;
 
 use eZ\Publish\API\Repository\ContentService;
 use eZ\Publish\API\Repository\ContentTypeService;
 use eZ\Publish\API\Repository\Exceptions\UnauthorizedException;
 use eZ\Publish\API\Repository\Values\Content\Location;
 use eZ\Publish\Core\FieldType\Relation\Value;
-use EzSystems\EzPlatformContentForms\FieldType\DataTransformer\RelationValueTransformer;
+use Ibexa\ContentForms\FieldType\DataTransformer\RelationValueTransformer;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -106,3 +106,5 @@ class RelationFieldType extends AbstractType
         $resolver->setAllowedTypes('default_location', ['null', Location::class]);
     }
 }
+
+class_alias(RelationFieldType::class, 'EzSystems\EzPlatformContentForms\Form\Type\FieldType\RelationFieldType');
