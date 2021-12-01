@@ -1,24 +1,17 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 declare(strict_types=1);
 
 namespace Ibexa\ContentForms\Data\Mapper;
 
+use Ibexa\ContentForms\Data\User\UserCreateData;
+use Ibexa\Contracts\ContentForms\Data\Content\FieldData;
 use Ibexa\Contracts\Core\Repository\Values\Content\Field;
 use Ibexa\Contracts\Core\Repository\Values\ContentType\ContentType;
-use Ibexa\Contracts\Core\Repository\Values\User\UserGroup;
-use Ibexa\Contracts\ContentForms\Data\Content\FieldData;
-use Ibexa\ContentForms\Data\User\UserCreateData;
-use Symfony\Component\OptionsResolver\Exception\AccessException;
-use Symfony\Component\OptionsResolver\Exception\InvalidOptionsException;
-use Symfony\Component\OptionsResolver\Exception\MissingOptionsException;
-use Symfony\Component\OptionsResolver\Exception\NoSuchOptionException;
-use Symfony\Component\OptionsResolver\Exception\OptionDefinitionException;
-use Symfony\Component\OptionsResolver\Exception\UndefinedOptionsException;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**

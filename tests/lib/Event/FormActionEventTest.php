@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 declare(strict_types=1);
@@ -11,8 +11,8 @@ namespace Ibexa\Tests\ContentForms\Event;
 use Ibexa\ContentForms\Event\FormActionEvent;
 use PHPUnit\Framework\TestCase;
 use stdClass;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Form\FormInterface;
+use Symfony\Component\HttpFoundation\Response;
 
 class FormActionEventTest extends TestCase
 {
@@ -34,7 +34,8 @@ class FormActionEventTest extends TestCase
     {
         $event = new FormActionEvent(
             $this->createMock(FormInterface::class),
-            new stdClass(), 'fooButton'
+            new stdClass(),
+            'fooButton'
         );
         self::assertFalse($event->hasResponse());
         self::assertNull($event->getResponse());
@@ -44,7 +45,8 @@ class FormActionEventTest extends TestCase
     {
         $event = new FormActionEvent(
             $this->createMock(FormInterface::class),
-            new stdClass(), 'fooButton'
+            new stdClass(),
+            'fooButton'
         );
         self::assertFalse($event->hasResponse());
         self::assertNull($event->getResponse());
@@ -62,7 +64,9 @@ class FormActionEventTest extends TestCase
 
         $event = new FormActionEvent(
             $this->createMock(FormInterface::class),
-            new stdClass(), 'fooButton', $options
+            new stdClass(),
+            'fooButton',
+            $options
         );
         self::assertTrue($event->hasOption('languageCode'));
         self::assertTrue($event->hasOption('foo'));

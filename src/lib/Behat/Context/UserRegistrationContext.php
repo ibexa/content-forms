@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 declare(strict_types=1);
@@ -13,14 +13,12 @@ use Behat\Behat\Context\SnippetAcceptingContext;
 use Behat\Behat\Hook\Scope\BeforeScenarioScope;
 use Behat\Gherkin\Node\PyStringNode;
 use Behat\MinkExtension\Context\RawMinkContext;
-use Ibexa\Bundle\Core\Features\Context\YamlConfigurationContext;
 use Ibexa\Contracts\Core\Repository\ContentTypeService;
 use Ibexa\Contracts\Core\Repository\PermissionResolver;
 use Ibexa\Contracts\Core\Repository\RoleService;
 use Ibexa\Contracts\Core\Repository\UserService;
 use Ibexa\Contracts\Core\Repository\Values\User\Role;
 use Ibexa\Contracts\Core\Repository\Values\User\User;
-use Ibexa\Contracts\Core\Repository\Values\User\UserGroup;
 use Ibexa\Core\Repository\Values\User\RoleCreateStruct;
 use Ibexa\Core\Repository\Values\User\UserReference;
 use PHPUnit\Framework\Assert as Assertion;
@@ -34,7 +32,7 @@ class UserRegistrationContext extends RawMinkContext implements Context, Snippet
      *
      * @var string
      */
-    const TWIG_DEBUG_STOP_REGEX = '<!-- STOP .*%s.* -->';
+    public const TWIG_DEBUG_STOP_REGEX = '<!-- STOP .*%s.* -->';
 
     private static $password = 'PassWord42';
 
@@ -221,7 +219,6 @@ class UserRegistrationContext extends RawMinkContext implements Context, Snippet
                 )
             );
             /** @todo It should also check if there is corresponding input created once all types are implemented */
-            
         }
     }
 

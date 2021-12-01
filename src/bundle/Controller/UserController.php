@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 declare(strict_types=1);
@@ -9,16 +9,6 @@ declare(strict_types=1);
 namespace Ibexa\Bundle\ContentForms\Controller;
 
 use Ibexa\Bundle\Core\Controller;
-use Ibexa\Contracts\Core\Repository\ContentTypeService;
-use Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException;
-use Ibexa\Contracts\Core\Repository\Exceptions\UnauthorizedException;
-use Ibexa\Contracts\Core\Repository\LanguageService;
-use Ibexa\Contracts\Core\Repository\LocationService;
-use Ibexa\Contracts\Core\Repository\PermissionResolver;
-use Ibexa\Contracts\Core\Repository\UserService;
-use Ibexa\Core\Base\Exceptions\InvalidArgumentException;
-use Ibexa\Core\Base\Exceptions\InvalidArgumentType;
-use Ibexa\Core\MVC\Symfony\Locale\UserLanguagePreferenceProviderInterface;
 use Ibexa\ContentForms\Data\Mapper\UserCreateMapper;
 use Ibexa\ContentForms\Data\Mapper\UserUpdateMapper;
 use Ibexa\ContentForms\Form\ActionDispatcher\ActionDispatcherInterface;
@@ -26,15 +16,15 @@ use Ibexa\ContentForms\Form\Type\User\UserCreateType;
 use Ibexa\ContentForms\Form\Type\User\UserUpdateType;
 use Ibexa\ContentForms\User\View\UserCreateView;
 use Ibexa\ContentForms\User\View\UserUpdateView;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\OptionsResolver\Exception\AccessException;
-use Symfony\Component\OptionsResolver\Exception\InvalidOptionsException;
-use Symfony\Component\OptionsResolver\Exception\MissingOptionsException;
-use Symfony\Component\OptionsResolver\Exception\NoSuchOptionException;
-use Symfony\Component\OptionsResolver\Exception\OptionDefinitionException;
-use Symfony\Component\OptionsResolver\Exception\UndefinedOptionsException;
+use Ibexa\Contracts\Core\Repository\ContentTypeService;
+use Ibexa\Contracts\Core\Repository\Exceptions\UnauthorizedException;
+use Ibexa\Contracts\Core\Repository\LanguageService;
+use Ibexa\Contracts\Core\Repository\LocationService;
+use Ibexa\Contracts\Core\Repository\PermissionResolver;
+use Ibexa\Contracts\Core\Repository\UserService;
 use Ibexa\Core\Base\Exceptions\UnauthorizedException as CoreUnauthorizedException;
+use Ibexa\Core\MVC\Symfony\Locale\UserLanguagePreferenceProviderInterface;
+use Symfony\Component\HttpFoundation\Request;
 
 class UserController extends Controller
 {
@@ -129,7 +119,8 @@ class UserController extends Controller
         }
 
         return new UserCreateView(
-            null, [
+            null,
+            [
                 'form' => $form->createView(),
                 'language' => $language,
                 'parent_location' => $location,
@@ -210,7 +201,8 @@ class UserController extends Controller
         }
 
         return new UserUpdateView(
-            null, [
+            null,
+            [
                 'form' => $form->createView(),
                 'language_code' => $language,
                 'language' => $this->languageService->loadLanguage($language),

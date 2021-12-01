@@ -1,27 +1,23 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 declare(strict_types=1);
 
 namespace Ibexa\ContentForms\FieldType\Mapper;
 
-use Ibexa\Contracts\Core\Repository\Values\ContentType\FieldDefinition;
-use Ibexa\Core\FieldType\User\Value as ApiUserValue;
-use Ibexa\Contracts\ContentForms\Data\Content\FieldData;
 use Ibexa\ContentForms\Data\ContentTranslationData;
 use Ibexa\ContentForms\Data\User\UserAccountFieldData;
-use Ibexa\Contracts\ContentForms\FieldType\FieldValueFormMapperInterface;
 use Ibexa\ContentForms\Form\Type\FieldType\UserAccountFieldType;
 use Ibexa\ContentForms\Validator\Constraints\UserAccountPassword;
+use Ibexa\Contracts\ContentForms\Data\Content\FieldData;
+use Ibexa\Contracts\ContentForms\FieldType\FieldValueFormMapperInterface;
+use Ibexa\Contracts\Core\Repository\Values\ContentType\FieldDefinition;
+use Ibexa\Core\FieldType\User\Value as ApiUserValue;
 use Symfony\Component\Form\CallbackTransformer;
-use Symfony\Component\Form\Exception\AlreadySubmittedException;
-use Symfony\Component\Form\Exception\LogicException;
-use Symfony\Component\Form\Exception\UnexpectedTypeException;
 use Symfony\Component\Form\FormInterface;
-use Symfony\Component\OptionsResolver\Exception\InvalidOptionsException;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
@@ -91,10 +87,10 @@ final class UserAccountFieldValueFormMapper implements FieldValueFormMapperInter
     public function getModelTransformerForTranslation(FieldDefinition $fieldDefinition): CallbackTransformer
     {
         return new CallbackTransformer(
-            function (ApiUserValue $data) {
+            static function (ApiUserValue $data) {
                 return new UserAccountFieldData($data->login, null, $data->email, $data->enabled);
             },
-            function (UserAccountFieldData $submittedData) use ($fieldDefinition) {
+            static function (UserAccountFieldData $submittedData) use ($fieldDefinition) {
                 $userValue = clone $fieldDefinition->defaultValue;
                 $userValue->login = $submittedData->username;
                 $userValue->email = $submittedData->email;
@@ -111,10 +107,10 @@ final class UserAccountFieldValueFormMapper implements FieldValueFormMapperInter
     public function getModelTransformer(): CallbackTransformer
     {
         return new CallbackTransformer(
-            function (ApiUserValue $data) {
+            static function (ApiUserValue $data) {
                 return new UserAccountFieldData($data->login, null, $data->email, $data->enabled);
             },
-            function (UserAccountFieldData $submittedData) {
+            static function (UserAccountFieldData $submittedData) {
                 return $submittedData;
             }
         );

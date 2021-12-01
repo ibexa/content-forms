@@ -1,13 +1,15 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 declare(strict_types=1);
 
 namespace Ibexa\ContentForms\Content\View\Builder;
 
+use Ibexa\ContentForms\Form\ActionDispatcher\ActionDispatcherInterface;
+use Ibexa\Contracts\ContentForms\Content\Form\Provider\GroupedContentFormFieldsProviderInterface;
 use Ibexa\Contracts\Core\Repository\ContentService;
 use Ibexa\Contracts\Core\Repository\Repository;
 use Ibexa\Contracts\Core\Repository\Values\Content\Language;
@@ -17,8 +19,6 @@ use Ibexa\Core\MVC\ConfigResolverInterface;
 use Ibexa\Core\MVC\Symfony\Locale\UserLanguagePreferenceProviderInterface;
 use Ibexa\Core\MVC\Symfony\View\Configurator;
 use Ibexa\Core\MVC\Symfony\View\ParametersInjector;
-use Ibexa\ContentForms\Form\ActionDispatcher\ActionDispatcherInterface;
-use Ibexa\Contracts\ContentForms\Content\Form\Provider\GroupedContentFormFieldsProviderInterface;
 
 /*
  * @internal
@@ -107,8 +107,10 @@ abstract class AbstractContentViewBuilder
             return $parameters['language'];
         }
 
-        throw new InvalidArgumentException('Language',
-            'No language information provided. Are you missing language or languageCode parameters?');
+        throw new InvalidArgumentException(
+            'Language',
+            'No language information provided. Are you missing language or languageCode parameters?'
+        );
     }
 }
 

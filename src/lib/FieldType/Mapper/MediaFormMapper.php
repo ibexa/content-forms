@@ -1,20 +1,20 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 declare(strict_types=1);
 
 namespace Ibexa\ContentForms\FieldType\Mapper;
 
+use Ibexa\ContentForms\FieldType\DataTransformer\MediaValueTransformer;
+use Ibexa\ContentForms\Form\Type\FieldType\MediaFieldType;
+use Ibexa\Contracts\ContentForms\Data\Content\FieldData;
+use Ibexa\Contracts\ContentForms\FieldType\FieldValueFormMapperInterface;
 use Ibexa\Contracts\Core\Repository\FieldTypeService;
 use Ibexa\Core\FieldType\Media\Type;
 use Ibexa\Core\FieldType\Media\Value;
-use Ibexa\Contracts\ContentForms\Data\Content\FieldData;
-use Ibexa\ContentForms\FieldType\DataTransformer\MediaValueTransformer;
-use Ibexa\Contracts\ContentForms\FieldType\FieldValueFormMapperInterface;
-use Ibexa\ContentForms\Form\Type\FieldType\MediaFieldType;
 use Symfony\Component\Form\FormInterface;
 
 class MediaFormMapper implements FieldValueFormMapperInterface

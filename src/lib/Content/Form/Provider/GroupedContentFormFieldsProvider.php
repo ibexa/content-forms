@@ -1,15 +1,15 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 declare(strict_types=1);
 
 namespace Ibexa\ContentForms\Content\Form\Provider;
 
-use Ibexa\Core\Helper\FieldsGroups\FieldsGroupsList;
 use Ibexa\Contracts\ContentForms\Content\Form\Provider\GroupedContentFormFieldsProviderInterface;
+use Ibexa\Core\Helper\FieldsGroups\FieldsGroupsList;
 
 final class GroupedContentFormFieldsProvider implements GroupedContentFormFieldsProviderInterface
 {

@@ -1,19 +1,19 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 declare(strict_types=1);
 
 namespace Ibexa\ContentForms\Content\View\Builder;
 
+use Ibexa\ContentForms\Content\View\ContentCreateSuccessView;
+use Ibexa\ContentForms\Content\View\ContentCreateView;
 use Ibexa\Contracts\Core\Repository\Values\Content\Location;
 use Ibexa\Contracts\Core\Repository\Values\ContentType\ContentType;
 use Ibexa\Core\Base\Exceptions\InvalidArgumentException;
 use Ibexa\Core\MVC\Symfony\View\Builder\ViewBuilder;
-use Ibexa\ContentForms\Content\View\ContentCreateSuccessView;
-use Ibexa\ContentForms\Content\View\ContentCreateView;
 
 /**
  * Builds ContentCreateView objects.

@@ -1,15 +1,13 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 declare(strict_types=1);
 
 namespace Ibexa\ContentForms\Form\Processor\User;
 
-use Ibexa\ContentForms\Data\User\UserCreateData;
-use Ibexa\ContentForms\Data\User\UserUpdateData;
 use Ibexa\ContentForms\Event\ContentFormEvents;
 use Ibexa\ContentForms\Event\FormActionEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;

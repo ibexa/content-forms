@@ -1,24 +1,24 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 declare(strict_types=1);
 
 namespace Ibexa\ContentForms\Form\Processor;
 
+use Ibexa\ContentForms\Data\Content\ContentCreateData;
+use Ibexa\ContentForms\Data\Content\ContentUpdateData;
+use Ibexa\ContentForms\Data\NewnessCheckable;
+use Ibexa\ContentForms\Event\ContentFormEvents;
+use Ibexa\ContentForms\Event\FormActionEvent;
 use Ibexa\Contracts\Core\Repository\ContentService;
 use Ibexa\Contracts\Core\Repository\LocationService;
 use Ibexa\Contracts\Core\Repository\Values\Content\Content;
 use Ibexa\Contracts\Core\Repository\Values\Content\ContentStruct;
 use Ibexa\Contracts\Core\Repository\Values\Content\Location;
 use Ibexa\Core\Base\Exceptions\InvalidArgumentException;
-use Ibexa\ContentForms\Data\Content\ContentCreateData;
-use Ibexa\ContentForms\Data\Content\ContentUpdateData;
-use Ibexa\ContentForms\Data\NewnessCheckable;
-use Ibexa\ContentForms\Event\ContentFormEvents;
-use Ibexa\ContentForms\Event\FormActionEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
@@ -126,7 +126,8 @@ class ContentFormProcessor implements EventSubscriberInterface
         $event->setPayload('is_new', $draft->contentInfo->isDraft());
 
         $redirectUrl = $form['redirectUrlAfterPublish']->getData() ?: $this->router->generate(
-            '_ez_content_view', [
+            '_ez_content_view',
+            [
                 'contentId' => $content->id,
                 'locationId' => $content->contentInfo->mainLocationId,
             ]
@@ -149,7 +150,8 @@ class ContentFormProcessor implements EventSubscriberInterface
         if ($data->isNew()) {
             $parentLocation = $this->locationService->loadLocation($data->getLocationStructs()[0]->parentLocationId);
             $response = new RedirectResponse($this->router->generate(
-                '_ez_content_view', [
+                '_ez_content_view',
+                [
                     'contentId' => $parentLocation->contentId,
                     'locationId' => $parentLocation->id,
                 ]
@@ -178,7 +180,8 @@ class ContentFormProcessor implements EventSubscriberInterface
         $this->contentService->deleteVersion($versionInfo);
 
         $url = $this->router->generate(
-            '_ez_content_view', [
+            '_ez_content_view',
+            [
                 'contentId' => $redirectionContentId,
                 'locationId' => $redirectionLocationId,
             ],

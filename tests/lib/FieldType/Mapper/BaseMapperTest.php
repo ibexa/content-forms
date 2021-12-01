@@ -1,16 +1,16 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 declare(strict_types=1);
 
 namespace Ibexa\Tests\ContentForms\FieldType\Mapper;
 
+use Ibexa\Contracts\ContentForms\Data\Content\FieldData;
 use Ibexa\Contracts\Core\Repository\FieldType;
 use Ibexa\Contracts\Core\Repository\FieldTypeService;
-use Ibexa\Contracts\ContentForms\Data\Content\FieldData;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Form\FormConfigInterface;
 use Symfony\Component\Form\FormFactoryInterface;
@@ -19,8 +19,11 @@ use Symfony\Component\Form\FormInterface;
 abstract class BaseMapperTest extends TestCase
 {
     protected $fieldTypeService;
+
     protected $config;
+
     protected $fieldForm;
+
     protected $data;
 
     protected function setUp(): void

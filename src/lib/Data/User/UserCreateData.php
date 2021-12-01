@@ -1,21 +1,20 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 declare(strict_types=1);
 
 namespace Ibexa\ContentForms\Data\User;
 
+use Ibexa\ContentForms\Data\Content\ContentData;
+use Ibexa\ContentForms\Data\NewnessCheckable;
 use Ibexa\Contracts\Core\Repository\Values\User\UserGroup;
 use Ibexa\Core\Repository\Values\User\UserCreateStruct;
-use Ibexa\ContentForms\Data\Content\ContentData;
-use Ibexa\Contracts\ContentForms\Data\Content\FieldData;
-use Ibexa\ContentForms\Data\NewnessCheckable;
 
 /**
- * @property FieldData[] $fieldsData
+ * @property \Ibexa\Contracts\ContentForms\Data\Content\FieldData[] $fieldsData
  */
 class UserCreateData extends UserCreateStruct implements NewnessCheckable
 {

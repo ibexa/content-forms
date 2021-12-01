@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 declare(strict_types=1);
@@ -9,8 +9,6 @@ declare(strict_types=1);
 namespace Ibexa\Bundle\ContentForms\Controller;
 
 use Ibexa\Bundle\Core\Controller;
-use Ibexa\Contracts\Core\Repository\ContentService;
-use Ibexa\Contracts\Core\Repository\ContentTypeService;
 use Ibexa\ContentForms\Content\View\ContentCreateDraftView;
 use Ibexa\ContentForms\Content\View\ContentCreateSuccessView;
 use Ibexa\ContentForms\Content\View\ContentCreateView;
@@ -19,6 +17,8 @@ use Ibexa\ContentForms\Content\View\ContentEditView;
 use Ibexa\ContentForms\Data\Content\CreateContentDraftData;
 use Ibexa\ContentForms\Form\ActionDispatcher\ActionDispatcherInterface;
 use Ibexa\ContentForms\Form\Type\Content\ContentDraftCreateType;
+use Ibexa\Contracts\Core\Repository\ContentService;
+use Ibexa\Contracts\Core\Repository\ContentTypeService;
 use Symfony\Component\HttpFoundation\Request;
 
 class ContentEditController extends Controller

@@ -1,18 +1,18 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 declare(strict_types=1);
 
 namespace Ibexa\Tests\ContentForms\FieldType;
 
+use Ibexa\ContentForms\FieldType\FieldTypeFormMapperDispatcher;
+use Ibexa\Contracts\ContentForms\Data\Content\FieldData;
+use Ibexa\Contracts\ContentForms\FieldType\FieldValueFormMapperInterface;
 use Ibexa\Contracts\Core\Repository\Values\Content\Field;
 use Ibexa\Core\Repository\Values\ContentType\FieldDefinition;
-use Ibexa\Contracts\ContentForms\Data\Content\FieldData;
-use Ibexa\ContentForms\FieldType\FieldTypeFormMapperDispatcher;
-use Ibexa\Contracts\ContentForms\FieldType\FieldValueFormMapperInterface;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Form\FormInterface;
 

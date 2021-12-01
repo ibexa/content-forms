@@ -1,15 +1,15 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 declare(strict_types=1);
 
 namespace Ibexa\ContentForms\Form\Type\Content;
 
-use Ibexa\Contracts\ContentForms\Data\Content\FieldData;
 use Ibexa\ContentForms\FieldType\FieldTypeFormMapperDispatcherInterface;
+use Ibexa\Contracts\ContentForms\Data\Content\FieldData;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;

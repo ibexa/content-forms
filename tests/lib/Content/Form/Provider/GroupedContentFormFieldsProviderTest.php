@@ -1,19 +1,19 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 declare(strict_types=1);
 
 namespace Ibexa\Tests\ContentForms\Content\Form\Provider;
 
+use Ibexa\ContentForms\Content\Form\Provider\GroupedContentFormFieldsProvider;
+use Ibexa\Contracts\ContentForms\Data\Content\FieldData;
 use Ibexa\Contracts\Core\Repository\Values\Content\Field;
 use Ibexa\Core\FieldType\TextLine\Value;
 use Ibexa\Core\Helper\FieldsGroups\FieldsGroupsList;
 use Ibexa\Core\Repository\Values\ContentType\FieldDefinition;
-use Ibexa\Contracts\ContentForms\Data\Content\FieldData;
-use Ibexa\ContentForms\Content\Form\Provider\GroupedContentFormFieldsProvider;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Form\FormInterface;
 
@@ -56,12 +56,12 @@ final class GroupedContentFormFieldsProviderTest extends TestCase
         $result = $subject->getGroupedFields([$form1, $form2, $form3]);
 
         $expected = [
-            "Group 1" => [
-                0 => "first_field",
+            'Group 1' => [
+                0 => 'first_field',
             ],
-            "Group 2" => [
-                0 => "second_field",
-                1 => "third_field",
+            'Group 2' => [
+                0 => 'second_field',
+                1 => 'third_field',
             ],
         ];
 

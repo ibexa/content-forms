@@ -1,13 +1,16 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 declare(strict_types=1);
 
 namespace Ibexa\ContentForms\Content\View\Filter;
 
+use Ibexa\ContentForms\Data\Content\ContentUpdateData;
+use Ibexa\ContentForms\Data\Mapper\ContentUpdateMapper;
+use Ibexa\ContentForms\Form\Type\Content\ContentEditType;
 use Ibexa\Contracts\Core\Repository\ContentService;
 use Ibexa\Contracts\Core\Repository\ContentTypeService;
 use Ibexa\Contracts\Core\Repository\Values\Content\Content;
@@ -15,9 +18,6 @@ use Ibexa\Contracts\Core\Repository\Values\ContentType\ContentType;
 use Ibexa\Core\MVC\Symfony\Locale\UserLanguagePreferenceProviderInterface;
 use Ibexa\Core\MVC\Symfony\View\Event\FilterViewBuilderParametersEvent;
 use Ibexa\Core\MVC\Symfony\View\ViewEvents;
-use Ibexa\ContentForms\Data\Content\ContentUpdateData;
-use Ibexa\ContentForms\Data\Mapper\ContentUpdateMapper;
-use Ibexa\ContentForms\Form\Type\Content\ContentEditType;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\Form\FormInterface;
