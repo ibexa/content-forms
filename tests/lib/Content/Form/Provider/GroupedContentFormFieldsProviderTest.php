@@ -8,11 +8,11 @@ declare(strict_types=1);
 
 namespace Ibexa\Tests\ContentForms\Content\Form\Provider;
 
-use eZ\Publish\API\Repository\Values\Content\Field;
-use eZ\Publish\Core\FieldType\TextLine\Value;
-use eZ\Publish\Core\Helper\FieldsGroups\FieldsGroupsList;
-use eZ\Publish\Core\Repository\Values\ContentType\FieldDefinition;
-use EzSystems\EzPlatformContentForms\Data\Content\FieldData;
+use Ibexa\Contracts\Core\Repository\Values\Content\Field;
+use Ibexa\Core\FieldType\TextLine\Value;
+use Ibexa\Core\Helper\FieldsGroups\FieldsGroupsList;
+use Ibexa\Core\Repository\Values\ContentType\FieldDefinition;
+use Ibexa\Contracts\ContentForms\Data\Content\FieldData;
 use Ibexa\ContentForms\Content\Form\Provider\GroupedContentFormFieldsProvider;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Form\FormInterface;

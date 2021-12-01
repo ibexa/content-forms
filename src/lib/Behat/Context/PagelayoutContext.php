@@ -11,7 +11,7 @@ namespace Ibexa\ContentForms\Behat\Context;
 use Behat\Behat\Context\Context;
 use Behat\Behat\Context\SnippetAcceptingContext;
 use Behat\MinkExtension\Context\RawMinkContext;
-use eZ\Publish\Core\MVC\ConfigResolverInterface;
+use Ibexa\Core\MVC\ConfigResolverInterface;
 use PHPUnit\Framework\Assert as Assertion;
 
 class PagelayoutContext extends RawMinkContext implements Context, SnippetAcceptingContext
@@ -20,7 +20,7 @@ class PagelayoutContext extends RawMinkContext implements Context, SnippetAccept
     const TWIG_DEBUG_STOP_REGEX = '<!-- STOP .*%s.* -->';
 
     /**
-     * @var ConfigResolverInterface
+     * @var \Ibexa\Core\MVC\ConfigResolverInterface
      */
     private $configResolver;
 

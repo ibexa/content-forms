@@ -50,7 +50,7 @@ class FieldCollectionType extends CollectionType
                 $entryData = $data[$name];
 
                 if ($this->isContentUpdate($entryOptions)) {
-                    /** @var \EzSystems\EzPlatformContentForms\Event\ContentUpdateFieldOptionsEvent $contentUpdateFieldOptionsEvent */
+                    /** @var \Ibexa\ContentForms\Event\ContentUpdateFieldOptionsEvent $contentUpdateFieldOptionsEvent */
                     $contentUpdateFieldOptionsEvent = $this->eventDispatcher->dispatch(
                         new ContentUpdateFieldOptionsEvent(
                             $entryOptions['content'],
@@ -64,7 +64,7 @@ class FieldCollectionType extends CollectionType
 
                     $entryOptions = $contentUpdateFieldOptionsEvent->getOptions();
                 } elseif ($this->isContentCreate($entryOptions)) {
-                    /** @var \EzSystems\EzPlatformContentForms\Event\ContentCreateFieldOptionsEvent $contentUpdateFieldOptionsEvent */
+                    /** @var \Ibexa\ContentForms\Event\ContentCreateFieldOptionsEvent $contentUpdateFieldOptionsEvent */
                     $contentCreateFieldOptionsEvent = $this->eventDispatcher->dispatch(
                         new ContentCreateFieldOptionsEvent(
                             $entryOptions['contentCreateStruct'],

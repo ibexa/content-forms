@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace Ibexa\ContentForms\User\View;
 
-use EzSystems\EzPlatformUser\View\Register\FormView as BaseUserRegisterFormView;
+use Ibexa\User\View\Register\FormView as BaseUserRegisterFormView;
 
 /**
  * @deprecated Deprecated in 2.5 and will be removed in 3.0. Please use EzSystems\EzPlatformUser\View\UserRegisterFormView instead.

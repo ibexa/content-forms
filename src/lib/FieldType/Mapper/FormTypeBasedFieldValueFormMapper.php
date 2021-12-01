@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace Ibexa\ContentForms\FieldType\Mapper;
 
-use eZ\Publish\API\Repository\FieldTypeService;
+use Ibexa\Contracts\Core\Repository\FieldTypeService;
 use Ibexa\Contracts\ContentForms\Data\Content\FieldData;
 use Ibexa\ContentForms\FieldType\DataTransformer\FieldValueTransformer;
 use Ibexa\Contracts\ContentForms\FieldType\FieldValueFormMapperInterface;
@@ -40,7 +40,7 @@ final class FormTypeBasedFieldValueFormMapper implements FieldValueFormMapperInt
     private $formType;
 
     /**
-     * @var \eZ\Publish\API\Repository\FieldTypeService
+     * @var \Ibexa\Contracts\Core\Repository\FieldTypeService
      */
     private $fieldTypeService;
 
@@ -57,8 +57,8 @@ final class FormTypeBasedFieldValueFormMapper implements FieldValueFormMapperInt
     /**
      * Maps Field form to current FieldType based on the configured form type (self::$formType).
      *
-     * @param FormInterface $fieldForm form for the current Field
-     * @param FieldData $data underlying data for current Field form
+     * @param \Symfony\Component\Form\FormInterface $fieldForm form for the current Field
+     * @param \Ibexa\Contracts\ContentForms\Data\Content\FieldData $data underlying data for current Field form
      */
     public function mapFieldValueForm(FormInterface $fieldForm, FieldData $data)
     {

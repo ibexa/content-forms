@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace Ibexa\ContentForms\Form\Type\Content;
 
-use eZ\Publish\API\Repository\Values\Content\ContentStruct;
+use Ibexa\Contracts\Core\Repository\Values\Content\ContentStruct;
 use Ibexa\ContentForms\Form\EventSubscriber\SuppressValidationSubscriber;
 use JMS\TranslationBundle\Annotation\Desc;
 use Symfony\Component\Form\AbstractType;

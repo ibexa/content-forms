@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace Ibexa\ContentForms\FieldType\DataTransformer;
 
-use eZ\Publish\Core\FieldType\Time\Value;
+use Ibexa\Core\FieldType\Time\Value;
 use Symfony\Component\Form\DataTransformerInterface;
 use Symfony\Component\Form\Exception\TransformationFailedException;
 
@@ -18,7 +18,7 @@ use Symfony\Component\Form\Exception\TransformationFailedException;
 class TimeValueTransformer implements DataTransformerInterface
 {
     /**
-     * @param \eZ\Publish\Core\FieldType\Time\Value $value
+     * @param \Ibexa\Core\FieldType\Time\Value $value
      *
      * @return int|null
      *
@@ -42,9 +42,9 @@ class TimeValueTransformer implements DataTransformerInterface
     /**
      * @param int $value
      *
-     * @return Value|null
+     * @return \Ibexa\Core\FieldType\Time\Value|null
      *
-     * @throws TransformationFailedException
+     * @throws \Symfony\Component\Form\Exception\TransformationFailedException
      */
     public function reverseTransform($value)
     {

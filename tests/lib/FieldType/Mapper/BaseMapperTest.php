@@ -8,8 +8,8 @@ declare(strict_types=1);
 
 namespace Ibexa\Tests\ContentForms\FieldType\Mapper;
 
-use eZ\Publish\API\Repository\FieldType;
-use eZ\Publish\API\Repository\FieldTypeService;
+use Ibexa\Contracts\Core\Repository\FieldType;
+use Ibexa\Contracts\Core\Repository\FieldTypeService;
 use Ibexa\Contracts\ContentForms\Data\Content\FieldData;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Form\FormConfigInterface;

@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace Ibexa\Tests\ContentForms\FieldType\DataTransformer;
 
-use eZ\Publish\Core\FieldType\Selection\Value;
+use Ibexa\Core\FieldType\Selection\Value;
 use Ibexa\ContentForms\FieldType\DataTransformer\SingleSelectionValueTransformer;
 use PHPUnit\Framework\TestCase;
 

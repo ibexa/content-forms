@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace Ibexa\ContentForms\Form\ActionDispatcher;
 
-use eZ\Publish\API\Repository\Values\Content\Location;
+use Ibexa\Contracts\Core\Repository\Values\Content\Location;
 use Ibexa\ContentForms\Event\ContentFormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 

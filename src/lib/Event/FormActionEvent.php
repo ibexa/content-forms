@@ -31,7 +31,7 @@ class FormActionEvent extends FormEvent
     /**
      * Response to return after form post-processing. Typically a RedirectResponse.
      *
-     * @var Response
+     * @var \Symfony\Component\HttpFoundation\Response
      */
     private $response;
 
@@ -99,7 +99,7 @@ class FormActionEvent extends FormEvent
     }
 
     /**
-     * @return Response
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function getResponse()
     {
@@ -107,7 +107,7 @@ class FormActionEvent extends FormEvent
     }
 
     /**
-     * @param Response $response
+     * @param \Symfony\Component\HttpFoundation\Response $response
      */
     public function setResponse(Response $response)
     {

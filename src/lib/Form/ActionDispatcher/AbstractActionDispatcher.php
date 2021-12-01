@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace Ibexa\ContentForms\Form\ActionDispatcher;
 
-use eZ\Publish\API\Repository\Values\ValueObject;
+use Ibexa\Contracts\Core\Repository\Values\ValueObject;
 use Ibexa\ContentForms\Event\FormActionEvent;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Form\FormInterface;
@@ -20,7 +20,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 abstract class AbstractActionDispatcher implements ActionDispatcherInterface
 {
     /**
-     * @var EventDispatcherInterface
+     * @var \Symfony\Component\EventDispatcher\EventDispatcherInterface
      */
     private $eventDispatcher;
 
@@ -56,7 +56,7 @@ abstract class AbstractActionDispatcher implements ActionDispatcherInterface
      * Configures options to pass to the form action event.
      * Might do nothing if there are no options.
      *
-     * @param OptionsResolver $resolver
+     * @param \Symfony\Component\OptionsResolver\OptionsResolver $resolver
      */
     abstract protected function configureOptions(OptionsResolver $resolver);
 

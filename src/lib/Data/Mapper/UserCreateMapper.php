@@ -8,9 +8,9 @@ declare(strict_types=1);
 
 namespace Ibexa\ContentForms\Data\Mapper;
 
-use eZ\Publish\API\Repository\Values\Content\Field;
-use eZ\Publish\API\Repository\Values\ContentType\ContentType;
-use eZ\Publish\API\Repository\Values\User\UserGroup;
+use Ibexa\Contracts\Core\Repository\Values\Content\Field;
+use Ibexa\Contracts\Core\Repository\Values\ContentType\ContentType;
+use Ibexa\Contracts\Core\Repository\Values\User\UserGroup;
 use Ibexa\Contracts\ContentForms\Data\Content\FieldData;
 use Ibexa\ContentForms\Data\User\UserCreateData;
 use Symfony\Component\OptionsResolver\Exception\AccessException;
@@ -27,14 +27,14 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class UserCreateMapper
 {
     /**
-     * @param UserGroup[] $parentGroups
+     * @param \Ibexa\Contracts\Core\Repository\Values\User\UserGroup[] $parentGroups
      *
-     * @throws UndefinedOptionsException
-     * @throws OptionDefinitionException
-     * @throws NoSuchOptionException
-     * @throws MissingOptionsException
-     * @throws InvalidOptionsException
-     * @throws AccessException
+     * @throws \Symfony\Component\OptionsResolver\Exception\UndefinedOptionsException
+     * @throws \Symfony\Component\OptionsResolver\Exception\OptionDefinitionException
+     * @throws \Symfony\Component\OptionsResolver\Exception\NoSuchOptionException
+     * @throws \Symfony\Component\OptionsResolver\Exception\MissingOptionsException
+     * @throws \Symfony\Component\OptionsResolver\Exception\InvalidOptionsException
+     * @throws \Symfony\Component\OptionsResolver\Exception\AccessException
      */
     public function mapToFormData(ContentType $contentType, array $parentGroups, array $params = []): UserCreateData
     {
@@ -60,7 +60,7 @@ class UserCreateMapper
     }
 
     /**
-     * @throws AccessException
+     * @throws \Symfony\Component\OptionsResolver\Exception\AccessException
      */
     private function configureOptions(OptionsResolver $optionsResolver): void
     {

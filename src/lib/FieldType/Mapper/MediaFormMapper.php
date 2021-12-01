@@ -8,9 +8,9 @@ declare(strict_types=1);
 
 namespace Ibexa\ContentForms\FieldType\Mapper;
 
-use eZ\Publish\API\Repository\FieldTypeService;
-use eZ\Publish\Core\FieldType\Media\Type;
-use eZ\Publish\Core\FieldType\Media\Value;
+use Ibexa\Contracts\Core\Repository\FieldTypeService;
+use Ibexa\Core\FieldType\Media\Type;
+use Ibexa\Core\FieldType\Media\Value;
 use Ibexa\Contracts\ContentForms\Data\Content\FieldData;
 use Ibexa\ContentForms\FieldType\DataTransformer\MediaValueTransformer;
 use Ibexa\Contracts\ContentForms\FieldType\FieldValueFormMapperInterface;
@@ -19,7 +19,7 @@ use Symfony\Component\Form\FormInterface;
 
 class MediaFormMapper implements FieldValueFormMapperInterface
 {
-    /** @var FieldTypeService */
+    /** @var \Ibexa\Contracts\Core\Repository\FieldTypeService */
     private $fieldTypeService;
 
     protected const ACCEPT_VIDEO = 'video/*';

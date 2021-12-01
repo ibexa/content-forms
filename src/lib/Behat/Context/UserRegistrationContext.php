@@ -13,16 +13,16 @@ use Behat\Behat\Context\SnippetAcceptingContext;
 use Behat\Behat\Hook\Scope\BeforeScenarioScope;
 use Behat\Gherkin\Node\PyStringNode;
 use Behat\MinkExtension\Context\RawMinkContext;
-use eZ\Bundle\EzPublishCoreBundle\Features\Context\YamlConfigurationContext;
-use eZ\Publish\API\Repository\ContentTypeService;
-use eZ\Publish\API\Repository\PermissionResolver;
-use eZ\Publish\API\Repository\RoleService;
-use eZ\Publish\API\Repository\UserService;
-use eZ\Publish\API\Repository\Values\User\Role;
-use eZ\Publish\API\Repository\Values\User\User;
-use eZ\Publish\API\Repository\Values\User\UserGroup;
-use eZ\Publish\Core\Repository\Values\User\RoleCreateStruct;
-use eZ\Publish\Core\Repository\Values\User\UserReference;
+use Ibexa\Bundle\Core\Features\Context\YamlConfigurationContext;
+use Ibexa\Contracts\Core\Repository\ContentTypeService;
+use Ibexa\Contracts\Core\Repository\PermissionResolver;
+use Ibexa\Contracts\Core\Repository\RoleService;
+use Ibexa\Contracts\Core\Repository\UserService;
+use Ibexa\Contracts\Core\Repository\Values\User\Role;
+use Ibexa\Contracts\Core\Repository\Values\User\User;
+use Ibexa\Contracts\Core\Repository\Values\User\UserGroup;
+use Ibexa\Core\Repository\Values\User\RoleCreateStruct;
+use Ibexa\Core\Repository\Values\User\UserReference;
 use PHPUnit\Framework\Assert as Assertion;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Yaml\Yaml;
@@ -47,12 +47,12 @@ class UserRegistrationContext extends RawMinkContext implements Context, Snippet
     /**
      * Used to cover registration group customization.
      *
-     * @var UserGroup
+     * @var \Ibexa\Contracts\Core\Repository\Values\User\UserGroup
      */
     private $customUserGroup;
 
     /**
-     * @var YamlConfigurationContext
+     * @var \Ibexa\Bundle\Core\Features\Context\YamlConfigurationContext
      */
     private $yamlConfigurationContext;
 
@@ -61,16 +61,16 @@ class UserRegistrationContext extends RawMinkContext implements Context, Snippet
      */
     private $adminUserId = 14;
 
-    /** @var \eZ\Publish\API\Repository\PermissionResolver */
+    /** @var \Ibexa\Contracts\Core\Repository\PermissionResolver */
     private $permissionResolver;
 
-    /** @var \eZ\Publish\API\Repository\RoleService */
+    /** @var \Ibexa\Contracts\Core\Repository\RoleService */
     private $roleService;
 
-    /** @var \eZ\Publish\API\Repository\UserService */
+    /** @var \Ibexa\Contracts\Core\Repository\UserService */
     private $userService;
 
-    /** @var \eZ\Publish\API\Repository\ContentTypeService */
+    /** @var \Ibexa\Contracts\Core\Repository\ContentTypeService */
     private $contentTypeService;
 
     public function __construct(
@@ -117,9 +117,9 @@ class UserRegistrationContext extends RawMinkContext implements Context, Snippet
     /**
      * Creates a user for registration testing, and assigns it the role $role.
      *
-     * @param Role $role
+     * @param \Ibexa\Contracts\Core\Repository\Values\User\Role $role
      *
-     * @return User
+     * @return \Ibexa\Contracts\Core\Repository\Values\User\User
      */
     private function createUserWithRole(Role $role)
     {
@@ -146,7 +146,7 @@ class UserRegistrationContext extends RawMinkContext implements Context, Snippet
      *
      * @param bool $withUserRegisterPolicy Determines if the role gets the user/register policy
      *
-     * @return Role
+     * @return \Ibexa\Contracts\Core\Repository\Values\User\Role
      */
     private function createRegistrationRole($withUserRegisterPolicy = true)
     {
@@ -183,7 +183,7 @@ class UserRegistrationContext extends RawMinkContext implements Context, Snippet
     }
 
     /**
-     * @param User $user
+     * @param \Ibexa\Contracts\Core\Repository\Values\User\User $user
      *
      * @throws \Behat\Mink\Exception\ElementNotFoundException
      */
@@ -221,6 +221,7 @@ class UserRegistrationContext extends RawMinkContext implements Context, Snippet
                 )
             );
             /** @todo It should also check if there is corresponding input created once all types are implemented */
+            
         }
     }
 

@@ -8,10 +8,10 @@ declare(strict_types=1);
 
 namespace Ibexa\Tests\ContentForms\Validator\Constraints;
 
-use eZ\Publish\API\Repository\UserService;
-use eZ\Publish\API\Repository\Values\ContentType\ContentType;
-use eZ\Publish\API\Repository\Values\User\PasswordValidationContext;
-use eZ\Publish\Core\FieldType\ValidationError;
+use Ibexa\Contracts\Core\Repository\UserService;
+use Ibexa\Contracts\Core\Repository\Values\ContentType\ContentType;
+use Ibexa\Contracts\Core\Repository\Values\User\PasswordValidationContext;
+use Ibexa\Core\FieldType\ValidationError;
 use Ibexa\ContentForms\Validator\Constraints\Password;
 use Ibexa\ContentForms\Validator\Constraints\PasswordValidator;
 use PHPUnit\Framework\TestCase;
@@ -20,13 +20,13 @@ use Symfony\Component\Validator\Violation\ConstraintViolationBuilderInterface;
 
 class PasswordValidatorTest extends TestCase
 {
-    /** @var \eZ\Publish\API\Repository\UserService|\PHPUnit\Framework\MockObject\MockObject */
+    /** @var \Ibexa\Contracts\Core\Repository\UserService|\PHPUnit\Framework\MockObject\MockObject */
     private $userService;
 
     /** @var \Symfony\Component\Validator\Context\ExecutionContextInterface|\PHPUnit\Framework\MockObject\MockObject */
     private $executionContext;
 
-    /** @var \EzSystems\EzPlatformContentForms\Validator\Constraints\PasswordValidator */
+    /** @var \Ibexa\ContentForms\Validator\Constraints\PasswordValidator */
     private $validator;
 
     protected function setUp(): void

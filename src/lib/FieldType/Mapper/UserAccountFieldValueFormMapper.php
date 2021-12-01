@@ -8,8 +8,8 @@ declare(strict_types=1);
 
 namespace Ibexa\ContentForms\FieldType\Mapper;
 
-use eZ\Publish\API\Repository\Values\ContentType\FieldDefinition;
-use eZ\Publish\Core\FieldType\User\Value as ApiUserValue;
+use Ibexa\Contracts\Core\Repository\Values\ContentType\FieldDefinition;
+use Ibexa\Core\FieldType\User\Value as ApiUserValue;
 use Ibexa\Contracts\ContentForms\Data\Content\FieldData;
 use Ibexa\ContentForms\Data\ContentTranslationData;
 use Ibexa\ContentForms\Data\User\UserAccountFieldData;
@@ -32,13 +32,13 @@ final class UserAccountFieldValueFormMapper implements FieldValueFormMapperInter
     /**
      * Maps Field form to current FieldType based on the configured form type (self::$formType).
      *
-     * @param FormInterface $fieldForm form for the current Field
-     * @param FieldData $data underlying data for current Field form
+     * @param \Symfony\Component\Form\FormInterface $fieldForm form for the current Field
+     * @param \Ibexa\Contracts\ContentForms\Data\Content\FieldData $data underlying data for current Field form
      *
-     * @throws AlreadySubmittedException
-     * @throws LogicException
-     * @throws UnexpectedTypeException
-     * @throws InvalidOptionsException
+     * @throws \Symfony\Component\Form\Exception\AlreadySubmittedException
+     * @throws \Symfony\Component\Form\Exception\LogicException
+     * @throws \Symfony\Component\Form\Exception\UnexpectedTypeException
+     * @throws \Symfony\Component\OptionsResolver\Exception\InvalidOptionsException
      */
     public function mapFieldValueForm(FormInterface $fieldForm, FieldData $data)
     {
@@ -84,7 +84,7 @@ final class UserAccountFieldValueFormMapper implements FieldValueFormMapperInter
     }
 
     /**
-     * @param \eZ\Publish\API\Repository\Values\ContentType\FieldDefinition $fieldDefinition
+     * @param \Ibexa\Contracts\Core\Repository\Values\ContentType\FieldDefinition $fieldDefinition
      *
      * @return \Symfony\Component\Form\CallbackTransformer
      */

@@ -8,8 +8,8 @@ declare(strict_types=1);
 
 namespace Ibexa\ContentForms\Data\Mapper;
 
-use eZ\Publish\API\Repository\Values\ContentType\ContentType;
-use eZ\Publish\API\Repository\Values\User\User;
+use Ibexa\Contracts\Core\Repository\Values\ContentType\ContentType;
+use Ibexa\Contracts\Core\Repository\Values\User\User;
 use Ibexa\Contracts\ContentForms\Data\Content\FieldData;
 use Ibexa\ContentForms\Data\User\UserUpdateData;
 use Symfony\Component\OptionsResolver\Exception\AccessException;
@@ -28,18 +28,18 @@ class UserUpdateMapper
     /**
      * Maps a ValueObject from eZ content repository to a data usable as underlying form data (e.g. create/update struct).
      *
-     * @param User $user
-     * @param ContentType $contentType
+     * @param \Ibexa\Contracts\Core\Repository\Values\User\User $user
+     * @param \Ibexa\Contracts\Core\Repository\Values\ContentType\ContentType $contentType
      * @param array $params
      *
-     * @return UserUpdateData
+     * @return \Ibexa\ContentForms\Data\User\UserUpdateData
      *
-     * @throws UndefinedOptionsException
-     * @throws OptionDefinitionException
-     * @throws NoSuchOptionException
-     * @throws MissingOptionsException
-     * @throws InvalidOptionsException
-     * @throws AccessException
+     * @throws \Symfony\Component\OptionsResolver\Exception\UndefinedOptionsException
+     * @throws \Symfony\Component\OptionsResolver\Exception\OptionDefinitionException
+     * @throws \Symfony\Component\OptionsResolver\Exception\NoSuchOptionException
+     * @throws \Symfony\Component\OptionsResolver\Exception\MissingOptionsException
+     * @throws \Symfony\Component\OptionsResolver\Exception\InvalidOptionsException
+     * @throws \Symfony\Component\OptionsResolver\Exception\AccessException
      */
     public function mapToFormData(User $user, ContentType $contentType, array $params = []): UserUpdateData
     {

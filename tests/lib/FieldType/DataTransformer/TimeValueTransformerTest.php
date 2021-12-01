@@ -11,7 +11,7 @@ namespace Ibexa\Tests\ContentForms\FieldType\DataTransformer;
 use DateTime;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Form\Exception\TransformationFailedException;
-use eZ\Publish\Core\FieldType\Time\Value;
+use Ibexa\Core\FieldType\Time\Value;
 use Ibexa\ContentForms\FieldType\DataTransformer\TimeValueTransformer;
 
 class TimeValueTransformerTest extends TestCase

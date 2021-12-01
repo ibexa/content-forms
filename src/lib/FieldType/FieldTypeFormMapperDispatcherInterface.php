@@ -20,7 +20,7 @@ interface FieldTypeFormMapperDispatcherInterface
     /**
      * Adds a new Field mapper for a fieldtype identifier.
      *
-     * @param \EzSystems\EzPlatformContentForms\FieldType\FieldValueFormMapperInterface
+     * @param \Ibexa\Contracts\ContentForms\FieldType\FieldValueFormMapperInterface
      * @param string $fieldTypeIdentifier fieldType identifier this mapper is for
      *
      * @return mixed
@@ -31,7 +31,7 @@ interface FieldTypeFormMapperDispatcherInterface
      * Maps, if a mapper is available for the fieldtype, $data to $form.
      *
      * @param \Symfony\Component\Form\FormInterface $form
-     * @param \EzSystems\EzPlatformContentForms\Data\Content\FieldData $data
+     * @param \Ibexa\Contracts\ContentForms\Data\Content\FieldData $data
      *
      * @throws \InvalidArgumentException If $data is not a FieldData or FieldDefinitionData
      */

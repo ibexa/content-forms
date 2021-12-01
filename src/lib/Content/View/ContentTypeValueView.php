@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace Ibexa\ContentForms\Content\View;
 
-use eZ\Publish\API\Repository\Values\ContentType\ContentType;
+use Ibexa\Contracts\Core\Repository\Values\ContentType\ContentType;
 
 /**
  * A view that contains a Content.
@@ -18,7 +18,7 @@ interface ContentTypeValueView
     /**
      * Returns the ContentType.
      *
-     * @return ContentType
+     * @return \Ibexa\Contracts\Core\Repository\Values\ContentType\ContentType
      */
     public function getContentType(): ContentType;
 }

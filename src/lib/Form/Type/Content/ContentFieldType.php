@@ -21,7 +21,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class ContentFieldType extends AbstractType
 {
     /**
-     * @var FieldTypeFormMapperDispatcherInterface
+     * @var \Ibexa\ContentForms\FieldType\FieldTypeFormMapperDispatcherInterface
      */
     private $fieldTypeFormMapper;
 

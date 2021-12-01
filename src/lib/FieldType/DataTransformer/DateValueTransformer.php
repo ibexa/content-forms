@@ -8,8 +8,8 @@ declare(strict_types=1);
 
 namespace Ibexa\ContentForms\FieldType\DataTransformer;
 
-use eZ\Publish\API\Repository\Exceptions\InvalidArgumentException;
-use eZ\Publish\Core\FieldType\Date\Value;
+use Ibexa\Contracts\Core\Repository\Exceptions\InvalidArgumentException;
+use Ibexa\Core\FieldType\Date\Value;
 use Symfony\Component\Form\DataTransformerInterface;
 use Symfony\Component\Form\Exception\TransformationFailedException;
 
@@ -23,7 +23,7 @@ class DateValueTransformer implements DataTransformerInterface
      *
      * @return int|null
      *
-     * @throws TransformationFailedException
+     * @throws \Symfony\Component\Form\Exception\TransformationFailedException
      */
     public function transform($value)
     {
@@ -47,10 +47,10 @@ class DateValueTransformer implements DataTransformerInterface
     /**
      * @param int|mixed $value
      *
-     * @return Value|null
+     * @return \Ibexa\Core\FieldType\Date\Value|null
      *
-     * @throws InvalidArgumentException
-     * @throws TransformationFailedException
+     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\InvalidArgumentException
+     * @throws \Symfony\Component\Form\Exception\TransformationFailedException
      */
     public function reverseTransform($value)
     {

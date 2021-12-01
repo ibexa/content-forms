@@ -12,7 +12,7 @@ use Behat\Behat\Context\Context;
 use Behat\Behat\Context\SnippetAcceptingContext;
 use Behat\Behat\Hook\Scope\BeforeScenarioScope;
 use Behat\MinkExtension\Context\MinkContext;
-use eZ\Publish\API\Repository\Values\ContentType\FieldDefinitionCreateStruct;
+use Ibexa\Contracts\Core\Repository\Values\ContentType\FieldDefinitionCreateStruct;
 
 final class ContentEditContext extends MinkContext implements Context, SnippetAcceptingContext
 {
@@ -24,7 +24,7 @@ final class ContentEditContext extends MinkContext implements Context, SnippetAc
     private $createdContentName;
 
     /**
-     * @var \EzSystems\EzPlatformContentForms\Behat\Context\ContentTypeContext
+     * @var \Ibexa\ContentForms\Behat\Context\ContentTypeContext
      */
     private $contentTypeContext;
 
@@ -126,6 +126,7 @@ final class ContentEditContext extends MinkContext implements Context, SnippetAc
             $this->fillField('ezplatform_content_forms_content_edit_workflow_transition', 'WorkfowTransition');
             $this->fillField('ezplatform_content_forms_content_edit_workflow_comment', 'WorkfowComment');
             $this->fillField('ezplatform_content_forms_content_edit_workflow_reviewer', '14'); // "admin" user ID
+            
         }
     }
 

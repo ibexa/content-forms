@@ -4,7 +4,7 @@ services:
         autoconfigure: true
         public: false
 
-    eZ\Publish\API\Repository\FieldTypeService: '@ezpublish.api.service.field_type'
+    Ibexa\Contracts\Core\Repository\FieldTypeService: '@ezpublish.api.service.field_type'
 
     #
     # FieldTypes

@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace Ibexa\ContentForms\FieldType\DataTransformer;
 
-use eZ\Publish\Core\FieldType\Image\Value;
+use Ibexa\Core\FieldType\Image\Value;
 use Symfony\Component\Form\DataTransformerInterface;
 use Symfony\Component\Form\Exception\TransformationFailedException;
 
@@ -20,7 +20,7 @@ use Symfony\Component\Form\Exception\TransformationFailedException;
 class ImageValueTransformer extends AbstractBinaryBaseTransformer implements DataTransformerInterface
 {
     /**
-     * @param Value $value
+     * @param \Ibexa\Core\FieldType\Image\Value $value
      *
      * @return array
      */
@@ -42,13 +42,13 @@ class ImageValueTransformer extends AbstractBinaryBaseTransformer implements Dat
     /**
      * @param array $value
      *
-     * @return Value
+     * @return \Ibexa\Core\FieldType\Image\Value
      *
-     * @throws TransformationFailedException
+     * @throws \Symfony\Component\Form\Exception\TransformationFailedException
      */
     public function reverseTransform($value)
     {
-        /** @var Value $valueObject */
+        /** @var \Ibexa\Core\FieldType\Image\Value $valueObject */
         $valueObject = $this->getReverseTransformedValue($value);
 
         if ($this->fieldType->isEmptyValue($valueObject)) {
