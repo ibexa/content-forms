@@ -26,7 +26,7 @@
     },
     "require-dev": {
         "ibexa/ci-scripts": "^0.2@dev",
-        "ezsystems/behatbundle": "^4.0@dev",
+        "ezsystems/behatbundle": "^9.0@dev",
         "ibexa/doctrine-schema": "^4.0@dev",
         "ibexa/http-cache": "^4.0@dev",
         "ibexa/rest": "^4.0@dev",
