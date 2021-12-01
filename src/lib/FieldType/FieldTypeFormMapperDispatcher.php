@@ -22,14 +22,14 @@ class FieldTypeFormMapperDispatcher implements FieldTypeFormMapperDispatcherInte
     /**
      * FieldType form mappers, indexed by FieldType identifier.
      *
-     * @var \EzSystems\EzPlatformContentForms\FieldType\FieldValueFormMapperInterface[]
+     * @var \Ibexa\Contracts\ContentForms\FieldType\FieldValueFormMapperInterface[]
      */
     private $mappers;
 
     /**
      * FieldTypeFormMapperDispatcher constructor.
      *
-     * @param \EzSystems\EzPlatformContentForms\FieldType\FieldValueFormMapperInterface[] $mappers
+     * @param \Ibexa\Contracts\ContentForms\FieldType\FieldValueFormMapperInterface[] $mappers
      */
     public function __construct(array $mappers = [])
     {

@@ -8,8 +8,8 @@ declare(strict_types=1);
 
 namespace Ibexa\Tests\ContentForms\FieldType\DataTransformer;
 
-use eZ\Publish\API\Repository\FieldType;
-use eZ\Publish\SPI\FieldType\Value;
+use Ibexa\Contracts\Core\Repository\FieldType;
+use Ibexa\Contracts\Core\FieldType\Value;
 use Ibexa\ContentForms\FieldType\DataTransformer\FieldValueTransformer;
 use PHPUnit\Framework\TestCase;
 use stdClass;

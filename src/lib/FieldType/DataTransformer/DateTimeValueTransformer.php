@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace Ibexa\ContentForms\FieldType\DataTransformer;
 
-use eZ\Publish\Core\FieldType\DateAndTime\Value;
+use Ibexa\Core\FieldType\DateAndTime\Value;
 use Symfony\Component\Form\DataTransformerInterface;
 use Symfony\Component\Form\Exception\TransformationFailedException;
 
@@ -22,7 +22,7 @@ class DateTimeValueTransformer implements DataTransformerInterface
      *
      * @return int|null
      *
-     * @throws TransformationFailedException
+     * @throws \Symfony\Component\Form\Exception\TransformationFailedException
      */
     public function transform($value)
     {
@@ -46,9 +46,9 @@ class DateTimeValueTransformer implements DataTransformerInterface
     /**
      * @param mixed $value
      *
-     * @return Value|null
+     * @return \Ibexa\Core\FieldType\DateAndTime\Value|null
      *
-     * @throws TransformationFailedException
+     * @throws \Symfony\Component\Form\Exception\TransformationFailedException
      */
     public function reverseTransform($value)
     {

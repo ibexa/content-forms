@@ -8,11 +8,11 @@ declare(strict_types=1);
 
 namespace Ibexa\ContentForms\Form\Type\FieldType;
 
-use eZ\Publish\API\Repository\Exceptions\NotFoundException;
-use eZ\Publish\API\Repository\Repository;
-use eZ\Publish\Core\FieldType\Author\Type as AuthorType;
-use eZ\Publish\Core\FieldType\Author\Author;
-use eZ\Publish\Core\FieldType\Author\Value;
+use Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException;
+use Ibexa\Contracts\Core\Repository\Repository;
+use Ibexa\Core\FieldType\Author\Type as AuthorType;
+use Ibexa\Core\FieldType\Author\Author;
+use Ibexa\Core\FieldType\Author\Value;
 use Ibexa\ContentForms\Form\Type\FieldType\Author\AuthorCollectionType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\CallbackTransformer;
@@ -29,14 +29,14 @@ use Symfony\Component\Form\FormView;
  */
 class AuthorFieldType extends AbstractType
 {
-    /** @var \eZ\Publish\API\Repository\Repository */
+    /** @var \Ibexa\Contracts\Core\Repository\Repository */
     private $repository;
 
     /** @var int */
     private $defaultAuthor;
 
     /**
-     * @param \eZ\Publish\API\Repository\Repository $repository
+     * @param \Ibexa\Contracts\Core\Repository\Repository $repository
      */
     public function __construct(Repository $repository)
     {
@@ -136,7 +136,7 @@ class AuthorFieldType extends AbstractType
     /**
      * Returns currently logged user data, or empty Author object if none was found.
      *
-     * @return \eZ\Publish\Core\FieldType\Author\Author
+     * @return \Ibexa\Core\FieldType\Author\Author
      */
     private function fetchLoggedAuthor(): Author
     {

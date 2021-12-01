@@ -8,8 +8,8 @@ declare(strict_types=1);
 
 namespace Ibexa\Tests\ContentForms\FieldType\Mapper;
 
-use eZ\Publish\API\Repository\Values\ContentType\ContentType;
-use eZ\Publish\Core\Repository\Values\ContentType\FieldDefinition;
+use Ibexa\Contracts\Core\Repository\Values\ContentType\ContentType;
+use Ibexa\Core\Repository\Values\ContentType\FieldDefinition;
 use Ibexa\ContentForms\Data\User\UserCreateData;
 use Ibexa\ContentForms\FieldType\Mapper\UserAccountFieldValueFormMapper;
 use Symfony\Component\Form\FormConfigInterface;

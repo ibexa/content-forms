@@ -23,7 +23,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class BinaryBaseFieldType extends AbstractType
 {
-    /** @var MaxUploadSize */
+    /** @var \Ibexa\ContentForms\ConfigResolver\MaxUploadSize */
     private $maxUploadSize;
 
     public function __construct(MaxUploadSize $maxUploadSize)

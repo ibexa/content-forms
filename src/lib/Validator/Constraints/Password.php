@@ -18,7 +18,7 @@ class Password extends Constraint
     /** @var string */
     public $message = 'ez.user.password.invalid';
 
-    /** @var \eZ\Publish\API\Repository\Values\ContentType\ContentType|null */
+    /** @var \Ibexa\Contracts\Core\Repository\Values\ContentType\ContentType|null */
     public $contentType;
 
     /**

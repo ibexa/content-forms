@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace Ibexa\ContentForms\Form\Processor\User;
 
-use eZ\Publish\API\Repository\UserService;
+use Ibexa\Contracts\Core\Repository\UserService;
 use Ibexa\ContentForms\Data\User\UserCreateData;
 use Ibexa\ContentForms\Event\ContentFormEvents;
 use Ibexa\ContentForms\Event\FormActionEvent;
@@ -21,15 +21,15 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
  */
 class UserCreateFormProcessor implements EventSubscriberInterface
 {
-    /** @var UserService */
+    /** @var \Ibexa\Contracts\Core\Repository\UserService */
     private $userService;
 
-    /** @var UrlGeneratorInterface */
+    /** @var \Symfony\Component\Routing\Generator\UrlGeneratorInterface */
     private $urlGenerator;
 
     /**
-     * @param UserService $userService
-     * @param UrlGeneratorInterface $urlGenerator
+     * @param \Ibexa\Contracts\Core\Repository\UserService $userService
+     * @param \Symfony\Component\Routing\Generator\UrlGeneratorInterface $urlGenerator
      */
     public function __construct(
         UserService $userService,
@@ -71,7 +71,7 @@ class UserCreateFormProcessor implements EventSubscriberInterface
     }
 
     /**
-     * @param UserCreateData $data
+     * @param \Ibexa\ContentForms\Data\User\UserCreateData $data
      * @param string $languageCode
      */
     private function setContentFields(UserCreateData $data, string $languageCode): void

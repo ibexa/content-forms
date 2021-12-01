@@ -8,8 +8,8 @@ declare(strict_types=1);
 
 namespace Ibexa\Tests\ContentForms\FieldType;
 
-use eZ\Publish\API\Repository\Values\Content\Field;
-use eZ\Publish\Core\Repository\Values\ContentType\FieldDefinition;
+use Ibexa\Contracts\Core\Repository\Values\Content\Field;
+use Ibexa\Core\Repository\Values\ContentType\FieldDefinition;
 use Ibexa\Contracts\ContentForms\Data\Content\FieldData;
 use Ibexa\ContentForms\FieldType\FieldTypeFormMapperDispatcher;
 use Ibexa\Contracts\ContentForms\FieldType\FieldValueFormMapperInterface;
@@ -18,10 +18,10 @@ use Symfony\Component\Form\FormInterface;
 
 class FieldTypeFormMapperDispatcherTest extends TestCase
 {
-    /** @var \EzSystems\EzPlatformContentForms\FieldType\FieldTypeFormMapperDispatcherInterface */
+    /** @var \Ibexa\ContentForms\FieldType\FieldTypeFormMapperDispatcherInterface */
     private $dispatcher;
 
-    /** @var \EzSystems\EzPlatformContentForms\FieldType\FieldValueFormMapperInterface|\PHPUnit\Framework\MockObject\MockObject */
+    /** @var \Ibexa\Contracts\ContentForms\FieldType\FieldValueFormMapperInterface|\PHPUnit\Framework\MockObject\MockObject */
     private $fieldValueMapperMock;
 
     protected function setUp(): void

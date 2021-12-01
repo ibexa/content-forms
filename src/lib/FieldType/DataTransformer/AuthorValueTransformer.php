@@ -8,8 +8,8 @@ declare(strict_types=1);
 
 namespace Ibexa\ContentForms\FieldType\DataTransformer;
 
-use eZ\Publish\Core\FieldType\Author\Author;
-use eZ\Publish\Core\FieldType\Author\Value;
+use Ibexa\Core\FieldType\Author\Author;
+use Ibexa\Core\FieldType\Author\Value;
 use Symfony\Component\Form\DataTransformerInterface;
 
 /**

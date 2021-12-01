@@ -8,8 +8,8 @@ declare(strict_types=1);
 
 namespace Ibexa\ContentForms\Content\View;
 
-use eZ\Publish\Core\MVC\Symfony\View\BaseView;
-use eZ\Publish\Core\MVC\Symfony\View\View;
+use Ibexa\Core\MVC\Symfony\View\BaseView;
+use Ibexa\Core\MVC\Symfony\View\View;
 
 class ContentCreateDraftView extends BaseView implements View
 {

@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace Ibexa\Tests\ContentForms\FieldType\DataTransformer;
 
-use eZ\Publish\Core\FieldType\RelationList\Value;
+use Ibexa\Core\FieldType\RelationList\Value;
 use Ibexa\ContentForms\FieldType\DataTransformer\RelationListValueTransformer;
 use PHPUnit\Framework\TestCase;
 

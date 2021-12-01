@@ -23,7 +23,7 @@ class IbexaContentFormsBundle extends Bundle
         parent::build($container);
         $container->addCompilerPass(new FieldTypeFormMapperDispatcherPass());
 
-        $eZExtension = $container->getExtension('ezpublish');
+        $eZExtension = $container->getExtension('ibexa');
         $eZExtension->addConfigParser(new ContentEdit());
         $eZExtension->addConfigParser(new UserEdit());
         $eZExtension->addConfigParser(new ContentEditView());

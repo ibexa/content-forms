@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace Ibexa\ContentForms\FieldType\DataTransformer;
 
-use eZ\Publish\Core\FieldType\Relation\Value;
+use Ibexa\Core\FieldType\Relation\Value;
 use Symfony\Component\Form\DataTransformerInterface;
 
 class RelationValueTransformer implements DataTransformerInterface

@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace Ibexa\ContentForms\FieldType\DataTransformer;
 
-use eZ\Publish\Core\FieldType\Keyword\Value;
+use Ibexa\Core\FieldType\Keyword\Value;
 use Symfony\Component\Form\DataTransformerInterface;
 
 /**

@@ -8,9 +8,9 @@ declare(strict_types=1);
 
 namespace Ibexa\ContentForms\Content\View\Provider\ContentEditView;
 
-use eZ\Publish\Core\MVC\Symfony\Matcher\MatcherFactoryInterface;
-use eZ\Publish\Core\MVC\Symfony\View\View;
-use eZ\Publish\Core\MVC\Symfony\View\ViewProvider;
+use Ibexa\Core\MVC\Symfony\Matcher\MatcherFactoryInterface;
+use Ibexa\Core\MVC\Symfony\View\View;
+use Ibexa\Core\MVC\Symfony\View\ViewProvider;
 use Ibexa\ContentForms\Content\View\ContentEditView;
 use Symfony\Component\HttpKernel\Controller\ControllerReference;
 
@@ -20,12 +20,12 @@ use Symfony\Component\HttpKernel\Controller\ControllerReference;
 class Configured implements ViewProvider
 {
     /**
-     * @var \eZ\Publish\Core\MVC\Symfony\Matcher\MatcherFactoryInterface
+     * @var \Ibexa\Core\MVC\Symfony\Matcher\MatcherFactoryInterface
      */
     protected $matcherFactory;
 
     /**
-     * @param \eZ\Publish\Core\MVC\Symfony\Matcher\MatcherFactoryInterface $matcherFactory
+     * @param \Ibexa\Core\MVC\Symfony\Matcher\MatcherFactoryInterface $matcherFactory
      */
     public function __construct(MatcherFactoryInterface $matcherFactory)
     {
@@ -46,7 +46,7 @@ class Configured implements ViewProvider
      *
      * @param array $viewConfig
      *
-     * @return \EzSystems\EzPlatformContentForms\Content\View\ContentEditView
+     * @return \Ibexa\ContentForms\Content\View\ContentEditView
      */
     protected function buildContentEditView(array $viewConfig): ContentEditView
     {

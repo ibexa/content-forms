@@ -8,8 +8,8 @@ declare(strict_types=1);
 
 namespace Ibexa\ContentForms\FieldType\DataTransformer;
 
-use eZ\Publish\API\Repository\FieldType;
-use eZ\Publish\SPI\FieldType\Value;
+use Ibexa\Contracts\Core\Repository\FieldType;
+use Ibexa\Contracts\Core\FieldType\Value;
 use Symfony\Component\Form\DataTransformerInterface;
 
 /**
@@ -19,7 +19,7 @@ use Symfony\Component\Form\DataTransformerInterface;
 class FieldValueTransformer implements DataTransformerInterface
 {
     /**
-     * @var eZ\Publish\API\Repository\FieldType
+     * @var \Ibexa\Contracts\Core\Repository\FieldType
      */
     private $fieldType;
 
@@ -51,7 +51,7 @@ class FieldValueTransformer implements DataTransformerInterface
      *
      * @param mixed $value
      *
-     * @return \eZ\Publish\SPI\FieldType\Value
+     * @return \Ibexa\Contracts\Core\FieldType\Value
      */
     public function reverseTransform($value)
     {

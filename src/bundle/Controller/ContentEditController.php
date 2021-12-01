@@ -8,9 +8,9 @@ declare(strict_types=1);
 
 namespace Ibexa\Bundle\ContentForms\Controller;
 
-use eZ\Bundle\EzPublishCoreBundle\Controller;
-use eZ\Publish\API\Repository\ContentService;
-use eZ\Publish\API\Repository\ContentTypeService;
+use Ibexa\Bundle\Core\Controller;
+use Ibexa\Contracts\Core\Repository\ContentService;
+use Ibexa\Contracts\Core\Repository\ContentTypeService;
 use Ibexa\ContentForms\Content\View\ContentCreateDraftView;
 use Ibexa\ContentForms\Content\View\ContentCreateSuccessView;
 use Ibexa\ContentForms\Content\View\ContentCreateView;
@@ -23,13 +23,13 @@ use Symfony\Component\HttpFoundation\Request;
 
 class ContentEditController extends Controller
 {
-    /** @var ContentTypeService */
+    /** @var \Ibexa\Contracts\Core\Repository\ContentTypeService */
     private $contentTypeService;
 
-    /** @var ContentService */
+    /** @var \Ibexa\Contracts\Core\Repository\ContentService */
     private $contentService;
 
-    /** @var ActionDispatcherInterface */
+    /** @var \Ibexa\ContentForms\Form\ActionDispatcher\ActionDispatcherInterface */
     private $contentActionDispatcher;
 
     public function __construct(
@@ -45,9 +45,9 @@ class ContentEditController extends Controller
     /**
      * Displays and processes a content creation form. Showing the form does not create a draft in the repository.
      *
-     * @param \EzSystems\EzPlatformContentForms\Content\View\ContentCreateView $view
+     * @param \Ibexa\ContentForms\Content\View\ContentCreateView $view
      *
-     * @return \EzSystems\EzPlatformContentForms\Content\View\ContentCreateView
+     * @return \Ibexa\ContentForms\Content\View\ContentCreateView
      */
     public function createWithoutDraftAction(ContentCreateView $view): ContentCreateView
     {
@@ -55,11 +55,11 @@ class ContentEditController extends Controller
     }
 
     /**
-     * @param \EzSystems\EzPlatformContentForms\Content\View\ContentCreateSuccessView $view
+     * @param \Ibexa\ContentForms\Content\View\ContentCreateSuccessView $view
      *
-     * @return \EzSystems\EzPlatformContentForms\Content\View\ContentCreateSuccessView
+     * @return \Ibexa\ContentForms\Content\View\ContentCreateSuccessView
      *
-     * @throws \eZ\Publish\API\Repository\Exceptions\BadStateException
+     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\BadStateException
      */
     public function createWithoutDraftSuccessAction(ContentCreateSuccessView $view): ContentCreateSuccessView
     {
@@ -74,11 +74,11 @@ class ContentEditController extends Controller
      * @param int $fromVersionNo
      * @param string $fromLanguage
      *
-     * @return \EzSystems\EzPlatformContentForms\Content\View\ContentCreateDraftView|\Symfony\Component\HttpFoundation\Response
+     * @return \Ibexa\ContentForms\Content\View\ContentCreateDraftView|\Symfony\Component\HttpFoundation\Response
      *
-     * @throws \eZ\Publish\API\Repository\Exceptions\UnauthorizedException
-     * @throws \eZ\Publish\API\Repository\Exceptions\NotFoundException
-     * @throws \eZ\Publish\Core\Base\Exceptions\InvalidArgumentType
+     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\UnauthorizedException
+     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException
+     * @throws \Ibexa\Core\Base\Exceptions\InvalidArgumentType
      */
     public function createContentDraftAction(
         Request $request,
@@ -124,11 +124,11 @@ class ContentEditController extends Controller
     }
 
     /**
-     * @param \EzSystems\EzPlatformContentForms\Content\View\ContentEditView $view
+     * @param \Ibexa\ContentForms\Content\View\ContentEditView $view
      *
-     * @return \EzSystems\EzPlatformContentForms\Content\View\ContentEditView
+     * @return \Ibexa\ContentForms\Content\View\ContentEditView
      *
-     * @throws \eZ\Publish\API\Repository\Exceptions\BadStateException
+     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\BadStateException
      */
     public function editVersionDraftAction(ContentEditView $view): ContentEditView
     {
@@ -136,11 +136,11 @@ class ContentEditController extends Controller
     }
 
     /**
-     * @param \EzSystems\EzPlatformContentForms\Content\View\ContentEditSuccessView $view
+     * @param \Ibexa\ContentForms\Content\View\ContentEditSuccessView $view
      *
-     * @return \EzSystems\EzPlatformContentForms\Content\View\ContentEditSuccessView
+     * @return \Ibexa\ContentForms\Content\View\ContentEditSuccessView
      *
-     * @throws \eZ\Publish\API\Repository\Exceptions\BadStateException
+     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\BadStateException
      */
     public function editVersionDraftSuccessAction(ContentEditSuccessView $view): ContentEditSuccessView
     {

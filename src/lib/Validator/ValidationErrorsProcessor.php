@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace Ibexa\ContentForms\Validator;
 
-use eZ\Publish\API\Repository\Values\Translation\Plural;
+use Ibexa\Contracts\Core\Repository\Values\Translation\Plural;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 /**
@@ -35,7 +35,7 @@ final class ValidationErrorsProcessor
     /**
      * Builds constraint violations based on given SPI validation errors.
      *
-     * @param \eZ\Publish\SPI\FieldType\ValidationError[] $validationErrors
+     * @param \Ibexa\Contracts\Core\FieldType\ValidationError[] $validationErrors
      */
     public function processValidationErrors(array $validationErrors): void
     {

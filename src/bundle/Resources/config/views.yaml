@@ -23,12 +23,12 @@ services:
     ezplatform.repository_forms.content_edit_view.matcher_factory:
         class: '%ezpublish.view.matcher_factory.class%'
         arguments:
-            - '@eZ\Bundle\EzPublishCoreBundle\Matcher\ViewMatcherRegistry'
+            - '@Ibexa\Bundle\Core\Matcher\ViewMatcherRegistry'
             - '@ezpublish.api.repository'
-            - 'eZ\Publish\Core\MVC\Symfony\Matcher\ContentBased'
+            - 'Ibexa\Core\MVC\Symfony\Matcher\ContentBased'
 
     ezplatform.repository_forms.content_edit_view.matcher_factory.dynamically_configured:
-        class: eZ\Publish\Core\MVC\Symfony\Matcher\DynamicallyConfiguredMatcherFactoryDecorator
+        class: Ibexa\Core\MVC\Symfony\Matcher\DynamicallyConfiguredMatcherFactoryDecorator
         decorates: ezplatform.repository_forms.content_edit_view.matcher_factory
         arguments:
             $innerConfigurableMatcherFactory: '@ezplatform.repository_forms.content_edit_view.matcher_factory.dynamically_configured.inner'
@@ -61,12 +61,12 @@ services:
     ezplatform.repository_forms.content_create_view.matcher_factory:
         class: '%ezpublish.view.matcher_factory.class%'
         arguments:
-            - '@eZ\Bundle\EzPublishCoreBundle\Matcher\ViewMatcherRegistry'
+            - '@Ibexa\Bundle\Core\Matcher\ViewMatcherRegistry'
             - '@ezpublish.api.repository'
-            - 'eZ\Publish\Core\MVC\Symfony\Matcher\ContentBased'
+            - 'Ibexa\Core\MVC\Symfony\Matcher\ContentBased'
 
     ezplatform.repository_forms.content_create_view.matcher_factory.dynamically_configured:
-        class: eZ\Publish\Core\MVC\Symfony\Matcher\DynamicallyConfiguredMatcherFactoryDecorator
+        class: Ibexa\Core\MVC\Symfony\Matcher\DynamicallyConfiguredMatcherFactoryDecorator
         decorates: ezplatform.repository_forms.content_create_view.matcher_factory
         arguments:
             $innerConfigurableMatcherFactory: '@ezplatform.repository_forms.content_create_view.matcher_factory.dynamically_configured.inner'

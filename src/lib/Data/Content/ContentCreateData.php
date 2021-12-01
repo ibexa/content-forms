@@ -8,8 +8,8 @@ declare(strict_types=1);
 
 namespace Ibexa\ContentForms\Data\Content;
 
-use eZ\Publish\API\Repository\Values\Content\LocationCreateStruct;
-use eZ\Publish\Core\Repository\Values\Content\ContentCreateStruct;
+use Ibexa\Contracts\Core\Repository\Values\Content\LocationCreateStruct;
+use Ibexa\Core\Repository\Values\Content\ContentCreateStruct;
 use Ibexa\ContentForms\Data\NewnessCheckable;
 
 /**
@@ -20,7 +20,7 @@ class ContentCreateData extends ContentCreateStruct implements NewnessCheckable
     use ContentData;
 
     /**
-     * @var LocationCreateStruct[]
+     * @var \Ibexa\Contracts\Core\Repository\Values\Content\LocationCreateStruct[]
      */
     private $locationStructs;
 
@@ -30,7 +30,7 @@ class ContentCreateData extends ContentCreateStruct implements NewnessCheckable
     }
 
     /**
-     * @return LocationCreateStruct[]
+     * @return \Ibexa\Contracts\Core\Repository\Values\Content\LocationCreateStruct[]
      */
     public function getLocationStructs()
     {
@@ -41,7 +41,7 @@ class ContentCreateData extends ContentCreateStruct implements NewnessCheckable
      * Adds a location struct.
      * A location will be created out of it, bound to the created content.
      *
-     * @param LocationCreateStruct $locationStruct
+     * @param \Ibexa\Contracts\Core\Repository\Values\Content\LocationCreateStruct $locationStruct
      */
     public function addLocationStruct(LocationCreateStruct $locationStruct)
     {

@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace Ibexa\ContentForms\Data\User;
 
-use eZ\Publish\API\Repository\Values\User\UserUpdateStruct;
+use Ibexa\Contracts\Core\Repository\Values\User\UserUpdateStruct;
 use Ibexa\ContentForms\Data\Content\ContentData;
 use Ibexa\ContentForms\Data\NewnessCheckable;
 
@@ -21,12 +21,12 @@ class UserUpdateData extends UserUpdateStruct implements NewnessCheckable
     use ContentData;
 
     /**
-     * @var \eZ\Publish\API\Repository\Values\User\User
+     * @var \Ibexa\Contracts\Core\Repository\Values\User\User
      */
     public $user;
 
     /**
-     * @var \eZ\Publish\API\Repository\Values\ContentType\ContentType
+     * @var \Ibexa\Contracts\Core\Repository\Values\ContentType\ContentType
      */
     public $contentType;
 

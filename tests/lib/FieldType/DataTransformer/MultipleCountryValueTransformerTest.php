@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace Ibexa\Tests\ContentForms\FieldType\DataTransformer;
 
-use eZ\Publish\Core\FieldType\Country\Value;
+use Ibexa\Core\FieldType\Country\Value;
 use Ibexa\ContentForms\FieldType\DataTransformer\MultipleCountryValueTransformer;
 use PHPUnit\Framework\TestCase;
 
@@ -103,7 +103,7 @@ class MultipleCountryValueTransformerTest extends TestCase
             [42],
             ['snafu'],
             [null],
-            [new \eZ\Publish\Core\FieldType\Country\Value()],
+            [new \Ibexa\Core\FieldType\Country\Value()],
         ];
     }
 

@@ -14,7 +14,7 @@ use PHPUnit\Framework\TestCase;
 
 class UserAccountPasswordTest extends TestCase
 {
-    /** @var \EzSystems\EzPlatformContentForms\Validator\Constraints\Password */
+    /** @var \Ibexa\ContentForms\Validator\Constraints\Password */
     private $constraint;
 
     protected function setUp(): void

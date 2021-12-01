@@ -12,8 +12,8 @@ use Behat\Behat\Context\SnippetAcceptingContext;
 use Behat\Behat\Hook\Scope\BeforeScenarioScope;
 use Behat\Gherkin\Node\TableNode;
 use Behat\MinkExtension\Context\RawMinkContext;
-use eZ\Publish\API\Repository\Values\ContentType\FieldDefinitionCreateStruct;
-use eZ\Publish\API\Repository\Values\ContentType\FieldDefinitionUpdateStruct;
+use Ibexa\Contracts\Core\Repository\Values\ContentType\FieldDefinitionCreateStruct;
+use Ibexa\Contracts\Core\Repository\Values\ContentType\FieldDefinitionUpdateStruct;
 use PHPUnit\Framework\Assert as Assertion;
 
 final class FieldTypeFormContext extends RawMinkContext implements SnippetAcceptingContext
@@ -26,7 +26,7 @@ final class FieldTypeFormContext extends RawMinkContext implements SnippetAccept
         'selection' => 'ezselection',
     ];
 
-    /** @var \EzSystems\EzPlatformContentForms\Behat\Context\ContentTypeContext */
+    /** @var \Ibexa\ContentForms\Behat\Context\ContentTypeContext */
     private $contentTypeContext;
 
     /** @BeforeScenario */

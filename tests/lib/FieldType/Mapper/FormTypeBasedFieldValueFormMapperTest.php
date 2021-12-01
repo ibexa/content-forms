@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace Ibexa\Tests\ContentForms\FieldType\Mapper;
 
-use eZ\Publish\Core\Repository\Values\ContentType\FieldDefinition;
+use Ibexa\Core\Repository\Values\ContentType\FieldDefinition;
 use Ibexa\ContentForms\FieldType\Mapper\FormTypeBasedFieldValueFormMapper;
 
 class FormTypeBasedFieldValueFormMapperTest extends BaseMapperTest

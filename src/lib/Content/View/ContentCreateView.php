@@ -8,29 +8,29 @@ declare(strict_types=1);
 
 namespace Ibexa\ContentForms\Content\View;
 
-use eZ\Publish\API\Repository\Values\Content\Language;
-use eZ\Publish\API\Repository\Values\Content\Location;
-use eZ\Publish\API\Repository\Values\ContentType\ContentType;
-use eZ\Publish\Core\MVC\Symfony\View\BaseView;
-use eZ\Publish\Core\MVC\Symfony\View\LocationValueView;
+use Ibexa\Contracts\Core\Repository\Values\Content\Language;
+use Ibexa\Contracts\Core\Repository\Values\Content\Location;
+use Ibexa\Contracts\Core\Repository\Values\ContentType\ContentType;
+use Ibexa\Core\MVC\Symfony\View\BaseView;
+use Ibexa\Core\MVC\Symfony\View\LocationValueView;
 use Symfony\Component\Form\FormInterface;
 
 class ContentCreateView extends BaseView implements LocationValueView, ContentTypeValueView
 {
-    /** @var \eZ\Publish\API\Repository\Values\ContentType\ContentType */
+    /** @var \Ibexa\Contracts\Core\Repository\Values\ContentType\ContentType */
     private $contentType;
 
-    /** @var \eZ\Publish\API\Repository\Values\Content\Location */
+    /** @var \Ibexa\Contracts\Core\Repository\Values\Content\Location */
     private $location;
 
-    /** @var \eZ\Publish\API\Repository\Values\Content\Language */
+    /** @var \Ibexa\Contracts\Core\Repository\Values\Content\Language */
     private $language;
 
     /** @var \Symfony\Component\Form\FormInterface */
     private $form;
 
     /**
-     * @param \eZ\Publish\API\Repository\Values\ContentType\ContentType $contentType
+     * @param \Ibexa\Contracts\Core\Repository\Values\ContentType\ContentType $contentType
      */
     public function setContentType(ContentType $contentType)
     {
@@ -38,7 +38,7 @@ class ContentCreateView extends BaseView implements LocationValueView, ContentTy
     }
 
     /**
-     * @return \eZ\Publish\API\Repository\Values\ContentType\ContentType
+     * @return \Ibexa\Contracts\Core\Repository\Values\ContentType\ContentType
      */
     public function getContentType(): ContentType
     {
@@ -46,7 +46,7 @@ class ContentCreateView extends BaseView implements LocationValueView, ContentTy
     }
 
     /**
-     * @param \eZ\Publish\API\Repository\Values\Content\Location $location
+     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Location $location
      */
     public function setLocation(Location $location)
     {
@@ -54,7 +54,7 @@ class ContentCreateView extends BaseView implements LocationValueView, ContentTy
     }
 
     /**
-     * @return \eZ\Publish\API\Repository\Values\Content\Location
+     * @return \Ibexa\Contracts\Core\Repository\Values\Content\Location
      */
     public function getLocation(): Location
     {
@@ -62,7 +62,7 @@ class ContentCreateView extends BaseView implements LocationValueView, ContentTy
     }
 
     /**
-     * @return \eZ\Publish\API\Repository\Values\Content\Language
+     * @return \Ibexa\Contracts\Core\Repository\Values\Content\Language
      */
     public function getLanguage(): Language
     {
@@ -70,7 +70,7 @@ class ContentCreateView extends BaseView implements LocationValueView, ContentTy
     }
 
     /**
-     * @param \eZ\Publish\API\Repository\Values\Content\Language $language
+     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Language $language
      */
     public function setLanguage(Language $language)
     {
