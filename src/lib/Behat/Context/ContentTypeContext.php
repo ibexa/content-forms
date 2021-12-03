@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 declare(strict_types=1);
@@ -12,27 +12,27 @@ use Behat\Behat\Context\Context;
 use Behat\Behat\Context\SnippetAcceptingContext;
 use Behat\MinkExtension\Context\RawMinkContext;
 use Exception;
-use eZ\Publish\API\Repository\ContentTypeService;
-use eZ\Publish\API\Repository\Exceptions\NotFoundException;
-use eZ\Publish\API\Repository\PermissionResolver;
-use eZ\Publish\API\Repository\Values\ContentType\ContentTypeCreateStruct;
-use eZ\Publish\API\Repository\Values\ContentType\FieldDefinitionUpdateStruct;
-use eZ\Publish\Core\Repository\Values\User\UserReference;
+use Ibexa\Contracts\Core\Repository\ContentTypeService;
+use Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException;
+use Ibexa\Contracts\Core\Repository\PermissionResolver;
+use Ibexa\Contracts\Core\Repository\Values\ContentType\ContentTypeCreateStruct;
+use Ibexa\Contracts\Core\Repository\Values\ContentType\FieldDefinitionUpdateStruct;
+use Ibexa\Core\Repository\Values\User\UserReference;
 use PHPUnit\Framework\Assert as Assertion;
 
 final class ContentTypeContext extends RawMinkContext implements Context, SnippetAcceptingContext
 {
-    /** @var \eZ\Publish\API\Repository\ContentTypeService */
+    /** @var \Ibexa\Contracts\Core\Repository\ContentTypeService */
     private $contentTypeService;
 
     /**
      * Current content type within this context.
      *
-     * @var \eZ\Publish\API\Repository\Values\ContentType\ContentType
+     * @var \Ibexa\Contracts\Core\Repository\Values\ContentType\ContentType
      */
     private $currentContentType;
 
-    /** @var \eZ\Publish\API\Repository\PermissionResolver */
+    /** @var \Ibexa\Contracts\Core\Repository\PermissionResolver */
     private $permissionResolver;
 
     /**
@@ -87,7 +87,7 @@ final class ContentTypeContext extends RawMinkContext implements Context, Snippe
     }
 
     /**
-     * @return \eZ\Publish\API\Repository\Values\ContentType\ContentType
+     * @return \Ibexa\Contracts\Core\Repository\Values\ContentType\ContentType
      *
      * @throws \Exception if no current content type has been defined in the context
      */
@@ -123,7 +123,7 @@ final class ContentTypeContext extends RawMinkContext implements Context, Snippe
     /**
      * Creates a new content type create struct. If the identifier is not specified, a custom one is given.
      *
-     * @return ContentTypeCreateStruct
+     * @return \Ibexa\Contracts\Core\Repository\Values\ContentType\ContentTypeCreateStruct
      */
     public function newContentTypeCreateStruct($identifier = null)
     {

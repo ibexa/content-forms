@@ -1,16 +1,16 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 declare(strict_types=1);
 
 namespace Ibexa\ContentForms\Data\User;
 
-use eZ\Publish\API\Repository\Values\User\UserUpdateStruct;
 use Ibexa\ContentForms\Data\Content\ContentData;
 use Ibexa\ContentForms\Data\NewnessCheckable;
+use Ibexa\Contracts\Core\Repository\Values\User\UserUpdateStruct;
 
 /**
  * @property \EzSystems\EzPlatformContentForms\Data\Content\FieldData[] $fieldsData
@@ -21,12 +21,12 @@ class UserUpdateData extends UserUpdateStruct implements NewnessCheckable
     use ContentData;
 
     /**
-     * @var \eZ\Publish\API\Repository\Values\User\User
+     * @var \Ibexa\Contracts\Core\Repository\Values\User\User
      */
     public $user;
 
     /**
-     * @var \eZ\Publish\API\Repository\Values\ContentType\ContentType
+     * @var \Ibexa\Contracts\Core\Repository\Values\ContentType\ContentType
      */
     public $contentType;
 

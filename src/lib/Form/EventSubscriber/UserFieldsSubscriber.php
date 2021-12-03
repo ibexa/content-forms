@@ -1,17 +1,16 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 declare(strict_types=1);
 
 namespace Ibexa\ContentForms\Form\EventSubscriber;
 
-use eZ\Publish\Core\FieldType\User\Value;
-use Ibexa\ContentForms\Data\User\UserAccountFieldData;
 use Ibexa\ContentForms\Data\User\UserCreateData;
 use Ibexa\ContentForms\Data\User\UserUpdateData;
+use Ibexa\Core\FieldType\User\Value;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
@@ -34,11 +33,11 @@ class UserFieldsSubscriber implements EventSubscriberInterface
      * Workaround to quirky ezuser field type, it copies user data from field Data class to general User update/create
      * struct and injects proper Value for ezuser field type in order to pass validation.
      *
-     * @param FormEvent $event
+     * @param \Symfony\Component\Form\FormEvent $event
      */
     public function handleUserAccountField(FormEvent $event)
     {
-        /** @var UserCreateData|UserUpdateData $data */
+        /** @var \Ibexa\ContentForms\Data\User\UserCreateData|\Ibexa\ContentForms\Data\User\UserUpdateData $data */
         $data = $event->getData();
         $form = $event->getForm();
         $languageCode = $form->getConfig()->getOption('languageCode');
@@ -51,7 +50,7 @@ class UserFieldsSubscriber implements EventSubscriberInterface
     }
 
     /**
-     * @param UserCreateData $data
+     * @param \Ibexa\ContentForms\Data\User\UserCreateData $data
      */
     private function handleUserCreateData(UserCreateData $data)
     {
@@ -60,14 +59,14 @@ class UserFieldsSubscriber implements EventSubscriberInterface
                 continue;
             }
 
-            /** @var UserAccountFieldData $userAccountFieldData */
+            /** @var \Ibexa\ContentForms\Data\User\UserAccountFieldData $userAccountFieldData */
             $userAccountFieldData = $fieldData->value;
             $data->login = $userAccountFieldData->username;
             $data->email = $userAccountFieldData->email;
             $data->password = $userAccountFieldData->password;
             $data->enabled = $userAccountFieldData->enabled ?? $data->enabled;
 
-            /** @var Value $userValue */
+            /** @var \Ibexa\Core\FieldType\User\Value $userValue */
             $userValue = clone $data->contentType
                 ->getFieldDefinition($fieldData->field->fieldDefIdentifier)->defaultValue;
             $userValue->login = $data->login;
@@ -82,7 +81,7 @@ class UserFieldsSubscriber implements EventSubscriberInterface
     }
 
     /**
-     * @param UserUpdateData $data
+     * @param \Ibexa\ContentForms\Data\User\UserUpdateData $data
      * @param $languageCode
      */
     private function handleUserUpdateData(UserUpdateData $data, $languageCode)
@@ -92,13 +91,13 @@ class UserFieldsSubscriber implements EventSubscriberInterface
                 continue;
             }
 
-            /** @var UserAccountFieldData $userAccountFieldData */
+            /** @var \Ibexa\ContentForms\Data\User\UserAccountFieldData $userAccountFieldData */
             $userAccountFieldData = $fieldData->value;
             $data->email = $userAccountFieldData->email;
             $data->password = $userAccountFieldData->password;
             $data->enabled = $userAccountFieldData->enabled;
 
-            /** @var Value $userValue */
+            /** @var \Ibexa\Core\FieldType\User\Value $userValue */
             $userValue = clone $data->user->getField($fieldData->field->fieldDefIdentifier, $languageCode)->value;
             $userValue->email = $data->email;
             $userValue->enabled = $data->enabled;

@@ -1,24 +1,14 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 declare(strict_types=1);
 
 namespace Ibexa\Bundle\ContentForms\Controller;
 
-use eZ\Bundle\EzPublishCoreBundle\Controller;
-use eZ\Publish\API\Repository\ContentTypeService;
-use eZ\Publish\API\Repository\Exceptions\NotFoundException;
-use eZ\Publish\API\Repository\Exceptions\UnauthorizedException;
-use eZ\Publish\API\Repository\LanguageService;
-use eZ\Publish\API\Repository\LocationService;
-use eZ\Publish\API\Repository\PermissionResolver;
-use eZ\Publish\API\Repository\UserService;
-use eZ\Publish\Core\Base\Exceptions\InvalidArgumentException;
-use eZ\Publish\Core\Base\Exceptions\InvalidArgumentType;
-use eZ\Publish\Core\MVC\Symfony\Locale\UserLanguagePreferenceProviderInterface;
+use Ibexa\Bundle\Core\Controller;
 use Ibexa\ContentForms\Data\Mapper\UserCreateMapper;
 use Ibexa\ContentForms\Data\Mapper\UserUpdateMapper;
 use Ibexa\ContentForms\Form\ActionDispatcher\ActionDispatcherInterface;
@@ -26,37 +16,37 @@ use Ibexa\ContentForms\Form\Type\User\UserCreateType;
 use Ibexa\ContentForms\Form\Type\User\UserUpdateType;
 use Ibexa\ContentForms\User\View\UserCreateView;
 use Ibexa\ContentForms\User\View\UserUpdateView;
+use Ibexa\Contracts\Core\Repository\ContentTypeService;
+use Ibexa\Contracts\Core\Repository\Exceptions\UnauthorizedException;
+use Ibexa\Contracts\Core\Repository\LanguageService;
+use Ibexa\Contracts\Core\Repository\LocationService;
+use Ibexa\Contracts\Core\Repository\PermissionResolver;
+use Ibexa\Contracts\Core\Repository\UserService;
+use Ibexa\Core\Base\Exceptions\UnauthorizedException as CoreUnauthorizedException;
+use Ibexa\Core\MVC\Symfony\Locale\UserLanguagePreferenceProviderInterface;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\OptionsResolver\Exception\AccessException;
-use Symfony\Component\OptionsResolver\Exception\InvalidOptionsException;
-use Symfony\Component\OptionsResolver\Exception\MissingOptionsException;
-use Symfony\Component\OptionsResolver\Exception\NoSuchOptionException;
-use Symfony\Component\OptionsResolver\Exception\OptionDefinitionException;
-use Symfony\Component\OptionsResolver\Exception\UndefinedOptionsException;
-use eZ\Publish\Core\Base\Exceptions\UnauthorizedException as CoreUnauthorizedException;
 
 class UserController extends Controller
 {
-    /** @var ContentTypeService */
+    /** @var \Ibexa\Contracts\Core\Repository\ContentTypeService */
     private $contentTypeService;
 
-    /** @var UserService */
+    /** @var \Ibexa\Contracts\Core\Repository\UserService */
     private $userService;
 
-    /** @var LocationService */
+    /** @var \Ibexa\Contracts\Core\Repository\LocationService */
     private $locationService;
 
-    /** @var LanguageService */
+    /** @var \Ibexa\Contracts\Core\Repository\LanguageService */
     private $languageService;
 
-    /** @var ActionDispatcherInterface */
+    /** @var \Ibexa\ContentForms\Form\ActionDispatcher\ActionDispatcherInterface */
     private $userActionDispatcher;
 
-    /** @var \eZ\Publish\API\Repository\PermissionResolver */
+    /** @var \Ibexa\Contracts\Core\Repository\PermissionResolver */
     private $permissionResolver;
 
-    /** @var \eZ\Publish\Core\MVC\Symfony\Locale\UserLanguagePreferenceProviderInterface */
+    /** @var \Ibexa\Core\MVC\Symfony\Locale\UserLanguagePreferenceProviderInterface */
     private $userLanguagePreferenceProvider;
 
     public function __construct(
@@ -83,20 +73,20 @@ class UserController extends Controller
      * @param string $contentTypeIdentifier ContentType id to create
      * @param string $language Language code to create the content in (eng-GB, ger-DE, ...))
      * @param int $parentLocationId Location the content should be a child of
-     * @param Request $request
+     * @param \Symfony\Component\HttpFoundation\Request $request
      *
-     * @return Response|UserCreateView
+     * @return \Symfony\Component\HttpFoundation\Response|\Ibexa\ContentForms\User\View\UserCreateView
      *
-     * @throws InvalidArgumentType
-     * @throws InvalidArgumentException
-     * @throws UnauthorizedException
-     * @throws UndefinedOptionsException
-     * @throws OptionDefinitionException
-     * @throws NoSuchOptionException
-     * @throws MissingOptionsException
-     * @throws InvalidOptionsException
-     * @throws AccessException
-     * @throws NotFoundException
+     * @throws \Ibexa\Core\Base\Exceptions\InvalidArgumentType
+     * @throws \Ibexa\Core\Base\Exceptions\InvalidArgumentException
+     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\UnauthorizedException
+     * @throws \Symfony\Component\OptionsResolver\Exception\UndefinedOptionsException
+     * @throws \Symfony\Component\OptionsResolver\Exception\OptionDefinitionException
+     * @throws \Symfony\Component\OptionsResolver\Exception\NoSuchOptionException
+     * @throws \Symfony\Component\OptionsResolver\Exception\MissingOptionsException
+     * @throws \Symfony\Component\OptionsResolver\Exception\InvalidOptionsException
+     * @throws \Symfony\Component\OptionsResolver\Exception\AccessException
+     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException
      */
     public function createAction(
         string $contentTypeIdentifier,
@@ -129,7 +119,8 @@ class UserController extends Controller
         }
 
         return new UserCreateView(
-            null, [
+            null,
+            [
                 'form' => $form->createView(),
                 'language' => $language,
                 'parent_location' => $location,
@@ -145,15 +136,15 @@ class UserController extends Controller
      * @param int $contentId ContentType id to create
      * @param int $versionNo Version number the version should be created from. Defaults to the currently published one.
      * @param string $language Language code to create the version in (eng-GB, ger-DE, ...))
-     * @param Request $request
+     * @param \Symfony\Component\HttpFoundation\Request $request
      *
-     * @return Response|UserUpdateView
+     * @return \Symfony\Component\HttpFoundation\Response|\Ibexa\ContentForms\User\View\UserUpdateView
      *
-     * @throws \eZ\Publish\API\Repository\Exceptions\BadStateException
-     * @throws \eZ\Publish\API\Repository\Exceptions\InvalidArgumentException
-     * @throws \eZ\Publish\API\Repository\Exceptions\NotFoundException
-     * @throws \eZ\Publish\Core\Base\Exceptions\InvalidArgumentType
-     * @throws \eZ\Publish\Core\Base\Exceptions\UnauthorizedException
+     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\BadStateException
+     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\InvalidArgumentException
+     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException
+     * @throws \Ibexa\Core\Base\Exceptions\InvalidArgumentType
+     * @throws \Ibexa\Core\Base\Exceptions\UnauthorizedException
      */
     public function editAction(
         int $contentId,
@@ -210,7 +201,8 @@ class UserController extends Controller
         }
 
         return new UserUpdateView(
-            null, [
+            null,
+            [
                 'form' => $form->createView(),
                 'language_code' => $language,
                 'language' => $this->languageService->loadLanguage($language),

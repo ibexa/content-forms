@@ -1,19 +1,19 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 declare(strict_types=1);
 
 namespace Ibexa\Bundle\ContentForms\DependencyInjection\Configuration\Parser;
 
-use eZ\Bundle\EzPublishCoreBundle\DependencyInjection\Configuration\Parser\View;
+use Ibexa\Bundle\Core\DependencyInjection\Configuration\Parser\View;
 
 class ContentCreateView extends View
 {
-    const NODE_KEY = 'content_create_view';
-    const INFO = 'Template selection settings when displaying a content create form';
+    public const NODE_KEY = 'content_create_view';
+    public const INFO = 'Template selection settings when displaying a content create form';
 }
 
 class_alias(ContentCreateView::class, 'EzSystems\EzPlatformContentFormsBundle\DependencyInjection\Configuration\Parser\ContentCreateView');

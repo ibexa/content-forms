@@ -1,15 +1,15 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 declare(strict_types=1);
 
 namespace Ibexa\ContentForms\Form\Type\FieldType;
 
-use eZ\Publish\API\Repository\FieldTypeService;
 use Ibexa\ContentForms\FieldType\DataTransformer\FieldValueTransformer;
+use Ibexa\Contracts\Core\Repository\FieldTypeService;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -22,7 +22,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 class FloatFieldType extends AbstractType
 {
-    /** @var FieldTypeService */
+    /** @var \Ibexa\Contracts\Core\Repository\FieldTypeService */
     protected $fieldTypeService;
 
     public function __construct(FieldTypeService $fieldTypeService)

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 declare(strict_types=1);
@@ -23,7 +23,7 @@ class IbexaContentFormsBundle extends Bundle
         parent::build($container);
         $container->addCompilerPass(new FieldTypeFormMapperDispatcherPass());
 
-        $eZExtension = $container->getExtension('ezpublish');
+        $eZExtension = $container->getExtension('ibexa');
         $eZExtension->addConfigParser(new ContentEdit());
         $eZExtension->addConfigParser(new UserEdit());
         $eZExtension->addConfigParser(new ContentEditView());

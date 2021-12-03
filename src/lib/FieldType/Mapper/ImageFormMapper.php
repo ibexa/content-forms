@@ -1,24 +1,24 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 declare(strict_types=1);
 
 namespace Ibexa\ContentForms\FieldType\Mapper;
 
-use eZ\Publish\API\Repository\FieldTypeService;
-use eZ\Publish\Core\FieldType\Image\Value;
-use Ibexa\Contracts\ContentForms\Data\Content\FieldData;
 use Ibexa\ContentForms\FieldType\DataTransformer\ImageValueTransformer;
-use Ibexa\Contracts\ContentForms\FieldType\FieldValueFormMapperInterface;
 use Ibexa\ContentForms\Form\Type\FieldType\ImageFieldType;
+use Ibexa\Contracts\ContentForms\Data\Content\FieldData;
+use Ibexa\Contracts\ContentForms\FieldType\FieldValueFormMapperInterface;
+use Ibexa\Contracts\Core\Repository\FieldTypeService;
+use Ibexa\Core\FieldType\Image\Value;
 use Symfony\Component\Form\FormInterface;
 
 class ImageFormMapper implements FieldValueFormMapperInterface
 {
-    /** @var FieldTypeService */
+    /** @var \Ibexa\Contracts\Core\Repository\FieldTypeService */
     private $fieldTypeService;
 
     public function __construct(FieldTypeService $fieldTypeService)

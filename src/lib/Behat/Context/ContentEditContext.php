@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 declare(strict_types=1);
@@ -12,7 +12,7 @@ use Behat\Behat\Context\Context;
 use Behat\Behat\Context\SnippetAcceptingContext;
 use Behat\Behat\Hook\Scope\BeforeScenarioScope;
 use Behat\MinkExtension\Context\MinkContext;
-use eZ\Publish\API\Repository\Values\ContentType\FieldDefinitionCreateStruct;
+use Ibexa\Contracts\Core\Repository\Values\ContentType\FieldDefinitionCreateStruct;
 
 final class ContentEditContext extends MinkContext implements Context, SnippetAcceptingContext
 {
@@ -24,7 +24,7 @@ final class ContentEditContext extends MinkContext implements Context, SnippetAc
     private $createdContentName;
 
     /**
-     * @var \EzSystems\EzPlatformContentForms\Behat\Context\ContentTypeContext
+     * @var \Ibexa\ContentForms\Behat\Context\ContentTypeContext
      */
     private $contentTypeContext;
 

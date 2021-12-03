@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 declare(strict_types=1);
@@ -22,14 +22,14 @@ class FieldTypeFormMapperDispatcher implements FieldTypeFormMapperDispatcherInte
     /**
      * FieldType form mappers, indexed by FieldType identifier.
      *
-     * @var \EzSystems\EzPlatformContentForms\FieldType\FieldValueFormMapperInterface[]
+     * @var \Ibexa\Contracts\ContentForms\FieldType\FieldValueFormMapperInterface[]
      */
     private $mappers;
 
     /**
      * FieldTypeFormMapperDispatcher constructor.
      *
-     * @param \EzSystems\EzPlatformContentForms\FieldType\FieldValueFormMapperInterface[] $mappers
+     * @param \Ibexa\Contracts\ContentForms\FieldType\FieldValueFormMapperInterface[] $mappers
      */
     public function __construct(array $mappers = [])
     {

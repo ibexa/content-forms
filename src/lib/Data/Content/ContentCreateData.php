@@ -1,16 +1,16 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 declare(strict_types=1);
 
 namespace Ibexa\ContentForms\Data\Content;
 
-use eZ\Publish\API\Repository\Values\Content\LocationCreateStruct;
-use eZ\Publish\Core\Repository\Values\Content\ContentCreateStruct;
 use Ibexa\ContentForms\Data\NewnessCheckable;
+use Ibexa\Contracts\Core\Repository\Values\Content\LocationCreateStruct;
+use Ibexa\Core\Repository\Values\Content\ContentCreateStruct;
 
 /**
  * @property \EzSystems\EzPlatformContentForms\Data\Content\FieldData[] $fieldsData
@@ -20,7 +20,7 @@ class ContentCreateData extends ContentCreateStruct implements NewnessCheckable
     use ContentData;
 
     /**
-     * @var LocationCreateStruct[]
+     * @var \Ibexa\Contracts\Core\Repository\Values\Content\LocationCreateStruct[]
      */
     private $locationStructs;
 
@@ -30,7 +30,7 @@ class ContentCreateData extends ContentCreateStruct implements NewnessCheckable
     }
 
     /**
-     * @return LocationCreateStruct[]
+     * @return \Ibexa\Contracts\Core\Repository\Values\Content\LocationCreateStruct[]
      */
     public function getLocationStructs()
     {
@@ -41,7 +41,7 @@ class ContentCreateData extends ContentCreateStruct implements NewnessCheckable
      * Adds a location struct.
      * A location will be created out of it, bound to the created content.
      *
-     * @param LocationCreateStruct $locationStruct
+     * @param \Ibexa\Contracts\Core\Repository\Values\Content\LocationCreateStruct $locationStruct
      */
     public function addLocationStruct(LocationCreateStruct $locationStruct)
     {

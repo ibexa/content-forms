@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 declare(strict_types=1);
@@ -11,16 +11,16 @@ namespace Ibexa\ContentForms\Behat\Context;
 use Behat\Behat\Context\Context;
 use Behat\Behat\Context\SnippetAcceptingContext;
 use Behat\MinkExtension\Context\RawMinkContext;
-use eZ\Publish\Core\MVC\ConfigResolverInterface;
+use Ibexa\Core\MVC\ConfigResolverInterface;
 use PHPUnit\Framework\Assert as Assertion;
 
 class PagelayoutContext extends RawMinkContext implements Context, SnippetAcceptingContext
 {
     /** @var string Regex matching the way the Twig template name is inserted in debug mode */
-    const TWIG_DEBUG_STOP_REGEX = '<!-- STOP .*%s.* -->';
+    public const TWIG_DEBUG_STOP_REGEX = '<!-- STOP .*%s.* -->';
 
     /**
-     * @var ConfigResolverInterface
+     * @var \Ibexa\Core\MVC\ConfigResolverInterface
      */
     private $configResolver;
 

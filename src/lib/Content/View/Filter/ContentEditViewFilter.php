@@ -1,46 +1,46 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 declare(strict_types=1);
 
 namespace Ibexa\ContentForms\Content\View\Filter;
 
-use eZ\Publish\API\Repository\ContentService;
-use eZ\Publish\API\Repository\ContentTypeService;
-use eZ\Publish\API\Repository\Values\Content\Content;
-use eZ\Publish\API\Repository\Values\ContentType\ContentType;
-use eZ\Publish\Core\MVC\Symfony\Locale\UserLanguagePreferenceProviderInterface;
-use eZ\Publish\Core\MVC\Symfony\View\Event\FilterViewBuilderParametersEvent;
-use eZ\Publish\Core\MVC\Symfony\View\ViewEvents;
 use Ibexa\ContentForms\Data\Content\ContentUpdateData;
 use Ibexa\ContentForms\Data\Mapper\ContentUpdateMapper;
 use Ibexa\ContentForms\Form\Type\Content\ContentEditType;
+use Ibexa\Contracts\Core\Repository\ContentService;
+use Ibexa\Contracts\Core\Repository\ContentTypeService;
+use Ibexa\Contracts\Core\Repository\Values\Content\Content;
+use Ibexa\Contracts\Core\Repository\Values\ContentType\ContentType;
+use Ibexa\Core\MVC\Symfony\Locale\UserLanguagePreferenceProviderInterface;
+use Ibexa\Core\MVC\Symfony\View\Event\FilterViewBuilderParametersEvent;
+use Ibexa\Core\MVC\Symfony\View\ViewEvents;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\Form\FormInterface;
 
 class ContentEditViewFilter implements EventSubscriberInterface
 {
-    /** @var \eZ\Publish\API\Repository\ContentService */
+    /** @var \Ibexa\Contracts\Core\Repository\ContentService */
     private $contentService;
 
-    /** @var \eZ\Publish\API\Repository\ContentTypeService */
+    /** @var \Ibexa\Contracts\Core\Repository\ContentTypeService */
     private $contentTypeService;
 
     /** @var \Symfony\Component\Form\FormFactoryInterface */
     private $formFactory;
 
-    /** @var \eZ\Publish\Core\MVC\Symfony\Locale\UserLanguagePreferenceProviderInterface */
+    /** @var \Ibexa\Core\MVC\Symfony\Locale\UserLanguagePreferenceProviderInterface */
     private $languagePreferenceProvider;
 
     /**
-     * @param \eZ\Publish\API\Repository\ContentService $contentService
-     * @param \eZ\Publish\API\Repository\ContentTypeService $contentTypeService
+     * @param \Ibexa\Contracts\Core\Repository\ContentService $contentService
+     * @param \Ibexa\Contracts\Core\Repository\ContentTypeService $contentTypeService
      * @param \Symfony\Component\Form\FormFactoryInterface $formFactory
-     * @param \eZ\Publish\Core\MVC\Symfony\Locale\UserLanguagePreferenceProviderInterface $languagePreferenceProvider
+     * @param \Ibexa\Core\MVC\Symfony\Locale\UserLanguagePreferenceProviderInterface $languagePreferenceProvider
      */
     public function __construct(
         ContentService $contentService,
@@ -60,11 +60,11 @@ class ContentEditViewFilter implements EventSubscriberInterface
     }
 
     /**
-     * @param \eZ\Publish\Core\MVC\Symfony\View\Event\FilterViewBuilderParametersEvent $event
+     * @param \Ibexa\Core\MVC\Symfony\View\Event\FilterViewBuilderParametersEvent $event
      *
      * @throws \Symfony\Component\OptionsResolver\Exception\InvalidOptionsException
-     * @throws \eZ\Publish\API\Repository\Exceptions\UnauthorizedException
-     * @throws \eZ\Publish\API\Repository\Exceptions\NotFoundException
+     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\UnauthorizedException
+     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException
      */
     public function handleContentEditForm(FilterViewBuilderParametersEvent $event)
     {
@@ -99,11 +99,11 @@ class ContentEditViewFilter implements EventSubscriberInterface
     }
 
     /**
-     * @param \eZ\Publish\API\Repository\Values\Content\Content $content
+     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Content $content
      * @param string $languageCode
-     * @param \eZ\Publish\API\Repository\Values\ContentType\ContentType $contentType
+     * @param \Ibexa\Contracts\Core\Repository\Values\ContentType\ContentType $contentType
      *
-     * @return \EzSystems\EzPlatformContentForms\Data\Content\ContentUpdateData
+     * @return \Ibexa\ContentForms\Data\Content\ContentUpdateData
      */
     private function resolveContentEditData(
         Content $content,
@@ -119,9 +119,9 @@ class ContentEditViewFilter implements EventSubscriberInterface
     }
 
     /**
-     * @param \EzSystems\EzPlatformContentForms\Data\Content\ContentUpdateData $contentUpdate
+     * @param \Ibexa\ContentForms\Data\Content\ContentUpdateData $contentUpdate
      * @param string $languageCode
-     * @param \eZ\Publish\API\Repository\Values\Content\Content $content
+     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Content $content
      *
      * @return \Symfony\Component\Form\FormInterface
      */
