@@ -13,10 +13,6 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class UserDispatcher extends AbstractActionDispatcher
 {
-    protected function configureOptions(OptionsResolver $resolver)
-    {
-    }
-
     protected function getActionEventBaseName()
     {
         return ContentFormEvents::USER_EDIT;
