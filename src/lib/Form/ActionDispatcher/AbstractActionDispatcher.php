@@ -58,7 +58,9 @@ abstract class AbstractActionDispatcher implements ActionDispatcherInterface
      *
      * @param \Symfony\Component\OptionsResolver\OptionsResolver $resolver
      */
-    abstract protected function configureOptions(OptionsResolver $resolver);
+    protected function configureOptions(OptionsResolver $resolver)
+    {
+    }
 
     /**
      * Returns base for action event name. It will be used as default action event name.
