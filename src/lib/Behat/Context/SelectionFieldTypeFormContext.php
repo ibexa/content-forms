@@ -1,12 +1,12 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\Behat\Context;
+namespace Ibexa\ContentForms\Behat\Context;
 
 use Behat\Behat\Context\SnippetAcceptingContext;
 use Behat\Behat\Hook\Scope\BeforeScenarioScope;
@@ -18,7 +18,7 @@ final class SelectionFieldTypeFormContext extends RawMinkContext implements Snip
     private static $fieldIdentifier = 'field';
 
     /**
-     * @var \EzSystems\EzPlatformContentForms\Behat\Context\FieldTypeFormContext
+     * @var \Ibexa\ContentForms\Behat\Context\FieldTypeFormContext
      */
     private $fieldTypeFormContext;
 
@@ -113,3 +113,5 @@ final class SelectionFieldTypeFormContext extends RawMinkContext implements Snip
         $this->assertSession()->elementExists('css', $selector);
     }
 }
+
+class_alias(SelectionFieldTypeFormContext::class, 'EzSystems\EzPlatformContentForms\Behat\Context\SelectionFieldTypeFormContext');

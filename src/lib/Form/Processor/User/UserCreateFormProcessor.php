@@ -1,17 +1,17 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\Form\Processor\User;
+namespace Ibexa\ContentForms\Form\Processor\User;
 
-use eZ\Publish\API\Repository\UserService;
-use EzSystems\EzPlatformContentForms\Data\User\UserCreateData;
-use EzSystems\EzPlatformContentForms\Event\ContentFormEvents;
-use EzSystems\EzPlatformContentForms\Event\FormActionEvent;
+use Ibexa\ContentForms\Data\User\UserCreateData;
+use Ibexa\ContentForms\Event\ContentFormEvents;
+use Ibexa\ContentForms\Event\FormActionEvent;
+use Ibexa\Contracts\Core\Repository\UserService;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
@@ -21,15 +21,15 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
  */
 class UserCreateFormProcessor implements EventSubscriberInterface
 {
-    /** @var UserService */
+    /** @var \Ibexa\Contracts\Core\Repository\UserService */
     private $userService;
 
-    /** @var UrlGeneratorInterface */
+    /** @var \Symfony\Component\Routing\Generator\UrlGeneratorInterface */
     private $urlGenerator;
 
     /**
-     * @param UserService $userService
-     * @param UrlGeneratorInterface $urlGenerator
+     * @param \Ibexa\Contracts\Core\Repository\UserService $userService
+     * @param \Symfony\Component\Routing\Generator\UrlGeneratorInterface $urlGenerator
      */
     public function __construct(
         UserService $userService,
@@ -61,7 +61,8 @@ class UserCreateFormProcessor implements EventSubscriberInterface
         $user = $this->userService->createUser($data, $data->getParentGroups());
 
         $redirectUrl = $form['redirectUrlAfterPublish']->getData() ?: $this->urlGenerator->generate(
-            '_ez_content_view', [
+            '_ez_content_view',
+            [
                 'contentId' => $user->id,
                 'locationId' => $user->contentInfo->mainLocationId,
             ],
@@ -71,7 +72,7 @@ class UserCreateFormProcessor implements EventSubscriberInterface
     }
 
     /**
-     * @param UserCreateData $data
+     * @param \Ibexa\ContentForms\Data\User\UserCreateData $data
      * @param string $languageCode
      */
     private function setContentFields(UserCreateData $data, string $languageCode): void
@@ -81,3 +82,5 @@ class UserCreateFormProcessor implements EventSubscriberInterface
         }
     }
 }
+
+class_alias(UserCreateFormProcessor::class, 'EzSystems\EzPlatformContentForms\Form\Processor\User\UserCreateFormProcessor');

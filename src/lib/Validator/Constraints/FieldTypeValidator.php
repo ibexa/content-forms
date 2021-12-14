@@ -1,21 +1,21 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\Validator\Constraints;
+namespace Ibexa\ContentForms\Validator\Constraints;
 
-use eZ\Publish\API\Repository\FieldTypeService;
-use EzSystems\EzPlatformContentForms\Validator\ValidationErrorsProcessor;
+use Ibexa\ContentForms\Validator\ValidationErrorsProcessor;
+use Ibexa\Contracts\Core\Repository\FieldTypeService;
 use Symfony\Component\Validator\ConstraintValidator;
 
 abstract class FieldTypeValidator extends ConstraintValidator
 {
     /**
-     * @var FieldTypeService
+     * @var \Ibexa\Contracts\Core\Repository\FieldTypeService
      */
     protected $fieldTypeService;
 
@@ -25,7 +25,7 @@ abstract class FieldTypeValidator extends ConstraintValidator
     }
 
     /**
-     * @param \eZ\Publish\SPI\FieldType\ValidationError[] $validationErrors
+     * @param \Ibexa\Contracts\Core\FieldType\ValidationError[] $validationErrors
      */
     protected function processValidationErrors(array $validationErrors)
     {
@@ -51,7 +51,7 @@ abstract class FieldTypeValidator extends ConstraintValidator
     }
 
     /**
-     * @return \EzSystems\EzPlatformContentForms\Validator\ValidationErrorsProcessor
+     * @return \Ibexa\ContentForms\Validator\ValidationErrorsProcessor
      */
     private function createValidationErrorProcessor(): ValidationErrorsProcessor
     {
@@ -60,3 +60,5 @@ abstract class FieldTypeValidator extends ConstraintValidator
         });
     }
 }
+
+class_alias(FieldTypeValidator::class, 'EzSystems\EzPlatformContentForms\Validator\Constraints\FieldTypeValidator');

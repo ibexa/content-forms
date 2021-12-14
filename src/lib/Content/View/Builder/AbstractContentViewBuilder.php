@@ -1,52 +1,52 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\Content\View\Builder;
+namespace Ibexa\ContentForms\Content\View\Builder;
 
-use eZ\Publish\API\Repository\ContentService;
-use eZ\Publish\API\Repository\Repository;
-use eZ\Publish\API\Repository\Values\Content\Language;
-use eZ\Publish\API\Repository\Values\Content\Location;
-use eZ\Publish\Core\Base\Exceptions\InvalidArgumentException;
-use eZ\Publish\Core\MVC\ConfigResolverInterface;
-use eZ\Publish\Core\MVC\Symfony\Locale\UserLanguagePreferenceProviderInterface;
-use eZ\Publish\Core\MVC\Symfony\View\Configurator;
-use eZ\Publish\Core\MVC\Symfony\View\ParametersInjector;
-use EzSystems\EzPlatformContentForms\Form\ActionDispatcher\ActionDispatcherInterface;
+use Ibexa\ContentForms\Form\ActionDispatcher\ActionDispatcherInterface;
 use Ibexa\Contracts\ContentForms\Content\Form\Provider\GroupedContentFormFieldsProviderInterface;
+use Ibexa\Contracts\Core\Repository\ContentService;
+use Ibexa\Contracts\Core\Repository\Repository;
+use Ibexa\Contracts\Core\Repository\Values\Content\Language;
+use Ibexa\Contracts\Core\Repository\Values\Content\Location;
+use Ibexa\Core\Base\Exceptions\InvalidArgumentException;
+use Ibexa\Core\MVC\ConfigResolverInterface;
+use Ibexa\Core\MVC\Symfony\Locale\UserLanguagePreferenceProviderInterface;
+use Ibexa\Core\MVC\Symfony\View\Configurator;
+use Ibexa\Core\MVC\Symfony\View\ParametersInjector;
 
 /*
  * @internal
  */
 abstract class AbstractContentViewBuilder
 {
-    /** @var \eZ\Publish\API\Repository\Repository */
+    /** @var \Ibexa\Contracts\Core\Repository\Repository */
     protected $repository;
 
-    /** @var \eZ\Publish\Core\MVC\Symfony\View\Configurator */
+    /** @var \Ibexa\Core\MVC\Symfony\View\Configurator */
     protected $viewConfigurator;
 
-    /** @var \eZ\Publish\Core\MVC\Symfony\View\ParametersInjector */
+    /** @var \Ibexa\Core\MVC\Symfony\View\ParametersInjector */
     protected $viewParametersInjector;
 
-    /** @var \EzSystems\EzPlatformContentForms\Form\ActionDispatcher\ActionDispatcherInterface */
+    /** @var \Ibexa\ContentForms\Form\ActionDispatcher\ActionDispatcherInterface */
     protected $contentActionDispatcher;
 
-    /** @var \eZ\Publish\Core\MVC\Symfony\Locale\UserLanguagePreferenceProviderInterface */
+    /** @var \Ibexa\Core\MVC\Symfony\Locale\UserLanguagePreferenceProviderInterface */
     protected $languagePreferenceProvider;
 
-    /** @var \eZ\Publish\Core\MVC\ConfigResolverInterface */
+    /** @var \Ibexa\Core\MVC\ConfigResolverInterface */
     protected $configResolver;
 
     /** @var \Ibexa\Contracts\ContentForms\Content\Form\Provider\GroupedContentFormFieldsProviderInterface */
     protected $groupedContentFormFieldsProvider;
 
-    /** @var \eZ\Publish\API\Repository\ContentService */
+    /** @var \Ibexa\Contracts\Core\Repository\ContentService */
     protected $contentService;
 
     public function __construct(
@@ -72,8 +72,8 @@ abstract class AbstractContentViewBuilder
     /**
      * Loads a visible Location.
      *
-     * @throws \eZ\Publish\API\Repository\Exceptions\UnauthorizedException
-     * @throws \eZ\Publish\API\Repository\Exceptions\NotFoundException
+     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\UnauthorizedException
+     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException
      */
     protected function loadLocation(int $locationId): Location
     {
@@ -81,7 +81,7 @@ abstract class AbstractContentViewBuilder
     }
 
     /**
-     * @throws \eZ\Publish\API\Repository\Exceptions\NotFoundException
+     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException
      */
     private function loadLanguage(string $languageCode): Language
     {
@@ -89,8 +89,8 @@ abstract class AbstractContentViewBuilder
     }
 
     /**
-     * @throws \eZ\Publish\API\Repository\Exceptions\NotFoundException
-     * @throws \eZ\Publish\API\Repository\Exceptions\InvalidArgumentException
+     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException
+     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\InvalidArgumentException
      */
     protected function resolveLanguage(array $parameters): Language
     {
@@ -107,7 +107,11 @@ abstract class AbstractContentViewBuilder
             return $parameters['language'];
         }
 
-        throw new InvalidArgumentException('Language',
-            'No language information provided. Are you missing language or languageCode parameters?');
+        throw new InvalidArgumentException(
+            'Language',
+            'No language information provided. Are you missing language or languageCode parameters?'
+        );
     }
 }
+
+class_alias(AbstractContentViewBuilder::class, 'EzSystems\EzPlatformContentForms\Content\View\Builder\AbstractContentViewBuilder');

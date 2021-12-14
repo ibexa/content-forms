@@ -1,19 +1,19 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\Form\Type\FieldType;
+namespace Ibexa\ContentForms\Form\Type\FieldType;
 
-use eZ\Publish\API\Repository\ContentService;
-use eZ\Publish\API\Repository\ContentTypeService;
-use eZ\Publish\API\Repository\Exceptions\UnauthorizedException;
-use eZ\Publish\API\Repository\Values\Content\Location;
-use eZ\Publish\Core\FieldType\RelationList\Value;
-use EzSystems\EzPlatformContentForms\FieldType\DataTransformer\RelationListValueTransformer;
+use Ibexa\ContentForms\FieldType\DataTransformer\RelationListValueTransformer;
+use Ibexa\Contracts\Core\Repository\ContentService;
+use Ibexa\Contracts\Core\Repository\ContentTypeService;
+use Ibexa\Contracts\Core\Repository\Exceptions\UnauthorizedException;
+use Ibexa\Contracts\Core\Repository\Values\Content\Location;
+use Ibexa\Core\FieldType\RelationList\Value;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -26,15 +26,15 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 class RelationListFieldType extends AbstractType
 {
-    /** @var ContentService */
+    /** @var \Ibexa\Contracts\Core\Repository\ContentService */
     private $contentService;
 
-    /** @var ContentTypeService */
+    /** @var \Ibexa\Contracts\Core\Repository\ContentTypeService */
     private $contentTypeService;
 
     /**
-     * @param ContentService $contentService
-     * @param ContentTypeService $contentTypeService
+     * @param \Ibexa\Contracts\Core\Repository\ContentService $contentService
+     * @param \Ibexa\Contracts\Core\Repository\ContentTypeService $contentTypeService
      */
     public function __construct(ContentService $contentService, ContentTypeService $contentTypeService)
     {
@@ -67,7 +67,7 @@ class RelationListFieldType extends AbstractType
         $view->vars['relations'] = [];
         $view->vars['default_location'] = $options['default_location'];
 
-        /** @var Value $data */
+        /** @var \Ibexa\Core\FieldType\RelationList\Value $data */
         $data = $form->getData();
 
         if (!$data instanceof Value) {
@@ -107,3 +107,5 @@ class RelationListFieldType extends AbstractType
         $resolver->setAllowedTypes('default_location', ['null', Location::class]);
     }
 }
+
+class_alias(RelationListFieldType::class, 'EzSystems\EzPlatformContentForms\Form\Type\FieldType\RelationListFieldType');

@@ -1,20 +1,20 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\EventListener;
+namespace Ibexa\ContentForms\EventListener;
 
-use EzSystems\EzPlatformContentForms\Content\View\ContentCreateDraftView;
-use EzSystems\EzPlatformContentForms\User;
-use eZ\Publish\Core\MVC\ConfigResolverInterface;
-use eZ\Publish\Core\MVC\Symfony\Event\PreContentViewEvent;
-use eZ\Publish\Core\MVC\Symfony\MVCEvents;
-use EzSystems\EzPlatformContentForms\User\View\UserCreateView;
-use EzSystems\EzPlatformContentForms\User\View\UserUpdateView;
+use Ibexa\ContentForms\Content\View\ContentCreateDraftView;
+use Ibexa\ContentForms\User;
+use Ibexa\ContentForms\User\View\UserCreateView;
+use Ibexa\ContentForms\User\View\UserUpdateView;
+use Ibexa\Core\MVC\ConfigResolverInterface;
+use Ibexa\Core\MVC\Symfony\Event\PreContentViewEvent;
+use Ibexa\Core\MVC\Symfony\MVCEvents;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 /**
@@ -22,7 +22,7 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
  */
 class ViewTemplatesListener implements EventSubscriberInterface
 {
-    /** @var \eZ\Publish\Core\MVC\ConfigResolverInterface */
+    /** @var \Ibexa\Core\MVC\ConfigResolverInterface */
     private $configResolver;
 
     public function __construct(ConfigResolverInterface $configResolver)
@@ -65,3 +65,5 @@ class ViewTemplatesListener implements EventSubscriberInterface
         ];
     }
 }
+
+class_alias(ViewTemplatesListener::class, 'EzSystems\EzPlatformContentForms\EventListener\ViewTemplatesListener');

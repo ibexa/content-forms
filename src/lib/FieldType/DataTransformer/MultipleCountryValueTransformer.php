@@ -1,14 +1,14 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\FieldType\DataTransformer;
+namespace Ibexa\ContentForms\FieldType\DataTransformer;
 
-use eZ\Publish\Core\FieldType\Country\Value;
+use Ibexa\Core\FieldType\Country\Value;
 use Symfony\Component\Form\DataTransformerInterface;
 
 /**
@@ -53,3 +53,5 @@ class MultipleCountryValueTransformer implements DataTransformerInterface
         return new Value($transformedValue);
     }
 }
+
+class_alias(MultipleCountryValueTransformer::class, 'EzSystems\EzPlatformContentForms\FieldType\DataTransformer\MultipleCountryValueTransformer');

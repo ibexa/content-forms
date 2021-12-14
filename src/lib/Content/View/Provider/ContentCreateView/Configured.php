@@ -1,17 +1,17 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\Content\View\Provider\ContentCreateView;
+namespace Ibexa\ContentForms\Content\View\Provider\ContentCreateView;
 
-use eZ\Publish\Core\MVC\Symfony\Matcher\MatcherFactoryInterface;
-use eZ\Publish\Core\MVC\Symfony\View\View;
-use eZ\Publish\Core\MVC\Symfony\View\ViewProvider;
-use EzSystems\EzPlatformContentForms\Content\View\ContentCreateView;
+use Ibexa\ContentForms\Content\View\ContentCreateView;
+use Ibexa\Core\MVC\Symfony\Matcher\MatcherFactoryInterface;
+use Ibexa\Core\MVC\Symfony\View\View;
+use Ibexa\Core\MVC\Symfony\View\ViewProvider;
 use Symfony\Component\HttpKernel\Controller\ControllerReference;
 
 /**
@@ -20,12 +20,12 @@ use Symfony\Component\HttpKernel\Controller\ControllerReference;
 class Configured implements ViewProvider
 {
     /**
-     * @var \eZ\Publish\Core\MVC\Symfony\Matcher\MatcherFactoryInterface
+     * @var \Ibexa\Core\MVC\Symfony\Matcher\MatcherFactoryInterface
      */
     protected $matcherFactory;
 
     /**
-     * @param \eZ\Publish\Core\MVC\Symfony\Matcher\MatcherFactoryInterface $matcherFactory
+     * @param \Ibexa\Core\MVC\Symfony\Matcher\MatcherFactoryInterface $matcherFactory
      */
     public function __construct(MatcherFactoryInterface $matcherFactory)
     {
@@ -46,7 +46,7 @@ class Configured implements ViewProvider
      *
      * @param array $viewConfig
      *
-     * @return \EzSystems\EzPlatformContentForms\Content\View\ContentCreateView
+     * @return \Ibexa\ContentForms\Content\View\ContentCreateView
      */
     protected function buildContentCreateView(array $viewConfig): ContentCreateView
     {
@@ -65,3 +65,5 @@ class Configured implements ViewProvider
         return $view;
     }
 }
+
+class_alias(Configured::class, 'EzSystems\EzPlatformContentForms\Content\View\Provider\ContentCreateView\Configured');

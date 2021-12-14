@@ -1,14 +1,14 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\Data\Content;
+namespace Ibexa\ContentForms\Data\Content;
 
-use eZ\Publish\API\Repository\Values\ValueObject;
+use Ibexa\Contracts\Core\Repository\Values\ValueObject;
 
 class CreateContentDraftData extends ValueObject
 {
@@ -20,3 +20,5 @@ class CreateContentDraftData extends ValueObject
 
     public $toLanguage;
 }
+
+class_alias(CreateContentDraftData::class, 'EzSystems\EzPlatformContentForms\Data\Content\CreateContentDraftData');
