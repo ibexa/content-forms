@@ -19,7 +19,7 @@ use Symfony\Component\DependencyInjection\Reference;
 class FieldTypeFormMapperDispatcherPass implements CompilerPassInterface
 {
     public const FIELD_TYPE_FORM_MAPPER_DISPATCHER = 'ezplatform.content_forms.field_type_form_mapper.dispatcher';
-    public const FIELD_TYPE_FORM_MAPPER_VALUE_SERVICE_TAG = 'ezplatform.field_type.form_mapper.value';
+    public const FIELD_TYPE_FORM_MAPPER_VALUE_SERVICE_TAG = 'ibexa.admin_ui.field_type.form.mapper.value';
 
     public function process(ContainerBuilder $container)
     {
@@ -44,7 +44,6 @@ class FieldTypeFormMapperDispatcherPass implements CompilerPassInterface
             }
         }
     }
-
 }
 
 class_alias(FieldTypeFormMapperDispatcherPass::class, 'EzSystems\EzPlatformContentFormsBundle\DependencyInjection\Compiler\FieldTypeFormMapperDispatcherPass');
