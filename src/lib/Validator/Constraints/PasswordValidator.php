@@ -1,26 +1,26 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\Validator\Constraints;
+namespace Ibexa\ContentForms\Validator\Constraints;
 
-use eZ\Publish\API\Repository\UserService;
-use eZ\Publish\API\Repository\Values\User\PasswordValidationContext;
-use EzSystems\EzPlatformContentForms\Validator\ValidationErrorsProcessor;
+use Ibexa\ContentForms\Validator\ValidationErrorsProcessor;
+use Ibexa\Contracts\Core\Repository\UserService;
+use Ibexa\Contracts\Core\Repository\Values\User\PasswordValidationContext;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 
 class PasswordValidator extends ConstraintValidator
 {
-    /** @var \eZ\Publish\API\Repository\UserService */
+    /** @var \Ibexa\Contracts\Core\Repository\UserService */
     private $userService;
 
     /**
-     * @param \eZ\Publish\API\Repository\UserService $userService
+     * @param \Ibexa\Contracts\Core\Repository\UserService $userService
      */
     public function __construct(UserService $userService)
     {
@@ -48,10 +48,12 @@ class PasswordValidator extends ConstraintValidator
     }
 
     /**
-     * @return \EzSystems\EzPlatformContentForms\Validator\ValidationErrorsProcessor
+     * @return \Ibexa\ContentForms\Validator\ValidationErrorsProcessor
      */
     protected function createValidationErrorsProcessor(): ValidationErrorsProcessor
     {
         return new ValidationErrorsProcessor($this->context);
     }
 }
+
+class_alias(PasswordValidator::class, 'EzSystems\EzPlatformContentForms\Validator\Constraints\PasswordValidator');

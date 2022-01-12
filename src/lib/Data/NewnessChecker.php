@@ -1,12 +1,12 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\Data;
+namespace Ibexa\ContentForms\Data;
 
 /**
  * Trait for repository data objects, provides a test for if they are newly created, based on identifier.
@@ -31,3 +31,5 @@ trait NewnessChecker
      */
     abstract protected function getIdentifierValue();
 }
+
+class_alias(NewnessChecker::class, 'EzSystems\EzPlatformContentForms\Data\NewnessChecker');

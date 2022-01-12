@@ -1,14 +1,15 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\FieldType;
+namespace Ibexa\ContentForms\FieldType;
 
-use EzSystems\EzPlatformContentForms\Data\Content\FieldData;
+use Ibexa\Contracts\ContentForms\Data\Content\FieldData;
+use Ibexa\Contracts\ContentForms\FieldType\FieldValueFormMapperInterface;
 use Symfony\Component\Form\FormInterface;
 
 /**
@@ -21,14 +22,14 @@ class FieldTypeFormMapperDispatcher implements FieldTypeFormMapperDispatcherInte
     /**
      * FieldType form mappers, indexed by FieldType identifier.
      *
-     * @var \EzSystems\EzPlatformContentForms\FieldType\FieldValueFormMapperInterface[]
+     * @var \Ibexa\Contracts\ContentForms\FieldType\FieldValueFormMapperInterface[]
      */
     private $mappers;
 
     /**
      * FieldTypeFormMapperDispatcher constructor.
      *
-     * @param \EzSystems\EzPlatformContentForms\FieldType\FieldValueFormMapperInterface[] $mappers
+     * @param \Ibexa\Contracts\ContentForms\FieldType\FieldValueFormMapperInterface[] $mappers
      */
     public function __construct(array $mappers = [])
     {
@@ -51,3 +52,5 @@ class FieldTypeFormMapperDispatcher implements FieldTypeFormMapperDispatcherInte
         $this->mappers[$fieldTypeIdentifier]->mapFieldValueForm($fieldForm, $data);
     }
 }
+
+class_alias(FieldTypeFormMapperDispatcher::class, 'EzSystems\EzPlatformContentForms\FieldType\FieldTypeFormMapperDispatcher');

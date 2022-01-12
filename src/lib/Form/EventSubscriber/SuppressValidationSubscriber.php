@@ -1,12 +1,12 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\Form\EventSubscriber;
+namespace Ibexa\ContentForms\Form\EventSubscriber;
 
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Form\Event\PostSubmitEvent;
@@ -58,3 +58,5 @@ class SuppressValidationSubscriber implements EventSubscriberInterface
         }
     }
 }
+
+class_alias(SuppressValidationSubscriber::class, 'EzSystems\EzPlatformContentForms\Form\EventSubscriber\SuppressValidationSubscriber');

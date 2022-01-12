@@ -1,16 +1,16 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\Form\Type\Content;
+namespace Ibexa\ContentForms\Form\Type\Content;
 
-use EzSystems\EzPlatformContentForms\Event\ContentCreateFieldOptionsEvent;
-use EzSystems\EzPlatformContentForms\Event\ContentFormEvents;
-use EzSystems\EzPlatformContentForms\Event\ContentUpdateFieldOptionsEvent;
+use Ibexa\ContentForms\Event\ContentCreateFieldOptionsEvent;
+use Ibexa\ContentForms\Event\ContentFormEvents;
+use Ibexa\ContentForms\Event\ContentUpdateFieldOptionsEvent;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
@@ -50,7 +50,7 @@ class FieldCollectionType extends CollectionType
                 $entryData = $data[$name];
 
                 if ($this->isContentUpdate($entryOptions)) {
-                    /** @var \EzSystems\EzPlatformContentForms\Event\ContentUpdateFieldOptionsEvent $contentUpdateFieldOptionsEvent */
+                    /** @var \Ibexa\ContentForms\Event\ContentUpdateFieldOptionsEvent $contentUpdateFieldOptionsEvent */
                     $contentUpdateFieldOptionsEvent = $this->eventDispatcher->dispatch(
                         new ContentUpdateFieldOptionsEvent(
                             $entryOptions['content'],
@@ -64,7 +64,7 @@ class FieldCollectionType extends CollectionType
 
                     $entryOptions = $contentUpdateFieldOptionsEvent->getOptions();
                 } elseif ($this->isContentCreate($entryOptions)) {
-                    /** @var \EzSystems\EzPlatformContentForms\Event\ContentCreateFieldOptionsEvent $contentUpdateFieldOptionsEvent */
+                    /** @var \Ibexa\ContentForms\Event\ContentCreateFieldOptionsEvent $contentUpdateFieldOptionsEvent */
                     $contentCreateFieldOptionsEvent = $this->eventDispatcher->dispatch(
                         new ContentCreateFieldOptionsEvent(
                             $entryOptions['contentCreateStruct'],
@@ -93,3 +93,5 @@ class FieldCollectionType extends CollectionType
         return !empty($entryOptions['content']) && !empty($entryOptions['contentUpdateStruct']);
     }
 }
+
+class_alias(FieldCollectionType::class, 'EzSystems\EzPlatformContentForms\Form\Type\Content\FieldCollectionType');

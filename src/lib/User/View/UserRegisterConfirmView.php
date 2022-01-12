@@ -1,14 +1,14 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\User\View;
+namespace Ibexa\ContentForms\User\View;
 
-use EzSystems\EzPlatformUser\View\Register\ConfirmView as BaseRegisterConfirmView;
+use Ibexa\User\View\Register\ConfirmView as BaseRegisterConfirmView;
 
 /**
  * @deprecated Deprecated in 2.5 and will be removed in 3.0. Please use EzSystems\EzPlatformUser\View\UserRegisterConfirmView instead.
@@ -16,3 +16,5 @@ use EzSystems\EzPlatformUser\View\Register\ConfirmView as BaseRegisterConfirmVie
 class UserRegisterConfirmView extends BaseRegisterConfirmView
 {
 }
+
+class_alias(UserRegisterConfirmView::class, 'EzSystems\EzPlatformContentForms\User\View\UserRegisterConfirmView');

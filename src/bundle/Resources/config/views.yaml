@@ -5,7 +5,7 @@ services:
         autoconfigure: true
 
     # ContentEditView
-    EzSystems\EzPlatformContentForms\Content\View\Builder\ContentEditViewBuilder:
+    Ibexa\ContentForms\Content\View\Builder\ContentEditViewBuilder:
         arguments:
             - '@ezpublish.api.repository'
             - '@ezpublish.view.configurator'
@@ -14,28 +14,28 @@ services:
         tags:
             - { name: ibexa.view_builder }
 
-    EzSystems\EzPlatformContentForms\Content\View\Provider\ContentEditView\Configured:
+    Ibexa\ContentForms\Content\View\Provider\ContentEditView\Configured:
         arguments:
             - '@ezplatform.repository_forms.content_edit_view.matcher_factory'
         tags:
-            - { name: ezpublish.view_provider, type: EzSystems\EzPlatformContentForms\Content\View\ContentEditView, priority: 10 }
+            - { name: ezpublish.view_provider, type: Ibexa\ContentForms\Content\View\ContentEditView, priority: 10 }
 
     ezplatform.repository_forms.content_edit_view.matcher_factory:
         class: '%ezpublish.view.matcher_factory.class%'
         arguments:
-            - '@eZ\Bundle\EzPublishCoreBundle\Matcher\ViewMatcherRegistry'
+            - '@Ibexa\Bundle\Core\Matcher\ViewMatcherRegistry'
             - '@ezpublish.api.repository'
-            - 'eZ\Publish\Core\MVC\Symfony\Matcher\ContentBased'
+            - 'Ibexa\Core\MVC\Symfony\Matcher\ContentBased'
 
     ezplatform.repository_forms.content_edit_view.matcher_factory.dynamically_configured:
-        class: eZ\Publish\Core\MVC\Symfony\Matcher\DynamicallyConfiguredMatcherFactoryDecorator
+        class: Ibexa\Core\MVC\Symfony\Matcher\DynamicallyConfiguredMatcherFactoryDecorator
         decorates: ezplatform.repository_forms.content_edit_view.matcher_factory
         arguments:
             $innerConfigurableMatcherFactory: '@ezplatform.repository_forms.content_edit_view.matcher_factory.dynamically_configured.inner'
             $configResolver: '@ezpublish.config.resolver'
             $parameterName: content_edit_view
 
-    EzSystems\EzPlatformContentForms\Content\View\Filter\ContentEditViewFilter:
+    Ibexa\ContentForms\Content\View\Filter\ContentEditViewFilter:
         arguments:
             - '@ezpublish.api.service.content'
             - '@ezpublish.api.service.content_type'
@@ -43,7 +43,7 @@ services:
             - { name: kernel.event_subscriber }
 
     # ContentCreateView
-    EzSystems\EzPlatformContentForms\Content\View\Builder\ContentCreateViewBuilder:
+    Ibexa\ContentForms\Content\View\Builder\ContentCreateViewBuilder:
         arguments:
             - '@ezpublish.api.repository'
             - '@ezpublish.view.configurator'
@@ -52,28 +52,28 @@ services:
         tags:
             - { name: ibexa.view_builder }
 
-    EzSystems\EzPlatformContentForms\Content\View\Provider\ContentCreateView\Configured:
+    Ibexa\ContentForms\Content\View\Provider\ContentCreateView\Configured:
         arguments:
             - '@ezplatform.repository_forms.content_create_view.matcher_factory'
         tags:
-            - {name: ezpublish.view_provider, type: 'EzSystems\EzPlatformContentForms\Content\View\ContentCreateView', priority: 10}
+            - {name: ezpublish.view_provider, type: 'Ibexa\ContentForms\Content\View\ContentCreateView', priority: 10}
 
     ezplatform.repository_forms.content_create_view.matcher_factory:
         class: '%ezpublish.view.matcher_factory.class%'
         arguments:
-            - '@eZ\Bundle\EzPublishCoreBundle\Matcher\ViewMatcherRegistry'
+            - '@Ibexa\Bundle\Core\Matcher\ViewMatcherRegistry'
             - '@ezpublish.api.repository'
-            - 'eZ\Publish\Core\MVC\Symfony\Matcher\ContentBased'
+            - 'Ibexa\Core\MVC\Symfony\Matcher\ContentBased'
 
     ezplatform.repository_forms.content_create_view.matcher_factory.dynamically_configured:
-        class: eZ\Publish\Core\MVC\Symfony\Matcher\DynamicallyConfiguredMatcherFactoryDecorator
+        class: Ibexa\Core\MVC\Symfony\Matcher\DynamicallyConfiguredMatcherFactoryDecorator
         decorates: ezplatform.repository_forms.content_create_view.matcher_factory
         arguments:
             $innerConfigurableMatcherFactory: '@ezplatform.repository_forms.content_create_view.matcher_factory.dynamically_configured.inner'
             $configResolver: '@ezpublish.config.resolver'
             $parameterName: content_create_view
 
-    EzSystems\EzPlatformContentForms\Content\View\Filter\ContentCreateViewFilter:
+    Ibexa\ContentForms\Content\View\Filter\ContentCreateViewFilter:
         arguments:
             - '@ezpublish.api.service.location'
             - '@ezpublish.api.service.content_type'

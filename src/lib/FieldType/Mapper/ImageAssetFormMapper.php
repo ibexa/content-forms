@@ -1,28 +1,28 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\FieldType\Mapper;
+namespace Ibexa\ContentForms\FieldType\Mapper;
 
-use eZ\Publish\API\Repository\FieldTypeService;
-use eZ\Publish\Core\FieldType\ImageAsset\Value;
-use EzSystems\EzPlatformContentForms\Data\Content\FieldData;
-use EzSystems\EzPlatformContentForms\FieldType\DataTransformer\ImageAssetValueTransformer;
-use EzSystems\EzPlatformContentForms\FieldType\FieldValueFormMapperInterface;
-use EzSystems\EzPlatformContentForms\Form\Type\FieldType\ImageAssetFieldType;
+use Ibexa\ContentForms\FieldType\DataTransformer\ImageAssetValueTransformer;
+use Ibexa\ContentForms\Form\Type\FieldType\ImageAssetFieldType;
+use Ibexa\Contracts\ContentForms\Data\Content\FieldData;
+use Ibexa\Contracts\ContentForms\FieldType\FieldValueFormMapperInterface;
+use Ibexa\Contracts\Core\Repository\FieldTypeService;
+use Ibexa\Core\FieldType\ImageAsset\Value;
 use Symfony\Component\Form\FormInterface;
 
 class ImageAssetFormMapper implements FieldValueFormMapperInterface
 {
-    /** @var \eZ\Publish\API\Repository\FieldTypeService */
+    /** @var \Ibexa\Contracts\Core\Repository\FieldTypeService */
     private $fieldTypeService;
 
     /**
-     * @param \eZ\Publish\API\Repository\FieldTypeService $fieldTypeService
+     * @param \Ibexa\Contracts\Core\Repository\FieldTypeService $fieldTypeService
      */
     public function __construct(FieldTypeService $fieldTypeService)
     {
@@ -31,7 +31,7 @@ class ImageAssetFormMapper implements FieldValueFormMapperInterface
 
     /**
      * @param \Symfony\Component\Form\FormInterface $fieldForm
-     * @param \EzSystems\EzPlatformContentForms\Data\Content\FieldData $data
+     * @param \Ibexa\Contracts\ContentForms\Data\Content\FieldData $data
      */
     public function mapFieldValueForm(FormInterface $fieldForm, FieldData $data): void
     {
@@ -56,3 +56,5 @@ class ImageAssetFormMapper implements FieldValueFormMapperInterface
             );
     }
 }
+
+class_alias(ImageAssetFormMapper::class, 'EzSystems\EzPlatformContentForms\FieldType\Mapper\ImageAssetFormMapper');
