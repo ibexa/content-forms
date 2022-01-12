@@ -40,7 +40,7 @@ final class ContentEditContext extends MinkContext implements Context, SnippetAc
     {
         $environment = $scope->getEnvironment();
 
-        $this->contentTypeContext = $environment->getContext('EzSystems\EzPlatformContentForms\Behat\Context\ContentTypeContext');
+        $this->contentTypeContext = $environment->getContext(ContentTypeContext::class);
     }
 
     /**

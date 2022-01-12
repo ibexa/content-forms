@@ -33,7 +33,7 @@ final class FieldTypeFormContext extends RawMinkContext implements SnippetAccept
     public function gatherContexts(BeforeScenarioScope $scope)
     {
         $environment = $scope->getEnvironment();
-        $this->contentTypeContext = $environment->getContext('EzSystems\EzPlatformContentForms\Behat\Context\ContentTypeContext');
+        $this->contentTypeContext = $environment->getContext(ContentTypeContext::class);
     }
 
     /**
