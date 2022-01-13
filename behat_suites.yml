@@ -4,21 +4,21 @@ content-forms:
     suites:
         content_edit:
             paths:
-                - vendor/ezsystems/ezplatform-content-forms/features/ContentEdit
+                - vendor/ibexa/content-forms/features/ContentEdit
             contexts:
                 - Ibexa\ContentForms\Behat\Context\ContentEditContext
                 - Ibexa\ContentForms\Behat\Context\ContentTypeContext
                 - Ibexa\ContentForms\Behat\Context\PagelayoutContext
         fieldtype_form:
             paths:
-                - vendor/ezsystems/ezplatform-content-forms/features/FieldTypeForm
+                - vendor/ibexa/content-forms/features/FieldTypeForm
             contexts:
                 - Ibexa\ContentForms\Behat\Context\ContentTypeContext
                 - Ibexa\ContentForms\Behat\Context\FieldTypeFormContext
                 - Ibexa\ContentForms\Behat\Context\SelectionFieldTypeFormContext
         user_registration: # @todo move to ezplatform-user
             paths:
-                - vendor/ezsystems/ezplatform-content-forms/features/User/Registration
+                - vendor/ibexa/content-forms/features/User/Registration
             contexts:
                 - Ibexa\ContentForms\Behat\Context\UserRegistrationContext
                 - Behat\MinkExtension\Context\MinkContext

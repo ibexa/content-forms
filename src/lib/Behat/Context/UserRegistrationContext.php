@@ -13,6 +13,7 @@ use Behat\Behat\Context\SnippetAcceptingContext;
 use Behat\Behat\Hook\Scope\BeforeScenarioScope;
 use Behat\Gherkin\Node\PyStringNode;
 use Behat\MinkExtension\Context\RawMinkContext;
+use Ibexa\Bundle\Core\Features\Context\YamlConfigurationContext;
 use Ibexa\Contracts\Core\Repository\ContentTypeService;
 use Ibexa\Contracts\Core\Repository\PermissionResolver;
 use Ibexa\Contracts\Core\Repository\RoleService;
@@ -87,9 +88,7 @@ class UserRegistrationContext extends RawMinkContext implements Context, Snippet
     /** @BeforeScenario */
     public function gatherContexts(BeforeScenarioScope $scope)
     {
-        $this->yamlConfigurationContext = $scope->getEnvironment()->getContext(
-            'eZ\Bundle\EzPublishCoreBundle\Features\Context\YamlConfigurationContext'
-        );
+        $this->yamlConfigurationContext = $scope->getEnvironment()->getContext(YamlConfigurationContext::class);
     }
 
     /**

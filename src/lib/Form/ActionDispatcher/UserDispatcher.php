@@ -9,7 +9,6 @@ declare(strict_types=1);
 namespace Ibexa\ContentForms\Form\ActionDispatcher;
 
 use Ibexa\ContentForms\Event\ContentFormEvents;
-use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class UserDispatcher extends AbstractActionDispatcher
 {

@@ -25,9 +25,7 @@ final class SelectionFieldTypeFormContext extends RawMinkContext implements Snip
     /** @BeforeScenario */
     public function gatherContexts(BeforeScenarioScope $scope)
     {
-        $this->fieldTypeFormContext = $scope->getEnvironment()->getContext(
-            'EzSystems\EzPlatformContentForms\Behat\Context\FieldTypeFormContext'
-        );
+        $this->fieldTypeFormContext = $scope->getEnvironment()->getContext(FieldTypeFormContext::class);
     }
 
     /**
