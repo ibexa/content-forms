@@ -1,19 +1,19 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\Content\View\Builder;
+namespace Ibexa\ContentForms\Content\View\Builder;
 
-use eZ\Publish\API\Repository\Values\Content\Location;
-use eZ\Publish\API\Repository\Values\ContentType\ContentType;
-use eZ\Publish\Core\Base\Exceptions\InvalidArgumentException;
-use eZ\Publish\Core\MVC\Symfony\View\Builder\ViewBuilder;
-use EzSystems\EzPlatformContentForms\Content\View\ContentCreateSuccessView;
-use EzSystems\EzPlatformContentForms\Content\View\ContentCreateView;
+use Ibexa\ContentForms\Content\View\ContentCreateSuccessView;
+use Ibexa\ContentForms\Content\View\ContentCreateView;
+use Ibexa\Contracts\Core\Repository\Values\Content\Location;
+use Ibexa\Contracts\Core\Repository\Values\ContentType\ContentType;
+use Ibexa\Core\Base\Exceptions\InvalidArgumentException;
+use Ibexa\Core\MVC\Symfony\View\Builder\ViewBuilder;
 
 /**
  * Builds ContentCreateView objects.
@@ -30,11 +30,11 @@ class ContentCreateViewBuilder extends AbstractContentViewBuilder implements Vie
     /**
      * @param array $parameters
      *
-     * @return \EzSystems\EzPlatformContentForms\Content\View\ContentCreateSuccessView|\EzSystems\EzPlatformContentForms\Content\View\ContentCreateView
+     * @return \Ibexa\ContentForms\Content\View\ContentCreateSuccessView|\Ibexa\ContentForms\Content\View\ContentCreateView
      *
-     * @throws \eZ\Publish\API\Repository\Exceptions\UnauthorizedException
-     * @throws \eZ\Publish\API\Repository\Exceptions\NotFoundException
-     * @throws \eZ\Publish\API\Repository\Exceptions\InvalidArgumentException
+     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\UnauthorizedException
+     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException
+     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\InvalidArgumentException
      */
     public function buildView(array $parameters)
     {
@@ -89,9 +89,9 @@ class ContentCreateViewBuilder extends AbstractContentViewBuilder implements Vie
      * @param string $contentTypeIdentifier
      * @param string[] $prioritizedLanguages
      *
-     * @return \eZ\Publish\API\Repository\Values\ContentType\ContentType
+     * @return \Ibexa\Contracts\Core\Repository\Values\ContentType\ContentType
      *
-     * @throws \eZ\Publish\API\Repository\Exceptions\NotFoundException
+     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException
      */
     private function loadContentType(string $contentTypeIdentifier, array $prioritizedLanguages = []): ContentType
     {
@@ -105,10 +105,10 @@ class ContentCreateViewBuilder extends AbstractContentViewBuilder implements Vie
      * @param array $parameters
      * @param array $languageCodes
      *
-     * @return \eZ\Publish\API\Repository\Values\ContentType\ContentType
+     * @return \Ibexa\Contracts\Core\Repository\Values\ContentType\ContentType
      *
-     * @throws \eZ\Publish\API\Repository\Exceptions\NotFoundException
-     * @throws \eZ\Publish\API\Repository\Exceptions\InvalidArgumentException
+     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException
+     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\InvalidArgumentException
      */
     private function resolveContentType(array $parameters, array $languageCodes): ContentType
     {
@@ -129,11 +129,11 @@ class ContentCreateViewBuilder extends AbstractContentViewBuilder implements Vie
     /**
      * @param array $parameters
      *
-     * @return \eZ\Publish\API\Repository\Values\Content\Location
+     * @return \Ibexa\Contracts\Core\Repository\Values\Content\Location
      *
-     * @throws \eZ\Publish\API\Repository\Exceptions\UnauthorizedException
-     * @throws \eZ\Publish\API\Repository\Exceptions\NotFoundException
-     * @throws \eZ\Publish\API\Repository\Exceptions\InvalidArgumentException
+     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\UnauthorizedException
+     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException
+     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\InvalidArgumentException
      */
     private function resolveLocation(array $parameters): Location
     {
@@ -151,3 +151,5 @@ class ContentCreateViewBuilder extends AbstractContentViewBuilder implements Vie
         );
     }
 }
+
+class_alias(ContentCreateViewBuilder::class, 'EzSystems\EzPlatformContentForms\Content\View\Builder\ContentCreateViewBuilder');

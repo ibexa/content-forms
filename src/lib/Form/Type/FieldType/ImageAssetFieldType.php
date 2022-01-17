@@ -1,18 +1,18 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\Form\Type\FieldType;
+namespace Ibexa\ContentForms\Form\Type\FieldType;
 
-use eZ\Publish\API\Repository\ContentService;
-use eZ\Publish\API\Repository\Exceptions\NotFoundException;
-use eZ\Publish\API\Repository\Exceptions\UnauthorizedException;
-use eZ\Publish\Core\FieldType\ImageAsset\AssetMapper;
-use EzSystems\EzPlatformContentForms\ConfigResolver\MaxUploadSize;
+use Ibexa\ContentForms\ConfigResolver\MaxUploadSize;
+use Ibexa\Contracts\Core\Repository\ContentService;
+use Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException;
+use Ibexa\Contracts\Core\Repository\Exceptions\UnauthorizedException;
+use Ibexa\Core\FieldType\ImageAsset\AssetMapper;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
@@ -26,19 +26,19 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 class ImageAssetFieldType extends AbstractType
 {
-    /** @var \eZ\Publish\API\Repository\ContentService */
+    /** @var \Ibexa\Contracts\Core\Repository\ContentService */
     private $contentService;
 
-    /** @var \eZ\Publish\Core\FieldType\ImageAsset\AssetMapper */
+    /** @var \Ibexa\Core\FieldType\ImageAsset\AssetMapper */
     private $assetMapper;
 
-    /** @var \EzSystems\EzPlatformContentForms\ConfigResolver\MaxUploadSize */
+    /** @var \Ibexa\ContentForms\ConfigResolver\MaxUploadSize */
     private $maxUploadSize;
 
     /**
-     * @param \eZ\Publish\API\Repository\ContentService $contentService
-     * @param \eZ\Publish\Core\FieldType\ImageAsset\AssetMapper $mapper
-     * @param \EzSystems\EzPlatformContentForms\ConfigResolver\MaxUploadSize $maxUploadSize
+     * @param \Ibexa\Contracts\Core\Repository\ContentService $contentService
+     * @param \Ibexa\Core\FieldType\ImageAsset\AssetMapper $mapper
+     * @param \Ibexa\ContentForms\ConfigResolver\MaxUploadSize $maxUploadSize
      */
     public function __construct(ContentService $contentService, AssetMapper $mapper, MaxUploadSize $maxUploadSize)
     {
@@ -138,3 +138,5 @@ class ImageAssetFieldType extends AbstractType
         return $this->maxUploadSize->get();
     }
 }
+
+class_alias(ImageAssetFieldType::class, 'EzSystems\EzPlatformContentForms\Form\Type\FieldType\ImageAssetFieldType');

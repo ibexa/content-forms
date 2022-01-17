@@ -1,24 +1,24 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\FieldType\Mapper;
+namespace Ibexa\ContentForms\FieldType\Mapper;
 
-use eZ\Publish\API\Repository\FieldTypeService;
-use eZ\Publish\Core\FieldType\Image\Value;
-use EzSystems\EzPlatformContentForms\Data\Content\FieldData;
-use EzSystems\EzPlatformContentForms\FieldType\DataTransformer\ImageValueTransformer;
-use EzSystems\EzPlatformContentForms\FieldType\FieldValueFormMapperInterface;
-use EzSystems\EzPlatformContentForms\Form\Type\FieldType\ImageFieldType;
+use Ibexa\ContentForms\FieldType\DataTransformer\ImageValueTransformer;
+use Ibexa\ContentForms\Form\Type\FieldType\ImageFieldType;
+use Ibexa\Contracts\ContentForms\Data\Content\FieldData;
+use Ibexa\Contracts\ContentForms\FieldType\FieldValueFormMapperInterface;
+use Ibexa\Contracts\Core\Repository\FieldTypeService;
+use Ibexa\Core\FieldType\Image\Value;
 use Symfony\Component\Form\FormInterface;
 
 class ImageFormMapper implements FieldValueFormMapperInterface
 {
-    /** @var FieldTypeService */
+    /** @var \Ibexa\Contracts\Core\Repository\FieldTypeService */
     private $fieldTypeService;
 
     public function __construct(FieldTypeService $fieldTypeService)
@@ -51,3 +51,5 @@ class ImageFormMapper implements FieldValueFormMapperInterface
             );
     }
 }
+
+class_alias(ImageFormMapper::class, 'EzSystems\EzPlatformContentForms\FieldType\Mapper\ImageFormMapper');

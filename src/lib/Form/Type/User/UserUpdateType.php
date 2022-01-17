@@ -1,14 +1,14 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\Form\Type\User;
+namespace Ibexa\ContentForms\Form\Type\User;
 
-use EzSystems\EzPlatformContentForms\Data\User\UserUpdateData;
+use Ibexa\ContentForms\Data\User\UserUpdateData;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -52,3 +52,5 @@ class UserUpdateType extends AbstractType
             ]);
     }
 }
+
+class_alias(UserUpdateType::class, 'EzSystems\EzPlatformContentForms\Form\Type\User\UserUpdateType');

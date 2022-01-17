@@ -1,12 +1,12 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\Form\Type\FieldDefinition\User;
+namespace Ibexa\ContentForms\Form\Type\FieldDefinition\User;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\CallbackTransformer;
@@ -64,3 +64,5 @@ class PasswordConstraintCheckboxType extends AbstractType
         return strtolower(preg_replace('/[A-Z]/', '_\\0', lcfirst($string)));
     }
 }
+
+class_alias(PasswordConstraintCheckboxType::class, 'EzSystems\EzPlatformContentForms\Form\Type\FieldDefinition\User\PasswordConstraintCheckboxType');

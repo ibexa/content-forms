@@ -1,15 +1,15 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\Form\Type\FieldType;
+namespace Ibexa\ContentForms\Form\Type\FieldType;
 
-use eZ\Publish\API\Repository\FieldTypeService;
-use EzSystems\EzPlatformContentForms\FieldType\DataTransformer\FieldValueTransformer;
+use Ibexa\ContentForms\FieldType\DataTransformer\FieldValueTransformer;
+use Ibexa\Contracts\Core\Repository\FieldTypeService;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -23,7 +23,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 class MapLocationFieldType extends AbstractType
 {
-    /** @var FieldTypeService */
+    /** @var \Ibexa\Contracts\Core\Repository\FieldTypeService */
     protected $fieldTypeService;
 
     public function __construct(FieldTypeService $fieldTypeService)
@@ -97,3 +97,5 @@ class MapLocationFieldType extends AbstractType
         $resolver->setDefaults(['translation_domain' => 'ezplatform_content_forms_fieldtype']);
     }
 }
+
+class_alias(MapLocationFieldType::class, 'EzSystems\EzPlatformContentForms\Form\Type\FieldType\MapLocationFieldType');

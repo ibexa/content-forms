@@ -1,12 +1,12 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\Event;
+namespace Ibexa\ContentForms\Event;
 
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormInterface;
@@ -31,7 +31,7 @@ class FormActionEvent extends FormEvent
     /**
      * Response to return after form post-processing. Typically a RedirectResponse.
      *
-     * @var Response
+     * @var \Symfony\Component\HttpFoundation\Response
      */
     private $response;
 
@@ -99,7 +99,7 @@ class FormActionEvent extends FormEvent
     }
 
     /**
-     * @return Response
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function getResponse()
     {
@@ -107,7 +107,7 @@ class FormActionEvent extends FormEvent
     }
 
     /**
-     * @param Response $response
+     * @param \Symfony\Component\HttpFoundation\Response $response
      */
     public function setResponse(Response $response)
     {
@@ -164,3 +164,5 @@ class FormActionEvent extends FormEvent
         $this->payloads[$name] = $payload;
     }
 }
+
+class_alias(FormActionEvent::class, 'EzSystems\EzPlatformContentForms\Event\FormActionEvent');

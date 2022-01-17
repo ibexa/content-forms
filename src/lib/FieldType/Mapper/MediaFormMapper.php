@@ -1,25 +1,25 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\FieldType\Mapper;
+namespace Ibexa\ContentForms\FieldType\Mapper;
 
-use eZ\Publish\API\Repository\FieldTypeService;
-use eZ\Publish\Core\FieldType\Media\Type;
-use eZ\Publish\Core\FieldType\Media\Value;
-use EzSystems\EzPlatformContentForms\Data\Content\FieldData;
-use EzSystems\EzPlatformContentForms\FieldType\DataTransformer\MediaValueTransformer;
-use EzSystems\EzPlatformContentForms\FieldType\FieldValueFormMapperInterface;
-use EzSystems\EzPlatformContentForms\Form\Type\FieldType\MediaFieldType;
+use Ibexa\ContentForms\FieldType\DataTransformer\MediaValueTransformer;
+use Ibexa\ContentForms\Form\Type\FieldType\MediaFieldType;
+use Ibexa\Contracts\ContentForms\Data\Content\FieldData;
+use Ibexa\Contracts\ContentForms\FieldType\FieldValueFormMapperInterface;
+use Ibexa\Contracts\Core\Repository\FieldTypeService;
+use Ibexa\Core\FieldType\Media\Type;
+use Ibexa\Core\FieldType\Media\Value;
 use Symfony\Component\Form\FormInterface;
 
 class MediaFormMapper implements FieldValueFormMapperInterface
 {
-    /** @var FieldTypeService */
+    /** @var \Ibexa\Contracts\Core\Repository\FieldTypeService */
     private $fieldTypeService;
 
     protected const ACCEPT_VIDEO = 'video/*';
@@ -60,3 +60,5 @@ class MediaFormMapper implements FieldValueFormMapperInterface
             );
     }
 }
+
+class_alias(MediaFormMapper::class, 'EzSystems\EzPlatformContentForms\FieldType\Mapper\MediaFormMapper');

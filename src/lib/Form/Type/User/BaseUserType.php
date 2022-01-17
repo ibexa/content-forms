@@ -1,16 +1,16 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\Form\Type\User;
+namespace Ibexa\ContentForms\Form\Type\User;
 
-use EzSystems\EzPlatformContentForms\Form\EventSubscriber\SuppressValidationSubscriber;
-use EzSystems\EzPlatformContentForms\Form\EventSubscriber\UserFieldsSubscriber;
-use EzSystems\EzPlatformContentForms\Form\Type\Content\BaseContentType;
+use Ibexa\ContentForms\Form\EventSubscriber\SuppressValidationSubscriber;
+use Ibexa\ContentForms\Form\EventSubscriber\UserFieldsSubscriber;
+use Ibexa\ContentForms\Form\Type\Content\BaseContentType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -62,3 +62,5 @@ class BaseUserType extends AbstractType
             ->setAllowedValues('intent', ['update', 'create', 'register']);
     }
 }
+
+class_alias(BaseUserType::class, 'EzSystems\EzPlatformContentForms\Form\Type\User\BaseUserType');
