@@ -12,13 +12,13 @@ services:
             - '@ezpublish.view.view_parameters.injector.dispatcher'
             - '@ezplatform.content_forms.action_dispatcher.content'
         tags:
-            - { name: ibexa.view_builder }
+            - { name: ibexa.view.builder }
 
     Ibexa\ContentForms\Content\View\Provider\ContentEditView\Configured:
         arguments:
             - '@ezplatform.repository_forms.content_edit_view.matcher_factory'
         tags:
-            - { name: ezpublish.view_provider, type: Ibexa\ContentForms\Content\View\ContentEditView, priority: 10 }
+            - { name: ibexa.view.provider, type: Ibexa\ContentForms\Content\View\ContentEditView, priority: 10 }
 
     ezplatform.repository_forms.content_edit_view.matcher_factory:
         class: '%ezpublish.view.matcher_factory.class%'
@@ -50,13 +50,13 @@ services:
             - '@ezpublish.view.view_parameters.injector.dispatcher'
             - '@ezplatform.content_forms.action_dispatcher.content'
         tags:
-            - { name: ibexa.view_builder }
+            - { name: ibexa.view.builder }
 
     Ibexa\ContentForms\Content\View\Provider\ContentCreateView\Configured:
         arguments:
             - '@ezplatform.repository_forms.content_create_view.matcher_factory'
         tags:
-            - {name: ezpublish.view_provider, type: 'Ibexa\ContentForms\Content\View\ContentCreateView', priority: 10}
+            - {name: ibexa.view.provider, type: 'Ibexa\ContentForms\Content\View\ContentCreateView', priority: 10}
 
     ezplatform.repository_forms.content_create_view.matcher_factory:
         class: '%ezpublish.view.matcher_factory.class%'
