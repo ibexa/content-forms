@@ -32,15 +32,20 @@ class FieldTypeFormMapperDispatcherPass implements CompilerPassInterface
         $taggedServiceIds = $container->findTaggedServiceIds(
             self::FIELD_TYPE_FORM_MAPPER_VALUE_SERVICE_TAG
         );
-        foreach ($taggedServiceIds as $id => $tags) {
+        foreach ($taggedServiceIds as $serviceId => $tags) {
             foreach ($tags as $tag) {
                 if (!isset($tag['fieldType'])) {
                     throw new LogicException(
-                        '`ezplatform.field_type.form_mapper` or deprecated `ez.fieldFormMapper` service tags need a "fieldType" attribute to identify which Field Type the mapper is for.'
+                        sprintf(
+                            'Service "%s" tagged with "%s" service tag needs a "fieldType" ' .
+                            'attribute to identify which Field Type the mapper is for.',
+                            $serviceId,
+                            self::FIELD_TYPE_FORM_MAPPER_VALUE_SERVICE_TAG
+                        )
                     );
                 }
 
-                $dispatcherDefinition->addMethodCall('addMapper', [new Reference($id), $tag['fieldType']]);
+                $dispatcherDefinition->addMethodCall('addMapper', [new Reference($serviceId), $tag['fieldType']]);
             }
         }
     }
