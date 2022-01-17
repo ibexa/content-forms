@@ -6,7 +6,6 @@
  */
 declare(strict_types=1);
 
-
 namespace Ibexa\Bundle\ContentForms\Controller;
 
 use Ibexa\Bundle\Core\Controller;
