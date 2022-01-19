@@ -23,7 +23,7 @@ class FieldValueTest extends TestCase
     public function testValidatedBy()
     {
         $constraint = new FieldValue();
-        self::assertSame('ezplatform.content_forms.validator.field_value', $constraint->validatedBy());
+        self::assertSame(\Ibexa\ContentForms\Validator\Constraints\FieldValueValidator::class, $constraint->validatedBy());
     }
 
     public function testGetTargets()

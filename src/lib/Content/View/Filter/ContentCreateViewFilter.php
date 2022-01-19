@@ -68,7 +68,7 @@ class ContentCreateViewFilter implements EventSubscriberInterface
      */
     public function handleContentCreateForm(FilterViewBuilderParametersEvent $event)
     {
-        if ('ez_content_edit:createWithoutDraftAction' !== $event->getParameters()->get('_controller')) {
+        if ('ibexa_content_edit:createWithoutDraftAction' !== $event->getParameters()->get('_controller')) {
             return;
         }
 

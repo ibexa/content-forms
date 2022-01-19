@@ -4,7 +4,7 @@ services:
         autoconfigure: true
         public: false
 
-    Ibexa\Contracts\Core\Repository\FieldTypeService: '@ezpublish.api.service.field_type'
+    Ibexa\Contracts\Core\Repository\FieldTypeService: '@ibexa.api.service.field_type'
 
     #
     # FieldTypes
@@ -74,7 +74,7 @@ services:
     Ibexa\ContentForms\FieldType\Mapper\AbstractRelationFormMapper:
         abstract: true
         arguments:
-            $contentTypeService: '@ezpublish.api.service.content_type'
+            $contentTypeService: '@ibexa.api.service.content_type'
 
     Ibexa\ContentForms\FieldType\Mapper\RelationFormMapper:
         parent: Ibexa\ContentForms\FieldType\Mapper\AbstractRelationFormMapper
@@ -123,7 +123,7 @@ services:
         tags:
             - { name: ibexa.admin_ui.field_type.form.mapper.value, fieldType: ezkeyword }
 
-    ezplatform.content_forms.field_type.form_mapper.ezemail:
+    ibexa.content_forms.field_type.form_mapper.ezemail:
         parent: Ibexa\ContentForms\FieldType\Mapper\FormTypeBasedFieldValueFormMapper
         autowire: true
         autoconfigure: false
