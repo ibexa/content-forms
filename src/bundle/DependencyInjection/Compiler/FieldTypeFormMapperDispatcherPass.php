@@ -8,6 +8,7 @@ declare(strict_types=1);
 
 namespace Ibexa\Bundle\ContentForms\DependencyInjection\Compiler;
 
+use Ibexa\ContentForms\FieldType\FieldTypeFormMapperDispatcher;
 use LogicException;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -18,7 +19,7 @@ use Symfony\Component\DependencyInjection\Reference;
  */
 class FieldTypeFormMapperDispatcherPass implements CompilerPassInterface
 {
-    public const FIELD_TYPE_FORM_MAPPER_DISPATCHER = \Ibexa\ContentForms\FieldType\FieldTypeFormMapperDispatcher::class;
+    public const FIELD_TYPE_FORM_MAPPER_DISPATCHER = FieldTypeFormMapperDispatcher::class;
     public const FIELD_TYPE_FORM_MAPPER_VALUE_SERVICE_TAG = 'ibexa.admin_ui.field_type.form.mapper.value';
 
     public function process(ContainerBuilder $container)

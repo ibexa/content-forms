@@ -24,7 +24,7 @@ class FieldValue extends Constraint
 
     public function validatedBy()
     {
-        return \Ibexa\ContentForms\Validator\Constraints\FieldValueValidator::class;
+        return FieldValueValidator::class;
     }
 }
 
