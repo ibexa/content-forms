@@ -63,7 +63,7 @@ class UserUpdateFormProcessor implements EventSubscriberInterface
         $user = $this->userService->updateUser($data->user, $data);
 
         $redirectUrl = $form['redirectUrlAfterPublish']->getData() ?: $this->urlGenerator->generate(
-            '_ez_content_view',
+            'ibexa.content.view',
             [
                 'contentId' => $user->id,
                 'locationId' => $user->contentInfo->mainLocationId,

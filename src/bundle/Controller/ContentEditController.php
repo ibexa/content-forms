@@ -103,7 +103,7 @@ class ContentEditController extends Controller
             ContentDraftCreateType::class,
             $createContentDraft,
             [
-                'action' => $this->generateUrl('ezplatform.content.draft.create'),
+                'action' => $this->generateUrl('ibexa.content.draft.create'),
             ]
         );
 
