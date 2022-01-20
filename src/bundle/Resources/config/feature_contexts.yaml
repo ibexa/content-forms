@@ -6,7 +6,7 @@ services:
 
     Ibexa\ContentForms\Behat\Context\ContentTypeContext:
         arguments:
-            $permissionResolver: '@=service("ibexa.api.repository").getPermissionResolver()'
+            $permissionResolver: '@Ibexa\Contracts\Core\Repository\PermissionResolver'
             $contentTypeService: '@ibexa.api.service.content_type'
 
     Ibexa\ContentForms\Behat\Context\PagelayoutContext:
@@ -15,7 +15,7 @@ services:
 
     Ibexa\ContentForms\Behat\Context\UserRegistrationContext:
         arguments:
-            $permissionResolver: '@=service("ibexa.api.repository").getPermissionResolver()'
+            $permissionResolver: '@Ibexa\Contracts\Core\Repository\PermissionResolver'
             $roleService: '@ibexa.api.service.role'
             $userService: '@ibexa.api.service.user'
             $contentTypeService: '@ibexa.api.service.content_type'
