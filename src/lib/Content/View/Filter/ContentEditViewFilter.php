@@ -68,7 +68,7 @@ class ContentEditViewFilter implements EventSubscriberInterface
      */
     public function handleContentEditForm(FilterViewBuilderParametersEvent $event)
     {
-        if ('ez_content_edit:editVersionDraftAction' !== $event->getParameters()->get('_controller')) {
+        if ('ibexa_content_edit:editVersionDraftAction' !== $event->getParameters()->get('_controller')) {
             return;
         }
 

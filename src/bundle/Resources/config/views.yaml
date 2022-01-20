@@ -7,75 +7,75 @@ services:
     # ContentEditView
     Ibexa\ContentForms\Content\View\Builder\ContentEditViewBuilder:
         arguments:
-            - '@ezpublish.api.repository'
-            - '@ezpublish.view.configurator'
-            - '@ezpublish.view.view_parameters.injector.dispatcher'
-            - '@ezplatform.content_forms.action_dispatcher.content'
+            - '@ibexa.api.repository'
+            - '@Ibexa\Core\MVC\Symfony\View\Configurator\ViewProvider'
+            - '@Ibexa\Core\MVC\Symfony\View\ParametersInjector\EventDispatcherInjector'
+            - '@Ibexa\ContentForms\Form\ActionDispatcher\ContentDispatcher'
         tags:
             - { name: ibexa.view.builder }
 
     Ibexa\ContentForms\Content\View\Provider\ContentEditView\Configured:
         arguments:
-            - '@ezplatform.repository_forms.content_edit_view.matcher_factory'
+            - '@ibexa.content_forms.content_edit_view.matcher_factory'
         tags:
             - { name: ibexa.view.provider, type: Ibexa\ContentForms\Content\View\ContentEditView, priority: 10 }
 
-    ezplatform.repository_forms.content_edit_view.matcher_factory:
+    ibexa.content_forms.content_edit_view.matcher_factory:
         class: '%ezpublish.view.matcher_factory.class%'
         arguments:
             - '@Ibexa\Bundle\Core\Matcher\ViewMatcherRegistry'
-            - '@ezpublish.api.repository'
+            - '@ibexa.api.repository'
             - 'Ibexa\Core\MVC\Symfony\Matcher\ContentBased'
 
-    ezplatform.repository_forms.content_edit_view.matcher_factory.dynamically_configured:
+    ibexa.content_forms.content_edit_view.matcher_factory.dynamically_configured:
         class: Ibexa\Core\MVC\Symfony\Matcher\DynamicallyConfiguredMatcherFactoryDecorator
-        decorates: ezplatform.repository_forms.content_edit_view.matcher_factory
+        decorates: ibexa.content_forms.content_edit_view.matcher_factory
         arguments:
-            $innerConfigurableMatcherFactory: '@ezplatform.repository_forms.content_edit_view.matcher_factory.dynamically_configured.inner'
-            $configResolver: '@ezpublish.config.resolver'
+            $innerConfigurableMatcherFactory: '@ibexa.content_forms.content_edit_view.matcher_factory.dynamically_configured.inner'
+            $configResolver: '@ibexa.config.resolver'
             $parameterName: content_edit_view
 
     Ibexa\ContentForms\Content\View\Filter\ContentEditViewFilter:
         arguments:
-            - '@ezpublish.api.service.content'
-            - '@ezpublish.api.service.content_type'
+            - '@ibexa.api.service.content'
+            - '@ibexa.api.service.content_type'
         tags:
             - { name: kernel.event_subscriber }
 
     # ContentCreateView
     Ibexa\ContentForms\Content\View\Builder\ContentCreateViewBuilder:
         arguments:
-            - '@ezpublish.api.repository'
-            - '@ezpublish.view.configurator'
-            - '@ezpublish.view.view_parameters.injector.dispatcher'
-            - '@ezplatform.content_forms.action_dispatcher.content'
+            - '@ibexa.api.repository'
+            - '@Ibexa\Core\MVC\Symfony\View\Configurator\ViewProvider'
+            - '@Ibexa\Core\MVC\Symfony\View\ParametersInjector\EventDispatcherInjector'
+            - '@Ibexa\ContentForms\Form\ActionDispatcher\ContentDispatcher'
         tags:
             - { name: ibexa.view.builder }
 
     Ibexa\ContentForms\Content\View\Provider\ContentCreateView\Configured:
         arguments:
-            - '@ezplatform.repository_forms.content_create_view.matcher_factory'
+            - '@ibexa.content_forms.content_create_view.matcher_factory'
         tags:
             - {name: ibexa.view.provider, type: 'Ibexa\ContentForms\Content\View\ContentCreateView', priority: 10}
 
-    ezplatform.repository_forms.content_create_view.matcher_factory:
+    ibexa.content_forms.content_create_view.matcher_factory:
         class: '%ezpublish.view.matcher_factory.class%'
         arguments:
             - '@Ibexa\Bundle\Core\Matcher\ViewMatcherRegistry'
-            - '@ezpublish.api.repository'
+            - '@ibexa.api.repository'
             - 'Ibexa\Core\MVC\Symfony\Matcher\ContentBased'
 
-    ezplatform.repository_forms.content_create_view.matcher_factory.dynamically_configured:
+    ibexa.content_forms.content_create_view.matcher_factory.dynamically_configured:
         class: Ibexa\Core\MVC\Symfony\Matcher\DynamicallyConfiguredMatcherFactoryDecorator
-        decorates: ezplatform.repository_forms.content_create_view.matcher_factory
+        decorates: ibexa.content_forms.content_create_view.matcher_factory
         arguments:
-            $innerConfigurableMatcherFactory: '@ezplatform.repository_forms.content_create_view.matcher_factory.dynamically_configured.inner'
-            $configResolver: '@ezpublish.config.resolver'
+            $innerConfigurableMatcherFactory: '@ibexa.content_forms.content_create_view.matcher_factory.dynamically_configured.inner'
+            $configResolver: '@ibexa.config.resolver'
             $parameterName: content_create_view
 
     Ibexa\ContentForms\Content\View\Filter\ContentCreateViewFilter:
         arguments:
-            - '@ezpublish.api.service.location'
-            - '@ezpublish.api.service.content_type'
+            - '@ibexa.api.service.location'
+            - '@ibexa.api.service.content_type'
         tags:
             - { name: kernel.event_subscriber }
