@@ -218,7 +218,6 @@ class UserRegistrationContext extends RawMinkContext implements Context, Snippet
                 )
             );
             /** @todo It should also check if there is corresponding input created once all types are implemented */
-            
         }
     }
 
