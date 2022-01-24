@@ -61,7 +61,7 @@ class UserCreateFormProcessor implements EventSubscriberInterface
         $user = $this->userService->createUser($data, $data->getParentGroups());
 
         $redirectUrl = $form['redirectUrlAfterPublish']->getData() ?: $this->urlGenerator->generate(
-            '_ez_content_view',
+            'ibexa.content.view',
             [
                 'contentId' => $user->id,
                 'locationId' => $user->contentInfo->mainLocationId,
