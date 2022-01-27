@@ -21,7 +21,7 @@ services:
             - { name: ibexa.view.provider, type: Ibexa\ContentForms\Content\View\ContentEditView, priority: 10 }
 
     ibexa.content_forms.content_edit_view.matcher_factory:
-        class: '%ezpublish.view.matcher_factory.class%'
+        class: Ibexa\Bundle\Core\Matcher\ServiceAwareMatcherFactory
         arguments:
             - '@Ibexa\Bundle\Core\Matcher\ViewMatcherRegistry'
             - '@ibexa.api.repository'
@@ -59,7 +59,7 @@ services:
             - {name: ibexa.view.provider, type: 'Ibexa\ContentForms\Content\View\ContentCreateView', priority: 10}
 
     ibexa.content_forms.content_create_view.matcher_factory:
-        class: '%ezpublish.view.matcher_factory.class%'
+        class: Ibexa\Bundle\Core\Matcher\ServiceAwareMatcherFactory
         arguments:
             - '@Ibexa\Bundle\Core\Matcher\ViewMatcherRegistry'
             - '@ibexa.api.repository'

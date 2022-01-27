@@ -4,33 +4,13 @@ imports:
     - {resource: views.yaml}
 
 parameters:
-    ezplatform.content_forms.field_type_form_mapper.dispatcher.class: Ibexa\ContentForms\FieldType\FieldTypeFormMapperDispatcher
-    ezplatform.content_forms.field.form_type.class: Ibexa\ContentForms\Form\Type\Content\ContentFieldType
-
-    ezplatform.content_forms.validator.field_value.class: Ibexa\ContentForms\Validator\Constraints\FieldValueValidator
-
-    ezplatform.content_forms.action_dispatcher.base.class: Ibexa\ContentForms\Form\ActionDispatcher\AbstractActionDispatcher
-    ezplatform.content_forms.action_dispatcher.content.class: Ibexa\ContentForms\Form\ActionDispatcher\ContentDispatcher
-    ezplatform.content_forms.action_dispatcher.user.class: Ibexa\ContentForms\Form\ActionDispatcher\UserDispatcher
-    ezplatform.content_forms.form_processor.content.class: Ibexa\ContentForms\Form\Processor\ContentFormProcessor
-    ezplatform.content_forms.form_processor.user_create.class: Ibexa\ContentForms\Form\Processor\User\UserCreateFormProcessor
-    ezplatform.content_forms.form_processor.user_update.class: Ibexa\ContentForms\Form\Processor\User\UserUpdateFormProcessor
-    ezplatform.content_forms.form_processor.user_cancel.class: Ibexa\ContentForms\Form\Processor\User\UserCancelFormProcessor
-
-    ezplatform.content_forms.controller.content_edit.class: Ibexa\Bundle\ContentForms\Controller\ContentEditController
-    ezplatform.content_forms.controller.user_register.class: Ibexa\Bundle\ContentForms\Controller\UserRegisterController
-    ezplatform.content_forms.controller.user.class: Ibexa\Bundle\ContentForms\Controller\UserController
-
-    ezplatform.content_forms.view_templates_listener.class: Ibexa\ContentForms\EventListener\ViewTemplatesListener
 
     ezplatform.content_forms.user_content_type_identifier: "user"
 
 services:
-    Ibexa\ContentForms\FieldType\FieldTypeFormMapperDispatcher:
-        class: "%ezplatform.content_forms.field_type_form_mapper.dispatcher.class%"
+    Ibexa\ContentForms\FieldType\FieldTypeFormMapperDispatcher: ~
 
     Ibexa\ContentForms\Form\Type\Content\ContentFieldType:
-        class: "%ezplatform.content_forms.field.form_type.class%"
         arguments: ['@Ibexa\ContentForms\FieldType\FieldTypeFormMapperDispatcher']
         tags:
             - { name: form.type, alias: ezplatform_content_forms_content_field }
@@ -55,28 +35,24 @@ services:
 
     Ibexa\ContentForms\Validator\Constraints\FieldValueValidator:
         parent: Ibexa\AdminUi\Validator\Constraints\FieldTypeValidator
-        class: "%ezplatform.content_forms.validator.field_value.class%"
+        class: Ibexa\ContentForms\Validator\Constraints\FieldValueValidator
         tags:
             - { name: validator.constraint_validator, alias: ezplatform.content_forms.validator.field_value }
 
     # Action dispatchers
     Ibexa\ContentForms\Form\ActionDispatcher\AbstractActionDispatcher:
-        class: "%ezplatform.content_forms.action_dispatcher.base.class%"
         abstract: true
         calls:
             - [setEventDispatcher, ["@event_dispatcher"]]
 
     Ibexa\ContentForms\Form\ActionDispatcher\ContentDispatcher:
-        class: "%ezplatform.content_forms.action_dispatcher.content.class%"
         parent: Ibexa\ContentForms\Form\ActionDispatcher\AbstractActionDispatcher
 
     Ibexa\ContentForms\Form\ActionDispatcher\UserDispatcher:
-        class: "%ezplatform.content_forms.action_dispatcher.user.class%"
         parent: Ibexa\ContentForms\Form\ActionDispatcher\AbstractActionDispatcher
 
     # Form processors
     Ibexa\ContentForms\Form\Processor\ContentFormProcessor:
-        class: '%ezplatform.content_forms.form_processor.content.class%'
         arguments:
             - '@ibexa.api.service.content'
             - '@ibexa.api.service.location'
@@ -85,7 +61,6 @@ services:
             - { name: kernel.event_subscriber }
 
     Ibexa\ContentForms\Form\Processor\User\UserCreateFormProcessor:
-        class: "%ezplatform.content_forms.form_processor.user_create.class%"
         arguments:
             - '@ibexa.api.service.user'
             - '@router'
@@ -93,7 +68,6 @@ services:
             - { name: kernel.event_subscriber }
 
     Ibexa\ContentForms\Form\Processor\User\UserUpdateFormProcessor:
-        class: "%ezplatform.content_forms.form_processor.user_update.class%"
         arguments:
             - '@ibexa.api.service.user'
             - '@ibexa.api.service.content'
@@ -102,7 +76,6 @@ services:
             - { name: kernel.event_subscriber }
 
     Ibexa\ContentForms\Form\Processor\User\UserCancelFormProcessor:
-        class: "%ezplatform.content_forms.form_processor.user_cancel.class%"
         arguments:
             - '@router'
         tags:
@@ -115,7 +88,7 @@ services:
     # Controllers
     Ibexa\Bundle\ContentForms\Controller\ContentEditController:
         public: true
-        class: "%ezplatform.content_forms.controller.content_edit.class%"
+        class: Ibexa\Bundle\ContentForms\Controller\ContentEditController
         arguments:
             - '@ibexa.api.service.content_type'
             - '@ibexa.api.service.content'
@@ -125,7 +98,6 @@ services:
               - { name: controller.service_arguments }
 
     Ibexa\Bundle\ContentForms\Controller\UserController:
-        class: "%ezplatform.content_forms.controller.user.class%"
         arguments:
             - '@ibexa.api.service.content_type'
             - '@ibexa.api.service.user'
@@ -143,7 +115,6 @@ services:
         public: true
 
     Ibexa\ContentForms\EventListener\ViewTemplatesListener:
-        class: "%ezplatform.content_forms.view_templates_listener.class%"
         arguments:
             $configResolver: '@ibexa.config.resolver'
         tags:
