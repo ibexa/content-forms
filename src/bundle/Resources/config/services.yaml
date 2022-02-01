@@ -5,7 +5,7 @@ imports:
 
 parameters:
 
-    ezplatform.content_forms.user_content_type_identifier: "user"
+    ibexa.content_forms.user_content_type_identifier: "user"
 
 services:
     Ibexa\ContentForms\FieldType\FieldTypeFormMapperDispatcher: ~

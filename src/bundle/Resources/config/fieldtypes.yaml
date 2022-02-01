@@ -17,7 +17,7 @@ services:
 
     Ibexa\ContentForms\Form\Type\FieldType\CountryFieldType:
         arguments:
-            $countriesInfo: '%ezpublish.fieldType.ezcountry.data%'
+            $countriesInfo: '%ibexa.field_type.country.data%'
 
     #
     # FormMappers

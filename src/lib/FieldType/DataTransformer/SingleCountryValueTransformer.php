@@ -19,7 +19,7 @@ use Symfony\Component\Form\Exception\TransformationFailedException;
 class SingleCountryValueTransformer implements DataTransformerInterface
 {
     /**
-     * @var array Array of countries from ezpublish.fieldType.ezcountry.data
+     * @var array Array of countries from "ibexa.field_type.country.data"
      */
     protected $countriesInfo;
 
