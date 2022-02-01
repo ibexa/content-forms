@@ -93,7 +93,7 @@ class ContentFormProcessor implements EventSubscriberInterface
         $event->setPayload('content', $draft);
         $event->setPayload('is_new', $draft->contentInfo->isDraft());
 
-        $defaultUrl = $this->router->generate('ezplatform.content.draft.edit', [
+        $defaultUrl = $this->router->generate('ibexa.content.draft.edit', [
             'contentId' => $draft->id,
             'versionNo' => $draft->getVersionInfo()->versionNo,
             'language' => $languageCode,
@@ -126,7 +126,7 @@ class ContentFormProcessor implements EventSubscriberInterface
         $event->setPayload('is_new', $draft->contentInfo->isDraft());
 
         $redirectUrl = $form['redirectUrlAfterPublish']->getData() ?: $this->router->generate(
-            '_ez_content_view',
+            'ibexa.content.view',
             [
                 'contentId' => $content->id,
                 'locationId' => $content->contentInfo->mainLocationId,
@@ -150,7 +150,7 @@ class ContentFormProcessor implements EventSubscriberInterface
         if ($data->isNew()) {
             $parentLocation = $this->locationService->loadLocation($data->getLocationStructs()[0]->parentLocationId);
             $response = new RedirectResponse($this->router->generate(
-                '_ez_content_view',
+                'ibexa.content.view',
                 [
                     'contentId' => $parentLocation->contentId,
                     'locationId' => $parentLocation->id,
@@ -180,7 +180,7 @@ class ContentFormProcessor implements EventSubscriberInterface
         $this->contentService->deleteVersion($versionInfo);
 
         $url = $this->router->generate(
-            '_ez_content_view',
+            'ibexa.content.view',
             [
                 'contentId' => $redirectionContentId,
                 'locationId' => $redirectionLocationId,
@@ -210,7 +210,7 @@ class ContentFormProcessor implements EventSubscriberInterface
         $event->setPayload('content', $contentDraft);
         $event->setPayload('is_new', $contentDraft->contentInfo->isDraft());
 
-        $contentEditUrl = $this->router->generate('ezplatform.content.draft.edit', [
+        $contentEditUrl = $this->router->generate('ibexa.content.draft.edit', [
             'contentId' => $contentDraft->id,
             'versionNo' => $contentDraft->getVersionInfo()->versionNo,
             'language' => $contentDraft->contentInfo->mainLanguageCode,

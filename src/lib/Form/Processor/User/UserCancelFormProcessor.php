@@ -47,7 +47,7 @@ class UserCancelFormProcessor implements EventSubscriberInterface
             ? $data->getParentGroups()[0]->contentInfo
             : $data->user->contentInfo;
 
-        $response = new RedirectResponse($this->urlGenerator->generate('_ez_content_view', [
+        $response = new RedirectResponse($this->urlGenerator->generate('ibexa.content.view', [
             'contentId' => $contentInfo->id,
             'locationId' => $contentInfo->mainLocationId,
         ]));
