@@ -15,7 +15,7 @@ use PHPUnit\Framework\TestCase;
 class MultipleCountryValueTransformerTest extends TestCase
 {
     /**
-     * @var array Array of countries from ezpublish.fieldType.ezcountry.data
+     * @var array Array of countries from "ibexa.field_type.country.data"
      */
     protected $countriesInfo = [
         'AF' => ['Name' => 'Afghanistan', 'Alpha2' => 'AF', 'Alpha3' => 'AFG', 'IDC' => '93'],

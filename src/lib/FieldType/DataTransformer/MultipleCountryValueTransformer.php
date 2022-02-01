@@ -18,7 +18,7 @@ use Symfony\Component\Form\DataTransformerInterface;
 class MultipleCountryValueTransformer implements DataTransformerInterface
 {
     /**
-     * @var array Array of countries from ezpublish.fieldType.ezcountry.data
+     * @var array Array of countries from "ibexa.field_type.country.data"
      */
     protected $countriesInfo;
 
