@@ -21,7 +21,7 @@ Scenario: The user group where registered users are created can be customized
     Given a User Group
       And the following user registration group configuration:
       """
-      ezpublish:
+      ibexa:
         system:
           default:
             user_registration:
@@ -38,7 +38,7 @@ Scenario: The user registration templates can be customized
     Given I do have the user/register policy
       And the following user registration templates configuration:
       """
-      ezpublish:
+      ibexa:
         system:
           default:
             user_registration:

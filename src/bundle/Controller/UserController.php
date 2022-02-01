@@ -16,6 +16,7 @@ use Ibexa\ContentForms\Form\Type\User\UserCreateType;
 use Ibexa\ContentForms\Form\Type\User\UserUpdateType;
 use Ibexa\ContentForms\User\View\UserCreateView;
 use Ibexa\ContentForms\User\View\UserUpdateView;
+use Ibexa\Contracts\ContentForms\Content\Form\Provider\GroupedContentFormFieldsProviderInterface;
 use Ibexa\Contracts\Core\Repository\ContentTypeService;
 use Ibexa\Contracts\Core\Repository\Exceptions\UnauthorizedException;
 use Ibexa\Contracts\Core\Repository\LanguageService;
@@ -49,6 +50,9 @@ class UserController extends Controller
     /** @var \Ibexa\Core\MVC\Symfony\Locale\UserLanguagePreferenceProviderInterface */
     private $userLanguagePreferenceProvider;
 
+    /** @var \Ibexa\Contracts\ContentForms\Content\Form\Provider\GroupedContentFormFieldsProviderInterface */
+    private $groupedContentFormFieldsProvider;
+
     public function __construct(
         ContentTypeService $contentTypeService,
         UserService $userService,
@@ -56,7 +60,8 @@ class UserController extends Controller
         LanguageService $languageService,
         ActionDispatcherInterface $userActionDispatcher,
         PermissionResolver $permissionResolver,
-        UserLanguagePreferenceProviderInterface $userLanguagePreferenceProvider
+        UserLanguagePreferenceProviderInterface $userLanguagePreferenceProvider,
+        GroupedContentFormFieldsProviderInterface $groupedContentFormFieldsProvider
     ) {
         $this->contentTypeService = $contentTypeService;
         $this->userService = $userService;
@@ -65,6 +70,7 @@ class UserController extends Controller
         $this->userActionDispatcher = $userActionDispatcher;
         $this->permissionResolver = $permissionResolver;
         $this->userLanguagePreferenceProvider = $userLanguagePreferenceProvider;
+        $this->groupedContentFormFieldsProvider = $groupedContentFormFieldsProvider;
     }
 
     /**
@@ -126,6 +132,9 @@ class UserController extends Controller
                 'parent_location' => $location,
                 'content_type' => $contentType,
                 'parent_group' => $parentGroup,
+                'grouped_fields' => $this->groupedContentFormFieldsProvider->getGroupedFields(
+                    $form->get('fieldsData')->all()
+                ),
             ]
         );
     }
@@ -210,6 +219,9 @@ class UserController extends Controller
                 'user' => $user,
                 'location' => $location,
                 'parent_location' => $parentLocation,
+                'grouped_fields' => $this->groupedContentFormFieldsProvider->getGroupedFields(
+                    $form->get('fieldsData')->all()
+                ),
             ]
         );
     }

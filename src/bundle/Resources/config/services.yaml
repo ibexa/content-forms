@@ -106,6 +106,7 @@ services:
             - '@Ibexa\ContentForms\Form\ActionDispatcher\UserDispatcher'
             - '@Ibexa\Contracts\Core\Repository\PermissionResolver'
             - '@Ibexa\Core\MVC\Symfony\Locale\UserLanguagePreferenceProvider'
+            - '@Ibexa\ContentForms\Content\Form\Provider\GroupedContentFormFieldsProvider'
         parent: Ibexa\Core\MVC\Symfony\Controller\Controller
         tags:
               - { name: controller.service_arguments }
