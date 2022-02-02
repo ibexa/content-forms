@@ -12,8 +12,8 @@ use Ibexa\ContentForms\Data\NewnessCheckable;
 use Ibexa\Core\Repository\Values\Content\ContentUpdateStruct;
 
 /**
- * @property \EzSystems\EzPlatformContentForms\Data\Content\FieldData[] $fieldsData
- * @property \eZ\Publish\API\Repository\Values\Content\Content $contentDraft
+ * @property \Ibexa\Contracts\ContentForms\Data\Content\FieldData[] $fieldsData
+ * @property \Ibexa\Contracts\Core\Repository\Values\Content\Content $contentDraft
  */
 class ContentUpdateData extends ContentUpdateStruct implements NewnessCheckable
 {

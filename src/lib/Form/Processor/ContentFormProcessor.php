@@ -199,7 +199,7 @@ class ContentFormProcessor implements EventSubscriberInterface
      */
     public function processCreateDraft(FormActionEvent $event)
     {
-        /** @var $createContentDraft \EzSystems\EzPlatformContentForms\Data\Content\CreateContentDraftData */
+        /** @var $createContentDraft \Ibexa\ContentForms\Data\Content\CreateContentDraftData */
         $createContentDraft = $event->getData();
 
         $contentInfo = $this->contentService->loadContentInfo($createContentDraft->contentId);
