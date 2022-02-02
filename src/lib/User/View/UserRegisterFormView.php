@@ -11,7 +11,7 @@ namespace Ibexa\ContentForms\User\View;
 use Ibexa\User\View\Register\FormView as BaseUserRegisterFormView;
 
 /**
- * @deprecated Deprecated in 2.5 and will be removed in 3.0. Please use EzSystems\EzPlatformUser\View\UserRegisterFormView instead.
+ * @deprecated Deprecated in 2.5 and will be removed in 3.0. Please use Ibexa\User\View\UserRegisterFormView instead.
  */
 class UserRegisterFormView extends BaseUserRegisterFormView
 {

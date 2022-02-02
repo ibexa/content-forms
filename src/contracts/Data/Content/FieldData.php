@@ -11,8 +11,8 @@ namespace Ibexa\Contracts\ContentForms\Data\Content;
 use Ibexa\Contracts\Core\Repository\Values\ValueObject;
 
 /**
- * @property \eZ\Publish\API\Repository\Values\Content\Field $field
- * @property \eZ\Publish\API\Repository\Values\ContentType\FieldDefinition $fieldDefinition
+ * @property \Ibexa\Contracts\Core\Repository\Values\Content\Field $field
+ * @property \Ibexa\Contracts\Core\Repository\Values\ContentType\FieldDefinition $fieldDefinition
  */
 class FieldData extends ValueObject
 {

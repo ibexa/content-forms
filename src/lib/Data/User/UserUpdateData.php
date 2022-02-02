@@ -13,8 +13,8 @@ use Ibexa\ContentForms\Data\NewnessCheckable;
 use Ibexa\Contracts\Core\Repository\Values\User\UserUpdateStruct;
 
 /**
- * @property \EzSystems\EzPlatformContentForms\Data\Content\FieldData[] $fieldsData
- * @property \eZ\Publish\API\Repository\Values\User\User $user
+ * @property \Ibexa\Contracts\ContentForms\Data\Content\FieldData[] $fieldsData
+ * @property \Ibexa\Contracts\Core\Repository\Values\User\User $user
  */
 class UserUpdateData extends UserUpdateStruct implements NewnessCheckable
 {

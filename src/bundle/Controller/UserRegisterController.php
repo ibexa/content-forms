@@ -13,7 +13,7 @@ use Ibexa\Bundle\User\Controller\UserRegisterController as BaseUserRegisterContr
 use Symfony\Component\HttpFoundation\Request;
 
 /**
- * @deprecated Deprecated in 2.5 and will be removed in 3.0. Please use \EzSystems\EzPlatformUserBundle\Controller\UserRegisterController instead.
+ * @deprecated Deprecated in 2.5 and will be removed in 3.0. Please use \Ibexa\Bundle\User\Controller\UserRegisterController instead.
  */
 class UserRegisterController extends Controller
 {

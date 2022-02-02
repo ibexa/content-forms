@@ -11,7 +11,7 @@ namespace Ibexa\ContentForms\User\View;
 use Ibexa\User\View\Register\ConfirmView as BaseRegisterConfirmView;
 
 /**
- * @deprecated Deprecated in 2.5 and will be removed in 3.0. Please use EzSystems\EzPlatformUser\View\UserRegisterConfirmView instead.
+ * @deprecated Deprecated in 2.5 and will be removed in 3.0. Please use Ibexa\User\View\UserRegisterConfirmView instead.
  */
 class UserRegisterConfirmView extends BaseRegisterConfirmView
 {

@@ -13,7 +13,7 @@ use Ibexa\Contracts\Core\Repository\Values\Content\LocationCreateStruct;
 use Ibexa\Core\Repository\Values\Content\ContentCreateStruct;
 
 /**
- * @property \EzSystems\EzPlatformContentForms\Data\Content\FieldData[] $fieldsData
+ * @property \Ibexa\Contracts\ContentForms\Data\Content\FieldData[] $fieldsData
  */
 class ContentCreateData extends ContentCreateStruct implements NewnessCheckable
 {
