@@ -53,7 +53,7 @@ class ContentCreateMapper implements FormDataMapperInterface
     {
         $optionsResolver
             ->setRequired(['mainLanguageCode', 'parentLocation'])
-            ->setAllowedTypes('parentLocation', '\eZ\Publish\API\Repository\Values\Content\LocationCreateStruct');
+            ->setAllowedTypes('parentLocation', '\\Ibexa\\Contracts\\Core\\Repository\\Values\\Content\\LocationCreateStruct');
     }
 }
 
