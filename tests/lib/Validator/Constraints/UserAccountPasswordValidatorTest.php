@@ -65,7 +65,7 @@ class UserAccountPasswordValidatorTest extends TestCase
 
     public function testValid()
     {
-        $userAccount = new UserAccountFieldData('user', 'pass', 'user@ez.no');
+        $userAccount = new UserAccountFieldData('user', 'pass', 'user@ibexa.co');
         $contentType = $this->createMock(ContentType::class);
 
         $this->userService
@@ -91,7 +91,7 @@ class UserAccountPasswordValidatorTest extends TestCase
     public function testInvalid()
     {
         $contentType = $this->createMock(ContentType::class);
-        $userAccount = new UserAccountFieldData('user', 'pass', 'user@ez.no');
+        $userAccount = new UserAccountFieldData('user', 'pass', 'user@ibexa.co');
         $errorParameter = 'foo';
         $errorMessage = 'error';
 
