@@ -49,7 +49,7 @@ The Form, `ContentEditType`, uses a `ContentUpdateData` object.
 ## Future development
 
 ### Version conflits
-[Version conflicts](https://jira.ibexa.co/browse/EZP-25465) must be handled. There are discussions
+[Version conflicts](https://issues.ibexa.co/browse/EZP-25465) must be handled. There are discussions
 about moving this logic down to the API. On the other hand, it would be fairly simple to implement
 that logic in this controller.
 
