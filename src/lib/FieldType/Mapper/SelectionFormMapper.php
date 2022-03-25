@@ -1,16 +1,16 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\FieldType\Mapper;
+namespace Ibexa\ContentForms\FieldType\Mapper;
 
-use EzSystems\EzPlatformContentForms\Data\Content\FieldData;
-use EzSystems\EzPlatformContentForms\FieldType\FieldValueFormMapperInterface;
-use EzSystems\EzPlatformContentForms\Form\Type\FieldType\SelectionFieldType;
+use Ibexa\ContentForms\Form\Type\FieldType\SelectionFieldType;
+use Ibexa\Contracts\ContentForms\Data\Content\FieldData;
+use Ibexa\Contracts\ContentForms\FieldType\FieldValueFormMapperInterface;
 use Symfony\Component\Form\FormInterface;
 
 class SelectionFormMapper implements FieldValueFormMapperInterface
@@ -47,3 +47,5 @@ class SelectionFormMapper implements FieldValueFormMapperInterface
             );
     }
 }
+
+class_alias(SelectionFormMapper::class, 'EzSystems\EzPlatformContentForms\FieldType\Mapper\SelectionFormMapper');

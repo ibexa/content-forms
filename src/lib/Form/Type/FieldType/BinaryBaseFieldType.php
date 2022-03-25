@@ -1,14 +1,14 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\Form\Type\FieldType;
+namespace Ibexa\ContentForms\Form\Type\FieldType;
 
-use EzSystems\EzPlatformContentForms\ConfigResolver\MaxUploadSize;
+use Ibexa\ContentForms\ConfigResolver\MaxUploadSize;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
@@ -23,7 +23,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class BinaryBaseFieldType extends AbstractType
 {
-    /** @var MaxUploadSize */
+    /** @var \Ibexa\ContentForms\ConfigResolver\MaxUploadSize */
     private $maxUploadSize;
 
     public function __construct(MaxUploadSize $maxUploadSize)
@@ -66,3 +66,5 @@ class BinaryBaseFieldType extends AbstractType
         $resolver->setDefaults(['translation_domain' => 'ezplatform_content_forms_fieldtype']);
     }
 }
+
+class_alias(BinaryBaseFieldType::class, 'EzSystems\EzPlatformContentForms\Form\Type\FieldType\BinaryBaseFieldType');

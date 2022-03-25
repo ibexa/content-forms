@@ -1,14 +1,14 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\Content\View;
+namespace Ibexa\ContentForms\Content\View;
 
-use eZ\Publish\API\Repository\Values\ContentType\ContentType;
+use Ibexa\Contracts\Core\Repository\Values\ContentType\ContentType;
 
 /**
  * A view that contains a Content.
@@ -18,7 +18,9 @@ interface ContentTypeValueView
     /**
      * Returns the ContentType.
      *
-     * @return ContentType
+     * @return \Ibexa\Contracts\Core\Repository\Values\ContentType\ContentType
      */
     public function getContentType(): ContentType;
 }
+
+class_alias(ContentTypeValueView::class, 'EzSystems\EzPlatformContentForms\Content\View\ContentTypeValueView');

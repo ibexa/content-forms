@@ -1,12 +1,12 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\Form\Transformer;
+namespace Ibexa\ContentForms\Form\Transformer;
 
 use Symfony\Component\Form\DataTransformerInterface;
 use Symfony\Component\Form\Exception\TransformationFailedException;
@@ -51,3 +51,5 @@ final class JsonToArrayTransformer implements DataTransformerInterface
         return $decoded;
     }
 }
+
+class_alias(JsonToArrayTransformer::class, 'EzSystems\EzPlatformContentForms\Form\Transformer\JsonToArrayTransformer');

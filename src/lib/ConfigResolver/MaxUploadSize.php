@@ -1,19 +1,19 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\ConfigResolver;
+namespace Ibexa\ContentForms\ConfigResolver;
 
 class MaxUploadSize
 {
-    const BYTES = 'B';
-    const KILOBYTES = 'K';
-    const MEGABYTES = 'M';
-    const GIGABYTES = 'G';
+    public const BYTES = 'B';
+    public const KILOBYTES = 'K';
+    public const MEGABYTES = 'M';
+    public const GIGABYTES = 'G';
 
     /** @var int */
     protected $value;
@@ -69,3 +69,5 @@ class MaxUploadSize
         return (int) $value;
     }
 }
+
+class_alias(MaxUploadSize::class, 'EzSystems\EzPlatformContentForms\ConfigResolver\MaxUploadSize');
