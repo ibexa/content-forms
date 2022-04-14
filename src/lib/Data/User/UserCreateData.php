@@ -10,6 +10,8 @@ namespace Ibexa\ContentForms\Data\User;
 
 use Ibexa\ContentForms\Data\Content\ContentData;
 use Ibexa\ContentForms\Data\NewnessCheckable;
+use Ibexa\Contracts\Core\Repository\Values\User\Limitation\RoleLimitation;
+use Ibexa\Contracts\Core\Repository\Values\User\Role;
 use Ibexa\Contracts\Core\Repository\Values\User\UserGroup;
 use Ibexa\Core\Repository\Values\User\UserCreateStruct;
 
@@ -24,6 +26,10 @@ class UserCreateData extends UserCreateStruct implements NewnessCheckable
      * @var \Ibexa\Contracts\Core\Repository\Values\User\UserGroup[]
      */
     private $parentGroups;
+
+    private ?Role $role;
+
+    private ?RoleLimitation $roleLimitation;
 
     public function isNew()
     {
@@ -54,6 +60,26 @@ class UserCreateData extends UserCreateStruct implements NewnessCheckable
     public function setParentGroups(array $parentGroups)
     {
         $this->parentGroups = $parentGroups;
+    }
+
+    public function getRole(): ?Role
+    {
+        return $this->role;
+    }
+
+    public function setRole(?Role $role): void
+    {
+        $this->role = $role;
+    }
+
+    public function getRoleLimitation(): ?RoleLimitation
+    {
+        return $this->roleLimitation;
+    }
+
+    public function setRoleLimitation(?RoleLimitation $roleLimitation): void
+    {
+        $this->roleLimitation = $roleLimitation;
     }
 }
 
