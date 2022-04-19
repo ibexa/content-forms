@@ -1,15 +1,15 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\Form\ActionDispatcher;
+namespace Ibexa\ContentForms\Form\ActionDispatcher;
 
-use eZ\Publish\API\Repository\Values\Content\Location;
-use EzSystems\EzPlatformContentForms\Event\ContentFormEvents;
+use Ibexa\ContentForms\Event\ContentFormEvents;
+use Ibexa\Contracts\Core\Repository\Values\Content\Location;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ContentDispatcher extends AbstractActionDispatcher
@@ -26,3 +26,5 @@ class ContentDispatcher extends AbstractActionDispatcher
         return ContentFormEvents::CONTENT_EDIT;
     }
 }
+
+class_alias(ContentDispatcher::class, 'EzSystems\EzPlatformContentForms\Form\ActionDispatcher\ContentDispatcher');

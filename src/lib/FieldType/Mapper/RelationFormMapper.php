@@ -1,15 +1,15 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\FieldType\Mapper;
+namespace Ibexa\ContentForms\FieldType\Mapper;
 
-use EzSystems\EzPlatformContentForms\Data\Content\FieldData;
-use EzSystems\EzPlatformContentForms\Form\Type\FieldType\RelationFieldType;
+use Ibexa\ContentForms\Form\Type\FieldType\RelationFieldType;
+use Ibexa\Contracts\ContentForms\Data\Content\FieldData;
 use Symfony\Component\Form\FormInterface;
 
 class RelationFormMapper extends AbstractRelationFormMapper
@@ -34,3 +34,5 @@ class RelationFormMapper extends AbstractRelationFormMapper
             );
     }
 }
+
+class_alias(RelationFormMapper::class, 'EzSystems\EzPlatformContentForms\FieldType\Mapper\RelationFormMapper');

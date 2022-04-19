@@ -1,17 +1,17 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\Data\Mapper;
+namespace Ibexa\ContentForms\Data\Mapper;
 
-use eZ\Publish\API\Repository\Values\Content\Field;
-use eZ\Publish\API\Repository\Values\ValueObject;
-use EzSystems\EzPlatformContentForms\Data\Content\ContentCreateData;
-use EzSystems\EzPlatformContentForms\Data\Content\FieldData;
+use Ibexa\ContentForms\Data\Content\ContentCreateData;
+use Ibexa\Contracts\ContentForms\Data\Content\FieldData;
+use Ibexa\Contracts\Core\Repository\Values\Content\Field;
+use Ibexa\Contracts\Core\Repository\Values\ValueObject;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
@@ -20,12 +20,12 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class ContentCreateMapper implements FormDataMapperInterface
 {
     /**
-     * Maps a ValueObject from eZ content repository to a data usable as underlying form data (e.g. create/update struct).
+     * Maps a ValueObject from Ibexa content repository to a data usable as underlying form data (e.g. create/update struct).
      *
-     * @param \eZ\Publish\API\Repository\Values\ContentType\ContentType|\eZ\Publish\API\Repository\Values\ValueObject $contentType
+     * @param \Ibexa\Contracts\Core\Repository\Values\ContentType\ContentType|\Ibexa\Contracts\Core\Repository\Values\ValueObject $contentType
      * @param array $params
      *
-     * @return ContentCreateData
+     * @return \Ibexa\ContentForms\Data\Content\ContentCreateData
      */
     public function mapToFormData(ValueObject $contentType, array $params = [])
     {
@@ -53,6 +53,8 @@ class ContentCreateMapper implements FormDataMapperInterface
     {
         $optionsResolver
             ->setRequired(['mainLanguageCode', 'parentLocation'])
-            ->setAllowedTypes('parentLocation', '\eZ\Publish\API\Repository\Values\Content\LocationCreateStruct');
+            ->setAllowedTypes('parentLocation', '\\Ibexa\\Contracts\\Core\\Repository\\Values\\Content\\LocationCreateStruct');
     }
 }
+
+class_alias(ContentCreateMapper::class, 'EzSystems\EzPlatformContentForms\Data\Mapper\ContentCreateMapper');

@@ -1,10 +1,10 @@
 parameters:
-    ezsettings.default.content_edit.templates.edit: '@@EzPlatformContentForms/Content/content_edit.html.twig'
-    ezsettings.default.content_edit.templates.create: '@@EzPlatformContentForms/Content/content_edit.html.twig'
-    ezsettings.default.content_edit.templates.create_draft: '@@EzPlatformContentForms/Content/content_create_draft.html.twig'
+    ibexa.site_access.config.default.content_edit.templates.edit: '@@IbexaContentForms/Content/content_edit.html.twig'
+    ibexa.site_access.config.default.content_edit.templates.create: '@@IbexaContentForms/Content/content_edit.html.twig'
+    ibexa.site_access.config.default.content_edit.templates.create_draft: '@@IbexaContentForms/Content/content_create_draft.html.twig'
 
-    ezsettings.default.user_edit.templates.update: '@@EzPlatformContentForms/Content/content_edit.html.twig'
-    ezsettings.default.user_edit.templates.create: '@@EzPlatformContentForms/Content/content_edit.html.twig'
+    ibexa.site_access.config.default.user_edit.templates.update: '@@IbexaContentForms/Content/content_edit.html.twig'
+    ibexa.site_access.config.default.user_edit.templates.create: '@@IbexaContentForms/Content/content_edit.html.twig'
 
-    ezsettings.default.content_edit_view: {}
-    ezsettings.default.content_create_view: {}
+    ibexa.site_access.config.default.content_edit_view: {}
+    ibexa.site_access.config.default.content_create_view: {}

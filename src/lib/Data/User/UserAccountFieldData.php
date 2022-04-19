@@ -1,12 +1,12 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\Data\User;
+namespace Ibexa\ContentForms\Data\User;
 
 /**
  * User account field data value object.
@@ -42,3 +42,5 @@ class UserAccountFieldData
         $this->enabled = $enabled;
     }
 }
+
+class_alias(UserAccountFieldData::class, 'EzSystems\EzPlatformContentForms\Data\User\UserAccountFieldData');

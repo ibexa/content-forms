@@ -1,16 +1,16 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\FieldType\Mapper;
+namespace Ibexa\ContentForms\FieldType\Mapper;
 
-use EzSystems\EzPlatformContentForms\Data\Content\FieldData;
-use EzSystems\EzPlatformContentForms\FieldType\FieldValueFormMapperInterface;
-use EzSystems\EzPlatformContentForms\Form\Type\FieldType\AuthorFieldType;
+use Ibexa\ContentForms\Form\Type\FieldType\AuthorFieldType;
+use Ibexa\Contracts\ContentForms\Data\Content\FieldData;
+use Ibexa\Contracts\ContentForms\FieldType\FieldValueFormMapperInterface;
 use Symfony\Component\Form\FormInterface;
 
 /**
@@ -20,7 +20,7 @@ class AuthorFormMapper implements FieldValueFormMapperInterface
 {
     /**
      * @param \Symfony\Component\Form\FormInterface $fieldForm
-     * @param \EzSystems\EzPlatformContentForms\Data\Content\FieldData $data
+     * @param \Ibexa\Contracts\ContentForms\Data\Content\FieldData $data
      */
     public function mapFieldValueForm(FormInterface $fieldForm, FieldData $data)
     {
@@ -41,3 +41,5 @@ class AuthorFormMapper implements FieldValueFormMapperInterface
             );
     }
 }
+
+class_alias(AuthorFormMapper::class, 'EzSystems\EzPlatformContentForms\FieldType\Mapper\AuthorFormMapper');
