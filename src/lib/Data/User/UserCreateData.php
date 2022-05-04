@@ -27,9 +27,9 @@ class UserCreateData extends UserCreateStruct implements NewnessCheckable
      */
     private $parentGroups;
 
-    private ?Role $role;
+    private ?Role $role = null;
 
-    private ?RoleLimitation $roleLimitation;
+    private ?RoleLimitation $roleLimitation = null;
 
     public function isNew()
     {
