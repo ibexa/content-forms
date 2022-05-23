@@ -45,6 +45,7 @@ class ContentFieldType extends AbstractType
         $resolver
             ->setDefaults([
                 'content' => null,
+                'location' => null,
                 'contentCreateStruct' => null,
                 'contentUpdateStruct' => null,
                 'data_class' => FieldData::class,
@@ -55,6 +56,7 @@ class ContentFieldType extends AbstractType
 
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
+        $view->vars['location'] = $options['location'];
         $view->vars['languageCode'] = $options['languageCode'];
         $view->vars['mainLanguageCode'] = $options['mainLanguageCode'];
     }

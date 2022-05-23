@@ -13,7 +13,9 @@ use Ibexa\ContentForms\Data\Mapper\ContentUpdateMapper;
 use Ibexa\ContentForms\Form\Type\Content\ContentEditType;
 use Ibexa\Contracts\Core\Repository\ContentService;
 use Ibexa\Contracts\Core\Repository\ContentTypeService;
+use Ibexa\Contracts\Core\Repository\LocationService;
 use Ibexa\Contracts\Core\Repository\Values\Content\Content;
+use Ibexa\Contracts\Core\Repository\Values\Content\Location;
 use Ibexa\Contracts\Core\Repository\Values\ContentType\ContentType;
 use Ibexa\Core\MVC\Symfony\Locale\UserLanguagePreferenceProviderInterface;
 use Ibexa\Core\MVC\Symfony\View\Event\FilterViewBuilderParametersEvent;
@@ -36,6 +38,8 @@ class ContentEditViewFilter implements EventSubscriberInterface
     /** @var \Ibexa\Core\MVC\Symfony\Locale\UserLanguagePreferenceProviderInterface */
     private $languagePreferenceProvider;
 
+    private LocationService $locationService;
+
     /**
      * @param \Ibexa\Contracts\Core\Repository\ContentService $contentService
      * @param \Ibexa\Contracts\Core\Repository\ContentTypeService $contentTypeService
@@ -44,6 +48,7 @@ class ContentEditViewFilter implements EventSubscriberInterface
      */
     public function __construct(
         ContentService $contentService,
+        LocationService $locationService,
         ContentTypeService $contentTypeService,
         FormFactoryInterface $formFactory,
         UserLanguagePreferenceProviderInterface $languagePreferenceProvider
@@ -52,6 +57,7 @@ class ContentEditViewFilter implements EventSubscriberInterface
         $this->contentTypeService = $contentTypeService;
         $this->formFactory = $formFactory;
         $this->languagePreferenceProvider = $languagePreferenceProvider;
+        $this->locationService = $locationService;
     }
 
     public static function getSubscribedEvents()
@@ -73,6 +79,7 @@ class ContentEditViewFilter implements EventSubscriberInterface
         }
 
         $request = $event->getRequest();
+        $locationId = $event->getParameters()->get('locationId');
         $languageCode = $request->attributes->get('language');
         $contentDraft = $this->contentService->loadContent(
             $request->attributes->getInt('contentId'),
@@ -85,11 +92,14 @@ class ContentEditViewFilter implements EventSubscriberInterface
             $this->languagePreferenceProvider->getPreferredLanguages()
         );
 
+        $location = $this->locationService->loadLocation((int)$locationId);
+
         $contentUpdate = $this->resolveContentEditData($contentDraft, $languageCode, $contentType);
         $form = $this->resolveContentEditForm(
             $contentUpdate,
             $languageCode,
-            $contentDraft
+            $contentDraft,
+            $location
         );
 
         $event->getParameters()->add([
@@ -128,12 +138,14 @@ class ContentEditViewFilter implements EventSubscriberInterface
     private function resolveContentEditForm(
         ContentUpdateData $contentUpdate,
         string $languageCode,
-        Content $content
+        Content $content,
+        Location $location
     ): FormInterface {
         return $this->formFactory->create(
             ContentEditType::class,
             $contentUpdate,
             [
+                'location' => $location,
                 'languageCode' => $languageCode,
                 'mainLanguageCode' => $content->contentInfo->mainLanguageCode,
                 'content' => $content,

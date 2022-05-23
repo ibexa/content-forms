@@ -18,17 +18,24 @@ class RelationFormMapper extends AbstractRelationFormMapper
     {
         $fieldDefinition = $data->fieldDefinition;
         $formConfig = $fieldForm->getConfig();
+        $fieldSettings = $fieldDefinition->getFieldSettings();
 
         $fieldForm
             ->add(
                 $formConfig->getFormFactory()->createBuilder()
-                    ->create('value', RelationFieldType::class, [
-                        'required' => $fieldDefinition->isRequired,
-                        'label' => $fieldDefinition->getName(),
-                        'default_location' => $this->loadDefaultLocationForSelection(
-                            $fieldDefinition->getFieldSettings()['selectionRoot']
-                        ),
-                    ])
+                    ->create(
+                        'value',
+                        RelationFieldType::class,
+                        [
+                            'required' => $fieldDefinition->isRequired,
+                            'label' => $fieldDefinition->getName(),
+                            'default_location' => $this->loadDefaultLocationForSelection(
+                                $fieldSettings['selectionRoot'],
+                                $fieldForm->getConfig()->getOption('location'),
+                            ),
+                            'root_default_location' => $fieldSettings['rootDefaultLocation'] ?? false,
+                        ]
+                    )
                     ->setAutoInitialize(false)
                     ->getForm()
             );

@@ -69,6 +69,7 @@ class ContentEditType extends AbstractType
     {
         $resolver
             ->setDefaults([
+                'location' => null,
                 'content' => null,
                 'contentCreateStruct' => null,
                 'contentUpdateStruct' => null,

@@ -18,6 +18,7 @@ class RelationListFormMapper extends AbstractRelationFormMapper
     {
         $fieldDefinition = $data->fieldDefinition;
         $formConfig = $fieldForm->getConfig();
+        $fieldSettings = $fieldDefinition->getFieldSettings();
 
         $fieldForm
             ->add(
@@ -29,8 +30,10 @@ class RelationListFormMapper extends AbstractRelationFormMapper
                             'required' => $fieldDefinition->isRequired,
                             'label' => $fieldDefinition->getName(),
                             'default_location' => $this->loadDefaultLocationForSelection(
-                                $fieldDefinition->getFieldSettings()['selectionDefaultLocation']
+                                $fieldSettings['selectionDefaultLocation'],
+                                $fieldForm->getConfig()->getOption('location'),
                             ),
+                            'root_default_location' => $fieldSettings['rootDefaultLocation'] ?? false,
                         ]
                     )
                     ->setAutoInitialize(false)

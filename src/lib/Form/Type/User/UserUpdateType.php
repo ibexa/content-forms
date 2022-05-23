@@ -46,6 +46,7 @@ class UserUpdateType extends AbstractType
     {
         $resolver
             ->setDefaults([
+                'location' => null,
                 'data_class' => UserUpdateData::class,
                 'intent' => 'update',
                 'translation_domain' => 'ezplatform_content_forms_user',
