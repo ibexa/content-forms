@@ -49,6 +49,9 @@ class UserAccountFieldType extends AbstractType
             ->add('email', EmailType::class, [
                 'required' => true,
                 'label' => /** @Desc("Email") */ 'content.field_type.ezuser.email',
+                'attr' => [
+                    'readonly' => $options['intent'] === 'invitation',
+                ],
             ]);
 
         if (in_array($options['intent'], ['create', 'update'], true)) {
@@ -67,7 +70,7 @@ class UserAccountFieldType extends AbstractType
                 'translation_domain' => 'ezplatform_content_forms_fieldtype',
             ])
             ->setRequired(['intent'])
-            ->setAllowedValues('intent', ['register', 'create', 'update']);
+            ->setAllowedValues('intent', ['register', 'create', 'update', 'invitation']);
     }
 }
 
