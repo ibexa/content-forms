@@ -13,7 +13,7 @@ use Ibexa\ContentForms\Data\Mapper\ContentUpdateMapper;
 use Ibexa\ContentForms\Form\Type\Content\ContentEditType;
 use Ibexa\Contracts\Core\Repository\ContentService;
 use Ibexa\Contracts\Core\Repository\ContentTypeService;
-use Ibexa\Contracts\Core\Repository\Exceptions\Exception;
+use Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException;
 use Ibexa\Contracts\Core\Repository\LocationService;
 use Ibexa\Contracts\Core\Repository\Values\Content\Content;
 use Ibexa\Contracts\Core\Repository\Values\Content\Location;
@@ -99,7 +99,7 @@ class ContentEditViewFilter implements EventSubscriberInterface
                     $contentDraft->contentInfo->mainLocationId
                 )
             );
-        } catch (Exception $e) {
+        } catch (NotFoundException $e) {
         }
 
         $contentUpdate = $this->resolveContentEditData($contentDraft, $languageCode, $contentType);
