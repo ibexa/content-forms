@@ -13,6 +13,7 @@ use Ibexa\ContentForms\Data\Mapper\ContentUpdateMapper;
 use Ibexa\ContentForms\Form\Type\Content\ContentEditType;
 use Ibexa\Contracts\Core\Repository\ContentService;
 use Ibexa\Contracts\Core\Repository\ContentTypeService;
+use Ibexa\Contracts\Core\Repository\Exceptions\Exception;
 use Ibexa\Contracts\Core\Repository\LocationService;
 use Ibexa\Contracts\Core\Repository\Values\Content\Content;
 use Ibexa\Contracts\Core\Repository\Values\Content\Location;
@@ -79,7 +80,6 @@ class ContentEditViewFilter implements EventSubscriberInterface
         }
 
         $request = $event->getRequest();
-        $locationId = $event->getParameters()->get('locationId');
         $languageCode = $request->attributes->get('language');
         $contentDraft = $this->contentService->loadContent(
             $request->attributes->getInt('contentId'),
@@ -92,14 +92,22 @@ class ContentEditViewFilter implements EventSubscriberInterface
             $this->languagePreferenceProvider->getPreferredLanguages()
         );
 
-        $location = $this->locationService->loadLocation((int)$locationId);
+        try {
+            $location = $this->locationService->loadLocation(
+                (int)$event->getParameters()->get(
+                    'locationId',
+                    $contentDraft->contentInfo->mainLocationId
+                )
+            );
+        } catch (Exception $e) {
+        }
 
         $contentUpdate = $this->resolveContentEditData($contentDraft, $languageCode, $contentType);
         $form = $this->resolveContentEditForm(
             $contentUpdate,
             $languageCode,
             $contentDraft,
-            $location
+            $location ?? null
         );
 
         $event->getParameters()->add([
@@ -139,7 +147,7 @@ class ContentEditViewFilter implements EventSubscriberInterface
         ContentUpdateData $contentUpdate,
         string $languageCode,
         Content $content,
-        Location $location
+        ?Location $location = null
     ): FormInterface {
         return $this->formFactory->create(
             ContentEditType::class,
