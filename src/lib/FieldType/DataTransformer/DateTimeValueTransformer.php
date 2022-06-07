@@ -1,14 +1,14 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\FieldType\DataTransformer;
+namespace Ibexa\ContentForms\FieldType\DataTransformer;
 
-use eZ\Publish\Core\FieldType\DateAndTime\Value;
+use Ibexa\Core\FieldType\DateAndTime\Value;
 use Symfony\Component\Form\DataTransformerInterface;
 use Symfony\Component\Form\Exception\TransformationFailedException;
 
@@ -22,7 +22,7 @@ class DateTimeValueTransformer implements DataTransformerInterface
      *
      * @return int|null
      *
-     * @throws TransformationFailedException
+     * @throws \Symfony\Component\Form\Exception\TransformationFailedException
      */
     public function transform($value)
     {
@@ -46,9 +46,9 @@ class DateTimeValueTransformer implements DataTransformerInterface
     /**
      * @param mixed $value
      *
-     * @return Value|null
+     * @return \Ibexa\Core\FieldType\DateAndTime\Value|null
      *
-     * @throws TransformationFailedException
+     * @throws \Symfony\Component\Form\Exception\TransformationFailedException
      */
     public function reverseTransform($value)
     {
@@ -65,3 +65,5 @@ class DateTimeValueTransformer implements DataTransformerInterface
         return Value::fromTimestamp($value);
     }
 }
+
+class_alias(DateTimeValueTransformer::class, 'EzSystems\EzPlatformContentForms\FieldType\DataTransformer\DateTimeValueTransformer');

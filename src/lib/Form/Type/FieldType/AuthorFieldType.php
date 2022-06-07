@@ -1,42 +1,42 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\Form\Type\FieldType;
+namespace Ibexa\ContentForms\Form\Type\FieldType;
 
-use eZ\Publish\API\Repository\Exceptions\NotFoundException;
-use eZ\Publish\API\Repository\Repository;
-use eZ\Publish\Core\FieldType\Author\Type as AuthorType;
-use eZ\Publish\Core\FieldType\Author\Author;
-use eZ\Publish\Core\FieldType\Author\Value;
-use EzSystems\EzPlatformContentForms\Form\Type\FieldType\Author\AuthorCollectionType;
+use Ibexa\ContentForms\Form\Type\FieldType\Author\AuthorCollectionType;
+use Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException;
+use Ibexa\Contracts\Core\Repository\Repository;
+use Ibexa\Core\FieldType\Author\Author;
+use Ibexa\Core\FieldType\Author\Type as AuthorType;
+use Ibexa\Core\FieldType\Author\Value;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\CallbackTransformer;
 use Symfony\Component\Form\DataTransformerInterface;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
-use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * Form Type representing ezauthor field type.
  */
 class AuthorFieldType extends AbstractType
 {
-    /** @var \eZ\Publish\API\Repository\Repository */
+    /** @var \Ibexa\Contracts\Core\Repository\Repository */
     private $repository;
 
     /** @var int */
     private $defaultAuthor;
 
     /**
-     * @param \eZ\Publish\API\Repository\Repository $repository
+     * @param \Ibexa\Contracts\Core\Repository\Repository $repository
      */
     public function __construct(Repository $repository)
     {
@@ -111,7 +111,7 @@ class AuthorFieldType extends AbstractType
             }
 
             return $value;
-        }, function (Value $value) {
+        }, static function (Value $value) {
             return $value;
         });
     }
@@ -126,7 +126,7 @@ class AuthorFieldType extends AbstractType
         $value->authors->exchangeArray(
             array_filter(
                 $value->authors->getArrayCopy(),
-                function (Author $author) {
+                static function (Author $author) {
                     return !empty($author->email) || !empty($author->name);
                 }
             )
@@ -136,7 +136,7 @@ class AuthorFieldType extends AbstractType
     /**
      * Returns currently logged user data, or empty Author object if none was found.
      *
-     * @return \eZ\Publish\Core\FieldType\Author\Author
+     * @return \Ibexa\Core\FieldType\Author\Author
      */
     private function fetchLoggedAuthor(): Author
     {
@@ -157,3 +157,5 @@ class AuthorFieldType extends AbstractType
         return $author;
     }
 }
+
+class_alias(AuthorFieldType::class, 'EzSystems\EzPlatformContentForms\Form\Type\FieldType\AuthorFieldType');

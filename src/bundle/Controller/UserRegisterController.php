@@ -1,27 +1,27 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentFormsBundle\Controller;
+namespace Ibexa\Bundle\ContentForms\Controller;
 
-use eZ\Bundle\EzPublishCoreBundle\Controller;
-use EzSystems\EzPlatformUserBundle\Controller\UserRegisterController as BaseUserRegisterController;
+use Ibexa\Bundle\Core\Controller;
+use Ibexa\Bundle\User\Controller\UserRegisterController as BaseUserRegisterController;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
- * @deprecated Deprecated in 2.5 and will be removed in 3.0. Please use \EzSystems\EzPlatformUserBundle\Controller\UserRegisterController instead.
+ * @deprecated Deprecated in 2.5 and will be removed in 3.0. Please use \Ibexa\Bundle\User\Controller\UserRegisterController instead.
  */
 class UserRegisterController extends Controller
 {
-    /** @var \EzSystems\EzPlatformUserBundle\Controller\UserRegisterController */
+    /** @var \Ibexa\Bundle\User\Controller\UserRegisterController */
     private $userRegisterController;
 
     /**
-     * @param \EzSystems\EzPlatformUserBundle\Controller\UserRegisterController $userRegisterController
+     * @param \Ibexa\Bundle\User\Controller\UserRegisterController $userRegisterController
      */
     public function __construct(BaseUserRegisterController $userRegisterController)
     {
@@ -31,9 +31,9 @@ class UserRegisterController extends Controller
     /**
      * @param \Symfony\Component\HttpFoundation\Request $request
      *
-     * @return \EzSystems\EzPlatformUser\View\Register\FormView|\Symfony\Component\HttpFoundation\Response|null
+     * @return \Ibexa\User\View\Register\FormView|\Symfony\Component\HttpFoundation\Response|null
      *
-     * @throws \eZ\Publish\Core\Base\Exceptions\InvalidArgumentType
+     * @throws \Ibexa\Core\Base\Exceptions\InvalidArgumentType
      * @throws \Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException
      */
     public function registerAction(Request $request)
@@ -42,12 +42,14 @@ class UserRegisterController extends Controller
     }
 
     /**
-     * @return \EzSystems\EzPlatformUser\View\Register\ConfirmView
+     * @return \Ibexa\User\View\Register\ConfirmView
      *
-     * @throws \eZ\Publish\Core\Base\Exceptions\InvalidArgumentType
+     * @throws \Ibexa\Core\Base\Exceptions\InvalidArgumentType
      */
     public function registerConfirmAction()
     {
         return $this->userRegisterController->registerConfirmAction();
     }
 }
+
+class_alias(UserRegisterController::class, 'EzSystems\EzPlatformContentFormsBundle\Controller\UserRegisterController');

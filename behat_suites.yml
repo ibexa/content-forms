@@ -5,31 +5,31 @@ setup-content-forms:
     suites:
         setup:
             paths:
-                - vendor/ezsystems/ezplatform-content-forms/features/User/Setup
+                - vendor/ibexa/content-forms/features/User/Setup
             contexts:
-                - EzSystems\EzPlatformContentForms\Behat\Context\UserRegistrationContext
-                - eZ\Bundle\EzPublishCoreBundle\Features\Context\YamlConfigurationContext
+                - Ibexa\ContentForms\Behat\Context\UserRegistrationContext
+                - Ibexa\Bundle\Core\Features\Context\YamlConfigurationContext
 
 content-forms:
     suites:
         content_edit:
             paths:
-                - vendor/ezsystems/ezplatform-content-forms/features/ContentEdit
+                - vendor/ibexa/content-forms/features/ContentEdit
             contexts:
-                - EzSystems\EzPlatformContentForms\Behat\Context\ContentEditContext
-                - EzSystems\EzPlatformContentForms\Behat\Context\ContentTypeContext
-                - EzSystems\EzPlatformContentForms\Behat\Context\PagelayoutContext
+                - Ibexa\ContentForms\Behat\Context\ContentEditContext
+                - Ibexa\ContentForms\Behat\Context\ContentTypeContext
+                - Ibexa\ContentForms\Behat\Context\PagelayoutContext
         fieldtype_form:
             paths:
-                - vendor/ezsystems/ezplatform-content-forms/features/FieldTypeForm
+                - vendor/ibexa/content-forms/features/FieldTypeForm
             contexts:
-                - EzSystems\EzPlatformContentForms\Behat\Context\ContentTypeContext
-                - EzSystems\EzPlatformContentForms\Behat\Context\FieldTypeFormContext
-                - EzSystems\EzPlatformContentForms\Behat\Context\SelectionFieldTypeFormContext
+                - Ibexa\ContentForms\Behat\Context\ContentTypeContext
+                - Ibexa\ContentForms\Behat\Context\FieldTypeFormContext
+                - Ibexa\ContentForms\Behat\Context\SelectionFieldTypeFormContext
         user_registration: # @todo move to ezplatform-user
             paths:
-                - vendor/ezsystems/ezplatform-content-forms/features/User/Registration
+                - vendor/ibexa/content-forms/features/User/Registration
             contexts:
-                - EzSystems\EzPlatformContentForms\Behat\Context\UserRegistrationContext
+                - Ibexa\ContentForms\Behat\Context\UserRegistrationContext
                 - Behat\MinkExtension\Context\MinkContext
-                - eZ\Bundle\EzPublishCoreBundle\Features\Context\YamlConfigurationContext
+                - Ibexa\Bundle\Core\Features\Context\YamlConfigurationContext

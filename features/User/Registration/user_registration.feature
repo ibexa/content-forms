@@ -26,7 +26,7 @@ Scenario: The user registration templates can be customized
     Given I do have the user/register policy
       And the following user registration templates configuration:
       """
-      ezpublish:
+      ibexa:
         system:
           default:
             user_registration:
@@ -39,7 +39,7 @@ Scenario: The user registration templates can be customized
       {% extends no_layout is defined and no_layout == true ? view_base_layout : pagelayout %}
 
       {% block content %}
-          <section class="ez-content-edit">
+          <section class="ibexa-content-edit">
             {{ form_start(form) }}
             {{- form_widget(form.fieldsData) -}}
             {{ form_end(form) }}
