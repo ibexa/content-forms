@@ -19,7 +19,7 @@ use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
-class RelationType extends AbstractType
+final class RelationType extends AbstractType
 {
     public const LOCATION_DEFAULT = 0;
     public const LOCATION_BROWSE = 1;
