@@ -18,7 +18,7 @@ final class LocationChoiceType extends AbstractType
         return ChoiceType::class;
     }
 
-    public function getBlockPrefix()
+    public function getBlockPrefix(): string
     {
         return 'ibexa_form_type_location_choice';
     }
