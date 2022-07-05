@@ -11,7 +11,7 @@ namespace Ibexa\ContentForms\Form\Transformer;
 use Ibexa\ContentForms\Form\Type\RelationType;
 use Symfony\Component\Form\DataTransformerInterface;
 
-class RelationTransformer implements DataTransformerInterface
+final class RelationTransformer implements DataTransformerInterface
 {
     public function transform($value): array
     {
