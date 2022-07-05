@@ -71,11 +71,12 @@ final class RelationType extends AbstractType
         array $options
     ) {
         $view->vars['destination_location'] = null;
+        $value = $form->getData();
 
-        if ($view->vars['value']) {
+        if (!empty($value)) {
             try {
                 $view->vars['destination_location'] = $this->locationService->loadLocation(
-                    (int)$view->vars['value']
+                    (int)$value
                 );
             } catch (NotFoundException | UnauthorizedException $e) {
             }
