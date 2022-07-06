@@ -57,7 +57,7 @@ final class RelationType extends AbstractType
                     'content_forms.relation.location_type.default' => self::LOCATION_DEFAULT,
                     /** @Desc("Browse") */
                     'content_forms.relation.location_type.browse' => self::LOCATION_BROWSE,
-                    /** @Desc("Self") */
+                    /** @Desc("Content location") */
                     'content_forms.relation.location_type.self' => self::LOCATION_SELF,
                 ],
             ]);

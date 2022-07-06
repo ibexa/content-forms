@@ -22,8 +22,8 @@
         <note>key: content_forms.relation.location_type.default</note>
       </trans-unit>
       <trans-unit id="d0229bc36e84e27b95b3b41a8dd7fd29fe952f33" resname="content_forms.relation.location_type.self">
-        <source>Self</source>
-        <target state="new">Self</target>
+        <source>Content location</source>
+        <target state="new">Content location</target>
         <note>key: content_forms.relation.location_type.self</note>
       </trans-unit>
     </body>
