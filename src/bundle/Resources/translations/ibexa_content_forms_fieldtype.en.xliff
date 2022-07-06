@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
+  <file source-language="en" target-language="en" datatype="plaintext" original="not.available">
+    <header>
+      <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
+      <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
+    </header>
+    <body>
+      <trans-unit id="1d777459cd2f508bdb4676d48eaeee62e11d3009" resname="content_forms.relation.location_type">
+        <source>Select Starting Location</source>
+        <target state="new">Select Starting Location</target>
+        <note>key: content_forms.relation.location_type</note>
+      </trans-unit>
+      <trans-unit id="76697f8a72ee770ea298bfc2dd8d5d8d3d6b1615" resname="content_forms.relation.location_type.browse">
+        <source>Browse</source>
+        <target state="new">Browse</target>
+        <note>key: content_forms.relation.location_type.browse</note>
+      </trans-unit>
+      <trans-unit id="4214a6b70c34472d3b23c1c7936aa7254f5a0372" resname="content_forms.relation.location_type.default">
+        <source>Default</source>
+        <target state="new">Default</target>
+        <note>key: content_forms.relation.location_type.default</note>
+      </trans-unit>
+      <trans-unit id="d0229bc36e84e27b95b3b41a8dd7fd29fe952f33" resname="content_forms.relation.location_type.self">
+        <source>Content location</source>
+        <target state="new">Content location</target>
+        <note>key: content_forms.relation.location_type.self</note>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

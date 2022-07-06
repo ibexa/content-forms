@@ -39,6 +39,7 @@ class BaseContentType extends AbstractType
                 'entry_options' => [
                     'languageCode' => $options['languageCode'],
                     'mainLanguageCode' => $options['mainLanguageCode'],
+                    'location' => $options['location'] ?? null,
                     'content' => $options['content'] ?? null,
                     'contentCreateStruct' => $options['contentCreateStruct'] ?? null,
                     'contentUpdateStruct' => $options['contentUpdateStruct'] ?? null,

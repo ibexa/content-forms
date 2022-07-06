@@ -173,22 +173,6 @@ class UserController extends Controller
         $userUpdate = (new UserUpdateMapper())->mapToFormData($user, $contentType, [
             'languageCode' => $language,
         ]);
-        $form = $this->createForm(
-            UserUpdateType::class,
-            $userUpdate,
-            [
-                'languageCode' => $language,
-                'mainLanguageCode' => $user->contentInfo->mainLanguageCode,
-            ]
-        );
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid() && null !== $form->getClickedButton()) {
-            $this->userActionDispatcher->dispatchFormAction($form, $userUpdate, $form->getClickedButton()->getName());
-            if ($response = $this->userActionDispatcher->getResponse()) {
-                return $response;
-            }
-        }
 
         try {
             // assume main location if no location was provided
@@ -201,6 +185,24 @@ class UserController extends Controller
                 $user->versionInfo->contentInfo
             );
             $location = array_shift($availableLocations);
+        }
+
+        $form = $this->createForm(
+            UserUpdateType::class,
+            $userUpdate,
+            [
+                'location' => $location,
+                'languageCode' => $language,
+                'mainLanguageCode' => $user->contentInfo->mainLanguageCode,
+            ]
+        );
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid() && null !== $form->getClickedButton()) {
+            $this->userActionDispatcher->dispatchFormAction($form, $userUpdate, $form->getClickedButton()->getName());
+            if ($response = $this->userActionDispatcher->getResponse()) {
+                return $response;
+            }
         }
 
         $parentLocation = null;

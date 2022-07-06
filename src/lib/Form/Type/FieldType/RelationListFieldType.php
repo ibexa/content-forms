@@ -66,6 +66,7 @@ class RelationListFieldType extends AbstractType
     {
         $view->vars['relations'] = [];
         $view->vars['default_location'] = $options['default_location'];
+        $view->vars['root_default_location'] = $options['root_default_location'];
 
         /** @var \Ibexa\Core\FieldType\RelationList\Value $data */
         $data = $form->getData();
@@ -102,9 +103,13 @@ class RelationListFieldType extends AbstractType
     {
         $resolver->setDefaults([
             'default_location' => null,
+            'root_default_location' => null,
+            'location' => null,
         ]);
 
         $resolver->setAllowedTypes('default_location', ['null', Location::class]);
+        $resolver->setAllowedTypes('root_default_location', ['null', 'bool']);
+        $resolver->setAllowedTypes('location', ['null', Location::class]);
     }
 }
 

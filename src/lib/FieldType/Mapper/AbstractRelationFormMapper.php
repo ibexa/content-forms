@@ -17,6 +17,8 @@ use Ibexa\Contracts\Core\Repository\Values\Content\Location;
 
 abstract class AbstractRelationFormMapper implements FieldValueFormMapperInterface
 {
+    protected const SELECTION_SELF = -1;
+
     /**
      * @var \Ibexa\Contracts\Core\Repository\ContentTypeService Used to fetch list of available content types
      */
@@ -62,10 +64,14 @@ abstract class AbstractRelationFormMapper implements FieldValueFormMapperInterfa
      *
      * @return \Ibexa\Contracts\Core\Repository\Values\Content\Location|null
      */
-    protected function loadDefaultLocationForSelection($defaultLocationId = null): ?Location
+    protected function loadDefaultLocationForSelection($defaultLocationId = null, ?Location $currentLocation = null): ?Location
     {
         if (!empty($defaultLocationId)) {
             try {
+                if ($defaultLocationId === self::SELECTION_SELF) {
+                    return $currentLocation;
+                }
+
                 return $this->locationService->loadLocation((int)$defaultLocationId);
             } catch (NotFoundException | UnauthorizedException $e) {
             }
