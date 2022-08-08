@@ -48,8 +48,10 @@ class FieldValueValidator extends FieldTypeValidator
                     'empty'
                 ),
             ];
-        } else {
+        } elseif ($fieldValue !== null) {
             $validationErrors = $fieldType->validateValue($fieldDefinition, $fieldValue);
+        } else {
+            $validationErrors = [];
         }
 
         $this->processValidationErrors($validationErrors);
