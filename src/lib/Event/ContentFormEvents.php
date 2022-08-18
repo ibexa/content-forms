@@ -1,67 +1,69 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\Event;
+namespace Ibexa\ContentForms\Event;
 
 final class ContentFormEvents
 {
     /**
      * Base name for Content edit processing events.
      */
-    const CONTENT_EDIT = 'content.edit';
+    public const CONTENT_EDIT = 'content.edit';
 
     /**
      * Triggered when saving a content draft.
      */
-    const CONTENT_SAVE_DRAFT = 'content.edit.saveDraft';
+    public const CONTENT_SAVE_DRAFT = 'content.edit.saveDraft';
 
     /**
      * Triggered when creating a content draft.
      */
-    const CONTENT_CREATE_DRAFT = 'content.edit.createDraft';
+    public const CONTENT_CREATE_DRAFT = 'content.edit.createDraft';
 
     /**
      * Triggered when publishing a content.
      */
-    const CONTENT_PUBLISH = 'content.edit.publish';
+    public const CONTENT_PUBLISH = 'content.edit.publish';
 
     /**
      * Triggered when canceling a content edition.
      */
-    const CONTENT_CANCEL = 'content.edit.cancel';
+    public const CONTENT_CANCEL = 'content.edit.cancel';
 
     /**
      * Base name for User edit processing events.
      */
-    const USER_EDIT = 'user.edit';
+    public const USER_EDIT = 'user.edit';
 
     /**
      * Triggered when saving an user.
      */
-    const USER_UPDATE = 'user.edit.update';
+    public const USER_UPDATE = 'user.edit.update';
 
     /**
      * Triggered when creating an user.
      */
-    const USER_CREATE = 'user.edit.create';
+    public const USER_CREATE = 'user.edit.create';
 
     /**
      * Triggered when canceling a user edition.
      */
-    const USER_CANCEL = 'user.edit.cancel';
+    public const USER_CANCEL = 'user.edit.cancel';
 
     /**
      * Triggered when resolving Field Type options for content edit form.
      */
-    const CONTENT_EDIT_FIELD_OPTIONS = 'content.edit.field.options';
+    public const CONTENT_EDIT_FIELD_OPTIONS = 'content.edit.field.options';
 
     /**
      * Triggered when resolving Field Type options for content create form.
      */
-    const CONTENT_CREATE_FIELD_OPTIONS = 'content.create.field.options';
+    public const CONTENT_CREATE_FIELD_OPTIONS = 'content.create.field.options';
 }
+
+class_alias(ContentFormEvents::class, 'EzSystems\EzPlatformContentForms\Event\ContentFormEvents');

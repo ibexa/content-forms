@@ -1,14 +1,14 @@
-EzSystems\EzPlatformContentForms\Data\Content\ContentCreateData:
+Ibexa\ContentForms\Data\Content\ContentCreateData:
     properties:
         fieldsData:
             - Valid: ~
 
-EzSystems\EzPlatformContentForms\Data\Content\ContentUpdateData:
+Ibexa\ContentForms\Data\Content\ContentUpdateData:
     properties:
         fieldsData:
             - Valid: ~
 
-EzSystems\EzPlatformContentForms\Data\User\UserCreateData:
+Ibexa\ContentForms\Data\User\UserCreateData:
     properties:
         login:
             - NotBlank: ~
@@ -19,17 +19,17 @@ EzSystems\EzPlatformContentForms\Data\User\UserCreateData:
         fieldsData:
             - Valid: ~
 
-EzSystems\EzPlatformContentForms\Data\User\UserUpdateData:
+Ibexa\ContentForms\Data\User\UserUpdateData:
     properties:
         fieldsData:
             - Valid: ~
 
-EzSystems\EzPlatformContentForms\Data\User\UserAccountFieldData:
+Ibexa\ContentForms\Data\User\UserAccountFieldData:
     properties:
         username:
             - Valid: ~
             - NotBlank: ~
 
-EzSystems\EzPlatformContentForms\Data\Content\FieldData:
+Ibexa\Contracts\ContentForms\Data\Content\FieldData:
     constraints:
-        - EzSystems\EzPlatformContentForms\Validator\Constraints\FieldValue: ~
+        - Ibexa\ContentForms\Validator\Constraints\FieldValue: ~

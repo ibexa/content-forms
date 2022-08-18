@@ -7,7 +7,7 @@ Feature: User registration form setup
         Given a User Group "TestUserGroup"
         And the following user registration group configuration:
         """
-        ezpublish:
+        ibexa:
             system:
                 default:
                     user_registration:
