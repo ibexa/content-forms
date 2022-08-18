@@ -49,8 +49,8 @@ class IbexaContentFormsExtension extends Extension implements PrependExtensionIn
 
     private function shouldLoadTestServices(ContainerBuilder $container): bool
     {
-        return $container->hasParameter('ibexa.testing.browser.enabled')
-            && true === $container->getParameter('ibexa.testing.browser.enabled');
+        return $container->hasParameter('ibexa.behat.browser.enabled')
+            && true === $container->getParameter('ibexa.behat.browser.enabled');
     }
 }
 
