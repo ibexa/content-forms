@@ -21,8 +21,7 @@ class IbexaContentFormsExtension extends Extension implements PrependExtensionIn
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
         $loader->load('services.yaml');
 
-        $environment = $container->getParameter('kernel.environment');
-        if (in_array($environment, ['behat', 'test'])) {
+        if ($this->shouldLoadTestServices($container)) {
             $loader->load('feature_contexts.yaml');
         }
     }
@@ -46,6 +45,12 @@ class IbexaContentFormsExtension extends Extension implements PrependExtensionIn
                 ],
             ],
         ]);
+    }
+
+    private function shouldLoadTestServices(ContainerBuilder $container): bool
+    {
+        return $container->hasParameter('ibexa.behat.browser.enabled')
+            && true === $container->getParameter('ibexa.behat.browser.enabled');
     }
 }
 
