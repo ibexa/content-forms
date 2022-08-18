@@ -41,7 +41,7 @@ class MaxUploadSize
                 $value /= 1024;
             case self::BYTES:
             default:
-        }
+            }
 
         return $value;
     }
