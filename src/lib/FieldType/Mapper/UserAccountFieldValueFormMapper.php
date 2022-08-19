@@ -11,7 +11,6 @@ namespace Ibexa\ContentForms\FieldType\Mapper;
 use Ibexa\ContentForms\Data\ContentTranslationData;
 use Ibexa\ContentForms\Data\User\UserAccountFieldData;
 use Ibexa\ContentForms\Form\Type\FieldType\UserAccountFieldType;
-use Ibexa\ContentForms\Validator\Constraints\UserAccountPassword;
 use Ibexa\Contracts\ContentForms\Data\Content\FieldData;
 use Ibexa\Contracts\ContentForms\FieldType\FieldValueFormMapperInterface;
 use Ibexa\Contracts\Core\Repository\Values\ContentType\FieldDefinition;
@@ -48,9 +47,6 @@ final class UserAccountFieldValueFormMapper implements FieldValueFormMapperInter
                 'required' => true,
                 'label' => $fieldDefinition->getName(),
                 'intent' => $formIntent,
-                'constraints' => [
-                    new UserAccountPassword(['contentType' => $rootForm->getData()->contentType]),
-                ],
             ]);
 
         if ($isTranslation) {
