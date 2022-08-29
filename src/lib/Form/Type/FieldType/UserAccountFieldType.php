@@ -43,6 +43,7 @@ class UserAccountFieldType extends AbstractType
             ->add('password', RepeatedType::class, [
                 'type' => PasswordType::class,
                 'required' => !$isUpdateForm,
+                'invalid_message' => /** @Desc("Passwords do not match.") */ 'content.field_type.passwords_must_match',
                 'first_options' => ['label' => /** @Desc("Password") */ 'content.field_type.ezuser.password'],
                 'second_options' => ['label' => /** @Desc("Confirm password") */ 'content.field_type.ezuser.password_confirm'],
             ])
