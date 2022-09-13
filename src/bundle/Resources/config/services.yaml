@@ -128,4 +128,4 @@ services:
 
     Ibexa\ContentForms\Content\Form\Provider\GroupedContentFormFieldsProvider:
         arguments:
-            $fieldsGroupsList: '@Ibexa\Core\Helper\FieldsGroups\ArrayTranslatorFieldsGroupsList'
+            $fieldsGroupsList: '@Ibexa\Core\Helper\FieldsGroups\FieldsGroupsList'
