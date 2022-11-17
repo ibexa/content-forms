@@ -35,7 +35,7 @@ class IbexaContentFormsExtension extends Extension implements PrependExtensionIn
     {
         $container->prependExtensionConfig('jms_translation', [
             'configs' => [
-                'ezplatform_content_forms' => [
+                'ibexa_content_forms' => [
                     'dirs' => [
                         __DIR__ . '/../../../src/',
                     ],
