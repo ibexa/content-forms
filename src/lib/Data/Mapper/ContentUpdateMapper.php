@@ -58,7 +58,8 @@ class ContentUpdateMapper implements FormDataMapperInterface
     {
         $optionsResolver
             ->setRequired(['languageCode', 'contentType', 'currentFields'])
-            ->setAllowedTypes('contentType', ContentType::class);
+            ->setAllowedTypes('contentType', ContentType::class)
+            ->setDefault('currentFields', []);
     }
 }
 
