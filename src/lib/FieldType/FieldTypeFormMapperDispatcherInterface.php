@@ -1,14 +1,15 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\FieldType;
+namespace Ibexa\ContentForms\FieldType;
 
-use EzSystems\EzPlatformContentForms\Data\Content\FieldData;
+use Ibexa\Contracts\ContentForms\Data\Content\FieldData;
+use Ibexa\Contracts\ContentForms\FieldType\FieldValueFormMapperInterface;
 use Symfony\Component\Form\FormInterface;
 
 /**
@@ -19,7 +20,7 @@ interface FieldTypeFormMapperDispatcherInterface
     /**
      * Adds a new Field mapper for a fieldtype identifier.
      *
-     * @param \EzSystems\EzPlatformContentForms\FieldType\FieldValueFormMapperInterface
+     * @param \Ibexa\Contracts\ContentForms\FieldType\FieldValueFormMapperInterface
      * @param string $fieldTypeIdentifier fieldType identifier this mapper is for
      *
      * @return mixed
@@ -30,7 +31,7 @@ interface FieldTypeFormMapperDispatcherInterface
      * Maps, if a mapper is available for the fieldtype, $data to $form.
      *
      * @param \Symfony\Component\Form\FormInterface $form
-     * @param \EzSystems\EzPlatformContentForms\Data\Content\FieldData $data
+     * @param \Ibexa\Contracts\ContentForms\Data\Content\FieldData $data
      *
      * @throws \InvalidArgumentException If $data is not a FieldData or FieldDefinitionData
      */
@@ -41,3 +42,5 @@ class_alias(
     FieldTypeFormMapperDispatcherInterface::class,
     \EzSystems\RepositoryForms\FieldType\FieldTypeFormMapperDispatcherInterface::class
 );
+
+class_alias(FieldTypeFormMapperDispatcherInterface::class, 'EzSystems\EzPlatformContentForms\FieldType\FieldTypeFormMapperDispatcherInterface');

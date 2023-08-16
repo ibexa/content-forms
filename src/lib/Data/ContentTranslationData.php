@@ -1,18 +1,18 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\Data;
+namespace Ibexa\ContentForms\Data;
 
-use eZ\Publish\Core\Repository\Values\Content\ContentUpdateStruct;
+use Ibexa\Core\Repository\Values\Content\ContentUpdateStruct;
 
 /**
- * @property \EzSystems\EzPlatformContentForms\Data\Content\FieldData[] $fieldsData
- * @property \eZ\Publish\API\Repository\Values\Content\Content $content
+ * @property \Ibexa\Contracts\ContentForms\Data\Content\FieldData[] $fieldsData
+ * @property \Ibexa\Contracts\Core\Repository\Values\Content\Content $content
  */
 class ContentTranslationData extends ContentUpdateStruct implements NewnessCheckable
 {
@@ -24,3 +24,5 @@ class ContentTranslationData extends ContentUpdateStruct implements NewnessCheck
         return false;
     }
 }
+
+class_alias(ContentTranslationData::class, 'EzSystems\EzPlatformContentForms\Data\ContentTranslationData');

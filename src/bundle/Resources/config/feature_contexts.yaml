@@ -4,18 +4,18 @@ services:
         autoconfigure: true
         public: true
 
-    EzSystems\EzPlatformContentForms\Behat\Context\ContentTypeContext:
+    Ibexa\ContentForms\Behat\Context\ContentTypeContext:
         arguments:
-            $permissionResolver: '@=service("ezpublish.api.repository").getPermissionResolver()'
-            $contentTypeService: '@ezpublish.api.service.content_type'
+            $permissionResolver: '@Ibexa\Contracts\Core\Repository\PermissionResolver'
+            $contentTypeService: '@ibexa.api.service.content_type'
 
-    EzSystems\EzPlatformContentForms\Behat\Context\PagelayoutContext:
+    Ibexa\ContentForms\Behat\Context\PagelayoutContext:
         arguments:
-            $configResolver: '@ezpublish.config.resolver'
+            $configResolver: '@ibexa.config.resolver'
 
-    EzSystems\EzPlatformContentForms\Behat\Context\UserRegistrationContext:
+    Ibexa\ContentForms\Behat\Context\UserRegistrationContext:
         arguments:
-            $permissionResolver: '@=service("ezpublish.api.repository").getPermissionResolver()'
-            $roleService: '@ezpublish.api.service.role'
-            $userService: '@ezpublish.api.service.user'
-            $contentTypeService: '@ezpublish.api.service.content_type'
+            $permissionResolver: '@Ibexa\Contracts\Core\Repository\PermissionResolver'
+            $roleService: '@ibexa.api.service.role'
+            $userService: '@ibexa.api.service.user'
+            $contentTypeService: '@ibexa.api.service.content_type'

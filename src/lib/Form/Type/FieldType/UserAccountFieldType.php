@@ -1,15 +1,15 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\Form\Type\FieldType;
+namespace Ibexa\ContentForms\Form\Type\FieldType;
 
-use EzSystems\EzPlatformContentForms\Data\User\UserAccountFieldData;
-use EzSystems\EzPlatformContentForms\Form\Type\SwitcherType;
+use Ibexa\ContentForms\Data\User\UserAccountFieldData;
+use Ibexa\ContentForms\Form\Type\SwitcherType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
@@ -43,12 +43,16 @@ class UserAccountFieldType extends AbstractType
             ->add('password', RepeatedType::class, [
                 'type' => PasswordType::class,
                 'required' => !$isUpdateForm,
+                'invalid_message' => /** @Desc("Passwords do not match.") */ 'content.field_type.passwords_must_match',
                 'first_options' => ['label' => /** @Desc("Password") */ 'content.field_type.ezuser.password'],
                 'second_options' => ['label' => /** @Desc("Confirm password") */ 'content.field_type.ezuser.password_confirm'],
             ])
             ->add('email', EmailType::class, [
                 'required' => true,
                 'label' => /** @Desc("Email") */ 'content.field_type.ezuser.email',
+                'attr' => [
+                    'readonly' => $options['intent'] === 'invitation',
+                ],
             ]);
 
         if (in_array($options['intent'], ['create', 'update'], true)) {
@@ -67,6 +71,8 @@ class UserAccountFieldType extends AbstractType
                 'translation_domain' => 'ezplatform_content_forms_fieldtype',
             ])
             ->setRequired(['intent'])
-            ->setAllowedValues('intent', ['register', 'create', 'update']);
+            ->setAllowedValues('intent', ['register', 'create', 'update', 'invitation']);
     }
 }
+
+class_alias(UserAccountFieldType::class, 'EzSystems\EzPlatformContentForms\Form\Type\FieldType\UserAccountFieldType');

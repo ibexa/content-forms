@@ -1,30 +1,35 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\Data\User;
+namespace Ibexa\ContentForms\Data\User;
 
-use eZ\Publish\API\Repository\Values\User\UserGroup;
-use eZ\Publish\Core\Repository\Values\User\UserCreateStruct;
-use EzSystems\EzPlatformContentForms\Data\Content\ContentData;
-use EzSystems\EzPlatformContentForms\Data\Content\FieldData;
-use EzSystems\EzPlatformContentForms\Data\NewnessCheckable;
+use Ibexa\ContentForms\Data\Content\ContentData;
+use Ibexa\ContentForms\Data\NewnessCheckable;
+use Ibexa\Contracts\Core\Repository\Values\User\Limitation\RoleLimitation;
+use Ibexa\Contracts\Core\Repository\Values\User\Role;
+use Ibexa\Contracts\Core\Repository\Values\User\UserGroup;
+use Ibexa\Core\Repository\Values\User\UserCreateStruct;
 
 /**
- * @property FieldData[] $fieldsData
+ * @property \Ibexa\Contracts\ContentForms\Data\Content\FieldData[] $fieldsData
  */
 class UserCreateData extends UserCreateStruct implements NewnessCheckable
 {
     use ContentData;
 
     /**
-     * @var UserGroup[]
+     * @var \Ibexa\Contracts\Core\Repository\Values\User\UserGroup[]
      */
     private $parentGroups;
+
+    private ?Role $role = null;
+
+    private ?RoleLimitation $roleLimitation = null;
 
     public function isNew()
     {
@@ -32,7 +37,7 @@ class UserCreateData extends UserCreateStruct implements NewnessCheckable
     }
 
     /**
-     * @return UserGroup[]
+     * @return \Ibexa\Contracts\Core\Repository\Values\User\UserGroup[]
      */
     public function getParentGroups()
     {
@@ -42,7 +47,7 @@ class UserCreateData extends UserCreateStruct implements NewnessCheckable
     /**
      * Adds a parent group.
      *
-     * @param UserGroup $parentGroup
+     * @param \Ibexa\Contracts\Core\Repository\Values\User\UserGroup $parentGroup
      */
     public function addParentGroup(UserGroup $parentGroup)
     {
@@ -50,10 +55,32 @@ class UserCreateData extends UserCreateStruct implements NewnessCheckable
     }
 
     /**
-     * @param UserGroup[] $parentGroups
+     * @param \Ibexa\Contracts\Core\Repository\Values\User\UserGroup[] $parentGroups
      */
     public function setParentGroups(array $parentGroups)
     {
         $this->parentGroups = $parentGroups;
     }
+
+    public function getRole(): ?Role
+    {
+        return $this->role;
+    }
+
+    public function setRole(?Role $role): void
+    {
+        $this->role = $role;
+    }
+
+    public function getRoleLimitation(): ?RoleLimitation
+    {
+        return $this->roleLimitation;
+    }
+
+    public function setRoleLimitation(?RoleLimitation $roleLimitation): void
+    {
+        $this->roleLimitation = $roleLimitation;
+    }
 }
+
+class_alias(UserCreateData::class, 'EzSystems\EzPlatformContentForms\Data\User\UserCreateData');

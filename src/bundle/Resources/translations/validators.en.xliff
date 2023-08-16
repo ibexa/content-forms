@@ -21,6 +21,11 @@
         <target state="new">User login '%login%' already in use. Enter a unique login.</target>
         <note>key: User login '%login%' already in use. Enter a unique login.</note>
       </trans-unit>
+      <trans-unit id="f37f4d7e6f9d0b9af0015333361c595e4419b507" resname="content.field_type.passwords_must_match">
+        <source>Passwords do not match.</source>
+        <target state="new">Passwords do not match.</target>
+        <note>key: content.field_type.passwords_must_match</note>
+      </trans-unit>
     </body>
   </file>
 </xliff>

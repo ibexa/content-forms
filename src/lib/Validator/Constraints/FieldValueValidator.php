@@ -1,18 +1,18 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\Validator\Constraints;
+namespace Ibexa\ContentForms\Validator\Constraints;
 
-use eZ\Publish\API\Repository\Values\ContentType\FieldDefinition;
-use eZ\Publish\API\Repository\Values\ValueObject;
-use eZ\Publish\Core\FieldType\ValidationError;
-use eZ\Publish\SPI\FieldType\Value;
-use EzSystems\EzPlatformContentForms\Data\Content\FieldData;
+use Ibexa\Contracts\ContentForms\Data\Content\FieldData;
+use Ibexa\Contracts\Core\FieldType\Value;
+use Ibexa\Contracts\Core\Repository\Values\ContentType\FieldDefinition;
+use Ibexa\Contracts\Core\Repository\Values\ValueObject;
+use Ibexa\Core\FieldType\ValidationError;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\Util\PropertyPath;
 
@@ -22,10 +22,10 @@ use Symfony\Component\Validator\Util\PropertyPath;
 class FieldValueValidator extends FieldTypeValidator
 {
     /**
-     * @param \EzSystems\EzPlatformContentForms\Data\Content\FieldData $value
+     * @param \Ibexa\Contracts\ContentForms\Data\Content\FieldData $value
      * @param \Symfony\Component\Validator\Constraint $constraint
      *
-     * @throws \eZ\Publish\API\Repository\Exceptions\NotFoundException
+     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException
      */
     public function validate($value, Constraint $constraint): void
     {
@@ -34,15 +34,12 @@ class FieldValueValidator extends FieldTypeValidator
         }
 
         $fieldValue = $this->getFieldValue($value);
-        if (!$fieldValue) {
-            return;
-        }
 
         $fieldTypeIdentifier = $this->getFieldTypeIdentifier($value);
         $fieldDefinition = $this->getFieldDefinition($value);
         $fieldType = $this->fieldTypeService->getFieldType($fieldTypeIdentifier);
 
-        if ($fieldDefinition->isRequired && $fieldType->isEmptyValue($fieldValue)) {
+        if ($fieldDefinition->isRequired && ($fieldValue === null || $fieldType->isEmptyValue($fieldValue))) {
             $validationErrors = [
                 new ValidationError(
                     "Value for required field definition '%identifier%' with language '%languageCode%' is empty",
@@ -51,8 +48,10 @@ class FieldValueValidator extends FieldTypeValidator
                     'empty'
                 ),
             ];
-        } else {
+        } elseif ($fieldValue !== null) {
             $validationErrors = $fieldType->validateValue($fieldDefinition, $fieldValue);
+        } else {
+            $validationErrors = [];
         }
 
         $this->processValidationErrors($validationErrors);
@@ -78,7 +77,7 @@ class FieldValueValidator extends FieldTypeValidator
     /**
      * Returns the fieldTypeIdentifier for the field value to validate.
      *
-     * @param FieldData|ValueObject $value fieldData ValueObject holding the field value to validate
+     * @param \Ibexa\Contracts\ContentForms\Data\Content\FieldData|\Ibexa\Contracts\Core\Repository\Values\ValueObject $value fieldData ValueObject holding the field value to validate
      *
      * @return string
      */
@@ -96,3 +95,5 @@ class FieldValueValidator extends FieldTypeValidator
             : PropertyPath::append($basePath, $errorTarget);
     }
 }
+
+class_alias(FieldValueValidator::class, 'EzSystems\EzPlatformContentForms\Validator\Constraints\FieldValueValidator');

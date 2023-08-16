@@ -1,14 +1,14 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\Validator;
+namespace Ibexa\ContentForms\Validator;
 
-use eZ\Publish\API\Repository\Values\Translation\Plural;
+use Ibexa\Contracts\Core\Repository\Values\Translation\Plural;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 /**
@@ -35,7 +35,7 @@ final class ValidationErrorsProcessor
     /**
      * Builds constraint violations based on given SPI validation errors.
      *
-     * @param \eZ\Publish\SPI\FieldType\ValidationError[] $validationErrors
+     * @param \Ibexa\Contracts\Core\FieldType\ValidationError[] $validationErrors
      */
     public function processValidationErrors(array $validationErrors): void
     {
@@ -61,3 +61,5 @@ final class ValidationErrorsProcessor
         }
     }
 }
+
+class_alias(ValidationErrorsProcessor::class, 'EzSystems\EzPlatformContentForms\Validator\ValidationErrorsProcessor');

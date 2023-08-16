@@ -1,15 +1,15 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\FieldType\Mapper;
+namespace Ibexa\ContentForms\FieldType\Mapper;
 
-use EzSystems\EzPlatformContentForms\Data\Content\FieldData;
-use EzSystems\EzPlatformContentForms\Form\Type\FieldType\RelationListFieldType;
+use Ibexa\ContentForms\Form\Type\FieldType\RelationListFieldType;
+use Ibexa\Contracts\ContentForms\Data\Content\FieldData;
 use Symfony\Component\Form\FormInterface;
 
 class RelationListFormMapper extends AbstractRelationFormMapper
@@ -18,6 +18,7 @@ class RelationListFormMapper extends AbstractRelationFormMapper
     {
         $fieldDefinition = $data->fieldDefinition;
         $formConfig = $fieldForm->getConfig();
+        $fieldSettings = $fieldDefinition->getFieldSettings();
 
         $fieldForm
             ->add(
@@ -29,8 +30,10 @@ class RelationListFormMapper extends AbstractRelationFormMapper
                             'required' => $fieldDefinition->isRequired,
                             'label' => $fieldDefinition->getName(),
                             'default_location' => $this->loadDefaultLocationForSelection(
-                                $fieldDefinition->getFieldSettings()['selectionDefaultLocation']
+                                $fieldSettings['selectionDefaultLocation'],
+                                $fieldForm->getConfig()->getOption('location'),
                             ),
+                            'root_default_location' => $fieldSettings['rootDefaultLocation'] ?? false,
                         ]
                     )
                     ->setAutoInitialize(false)
@@ -38,3 +41,5 @@ class RelationListFormMapper extends AbstractRelationFormMapper
             );
     }
 }
+
+class_alias(RelationListFormMapper::class, 'EzSystems\EzPlatformContentForms\FieldType\Mapper\RelationListFormMapper');

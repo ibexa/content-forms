@@ -1,27 +1,27 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\Event;
+namespace Ibexa\ContentForms\Event;
 
-use eZ\Publish\API\Repository\Values\Content\ContentCreateStruct;
-use EzSystems\EzPlatformContentForms\Data\Content\FieldData;
+use Ibexa\Contracts\ContentForms\Data\Content\FieldData;
+use Ibexa\Contracts\Core\Repository\Values\Content\ContentCreateStruct;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Contracts\EventDispatcher\Event;
 
 final class ContentCreateFieldOptionsEvent extends Event
 {
-    /** @var \eZ\Publish\API\Repository\Values\Content\ContentCreateStruct */
+    /** @var \Ibexa\Contracts\Core\Repository\Values\Content\ContentCreateStruct */
     private $contentCreateStruct;
 
     /** @var \Symfony\Component\Form\FormInterface */
     private $parentForm;
 
-    /** @var \EzSystems\EzPlatformContentForms\Data\Content\FieldData */
+    /** @var \Ibexa\Contracts\ContentForms\Data\Content\FieldData */
     private $fieldData;
 
     /** @var array */
@@ -74,3 +74,5 @@ final class ContentCreateFieldOptionsEvent extends Event
         return $this->options[$option] ?? null;
     }
 }
+
+class_alias(ContentCreateFieldOptionsEvent::class, 'EzSystems\EzPlatformContentForms\Event\ContentCreateFieldOptionsEvent');

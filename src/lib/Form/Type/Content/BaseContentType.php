@@ -1,12 +1,12 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\Form\Type\Content;
+namespace Ibexa\ContentForms\Form\Type\Content;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
@@ -39,6 +39,7 @@ class BaseContentType extends AbstractType
                 'entry_options' => [
                     'languageCode' => $options['languageCode'],
                     'mainLanguageCode' => $options['mainLanguageCode'],
+                    'location' => $options['location'] ?? null,
                     'content' => $options['content'] ?? null,
                     'contentCreateStruct' => $options['contentCreateStruct'] ?? null,
                     'contentUpdateStruct' => $options['contentUpdateStruct'] ?? null,
@@ -63,3 +64,5 @@ class BaseContentType extends AbstractType
             ->setRequired(['languageCode', 'mainLanguageCode']);
     }
 }
+
+class_alias(BaseContentType::class, 'EzSystems\EzPlatformContentForms\Form\Type\Content\BaseContentType');

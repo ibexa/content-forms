@@ -1,15 +1,15 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\Form\Type\Content;
+namespace Ibexa\ContentForms\Form\Type\Content;
 
-use eZ\Publish\API\Repository\Values\Content\ContentStruct;
-use EzSystems\EzPlatformContentForms\Form\EventSubscriber\SuppressValidationSubscriber;
+use Ibexa\ContentForms\Form\EventSubscriber\SuppressValidationSubscriber;
+use Ibexa\Contracts\Core\Repository\Values\Content\ContentStruct;
 use JMS\TranslationBundle\Annotation\Desc;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -18,7 +18,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * Form type for content edition (create/update).
- * Underlying data will be either \EzSystems\EzPlatformContentForms\Data\Content\ContentCreateData or \EzSystems\EzPlatformContentForms\Data\Content\ContentUpdateData
+ * Underlying data will be either \Ibexa\ContentForms\Data\Content\ContentCreateData or \Ibexa\ContentForms\Data\Content\ContentUpdateData
  * depending on the context (create or update).
  */
 class ContentEditType extends AbstractType
@@ -75,6 +75,7 @@ class ContentEditType extends AbstractType
     {
         $resolver
             ->setDefaults([
+                'location' => null,
                 'content' => null,
                 'contentCreateStruct' => null,
                 'contentUpdateStruct' => null,
@@ -86,3 +87,5 @@ class ContentEditType extends AbstractType
             ]);
     }
 }
+
+class_alias(ContentEditType::class, 'EzSystems\EzPlatformContentForms\Form\Type\Content\ContentEditType');

@@ -1,14 +1,14 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\Form\Type\FieldType\Author;
+namespace Ibexa\ContentForms\Form\Type\FieldType\Author;
 
-use eZ\Publish\Core\FieldType\Author\Author;
+use Ibexa\Core\FieldType\Author\Author;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
@@ -38,7 +38,7 @@ class AuthorEntryType extends AbstractType
     }
 
     /**
-     * @param FormBuilderInterface $builder
+     * @param \Symfony\Component\Form\FormBuilderInterface $builder
      * @param array $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
@@ -79,3 +79,5 @@ class AuthorEntryType extends AbstractType
         ]);
     }
 }
+
+class_alias(AuthorEntryType::class, 'EzSystems\EzPlatformContentForms\Form\Type\FieldType\Author\AuthorEntryType');

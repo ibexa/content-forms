@@ -1,12 +1,12 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\Form\Type\FieldType;
+namespace Ibexa\ContentForms\Form\Type\FieldType;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -94,3 +94,5 @@ class MediaFieldType extends AbstractType
         $resolver->setDefaults(['translation_domain' => 'ezplatform_content_forms_fieldtype']);
     }
 }
+
+class_alias(MediaFieldType::class, 'EzSystems\EzPlatformContentForms\Form\Type\FieldType\MediaFieldType');

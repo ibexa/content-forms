@@ -1,15 +1,15 @@
 <?php
 
 /**
- * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\Form\Type\Content;
+namespace Ibexa\ContentForms\Form\Type\Content;
 
-use EzSystems\EzPlatformContentForms\Data\Content\FieldData;
-use EzSystems\EzPlatformContentForms\FieldType\FieldTypeFormMapperDispatcherInterface;
+use Ibexa\ContentForms\FieldType\FieldTypeFormMapperDispatcherInterface;
+use Ibexa\Contracts\ContentForms\Data\Content\FieldData;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
@@ -21,7 +21,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class ContentFieldType extends AbstractType
 {
     /**
-     * @var FieldTypeFormMapperDispatcherInterface
+     * @var \Ibexa\ContentForms\FieldType\FieldTypeFormMapperDispatcherInterface
      */
     private $fieldTypeFormMapper;
 
@@ -45,6 +45,7 @@ class ContentFieldType extends AbstractType
         $resolver
             ->setDefaults([
                 'content' => null,
+                'location' => null,
                 'contentCreateStruct' => null,
                 'contentUpdateStruct' => null,
                 'data_class' => FieldData::class,
@@ -55,6 +56,7 @@ class ContentFieldType extends AbstractType
 
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
+        $view->vars['location'] = $options['location'];
         $view->vars['languageCode'] = $options['languageCode'];
         $view->vars['mainLanguageCode'] = $options['mainLanguageCode'];
     }
@@ -66,3 +68,5 @@ class ContentFieldType extends AbstractType
         });
     }
 }
+
+class_alias(ContentFieldType::class, 'EzSystems\EzPlatformContentForms\Form\Type\Content\ContentFieldType');
