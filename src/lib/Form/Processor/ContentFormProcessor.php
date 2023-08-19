@@ -61,8 +61,10 @@ class ContentFormProcessor implements EventSubscriberInterface
     {
         return [
             ContentFormEvents::CONTENT_PUBLISH => ['processPublish', 10],
+            ContentFormEvents::CONTENT_PUBLISH_AND_EDIT => ['processPublishAndEdit', 10],
             ContentFormEvents::CONTENT_CANCEL => ['processCancel', 10],
             ContentFormEvents::CONTENT_SAVE_DRAFT => ['processSaveDraft', 10],
+            ContentFormEvents::CONTENT_SAVE_DRAFT_AND_CLOSE => ['processSaveDraftAndClose', 10],
             ContentFormEvents::CONTENT_CREATE_DRAFT => ['processCreateDraft', 10],
         ];
     }
@@ -109,6 +111,43 @@ class ContentFormProcessor implements EventSubscriberInterface
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\ContentFieldValidationException
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\ContentValidationException
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\InvalidArgumentException
+     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException
+     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\UnauthorizedException
+     * @throws \Ibexa\Core\Base\Exceptions\InvalidArgumentException
+     */
+    public function processSaveDraftAndClose(FormActionEvent $event)
+    {
+        /** @var \Ibexa\ContentForms\Data\Content\ContentCreateData|\Ibexa\ContentForms\Data\Content\ContentUpdateData $data */
+        $data = $event->getData();
+        $form = $event->getForm();
+
+        $formConfig = $form->getConfig();
+        $languageCode = $formConfig->getOption('languageCode');
+        $draft = $this->saveDraft($data, $languageCode, []);
+        $referrerLocation = $event->getOption('referrerLocation');
+//        $contentLocation = $this->resolveLocation($draft, $referrerLocation, $data);
+
+        $event->setPayload('content', $draft);
+        $event->setPayload('is_new', $draft->contentInfo->isDraft());
+
+        $defaultUrl = $this->router->generate(
+            'ibexa.content.view',
+            [
+                'contentId' => $referrerLocation->contentId,
+                'locationId' => $referrerLocation->id,
+            ]
+        );
+
+        $event->setResponse(new RedirectResponse($formConfig->getAction() ?: $defaultUrl));
+    }
+
+    /**
+     * @param \Ibexa\ContentForms\Event\FormActionEvent $event
+     *
+     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\BadStateException
+     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\ContentFieldValidationException
+     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\ContentValidationException
+     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\InvalidArgumentException
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\UnauthorizedException
      * @throws \Ibexa\Core\Base\Exceptions\InvalidArgumentException
      */
@@ -137,6 +176,46 @@ class ContentFormProcessor implements EventSubscriberInterface
                 'locationId' => $locationId,
             ]
         );
+
+        $event->setResponse(new RedirectResponse($redirectUrl));
+    }
+
+    /**
+     * @param \Ibexa\ContentForms\Event\FormActionEvent $event
+     *
+     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\BadStateException
+     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\ContentFieldValidationException
+     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\ContentValidationException
+     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\InvalidArgumentException
+     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\UnauthorizedException
+     * @throws \Ibexa\Core\Base\Exceptions\InvalidArgumentException
+     */
+    public function processPublishAndEdit(FormActionEvent $event)
+    {
+        /** @var \Ibexa\ContentForms\Data\Content\ContentCreateData|\Ibexa\ContentForms\Data\Content\ContentUpdateData $data */
+        $data = $event->getData();
+        $form = $event->getForm();
+        $referrerLocation = $event->getOption('referrerLocation');
+
+        $formConfig = $form->getConfig();
+        $languageCode = $formConfig->getOption('languageCode');
+        $draft = $this->saveDraft($data, $languageCode);
+        $versionInfo = $draft->versionInfo;
+        $content = $this->contentService->publishVersion($versionInfo, [$versionInfo->initialLanguageCode]);
+
+        $contentInfo = $content->contentInfo;
+        $contentVersionInfo = $content->getVersionInfo();
+        $newDraft = $this->contentService->createContentDraft($contentInfo, $contentVersionInfo);
+
+        $event->setPayload('content', $newDraft);
+        $event->setPayload('is_new', $newDraft->contentInfo->isDraft());
+
+        $redirectUrl = $this->router->generate('ibexa.content.draft.edit', [
+            'contentId' => $newDraft->id,
+            'versionNo' => $newDraft->getVersionInfo()->versionNo,
+            'language' => $newDraft->contentInfo->mainLanguageCode,
+            'locationId' => null !== $referrerLocation ? $referrerLocation->id : null,
+        ]);
 
         $event->setResponse(new RedirectResponse($redirectUrl));
     }

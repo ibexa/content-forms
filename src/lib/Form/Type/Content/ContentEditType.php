@@ -12,6 +12,7 @@ use Ibexa\ContentForms\Form\EventSubscriber\SuppressValidationSubscriber;
 use Ibexa\Contracts\Core\Repository\Values\Content\ContentStruct;
 use JMS\TranslationBundle\Annotation\Desc;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -41,7 +42,8 @@ class ContentEditType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('publish', SubmitType::class, ['label' => 'Publish']);
+            ->add('publish', SubmitType::class, ['label' => 'Publish'])
+            ->add('publishAndEdit', SubmitType::class, ['label' => 'Publish and edit']);
 
         if (!$options['drafts_enabled']) {
             return;
@@ -50,6 +52,10 @@ class ContentEditType extends AbstractType
         $builder
             ->add('saveDraft', SubmitType::class, [
                 'label' => /** @Desc("Save draft") */ 'save_draft',
+                'attr' => ['formnovalidate' => 'formnovalidate'],
+            ])
+            ->add('saveDraftAndClose', SubmitType::class, [
+                'label' => /** @Desc("Save draft and close") */ 'save_draft_and_close',
                 'attr' => ['formnovalidate' => 'formnovalidate'],
             ])
             ->add('cancel', SubmitType::class, [
