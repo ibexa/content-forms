@@ -125,7 +125,6 @@ class ContentFormProcessor implements EventSubscriberInterface
         $languageCode = $formConfig->getOption('languageCode');
         $draft = $this->saveDraft($data, $languageCode, []);
         $referrerLocation = $event->getOption('referrerLocation');
-//        $contentLocation = $this->resolveLocation($draft, $referrerLocation, $data);
 
         $event->setPayload('content', $draft);
         $event->setPayload('is_new', $draft->contentInfo->isDraft());
