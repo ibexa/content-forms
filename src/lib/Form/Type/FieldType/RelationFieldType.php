@@ -9,12 +9,8 @@ declare(strict_types=1);
 namespace Ibexa\ContentForms\Form\Type\FieldType;
 
 use Ibexa\ContentForms\FieldType\DataTransformer\RelationValueTransformer;
-use Ibexa\Contracts\Core\Repository\ContentService;
-use Ibexa\Contracts\Core\Repository\ContentTypeService;
-use Ibexa\Contracts\Core\Repository\Exceptions\UnauthorizedException;
 use Ibexa\Contracts\Core\Repository\Values\Content\Location;
 use Ibexa\Core\FieldType\Relation\Value;
-use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormInterface;
@@ -24,24 +20,8 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 /**
  * Form Type representing ezobjectrelation field type.
  */
-class RelationFieldType extends AbstractType
+class RelationFieldType extends AbstractRelationFieldType
 {
-    /** @var \Ibexa\Contracts\Core\Repository\ContentService */
-    private $contentService;
-
-    /** @var \Ibexa\Contracts\Core\Repository\ContentTypeService */
-    private $contentTypeService;
-
-    /**
-     * @param \Ibexa\Contracts\Core\Repository\ContentService $contentService
-     * @param \Ibexa\Contracts\Core\Repository\ContentTypeService $contentTypeService
-     */
-    public function __construct(ContentService $contentService, ContentTypeService $contentTypeService)
-    {
-        $this->contentService = $contentService;
-        $this->contentTypeService = $contentTypeService;
-    }
-
     public function getName()
     {
         return $this->getBlockPrefix();
@@ -75,23 +55,8 @@ class RelationFieldType extends AbstractType
             return;
         }
         $contentId = $data->destinationContentId;
-        $contentInfo = null;
-        $contentType = null;
-        $unauthorized = false;
 
-        try {
-            $contentInfo = $this->contentService->loadContentInfo($contentId);
-            $contentType = $this->contentTypeService->loadContentType($contentInfo->contentTypeId);
-        } catch (UnauthorizedException $e) {
-            $unauthorized = true;
-        }
-
-        $view->vars['relations'][$data->destinationContentId] = [
-            'contentInfo' => $contentInfo,
-            'contentType' => $contentType,
-            'unauthorized' => $unauthorized,
-            'contentId' => $contentId,
-        ];
+        $view->vars['relations'][$contentId] = $this->getRelationData($contentId);
     }
 
     public function configureOptions(OptionsResolver $resolver)
