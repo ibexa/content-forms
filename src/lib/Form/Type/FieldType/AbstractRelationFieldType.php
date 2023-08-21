@@ -91,7 +91,7 @@ abstract class AbstractRelationFieldType extends AbstractType
 
         return array_filter(
             $languageCodes,
-            static function (string $languageCode) use ($limitationLanguageCodes) {
+            static function (string $languageCode) use ($limitationLanguageCodes): bool {
                 return in_array($languageCode, $limitationLanguageCodes, true);
             }
         );
