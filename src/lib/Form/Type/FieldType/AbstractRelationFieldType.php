@@ -53,7 +53,10 @@ abstract class AbstractRelationFieldType extends AbstractType
             $versionInfo = $this->contentService->loadVersionInfoById($contentId);
             $contentInfo = $versionInfo->getContentInfo();
             $contentType = $contentInfo->getContentType();
-            $languageCodes = $this->getAvailableLanguageCodes($contentInfo, $versionInfo->getLanguages());
+            $languageCodes = $this->getAvailableLanguageCodes(
+                $contentInfo,
+                $this->extractLanguageCodes($versionInfo->getLanguages())
+            );
         } catch (UnauthorizedException $e) {
             $unauthorized = true;
         }
@@ -68,17 +71,12 @@ abstract class AbstractRelationFieldType extends AbstractType
     }
 
     /**
-     * @param array<\Ibexa\Contracts\Core\Repository\Values\Content\Language> $languages
+     * @param array<string> $languageCodes
      *
      * @return array<string>
      */
-    public function getAvailableLanguageCodes(ContentInfo $contentInfo, array $languages): array
+    protected function getAvailableLanguageCodes(ContentInfo $contentInfo, array $languageCodes): array
     {
-        $languageCodes = [];
-        foreach ($languages as $language) {
-            $languageCodes[] = $language->getLanguageCode();
-        }
-
         $lookupLimitationResult = $this->getLookupLimitationResult($contentInfo, $languageCodes);
         if (
             empty($lookupLimitationResult->lookupPolicyLimitations)
@@ -118,17 +116,34 @@ abstract class AbstractRelationFieldType extends AbstractType
     {
         $limitationLanguageCodes = [];
         foreach ($lookupLimitations->roleLimitations as $roleLimitation) {
-            $limitationLanguageCodes[] = $roleLimitation->limitationValues;
+            foreach ($roleLimitation->limitationValues as $limitationValue) {
+                $limitationLanguageCodes[$limitationValue] = true;
+            }
         }
 
         foreach ($lookupLimitations->lookupPolicyLimitations as $lookupPolicyLimitation) {
             foreach ($lookupPolicyLimitation->limitations as $limitation) {
-                $limitationLanguageCodes[] = $limitation->limitationValues;
+                foreach ($limitation->limitationValues as $limitationValue) {
+                    $limitationLanguageCodes[$limitationValue] = true;
+                }
             }
         }
 
-        return !empty($limitationLanguageCodes)
-            ? array_unique(array_merge(...$limitationLanguageCodes))
-            : $limitationLanguageCodes;
+        return array_keys($limitationLanguageCodes);
+    }
+
+    /**
+     * @param array<\Ibexa\Contracts\Core\Repository\Values\Content\Language> $languages
+     *
+     * @return array<string>
+     */
+    private function extractLanguageCodes(array $languages): array
+    {
+        $languageCodes = [];
+        foreach ($languages as $language) {
+            $languageCodes[] = $language->getLanguageCode();
+        }
+
+        return $languageCodes;
     }
 }
