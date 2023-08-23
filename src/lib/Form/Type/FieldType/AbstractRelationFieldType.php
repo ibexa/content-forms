@@ -13,6 +13,8 @@ use Ibexa\Contracts\Core\Repository\ContentService;
 use Ibexa\Contracts\Core\Repository\Exceptions\UnauthorizedException;
 use Ibexa\Contracts\Core\Repository\PermissionResolver;
 use Ibexa\Contracts\Core\Repository\Values\Content\ContentInfo;
+use Ibexa\Contracts\Core\Repository\Values\Content\Language;
+use Ibexa\Contracts\Core\Repository\Values\Content\VersionInfo;
 use Ibexa\Contracts\Core\Repository\Values\User\Limitation;
 use Ibexa\Contracts\Core\Repository\Values\User\LookupLimitationResult;
 use Symfony\Component\Form\AbstractType;
@@ -46,17 +48,14 @@ abstract class AbstractRelationFieldType extends AbstractType
     {
         $contentInfo = null;
         $contentType = null;
-        $languageCodes = [];
+        $languages = [];
         $unauthorized = false;
 
         try {
             $versionInfo = $this->contentService->loadVersionInfoById($contentId);
             $contentInfo = $versionInfo->getContentInfo();
             $contentType = $contentInfo->getContentType();
-            $languageCodes = $this->getAvailableLanguageCodes(
-                $contentInfo,
-                $this->extractLanguageCodes($versionInfo->getLanguages())
-            );
+            $languages = $this->getAvailableLanguages($versionInfo);
         } catch (UnauthorizedException $e) {
             $unauthorized = true;
         }
@@ -65,32 +64,41 @@ abstract class AbstractRelationFieldType extends AbstractType
             'contentInfo' => $contentInfo,
             'contentType' => $contentType,
             'contentId' => $contentId,
-            'languageCodes' => $languageCodes,
+            'languages' => $languages,
             'unauthorized' => $unauthorized,
         ];
     }
 
     /**
-     * @param array<string> $languageCodes
+     * @param array<Language> $languages
      *
      * @return array<string>
      */
-    protected function getAvailableLanguageCodes(ContentInfo $contentInfo, array $languageCodes): array
+    protected function getAvailableLanguages(VersionInfo $versionInfo): array
     {
-        $lookupLimitationResult = $this->getLookupLimitationResult($contentInfo, $languageCodes);
+        $languages = $versionInfo->getLanguages();
+        $lookupLimitationResult = $this->getLookupLimitationResult(
+            $versionInfo->getContentInfo(),
+            $this->extractLanguageCodes($languages)
+        );
+
+        if (!$lookupLimitationResult->hasAccess) {
+            return [];
+        }
+
         if (
             empty($lookupLimitationResult->lookupPolicyLimitations)
             && empty($lookupLimitationResult->roleLimitations)
         ) {
-            return $languageCodes;
+            return $languages;
         }
 
         $limitationLanguageCodes = $this->getLimitationLanguageCodes($lookupLimitationResult);
 
         return array_filter(
-            $languageCodes,
-            static function (string $languageCode) use ($limitationLanguageCodes): bool {
-                return in_array($languageCode, $limitationLanguageCodes, true);
+            $languages,
+            static function (Language $language) use ($limitationLanguageCodes): bool {
+                return in_array($language->getLanguageCode(), $limitationLanguageCodes, true);
             }
         );
     }
