@@ -8,6 +8,7 @@ declare(strict_types=1);
 
 namespace Ibexa\ContentForms\Form\Type\FieldType;
 
+use JMS\TranslationBundle\Annotation\Desc;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
@@ -91,7 +92,7 @@ class MediaFieldType extends AbstractType
 
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(['translation_domain' => 'ezplatform_content_forms_fieldtype']);
+        $resolver->setDefaults(['translation_domain' => 'ibexa_content_forms_fieldtype']);
     }
 }
 

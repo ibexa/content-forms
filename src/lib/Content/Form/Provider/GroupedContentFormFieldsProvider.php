@@ -10,8 +10,10 @@ namespace Ibexa\ContentForms\Content\Form\Provider;
 
 use Ibexa\Contracts\ContentForms\Content\Form\Provider\GroupedContentFormFieldsProviderInterface;
 use Ibexa\Core\Helper\FieldsGroups\FieldsGroupsList;
+use JMS\TranslationBundle\Model\Message;
+use JMS\TranslationBundle\Translation\TranslationContainerInterface;
 
-final class GroupedContentFormFieldsProvider implements GroupedContentFormFieldsProviderInterface
+final class GroupedContentFormFieldsProvider implements GroupedContentFormFieldsProviderInterface, TranslationContainerInterface
 {
     /** @var \Ibexa\Core\Helper\FieldsGroups\FieldsGroupsList */
     private $fieldsGroupsList;
@@ -36,5 +38,13 @@ final class GroupedContentFormFieldsProvider implements GroupedContentFormFields
         }
 
         return $groupedFields;
+    }
+
+    public static function getTranslationMessages(): array
+    {
+        return [
+            Message::create('content', 'ezplatform_fields_groups')->setDesc('Content'),
+            Message::create('metadata', 'ezplatform_fields_groups')->setDesc('Metadata'),
+        ];
     }
 }

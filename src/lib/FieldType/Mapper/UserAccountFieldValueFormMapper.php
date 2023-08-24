@@ -71,7 +71,7 @@ final class UserAccountFieldValueFormMapper implements FieldValueFormMapperInter
     {
         $resolver
             ->setDefaults([
-                'translation_domain' => 'ezplatform_content_forms_content',
+                'translation_domain' => 'ibexa_content_forms_content',
             ]);
     }
 

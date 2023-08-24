@@ -11,6 +11,7 @@ namespace Ibexa\ContentForms\Form\Type\User;
 use Ibexa\ContentForms\Form\EventSubscriber\SuppressValidationSubscriber;
 use Ibexa\ContentForms\Form\EventSubscriber\UserFieldsSubscriber;
 use Ibexa\ContentForms\Form\Type\Content\BaseContentType;
+use JMS\TranslationBundle\Annotation\Desc;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -53,7 +54,7 @@ class BaseUserType extends AbstractType
     {
         $resolver
             ->setDefaults([
-                'translation_domain' => 'ezplatform_content_forms_user',
+                'translation_domain' => 'ibexa_content_forms_user',
             ])
             ->setRequired([
                 'languageCode',

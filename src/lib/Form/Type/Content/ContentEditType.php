@@ -82,7 +82,7 @@ class ContentEditType extends AbstractType
                 'drafts_enabled' => false,
                 'autosave_enabled' => true,
                 'data_class' => ContentStruct::class,
-                'translation_domain' => 'ezplatform_content_forms_content',
+                'translation_domain' => 'ibexa_content_forms_content',
                 'intent' => 'update',
             ]);
     }

@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace Ibexa\ContentForms\Form\Type\FieldType;
 
 use Ibexa\ContentForms\Form\Type\JsonArrayType;
+use JMS\TranslationBundle\Annotation\Desc;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -63,7 +64,7 @@ class ImageFieldType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'translation_domain' => 'ezplatform_content_forms_fieldtype',
+            'translation_domain' => 'ibexa_content_forms_fieldtype',
             'is_alternative_text_required' => false,
         ]);
 
