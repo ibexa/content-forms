@@ -43,8 +43,8 @@ final class GroupedContentFormFieldsProvider implements GroupedContentFormFields
     public static function getTranslationMessages(): array
     {
         return [
-            Message::create('content', 'ezplatform_fields_groups')->setDesc('Content'),
-            Message::create('metadata', 'ezplatform_fields_groups')->setDesc('Metadata'),
+            Message::create('content', 'ibexa_fields_groups')->setDesc('Content'),
+            Message::create('metadata', 'ibexa_fields_groups')->setDesc('Metadata'),
         ];
     }
 }

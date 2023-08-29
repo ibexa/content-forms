@@ -8,12 +8,12 @@
     <body>
       <trans-unit id="040f06fd774092478d450774f5ba30c5da78acc8" resname="content">
         <source>Content</source>
-        <target>Content</target>
+        <target state="new">Content</target>
         <note>key: content</note>
       </trans-unit>
       <trans-unit id="4c24b2612e94e2ae622e54397663f2b7bf0a2e17" resname="metadata">
         <source>Metadata</source>
-        <target>Metadata</target>
+        <target state="new">Metadata</target>
         <note>key: metadata</note>
       </trans-unit>
     </body>
