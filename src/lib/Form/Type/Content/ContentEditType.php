@@ -64,7 +64,7 @@ class ContentEditType extends AbstractType
                     'hidden' => true,
                     'formnovalidate' => 'formnovalidate',
                 ],
-                'translation_domain' => 'content_edit',
+                'translation_domain' => 'ibexa_content_edit',
             ]);
         }
 
