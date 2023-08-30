@@ -12,7 +12,6 @@ use Ibexa\ContentForms\Form\EventSubscriber\SuppressValidationSubscriber;
 use Ibexa\Contracts\Core\Repository\Values\Content\ContentStruct;
 use JMS\TranslationBundle\Annotation\Desc;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
