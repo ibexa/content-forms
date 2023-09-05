@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace Ibexa\ContentForms\Form\Type\FieldType\Author;
 
 use Ibexa\Core\FieldType\Author\Author;
+use JMS\TranslationBundle\Annotation\Desc;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
@@ -75,7 +76,7 @@ class AuthorEntryType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Author::class,
-            'translation_domain' => 'ezplatform_content_forms_fieldtype',
+            'translation_domain' => 'ibexa_content_forms_fieldtype',
         ]);
     }
 }

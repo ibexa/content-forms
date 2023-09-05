@@ -10,6 +10,7 @@ namespace Ibexa\ContentForms\Form\Type\FieldType;
 
 use Ibexa\ContentForms\FieldType\DataTransformer\FieldValueTransformer;
 use Ibexa\Contracts\Core\Repository\FieldTypeService;
+use JMS\TranslationBundle\Annotation\Desc;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -94,7 +95,7 @@ class MapLocationFieldType extends AbstractType
 
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(['translation_domain' => 'ezplatform_content_forms_fieldtype']);
+        $resolver->setDefaults(['translation_domain' => 'ibexa_content_forms_fieldtype']);
     }
 }
 

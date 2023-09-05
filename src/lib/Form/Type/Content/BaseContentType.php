@@ -8,6 +8,7 @@ declare(strict_types=1);
 
 namespace Ibexa\ContentForms\Form\Type\Content;
 
+use JMS\TranslationBundle\Annotation\Desc;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -60,7 +61,7 @@ class BaseContentType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver
-            ->setDefaults(['translation_domain' => 'ezplatform_content_forms_content'])
+            ->setDefaults(['translation_domain' => 'ibexa_content_forms_content'])
             ->setRequired(['languageCode', 'mainLanguageCode']);
     }
 }

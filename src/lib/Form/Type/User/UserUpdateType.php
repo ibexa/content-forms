@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace Ibexa\ContentForms\Form\Type\User;
 
 use Ibexa\ContentForms\Data\User\UserUpdateData;
+use JMS\TranslationBundle\Annotation\Desc;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -49,7 +50,7 @@ class UserUpdateType extends AbstractType
                 'location' => null,
                 'data_class' => UserUpdateData::class,
                 'intent' => 'update',
-                'translation_domain' => 'ezplatform_content_forms_user',
+                'translation_domain' => 'ibexa_content_forms_user',
             ]);
     }
 }

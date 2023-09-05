@@ -10,6 +10,7 @@ namespace Ibexa\ContentForms\Form\Type\FieldType;
 
 use Ibexa\ContentForms\Data\User\UserAccountFieldData;
 use Ibexa\ContentForms\Form\Type\SwitcherType;
+use JMS\TranslationBundle\Annotation\Desc;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
@@ -68,7 +69,7 @@ class UserAccountFieldType extends AbstractType
         $resolver
             ->setDefaults([
                 'data_class' => UserAccountFieldData::class,
-                'translation_domain' => 'ezplatform_content_forms_fieldtype',
+                'translation_domain' => 'ibexa_content_forms_fieldtype',
             ])
             ->setRequired(['intent'])
             ->setAllowedValues('intent', ['register', 'create', 'update', 'invitation']);

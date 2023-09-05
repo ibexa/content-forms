@@ -49,7 +49,7 @@ class ContentFieldType extends AbstractType
                 'contentCreateStruct' => null,
                 'contentUpdateStruct' => null,
                 'data_class' => FieldData::class,
-                'translation_domain' => 'ezplatform_content_forms_content',
+                'translation_domain' => 'ibexa_content_forms_content',
             ])
             ->setRequired(['languageCode', 'mainLanguageCode']);
     }

@@ -70,7 +70,7 @@ class ContentDraftCreateType extends AbstractType
 
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(['translation_domain' => 'ezplatform_content_forms_content']);
+        $resolver->setDefaults(['translation_domain' => 'ibexa_content_forms_content']);
     }
 }
 

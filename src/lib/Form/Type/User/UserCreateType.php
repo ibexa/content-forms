@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace Ibexa\ContentForms\Form\Type\User;
 
 use Ibexa\ContentForms\Data\User\UserCreateData;
+use JMS\TranslationBundle\Annotation\Desc;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -48,7 +49,7 @@ class UserCreateType extends AbstractType
             ->setDefaults([
                 'data_class' => UserCreateData::class,
                 'intent' => 'create',
-                'translation_domain' => 'ezplatform_content_forms_user',
+                'translation_domain' => 'ibexa_content_forms_user',
             ]);
     }
 }
