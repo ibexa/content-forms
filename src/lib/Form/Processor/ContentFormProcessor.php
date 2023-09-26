@@ -129,10 +129,10 @@ class ContentFormProcessor implements EventSubscriberInterface
             $versionInfo = $data->contentDraft->getVersionInfo();
             $contentInfo = $versionInfo->getContentInfo();
 
-            $publishedVersion = $this->contentService->loadContentByContentInfo($contentInfo);
+            $currentVersion = $this->contentService->loadContentByContentInfo($contentInfo);
 
-            if ($publishedVersion->getVersionInfo()->status === VersionInfo::STATUS_PUBLISHED) {
-                $publishedContentInfo = $publishedVersion->getVersionInfo()->getContentInfo();
+            if ($currentVersion->getVersionInfo()->status === VersionInfo::STATUS_PUBLISHED) {
+                $publishedContentInfo = $currentVersion->getVersionInfo()->getContentInfo();
                 $redirectionLocationId = $publishedContentInfo->mainLocationId;
                 $redirectionContentId = $publishedContentInfo->getId();
             } else {
