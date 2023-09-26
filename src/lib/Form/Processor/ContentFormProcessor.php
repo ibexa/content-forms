@@ -129,17 +129,10 @@ class ContentFormProcessor implements EventSubscriberInterface
             $versionInfo = $data->contentDraft->getVersionInfo();
             $contentInfo = $versionInfo->getContentInfo();
 
-            $publishedVersions = array_values(array_filter(
-                $this->contentService->loadVersions($contentInfo),
-                static function (VersionInfo $versionInfo) {
-                    return $versionInfo->isPublished();
-                }
-            ));
+            $publishedVersion = $this->contentService->loadContentByContentInfo($contentInfo);
 
-            if (count($publishedVersions)) {
-                /** @var \Ibexa\Contracts\Core\Repository\Values\Content\VersionInfo $publishedVersion */
-                $publishedVersion = reset($publishedVersions);
-                $publishedContentInfo = $publishedVersion->getContentInfo();
+            if ($publishedVersion->getVersionInfo()->status === VersionInfo::STATUS_PUBLISHED) {
+                $publishedContentInfo = $publishedVersion->getVersionInfo()->getContentInfo();
                 $redirectionLocationId = $publishedContentInfo->mainLocationId;
                 $redirectionContentId = $publishedContentInfo->getId();
             } else {
