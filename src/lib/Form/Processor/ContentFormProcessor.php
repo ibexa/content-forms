@@ -124,14 +124,24 @@ class ContentFormProcessor implements EventSubscriberInterface
         $draft = $this->saveDraft($data, $languageCode, []);
         $referrerLocation = $event->getOption('referrerLocation');
 
+        if ($referrerLocation === null) {
+            $versionInfo = $data->contentDraft->getVersionInfo();
+            $parentLocation = $this->locationService->loadParentLocationsForDraftContent($versionInfo)[0];
+            $redirectionLocationId = $parentLocation->id;
+            $redirectionContentId = $parentLocation->contentId;
+        } else {
+            $redirectionLocationId = $referrerLocation->contentId;
+            $redirectionContentId = $referrerLocation->id;
+        }
+
         $event->setPayload('content', $draft);
         $event->setPayload('is_new', $draft->contentInfo->isDraft());
 
         $defaultUrl = $this->router->generate(
             'ibexa.content.view',
             [
-                'contentId' => $referrerLocation->contentId,
-                'locationId' => $referrerLocation->id,
+                'contentId' => $redirectionContentId,
+                'locationId' => $redirectionLocationId,
             ]
         );
 
