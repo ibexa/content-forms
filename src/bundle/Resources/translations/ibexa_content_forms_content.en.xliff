@@ -31,6 +31,11 @@
         <target state="new">Publish</target>
         <note>key: Publish</note>
       </trans-unit>
+      <trans-unit id="e4edccf256c4bf913a5929b429824155a7613ca3" resname="Publish and edit">
+        <source>Publish and edit</source>
+        <target state="new">Publish and edit</target>
+        <note>key: Publish and edit</note>
+      </trans-unit>
       <trans-unit id="fb063a81c26c9246dd089025bf8e6ff896058ffc" resname="To language">
         <source>To language</source>
         <target state="new">To language</target>
@@ -50,6 +55,11 @@
         <source>Save draft</source>
         <target state="new">Save draft</target>
         <note>key: save_draft</note>
+      </trans-unit>
+      <trans-unit id="d57dc5d10311fb7d6d4730bfdee8a5b6e7c2d849" resname="save_draft_and_close">
+        <source>Save draft and close</source>
+        <target state="new">Save draft and close</target>
+        <note>key: save_draft_and_close</note>
       </trans-unit>
     </body>
   </file>

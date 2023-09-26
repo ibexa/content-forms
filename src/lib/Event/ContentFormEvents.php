@@ -21,6 +21,11 @@ final class ContentFormEvents
     public const CONTENT_SAVE_DRAFT = 'content.edit.saveDraft';
 
     /**
+     * Triggered when saving a content draft and closing edit.
+     */
+    public const CONTENT_SAVE_DRAFT_AND_CLOSE = 'content.edit.saveDraftAndClose';
+
+    /**
      * Triggered when creating a content draft.
      */
     public const CONTENT_CREATE_DRAFT = 'content.edit.createDraft';
@@ -29,6 +34,11 @@ final class ContentFormEvents
      * Triggered when publishing a content.
      */
     public const CONTENT_PUBLISH = 'content.edit.publish';
+
+    /**
+     * Triggered when publishing a content and opening new edit.
+     */
+    public const CONTENT_PUBLISH_AND_EDIT = 'content.edit.publishAndEdit';
 
     /**
      * Triggered when canceling a content edition.
