@@ -18,6 +18,7 @@ use Ibexa\Contracts\Core\Repository\LocationService;
 use Ibexa\Contracts\Core\Repository\Values\Content\Content;
 use Ibexa\Contracts\Core\Repository\Values\Content\ContentStruct;
 use Ibexa\Contracts\Core\Repository\Values\Content\Location;
+use Ibexa\Contracts\Core\Repository\Values\Content\VersionInfo;
 use Ibexa\Core\Base\Exceptions\InvalidArgumentException;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -126,9 +127,26 @@ class ContentFormProcessor implements EventSubscriberInterface
 
         if ($referrerLocation === null) {
             $versionInfo = $data->contentDraft->getVersionInfo();
-            $parentLocation = $this->locationService->loadParentLocationsForDraftContent($versionInfo)[0];
-            $redirectionLocationId = $parentLocation->id;
-            $redirectionContentId = $parentLocation->contentId;
+            $contentInfo = $versionInfo->getContentInfo();
+
+            $publishedVersions = array_values(array_filter(
+                $this->contentService->loadVersions($contentInfo),
+                static function (VersionInfo $versionInfo) {
+                    return $versionInfo->isPublished();
+                }
+            ));
+
+            if (count($publishedVersions)) {
+                /** @var \Ibexa\Contracts\Core\Repository\Values\Content\VersionInfo $publishedVersion */
+                $publishedVersion = reset($publishedVersions);
+                $publishedContentInfo = $publishedVersion->getContentInfo();
+                $redirectionLocationId = $publishedContentInfo->mainLocationId;
+                $redirectionContentId = $publishedContentInfo->getId();
+            } else {
+                $parentLocation = $this->locationService->loadParentLocationsForDraftContent($versionInfo)[0];
+                $redirectionLocationId = $parentLocation->id;
+                $redirectionContentId = $parentLocation->contentId;
+            }
         } else {
             $redirectionLocationId = $referrerLocation->contentId;
             $redirectionContentId = $referrerLocation->id;
