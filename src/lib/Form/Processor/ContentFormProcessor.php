@@ -187,11 +187,13 @@ class ContentFormProcessor implements EventSubscriberInterface
             ? $referrerLocation->id
             : $content->contentInfo->mainLocationId;
 
+        $contentId = $content->id;
         $redirectUrl = $form['redirectUrlAfterPublish']->getData() ?: $this->router->generate(
             'ibexa.content.view',
             [
-                'contentId' => $content->id,
+                'contentId' => $contentId,
                 'locationId' => $locationId,
+                'publishedContentId' => $contentId,
             ]
         );
 
