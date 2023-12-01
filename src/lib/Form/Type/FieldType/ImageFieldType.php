@@ -58,6 +58,7 @@ class ImageFieldType extends AbstractType
     {
         $view->vars += [
             'is_alternative_text_required' => $options['is_alternative_text_required'],
+            'mime_types' => $options['mime_types'],
         ];
     }
 
@@ -66,9 +67,11 @@ class ImageFieldType extends AbstractType
         $resolver->setDefaults([
             'translation_domain' => 'ibexa_content_forms_fieldtype',
             'is_alternative_text_required' => false,
+            'mime_types' => [],
         ]);
 
         $resolver->setAllowedTypes('is_alternative_text_required', 'bool');
+        $resolver->setAllowedTypes('mime_types', ['array']);
     }
 }
 
