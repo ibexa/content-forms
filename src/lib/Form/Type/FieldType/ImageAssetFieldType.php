@@ -122,10 +122,8 @@ class ImageAssetFieldType extends AbstractType
 
     /**
      * Returns max size of uploaded file in bytes.
-     *
-     * @return int
      */
-    private function getMaxFileSize(): int
+    private function getMaxFileSize(): float
     {
         $validatorConfiguration = $this->assetMapper
             ->getAssetFieldDefinition()
@@ -133,10 +131,10 @@ class ImageAssetFieldType extends AbstractType
 
         $maxFileSize = $validatorConfiguration['FileSizeValidator']['maxFileSize'];
         if ($maxFileSize > 0) {
-            return min($maxFileSize * 1024 * 1024, $this->maxUploadSize->get());
+            return (float)min($maxFileSize * 1024 * 1024, $this->maxUploadSize->get());
         }
 
-        return $this->maxUploadSize->get();
+        return (float)$this->maxUploadSize->get();
     }
 }
 
