@@ -110,6 +110,14 @@ class ImageAssetFieldType extends AbstractType
             }
         }
 
+        $mimeTypes = $this->assetMapper
+            ->getAssetFieldDefinition()
+            ->getFieldSettings()['mimeTypes'] ?? [];
+
+        if (!empty($mimeTypes)) {
+            $view->vars['mime_types'] = $mimeTypes;
+        }
+
         $view->vars['max_file_size'] = $this->getMaxFileSize();
     }
 
