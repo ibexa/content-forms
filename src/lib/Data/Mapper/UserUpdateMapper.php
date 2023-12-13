@@ -47,9 +47,16 @@ class UserUpdateMapper
             'contentType' => $contentType,
         ]);
 
+        $filter = $params['filter'];
+
         $fields = $user->getFieldsByLanguage($params['languageCode']);
         foreach ($contentType->fieldDefinitions as $fieldDef) {
             $field = $fields[$fieldDef->identifier];
+
+            if (is_callable($filter) && !($filter)($field)) {
+                continue;
+            }
+
             $data->addFieldData(new FieldData([
                 'fieldDefinition' => $fieldDef,
                 'field' => $field,
@@ -62,8 +69,8 @@ class UserUpdateMapper
 
     private function configureOptions(OptionsResolver $optionsResolver)
     {
-        $optionsResolver
-            ->setRequired(['languageCode']);
+        $optionsResolver->define('filter')->allowedTypes('callable', 'null')->default(null);
+        $optionsResolver->setRequired(['languageCode']);
     }
 }
 
