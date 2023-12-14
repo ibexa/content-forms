@@ -141,8 +141,8 @@ class ContentFormProcessor implements EventSubscriberInterface
                 $redirectionContentId = $parentLocation->contentId;
             }
         } else {
-            $redirectionLocationId = $referrerLocation->contentId;
-            $redirectionContentId = $referrerLocation->id;
+            $redirectionLocationId = $referrerLocation->id;
+            $redirectionContentId = $referrerLocation->contentId;
         }
 
         $event->setPayload('content', $draft);
