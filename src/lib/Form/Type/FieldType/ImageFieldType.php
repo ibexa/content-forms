@@ -15,6 +15,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
+use Symfony\Component\Mime\MimeTypesInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
@@ -22,6 +23,13 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 class ImageFieldType extends AbstractType
 {
+    private MimeTypesInterface $mimeTypes;
+
+    public function __construct(MimeTypesInterface $mimeTypes)
+    {
+        $this->mimeTypes = $mimeTypes;
+    }
+
     public function getName()
     {
         return $this->getBlockPrefix();
@@ -58,6 +66,8 @@ class ImageFieldType extends AbstractType
     {
         $view->vars += [
             'is_alternative_text_required' => $options['is_alternative_text_required'],
+            'mime_types' => $options['mime_types'],
+            'image_extensions' => $this->getMimeTypesExtensions($options['mime_types']),
         ];
     }
 
@@ -66,9 +76,28 @@ class ImageFieldType extends AbstractType
         $resolver->setDefaults([
             'translation_domain' => 'ibexa_content_forms_fieldtype',
             'is_alternative_text_required' => false,
+            'mime_types' => [],
+            'image_extensions' => [],
         ]);
 
         $resolver->setAllowedTypes('is_alternative_text_required', 'bool');
+        $resolver->setAllowedTypes('mime_types', ['array']);
+        $resolver->setAllowedTypes('image_extensions', ['array']);
+    }
+
+    /**
+     * @param array<string> $mimeTypes
+     *
+     * @return array<string, array<string>>
+     */
+    private function getMimeTypesExtensions(array $mimeTypes): array
+    {
+        $extensions = [];
+        foreach ($mimeTypes as $mimeType) {
+            $extensions[$mimeType] = $this->mimeTypes->getExtensions($mimeType);
+        }
+
+        return $extensions;
     }
 }
 

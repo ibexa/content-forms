@@ -22,6 +22,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
+use Symfony\Component\Mime\MimeTypesInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -36,16 +37,18 @@ class ImageAssetFieldType extends AbstractType
     /** @var \Ibexa\ContentForms\ConfigResolver\MaxUploadSize */
     private $maxUploadSize;
 
-    /**
-     * @param \Ibexa\Contracts\Core\Repository\ContentService $contentService
-     * @param \Ibexa\Core\FieldType\ImageAsset\AssetMapper $mapper
-     * @param \Ibexa\ContentForms\ConfigResolver\MaxUploadSize $maxUploadSize
-     */
-    public function __construct(ContentService $contentService, AssetMapper $mapper, MaxUploadSize $maxUploadSize)
-    {
+    private MimeTypesInterface $mimeTypes;
+
+    public function __construct(
+        ContentService $contentService,
+        AssetMapper $mapper,
+        MaxUploadSize $maxUploadSize,
+        MimeTypesInterface $mimeTypes
+    ) {
         $this->contentService = $contentService;
         $this->maxUploadSize = $maxUploadSize;
         $this->assetMapper = $mapper;
+        $this->mimeTypes = $mimeTypes;
     }
 
     public function getName()
@@ -110,6 +113,15 @@ class ImageAssetFieldType extends AbstractType
             }
         }
 
+        $mimeTypes = $this->assetMapper
+            ->getAssetFieldDefinition()
+            ->getFieldSettings()['mimeTypes'] ?? [];
+
+        if (!empty($mimeTypes)) {
+            $view->vars['mime_types'] = $mimeTypes;
+            $view->vars['image_extensions'] = $this->getMimeTypesExtensions($mimeTypes);
+        }
+
         $view->vars['max_file_size'] = $this->getMaxFileSize();
     }
 
@@ -135,6 +147,21 @@ class ImageAssetFieldType extends AbstractType
         }
 
         return (float)$this->maxUploadSize->get();
+    }
+
+    /**
+     * @param array<string> $mimeTypes
+     *
+     * @return array<string, array<string>>
+     */
+    private function getMimeTypesExtensions(array $mimeTypes): array
+    {
+        $extensions = [];
+        foreach ($mimeTypes as $mimeType) {
+            $extensions[$mimeType] = $this->mimeTypes->getExtensions($mimeType);
+        }
+
+        return $extensions;
     }
 }
 
