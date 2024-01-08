@@ -4,7 +4,7 @@ Feature: User field value edit form
     I want the ezuser field form to implement the FieldType's behaviour
 
 Background:
-    Given a Content Type with a user field definition
+    Given a content type with a user field definition
 
 Scenario: The attributes of a user field have a form representation
     When I view the edit user form for this field

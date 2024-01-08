@@ -4,7 +4,7 @@ Feature: Selection field value edit form
     I want the Selection field form to implement the FieldType's behaviour
 
 Background:
-    Given a Content Type with an ezselection field definition
+    Given a content type with an ezselection field definition
 
 Scenario: The attributes of the field have a form representation
     Given I view the edit form for this field

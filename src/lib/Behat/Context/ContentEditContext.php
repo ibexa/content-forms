@@ -163,7 +163,7 @@ final class ContentEditContext extends MinkContext implements Context, SnippetAc
     }
 
     /**
-     * @Given /^that there is a Content Type with any kind of constraints on a Field Definition$/
+     * @Given /^that there is a content type with any kind of constraints on a Field Definition$/
      */
     public function thereIsAContentTypeWithAnyKindOfConstraintsOnAFieldDefinition()
     {

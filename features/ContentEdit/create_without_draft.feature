@@ -5,7 +5,7 @@ Feature: Edit content
 
 Scenario: Create a folder without a draft
     Given that I have permission to create folders
-      And there is a Content Type "folder" with the id "1"
+      And there is a content type "folder" with the id "1"
       #And there is a Location with the id "2"
      When I go to "content/create/nodraft/folder/eng-GB/2"
      Then I should see a folder content edit form
@@ -15,7 +15,7 @@ Scenario: Create a folder without a draft
 
 @javascript
 Scenario: Content validation errors are reported back
-    Given that there is a Content Type with any kind of constraints on a Field Definition
+    Given that there is a content type with any kind of constraints on a Field Definition
       And that I have permission to create content of this type
      When I go to the content creation page for this type
       And I fill in the constrained field with an invalid value

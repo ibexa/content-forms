@@ -48,7 +48,7 @@ final class ContentTypeContext extends RawMinkContext implements Context, Snippe
     }
 
     /**
-     * @Given /^there is a Content Type "([^"]*)" with the id "([^"]*)"$/
+     * @Given /^there is a content type "([^"]*)" with the id "([^"]*)"$/
      */
     public function thereIsAContentTypeWithId($contentTypeIdentifier, $id)
     {
@@ -61,7 +61,7 @@ final class ContentTypeContext extends RawMinkContext implements Context, Snippe
     }
 
     /**
-     * @Given I remove :fieldIdentifier field from :contentTypeIdentifier Content Type
+     * @Given I remove :fieldIdentifier field from :contentTypeIdentifier content type
      */
     public function iRemoveFieldFromContentType($fieldIdentifier, $contentTypeIdentifier)
     {
@@ -94,7 +94,7 @@ final class ContentTypeContext extends RawMinkContext implements Context, Snippe
     public function getCurrentContentType()
     {
         if ($this->currentContentType === null) {
-            throw new Exception('No current Content type has been defined in the context');
+            throw new Exception('No current content type has been defined in the context');
         }
 
         return $this->currentContentType;
