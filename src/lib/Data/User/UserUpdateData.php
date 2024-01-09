@@ -8,15 +8,17 @@ declare(strict_types=1);
 
 namespace Ibexa\ContentForms\Data\User;
 
+use EzSystems\EzPlatformContentForms\Data\VersionInfoAwareInterface;
 use Ibexa\ContentForms\Data\Content\ContentData;
 use Ibexa\ContentForms\Data\NewnessCheckable;
 use Ibexa\Contracts\Core\Repository\Values\User\UserUpdateStruct;
+use Ibexa\Core\Repository\Values\Content\VersionInfo;
 
 /**
  * @property \Ibexa\Contracts\ContentForms\Data\Content\FieldData[] $fieldsData
  * @property \Ibexa\Contracts\Core\Repository\Values\User\User $user
  */
-class UserUpdateData extends UserUpdateStruct implements NewnessCheckable
+class UserUpdateData extends UserUpdateStruct implements NewnessCheckable, VersionInfoAwareInterface
 {
     use ContentData;
 
@@ -33,6 +35,11 @@ class UserUpdateData extends UserUpdateStruct implements NewnessCheckable
     public function isNew()
     {
         return false;
+    }
+
+    public function getVersionInfo(): VersionInfo
+    {
+        return $this->user->versionInfo;
     }
 }
 
