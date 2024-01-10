@@ -6,7 +6,7 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformContentForms\Data;
+namespace Ibexa\ContentForms\Data\Content;
 
 use Ibexa\Core\Repository\Values\Content\VersionInfo;
 
