@@ -8,7 +8,6 @@ declare(strict_types=1);
 
 namespace Ibexa\ContentForms\Data\Content;
 
-use EzSystems\EzPlatformContentForms\Data\VersionInfoAwareInterface;
 use Ibexa\ContentForms\Data\NewnessCheckable;
 use Ibexa\Core\Repository\Values\Content\ContentUpdateStruct;
 use Ibexa\Core\Repository\Values\Content\VersionInfo;
