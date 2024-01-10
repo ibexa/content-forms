@@ -24,7 +24,6 @@ use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\Mime\MimeTypesInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Validator\Constraints as Assert;
 
 class ImageAssetFieldType extends AbstractType
 {
@@ -79,11 +78,6 @@ class ImageAssetFieldType extends AbstractType
                 [
                     'label' => /** @Desc("File") */ 'content.field_type.binary_base.file',
                     'required' => $options['required'],
-                    'constraints' => [
-                        new Assert\File([
-                            'maxSize' => $this->getMaxFileSize(),
-                        ]),
-                    ],
                     'mapped' => false,
                 ]
             )
@@ -141,12 +135,7 @@ class ImageAssetFieldType extends AbstractType
             ->getAssetFieldDefinition()
             ->getValidatorConfiguration();
 
-        $maxFileSize = $validatorConfiguration['FileSizeValidator']['maxFileSize'];
-        if ($maxFileSize > 0) {
-            return (float)min($maxFileSize * 1024 * 1024, $this->maxUploadSize->get());
-        }
-
-        return (float)$this->maxUploadSize->get();
+        return (float)$validatorConfiguration['FileSizeValidator']['maxFileSize'] * 1024 * 1024;
     }
 
     /**
