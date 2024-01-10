@@ -9,7 +9,7 @@ declare(strict_types=1);
 namespace Ibexa\ContentForms\Data\User;
 
 use Ibexa\ContentForms\Data\Content\ContentData;
-use Ibexa\ContentForms\Data\Content\VersionInfoAwareInterface;
+use Ibexa\ContentForms\Data\VersionInfoAwareInterface;
 use Ibexa\ContentForms\Data\NewnessCheckable;
 use Ibexa\Contracts\Core\Repository\Values\User\UserUpdateStruct;
 use Ibexa\Core\Repository\Values\Content\VersionInfo;
