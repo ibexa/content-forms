@@ -204,7 +204,7 @@ class UserRegistrationContext extends RawMinkContext implements Context, Snippet
     }
 
     /**
-     * @Given /^it matches the structure of the configured registration user Content Type$/
+     * @Given /^it matches the structure of the configured registration user content type$/
      */
     public function itMatchesTheStructureOfTheConfiguredRegistrationUserContentType()
     {

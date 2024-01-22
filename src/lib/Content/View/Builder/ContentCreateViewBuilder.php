@@ -122,7 +122,7 @@ class ContentCreateViewBuilder extends AbstractContentViewBuilder implements Vie
 
         throw new InvalidArgumentException(
             'ContentType',
-            'No Content Type could be loaded from the parameters'
+            'No content type could be loaded from the parameters'
         );
     }
 

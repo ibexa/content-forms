@@ -4,7 +4,7 @@ Feature: Checkbox field value edit form
     I want the Checkbox field form to implement the FieldType's behaviour
 
 Background:
-    Given a Content Type with an ezboolean field definition
+    Given a content type with an ezboolean field definition
 
 Scenario: The attributes of the field have a form representation
     When I view the edit form for this field

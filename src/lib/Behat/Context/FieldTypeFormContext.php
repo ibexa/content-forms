@@ -37,8 +37,8 @@ final class FieldTypeFormContext extends RawMinkContext implements SnippetAccept
     }
 
     /**
-     * @Given a Content Type with a(n) :fieldTypeIdentifier field definition
-     * @Given a Content Type :contentTypeName with a(n) :fieldTypeIdentifier field definition
+     * @Given a content type with a(n) :fieldTypeIdentifier field definition
+     * @Given a content type :contentTypeName with a(n) :fieldTypeIdentifier field definition
      */
     public function aContentTypeWithAGivenFieldDefinition($fieldTypeIdentifier, $contentTypeName = null)
     {
