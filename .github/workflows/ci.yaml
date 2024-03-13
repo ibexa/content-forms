@@ -10,13 +10,13 @@ on:
 jobs:
     cs-fix:
         name: Run code style check
-        runs-on: "ubuntu-20.04"
+        runs-on: "ubuntu-22.04"
         strategy:
             matrix:
                 php:
                     - '8.0'
         steps:
-            - uses: actions/checkout@v2
+            - uses: actions/checkout@v4
 
             - name: Setup PHP Action
               uses: shivammathur/setup-php@v2
@@ -26,16 +26,14 @@ jobs:
                   extensions: 'pdo_sqlite, gd'
                   tools: cs2pr
 
-            - uses: "ramsey/composer-install@v1"
-              with:
-                  dependency-versions: "highest"
+            - uses: ./.github/actions/composer-install
 
             - name: Run code style check
               run: composer run-script check-cs -- --format=checkstyle | cs2pr
 
     tests:
         name: Unit tests
-        runs-on: "ubuntu-20.04"
+        runs-on: "ubuntu-22.04"
         timeout-minutes: 15
 
         strategy:
@@ -44,10 +42,10 @@ jobs:
                 php:
                     - '7.4'
                     - '8.0'
-                    - '8.1'
+                    - '8.3'
 
         steps:
-            - uses: actions/checkout@v2
+            - uses: actions/checkout@v4
 
             - name: Setup PHP Action
               uses: shivammathur/setup-php@v2
@@ -57,12 +55,43 @@ jobs:
                   extensions: pdo_sqlite, gd
                   tools: cs2pr
 
-            - uses: "ramsey/composer-install@v1"
-              with:
-                  dependency-versions: "highest"
+            - uses: ./.github/actions/composer-install
 
             - name: Setup problem matchers for PHPUnit
               run: echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
 
             - name: Run unit test suite
               run: composer test
+
+    integration-tests:
+        name: Runs integration tests
+        runs-on: "ubuntu-22.04"
+        needs: tests
+        timeout-minutes: 15
+
+        strategy:
+            fail-fast: false
+            matrix:
+                php:
+                    - '7.4'
+                    - '8.0'
+                    - '8.3'
+
+        steps:
+            - uses: actions/checkout@v4
+
+            - name: Setup PHP Action
+              uses: shivammathur/setup-php@v2
+              with:
+                  php-version: ${{ matrix.php }}
+                  coverage: none
+                  extensions: pdo_sqlite, gd
+                  tools: cs2pr
+
+            - uses: ./.github/actions/composer-install
+
+            - name: Setup problem matchers for PHPUnit
+              run: echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
+
+            - name: Run unit test suite
+              run: composer run-script test-integration
