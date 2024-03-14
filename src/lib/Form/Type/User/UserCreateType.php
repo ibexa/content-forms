@@ -43,10 +43,11 @@ class UserCreateType extends AbstractType
             ->add('create', SubmitType::class, ['label' => /** @Desc("Create") */ 'user.create']);
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver
             ->setDefaults([
+                'userCreateStruct' => null,
                 'data_class' => UserCreateData::class,
                 'intent' => 'create',
                 'translation_domain' => 'ibexa_content_forms_user',

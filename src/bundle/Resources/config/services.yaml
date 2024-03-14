@@ -99,14 +99,15 @@ services:
 
     Ibexa\Bundle\ContentForms\Controller\UserController:
         arguments:
-            - '@ibexa.api.service.content_type'
-            - '@ibexa.api.service.user'
-            - '@ibexa.api.service.location'
-            - '@ibexa.api.service.language'
-            - '@Ibexa\ContentForms\Form\ActionDispatcher\UserDispatcher'
-            - '@Ibexa\Contracts\Core\Repository\PermissionResolver'
-            - '@Ibexa\Core\MVC\Symfony\Locale\UserLanguagePreferenceProvider'
-            - '@Ibexa\ContentForms\Content\Form\Provider\GroupedContentFormFieldsProvider'
+            $contentTypeService: '@ibexa.api.service.content_type'
+            $userService: '@ibexa.api.service.user'
+            $locationService: '@ibexa.api.service.location'
+            $languageService: '@ibexa.api.service.language'
+            $userActionDispatcher: '@Ibexa\ContentForms\Form\ActionDispatcher\UserDispatcher'
+            $permissionResolver: '@Ibexa\Contracts\Core\Repository\PermissionResolver'
+            $userLanguagePreferenceProvider: '@Ibexa\Core\MVC\Symfony\Locale\UserLanguagePreferenceProvider'
+            $groupedContentFormFieldsProvider: '@Ibexa\ContentForms\Content\Form\Provider\GroupedContentFormFieldsProvider'
+            $contentService: '@ibexa.api.service.content'
         parent: Ibexa\Core\MVC\Symfony\Controller\Controller
         tags:
               - { name: controller.service_arguments }

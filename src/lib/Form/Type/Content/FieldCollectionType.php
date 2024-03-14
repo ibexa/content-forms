@@ -11,10 +11,14 @@ namespace Ibexa\ContentForms\Form\Type\Content;
 use Ibexa\ContentForms\Event\ContentCreateFieldOptionsEvent;
 use Ibexa\ContentForms\Event\ContentFormEvents;
 use Ibexa\ContentForms\Event\ContentUpdateFieldOptionsEvent;
+use Ibexa\ContentForms\Event\UserCreateFieldOptionsEvent;
+use Ibexa\ContentForms\Event\UserUpdateFieldOptionsEvent;
+use Ibexa\Contracts\ContentForms\Data\Content\FieldData;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
+use Symfony\Component\Form\FormInterface;
 use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
 
 class FieldCollectionType extends CollectionType
@@ -43,40 +47,12 @@ class FieldCollectionType extends CollectionType
             }
 
             // Then add all rows again in the correct order
-            foreach ($data as $name => $value) {
+            foreach ($data as $name => $entryData) {
                 $entryOptions = array_replace([
                     'property_path' => '[' . $name . ']',
                 ], $options['entry_options']);
-                $entryData = $data[$name];
 
-                if ($this->isContentUpdate($entryOptions)) {
-                    /** @var \Ibexa\ContentForms\Event\ContentUpdateFieldOptionsEvent $contentUpdateFieldOptionsEvent */
-                    $contentUpdateFieldOptionsEvent = $this->eventDispatcher->dispatch(
-                        new ContentUpdateFieldOptionsEvent(
-                            $entryOptions['content'],
-                            $entryOptions['contentUpdateStruct'],
-                            $form,
-                            $entryData,
-                            $entryOptions
-                        ),
-                        ContentFormEvents::CONTENT_EDIT_FIELD_OPTIONS
-                    );
-
-                    $entryOptions = $contentUpdateFieldOptionsEvent->getOptions();
-                } elseif ($this->isContentCreate($entryOptions)) {
-                    /** @var \Ibexa\ContentForms\Event\ContentCreateFieldOptionsEvent $contentUpdateFieldOptionsEvent */
-                    $contentCreateFieldOptionsEvent = $this->eventDispatcher->dispatch(
-                        new ContentCreateFieldOptionsEvent(
-                            $entryOptions['contentCreateStruct'],
-                            $form,
-                            $entryData,
-                            $entryOptions
-                        ),
-                        ContentFormEvents::CONTENT_CREATE_FIELD_OPTIONS
-                    );
-
-                    $entryOptions = $contentCreateFieldOptionsEvent->getOptions();
-                }
+                $entryOptions = $this->dispatchFieldOptionsEvent($entryData, $entryOptions, $form);
 
                 $form->add($name, $options['entry_type'], $entryOptions);
             }
@@ -91,6 +67,91 @@ class FieldCollectionType extends CollectionType
     private function isContentUpdate(array $entryOptions): bool
     {
         return !empty($entryOptions['content']) && !empty($entryOptions['contentUpdateStruct']);
+    }
+
+    /**
+     * @param array<string, mixed> $entryOptions
+     */
+    private function isUserCreate(array $entryOptions): bool
+    {
+        return !empty($entryOptions['userCreateStruct']);
+    }
+
+    /**
+     * @param array<string, mixed> $entryOptions
+     */
+    private function isUserUpdate(array $entryOptions): bool
+    {
+        return !empty($entryOptions['userUpdateStruct']);
+    }
+
+    /**
+     * @param array<string, mixed> $entryOptions
+     *
+     * @return array<string, mixed> $entryOptions
+     */
+    private function dispatchFieldOptionsEvent(
+        FieldData $entryData,
+        array $entryOptions,
+        FormInterface $form
+    ): array {
+        if ($this->isContentUpdate($entryOptions)) {
+            /** @var \Ibexa\ContentForms\Event\ContentUpdateFieldOptionsEvent $contentUpdateFieldOptionsEvent */
+            $contentUpdateFieldOptionsEvent = $this->eventDispatcher->dispatch(
+                new ContentUpdateFieldOptionsEvent(
+                    $entryOptions['content'],
+                    $entryOptions['contentUpdateStruct'],
+                    $form,
+                    $entryData,
+                    $entryOptions
+                ),
+                ContentFormEvents::CONTENT_EDIT_FIELD_OPTIONS
+            );
+
+            $entryOptions = $contentUpdateFieldOptionsEvent->getOptions();
+        } elseif ($this->isContentCreate($entryOptions)) {
+            /** @var \Ibexa\ContentForms\Event\ContentCreateFieldOptionsEvent $contentUpdateFieldOptionsEvent */
+            $contentCreateFieldOptionsEvent = $this->eventDispatcher->dispatch(
+                new ContentCreateFieldOptionsEvent(
+                    $entryOptions['contentCreateStruct'],
+                    $form,
+                    $entryData,
+                    $entryOptions
+                ),
+                ContentFormEvents::CONTENT_CREATE_FIELD_OPTIONS
+            );
+
+            $entryOptions = $contentCreateFieldOptionsEvent->getOptions();
+        } elseif ($this->isUserCreate($entryOptions)) {
+            /** @var \Ibexa\ContentForms\Event\UserCreateFieldOptionsEvent $userCreateFieldOptionsEvent */
+            $userCreateFieldOptionsEvent = $this->eventDispatcher->dispatch(
+                new UserCreateFieldOptionsEvent(
+                    $entryOptions['userCreateStruct'],
+                    $form,
+                    $entryData,
+                    $entryOptions
+                ),
+                ContentFormEvents::USER_CREATE_FIELD_OPTIONS
+            );
+
+            $entryOptions = $userCreateFieldOptionsEvent->getOptions();
+        } elseif ($this->isUserUpdate($entryOptions)) {
+            /** @var \Ibexa\ContentForms\Event\UserUpdateFieldOptionsEvent $userUpdateFieldOptionsEvent */
+            $userUpdateFieldOptionsEvent = $this->eventDispatcher->dispatch(
+                new UserUpdateFieldOptionsEvent(
+                    $entryOptions['content'],
+                    $entryOptions['userUpdateStruct'],
+                    $form,
+                    $entryData,
+                    $entryOptions
+                ),
+                ContentFormEvents::USER_EDIT_FIELD_OPTIONS
+            );
+
+            $entryOptions = $userUpdateFieldOptionsEvent->getOptions();
+        }
+
+        return $entryOptions;
     }
 }
 

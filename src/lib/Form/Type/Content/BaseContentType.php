@@ -44,6 +44,8 @@ class BaseContentType extends AbstractType
                     'content' => $options['content'] ?? null,
                     'contentCreateStruct' => $options['contentCreateStruct'] ?? null,
                     'contentUpdateStruct' => $options['contentUpdateStruct'] ?? null,
+                    'userCreateStruct' => $options['userCreateStruct'] ?? null,
+                    'userUpdateStruct' => $options['userUpdateStruct'] ?? null,
                 ],
             ])
             ->add('redirectUrlAfterPublish', HiddenType::class, [

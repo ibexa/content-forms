@@ -43,11 +43,13 @@ class UserUpdateType extends AbstractType
             ->add('update', SubmitType::class, ['label' => /** @Desc("Update") */ 'user.update']);
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver
             ->setDefaults([
                 'location' => null,
+                'content' => null,
+                'userUpdateStruct' => null,
                 'data_class' => UserUpdateData::class,
                 'intent' => 'update',
                 'translation_domain' => 'ibexa_content_forms_user',

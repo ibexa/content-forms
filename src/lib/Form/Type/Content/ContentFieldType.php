@@ -48,6 +48,8 @@ class ContentFieldType extends AbstractType
                 'location' => null,
                 'contentCreateStruct' => null,
                 'contentUpdateStruct' => null,
+                'userCreateStruct' => null,
+                'userUpdateStruct' => null,
                 'data_class' => FieldData::class,
                 'translation_domain' => 'ibexa_content_forms_content',
             ])
