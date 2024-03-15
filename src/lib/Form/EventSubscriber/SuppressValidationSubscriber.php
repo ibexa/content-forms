@@ -47,6 +47,12 @@ class SuppressValidationSubscriber implements EventSubscriberInterface
                 $event->stopPropagation();
             }
         }
+
+        if ($form->has('saveDraftAndClose')) {
+            if ($form->get('saveDraftAndClose')->isClicked()) {
+                $event->stopPropagation();
+            }
+        }
     }
 
     public function suppressValidationOnAutosaveDraft(PostSubmitEvent $event)
