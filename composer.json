@@ -30,6 +30,8 @@
         "ibexa/doctrine-schema": "~4.6.0@dev",
         "ibexa/http-cache": "~4.6.0@dev",
         "ibexa/rest": "~4.6.0@dev",
+        "ibexa/test-core": "^4.6.x-dev",
+        "ibexa/user": "^4.6.x-dev",
         "phpunit/phpunit": "^8.2",
         "matthiasnoback/symfony-dependency-injection-test": "^4.0",
         "behat/behat": "^3.5",
@@ -51,6 +53,7 @@
             "EzSystems\\EzPlatformContentForms\\Tests\\": "tests/lib/",
             "EzSystems\\EzPlatformContentFormsBundle\\Tests\\": "tests/bundle/",
             "Ibexa\\Tests\\Bundle\\ContentForms\\": "tests/bundle/",
+            "Ibexa\\Tests\\Integration\\ContentForms\\": "tests/integration/",
             "Ibexa\\Tests\\ContentForms\\": "tests/lib/"
         }
     },
@@ -67,6 +70,7 @@
     "scripts": {
         "fix-cs": "php-cs-fixer fix --config=.php-cs-fixer.php -v --show-progress=dots",
         "check-cs": "@fix-cs --dry-run",
-        "test": "phpunit -c phpunit.xml.dist"
+        "test": "phpunit -c phpunit.xml.dist",
+        "test-integration": "phpunit -c phpunit.integration.xml.dist"
     }
 }
