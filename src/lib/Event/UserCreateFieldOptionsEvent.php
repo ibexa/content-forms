@@ -12,7 +12,7 @@ use Ibexa\Contracts\ContentForms\Data\Content\FieldData;
 use Ibexa\Contracts\Core\Repository\Values\User\UserCreateStruct;
 use Symfony\Component\Form\FormInterface;
 
-final class UserCreateFieldOptionsEvent extends UserStructFieldOptionsEvent
+final class UserCreateFieldOptionsEvent extends StructFieldOptionsEvent
 {
     /** @var \Ibexa\Contracts\Core\Repository\Values\User\UserCreateStruct */
     private $userCreateStruct;

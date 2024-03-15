@@ -13,7 +13,7 @@ use Ibexa\Contracts\Core\Repository\Values\Content\Content;
 use Ibexa\Contracts\Core\Repository\Values\User\UserUpdateStruct;
 use Symfony\Component\Form\FormInterface;
 
-final class UserUpdateFieldOptionsEvent extends UserStructFieldOptionsEvent
+final class UserUpdateFieldOptionsEvent extends StructFieldOptionsEvent
 {
     /** @var \Ibexa\Contracts\Core\Repository\Values\Content\Content */
     private $content;
