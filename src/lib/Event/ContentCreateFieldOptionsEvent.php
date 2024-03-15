@@ -11,21 +11,11 @@ namespace Ibexa\ContentForms\Event;
 use Ibexa\Contracts\ContentForms\Data\Content\FieldData;
 use Ibexa\Contracts\Core\Repository\Values\Content\ContentCreateStruct;
 use Symfony\Component\Form\FormInterface;
-use Symfony\Contracts\EventDispatcher\Event;
 
-final class ContentCreateFieldOptionsEvent extends Event
+final class ContentCreateFieldOptionsEvent extends StructFieldOptionsEvent
 {
     /** @var \Ibexa\Contracts\Core\Repository\Values\Content\ContentCreateStruct */
     private $contentCreateStruct;
-
-    /** @var \Symfony\Component\Form\FormInterface */
-    private $parentForm;
-
-    /** @var \Ibexa\Contracts\ContentForms\Data\Content\FieldData */
-    private $fieldData;
-
-    /** @var array */
-    private $options;
 
     public function __construct(
         ContentCreateStruct $contentCreateStruct,
@@ -34,44 +24,13 @@ final class ContentCreateFieldOptionsEvent extends Event
         array $options
     ) {
         $this->contentCreateStruct = $contentCreateStruct;
-        $this->parentForm = $parentForm;
-        $this->fieldData = $fieldData;
-        $this->options = $options;
+
+        parent::__construct($parentForm, $fieldData, $options);
     }
 
     public function getContentCreateStruct(): ContentCreateStruct
     {
         return $this->contentCreateStruct;
-    }
-
-    public function getParentForm(): FormInterface
-    {
-        return $this->parentForm;
-    }
-
-    public function getFieldData(): FieldData
-    {
-        return $this->fieldData;
-    }
-
-    public function getOptions(): array
-    {
-        return $this->options;
-    }
-
-    public function setOptions(array $options): void
-    {
-        $this->options = $options;
-    }
-
-    public function setOption(string $option, $value): void
-    {
-        $this->options[$option] = $value;
-    }
-
-    public function getOption(string $option)
-    {
-        return $this->options[$option] ?? null;
     }
 }
 

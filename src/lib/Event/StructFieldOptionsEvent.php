@@ -12,7 +12,7 @@ use Ibexa\Contracts\ContentForms\Data\Content\FieldData;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Contracts\EventDispatcher\Event;
 
-abstract class UserStructFieldOptionsEvent extends Event
+abstract class StructFieldOptionsEvent extends Event
 {
     /** @var \Symfony\Component\Form\FormInterface */
     protected $parentForm;
@@ -59,11 +59,17 @@ abstract class UserStructFieldOptionsEvent extends Event
         $this->options = $options;
     }
 
+    /**
+     * @param mixed $value
+     */
     public function setOption(string $option, $value): void
     {
         $this->options[$option] = $value;
     }
 
+    /**
+     * @return mixed|null
+     */
     public function getOption(string $option)
     {
         return $this->options[$option] ?? null;

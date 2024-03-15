@@ -12,24 +12,14 @@ use Ibexa\Contracts\ContentForms\Data\Content\FieldData;
 use Ibexa\Contracts\Core\Repository\Values\Content\Content;
 use Ibexa\Contracts\Core\Repository\Values\Content\ContentUpdateStruct;
 use Symfony\Component\Form\FormInterface;
-use Symfony\Contracts\EventDispatcher\Event;
 
-final class ContentUpdateFieldOptionsEvent extends Event
+final class ContentUpdateFieldOptionsEvent extends StructFieldOptionsEvent
 {
     /** @var \Ibexa\Contracts\Core\Repository\Values\Content\Content */
     private $content;
 
     /** @var \Ibexa\Contracts\Core\Repository\Values\Content\ContentUpdateStruct */
     private $contentUpdateStruct;
-
-    /** @var \Symfony\Component\Form\FormInterface */
-    private $parentForm;
-
-    /** @var \Ibexa\Contracts\ContentForms\Data\Content\FieldData */
-    private $fieldData;
-
-    /** @var array */
-    private $options;
 
     public function __construct(
         Content $content,
@@ -40,9 +30,8 @@ final class ContentUpdateFieldOptionsEvent extends Event
     ) {
         $this->content = $content;
         $this->contentUpdateStruct = $contentUpdateStruct;
-        $this->parentForm = $parentForm;
-        $this->fieldData = $fieldData;
-        $this->options = $options;
+
+        parent::__construct($parentForm, $fieldData, $options);
     }
 
     public function getContent(): Content
@@ -53,36 +42,6 @@ final class ContentUpdateFieldOptionsEvent extends Event
     public function getContentUpdateStruct(): ContentUpdateStruct
     {
         return $this->contentUpdateStruct;
-    }
-
-    public function getParentForm(): FormInterface
-    {
-        return $this->parentForm;
-    }
-
-    public function getFieldData(): FieldData
-    {
-        return $this->fieldData;
-    }
-
-    public function getOptions(): array
-    {
-        return $this->options;
-    }
-
-    public function setOptions(array $options): void
-    {
-        $this->options = $options;
-    }
-
-    public function setOption(string $option, $value): void
-    {
-        $this->options[$option] = $value;
-    }
-
-    public function getOption(string $option)
-    {
-        return $this->options[$option] ?? null;
     }
 }
 
