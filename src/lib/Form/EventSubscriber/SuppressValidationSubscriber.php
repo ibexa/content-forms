@@ -42,10 +42,11 @@ class SuppressValidationSubscriber implements EventSubscriberInterface
     {
         $form = $event->getForm();
 
-        if ($form->has('saveDraft')) {
-            if ($form->get('saveDraft')->isClicked()) {
-                $event->stopPropagation();
-            }
+        if (
+            ($form->has('saveDraft') && $form->get('saveDraft')->isClicked())
+            || ($form->has('saveDraftAndClose') && $form->get('saveDraftAndClose')->isClicked())
+        ) {
+            $event->stopPropagation();
         }
     }
 
