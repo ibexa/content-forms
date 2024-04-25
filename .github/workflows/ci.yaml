@@ -12,9 +12,7 @@ jobs:
         name: Run code style check
         runs-on: "ubuntu-22.04"
         strategy:
-            matrix:
-                php:
-                    - '8.0'
+
         steps:
             - uses: actions/checkout@v4
 
@@ -40,8 +38,6 @@ jobs:
             fail-fast: false
             matrix:
                 php:
-                    - '7.4'
-                    - '8.0'
                     - '8.3'
 
         steps:
@@ -73,8 +69,6 @@ jobs:
             fail-fast: false
             matrix:
                 php:
-                    - '7.4'
-                    - '8.0'
                     - '8.3'
 
         steps:
