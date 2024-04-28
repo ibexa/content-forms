@@ -23,13 +23,13 @@ final class GroupedContentFormFieldsProviderTest extends TestCase
     {
         $fieldsGroupsListMock = $this->createMock(FieldsGroupsList::class);
         $fieldsGroupsListMock
-            ->expects($this->exactly(3))
+            ->expects(self::exactly(3))
             ->method('getFieldGroup')
             ->withConsecutive()
             ->willReturnOnConsecutiveCalls('group_1', 'group_2', 'group_2');
 
         $fieldsGroupsListMock
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('getGroups')
             ->willReturn([
                 'group_1' => 'Group 1',
@@ -65,7 +65,7 @@ final class GroupedContentFormFieldsProviderTest extends TestCase
             ],
         ];
 
-        $this->assertEquals($expected, $result);
+        self::assertEquals($expected, $result);
     }
 
     /**
@@ -80,7 +80,7 @@ final class GroupedContentFormFieldsProviderTest extends TestCase
             ->disableOriginalConstructor()
             ->getMock();
         $formMock
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('getViewData')
             ->willReturn(new FieldData([
                 'field' => new Field(['fieldDefIdentifier' => $fieldDefIdentifier]),
@@ -88,7 +88,7 @@ final class GroupedContentFormFieldsProviderTest extends TestCase
                 'value' => new Value('value'),
             ]));
         $formMock
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('getName')
             ->willReturn($fieldDefIdentifier);
 

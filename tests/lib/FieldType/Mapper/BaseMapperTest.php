@@ -31,7 +31,7 @@ abstract class BaseMapperTest extends TestCase
         $this->fieldTypeService = $this->getMockBuilder(FieldTypeService::class)
             ->getMock();
         $this->fieldTypeService
-            ->expects($this->any())
+            ->expects(self::any())
             ->method('getFieldType')
             ->willReturn($this->getMockBuilder(FieldType::class)->getMock());
 
@@ -40,25 +40,25 @@ abstract class BaseMapperTest extends TestCase
         $formFactory = $this->getMockBuilder(FormFactoryInterface::class)
             ->setMethods(['addModelTransformer', 'setAutoInitialize', 'getForm'])
             ->getMockForAbstractClass();
-        $formFactory->expects($this->once())
+        $formFactory->expects(self::once())
             ->method('createBuilder')
             ->willReturn($formFactory);
-        $formFactory->expects($this->once())
+        $formFactory->expects(self::once())
             ->method('create')
             ->willReturn($formFactory);
-        $formFactory->expects($this->once())
+        $formFactory->expects(self::once())
             ->method('addModelTransformer')
             ->willReturn($formFactory);
-        $formFactory->expects($this->once())
+        $formFactory->expects(self::once())
             ->method('setAutoInitialize')
             ->willReturn($formFactory);
 
-        $this->config->expects($this->once())
+        $this->config->expects(self::once())
             ->method('getFormFactory')
             ->willReturn($formFactory);
 
         $this->fieldForm = $this->getMockBuilder(FormInterface::class)->getMock();
-        $this->fieldForm->expects($this->once())
+        $this->fieldForm->expects(self::once())
             ->method('getConfig')
             ->willReturn($this->config);
 

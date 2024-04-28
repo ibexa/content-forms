@@ -12,6 +12,7 @@ interface GroupedContentFormFieldsProviderInterface
 {
     /**
      * @param \Symfony\Component\Form\FormInterface[] $fieldsDataForm
+     *
      * @phpstan-return array<string, array<int, string>> Array of fieldGroupIdentifier grouped by fieldGroupName.
      */
     public function getGroupedFields(array $fieldsDataForm): array;

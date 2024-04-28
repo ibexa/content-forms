@@ -1,28 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<phpunit bootstrap="./bootstrap.php"
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.5/phpunit.xsd"
+         bootstrap="./bootstrap.php"
          colors="true"
-         convertErrorsToExceptions="true"
-         convertNoticesToExceptions="true"
-         convertWarningsToExceptions="true"
          beStrictAboutTestsThatDoNotTestAnything="false">
     <php>
         <ini name="error_reporting" value="-1" />
     </php>
     <testsuites>
         <testsuite name="ContentForms tests">
-            <directory suffix="Test.php">./tests/lib</directory>
+            <directory>./tests/lib</directory>
         </testsuite>
         <testsuite name="ContentFormsBundle tests">
-            <directory suffix="Test.php">./tests/bundle</directory>
+            <directory>./tests/bundle</directory>
         </testsuite>
     </testsuites>
-
-    <filter>
-        <whitelist>
-            <directory>./src/bundle</directory>
-            <directory>./src/lib</directory>
-        </whitelist>
-    </filter>
-
 </phpunit>
