@@ -24,7 +24,7 @@ class FormTypeBasedFieldValueFormMapperTest extends BaseMapperTest
             'fieldSettings' => ['isMultiple' => false, 'options' => []],
         ]);
 
-        $this->data->expects($this->once())
+        $this->data->expects(self::once())
             ->method('__get')
             ->with('fieldDefinition')
             ->willReturn($fieldDefinition);
@@ -49,7 +49,7 @@ class FormTypeBasedFieldValueFormMapperTest extends BaseMapperTest
             'fieldTypeIdentifier' => 'ezselection',
             'fieldSettings' => ['isMultiple' => false, 'options' => []],
         ]);
-        $this->data->expects($this->once())
+        $this->data->expects(self::once())
             ->method('__get')
             ->with('fieldDefinition')
             ->willReturn($fieldDefinition);

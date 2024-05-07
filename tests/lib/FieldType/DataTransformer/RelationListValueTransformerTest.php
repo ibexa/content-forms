@@ -21,7 +21,7 @@ final class RelationListValueTransformerTest extends TestCase
     {
         $transformer = new RelationListValueTransformer();
 
-        $this->assertEquals(
+        self::assertEquals(
             $expectedValue,
             $transformer->reverseTransform($value)
         );

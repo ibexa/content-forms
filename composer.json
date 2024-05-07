@@ -26,10 +26,9 @@
     },
     "require-dev": {
         "behat/behat": "^3.5",
-        "friendsofphp/php-cs-fixer": "^3.0",
         "ibexa/behat": "~5.0.x-dev",
         "ibexa/ci-scripts": "^0.2@dev",
-        "ibexa/code-style": "^1.0",
+        "ibexa/code-style": "~2.0.0",
         "ibexa/doctrine-schema": "~5.0.x-dev",
         "ibexa/http-cache": "~5.0.x-dev",
         "ibexa/notifications": "~5.0.x-dev",
@@ -37,7 +36,7 @@
         "ibexa/test-core": "~5.0.x-dev",
         "ibexa/user": "^5.0.x-dev",
         "matthiasnoback/symfony-dependency-injection-test": "^4.0",
-        "phpunit/phpunit": "^8.2"
+        "phpunit/phpunit": "^9.6"
     },
     "autoload": {
         "psr-4": {
