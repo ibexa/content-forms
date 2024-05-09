@@ -48,8 +48,6 @@ class ContentFieldType extends AbstractType
                 'location' => null,
                 'contentCreateStruct' => null, // deprecated
                 'contentUpdateStruct' => null, // deprecated
-                'userCreateStruct' => null, // deprecated
-                'userUpdateStruct' => null, // deprecated
                 'data_class' => FieldData::class,
                 'translation_domain' => 'ibexa_content_forms_content',
                 'struct' => null,

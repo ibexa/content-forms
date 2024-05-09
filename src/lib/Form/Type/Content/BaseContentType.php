@@ -49,8 +49,6 @@ class BaseContentType extends AbstractType
                     'content' => $options['content'] ?? null,
                     'contentCreateStruct' => $options['contentCreateStruct'] ?? null, // deprecated
                     'contentUpdateStruct' => $options['contentUpdateStruct'] ?? null, // deprecated
-                    'userCreateStruct' => $options['userCreateStruct'] ?? null, // deprecated
-                    'userUpdateStruct' => $options['userUpdateStruct'] ?? null, // deprecated
                     'struct' => $options['struct'],
                 ],
             ])
