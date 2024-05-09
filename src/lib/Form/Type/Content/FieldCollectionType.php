@@ -14,6 +14,10 @@ use Ibexa\ContentForms\Event\ContentUpdateFieldOptionsEvent;
 use Ibexa\ContentForms\Event\UserCreateFieldOptionsEvent;
 use Ibexa\ContentForms\Event\UserUpdateFieldOptionsEvent;
 use Ibexa\Contracts\ContentForms\Data\Content\FieldData;
+use Ibexa\Contracts\Core\Repository\Values\User\UserUpdateStruct;
+use Ibexa\Core\Repository\Values\Content\ContentCreateStruct;
+use Ibexa\Core\Repository\Values\Content\ContentUpdateStruct;
+use Ibexa\Core\Repository\Values\User\UserCreateStruct;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
@@ -61,12 +65,12 @@ class FieldCollectionType extends CollectionType
 
     private function isContentCreate(array $entryOptions): bool
     {
-        return !empty($entryOptions['contentCreateStruct']);
+        return !empty($entryOptions['struct']) && $entryOptions['struct'] instanceof ContentCreateStruct;
     }
 
     private function isContentUpdate(array $entryOptions): bool
     {
-        return !empty($entryOptions['content']) && !empty($entryOptions['contentUpdateStruct']);
+        return !empty($entryOptions['struct']) && $entryOptions['struct'] instanceof ContentUpdateStruct;
     }
 
     /**
@@ -74,7 +78,7 @@ class FieldCollectionType extends CollectionType
      */
     private function isUserCreate(array $entryOptions): bool
     {
-        return !empty($entryOptions['userCreateStruct']);
+        return !empty($entryOptions['struct']) && $entryOptions['struct'] instanceof UserCreateStruct;
     }
 
     /**
@@ -82,25 +86,26 @@ class FieldCollectionType extends CollectionType
      */
     private function isUserUpdate(array $entryOptions): bool
     {
-        return !empty($entryOptions['userUpdateStruct']);
+        return !empty($entryOptions['struct']) && $entryOptions['struct'] instanceof UserUpdateStruct;
     }
 
     /**
      * @param array<string, mixed> $entryOptions
      *
-     * @return array<string, mixed> $entryOptions
+     * @return array<string, mixed>
      */
     private function dispatchFieldOptionsEvent(
         FieldData $entryData,
         array $entryOptions,
         FormInterface $form
     ): array {
+        dump($entryOptions);
         if ($this->isContentUpdate($entryOptions)) {
             /** @var \Ibexa\ContentForms\Event\ContentUpdateFieldOptionsEvent $contentUpdateFieldOptionsEvent */
             $contentUpdateFieldOptionsEvent = $this->eventDispatcher->dispatch(
                 new ContentUpdateFieldOptionsEvent(
                     $entryOptions['content'],
-                    $entryOptions['contentUpdateStruct'],
+                    $entryOptions['struct'],
                     $form,
                     $entryData,
                     $entryOptions
@@ -113,7 +118,7 @@ class FieldCollectionType extends CollectionType
             /** @var \Ibexa\ContentForms\Event\ContentCreateFieldOptionsEvent $contentUpdateFieldOptionsEvent */
             $contentCreateFieldOptionsEvent = $this->eventDispatcher->dispatch(
                 new ContentCreateFieldOptionsEvent(
-                    $entryOptions['contentCreateStruct'],
+                    $entryOptions['struct'],
                     $form,
                     $entryData,
                     $entryOptions
@@ -126,7 +131,7 @@ class FieldCollectionType extends CollectionType
             /** @var \Ibexa\ContentForms\Event\UserCreateFieldOptionsEvent $userCreateFieldOptionsEvent */
             $userCreateFieldOptionsEvent = $this->eventDispatcher->dispatch(
                 new UserCreateFieldOptionsEvent(
-                    $entryOptions['userCreateStruct'],
+                    $entryOptions['struct'],
                     $form,
                     $entryData,
                     $entryOptions
@@ -140,7 +145,7 @@ class FieldCollectionType extends CollectionType
             $userUpdateFieldOptionsEvent = $this->eventDispatcher->dispatch(
                 new UserUpdateFieldOptionsEvent(
                     $entryOptions['content'],
-                    $entryOptions['userUpdateStruct'],
+                    $entryOptions['struct'],
                     $form,
                     $entryData,
                     $entryOptions

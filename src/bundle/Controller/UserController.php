@@ -55,7 +55,7 @@ class UserController extends Controller
     private $groupedContentFormFieldsProvider;
 
     /** @var \Ibexa\Contracts\Core\Repository\ContentService */
-    private $contentService;
+    private ContentService $contentService;
 
     public function __construct(
         ContentTypeService $contentTypeService,

@@ -8,12 +8,17 @@ declare(strict_types=1);
 
 namespace Ibexa\ContentForms\Form\Type\Content;
 
+use Ibexa\Contracts\Core\Repository\Values\Content\ContentCreateStruct;
+use Ibexa\Contracts\Core\Repository\Values\User\UserCreateStruct;
+use Ibexa\Contracts\Core\Repository\Values\User\UserUpdateStruct;
+use Ibexa\Core\Repository\Values\Content\ContentUpdateStruct;
 use JMS\TranslationBundle\Annotation\Desc;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
+use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
@@ -42,10 +47,11 @@ class BaseContentType extends AbstractType
                     'mainLanguageCode' => $options['mainLanguageCode'],
                     'location' => $options['location'] ?? null,
                     'content' => $options['content'] ?? null,
-                    'contentCreateStruct' => $options['contentCreateStruct'] ?? null,
-                    'contentUpdateStruct' => $options['contentUpdateStruct'] ?? null,
-                    'userCreateStruct' => $options['userCreateStruct'] ?? null,
-                    'userUpdateStruct' => $options['userUpdateStruct'] ?? null,
+                    'contentCreateStruct' => $options['contentCreateStruct'] ?? null, // deprecated
+                    'contentUpdateStruct' => $options['contentUpdateStruct'] ?? null, // deprecated
+                    'userCreateStruct' => $options['userCreateStruct'] ?? null, // deprecated
+                    'userUpdateStruct' => $options['userUpdateStruct'] ?? null, // deprecated
+                    'struct' => $options['struct'],
                 ],
             ])
             ->add('redirectUrlAfterPublish', HiddenType::class, [
@@ -63,8 +69,27 @@ class BaseContentType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver
-            ->setDefaults(['translation_domain' => 'ibexa_content_forms_content'])
-            ->setRequired(['languageCode', 'mainLanguageCode']);
+            ->setDefaults([
+                'translation_domain' => 'ibexa_content_forms_content',
+                'struct' => null,
+            ])
+            ->setAllowedTypes(
+                'struct',
+                [
+                    'null',
+                    ContentCreateStruct::class,
+                    ContentUpdateStruct::class,
+                    UserCreateStruct::class,
+                    UserUpdateStruct::class,
+                ],
+            )
+            ->setRequired(['languageCode', 'mainLanguageCode', 'struct'])
+            ->setNormalizer('struct', static function (Options $options, $value) {
+                return $options['userUpdateStruct']
+                    ?? $options['userCreateStruct']
+                        ?? $options['contentUpdateStruct']
+                            ?? $options['contentCreateStruct'];
+            });
     }
 }
 

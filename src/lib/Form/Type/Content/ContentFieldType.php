@@ -46,14 +46,15 @@ class ContentFieldType extends AbstractType
             ->setDefaults([
                 'content' => null,
                 'location' => null,
-                'contentCreateStruct' => null,
-                'contentUpdateStruct' => null,
-                'userCreateStruct' => null,
-                'userUpdateStruct' => null,
+                'contentCreateStruct' => null, // deprecated
+                'contentUpdateStruct' => null, // deprecated
+                'userCreateStruct' => null, // deprecated
+                'userUpdateStruct' => null, // deprecated
                 'data_class' => FieldData::class,
                 'translation_domain' => 'ibexa_content_forms_content',
+                'struct' => null,
             ])
-            ->setRequired(['languageCode', 'mainLanguageCode']);
+            ->setRequired(['languageCode', 'mainLanguageCode', 'struct']);
     }
 
     public function buildView(FormView $view, FormInterface $form, array $options)
