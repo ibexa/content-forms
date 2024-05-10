@@ -72,17 +72,19 @@ class BaseContentType extends AbstractType
                 'translation_domain' => 'ibexa_content_forms_content',
                 'contentCreateStruct' => null,
                 'contentUpdateStruct' => null,
+                'struct' => null,
             ])
             ->setAllowedTypes(
                 'struct',
                 [
+                    'null',
                     ContentCreateStruct::class,
                     ContentUpdateStruct::class,
                     UserCreateStruct::class,
                     UserUpdateStruct::class,
                 ],
             )
-            ->setNormalizer('struct', static function (Options $options, $value) {
+            ->addNormalizer('struct', static function (Options $options, $value) {
                 if ($value !== null) {
                     return $value;
                 }
@@ -100,7 +102,7 @@ class BaseContentType extends AbstractType
                 }
 
                 return null;
-            })
+            }, true)
             ->setDeprecated(
                 'contentCreateStruct',
                 'ibexa/content-forms',

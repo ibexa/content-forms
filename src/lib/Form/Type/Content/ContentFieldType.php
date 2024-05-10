@@ -59,6 +59,7 @@ class ContentFieldType extends AbstractType
             ->setAllowedTypes(
                 'struct',
                 [
+                    'null',
                     ContentCreateStruct::class,
                     ContentUpdateStruct::class,
                     UserCreateStruct::class,
