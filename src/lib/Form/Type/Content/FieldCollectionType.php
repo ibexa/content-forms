@@ -99,7 +99,6 @@ class FieldCollectionType extends CollectionType
         array $entryOptions,
         FormInterface $form
     ): array {
-        dump($entryOptions);
         if ($this->isContentUpdate($entryOptions)) {
             /** @var \Ibexa\ContentForms\Event\ContentUpdateFieldOptionsEvent $contentUpdateFieldOptionsEvent */
             $contentUpdateFieldOptionsEvent = $this->eventDispatcher->dispatch(

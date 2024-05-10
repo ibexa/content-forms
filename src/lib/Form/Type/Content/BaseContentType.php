@@ -9,9 +9,9 @@ declare(strict_types=1);
 namespace Ibexa\ContentForms\Form\Type\Content;
 
 use Ibexa\Contracts\Core\Repository\Values\Content\ContentCreateStruct;
+use Ibexa\Contracts\Core\Repository\Values\Content\ContentUpdateStruct;
 use Ibexa\Contracts\Core\Repository\Values\User\UserCreateStruct;
 use Ibexa\Contracts\Core\Repository\Values\User\UserUpdateStruct;
-use Ibexa\Core\Repository\Values\Content\ContentUpdateStruct;
 use JMS\TranslationBundle\Annotation\Desc;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
@@ -47,8 +47,8 @@ class BaseContentType extends AbstractType
                     'mainLanguageCode' => $options['mainLanguageCode'],
                     'location' => $options['location'] ?? null,
                     'content' => $options['content'] ?? null,
-                    'contentCreateStruct' => $options['contentCreateStruct'] ?? null, // deprecated
-                    'contentUpdateStruct' => $options['contentUpdateStruct'] ?? null, // deprecated
+                    'contentCreateStruct' => $options['contentCreateStruct'] ?? null,
+                    'contentUpdateStruct' => $options['contentUpdateStruct'] ?? null,
                     'struct' => $options['struct'],
                 ],
             ])
@@ -70,6 +70,8 @@ class BaseContentType extends AbstractType
             ->setDefaults([
                 'translation_domain' => 'ibexa_content_forms_content',
                 'struct' => null,
+                'contentCreateStruct' => null,
+                'contentUpdateStruct' => null,
             ])
             ->setAllowedTypes(
                 'struct',
@@ -83,11 +85,36 @@ class BaseContentType extends AbstractType
             )
             ->setRequired(['languageCode', 'mainLanguageCode', 'struct'])
             ->setNormalizer('struct', static function (Options $options, $value) {
-                return $options['userUpdateStruct']
-                    ?? $options['userCreateStruct']
+                if ($value !== null) {
+                    return $value;
+                }
+
+                if (isset($options['userUpdateStruct'])
+                    xor isset($options['userCreateStruct'])
+                    xor isset($options['contentUpdateStruct'])
+                    xor isset($options['contentCreateStruct'])
+                ) {
+                    return $options['userUpdateStruct']
+                        ?? $options['userCreateStruct']
                         ?? $options['contentUpdateStruct']
-                            ?? $options['contentCreateStruct'];
-            });
+                        ?? $options['contentCreateStruct']
+                    ;
+                }
+
+                return null;
+            })
+            ->setDeprecated(
+                'contentCreateStruct',
+                'ibexa/content-forms',
+                'v4.6.4',
+                'The option "%name%" is deprecated, use "struct" instead.'
+            )
+            ->setDeprecated(
+                'contentUpdateStruct',
+                'ibexa/content-forms',
+                'v4.6.4',
+                'The option "%name%" is deprecated, use "struct" instead.'
+            );
     }
 }
 

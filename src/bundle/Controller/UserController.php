@@ -120,7 +120,7 @@ class UserController extends Controller
         $form = $this->createForm(UserCreateType::class, $data, [
             'languageCode' => $language->languageCode,
             'mainLanguageCode' => $language->languageCode,
-            'userCreateStruct' => $data,
+            'struct' => $data,
         ]);
         $form->handleRequest($request);
 
@@ -203,8 +203,8 @@ class UserController extends Controller
                 'content' => $this->contentService->loadContent($contentId),
                 'languageCode' => $language,
                 'mainLanguageCode' => $user->contentInfo->mainLanguageCode,
-                'userUpdateStruct' => $userUpdate,
-            ]
+                'struct' => $userUpdate,
+            ],
         );
         $form->handleRequest($request);
 
