@@ -47,6 +47,7 @@ class ContentFieldType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver
+            ->setRequired(['languageCode', 'mainLanguageCode', 'struct'])
             ->setDefaults([
                 'content' => null,
                 'location' => null,
@@ -54,12 +55,10 @@ class ContentFieldType extends AbstractType
                 'contentUpdateStruct' => null,
                 'data_class' => FieldData::class,
                 'translation_domain' => 'ibexa_content_forms_content',
-                'struct' => null,
             ])
             ->setAllowedTypes(
                 'struct',
                 [
-                    'null',
                     ContentCreateStruct::class,
                     ContentUpdateStruct::class,
                     UserCreateStruct::class,
@@ -68,7 +67,6 @@ class ContentFieldType extends AbstractType
             )
             ->setAllowedTypes('contentCreateStruct', ['null', ContentCreateStruct::class])
             ->setAllowedTypes('contentUpdateStruct', ['null', ContentUpdateStruct::class])
-            ->setRequired(['languageCode', 'mainLanguageCode', 'struct'])
             ->setDeprecated(
                 'contentCreateStruct',
                 'ibexa/content-forms',

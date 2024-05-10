@@ -67,23 +67,21 @@ class BaseContentType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver
+            ->setRequired(['languageCode', 'mainLanguageCode', 'struct'])
             ->setDefaults([
                 'translation_domain' => 'ibexa_content_forms_content',
-                'struct' => null,
                 'contentCreateStruct' => null,
                 'contentUpdateStruct' => null,
             ])
             ->setAllowedTypes(
                 'struct',
                 [
-                    'null',
                     ContentCreateStruct::class,
                     ContentUpdateStruct::class,
                     UserCreateStruct::class,
                     UserUpdateStruct::class,
                 ],
             )
-            ->setRequired(['languageCode', 'mainLanguageCode', 'struct'])
             ->setNormalizer('struct', static function (Options $options, $value) {
                 if ($value !== null) {
                     return $value;
