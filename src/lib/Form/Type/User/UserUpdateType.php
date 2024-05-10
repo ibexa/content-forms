@@ -47,10 +47,10 @@ class UserUpdateType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver
+            ->setRequired('struct')
             ->setDefaults([
                 'location' => null,
                 'content' => null,
-                'struct' => null,
                 'data_class' => UserUpdateData::class,
                 'intent' => 'update',
                 'translation_domain' => 'ibexa_content_forms_user',

@@ -47,8 +47,8 @@ class UserCreateType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver
+            ->setRequired('struct')
             ->setDefaults([
-                'struct' => null,
                 'data_class' => UserCreateData::class,
                 'intent' => 'create',
                 'translation_domain' => 'ibexa_content_forms_user',
