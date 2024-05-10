@@ -68,41 +68,31 @@ class BaseContentType extends AbstractType
     {
         $resolver
             ->setRequired(['languageCode', 'mainLanguageCode', 'struct'])
+            ->setDefault('struct', static function (Options $options, $value) {
+                if ($value !== null) {
+                    return $value;
+                }
+
+                return $options['userUpdateStruct']
+                    ?? $options['userCreateStruct']
+                    ?? $options['contentUpdateStruct']
+                    ?? $options['contentCreateStruct']
+                    ?? null;
+            })
             ->setDefaults([
                 'translation_domain' => 'ibexa_content_forms_content',
                 'contentCreateStruct' => null,
                 'contentUpdateStruct' => null,
-                'struct' => null,
             ])
             ->setAllowedTypes(
                 'struct',
                 [
-                    'null',
                     ContentCreateStruct::class,
                     ContentUpdateStruct::class,
                     UserCreateStruct::class,
                     UserUpdateStruct::class,
                 ],
             )
-            ->addNormalizer('struct', static function (Options $options, $value) {
-                if ($value !== null) {
-                    return $value;
-                }
-
-                if (isset($options['userUpdateStruct'])
-                    xor isset($options['userCreateStruct'])
-                    xor isset($options['contentUpdateStruct'])
-                    xor isset($options['contentCreateStruct'])
-                ) {
-                    return $options['userUpdateStruct']
-                        ?? $options['userCreateStruct']
-                        ?? $options['contentUpdateStruct']
-                        ?? $options['contentCreateStruct']
-                    ;
-                }
-
-                return null;
-            }, true)
             ->setDeprecated(
                 'contentCreateStruct',
                 'ibexa/content-forms',
