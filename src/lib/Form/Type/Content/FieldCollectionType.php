@@ -63,30 +63,102 @@ class FieldCollectionType extends CollectionType
         });
     }
 
-    private function isContentCreate(array $entryOptions): bool
-    {
-        return !empty($entryOptions['struct']) && $entryOptions['struct'] instanceof ContentCreateStruct;
-    }
+    /**
+     * @param array<string, mixed> $entryOptions
+     *
+     * @return array<string, mixed>
+     */
+    private function dispatchContentUpdateEvent(
+        FieldData $entryData,
+        array $entryOptions,
+        FormInterface $form
+    ): array {
+        /** @var \Ibexa\ContentForms\Event\ContentUpdateFieldOptionsEvent $contentUpdateFieldOptionsEvent */
+        $contentUpdateFieldOptionsEvent = $this->eventDispatcher->dispatch(
+            new ContentUpdateFieldOptionsEvent(
+                $entryOptions['content'],
+                $entryOptions['struct'],
+                $form,
+                $entryData,
+                $entryOptions
+            ),
+            ContentFormEvents::CONTENT_EDIT_FIELD_OPTIONS
+        );
 
-    private function isContentUpdate(array $entryOptions): bool
-    {
-        return !empty($entryOptions['struct']) && $entryOptions['struct'] instanceof ContentUpdateStruct;
+        return $contentUpdateFieldOptionsEvent->getOptions();
     }
 
     /**
      * @param array<string, mixed> $entryOptions
+     *
+     * @return array<string, mixed>
      */
-    private function isUserCreate(array $entryOptions): bool
-    {
-        return !empty($entryOptions['struct']) && $entryOptions['struct'] instanceof UserCreateStruct;
+    private function dispatchContentCreateEvent(
+        FieldData $entryData,
+        array $entryOptions,
+        FormInterface $form
+    ): array {
+        /** @var \Ibexa\ContentForms\Event\ContentCreateFieldOptionsEvent $contentUpdateFieldOptionsEvent */
+        $contentCreateFieldOptionsEvent = $this->eventDispatcher->dispatch(
+            new ContentCreateFieldOptionsEvent(
+                $entryOptions['struct'],
+                $form,
+                $entryData,
+                $entryOptions
+            ),
+            ContentFormEvents::CONTENT_CREATE_FIELD_OPTIONS
+        );
+
+        return $contentCreateFieldOptionsEvent->getOptions();
     }
 
     /**
      * @param array<string, mixed> $entryOptions
+     *
+     * @return array<string, mixed>
      */
-    private function isUserUpdate(array $entryOptions): bool
-    {
-        return !empty($entryOptions['struct']) && $entryOptions['struct'] instanceof UserUpdateStruct;
+    private function dispatchUserCreateEvent(
+        FieldData $entryData,
+        array $entryOptions,
+        FormInterface $form
+    ): array {
+        /** @var \Ibexa\ContentForms\Event\UserCreateFieldOptionsEvent $userCreateFieldOptionsEvent */
+        $userCreateFieldOptionsEvent = $this->eventDispatcher->dispatch(
+            new UserCreateFieldOptionsEvent(
+                $entryOptions['struct'],
+                $form,
+                $entryData,
+                $entryOptions
+            ),
+            ContentFormEvents::USER_CREATE_FIELD_OPTIONS
+        );
+
+        return $userCreateFieldOptionsEvent->getOptions();
+    }
+
+    /**
+     * @param array<string, mixed> $entryOptions
+     *
+     * @return array<string, mixed>
+     */
+    private function dispatchUserUpdateEvent(
+        FieldData $entryData,
+        array $entryOptions,
+        FormInterface $form
+    ): array {
+        /** @var \Ibexa\ContentForms\Event\UserUpdateFieldOptionsEvent $userUpdateFieldOptionsEvent */
+        $userUpdateFieldOptionsEvent = $this->eventDispatcher->dispatch(
+            new UserUpdateFieldOptionsEvent(
+                $entryOptions['content'],
+                $entryOptions['struct'],
+                $form,
+                $entryData,
+                $entryOptions
+            ),
+            ContentFormEvents::USER_EDIT_FIELD_OPTIONS
+        );
+
+        return $userUpdateFieldOptionsEvent->getOptions();
     }
 
     /**
@@ -99,63 +171,24 @@ class FieldCollectionType extends CollectionType
         array $entryOptions,
         FormInterface $form
     ): array {
-        if ($this->isContentUpdate($entryOptions)) {
-            /** @var \Ibexa\ContentForms\Event\ContentUpdateFieldOptionsEvent $contentUpdateFieldOptionsEvent */
-            $contentUpdateFieldOptionsEvent = $this->eventDispatcher->dispatch(
-                new ContentUpdateFieldOptionsEvent(
-                    $entryOptions['content'],
-                    $entryOptions['struct'],
-                    $form,
-                    $entryData,
-                    $entryOptions
-                ),
-                ContentFormEvents::CONTENT_EDIT_FIELD_OPTIONS
-            );
-
-            $entryOptions = $contentUpdateFieldOptionsEvent->getOptions();
-        } elseif ($this->isContentCreate($entryOptions)) {
-            /** @var \Ibexa\ContentForms\Event\ContentCreateFieldOptionsEvent $contentUpdateFieldOptionsEvent */
-            $contentCreateFieldOptionsEvent = $this->eventDispatcher->dispatch(
-                new ContentCreateFieldOptionsEvent(
-                    $entryOptions['struct'],
-                    $form,
-                    $entryData,
-                    $entryOptions
-                ),
-                ContentFormEvents::CONTENT_CREATE_FIELD_OPTIONS
-            );
-
-            $entryOptions = $contentCreateFieldOptionsEvent->getOptions();
-        } elseif ($this->isUserCreate($entryOptions)) {
-            /** @var \Ibexa\ContentForms\Event\UserCreateFieldOptionsEvent $userCreateFieldOptionsEvent */
-            $userCreateFieldOptionsEvent = $this->eventDispatcher->dispatch(
-                new UserCreateFieldOptionsEvent(
-                    $entryOptions['struct'],
-                    $form,
-                    $entryData,
-                    $entryOptions
-                ),
-                ContentFormEvents::USER_CREATE_FIELD_OPTIONS
-            );
-
-            $entryOptions = $userCreateFieldOptionsEvent->getOptions();
-        } elseif ($this->isUserUpdate($entryOptions)) {
-            /** @var \Ibexa\ContentForms\Event\UserUpdateFieldOptionsEvent $userUpdateFieldOptionsEvent */
-            $userUpdateFieldOptionsEvent = $this->eventDispatcher->dispatch(
-                new UserUpdateFieldOptionsEvent(
-                    $entryOptions['content'],
-                    $entryOptions['struct'],
-                    $form,
-                    $entryData,
-                    $entryOptions
-                ),
-                ContentFormEvents::USER_EDIT_FIELD_OPTIONS
-            );
-
-            $entryOptions = $userUpdateFieldOptionsEvent->getOptions();
+        if (!isset($entryOptions['struct'])) {
+            return $entryOptions;
         }
 
-        return $entryOptions;
+        $struct = $entryOptions['struct'];
+
+        switch ($struct) {
+            case $struct instanceof ContentCreateStruct:
+                return $this->dispatchContentCreateEvent($entryData, $entryOptions, $form);
+            case $struct instanceof ContentUpdateStruct:
+                return $this->dispatchContentUpdateEvent($entryData, $entryOptions, $form);
+            case $struct instanceof UserCreateStruct:
+                return $this->dispatchUserCreateEvent($entryData, $entryOptions, $form);
+            case $struct instanceof UserUpdateStruct:
+                return $this->dispatchUserUpdateEvent($entryData, $entryOptions, $form);
+            default:
+                return $entryOptions;
+        }
     }
 }
 
