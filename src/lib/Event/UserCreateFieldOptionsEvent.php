@@ -14,7 +14,6 @@ use Symfony\Component\Form\FormInterface;
 
 final class UserCreateFieldOptionsEvent extends StructFieldOptionsEvent
 {
-    /** @var \Ibexa\Contracts\Core\Repository\Values\User\UserCreateStruct */
     private UserCreateStruct $userCreateStruct;
 
     public function __construct(
