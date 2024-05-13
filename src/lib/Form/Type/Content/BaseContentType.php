@@ -51,6 +51,7 @@ class BaseContentType extends AbstractType
                     'contentUpdateStruct' => $options['contentUpdateStruct'] ?? null,
                     'struct' => $options['struct'],
                 ],
+                'translation_domain' => 'ibexa_content_forms_content',
             ])
             ->add('redirectUrlAfterPublish', HiddenType::class, [
                 'required' => false,
