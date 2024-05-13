@@ -15,10 +15,8 @@ use Symfony\Component\Form\FormInterface;
 
 final class UserUpdateFieldOptionsEvent extends StructFieldOptionsEvent
 {
-    /** @var \Ibexa\Contracts\Core\Repository\Values\Content\Content */
     private Content $content;
 
-    /** @var \Ibexa\Contracts\Core\Repository\Values\User\UserUpdateStruct */
     private UserUpdateStruct $userUpdateStruct;
 
     public function __construct(

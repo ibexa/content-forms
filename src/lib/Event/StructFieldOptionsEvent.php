@@ -14,10 +14,8 @@ use Symfony\Contracts\EventDispatcher\Event;
 
 abstract class StructFieldOptionsEvent extends Event
 {
-    /** @var \Symfony\Component\Form\FormInterface */
     protected FormInterface $parentForm;
 
-    /** @var \Ibexa\Contracts\ContentForms\Data\Content\FieldData */
     protected FieldData $fieldData;
 
     /** @var array<string, mixed> */
