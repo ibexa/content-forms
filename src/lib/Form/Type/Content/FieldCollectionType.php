@@ -23,6 +23,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\FormInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
 
 class FieldCollectionType extends CollectionType
@@ -61,6 +62,13 @@ class FieldCollectionType extends CollectionType
                 $form->add($name, $options['entry_type'], $entryOptions);
             }
         });
+    }
+
+    public function configureOptions(OptionsResolver $resolver): void
+    {
+        parent::configureOptions($resolver);
+
+        $resolver->setDefault('translation_domain', 'ibexa_content_forms_content');
     }
 
     /**
