@@ -67,5 +67,3 @@ class SingleSelectionValueTransformerTest extends TestCase
         self::assertNull($transformer->reverseTransform(null));
     }
 }
-
-class_alias(SingleSelectionValueTransformerTest::class, 'EzSystems\EzPlatformContentForms\Tests\FieldType\DataTransformer\SingleSelectionValueTransformerTest');

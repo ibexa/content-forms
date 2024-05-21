@@ -116,5 +116,3 @@ class MultipleCountryValueTransformerTest extends TestCase
         self::assertNull($transformer->reverseTransform($value));
     }
 }
-
-class_alias(MultipleCountryValueTransformerTest::class, 'EzSystems\EzPlatformContentForms\Tests\FieldType\DataTransformer\MultipleCountryValueTransformerTest');

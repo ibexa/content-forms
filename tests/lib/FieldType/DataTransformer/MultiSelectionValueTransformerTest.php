@@ -71,5 +71,3 @@ class MultiSelectionValueTransformerTest extends TestCase
         self::assertNull($transformer->reverseTransform(null));
     }
 }
-
-class_alias(MultiSelectionValueTransformerTest::class, 'EzSystems\EzPlatformContentForms\Tests\FieldType\DataTransformer\MultiSelectionValueTransformerTest');

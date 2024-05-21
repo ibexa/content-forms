@@ -37,5 +37,3 @@ class PasswordTest extends TestCase
         self::assertSame([Password::CLASS_CONSTRAINT, Password::PROPERTY_CONSTRAINT], $this->constraint->getTargets());
     }
 }
-
-class_alias(PasswordTest::class, 'EzSystems\EzPlatformContentForms\Tests\Validator\Constraints\PasswordTest');

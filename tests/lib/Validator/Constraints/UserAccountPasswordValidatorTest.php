@@ -133,5 +133,3 @@ class UserAccountPasswordValidatorTest extends TestCase
         ]));
     }
 }
-
-class_alias(UserAccountPasswordValidatorTest::class, 'EzSystems\EzPlatformContentForms\Tests\Validator\Constraints\UserAccountPasswordValidatorTest');

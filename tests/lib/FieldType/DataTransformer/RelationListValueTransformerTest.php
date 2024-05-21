@@ -40,5 +40,3 @@ final class RelationListValueTransformerTest extends TestCase
         ];
     }
 }
-
-class_alias(RelationListValueTransformerTest::class, 'EzSystems\EzPlatformContentForms\Tests\FieldType\DataTransformer\RelationListValueTransformerTest');

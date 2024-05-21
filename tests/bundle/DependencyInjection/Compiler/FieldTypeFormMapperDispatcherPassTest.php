@@ -55,5 +55,3 @@ class FieldTypeFormMapperDispatcherPassTest extends AbstractCompilerPassTestCase
         ];
     }
 }
-
-class_alias(FieldTypeFormMapperDispatcherPassTest::class, 'EzSystems\EzPlatformContentFormsBundle\Tests\DependencyInjection\Compiler\FieldTypeFormMapperDispatcherPassTest');

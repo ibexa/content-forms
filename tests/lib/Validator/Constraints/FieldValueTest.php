@@ -33,5 +33,3 @@ class FieldValueTest extends TestCase
         self::assertSame(Constraint::CLASS_CONSTRAINT, $constraint->getTargets());
     }
 }
-
-class_alias(FieldValueTest::class, 'EzSystems\EzPlatformContentForms\Tests\Validator\Constraints\FieldValueTest');

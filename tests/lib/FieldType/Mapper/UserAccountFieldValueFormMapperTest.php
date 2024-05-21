@@ -84,5 +84,3 @@ class UserAccountFieldValueFormMapperTest extends BaseMapperTest
         $mapper->mapFieldValueForm($this->fieldForm, $this->data);
     }
 }
-
-class_alias(UserAccountFieldValueFormMapperTest::class, 'EzSystems\EzPlatformContentForms\Tests\FieldType\Mapper\UserAccountFieldValueFormMapperTest');
