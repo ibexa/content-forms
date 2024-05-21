@@ -83,5 +83,3 @@ class IntegerFieldType extends AbstractType
             ->setAllowedTypes('max', ['integer', 'null']);
     }
 }
-
-class_alias(IntegerFieldType::class, 'EzSystems\EzPlatformContentForms\Form\Type\FieldType\IntegerFieldType');

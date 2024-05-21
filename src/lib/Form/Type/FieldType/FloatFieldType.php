@@ -75,5 +75,3 @@ class FloatFieldType extends AbstractType
             ->setAllowedTypes('max', ['float', 'integer', 'null']);
     }
 }
-
-class_alias(FloatFieldType::class, 'EzSystems\EzPlatformContentForms\Form\Type\FieldType\FloatFieldType');

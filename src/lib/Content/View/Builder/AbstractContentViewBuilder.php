@@ -113,5 +113,3 @@ abstract class AbstractContentViewBuilder
         );
     }
 }
-
-class_alias(AbstractContentViewBuilder::class, 'EzSystems\EzPlatformContentForms\Content\View\Builder\AbstractContentViewBuilder');

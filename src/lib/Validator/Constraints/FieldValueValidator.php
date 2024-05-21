@@ -95,5 +95,3 @@ class FieldValueValidator extends FieldTypeValidator
             : PropertyPath::append($basePath, $errorTarget);
     }
 }
-
-class_alias(FieldValueValidator::class, 'EzSystems\EzPlatformContentForms\Validator\Constraints\FieldValueValidator');

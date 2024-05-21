@@ -31,5 +31,3 @@ class FieldValueValidatorMessages implements TranslationContainerInterface
         ];
     }
 }
-
-class_alias(FieldValueValidatorMessages::class, 'EzSystems\EzPlatformContentForms\Validator\Constraints\FieldValueValidatorMessages');

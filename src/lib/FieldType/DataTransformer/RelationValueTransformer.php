@@ -35,5 +35,3 @@ class RelationValueTransformer implements DataTransformerInterface
         return new Value($value);
     }
 }
-
-class_alias(RelationValueTransformer::class, 'EzSystems\EzPlatformContentForms\FieldType\DataTransformer\RelationValueTransformer');

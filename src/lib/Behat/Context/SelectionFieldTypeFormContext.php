@@ -111,5 +111,3 @@ final class SelectionFieldTypeFormContext extends RawMinkContext implements Snip
         $this->assertSession()->elementExists('css', $selector);
     }
 }
-
-class_alias(SelectionFieldTypeFormContext::class, 'EzSystems\EzPlatformContentForms\Behat\Context\SelectionFieldTypeFormContext');

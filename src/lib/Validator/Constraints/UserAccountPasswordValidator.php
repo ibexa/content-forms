@@ -36,5 +36,3 @@ class UserAccountPasswordValidator extends PasswordValidator
         });
     }
 }
-
-class_alias(UserAccountPasswordValidator::class, 'EzSystems\EzPlatformContentForms\Validator\Constraints\UserAccountPasswordValidator');

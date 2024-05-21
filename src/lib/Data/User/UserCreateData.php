@@ -82,5 +82,3 @@ class UserCreateData extends UserCreateStruct implements NewnessCheckable
         $this->roleLimitation = $roleLimitation;
     }
 }
-
-class_alias(UserCreateData::class, 'EzSystems\EzPlatformContentForms\Data\User\UserCreateData');

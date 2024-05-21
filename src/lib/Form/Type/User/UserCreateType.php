@@ -53,5 +53,3 @@ class UserCreateType extends AbstractType
             ]);
     }
 }
-
-class_alias(UserCreateType::class, 'EzSystems\EzPlatformContentForms\Form\Type\User\UserCreateType');

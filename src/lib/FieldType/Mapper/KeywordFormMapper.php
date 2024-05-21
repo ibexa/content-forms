@@ -39,5 +39,3 @@ class KeywordFormMapper implements FieldValueFormMapperInterface
             );
     }
 }
-
-class_alias(KeywordFormMapper::class, 'EzSystems\EzPlatformContentForms\FieldType\Mapper\KeywordFormMapper');

@@ -15,5 +15,3 @@ class ContentEditView extends View
     public const NODE_KEY = 'content_edit_view';
     public const INFO = 'Template selection settings when displaying a content edit form';
 }
-
-class_alias(ContentEditView::class, 'EzSystems\EzPlatformContentFormsBundle\DependencyInjection\Configuration\Parser\ContentEditView');

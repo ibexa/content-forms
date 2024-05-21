@@ -112,5 +112,3 @@ final class UserAccountFieldValueFormMapper implements FieldValueFormMapperInter
         );
     }
 }
-
-class_alias(UserAccountFieldValueFormMapper::class, 'EzSystems\EzPlatformContentForms\FieldType\Mapper\UserAccountFieldValueFormMapper');

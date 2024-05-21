@@ -48,5 +48,3 @@ class ContentCreateData extends ContentCreateStruct implements NewnessCheckable
         $this->locationStructs[] = $locationStruct;
     }
 }
-
-class_alias(ContentCreateData::class, 'EzSystems\EzPlatformContentForms\Data\Content\ContentCreateData');

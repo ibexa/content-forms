@@ -51,5 +51,3 @@ class UserRegisterController extends Controller
         return $this->userRegisterController->registerConfirmAction();
     }
 }
-
-class_alias(UserRegisterController::class, 'EzSystems\EzPlatformContentFormsBundle\Controller\UserRegisterController');

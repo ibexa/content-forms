@@ -66,5 +66,3 @@ class ContentUpdateMapper implements FormDataMapperInterface
             ->setDefault('currentFields', []);
     }
 }
-
-class_alias(ContentUpdateMapper::class, 'EzSystems\EzPlatformContentForms\Data\Mapper\ContentUpdateMapper');

@@ -100,5 +100,3 @@ class ImageFieldType extends AbstractType
         return $extensions;
     }
 }
-
-class_alias(ImageFieldType::class, 'EzSystems\EzPlatformContentForms\Form\Type\FieldType\ImageFieldType');

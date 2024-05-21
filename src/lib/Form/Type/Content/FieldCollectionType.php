@@ -93,5 +93,3 @@ class FieldCollectionType extends CollectionType
         return !empty($entryOptions['content']) && !empty($entryOptions['contentUpdateStruct']);
     }
 }
-
-class_alias(FieldCollectionType::class, 'EzSystems\EzPlatformContentForms\Form\Type\Content\FieldCollectionType');

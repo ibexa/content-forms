@@ -48,5 +48,3 @@ class CheckboxFieldType extends AbstractType
             ->addModelTransformer(new FieldValueTransformer($this->fieldTypeService->getFieldType('ezboolean')));
     }
 }
-
-class_alias(CheckboxFieldType::class, 'EzSystems\EzPlatformContentForms\Form\Type\FieldType\CheckboxFieldType');

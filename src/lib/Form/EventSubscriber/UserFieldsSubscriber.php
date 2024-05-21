@@ -108,5 +108,3 @@ class UserFieldsSubscriber implements EventSubscriberInterface
         }
     }
 }
-
-class_alias(UserFieldsSubscriber::class, 'EzSystems\EzPlatformContentForms\Form\EventSubscriber\UserFieldsSubscriber');

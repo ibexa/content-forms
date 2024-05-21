@@ -238,5 +238,3 @@ final class FieldTypeFormContext extends RawMinkContext implements SnippetAccept
         return [];
     }
 }
-
-class_alias(FieldTypeFormContext::class, 'EzSystems\EzPlatformContentForms\Behat\Context\FieldTypeFormContext');

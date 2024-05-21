@@ -29,5 +29,3 @@ class Password extends Constraint
         return [self::CLASS_CONSTRAINT, self::PROPERTY_CONSTRAINT];
     }
 }
-
-class_alias(Password::class, 'EzSystems\EzPlatformContentForms\Validator\Constraints\Password');

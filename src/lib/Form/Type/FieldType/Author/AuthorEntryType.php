@@ -80,5 +80,3 @@ class AuthorEntryType extends AbstractType
         ]);
     }
 }
-
-class_alias(AuthorEntryType::class, 'EzSystems\EzPlatformContentForms\Form\Type\FieldType\Author\AuthorEntryType');

@@ -82,5 +82,3 @@ class UserCreateFormProcessor implements EventSubscriberInterface
         }
     }
 }
-
-class_alias(UserCreateFormProcessor::class, 'EzSystems\EzPlatformContentForms\Form\Processor\User\UserCreateFormProcessor');

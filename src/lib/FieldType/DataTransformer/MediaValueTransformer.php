@@ -65,5 +65,3 @@ class MediaValueTransformer extends AbstractBinaryBaseTransformer implements Dat
         return $valueObject;
     }
 }
-
-class_alias(MediaValueTransformer::class, 'EzSystems\EzPlatformContentForms\FieldType\DataTransformer\MediaValueTransformer');

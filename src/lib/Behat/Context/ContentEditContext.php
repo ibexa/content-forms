@@ -193,5 +193,3 @@ final class ContentEditContext extends MinkContext implements Context, SnippetAc
         $this->visit('/content/create/nodraft/folder/eng-GB/2');
     }
 }
-
-class_alias(ContentEditContext::class, 'EzSystems\EzPlatformContentForms\Behat\Context\ContentEditContext');

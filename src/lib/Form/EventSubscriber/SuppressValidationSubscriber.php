@@ -59,5 +59,3 @@ class SuppressValidationSubscriber implements EventSubscriberInterface
         }
     }
 }
-
-class_alias(SuppressValidationSubscriber::class, 'EzSystems\EzPlatformContentForms\Form\EventSubscriber\SuppressValidationSubscriber');

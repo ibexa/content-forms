@@ -397,5 +397,3 @@ class ContentFormProcessor implements EventSubscriberInterface
         return $referrerLocation ?? $this->locationService->loadLocation($content->contentInfo->mainLocationId);
     }
 }
-
-class_alias(ContentFormProcessor::class, 'EzSystems\EzPlatformContentForms\Form\Processor\ContentFormProcessor');

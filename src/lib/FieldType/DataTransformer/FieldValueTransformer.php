@@ -62,5 +62,3 @@ class FieldValueTransformer implements DataTransformerInterface
         return $this->fieldType->fromHash($value);
     }
 }
-
-class_alias(FieldValueTransformer::class, 'EzSystems\EzPlatformContentForms\FieldType\DataTransformer\FieldValueTransformer');

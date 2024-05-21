@@ -11,5 +11,3 @@ namespace Ibexa\ContentForms\Validator\Constraints;
 class UserAccountPassword extends Password
 {
 }
-
-class_alias(UserAccountPassword::class, 'EzSystems\EzPlatformContentForms\Validator\Constraints\UserAccountPassword');

@@ -36,5 +36,3 @@ class BinaryFileFieldType extends AbstractType
         $resolver->setDefaults(['translation_domain' => 'ibexa_content_forms_fieldtype']);
     }
 }
-
-class_alias(BinaryFileFieldType::class, 'EzSystems\EzPlatformContentForms\Form\Type\FieldType\BinaryFileFieldType');

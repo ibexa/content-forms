@@ -56,5 +56,3 @@ class ImageAssetFormMapper implements FieldValueFormMapperInterface
             );
     }
 }
-
-class_alias(ImageAssetFormMapper::class, 'EzSystems\EzPlatformContentForms\FieldType\Mapper\ImageAssetFormMapper');

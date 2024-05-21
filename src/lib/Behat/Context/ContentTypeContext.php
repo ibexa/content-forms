@@ -149,5 +149,3 @@ final class ContentTypeContext extends RawMinkContext implements Context, Snippe
         );
     }
 }
-
-class_alias(ContentTypeContext::class, 'EzSystems\EzPlatformContentForms\Behat\Context\ContentTypeContext');

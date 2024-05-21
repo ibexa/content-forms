@@ -93,5 +93,3 @@ class ContentCreateView extends BaseView implements LocationValueView, ContentTy
         $this->form = $form;
     }
 }
-
-class_alias(ContentCreateView::class, 'EzSystems\EzPlatformContentForms\Content\View\ContentCreateView');

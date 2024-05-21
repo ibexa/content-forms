@@ -35,5 +35,3 @@ class UserUpdateData extends UserUpdateStruct implements NewnessCheckable
         return false;
     }
 }
-
-class_alias(UserUpdateData::class, 'EzSystems\EzPlatformContentForms\Data\User\UserUpdateData');

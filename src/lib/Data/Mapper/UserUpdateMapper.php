@@ -73,5 +73,3 @@ class UserUpdateMapper
         $optionsResolver->setRequired(['languageCode']);
     }
 }
-
-class_alias(UserUpdateMapper::class, 'EzSystems\EzPlatformContentForms\Data\Mapper\UserUpdateMapper');

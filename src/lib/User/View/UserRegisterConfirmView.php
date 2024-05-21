@@ -16,5 +16,3 @@ use Ibexa\User\View\Register\ConfirmView as BaseRegisterConfirmView;
 class UserRegisterConfirmView extends BaseRegisterConfirmView
 {
 }
-
-class_alias(UserRegisterConfirmView::class, 'EzSystems\EzPlatformContentForms\User\View\UserRegisterConfirmView');

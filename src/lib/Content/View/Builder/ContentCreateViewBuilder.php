@@ -151,5 +151,3 @@ class ContentCreateViewBuilder extends AbstractContentViewBuilder implements Vie
         );
     }
 }
-
-class_alias(ContentCreateViewBuilder::class, 'EzSystems\EzPlatformContentForms\Content\View\Builder\ContentCreateViewBuilder');

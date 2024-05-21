@@ -51,5 +51,3 @@ class SelectionFieldType extends AbstractType
         ]);
     }
 }
-
-class_alias(SelectionFieldType::class, 'EzSystems\EzPlatformContentForms\Form\Type\FieldType\SelectionFieldType');

@@ -60,5 +60,3 @@ class MediaFormMapper implements FieldValueFormMapperInterface
             );
     }
 }
-
-class_alias(MediaFormMapper::class, 'EzSystems\EzPlatformContentForms\FieldType\Mapper\MediaFormMapper');

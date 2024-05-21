@@ -95,5 +95,3 @@ class MediaFieldType extends AbstractType
         $resolver->setDefaults(['translation_domain' => 'ibexa_content_forms_fieldtype']);
     }
 }
-
-class_alias(MediaFieldType::class, 'EzSystems\EzPlatformContentForms\Form\Type\FieldType\MediaFieldType');

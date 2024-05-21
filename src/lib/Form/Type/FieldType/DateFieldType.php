@@ -58,5 +58,3 @@ class DateFieldType extends AbstractType
         $view->vars['isEditView'] = \in_array($request->attributes->get('_route'), self::EDIT_VIEWS);
     }
 }
-
-class_alias(DateFieldType::class, 'EzSystems\EzPlatformContentForms\Form\Type\FieldType\DateFieldType');

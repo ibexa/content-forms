@@ -56,5 +56,3 @@ class ContentCreateMapper implements FormDataMapperInterface
             ->setAllowedTypes('parentLocation', '\\Ibexa\\Contracts\\Core\\Repository\\Values\\Content\\LocationCreateStruct');
     }
 }
-
-class_alias(ContentCreateMapper::class, 'EzSystems\EzPlatformContentForms\Data\Mapper\ContentCreateMapper');

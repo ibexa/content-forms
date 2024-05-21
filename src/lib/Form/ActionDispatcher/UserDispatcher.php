@@ -17,5 +17,3 @@ class UserDispatcher extends AbstractActionDispatcher
         return ContentFormEvents::USER_EDIT;
     }
 }
-
-class_alias(UserDispatcher::class, 'EzSystems\EzPlatformContentForms\Form\ActionDispatcher\UserDispatcher');

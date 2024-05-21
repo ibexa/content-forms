@@ -40,5 +40,3 @@ class TextBlockFormMapper implements FieldValueFormMapperInterface
             );
     }
 }
-
-class_alias(TextBlockFormMapper::class, 'EzSystems\EzPlatformContentForms\FieldType\Mapper\TextBlockFormMapper');

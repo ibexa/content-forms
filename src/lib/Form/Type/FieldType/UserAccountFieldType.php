@@ -75,5 +75,3 @@ class UserAccountFieldType extends AbstractType
             ->setAllowedValues('intent', ['register', 'create', 'update', 'invitation']);
     }
 }
-
-class_alias(UserAccountFieldType::class, 'EzSystems\EzPlatformContentForms\Form\Type\FieldType\UserAccountFieldType');

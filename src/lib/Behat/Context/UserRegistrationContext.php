@@ -388,5 +388,3 @@ class UserRegistrationContext extends RawMinkContext implements Context, Snippet
         );
     }
 }
-
-class_alias(UserRegistrationContext::class, 'EzSystems\EzPlatformContentForms\Behat\Context\UserRegistrationContext');

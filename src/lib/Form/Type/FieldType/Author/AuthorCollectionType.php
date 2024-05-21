@@ -43,5 +43,3 @@ class AuthorCollectionType extends AbstractType
         return CollectionType::class;
     }
 }
-
-class_alias(AuthorCollectionType::class, 'EzSystems\EzPlatformContentForms\Form\Type\FieldType\Author\AuthorCollectionType');

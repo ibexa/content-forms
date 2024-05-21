@@ -26,5 +26,3 @@ class ContentUpdateData extends ContentUpdateStruct implements NewnessCheckable
         return false;
     }
 }
-
-class_alias(ContentUpdateData::class, 'EzSystems\EzPlatformContentForms\Data\Content\ContentUpdateData');

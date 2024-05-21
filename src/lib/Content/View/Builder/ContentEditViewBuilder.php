@@ -223,5 +223,3 @@ class ContentEditViewBuilder extends AbstractContentViewBuilder implements ViewB
         return null;
     }
 }
-
-class_alias(ContentEditViewBuilder::class, 'EzSystems\EzPlatformContentForms\Content\View\Builder\ContentEditViewBuilder');

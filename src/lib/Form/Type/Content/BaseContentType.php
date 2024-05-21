@@ -65,5 +65,3 @@ class BaseContentType extends AbstractType
             ->setRequired(['languageCode', 'mainLanguageCode']);
     }
 }
-
-class_alias(BaseContentType::class, 'EzSystems\EzPlatformContentForms\Form\Type\Content\BaseContentType');

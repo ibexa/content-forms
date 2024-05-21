@@ -75,5 +75,3 @@ class TextLineFieldType extends AbstractType
             ->setAllowedTypes('max', ['integer', 'null']);
     }
 }
-
-class_alias(TextLineFieldType::class, 'EzSystems\EzPlatformContentForms\Form\Type\FieldType\TextLineFieldType');

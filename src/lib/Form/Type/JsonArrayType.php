@@ -25,5 +25,3 @@ final class JsonArrayType extends AbstractType
         $builder->addModelTransformer(new JsonToArrayTransformer());
     }
 }
-
-class_alias(JsonArrayType::class, 'EzSystems\EzPlatformContentForms\Form\Type\JsonArrayType');

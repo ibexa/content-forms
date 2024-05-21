@@ -38,5 +38,3 @@ class KeywordFieldType extends AbstractType
         $builder->addModelTransformer(new KeywordValueTransformer());
     }
 }
-
-class_alias(KeywordFieldType::class, 'EzSystems\EzPlatformContentForms\Form\Type\FieldType\KeywordFieldType');

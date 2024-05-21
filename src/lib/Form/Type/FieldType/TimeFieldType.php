@@ -54,5 +54,3 @@ class TimeFieldType extends AbstractType
             ->setAllowedTypes('with_seconds', 'bool');
     }
 }
-
-class_alias(TimeFieldType::class, 'EzSystems\EzPlatformContentForms\Form\Type\FieldType\TimeFieldType');

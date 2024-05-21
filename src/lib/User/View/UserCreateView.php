@@ -13,5 +13,3 @@ use Ibexa\Core\MVC\Symfony\View\BaseView;
 class UserCreateView extends BaseView
 {
 }
-
-class_alias(UserCreateView::class, 'EzSystems\EzPlatformContentForms\User\View\UserCreateView');

@@ -22,5 +22,3 @@ trait ContentData
         $this->fieldsData[$fieldData->fieldDefinition->identifier] = $fieldData;
     }
 }
-
-class_alias(ContentData::class, 'EzSystems\EzPlatformContentForms\Data\Content\ContentData');

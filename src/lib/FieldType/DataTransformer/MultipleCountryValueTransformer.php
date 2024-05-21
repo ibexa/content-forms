@@ -53,5 +53,3 @@ class MultipleCountryValueTransformer implements DataTransformerInterface
         return new Value($transformedValue);
     }
 }
-
-class_alias(MultipleCountryValueTransformer::class, 'EzSystems\EzPlatformContentForms\FieldType\DataTransformer\MultipleCountryValueTransformer');

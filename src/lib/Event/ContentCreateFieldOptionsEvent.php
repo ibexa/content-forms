@@ -74,5 +74,3 @@ final class ContentCreateFieldOptionsEvent extends Event
         return $this->options[$option] ?? null;
     }
 }
-
-class_alias(ContentCreateFieldOptionsEvent::class, 'EzSystems\EzPlatformContentForms\Event\ContentCreateFieldOptionsEvent');

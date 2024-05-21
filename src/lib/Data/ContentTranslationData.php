@@ -24,5 +24,3 @@ class ContentTranslationData extends ContentUpdateStruct implements NewnessCheck
         return false;
     }
 }
-
-class_alias(ContentTranslationData::class, 'EzSystems\EzPlatformContentForms\Data\ContentTranslationData');

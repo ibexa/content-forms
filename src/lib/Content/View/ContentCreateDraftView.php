@@ -14,5 +14,3 @@ use Ibexa\Core\MVC\Symfony\View\View;
 class ContentCreateDraftView extends BaseView implements View
 {
 }
-
-class_alias(ContentCreateDraftView::class, 'EzSystems\EzPlatformContentForms\Content\View\ContentCreateDraftView');

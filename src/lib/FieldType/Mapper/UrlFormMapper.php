@@ -39,5 +39,3 @@ class UrlFormMapper implements FieldValueFormMapperInterface
             );
     }
 }
-
-class_alias(UrlFormMapper::class, 'EzSystems\EzPlatformContentForms\FieldType\Mapper\UrlFormMapper');

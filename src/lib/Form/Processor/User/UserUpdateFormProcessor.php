@@ -86,5 +86,3 @@ class UserUpdateFormProcessor implements EventSubscriberInterface
         }
     }
 }
-
-class_alias(UserUpdateFormProcessor::class, 'EzSystems\EzPlatformContentForms\Form\Processor\User\UserUpdateFormProcessor');

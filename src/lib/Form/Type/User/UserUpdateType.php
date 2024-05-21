@@ -54,5 +54,3 @@ class UserUpdateType extends AbstractType
             ]);
     }
 }
-
-class_alias(UserUpdateType::class, 'EzSystems\EzPlatformContentForms\Form\Type\User\UserUpdateType');
