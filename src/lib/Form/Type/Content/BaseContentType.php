@@ -78,6 +78,7 @@ class BaseContentType extends AbstractType
                     ?? $options['userCreateStruct']
                     ?? $options['contentUpdateStruct']
                     ?? $options['contentCreateStruct']
+                    ?? $options['data']
                     ?? null;
             })
             ->setDefaults([
