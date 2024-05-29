@@ -78,7 +78,6 @@ class BaseContentType extends AbstractType
                     ?? $options['userCreateStruct']
                     ?? $options['contentUpdateStruct']
                     ?? $options['contentCreateStruct']
-                    ?? $options['data']
                     ?? null;
             })
             ->setDefaults([
@@ -89,6 +88,7 @@ class BaseContentType extends AbstractType
             ->setAllowedTypes(
                 'struct',
                 [
+                    'null',
                     ContentCreateStruct::class,
                     ContentUpdateStruct::class,
                     UserCreateStruct::class,
