@@ -10,7 +10,7 @@ This package provides form-based integration for the Symfony Forms into Content 
 - [Value objects](https://doc.ibexa.co/en/latest/api/public_php_api/#value-objects)
 
 ## COPYRIGHT
-Copyright (C) 1999-2021 Ibexa AS (formerly eZ Systems AS). All rights reserved.
+Copyright (C) 1999-2024 Ibexa AS (formerly eZ Systems AS). All rights reserved.
 
 ## LICENSE
 This source code is available separately under the following licenses:
