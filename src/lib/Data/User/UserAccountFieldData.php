@@ -42,5 +42,3 @@ class UserAccountFieldData
         $this->enabled = $enabled;
     }
 }
-
-class_alias(UserAccountFieldData::class, 'EzSystems\EzPlatformContentForms\Data\User\UserAccountFieldData');

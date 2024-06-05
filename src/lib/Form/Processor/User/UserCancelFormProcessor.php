@@ -54,5 +54,3 @@ class UserCancelFormProcessor implements EventSubscriberInterface
         $event->setResponse($response);
     }
 }
-
-class_alias(UserCancelFormProcessor::class, 'EzSystems\EzPlatformContentForms\Form\Processor\User\UserCancelFormProcessor');

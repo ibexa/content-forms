@@ -47,5 +47,3 @@ class SelectionFormMapper implements FieldValueFormMapperInterface
             );
     }
 }
-
-class_alias(SelectionFormMapper::class, 'EzSystems\EzPlatformContentForms\FieldType\Mapper\SelectionFormMapper');

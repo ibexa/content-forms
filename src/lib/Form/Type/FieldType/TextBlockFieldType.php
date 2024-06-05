@@ -64,5 +64,3 @@ class TextBlockFieldType extends AbstractType
             ->setAllowedTypes('rows', ['integer']);
     }
 }
-
-class_alias(TextBlockFieldType::class, 'EzSystems\EzPlatformContentForms\Form\Type\FieldType\TextBlockFieldType');

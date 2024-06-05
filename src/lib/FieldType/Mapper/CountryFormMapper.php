@@ -34,5 +34,3 @@ class CountryFormMapper implements FieldValueFormMapperInterface
             );
     }
 }
-
-class_alias(CountryFormMapper::class, 'EzSystems\EzPlatformContentForms\FieldType\Mapper\CountryFormMapper');

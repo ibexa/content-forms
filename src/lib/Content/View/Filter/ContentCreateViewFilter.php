@@ -136,5 +136,3 @@ class ContentCreateViewFilter implements EventSubscriberInterface
         ]);
     }
 }
-
-class_alias(ContentCreateViewFilter::class, 'EzSystems\EzPlatformContentForms\Content\View\Filter\ContentCreateViewFilter');

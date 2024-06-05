@@ -52,5 +52,3 @@ class FieldTypeFormMapperDispatcher implements FieldTypeFormMapperDispatcherInte
         $this->mappers[$fieldTypeIdentifier]->mapFieldValueForm($fieldForm, $data);
     }
 }
-
-class_alias(FieldTypeFormMapperDispatcher::class, 'EzSystems\EzPlatformContentForms\FieldType\FieldTypeFormMapperDispatcher');

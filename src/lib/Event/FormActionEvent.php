@@ -164,5 +164,3 @@ class FormActionEvent extends FormEvent
         $this->payloads[$name] = $payload;
     }
 }
-
-class_alias(FormActionEvent::class, 'EzSystems\EzPlatformContentForms\Event\FormActionEvent');

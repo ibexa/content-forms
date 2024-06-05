@@ -20,5 +20,3 @@ class CreateContentDraftData extends ValueObject
 
     public $toLanguage;
 }
-
-class_alias(CreateContentDraftData::class, 'EzSystems\EzPlatformContentForms\Data\Content\CreateContentDraftData');

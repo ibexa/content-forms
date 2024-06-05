@@ -73,5 +73,3 @@ class CountryFieldType extends AbstractType
         return $choices;
     }
 }
-
-class_alias(CountryFieldType::class, 'EzSystems\EzPlatformContentForms\Form\Type\FieldType\CountryFieldType');

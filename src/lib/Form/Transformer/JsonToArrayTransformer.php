@@ -51,5 +51,3 @@ final class JsonToArrayTransformer implements DataTransformerInterface
         return $decoded;
     }
 }
-
-class_alias(JsonToArrayTransformer::class, 'EzSystems\EzPlatformContentForms\Form\Transformer\JsonToArrayTransformer');

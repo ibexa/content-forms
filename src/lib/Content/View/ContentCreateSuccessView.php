@@ -48,5 +48,3 @@ class ContentCreateSuccessView extends BaseView implements LocationValueView
         return $this->location;
     }
 }
-
-class_alias(ContentCreateSuccessView::class, 'EzSystems\EzPlatformContentForms\Content\View\ContentCreateSuccessView');

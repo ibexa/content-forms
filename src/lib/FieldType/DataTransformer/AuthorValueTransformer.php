@@ -53,5 +53,3 @@ class AuthorValueTransformer implements DataTransformerInterface
         return new Value($authors);
     }
 }
-
-class_alias(AuthorValueTransformer::class, 'EzSystems\EzPlatformContentForms\FieldType\DataTransformer\AuthorValueTransformer');

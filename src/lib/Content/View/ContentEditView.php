@@ -96,5 +96,3 @@ class ContentEditView extends BaseView implements ContentValueView, LocationValu
         $this->form = $form;
     }
 }
-
-class_alias(ContentEditView::class, 'EzSystems\EzPlatformContentForms\Content\View\ContentEditView');

@@ -42,5 +42,3 @@ class IntegerFormMapper implements FieldValueFormMapperInterface
             );
     }
 }
-
-class_alias(IntegerFormMapper::class, 'EzSystems\EzPlatformContentForms\FieldType\Mapper\IntegerFormMapper');

@@ -75,5 +75,3 @@ final class ContentFormEvents
      */
     public const CONTENT_CREATE_FIELD_OPTIONS = 'content.create.field.options';
 }
-
-class_alias(ContentFormEvents::class, 'EzSystems\EzPlatformContentForms\Event\ContentFormEvents');

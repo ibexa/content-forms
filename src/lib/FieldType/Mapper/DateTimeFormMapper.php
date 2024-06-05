@@ -41,5 +41,3 @@ class DateTimeFormMapper implements FieldValueFormMapperInterface
             );
     }
 }
-
-class_alias(DateTimeFormMapper::class, 'EzSystems\EzPlatformContentForms\FieldType\Mapper\DateTimeFormMapper');

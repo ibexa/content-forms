@@ -37,10 +37,3 @@ interface FieldTypeFormMapperDispatcherInterface
      */
     public function map(FormInterface $form, FieldData $data): void;
 }
-
-class_alias(
-    FieldTypeFormMapperDispatcherInterface::class,
-    \EzSystems\RepositoryForms\FieldType\FieldTypeFormMapperDispatcherInterface::class
-);
-
-class_alias(FieldTypeFormMapperDispatcherInterface::class, 'EzSystems\EzPlatformContentForms\FieldType\FieldTypeFormMapperDispatcherInterface');

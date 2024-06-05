@@ -37,5 +37,3 @@ class TimeFormMapper implements FieldValueFormMapperInterface
             );
     }
 }
-
-class_alias(TimeFormMapper::class, 'EzSystems\EzPlatformContentForms\FieldType\Mapper\TimeFormMapper');

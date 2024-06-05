@@ -53,5 +53,3 @@ class IbexaContentFormsExtension extends Extension implements PrependExtensionIn
             && true === $container->getParameter('ibexa.behat.browser.enabled');
     }
 }
-
-class_alias(IbexaContentFormsExtension::class, 'EzSystems\EzPlatformContentFormsBundle\DependencyInjection\EzPlatformContentFormsExtension');

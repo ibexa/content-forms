@@ -69,5 +69,3 @@ class UrlFieldType extends AbstractType
         ]);
     }
 }
-
-class_alias(UrlFieldType::class, 'EzSystems\EzPlatformContentForms\Form\Type\FieldType\UrlFieldType');

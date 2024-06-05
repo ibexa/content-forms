@@ -157,5 +157,3 @@ class AuthorFieldType extends AbstractType
         return $author;
     }
 }
-
-class_alias(AuthorFieldType::class, 'EzSystems\EzPlatformContentForms\Form\Type\FieldType\AuthorFieldType');

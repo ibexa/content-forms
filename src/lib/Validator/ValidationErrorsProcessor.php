@@ -61,5 +61,3 @@ final class ValidationErrorsProcessor
         }
     }
 }
-
-class_alias(ValidationErrorsProcessor::class, 'EzSystems\EzPlatformContentForms\Validator\ValidationErrorsProcessor');

@@ -77,5 +77,3 @@ class ContentEdit extends AbstractParser
         }
     }
 }
-
-class_alias(ContentEdit::class, 'EzSystems\EzPlatformContentFormsBundle\DependencyInjection\Configuration\Parser\ContentEdit');

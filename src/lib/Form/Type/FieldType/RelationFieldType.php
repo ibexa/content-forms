@@ -111,5 +111,3 @@ class RelationFieldType extends AbstractType
         $resolver->setAllowedTypes('location', ['null', Location::class]);
     }
 }
-
-class_alias(RelationFieldType::class, 'EzSystems\EzPlatformContentForms\Form\Type\FieldType\RelationFieldType');

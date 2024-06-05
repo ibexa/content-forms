@@ -34,5 +34,3 @@ class SwitcherType extends AbstractType
         $resolver->setDefault('required', false);
     }
 }
-
-class_alias(SwitcherType::class, 'EzSystems\EzPlatformContentForms\Form\Type\SwitcherType');

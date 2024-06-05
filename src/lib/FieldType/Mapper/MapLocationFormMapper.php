@@ -39,5 +39,3 @@ class MapLocationFormMapper implements FieldValueFormMapperInterface
             );
     }
 }
-
-class_alias(MapLocationFormMapper::class, 'EzSystems\EzPlatformContentForms\FieldType\Mapper\MapLocationFormMapper');

@@ -68,5 +68,3 @@ class ContentFieldType extends AbstractType
         });
     }
 }
-
-class_alias(ContentFieldType::class, 'EzSystems\EzPlatformContentForms\Form\Type\Content\ContentFieldType');

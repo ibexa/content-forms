@@ -228,5 +228,3 @@ class UserController extends Controller
         );
     }
 }
-
-class_alias(UserController::class, 'EzSystems\EzPlatformContentFormsBundle\Controller\UserController');

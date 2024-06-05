@@ -65,5 +65,3 @@ class Configured implements ViewProvider
         return $view;
     }
 }
-
-class_alias(Configured::class, 'EzSystems\EzPlatformContentForms\Content\View\Provider\ContentCreateView\Configured');

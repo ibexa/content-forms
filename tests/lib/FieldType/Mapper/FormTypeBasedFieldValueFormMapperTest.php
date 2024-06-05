@@ -62,5 +62,3 @@ class FormTypeBasedFieldValueFormMapperTest extends BaseMapperTest
         $mapper->mapFieldValueForm($this->fieldForm, $this->data);
     }
 }
-
-class_alias(FormTypeBasedFieldValueFormMapperTest::class, 'EzSystems\EzPlatformContentForms\Tests\FieldType\Mapper\FormTypeBasedFieldValueFormMapperTest');

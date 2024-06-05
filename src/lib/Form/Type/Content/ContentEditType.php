@@ -92,5 +92,3 @@ class ContentEditType extends AbstractType
             ]);
     }
 }
-
-class_alias(ContentEditType::class, 'EzSystems\EzPlatformContentForms\Form\Type\Content\ContentEditType');

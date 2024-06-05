@@ -55,5 +55,3 @@ class PagelayoutContext extends RawMinkContext implements Context, SnippetAccept
                 : $this->configResolver->getParameter('pagelayout', null, 'site');
     }
 }
-
-class_alias(PagelayoutContext::class, 'EzSystems\EzPlatformContentForms\Behat\Context\PagelayoutContext');

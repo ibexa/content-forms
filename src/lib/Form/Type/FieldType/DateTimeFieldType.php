@@ -54,5 +54,3 @@ class DateTimeFieldType extends AbstractType
             ->setAllowedTypes('with_seconds', 'bool');
     }
 }
-
-class_alias(DateTimeFieldType::class, 'EzSystems\EzPlatformContentForms\Form\Type\FieldType\DateTimeFieldType');

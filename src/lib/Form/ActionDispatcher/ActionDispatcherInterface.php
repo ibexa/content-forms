@@ -38,5 +38,3 @@ interface ActionDispatcherInterface
      */
     public function getResponse();
 }
-
-class_alias(ActionDispatcherInterface::class, 'EzSystems\EzPlatformContentForms\Form\ActionDispatcher\ActionDispatcherInterface');

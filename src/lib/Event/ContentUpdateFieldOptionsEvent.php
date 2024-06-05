@@ -85,5 +85,3 @@ final class ContentUpdateFieldOptionsEvent extends Event
         return $this->options[$option] ?? null;
     }
 }
-
-class_alias(ContentUpdateFieldOptionsEvent::class, 'EzSystems\EzPlatformContentForms\Event\ContentUpdateFieldOptionsEvent');

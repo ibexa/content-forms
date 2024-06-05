@@ -38,5 +38,3 @@ class MultiSelectionValueTransformer implements DataTransformerInterface
         return new Value($value);
     }
 }
-
-class_alias(MultiSelectionValueTransformer::class, 'EzSystems\EzPlatformContentForms\FieldType\DataTransformer\MultiSelectionValueTransformer');

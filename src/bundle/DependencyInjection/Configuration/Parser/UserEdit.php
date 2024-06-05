@@ -65,5 +65,3 @@ class UserEdit extends AbstractParser
         }
     }
 }
-
-class_alias(UserEdit::class, 'EzSystems\EzPlatformContentFormsBundle\DependencyInjection\Configuration\Parser\UserEdit');

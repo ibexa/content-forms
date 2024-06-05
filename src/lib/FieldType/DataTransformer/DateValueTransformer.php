@@ -66,5 +66,3 @@ class DateValueTransformer implements DataTransformerInterface
         return Value::fromTimestamp($value);
     }
 }
-
-class_alias(DateValueTransformer::class, 'EzSystems\EzPlatformContentForms\FieldType\DataTransformer\DateValueTransformer');

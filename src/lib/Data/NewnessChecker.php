@@ -31,5 +31,3 @@ trait NewnessChecker
      */
     abstract protected function getIdentifierValue();
 }
-
-class_alias(NewnessChecker::class, 'EzSystems\EzPlatformContentForms\Data\NewnessChecker');

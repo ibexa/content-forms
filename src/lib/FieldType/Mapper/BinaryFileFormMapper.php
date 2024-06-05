@@ -49,5 +49,3 @@ class BinaryFileFormMapper implements FieldValueFormMapperInterface
             );
     }
 }
-
-class_alias(BinaryFileFormMapper::class, 'EzSystems\EzPlatformContentForms\FieldType\Mapper\BinaryFileFormMapper');

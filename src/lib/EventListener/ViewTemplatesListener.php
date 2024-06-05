@@ -65,5 +65,3 @@ class ViewTemplatesListener implements EventSubscriberInterface
         ];
     }
 }
-
-class_alias(ViewTemplatesListener::class, 'EzSystems\EzPlatformContentForms\EventListener\ViewTemplatesListener');

@@ -27,5 +27,3 @@ class FieldValue extends Constraint
         return FieldValueValidator::class;
     }
 }
-
-class_alias(FieldValue::class, 'EzSystems\EzPlatformContentForms\Validator\Constraints\FieldValue');

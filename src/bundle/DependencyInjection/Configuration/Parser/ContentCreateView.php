@@ -15,5 +15,3 @@ class ContentCreateView extends View
     public const NODE_KEY = 'content_create_view';
     public const INFO = 'Template selection settings when displaying a content create form';
 }
-
-class_alias(ContentCreateView::class, 'EzSystems\EzPlatformContentFormsBundle\DependencyInjection\Configuration\Parser\ContentCreateView');

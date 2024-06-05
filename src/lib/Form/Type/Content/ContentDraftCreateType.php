@@ -73,5 +73,3 @@ class ContentDraftCreateType extends AbstractType
         $resolver->setDefaults(['translation_domain' => 'ibexa_content_forms_content']);
     }
 }
-
-class_alias(ContentDraftCreateType::class, 'EzSystems\EzPlatformContentForms\Form\Type\Content\ContentDraftCreateType');

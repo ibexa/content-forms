@@ -42,5 +42,3 @@ class TextLineFormMapper implements FieldValueFormMapperInterface
             );
     }
 }
-
-class_alias(TextLineFormMapper::class, 'EzSystems\EzPlatformContentForms\FieldType\Mapper\TextLineFormMapper');

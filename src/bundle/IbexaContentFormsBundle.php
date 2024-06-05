@@ -31,5 +31,3 @@ class IbexaContentFormsBundle extends Bundle
         $eZExtension->addDefaultSettings(__DIR__ . '/Resources/config', ['ezpublish_default_settings.yaml']);
     }
 }
-
-class_alias(IbexaContentFormsBundle::class, 'EzSystems\EzPlatformContentFormsBundle\EzPlatformContentFormsBundle');

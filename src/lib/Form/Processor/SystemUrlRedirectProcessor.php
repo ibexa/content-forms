@@ -106,5 +106,3 @@ class SystemUrlRedirectProcessor implements EventSubscriberInterface
         $event->setResponse(new RedirectResponse($this->urlAliasService->reverseLookup($location)->path));
     }
 }
-
-class_alias(SystemUrlRedirectProcessor::class, 'EzSystems\EzPlatformContentForms\Form\Processor\SystemUrlRedirectProcessor');

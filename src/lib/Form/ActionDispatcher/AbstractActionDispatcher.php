@@ -93,5 +93,3 @@ abstract class AbstractActionDispatcher implements ActionDispatcherInterface
         return $this->response;
     }
 }
-
-class_alias(AbstractActionDispatcher::class, 'EzSystems\EzPlatformContentForms\Form\ActionDispatcher\AbstractActionDispatcher');

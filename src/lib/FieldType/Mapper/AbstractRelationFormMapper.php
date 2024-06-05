@@ -80,5 +80,3 @@ abstract class AbstractRelationFormMapper implements FieldValueFormMapperInterfa
         return null;
     }
 }
-
-class_alias(AbstractRelationFormMapper::class, 'EzSystems\EzPlatformContentForms\FieldType\Mapper\AbstractRelationFormMapper');

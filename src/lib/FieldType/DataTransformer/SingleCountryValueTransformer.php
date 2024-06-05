@@ -62,5 +62,3 @@ class SingleCountryValueTransformer implements DataTransformerInterface
         return new Value([$value => $this->countriesInfo[$value]]);
     }
 }
-
-class_alias(SingleCountryValueTransformer::class, 'EzSystems\EzPlatformContentForms\FieldType\DataTransformer\SingleCountryValueTransformer');

@@ -67,5 +67,3 @@ abstract class BaseMapperTest extends TestCase
             ->getMock();
     }
 }
-
-class_alias(BaseMapperTest::class, 'EzSystems\EzPlatformContentForms\Tests\FieldType\Mapper\BaseMapperTest');

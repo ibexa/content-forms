@@ -38,5 +38,3 @@ class SingleSelectionValueTransformer implements DataTransformerInterface
         return new Value([(int)$value]);
     }
 }
-
-class_alias(SingleSelectionValueTransformer::class, 'EzSystems\EzPlatformContentForms\FieldType\DataTransformer\SingleSelectionValueTransformer');

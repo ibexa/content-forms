@@ -47,5 +47,3 @@ class ISBNFieldType extends AbstractType
         $builder->addModelTransformer(new FieldValueTransformer($this->fieldTypeService->getFieldType('ezisbn')));
     }
 }
-
-class_alias(ISBNFieldType::class, 'EzSystems\EzPlatformContentForms\Form\Type\FieldType\ISBNFieldType');

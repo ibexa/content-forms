@@ -147,5 +147,3 @@ class ContentEditController extends Controller
         return $view;
     }
 }
-
-class_alias(ContentEditController::class, 'EzSystems\EzPlatformContentFormsBundle\Controller\ContentEditController');

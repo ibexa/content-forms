@@ -59,5 +59,3 @@ class ImageValueTransformer extends AbstractBinaryBaseTransformer implements Dat
         return $valueObject;
     }
 }
-
-class_alias(ImageValueTransformer::class, 'EzSystems\EzPlatformContentForms\FieldType\DataTransformer\ImageValueTransformer');

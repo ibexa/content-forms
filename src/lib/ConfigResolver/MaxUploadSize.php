@@ -69,5 +69,3 @@ class MaxUploadSize
         return (int) $value;
     }
 }
-
-class_alias(MaxUploadSize::class, 'EzSystems\EzPlatformContentForms\ConfigResolver\MaxUploadSize');

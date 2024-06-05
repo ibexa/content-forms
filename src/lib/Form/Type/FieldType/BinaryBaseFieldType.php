@@ -67,5 +67,3 @@ class BinaryBaseFieldType extends AbstractType
         $resolver->setDefaults(['translation_domain' => 'ibexa_content_forms_fieldtype']);
     }
 }
-
-class_alias(BinaryBaseFieldType::class, 'EzSystems\EzPlatformContentForms\Form\Type\FieldType\BinaryBaseFieldType');

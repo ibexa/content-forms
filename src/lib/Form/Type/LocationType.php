@@ -54,5 +54,3 @@ class LocationType extends AbstractType
         return HiddenType::class;
     }
 }
-
-class_alias(LocationType::class, 'EzSystems\EzPlatformContentForms\Form\Type\LocationType');

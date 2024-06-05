@@ -169,5 +169,3 @@ class ContentEditViewFilter implements EventSubscriberInterface
         );
     }
 }
-
-class_alias(ContentEditViewFilter::class, 'EzSystems\EzPlatformContentForms\Content\View\Filter\ContentEditViewFilter');

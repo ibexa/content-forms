@@ -26,5 +26,3 @@ class ContentDispatcher extends AbstractActionDispatcher
         return ContentFormEvents::CONTENT_EDIT;
     }
 }
-
-class_alias(ContentDispatcher::class, 'EzSystems\EzPlatformContentForms\Form\ActionDispatcher\ContentDispatcher');

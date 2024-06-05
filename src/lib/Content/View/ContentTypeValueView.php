@@ -22,5 +22,3 @@ interface ContentTypeValueView
      */
     public function getContentType(): ContentType;
 }
-
-class_alias(ContentTypeValueView::class, 'EzSystems\EzPlatformContentForms\Content\View\ContentTypeValueView');

@@ -63,5 +63,3 @@ class BaseUserType extends AbstractType
             ->setAllowedValues('intent', ['update', 'create', 'register']);
     }
 }
-
-class_alias(BaseUserType::class, 'EzSystems\EzPlatformContentForms\Form\Type\User\BaseUserType');

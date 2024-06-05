@@ -83,5 +83,3 @@ final class FormTypeBasedFieldValueFormMapper implements FieldValueFormMapperInt
             );
     }
 }
-
-class_alias(FormTypeBasedFieldValueFormMapper::class, 'EzSystems\EzPlatformContentForms\FieldType\Mapper\FormTypeBasedFieldValueFormMapper');
