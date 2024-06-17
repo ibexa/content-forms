@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace Ibexa\ContentForms\Form\Type\User;
 
 use Ibexa\ContentForms\Data\User\UserCreateData;
+use Ibexa\Contracts\Core\Repository\Values\User\UserCreateStruct;
 use JMS\TranslationBundle\Annotation\Desc;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -43,14 +44,16 @@ class UserCreateType extends AbstractType
             ->add('create', SubmitType::class, ['label' => /** @Desc("Create") */ 'user.create']);
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver
+            ->setRequired('struct')
             ->setDefaults([
                 'data_class' => UserCreateData::class,
                 'intent' => 'create',
                 'translation_domain' => 'ibexa_content_forms_user',
-            ]);
+            ])
+            ->setAllowedTypes('struct', UserCreateStruct::class);
     }
 }
 

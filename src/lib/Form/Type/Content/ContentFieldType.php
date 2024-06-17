@@ -10,6 +10,10 @@ namespace Ibexa\ContentForms\Form\Type\Content;
 
 use Ibexa\ContentForms\FieldType\FieldTypeFormMapperDispatcherInterface;
 use Ibexa\Contracts\ContentForms\Data\Content\FieldData;
+use Ibexa\Contracts\Core\Repository\Values\Content\ContentCreateStruct;
+use Ibexa\Contracts\Core\Repository\Values\Content\ContentUpdateStruct;
+use Ibexa\Contracts\Core\Repository\Values\User\UserCreateStruct;
+use Ibexa\Contracts\Core\Repository\Values\User\UserUpdateStruct;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
@@ -43,6 +47,7 @@ class ContentFieldType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver
+            ->setRequired(['languageCode', 'mainLanguageCode', 'struct'])
             ->setDefaults([
                 'content' => null,
                 'location' => null,
@@ -51,7 +56,30 @@ class ContentFieldType extends AbstractType
                 'data_class' => FieldData::class,
                 'translation_domain' => 'ibexa_content_forms_content',
             ])
-            ->setRequired(['languageCode', 'mainLanguageCode']);
+            ->setAllowedTypes(
+                'struct',
+                [
+                    'null',
+                    ContentCreateStruct::class,
+                    ContentUpdateStruct::class,
+                    UserCreateStruct::class,
+                    UserUpdateStruct::class,
+                ],
+            )
+            ->setAllowedTypes('contentCreateStruct', ['null', ContentCreateStruct::class])
+            ->setAllowedTypes('contentUpdateStruct', ['null', ContentUpdateStruct::class])
+            ->setDeprecated(
+                'contentCreateStruct',
+                'ibexa/content-forms',
+                'v4.6.4',
+                'The option "%name%" is deprecated, use "struct" instead.'
+            )
+            ->setDeprecated(
+                'contentUpdateStruct',
+                'ibexa/content-forms',
+                'v4.6.4',
+                'The option "%name%" is deprecated, use "struct" instead.'
+            );
     }
 
     public function buildView(FormView $view, FormInterface $form, array $options)

@@ -17,6 +17,7 @@ use Ibexa\ContentForms\Form\Type\User\UserUpdateType;
 use Ibexa\ContentForms\User\View\UserCreateView;
 use Ibexa\ContentForms\User\View\UserUpdateView;
 use Ibexa\Contracts\ContentForms\Content\Form\Provider\GroupedContentFormFieldsProviderInterface;
+use Ibexa\Contracts\Core\Repository\ContentService;
 use Ibexa\Contracts\Core\Repository\ContentTypeService;
 use Ibexa\Contracts\Core\Repository\Exceptions\UnauthorizedException;
 use Ibexa\Contracts\Core\Repository\LanguageService;
@@ -53,6 +54,8 @@ class UserController extends Controller
     /** @var \Ibexa\Contracts\ContentForms\Content\Form\Provider\GroupedContentFormFieldsProviderInterface */
     private $groupedContentFormFieldsProvider;
 
+    private ContentService $contentService;
+
     public function __construct(
         ContentTypeService $contentTypeService,
         UserService $userService,
@@ -61,7 +64,8 @@ class UserController extends Controller
         ActionDispatcherInterface $userActionDispatcher,
         PermissionResolver $permissionResolver,
         UserLanguagePreferenceProviderInterface $userLanguagePreferenceProvider,
-        GroupedContentFormFieldsProviderInterface $groupedContentFormFieldsProvider
+        GroupedContentFormFieldsProviderInterface $groupedContentFormFieldsProvider,
+        ContentService $contentService
     ) {
         $this->contentTypeService = $contentTypeService;
         $this->userService = $userService;
@@ -71,6 +75,7 @@ class UserController extends Controller
         $this->permissionResolver = $permissionResolver;
         $this->userLanguagePreferenceProvider = $userLanguagePreferenceProvider;
         $this->groupedContentFormFieldsProvider = $groupedContentFormFieldsProvider;
+        $this->contentService = $contentService;
     }
 
     /**
@@ -114,6 +119,7 @@ class UserController extends Controller
         $form = $this->createForm(UserCreateType::class, $data, [
             'languageCode' => $language->languageCode,
             'mainLanguageCode' => $language->languageCode,
+            'struct' => $data,
         ]);
         $form->handleRequest($request);
 
@@ -152,6 +158,7 @@ class UserController extends Controller
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\BadStateException
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\InvalidArgumentException
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException
+     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\UnauthorizedException
      * @throws \Ibexa\Core\Base\Exceptions\InvalidArgumentType
      * @throws \Ibexa\Core\Base\Exceptions\UnauthorizedException
      */
@@ -192,9 +199,11 @@ class UserController extends Controller
             $userUpdate,
             [
                 'location' => $location,
+                'content' => $this->contentService->loadContent($contentId),
                 'languageCode' => $language,
                 'mainLanguageCode' => $user->contentInfo->mainLanguageCode,
-            ]
+                'struct' => $userUpdate,
+            ],
         );
         $form->handleRequest($request);
 

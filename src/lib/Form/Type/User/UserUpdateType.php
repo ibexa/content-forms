@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace Ibexa\ContentForms\Form\Type\User;
 
 use Ibexa\ContentForms\Data\User\UserUpdateData;
+use Ibexa\Contracts\Core\Repository\Values\User\UserUpdateStruct;
 use JMS\TranslationBundle\Annotation\Desc;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -43,15 +44,18 @@ class UserUpdateType extends AbstractType
             ->add('update', SubmitType::class, ['label' => /** @Desc("Update") */ 'user.update']);
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver
+            ->setRequired('struct')
             ->setDefaults([
                 'location' => null,
+                'content' => null,
                 'data_class' => UserUpdateData::class,
                 'intent' => 'update',
                 'translation_domain' => 'ibexa_content_forms_user',
-            ]);
+            ])
+            ->setAllowedTypes('struct', UserUpdateStruct::class);
     }
 }
 
