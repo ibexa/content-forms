@@ -8,12 +8,17 @@ declare(strict_types=1);
 
 namespace Ibexa\ContentForms\Form\Type\Content;
 
+use Ibexa\Contracts\Core\Repository\Values\Content\ContentCreateStruct;
+use Ibexa\Contracts\Core\Repository\Values\Content\ContentUpdateStruct;
+use Ibexa\Contracts\Core\Repository\Values\User\UserCreateStruct;
+use Ibexa\Contracts\Core\Repository\Values\User\UserUpdateStruct;
 use JMS\TranslationBundle\Annotation\Desc;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
+use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
@@ -44,7 +49,9 @@ class BaseContentType extends AbstractType
                     'content' => $options['content'] ?? null,
                     'contentCreateStruct' => $options['contentCreateStruct'] ?? null,
                     'contentUpdateStruct' => $options['contentUpdateStruct'] ?? null,
+                    'struct' => $options['struct'],
                 ],
+                'translation_domain' => 'ibexa_content_forms_content',
             ])
             ->add('redirectUrlAfterPublish', HiddenType::class, [
                 'required' => false,
@@ -61,7 +68,44 @@ class BaseContentType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver
-            ->setDefaults(['translation_domain' => 'ibexa_content_forms_content'])
-            ->setRequired(['languageCode', 'mainLanguageCode']);
+            ->setRequired(['languageCode', 'mainLanguageCode', 'struct'])
+            ->setDefault('struct', static function (Options $options, $value) {
+                if ($value !== null) {
+                    return $value;
+                }
+
+                return $options['userUpdateStruct']
+                    ?? $options['userCreateStruct']
+                    ?? $options['contentUpdateStruct']
+                    ?? $options['contentCreateStruct']
+                    ?? null;
+            })
+            ->setDefaults([
+                'translation_domain' => 'ibexa_content_forms_content',
+                'contentCreateStruct' => null,
+                'contentUpdateStruct' => null,
+            ])
+            ->setAllowedTypes(
+                'struct',
+                [
+                    'null',
+                    ContentCreateStruct::class,
+                    ContentUpdateStruct::class,
+                    UserCreateStruct::class,
+                    UserUpdateStruct::class,
+                ],
+            )
+            ->setDeprecated(
+                'contentCreateStruct',
+                'ibexa/content-forms',
+                'v4.6.4',
+                'The option "%name%" is deprecated, use "struct" instead.'
+            )
+            ->setDeprecated(
+                'contentUpdateStruct',
+                'ibexa/content-forms',
+                'v4.6.4',
+                'The option "%name%" is deprecated, use "struct" instead.'
+            );
     }
 }

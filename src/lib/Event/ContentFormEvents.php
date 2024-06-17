@@ -74,4 +74,14 @@ final class ContentFormEvents
      * Triggered when resolving Field Type options for content create form.
      */
     public const CONTENT_CREATE_FIELD_OPTIONS = 'content.create.field.options';
+
+    /**
+     * Triggered when resolving Field Type options for user edit form.
+     */
+    public const USER_EDIT_FIELD_OPTIONS = 'user.edit.field.options';
+
+    /**
+     * Triggered when resolving Field Type options for user create form.
+     */
+    public const USER_CREATE_FIELD_OPTIONS = 'user.create.field.options';
 }

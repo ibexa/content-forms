@@ -10,26 +10,24 @@ namespace Ibexa\ContentForms\Event;
 
 use Ibexa\Contracts\ContentForms\Data\Content\FieldData;
 use Ibexa\Contracts\Core\Repository\Values\Content\Content;
-use Ibexa\Contracts\Core\Repository\Values\Content\ContentUpdateStruct;
+use Ibexa\Contracts\Core\Repository\Values\User\UserUpdateStruct;
 use Symfony\Component\Form\FormInterface;
 
-final class ContentUpdateFieldOptionsEvent extends StructFieldOptionsEvent
+final class UserUpdateFieldOptionsEvent extends StructFieldOptionsEvent
 {
-    /** @var \Ibexa\Contracts\Core\Repository\Values\Content\Content */
-    private $content;
+    private Content $content;
 
-    /** @var \Ibexa\Contracts\Core\Repository\Values\Content\ContentUpdateStruct */
-    private $contentUpdateStruct;
+    private UserUpdateStruct $userUpdateStruct;
 
     public function __construct(
         Content $content,
-        ContentUpdateStruct $contentUpdateStruct,
+        UserUpdateStruct $userUpdateStruct,
         FormInterface $parentForm,
         FieldData $fieldData,
         array $options
     ) {
         $this->content = $content;
-        $this->contentUpdateStruct = $contentUpdateStruct;
+        $this->userUpdateStruct = $userUpdateStruct;
 
         parent::__construct($parentForm, $fieldData, $options);
     }
@@ -39,8 +37,8 @@ final class ContentUpdateFieldOptionsEvent extends StructFieldOptionsEvent
         return $this->content;
     }
 
-    public function getContentUpdateStruct(): ContentUpdateStruct
+    public function getUserUpdateStruct(): UserUpdateStruct
     {
-        return $this->contentUpdateStruct;
+        return $this->userUpdateStruct;
     }
 }

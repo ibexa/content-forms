@@ -9,27 +9,26 @@ declare(strict_types=1);
 namespace Ibexa\ContentForms\Event;
 
 use Ibexa\Contracts\ContentForms\Data\Content\FieldData;
-use Ibexa\Contracts\Core\Repository\Values\Content\ContentCreateStruct;
+use Ibexa\Contracts\Core\Repository\Values\User\UserCreateStruct;
 use Symfony\Component\Form\FormInterface;
 
-final class ContentCreateFieldOptionsEvent extends StructFieldOptionsEvent
+final class UserCreateFieldOptionsEvent extends StructFieldOptionsEvent
 {
-    /** @var \Ibexa\Contracts\Core\Repository\Values\Content\ContentCreateStruct */
-    private $contentCreateStruct;
+    private UserCreateStruct $userCreateStruct;
 
     public function __construct(
-        ContentCreateStruct $contentCreateStruct,
+        UserCreateStruct $userCreateStruct,
         FormInterface $parentForm,
         FieldData $fieldData,
         array $options
     ) {
-        $this->contentCreateStruct = $contentCreateStruct;
+        $this->userCreateStruct = $userCreateStruct;
 
         parent::__construct($parentForm, $fieldData, $options);
     }
 
-    public function getContentCreateStruct(): ContentCreateStruct
+    public function getUserCreateStruct(): UserCreateStruct
     {
-        return $this->contentCreateStruct;
+        return $this->userCreateStruct;
     }
 }
