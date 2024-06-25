@@ -74,9 +74,7 @@ class BaseContentType extends AbstractType
                     return $value;
                 }
 
-                return $options['userUpdateStruct']
-                    ?? $options['userCreateStruct']
-                    ?? $options['contentUpdateStruct']
+                return $options['contentUpdateStruct']
                     ?? $options['contentCreateStruct']
                     ?? null;
             })
@@ -91,8 +89,6 @@ class BaseContentType extends AbstractType
                     'null',
                     ContentCreateStruct::class,
                     ContentUpdateStruct::class,
-                    UserCreateStruct::class,
-                    UserUpdateStruct::class,
                 ],
             )
             ->setDeprecated(
@@ -106,6 +102,19 @@ class BaseContentType extends AbstractType
                 'ibexa/content-forms',
                 'v4.6.4',
                 'The option "%name%" is deprecated, use "struct" instead.'
+            )
+            ->setNormalizer('struct',
+                static function (Options $options, ?UserCreateStruct $value): ?UserCreateStruct {
+                    if ($value === null) {
+                        trigger_deprecation(
+                            'ibexa/content-forms',
+                            'v4.6',
+                            'The option "struct" with null value is deprecated and will be required in v5.0.'
+                        );
+                    }
+
+                    return $value;
+                }
             );
     }
 }
