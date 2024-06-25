@@ -9,9 +9,8 @@ declare(strict_types=1);
 namespace Ibexa\ContentForms\Form\Type\Content;
 
 use Ibexa\Contracts\Core\Repository\Values\Content\ContentCreateStruct;
+use Ibexa\Contracts\Core\Repository\Values\Content\ContentStruct;
 use Ibexa\Contracts\Core\Repository\Values\Content\ContentUpdateStruct;
-use Ibexa\Contracts\Core\Repository\Values\User\UserCreateStruct;
-use Ibexa\Contracts\Core\Repository\Values\User\UserUpdateStruct;
 use JMS\TranslationBundle\Annotation\Desc;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
@@ -103,8 +102,9 @@ class BaseContentType extends AbstractType
                 'v4.6.4',
                 'The option "%name%" is deprecated, use "struct" instead.'
             )
-            ->setNormalizer('struct',
-                static function (Options $options, ?UserCreateStruct $value): ?UserCreateStruct {
+            ->setNormalizer(
+                'struct',
+                static function (Options $options, ?ContentStruct $value): ?ContentStruct {
                     if ($value === null) {
                         trigger_deprecation(
                             'ibexa/content-forms',
