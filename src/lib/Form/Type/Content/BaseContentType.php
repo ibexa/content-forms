@@ -68,10 +68,16 @@ class BaseContentType extends AbstractType
     {
         $resolver
             ->setRequired(['languageCode', 'mainLanguageCode', 'struct'])
-            ->setDefault('struct', static function (Options $options, $value) {
+            ->setDefault('struct', static function (Options $options, ?ContentStruct $value) {
                 if ($value !== null) {
                     return $value;
                 }
+
+                trigger_deprecation(
+                    'ibexa/content-forms',
+                    'v4.6',
+                    'The option "struct" with null value is deprecated and will be required in v5.0.'
+                );
 
                 return $options['contentUpdateStruct']
                     ?? $options['contentCreateStruct']
@@ -101,20 +107,6 @@ class BaseContentType extends AbstractType
                 'ibexa/content-forms',
                 'v4.6.4',
                 'The option "%name%" is deprecated, use "struct" instead.'
-            )
-            ->setNormalizer(
-                'struct',
-                static function (Options $options, ?ContentStruct $value): ?ContentStruct {
-                    if ($value === null) {
-                        trigger_deprecation(
-                            'ibexa/content-forms',
-                            'v4.6',
-                            'The option "struct" with null value is deprecated and will be required in v5.0.'
-                        );
-                    }
-
-                    return $value;
-                }
             );
     }
 }
