@@ -36,12 +36,12 @@ class DateFieldType extends AbstractType
         return $this->getBlockPrefix();
     }
 
-    public function getBlockPrefix()
+    public function getBlockPrefix(): string
     {
         return 'ezplatform_fieldtype_ezdate';
     }
 
-    public function getParent()
+    public function getParent(): ?string
     {
         return IntegerType::class;
     }

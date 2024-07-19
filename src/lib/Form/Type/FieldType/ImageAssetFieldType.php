@@ -55,7 +55,7 @@ class ImageAssetFieldType extends AbstractType
         return $this->getBlockPrefix();
     }
 
-    public function getBlockPrefix()
+    public function getBlockPrefix(): string
     {
         return 'ezplatform_fieldtype_ezimageasset';
     }
