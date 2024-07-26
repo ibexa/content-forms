@@ -9,9 +9,8 @@ declare(strict_types=1);
 namespace Ibexa\ContentForms\Form\Type\Content;
 
 use Ibexa\Contracts\Core\Repository\Values\Content\ContentCreateStruct;
+use Ibexa\Contracts\Core\Repository\Values\Content\ContentStruct;
 use Ibexa\Contracts\Core\Repository\Values\Content\ContentUpdateStruct;
-use Ibexa\Contracts\Core\Repository\Values\User\UserCreateStruct;
-use Ibexa\Contracts\Core\Repository\Values\User\UserUpdateStruct;
 use JMS\TranslationBundle\Annotation\Desc;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
@@ -69,14 +68,18 @@ class BaseContentType extends AbstractType
     {
         $resolver
             ->setRequired(['languageCode', 'mainLanguageCode', 'struct'])
-            ->setDefault('struct', static function (Options $options, $value) {
+            ->setDefault('struct', static function (Options $options, ?ContentStruct $value) {
                 if ($value !== null) {
                     return $value;
                 }
 
-                return $options['userUpdateStruct']
-                    ?? $options['userCreateStruct']
-                    ?? $options['contentUpdateStruct']
+                trigger_deprecation(
+                    'ibexa/content-forms',
+                    'v4.6',
+                    'The option "struct" with null value is deprecated and will be required in v5.0.'
+                );
+
+                return $options['contentUpdateStruct']
                     ?? $options['contentCreateStruct']
                     ?? null;
             })
@@ -91,8 +94,6 @@ class BaseContentType extends AbstractType
                     'null',
                     ContentCreateStruct::class,
                     ContentUpdateStruct::class,
-                    UserCreateStruct::class,
-                    UserUpdateStruct::class,
                 ],
             )
             ->setDeprecated(
