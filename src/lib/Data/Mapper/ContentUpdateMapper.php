@@ -42,6 +42,9 @@ class ContentUpdateMapper implements FormDataMapperInterface
 
         foreach ($params['contentType']->fieldDefinitions as $fieldDef) {
             $isNonTranslatable = $fieldDef->isTranslatable === false;
+            if (!isset($fields[$fieldDef->identifier])) {
+                continue;
+            }
             $field = $fields[$fieldDef->identifier];
             $shouldUseCurrentFieldValue = $isNonTranslatable
                 && isset($mappedCurrentFields[$fieldDef->identifier])
