@@ -37,7 +37,7 @@ final class RelationType extends AbstractType
         $this->translator = $translator;
     }
 
-    public function getBlockPrefix()
+    public function getBlockPrefix(): string
     {
         return 'ibexa_form_type_relation';
     }

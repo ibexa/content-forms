@@ -15,7 +15,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 
 final class JsonArrayType extends AbstractType
 {
-    public function getParent()
+    public function getParent(): ?string
     {
         return HiddenType::class;
     }

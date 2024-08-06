@@ -18,7 +18,7 @@ use Symfony\Component\Form\FormEvents;
  */
 class SuppressValidationSubscriber implements EventSubscriberInterface
 {
-    public static function getSubscribedEvents()
+    public static function getSubscribedEvents(): array
     {
         return [
             FormEvents::POST_SUBMIT => [
