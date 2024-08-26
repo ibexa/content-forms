@@ -17,12 +17,12 @@ class FieldValue extends Constraint
 {
     public $message = 'ez.field.value';
 
-    public function getTargets()
+    public function getTargets(): string
     {
         return self::CLASS_CONSTRAINT;
     }
 
-    public function validatedBy()
+    public function validatedBy(): string
     {
         return FieldValueValidator::class;
     }

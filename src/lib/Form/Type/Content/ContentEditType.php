@@ -28,12 +28,12 @@ class ContentEditType extends AbstractType
         return $this->getBlockPrefix();
     }
 
-    public function getBlockPrefix()
+    public function getBlockPrefix(): string
     {
         return 'ezplatform_content_forms_content_edit';
     }
 
-    public function getParent()
+    public function getParent(): ?string
     {
         return BaseContentType::class;
     }

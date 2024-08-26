@@ -30,7 +30,7 @@ class BaseContentType extends AbstractType
         return $this->getBlockPrefix();
     }
 
-    public function getBlockPrefix()
+    public function getBlockPrefix(): string
     {
         return 'ezplatform_content_forms_content';
     }

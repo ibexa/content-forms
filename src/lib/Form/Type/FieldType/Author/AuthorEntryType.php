@@ -33,7 +33,7 @@ class AuthorEntryType extends AbstractType
     /**
      * @return string
      */
-    public function getBlockPrefix()
+    public function getBlockPrefix(): string
     {
         return 'ezplatform_fieldtype_ezauthor_authors_entry';
     }

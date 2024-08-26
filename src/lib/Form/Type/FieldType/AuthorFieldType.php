@@ -54,7 +54,7 @@ class AuthorFieldType extends AbstractType
     /**
      * @return string
      */
-    public function getBlockPrefix()
+    public function getBlockPrefix(): string
     {
         return 'ezplatform_fieldtype_ezauthor';
     }

@@ -30,7 +30,7 @@ class ViewTemplatesListener implements EventSubscriberInterface
         $this->configResolver = $configResolver;
     }
 
-    public static function getSubscribedEvents()
+    public static function getSubscribedEvents(): array
     {
         return [MVCEvents::PRE_CONTENT_VIEW => 'setViewTemplates'];
     }
