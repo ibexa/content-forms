@@ -17,7 +17,7 @@ class FieldValue extends Constraint
 {
     public $message = 'ez.field.value';
 
-    public function getTargets(): string|array
+    public function getTargets(): string
     {
         return self::CLASS_CONSTRAINT;
     }
