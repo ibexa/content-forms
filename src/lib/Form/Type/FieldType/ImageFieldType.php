@@ -54,6 +54,7 @@ class ImageFieldType extends AbstractType
                 [
                     'label' => /** @Desc("Alternative text") */ 'content.field_type.ezimage.alternative_text',
                     'required' => $options['is_alternative_text_required'],
+                    'block_prefix' => 'ibexa_fieldtype_ezimage_alternative_text',
                 ]
             )
             ->add(
