@@ -11,6 +11,7 @@ namespace Ibexa\ContentForms\Form\Type\Content;
 use Ibexa\ContentForms\FieldType\FieldTypeFormMapperDispatcherInterface;
 use Ibexa\Contracts\ContentForms\Data\Content\FieldData;
 use Ibexa\Contracts\Core\Repository\Values\Content\ContentCreateStruct;
+use Ibexa\Contracts\Core\Repository\Values\Content\ContentStruct;
 use Ibexa\Contracts\Core\Repository\Values\Content\ContentUpdateStruct;
 use Ibexa\Contracts\Core\Repository\Values\User\UserCreateStruct;
 use Ibexa\Contracts\Core\Repository\Values\User\UserUpdateStruct;
@@ -20,6 +21,7 @@ use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
+use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ContentFieldType extends AbstractType
@@ -48,6 +50,21 @@ class ContentFieldType extends AbstractType
     {
         $resolver
             ->setRequired(['languageCode', 'mainLanguageCode', 'struct'])
+            ->setDefault('struct', static function (Options $options, ?ContentStruct $value) {
+                if ($value !== null) {
+                    return $value;
+                }
+
+                trigger_deprecation(
+                    'ibexa/content-forms',
+                    'v4.6',
+                    'The option "struct" with null value is deprecated and will be required in v5.0.'
+                );
+
+                return $options['contentUpdateStruct']
+                    ?? $options['contentCreateStruct']
+                    ?? null;
+            })
             ->setDefaults([
                 'content' => null,
                 'location' => null,
