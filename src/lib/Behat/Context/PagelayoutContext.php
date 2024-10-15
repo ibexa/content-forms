@@ -34,7 +34,7 @@ class PagelayoutContext extends RawMinkContext implements Context, SnippetAccept
      */
     public function aPagelayoutIsConfigured()
     {
-        Assertion::assertTrue($this->configResolver->hasParameter('pagelayout'));
+        Assertion::assertTrue($this->configResolver->hasParameter('page_layout'));
     }
 
     /**
@@ -50,8 +50,6 @@ class PagelayoutContext extends RawMinkContext implements Context, SnippetAccept
 
     public function getPageLayout(): string
     {
-        return $this->configResolver->hasParameter('page_layout')
-                ? $this->configResolver->getParameter('page_layout', null, 'site')
-                : $this->configResolver->getParameter('pagelayout', null, 'site');
+        return $this->configResolver->getParameter('page_layout', null, 'site');
     }
 }
