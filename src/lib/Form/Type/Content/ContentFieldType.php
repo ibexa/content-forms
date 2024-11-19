@@ -50,7 +50,7 @@ class ContentFieldType extends AbstractType
     {
         $resolver
             ->setRequired(['languageCode', 'mainLanguageCode', 'struct'])
-            ->setDefault('struct', static function (Options $options, ?ContentStruct $value) {
+            ->setDefault('struct', static function (Options $options, ?ContentStruct $value): ?ContentStruct {
                 if ($value !== null) {
                     return $value;
                 }
