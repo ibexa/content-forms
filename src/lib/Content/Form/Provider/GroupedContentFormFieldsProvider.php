@@ -25,16 +25,13 @@ final class GroupedContentFormFieldsProvider implements GroupedContentFormFields
 
     public function getGroupedFields(array $fieldsDataForm): array
     {
-        $fieldsGroups = $this->fieldsGroupsList->getGroups();
         $groupedFields = [];
 
         foreach ($fieldsDataForm as $fieldForm) {
             /** @var \Ibexa\Contracts\ContentForms\Data\Content\FieldData $fieldData */
             $fieldData = $fieldForm->getViewData();
             $fieldGroupIdentifier = $this->fieldsGroupsList->getFieldGroup($fieldData->fieldDefinition);
-            $fieldGroupName = $fieldsGroups[$fieldGroupIdentifier] ?? $this->fieldsGroupsList->getDefaultGroup();
-
-            $groupedFields[$fieldGroupName][] = $fieldForm->getName();
+            $groupedFields[$fieldGroupIdentifier][] = $fieldForm->getName();
         }
 
         return $groupedFields;
