@@ -28,14 +28,6 @@ final class GroupedContentFormFieldsProviderTest extends TestCase
             ->withConsecutive()
             ->willReturnOnConsecutiveCalls('group_1', 'group_2', 'group_2');
 
-        $fieldsGroupsListMock
-            ->expects($this->once())
-            ->method('getGroups')
-            ->willReturn([
-                'group_1' => 'Group 1',
-                'group_2' => 'Group 2',
-            ]);
-
         $subject = new GroupedContentFormFieldsProvider($fieldsGroupsListMock);
 
         $form1 = $this->getFormMockWithFieldData(
@@ -56,10 +48,10 @@ final class GroupedContentFormFieldsProviderTest extends TestCase
         $result = $subject->getGroupedFields([$form1, $form2, $form3]);
 
         $expected = [
-            'Group 1' => [
+            'group_1' => [
                 0 => 'first_field',
             ],
-            'Group 2' => [
+            'group_2' => [
                 0 => 'second_field',
                 1 => 'third_field',
             ],
