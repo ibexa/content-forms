@@ -23,11 +23,12 @@ class IbexaContentFormsBundle extends Bundle
         parent::build($container);
         $container->addCompilerPass(new FieldTypeFormMapperDispatcherPass());
 
-        $eZExtension = $container->getExtension('ibexa');
-        $eZExtension->addConfigParser(new ContentEdit());
-        $eZExtension->addConfigParser(new UserEdit());
-        $eZExtension->addConfigParser(new ContentEditView());
-        $eZExtension->addConfigParser(new ContentCreateView());
-        $eZExtension->addDefaultSettings(__DIR__ . '/Resources/config', ['ezpublish_default_settings.yaml']);
+        /** @var \Ibexa\Bundle\Core\DependencyInjection\IbexaCoreExtension $ibexaCore */
+        $ibexaCore = $container->getExtension('ibexa');
+        $ibexaCore->addConfigParser(new ContentEdit());
+        $ibexaCore->addConfigParser(new UserEdit());
+        $ibexaCore->addConfigParser(new ContentEditView());
+        $ibexaCore->addConfigParser(new ContentCreateView());
+        $ibexaCore->addDefaultSettings(__DIR__ . '/Resources/config', ['ibexa_core_default_settings.yaml']);
     }
 }
