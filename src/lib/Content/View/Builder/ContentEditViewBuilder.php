@@ -28,7 +28,7 @@ class ContentEditViewBuilder extends AbstractContentViewBuilder implements ViewB
 {
     public function matches($argument)
     {
-        return 'ibexa_content_edit:editVersionDraftAction' === $argument;
+        return 'ibexa_content_edit::editVersionDraftAction' === $argument;
     }
 
     /**
