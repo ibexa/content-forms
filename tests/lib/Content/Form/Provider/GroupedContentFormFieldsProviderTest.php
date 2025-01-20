@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace Ibexa\Tests\ContentForms\Content\Form\Provider;
 
-use Ibexa\ContentForms\Content\Form\Provider\GroupedContentFormFieldsProvider;
+use Ibexa\ContentForms\Content\Form\Provider\NonLocalizedGroupedContentFormFieldsProvider;
 use Ibexa\Contracts\ContentForms\Data\Content\FieldData;
 use Ibexa\Contracts\Core\Repository\Values\Content\Field;
 use Ibexa\Core\FieldType\TextLine\Value;
@@ -28,7 +28,7 @@ final class GroupedContentFormFieldsProviderTest extends TestCase
             ->withConsecutive()
             ->willReturnOnConsecutiveCalls('group_1', 'group_2', 'group_2');
 
-        $subject = new GroupedContentFormFieldsProvider($fieldsGroupsListMock);
+        $subject = new NonLocalizedGroupedContentFormFieldsProvider($fieldsGroupsListMock);
 
         $form1 = $this->getFormMockWithFieldData(
             'first_field',
