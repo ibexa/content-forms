@@ -130,3 +130,7 @@ services:
     Ibexa\ContentForms\Content\Form\Provider\GroupedContentFormFieldsProvider:
         arguments:
             $fieldsGroupsList: '@Ibexa\Core\Helper\FieldsGroups\FieldsGroupsList'
+
+    Ibexa\ContentForms\Content\Form\Provider\NonLocalizedGroupedContentFormFieldsProvider:
+        arguments:
+            $fieldsGroupsList: '@Ibexa\Core\Helper\FieldsGroups\FieldsGroupsList'
