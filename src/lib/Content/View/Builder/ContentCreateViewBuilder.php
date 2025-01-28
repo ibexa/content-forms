@@ -24,7 +24,7 @@ class ContentCreateViewBuilder extends AbstractContentViewBuilder implements Vie
 {
     public function matches($argument)
     {
-        return 'ibexa_content_edit:createWithoutDraftAction' === $argument;
+        return 'ibexa_content_edit::createWithoutDraftAction' === $argument;
     }
 
     /**
