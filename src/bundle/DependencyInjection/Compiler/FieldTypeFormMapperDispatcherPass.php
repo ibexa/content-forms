@@ -19,10 +19,10 @@ use Symfony\Component\DependencyInjection\Reference;
  */
 class FieldTypeFormMapperDispatcherPass implements CompilerPassInterface
 {
-    public const FIELD_TYPE_FORM_MAPPER_DISPATCHER = FieldTypeFormMapperDispatcher::class;
-    public const FIELD_TYPE_FORM_MAPPER_VALUE_SERVICE_TAG = 'ibexa.admin_ui.field_type.form.mapper.value';
+    public const string FIELD_TYPE_FORM_MAPPER_DISPATCHER = FieldTypeFormMapperDispatcher::class;
+    public const string FIELD_TYPE_FORM_MAPPER_VALUE_SERVICE_TAG = 'ibexa.admin_ui.field_type.form.mapper.value';
 
-    public function process(ContainerBuilder $container)
+    public function process(ContainerBuilder $container): void
     {
         if (!$container->hasDefinition(self::FIELD_TYPE_FORM_MAPPER_DISPATCHER)) {
             return;

@@ -13,7 +13,7 @@ use Ibexa\Core\Repository\Values\ContentType\FieldDefinition;
 
 class FormTypeBasedFieldValueFormMapperTest extends BaseMapperTest
 {
-    public function testMapFieldValueFormNoLanguageCode()
+    public function testMapFieldValueFormNoLanguageCode(): void
     {
         $mapper = new FormTypeBasedFieldValueFormMapper($this->fieldTypeService);
 
@@ -39,7 +39,7 @@ class FormTypeBasedFieldValueFormMapperTest extends BaseMapperTest
         $mapper->mapFieldValueForm($this->fieldForm, $this->data);
     }
 
-    public function testMapFieldValueFormWithLanguageCode()
+    public function testMapFieldValueFormWithLanguageCode(): void
     {
         $mapper = new FormTypeBasedFieldValueFormMapper($this->fieldTypeService);
 

@@ -29,7 +29,7 @@ class ContentCreateSuccessView extends BaseView implements LocationValueView
         parent::__construct('@IbexaContentForms/http/302_empty_content.html.twig');
 
         $this->setResponse($response);
-        $this->setControllerReference(new ControllerReference('ibexa_content_edit:createWithoutDraftSuccessAction'));
+        $this->setControllerReference(new ControllerReference('ibexa_content_edit::createWithoutDraftSuccessAction'));
     }
 
     /**

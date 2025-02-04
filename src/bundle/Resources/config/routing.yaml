@@ -1,15 +1,14 @@
 ibexa.content.create_no_draft:
     path: /content/create/nodraft/{contentTypeIdentifier}/{language}/{parentLocationId}
-    defaults:
-        _controller: ibexa_content_edit:createWithoutDraftAction
+    controller: ibexa_content_edit::createWithoutDraftAction
     options:
         expose: true
     # @todo rename language to languageCode in 3.0
 
 ibexa.content.draft.edit:
     path: /content/edit/draft/{contentId}/{versionNo}/{language}/{locationId}
+    controller: ibexa_content_edit::editVersionDraftAction
     defaults:
-        _controller: ibexa_content_edit:editVersionDraftAction
         language: ~ # @todo rename to languageCode in 3.0
         locationId: ~
     options:
@@ -17,8 +16,8 @@ ibexa.content.draft.edit:
 
 ibexa.content.draft.create:
     path: /content/create/draft/{contentId}/{fromVersionNo}/{fromLanguage}
+    controller: ibexa_content_edit::createContentDraftAction
     defaults:
-        _controller: ibexa_content_edit:createContentDraftAction
         contentId: ~
         fromVersionNo: ~
         fromLanguage: ~
@@ -27,13 +26,11 @@ ibexa.content.draft.create:
 
 ibexa.user.create:
     path: /user/create/{contentTypeIdentifier}/{language}/{parentLocationId}
-    defaults:
-        _controller: Ibexa\Bundle\ContentForms\Controller\UserController:createAction
+    controller: Ibexa\Bundle\ContentForms\Controller\UserController::createAction
 
 ibexa.user.update:
     path: /user/update/{contentId}/{versionNo}/{language}
-    defaults:
-        _controller: Ibexa\Bundle\ContentForms\Controller\UserController:editAction
+    controller: Ibexa\Bundle\ContentForms\Controller\UserController::editAction
     options:
         expose: true
 
