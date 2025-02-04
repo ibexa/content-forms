@@ -14,7 +14,9 @@ use JMS\TranslationBundle\Model\Message;
 use JMS\TranslationBundle\Translation\TranslationContainerInterface;
 
 /**
- * @deprecated since 4.6.17 this class is deprecated. Please use NonLocalizedGroupedContentFormFieldsProvider instead
+ * @deprecated
+ * Since 4.6.17 this class is deprecated.
+ * Please use Ibexa\ContentForms\Content\Form\Provider\NonLocalizedGroupedContentFormFieldsProvider instead.
  */
 final class GroupedContentFormFieldsProvider implements GroupedContentFormFieldsProviderInterface, TranslationContainerInterface
 {
