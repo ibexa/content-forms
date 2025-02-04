@@ -13,15 +13,9 @@ use Ibexa\Core\Helper\FieldsGroups\FieldsGroupsList;
 use JMS\TranslationBundle\Model\Message;
 use JMS\TranslationBundle\Translation\TranslationContainerInterface;
 
-/**
- * @deprecated
- * Since 4.6.17 this class is deprecated.
- * Please use Ibexa\ContentForms\Content\Form\Provider\NonLocalizedGroupedContentFormFieldsProvider instead.
- */
-final class GroupedContentFormFieldsProvider implements GroupedContentFormFieldsProviderInterface, TranslationContainerInterface
+class NonLocalizedGroupedContentFormFieldsProvider implements GroupedContentFormFieldsProviderInterface, TranslationContainerInterface
 {
-    /** @var \Ibexa\Core\Helper\FieldsGroups\FieldsGroupsList */
-    private $fieldsGroupsList;
+    private FieldsGroupsList $fieldsGroupsList;
 
     public function __construct(FieldsGroupsList $fieldsGroupsList)
     {
@@ -30,16 +24,13 @@ final class GroupedContentFormFieldsProvider implements GroupedContentFormFields
 
     public function getGroupedFields(array $fieldsDataForm): array
     {
-        $fieldsGroups = $this->fieldsGroupsList->getGroups();
         $groupedFields = [];
 
         foreach ($fieldsDataForm as $fieldForm) {
             /** @var \Ibexa\Contracts\ContentForms\Data\Content\FieldData $fieldData */
             $fieldData = $fieldForm->getViewData();
             $fieldGroupIdentifier = $this->fieldsGroupsList->getFieldGroup($fieldData->fieldDefinition);
-            $fieldGroupName = $fieldsGroups[$fieldGroupIdentifier] ?? $this->fieldsGroupsList->getDefaultGroup();
-
-            $groupedFields[$fieldGroupName][] = $fieldForm->getName();
+            $groupedFields[$fieldGroupIdentifier][] = $fieldForm->getName();
         }
 
         return $groupedFields;
