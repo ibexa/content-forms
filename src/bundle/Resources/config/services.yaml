@@ -88,29 +88,17 @@ services:
     # Controllers
     Ibexa\Bundle\ContentForms\Controller\ContentEditController:
         public: true
-        class: Ibexa\Bundle\ContentForms\Controller\ContentEditController
+        autowire: true
+        autoconfigure: true
         arguments:
-            - '@ibexa.api.service.content_type'
-            - '@ibexa.api.service.content'
-            - '@Ibexa\ContentForms\Form\ActionDispatcher\ContentDispatcher'
-        parent: Ibexa\Core\MVC\Symfony\Controller\Controller
-        tags:
-              - { name: controller.service_arguments }
+            $contentActionDispatcher: '@Ibexa\ContentForms\Form\ActionDispatcher\ContentDispatcher'
 
     Ibexa\Bundle\ContentForms\Controller\UserController:
+        autowire: true
+        autoconfigure: true
         arguments:
-            $contentTypeService: '@ibexa.api.service.content_type'
-            $userService: '@ibexa.api.service.user'
-            $locationService: '@ibexa.api.service.location'
-            $languageService: '@ibexa.api.service.language'
             $userActionDispatcher: '@Ibexa\ContentForms\Form\ActionDispatcher\UserDispatcher'
-            $permissionResolver: '@Ibexa\Contracts\Core\Repository\PermissionResolver'
-            $userLanguagePreferenceProvider: '@Ibexa\Core\MVC\Symfony\Locale\UserLanguagePreferenceProvider'
             $groupedContentFormFieldsProvider: '@Ibexa\ContentForms\Content\Form\Provider\GroupedContentFormFieldsProvider'
-            $contentService: '@ibexa.api.service.content'
-        parent: Ibexa\Core\MVC\Symfony\Controller\Controller
-        tags:
-              - { name: controller.service_arguments }
 
     ibexa_content_edit:
         alias: Ibexa\Bundle\ContentForms\Controller\ContentEditController
