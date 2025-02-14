@@ -60,7 +60,7 @@ class ImageAssetFieldType extends AbstractType
         return 'ezplatform_fieldtype_ezimageasset';
     }
 
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('destinationContentId', HiddenType::class)
@@ -120,7 +120,7 @@ class ImageAssetFieldType extends AbstractType
         $view->vars['max_file_size'] = $this->getMaxFileSize();
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'translation_domain' => 'ibexa_content_forms_fieldtype',

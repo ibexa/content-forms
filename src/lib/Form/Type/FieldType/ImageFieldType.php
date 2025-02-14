@@ -45,7 +45,7 @@ class ImageFieldType extends AbstractType
         return BinaryBaseFieldType::class;
     }
 
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add(
@@ -72,7 +72,7 @@ class ImageFieldType extends AbstractType
         ];
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'translation_domain' => 'ibexa_content_forms_fieldtype',

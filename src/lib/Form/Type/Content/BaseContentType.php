@@ -35,7 +35,7 @@ class BaseContentType extends AbstractType
         return 'ezplatform_content_forms_content';
     }
 
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('fieldsData', FieldCollectionType::class, [
@@ -64,7 +64,7 @@ class BaseContentType extends AbstractType
         $view->vars['mainLanguageCode'] = $options['mainLanguageCode'];
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver
             ->setRequired(['languageCode', 'mainLanguageCode', 'struct'])

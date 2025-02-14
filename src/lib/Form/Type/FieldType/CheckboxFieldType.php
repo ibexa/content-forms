@@ -42,7 +42,7 @@ class CheckboxFieldType extends AbstractType
         return CheckboxType::class;
     }
 
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->addModelTransformer(new FieldValueTransformer($this->fieldTypeService->getFieldType('ezboolean')));

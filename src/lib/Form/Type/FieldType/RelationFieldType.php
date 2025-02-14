@@ -57,7 +57,7 @@ class RelationFieldType extends AbstractType
         return IntegerType::class;
     }
 
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder->addModelTransformer(new RelationValueTransformer());
     }
@@ -94,7 +94,7 @@ class RelationFieldType extends AbstractType
         ];
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'attr' => [

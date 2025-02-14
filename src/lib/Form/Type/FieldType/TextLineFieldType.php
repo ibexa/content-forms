@@ -45,7 +45,7 @@ class TextLineFieldType extends AbstractType
         return TextType::class;
     }
 
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder->addModelTransformer(new FieldValueTransformer($this->fieldTypeService->getFieldType('ezstring')));
     }
@@ -65,7 +65,7 @@ class TextLineFieldType extends AbstractType
         $view->vars['attr'] = array_merge($view->vars['attr'], $attributes);
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'min' => null,

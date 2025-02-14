@@ -38,7 +38,7 @@ class ContentEditType extends AbstractType
         return BaseContentType::class;
     }
 
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('publish', SubmitType::class, ['label' => 'Publish'])
@@ -76,7 +76,7 @@ class ContentEditType extends AbstractType
         $builder->addEventSubscriber(new SuppressValidationSubscriber());
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver
             ->setDefaults([

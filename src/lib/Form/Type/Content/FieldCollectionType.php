@@ -40,7 +40,7 @@ class FieldCollectionType extends CollectionType
     public function buildForm(
         FormBuilderInterface $builder,
         array $options
-    ) {
+    ): void {
         parent::buildForm($builder, $options);
 
         $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) use ($options) {

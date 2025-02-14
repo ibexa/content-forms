@@ -32,7 +32,7 @@ class BinaryBaseFieldType extends AbstractType
         $this->maxUploadSize = $maxUploadSize;
     }
 
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add(
@@ -62,7 +62,7 @@ class BinaryBaseFieldType extends AbstractType
         $view->vars['max_upload_size'] = $this->maxUploadSize->get();
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults(['translation_domain' => 'ibexa_content_forms_fieldtype']);
     }
