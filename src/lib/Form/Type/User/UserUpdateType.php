@@ -38,7 +38,7 @@ class UserUpdateType extends AbstractType
         return BaseUserType::class;
     }
 
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('update', SubmitType::class, ['label' => /** @Desc("Update") */ 'user.update']);

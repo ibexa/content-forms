@@ -45,7 +45,7 @@ final class RelationType extends AbstractType
     public function buildForm(
         FormBuilderInterface $builder,
         array $options
-    ) {
+    ): void {
         $builder
             ->add('location', LocationType::class)
             ->add('location_type', LocationChoiceType::class, [

@@ -42,7 +42,7 @@ class MapLocationFieldType extends AbstractType
         return 'ezplatform_fieldtype_ezgmaplocation';
     }
 
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add(
@@ -93,7 +93,7 @@ class MapLocationFieldType extends AbstractType
         $view->children['longitude']->vars['type'] = 'number';
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults(['translation_domain' => 'ibexa_content_forms_fieldtype']);
     }

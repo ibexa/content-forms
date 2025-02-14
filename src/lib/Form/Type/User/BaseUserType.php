@@ -39,7 +39,7 @@ class BaseUserType extends AbstractType
         return BaseContentType::class;
     }
 
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('cancel', SubmitType::class, [
@@ -50,7 +50,7 @@ class BaseUserType extends AbstractType
             ->addEventSubscriber(new SuppressValidationSubscriber());
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver
             ->setDefaults([

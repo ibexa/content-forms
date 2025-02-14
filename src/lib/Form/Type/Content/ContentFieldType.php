@@ -46,7 +46,7 @@ class ContentFieldType extends AbstractType
         return 'ezplatform_content_forms_content_field';
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver
             ->setRequired(['languageCode', 'mainLanguageCode', 'struct'])
@@ -106,7 +106,7 @@ class ContentFieldType extends AbstractType
         $view->vars['mainLanguageCode'] = $options['mainLanguageCode'];
     }
 
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) {
             $this->fieldTypeFormMapper->map($event->getForm(), $event->getData());

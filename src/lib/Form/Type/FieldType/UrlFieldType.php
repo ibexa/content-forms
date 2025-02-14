@@ -40,7 +40,7 @@ class UrlFieldType extends AbstractType
         return 'ezplatform_fieldtype_ezurl';
     }
 
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add(
@@ -62,7 +62,7 @@ class UrlFieldType extends AbstractType
             ->addModelTransformer(new FieldValueTransformer($this->fieldTypeService->getFieldType('ezurl')));
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'translation_domain' => 'ibexa_content_forms_fieldtype',

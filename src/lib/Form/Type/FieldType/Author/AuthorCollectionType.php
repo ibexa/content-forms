@@ -27,7 +27,7 @@ class AuthorCollectionType extends AbstractType
         return 'ezplatform_fieldtype_ezauthor_authors';
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'allow_add' => true,
