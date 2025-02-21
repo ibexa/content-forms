@@ -8,18 +8,15 @@ declare(strict_types=1);
 
 namespace Ibexa\ContentForms\Content\Form\Provider;
 
-/**
- * @deprecated 4.6.17 The "GroupedContentFormFieldsProvider" class is deprecated.
- */
-final class GroupedContentFormFieldsProvider extends AbstractGroupedContentFormFieldsProvider
+class IdentifiedGroupedContentFormFieldsProvider extends AbstractGroupedContentFormFieldsProvider
 {
     protected function prepareGroupContext(): array
     {
-        return $this->fieldsGroupsList->getGroups();
+        return [];
     }
 
     protected function getGroupKey(string $fieldGroupIdentifier, array $groupContext): string
     {
-        return $groupContext[$fieldGroupIdentifier] ?? $this->fieldsGroupsList->getDefaultGroup();
+        return $fieldGroupIdentifier;
     }
 }

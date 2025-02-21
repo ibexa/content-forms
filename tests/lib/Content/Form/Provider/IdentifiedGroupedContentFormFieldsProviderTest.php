@@ -8,15 +8,15 @@ declare(strict_types=1);
 
 namespace Ibexa\Tests\ContentForms\Content\Form\Provider;
 
-use Ibexa\ContentForms\Content\Form\Provider\NonLocalizedGroupedContentFormFieldsProvider;
+use Ibexa\ContentForms\Content\Form\Provider\IdentifiedGroupedContentFormFieldsProvider;
 
-class NonLocalizedGroupedContentFormFieldsProviderTest extends AbstractGroupedContentFormFieldsProviderTest
+class IdentifiedGroupedContentFormFieldsProviderTest extends AbstractGroupedContentFormFieldsProviderTest
 {
     public function testGetGroupedFields(): void
     {
         $fieldsGroupsListMock = $this->getFieldsGroupsListMock();
 
-        $subject = new NonLocalizedGroupedContentFormFieldsProvider($fieldsGroupsListMock);
+        $subject = new IdentifiedGroupedContentFormFieldsProvider($fieldsGroupsListMock);
         $result = $subject->getGroupedFields($this->getTestForms());
 
         $expected = [

@@ -13,9 +13,9 @@ use Ibexa\Core\Helper\FieldsGroups\FieldsGroupsList;
 use JMS\TranslationBundle\Model\Message;
 use JMS\TranslationBundle\Translation\TranslationContainerInterface;
 
-class NonLocalizedGroupedContentFormFieldsProvider implements GroupedContentFormFieldsProviderInterface, TranslationContainerInterface
+abstract class AbstractGroupedContentFormFieldsProvider implements GroupedContentFormFieldsProviderInterface, TranslationContainerInterface
 {
-    private FieldsGroupsList $fieldsGroupsList;
+    protected FieldsGroupsList $fieldsGroupsList;
 
     public function __construct(FieldsGroupsList $fieldsGroupsList)
     {
@@ -25,16 +25,23 @@ class NonLocalizedGroupedContentFormFieldsProvider implements GroupedContentForm
     public function getGroupedFields(array $fieldsDataForm): array
     {
         $groupedFields = [];
+        $groupContext = $this->prepareGroupContext();
 
         foreach ($fieldsDataForm as $fieldForm) {
             /** @var \Ibexa\Contracts\ContentForms\Data\Content\FieldData $fieldData */
             $fieldData = $fieldForm->getViewData();
             $fieldGroupIdentifier = $this->fieldsGroupsList->getFieldGroup($fieldData->fieldDefinition);
-            $groupedFields[$fieldGroupIdentifier][] = $fieldForm->getName();
+            $groupKey = $this->getGroupKey($fieldGroupIdentifier, $groupContext);
+
+            $groupedFields[$groupKey][] = $fieldForm->getName();
         }
 
         return $groupedFields;
     }
+
+    abstract protected function prepareGroupContext(): array;
+
+    abstract protected function getGroupKey(string $fieldGroupIdentifier, array $groupContext): string;
 
     public static function getTranslationMessages(): array
     {

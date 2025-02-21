@@ -131,6 +131,6 @@ services:
         arguments:
             $fieldsGroupsList: '@Ibexa\Core\Helper\FieldsGroups\FieldsGroupsList'
 
-    Ibexa\ContentForms\Content\Form\Provider\NonLocalizedGroupedContentFormFieldsProvider:
+    Ibexa\ContentForms\Content\Form\Provider\IdentifiedGroupedContentFormFieldsProvider:
         arguments:
             $fieldsGroupsList: '@Ibexa\Core\Helper\FieldsGroups\FieldsGroupsList'
