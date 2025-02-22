@@ -22,9 +22,9 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 final class RelationType extends AbstractType
 {
-    public const LOCATION_DEFAULT = 0;
-    public const LOCATION_BROWSE = 1;
-    public const LOCATION_SELF = -1;
+    public const int LOCATION_DEFAULT = 0;
+    public const int LOCATION_BROWSE = 1;
+    public const int LOCATION_SELF = -1;
 
     public function __construct(
         private LocationService $locationService,

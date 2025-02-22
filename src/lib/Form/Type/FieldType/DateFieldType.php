@@ -22,7 +22,7 @@ use Symfony\Component\HttpFoundation\RequestStack;
  */
 class DateFieldType extends AbstractType
 {
-    private const EDIT_VIEWS = ['ibexa.content.draft.edit', 'ibexa.content.translate', 'ibexa.content.translate_with_location', 'ibexa.user.update'];
+    private const array EDIT_VIEWS = ['ibexa.content.draft.edit', 'ibexa.content.translate', 'ibexa.content.translate_with_location', 'ibexa.user.update'];
 
     public function __construct(private RequestStack $requestStack)
     {
