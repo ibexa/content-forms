@@ -8,6 +8,7 @@ declare(strict_types=1);
 
 use Ibexa\Contracts\Rector\Sets\IbexaSetList;
 use Rector\Config\RectorConfig;
+use Rector\Set\ValueObject\SetList;
 use Rector\Symfony\Set\SymfonySetList;
 
 return RectorConfig::configure()
@@ -16,6 +17,7 @@ return RectorConfig::configure()
         __DIR__ . '/tests',
     ])
     ->withSets([
+        SetList::TYPE_DECLARATION,
         IbexaSetList::IBEXA_50->value,
         SymfonySetList::SYMFONY_60,
         SymfonySetList::SYMFONY_61,
