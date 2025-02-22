@@ -14,6 +14,7 @@ use Ibexa\Contracts\Core\Repository\Values\User\Limitation\RoleLimitation;
 use Ibexa\Contracts\Core\Repository\Values\User\Role;
 use Ibexa\Contracts\Core\Repository\Values\User\UserGroup;
 use Ibexa\Core\Repository\Values\User\UserCreateStruct;
+use Override;
 
 /**
  * @property \Ibexa\Contracts\ContentForms\Data\Content\FieldData[] $fieldsData
@@ -31,6 +32,7 @@ class UserCreateData extends UserCreateStruct implements NewnessCheckable
 
     private ?RoleLimitation $roleLimitation = null;
 
+    #[Override]
     public function isNew(): bool
     {
         return true;

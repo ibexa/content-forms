@@ -10,6 +10,7 @@ namespace Ibexa\ContentForms\Form\Type\FieldType;
 
 use Ibexa\ContentForms\FieldType\DataTransformer\MultiSelectionValueTransformer;
 use Ibexa\ContentForms\FieldType\DataTransformer\SingleSelectionValueTransformer;
+use Override;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -25,16 +26,19 @@ class SelectionFieldType extends AbstractType
         return $this->getBlockPrefix();
     }
 
+    #[Override]
     public function getBlockPrefix(): string
     {
         return 'ezplatform_fieldtype_ezselection';
     }
 
+    #[Override]
     public function getParent(): ?string
     {
         return ChoiceType::class;
     }
 
+    #[Override]
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder->addModelTransformer(
@@ -44,6 +48,7 @@ class SelectionFieldType extends AbstractType
         );
     }
 
+    #[Override]
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([

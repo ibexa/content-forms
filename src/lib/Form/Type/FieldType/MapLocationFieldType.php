@@ -11,6 +11,7 @@ namespace Ibexa\ContentForms\Form\Type\FieldType;
 use Ibexa\ContentForms\FieldType\DataTransformer\FieldValueTransformer;
 use Ibexa\Contracts\Core\Repository\FieldTypeService;
 use JMS\TranslationBundle\Annotation\Desc;
+use Override;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -33,11 +34,13 @@ class MapLocationFieldType extends AbstractType
         return $this->getBlockPrefix();
     }
 
+    #[Override]
     public function getBlockPrefix(): string
     {
         return 'ezplatform_fieldtype_ezgmaplocation';
     }
 
+    #[Override]
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
@@ -83,12 +86,14 @@ class MapLocationFieldType extends AbstractType
             );
     }
 
+    #[Override]
     public function finishView(FormView $view, FormInterface $form, array $options): void
     {
         $view->children['latitude']->vars['type'] = 'number';
         $view->children['longitude']->vars['type'] = 'number';
     }
 
+    #[Override]
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults(['translation_domain' => 'ibexa_content_forms_fieldtype']);

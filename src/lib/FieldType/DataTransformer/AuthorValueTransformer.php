@@ -10,6 +10,7 @@ namespace Ibexa\ContentForms\FieldType\DataTransformer;
 
 use Ibexa\Core\FieldType\Author\Author;
 use Ibexa\Core\FieldType\Author\Value;
+use Override;
 use Symfony\Component\Form\DataTransformerInterface;
 
 /**
@@ -17,6 +18,7 @@ use Symfony\Component\Form\DataTransformerInterface;
  */
 class AuthorValueTransformer implements DataTransformerInterface
 {
+    #[Override]
     public function transform($value)
     {
         if (is_array($value)) {
@@ -39,6 +41,7 @@ class AuthorValueTransformer implements DataTransformerInterface
         return $authors;
     }
 
+    #[Override]
     public function reverseTransform($value)
     {
         if ($value === null || !is_array($value)) {

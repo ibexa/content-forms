@@ -10,6 +10,7 @@ namespace Ibexa\ContentForms\Form\ActionDispatcher;
 
 use Ibexa\ContentForms\Event\FormActionEvent;
 use Ibexa\Contracts\Core\Repository\Values\ValueObject;
+use Override;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -31,6 +32,7 @@ abstract class AbstractActionDispatcher implements ActionDispatcherInterface
         $this->eventDispatcher = $eventDispatcher;
     }
 
+    #[Override]
     public function dispatchFormAction(FormInterface $form, ValueObject $data, $actionName = null, array $options = []): void
     {
         $resolver = new OptionsResolver();
@@ -85,6 +87,7 @@ abstract class AbstractActionDispatcher implements ActionDispatcherInterface
         $this->eventDispatcher->dispatch($event, $actionEventName);
     }
 
+    #[Override]
     public function getResponse()
     {
         return $this->response;

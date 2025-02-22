@@ -14,6 +14,7 @@ use Ibexa\Contracts\Core\Repository\ContentTypeService;
 use Ibexa\Contracts\Core\Repository\Exceptions\UnauthorizedException;
 use Ibexa\Contracts\Core\Repository\Values\Content\Location;
 use Ibexa\Core\FieldType\RelationList\Value;
+use Override;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -41,21 +42,25 @@ class RelationListFieldType extends AbstractType
         return $this->getBlockPrefix();
     }
 
+    #[Override]
     public function getBlockPrefix(): string
     {
         return 'ezplatform_fieldtype_ezobjectrelationlist';
     }
 
+    #[Override]
     public function getParent(): ?string
     {
         return TextType::class;
     }
 
+    #[Override]
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder->addModelTransformer(new RelationListValueTransformer());
     }
 
+    #[Override]
     public function finishView(FormView $view, FormInterface $form, array $options): void
     {
         $view->vars['relations'] = [];
@@ -93,6 +98,7 @@ class RelationListFieldType extends AbstractType
     /**
      * {@inheritdoc}
      */
+    #[Override]
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([

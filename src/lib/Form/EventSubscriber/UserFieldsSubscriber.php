@@ -11,6 +11,7 @@ namespace Ibexa\ContentForms\Form\EventSubscriber;
 use Ibexa\ContentForms\Data\User\UserCreateData;
 use Ibexa\ContentForms\Data\User\UserUpdateData;
 use Ibexa\Core\FieldType\User\Value;
+use Override;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
@@ -20,6 +21,7 @@ use Symfony\Component\Form\FormEvents;
  */
 class UserFieldsSubscriber implements EventSubscriberInterface
 {
+    #[Override]
     public static function getSubscribedEvents(): array
     {
         return [

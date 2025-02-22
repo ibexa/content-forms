@@ -12,6 +12,7 @@ use Ibexa\ContentForms\Data\Content\ContentCreateData;
 use Ibexa\Contracts\ContentForms\Data\Content\FieldData;
 use Ibexa\Contracts\Core\Repository\Values\Content\Field;
 use Ibexa\Contracts\Core\Repository\Values\ValueObject;
+use Override;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
@@ -27,6 +28,7 @@ class ContentCreateMapper implements FormDataMapperInterface
      *
      * @return \Ibexa\ContentForms\Data\Content\ContentCreateData
      */
+    #[Override]
     public function mapToFormData(ValueObject $contentType, array $params = []): ContentCreateData
     {
         $resolver = new OptionsResolver();

@@ -14,6 +14,7 @@ use Ibexa\Contracts\ContentForms\Data\Content\FieldData;
 use Ibexa\Contracts\ContentForms\FieldType\FieldValueFormMapperInterface;
 use Ibexa\Contracts\Core\Repository\FieldTypeService;
 use Ibexa\Core\FieldType\BinaryFile\Value;
+use Override;
 use Symfony\Component\Form\FormInterface;
 
 class BinaryFileFormMapper implements FieldValueFormMapperInterface
@@ -22,6 +23,7 @@ class BinaryFileFormMapper implements FieldValueFormMapperInterface
     {
     }
 
+    #[Override]
     public function mapFieldValueForm(FormInterface $fieldForm, FieldData $data): void
     {
         $fieldDefinition = $data->fieldDefinition;

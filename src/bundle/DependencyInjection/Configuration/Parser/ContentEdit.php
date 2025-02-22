@@ -10,6 +10,7 @@ namespace Ibexa\Bundle\ContentForms\DependencyInjection\Configuration\Parser;
 
 use Ibexa\Bundle\Core\DependencyInjection\Configuration\AbstractParser;
 use Ibexa\Bundle\Core\DependencyInjection\Configuration\SiteAccessAware\ContextualizerInterface;
+use Override;
 use Symfony\Component\Config\Definition\Builder\NodeBuilder;
 
 class ContentEdit extends AbstractParser
@@ -19,6 +20,7 @@ class ContentEdit extends AbstractParser
      *
      * @param \Symfony\Component\Config\Definition\Builder\NodeBuilder $nodeBuilder Node just under ezpublish.system.<siteaccess>
      */
+    #[Override]
     public function addSemanticConfig(NodeBuilder $nodeBuilder): void
     {
         $nodeBuilder
@@ -48,6 +50,7 @@ class ContentEdit extends AbstractParser
             ->end();
     }
 
+    #[Override]
     public function mapConfig(array &$scopeSettings, $currentScope, ContextualizerInterface $contextualizer): void
     {
         if (empty($scopeSettings['content_edit'])) {

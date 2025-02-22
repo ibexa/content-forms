@@ -12,6 +12,7 @@ use Ibexa\ContentForms\FieldType\DataTransformer\FieldValueTransformer;
 use Ibexa\Contracts\ContentForms\Data\Content\FieldData;
 use Ibexa\Contracts\ContentForms\FieldType\FieldValueFormMapperInterface;
 use Ibexa\Contracts\Core\Repository\FieldTypeService;
+use Override;
 use Symfony\Component\Form\FormInterface;
 
 /**
@@ -54,6 +55,7 @@ final class FormTypeBasedFieldValueFormMapper implements FieldValueFormMapperInt
      * @param \Symfony\Component\Form\FormInterface $fieldForm form for the current Field
      * @param \Ibexa\Contracts\ContentForms\Data\Content\FieldData $data underlying data for current Field form
      */
+    #[Override]
     public function mapFieldValueForm(FormInterface $fieldForm, FieldData $data): void
     {
         $fieldDefinition = $data->fieldDefinition;

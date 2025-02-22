@@ -15,26 +15,9 @@ use Symfony\Component\HttpFoundation\Response;
 class FormActionEvent extends FormEvent
 {
     /**
-     * Name of the button used to submit the form.
-     *
-     * @var string
-     */
-    private $clickedButton;
-
-    /**
-     * Hash of options.
-     */
-    private array $options;
-
-    /**
      * Response to return after form post-processing. Typically a RedirectResponse.
      */
     private ?Response $response = null;
-
-    /**
-     * Additional payload populated for event listeners next in priority.
-     */
-    private array $payloads;
 
     /**
      * @param \Symfony\Component\Form\FormInterface $form
@@ -42,13 +25,14 @@ class FormActionEvent extends FormEvent
      * @param $clickedButton
      * @param array $options
      * @param array $payloads
+     * @param string $clickedButton
      */
-    public function __construct(FormInterface $form, mixed $data, $clickedButton, array $options = [], array $payloads = [])
+    public function __construct(FormInterface $form, mixed $data, /**
+     * Name of the button used to submit the form.
+     */
+    private $clickedButton, private array $options = [], private array $payloads = [])
     {
         parent::__construct($form, $data);
-        $this->clickedButton = $clickedButton;
-        $this->options = $options;
-        $this->payloads = $payloads;
     }
 
     /**
@@ -62,7 +46,7 @@ class FormActionEvent extends FormEvent
     /**
      * @return array
      */
-    public function getOptions()
+    public function getOptions(): array
     {
         return $this->options;
     }
@@ -95,7 +79,7 @@ class FormActionEvent extends FormEvent
     /**
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function getResponse()
+    public function getResponse(): ?Response
     {
         return $this->response;
     }

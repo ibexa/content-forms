@@ -20,6 +20,7 @@ use Ibexa\Contracts\Core\Repository\Values\Content\ContentStruct;
 use Ibexa\Contracts\Core\Repository\Values\Content\Location;
 use Ibexa\Contracts\Core\Repository\Values\Content\VersionInfo;
 use Ibexa\Core\Base\Exceptions\InvalidArgumentException;
+use Override;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
@@ -46,6 +47,7 @@ class ContentFormProcessor implements EventSubscriberInterface
     /**
      * @return array
      */
+    #[Override]
     public static function getSubscribedEvents(): array
     {
         return [

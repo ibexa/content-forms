@@ -12,6 +12,7 @@ use Ibexa\ContentForms\Form\Transformer\RelationTransformer;
 use Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException;
 use Ibexa\Contracts\Core\Repository\Exceptions\UnauthorizedException;
 use Ibexa\Contracts\Core\Repository\LocationService;
+use Override;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormInterface;
@@ -31,11 +32,13 @@ final class RelationType extends AbstractType
     ) {
     }
 
+    #[Override]
     public function getBlockPrefix(): string
     {
         return 'ibexa_form_type_relation';
     }
 
+    #[Override]
     public function buildForm(
         FormBuilderInterface $builder,
         array $options
@@ -59,6 +62,7 @@ final class RelationType extends AbstractType
         $builder->addModelTransformer(new RelationTransformer());
     }
 
+    #[Override]
     public function buildView(
         FormView $view,
         FormInterface $form,
@@ -77,6 +81,7 @@ final class RelationType extends AbstractType
         }
     }
 
+    #[Override]
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver

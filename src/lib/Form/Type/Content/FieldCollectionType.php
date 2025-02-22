@@ -18,6 +18,7 @@ use Ibexa\Contracts\Core\Repository\Values\User\UserUpdateStruct;
 use Ibexa\Core\Repository\Values\Content\ContentCreateStruct;
 use Ibexa\Core\Repository\Values\Content\ContentUpdateStruct;
 use Ibexa\Core\Repository\Values\User\UserCreateStruct;
+use Override;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
@@ -32,6 +33,7 @@ class FieldCollectionType extends CollectionType
     {
     }
 
+    #[Override]
     public function buildForm(
         FormBuilderInterface $builder,
         array $options
@@ -59,6 +61,7 @@ class FieldCollectionType extends CollectionType
         });
     }
 
+    #[Override]
     public function configureOptions(OptionsResolver $resolver): void
     {
         parent::configureOptions($resolver);

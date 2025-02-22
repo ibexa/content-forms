@@ -10,10 +10,12 @@ namespace Ibexa\ContentForms\FieldType\Mapper;
 
 use Ibexa\ContentForms\Form\Type\FieldType\RelationListFieldType;
 use Ibexa\Contracts\ContentForms\Data\Content\FieldData;
+use Override;
 use Symfony\Component\Form\FormInterface;
 
 class RelationListFormMapper extends AbstractRelationFormMapper
 {
+    #[Override]
     public function mapFieldValueForm(FormInterface $fieldForm, FieldData $data): void
     {
         $fieldDefinition = $data->fieldDefinition;

@@ -11,6 +11,7 @@ namespace Ibexa\ContentForms\Validator\Constraints;
 use Ibexa\ContentForms\Validator\ValidationErrorsProcessor;
 use Ibexa\Contracts\Core\Repository\UserService;
 use Ibexa\Contracts\Core\Repository\Values\User\PasswordValidationContext;
+use Override;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 
@@ -26,6 +27,7 @@ class PasswordValidator extends ConstraintValidator
     /**
      * {@inheritdoc}
      */
+    #[Override]
     public function validate($value, Constraint $constraint): void
     {
         if (!is_string($value) || empty($value)) {

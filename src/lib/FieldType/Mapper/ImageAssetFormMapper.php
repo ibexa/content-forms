@@ -14,6 +14,7 @@ use Ibexa\Contracts\ContentForms\Data\Content\FieldData;
 use Ibexa\Contracts\ContentForms\FieldType\FieldValueFormMapperInterface;
 use Ibexa\Contracts\Core\Repository\FieldTypeService;
 use Ibexa\Core\FieldType\ImageAsset\Value;
+use Override;
 use Symfony\Component\Form\FormInterface;
 
 class ImageAssetFormMapper implements FieldValueFormMapperInterface
@@ -29,6 +30,7 @@ class ImageAssetFormMapper implements FieldValueFormMapperInterface
      * @param \Symfony\Component\Form\FormInterface $fieldForm
      * @param \Ibexa\Contracts\ContentForms\Data\Content\FieldData $data
      */
+    #[Override]
     public function mapFieldValueForm(FormInterface $fieldForm, FieldData $data): void
     {
         $fieldDefinition = $data->fieldDefinition;

@@ -13,6 +13,7 @@ use Ibexa\Contracts\Core\Repository\Values\Content\Location;
 use Ibexa\Contracts\Core\Repository\Values\ContentType\ContentType;
 use Ibexa\Core\MVC\Symfony\View\BaseView;
 use Ibexa\Core\MVC\Symfony\View\LocationValueView;
+use Override;
 use Symfony\Component\Form\FormInterface;
 
 class ContentCreateView extends BaseView implements LocationValueView, ContentTypeValueView
@@ -30,6 +31,7 @@ class ContentCreateView extends BaseView implements LocationValueView, ContentTy
         $this->contentType = $contentType;
     }
 
+    #[Override]
     public function getContentType(): ContentType
     {
         return $this->contentType;
@@ -40,6 +42,7 @@ class ContentCreateView extends BaseView implements LocationValueView, ContentTy
         $this->location = $location;
     }
 
+    #[Override]
     public function getLocation(): Location
     {
         return $this->location;

@@ -10,12 +10,14 @@ namespace Ibexa\Tests\ContentForms\Validator\Constraints;
 
 use Ibexa\ContentForms\Validator\Constraints\UserAccountPassword;
 use Ibexa\ContentForms\Validator\Constraints\UserAccountPasswordValidator;
+use Override;
 use PHPUnit\Framework\TestCase;
 
 class UserAccountPasswordTest extends TestCase
 {
     private UserAccountPassword $constraint;
 
+    #[Override]
     protected function setUp(): void
     {
         $this->constraint = new UserAccountPassword();

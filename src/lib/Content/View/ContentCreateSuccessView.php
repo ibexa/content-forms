@@ -11,6 +11,7 @@ namespace Ibexa\ContentForms\Content\View;
 use Ibexa\Contracts\Core\Repository\Values\Content\Location;
 use Ibexa\Core\MVC\Symfony\View\BaseView;
 use Ibexa\Core\MVC\Symfony\View\LocationValueView;
+use Override;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Controller\ControllerReference;
 
@@ -40,6 +41,7 @@ class ContentCreateSuccessView extends BaseView implements LocationValueView
     /**
      * @return \Ibexa\Contracts\Core\Repository\Values\Content\Location|null
      */
+    #[Override]
     public function getLocation(): ?Location
     {
         return $this->location;

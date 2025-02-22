@@ -11,6 +11,7 @@ namespace Ibexa\ContentForms\Form\Type\FieldType;
 use Ibexa\ContentForms\Data\User\UserAccountFieldData;
 use Ibexa\ContentForms\Form\Type\SwitcherType;
 use JMS\TranslationBundle\Annotation\Desc;
+use Override;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
@@ -26,11 +27,13 @@ class UserAccountFieldType extends AbstractType
         return $this->getBlockPrefix();
     }
 
+    #[Override]
     public function getBlockPrefix(): string
     {
         return 'ezplatform_fieldtype_ezuser';
     }
 
+    #[Override]
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $isUpdateForm = 'update' === $options['intent'];
@@ -64,6 +67,7 @@ class UserAccountFieldType extends AbstractType
         }
     }
 
+    #[Override]
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver

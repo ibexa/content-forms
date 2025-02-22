@@ -8,6 +8,7 @@ declare(strict_types=1);
 
 namespace Ibexa\ContentForms\Form\Type\FieldDefinition\User;
 
+use Override;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\CallbackTransformer;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -21,6 +22,7 @@ class PasswordConstraintCheckboxType extends AbstractType
     /**
      * {@inheritdoc}
      */
+    #[Override]
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder->addModelTransformer(new CallbackTransformer('boolval', 'boolval'));
@@ -29,6 +31,7 @@ class PasswordConstraintCheckboxType extends AbstractType
     /**
      * {@inheritdoc}
      */
+    #[Override]
     public function buildView(FormView $view, FormInterface $form, array $options): void
     {
         $view->vars['label'] = 'field_definition.ezuser.' . $this->toSnakeCase($view->vars['name']);
@@ -37,6 +40,7 @@ class PasswordConstraintCheckboxType extends AbstractType
     /**
      * {@inheritdoc}
      */
+    #[Override]
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
@@ -47,6 +51,7 @@ class PasswordConstraintCheckboxType extends AbstractType
     /**
      * {@inheritdoc}
      */
+    #[Override]
     public function getParent(): string
     {
         return CheckboxType::class;

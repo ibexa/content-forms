@@ -15,6 +15,7 @@ use Ibexa\Contracts\ContentForms\FieldType\FieldValueFormMapperInterface;
 use Ibexa\Contracts\Core\Repository\FieldTypeService;
 use Ibexa\Core\FieldType\Media\Type;
 use Ibexa\Core\FieldType\Media\Value;
+use Override;
 use Symfony\Component\Form\FormInterface;
 
 class MediaFormMapper implements FieldValueFormMapperInterface
@@ -26,6 +27,7 @@ class MediaFormMapper implements FieldValueFormMapperInterface
     {
     }
 
+    #[Override]
     public function mapFieldValueForm(FormInterface $fieldForm, FieldData $data): void
     {
         $fieldDefinition = $data->fieldDefinition;

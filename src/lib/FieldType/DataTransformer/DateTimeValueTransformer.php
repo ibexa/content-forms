@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace Ibexa\ContentForms\FieldType\DataTransformer;
 
 use Ibexa\Core\FieldType\DateAndTime\Value;
+use Override;
 use Symfony\Component\Form\DataTransformerInterface;
 use Symfony\Component\Form\Exception\TransformationFailedException;
 
@@ -24,6 +25,7 @@ class DateTimeValueTransformer implements DataTransformerInterface
      *
      * @throws \Symfony\Component\Form\Exception\TransformationFailedException
      */
+    #[Override]
     public function transform($value)
     {
         if (null === $value) {
@@ -50,6 +52,7 @@ class DateTimeValueTransformer implements DataTransformerInterface
      *
      * @throws \Symfony\Component\Form\Exception\TransformationFailedException
      */
+    #[Override]
     public function reverseTransform($value)
     {
         if (empty($value)) {

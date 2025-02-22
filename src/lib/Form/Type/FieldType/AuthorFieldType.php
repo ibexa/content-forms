@@ -14,6 +14,7 @@ use Ibexa\Contracts\Core\Repository\Repository;
 use Ibexa\Core\FieldType\Author\Author;
 use Ibexa\Core\FieldType\Author\Type as AuthorType;
 use Ibexa\Core\FieldType\Author\Value;
+use Override;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\CallbackTransformer;
 use Symfony\Component\Form\DataTransformerInterface;
@@ -50,6 +51,7 @@ class AuthorFieldType extends AbstractType
     /**
      * @return string
      */
+    #[Override]
     public function getBlockPrefix(): string
     {
         return 'ezplatform_fieldtype_ezauthor';
@@ -59,6 +61,7 @@ class AuthorFieldType extends AbstractType
      * @param \Symfony\Component\Form\FormBuilderInterface $builder
      * @param array
      */
+    #[Override]
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $this->defaultAuthor = $options['default_author'];
@@ -74,6 +77,7 @@ class AuthorFieldType extends AbstractType
      * @param \Symfony\Component\Form\FormInterface $form
      * @param array $options
      */
+    #[Override]
     public function buildView(FormView $view, FormInterface $form, array $options): void
     {
         $view->vars['attr']['default-author'] = $options['default_author'];
@@ -82,6 +86,7 @@ class AuthorFieldType extends AbstractType
     /**
      * @param \Symfony\Component\OptionsResolver\OptionsResolver $resolver
      */
+    #[Override]
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([

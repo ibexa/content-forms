@@ -10,6 +10,7 @@ namespace Ibexa\ContentForms\Data\Content;
 
 use Ibexa\ContentForms\Data\NewnessCheckable;
 use Ibexa\Core\Repository\Values\Content\ContentUpdateStruct;
+use Override;
 
 /**
  * @property \Ibexa\Contracts\ContentForms\Data\Content\FieldData[] $fieldsData
@@ -21,6 +22,7 @@ class ContentUpdateData extends ContentUpdateStruct implements NewnessCheckable
 
     protected $contentDraft;
 
+    #[Override]
     public function isNew(): bool
     {
         return false;

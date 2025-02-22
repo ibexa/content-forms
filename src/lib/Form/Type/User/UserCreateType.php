@@ -11,6 +11,7 @@ namespace Ibexa\ContentForms\Form\Type\User;
 use Ibexa\ContentForms\Data\User\UserCreateData;
 use Ibexa\Contracts\Core\Repository\Values\User\UserCreateStruct;
 use JMS\TranslationBundle\Annotation\Desc;
+use Override;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -28,22 +29,26 @@ class UserCreateType extends AbstractType
         return $this->getBlockPrefix();
     }
 
+    #[Override]
     public function getBlockPrefix(): string
     {
         return 'ezplatform_content_forms_user_create';
     }
 
+    #[Override]
     public function getParent(): ?string
     {
         return BaseUserType::class;
     }
 
+    #[Override]
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('create', SubmitType::class, ['label' => /** @Desc("Create") */ 'user.create']);
     }
 
+    #[Override]
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver

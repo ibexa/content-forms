@@ -9,11 +9,13 @@ declare(strict_types=1);
 namespace Ibexa\ContentForms\Form\Transformer;
 
 use JsonException;
+use Override;
 use Symfony\Component\Form\DataTransformerInterface;
 use Symfony\Component\Form\Exception\TransformationFailedException;
 
 final class JsonToArrayTransformer implements DataTransformerInterface
 {
+    #[Override]
     public function transform($value)
     {
         if ($value === null) {
@@ -33,6 +35,7 @@ final class JsonToArrayTransformer implements DataTransformerInterface
         return $encoded;
     }
 
+    #[Override]
     public function reverseTransform($value)
     {
         if ($value === null) {

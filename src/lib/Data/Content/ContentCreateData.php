@@ -11,6 +11,7 @@ namespace Ibexa\ContentForms\Data\Content;
 use Ibexa\ContentForms\Data\NewnessCheckable;
 use Ibexa\Contracts\Core\Repository\Values\Content\LocationCreateStruct;
 use Ibexa\Core\Repository\Values\Content\ContentCreateStruct;
+use Override;
 
 /**
  * @property \Ibexa\Contracts\ContentForms\Data\Content\FieldData[] $fieldsData
@@ -24,6 +25,7 @@ class ContentCreateData extends ContentCreateStruct implements NewnessCheckable
      */
     private ?array $locationStructs = null;
 
+    #[Override]
     public function isNew(): bool
     {
         return true;

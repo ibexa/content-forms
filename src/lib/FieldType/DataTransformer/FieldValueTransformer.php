@@ -10,6 +10,7 @@ namespace Ibexa\ContentForms\FieldType\DataTransformer;
 
 use Ibexa\Contracts\Core\FieldType\Value;
 use Ibexa\Contracts\Core\Repository\FieldType;
+use Override;
 use Symfony\Component\Form\DataTransformerInterface;
 
 /**
@@ -30,6 +31,7 @@ class FieldValueTransformer implements DataTransformerInterface
      *
      * @return array|null the value's hash, or null if $value was not a FieldType Value
      */
+    #[Override]
     public function transform($value)
     {
         if (!$value instanceof Value) {
@@ -45,6 +47,7 @@ class FieldValueTransformer implements DataTransformerInterface
      *
      * @param mixed $value
      */
+    #[Override]
     public function reverseTransform($value)
     {
         if ($value === null) {

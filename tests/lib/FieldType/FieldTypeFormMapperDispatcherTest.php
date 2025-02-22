@@ -13,6 +13,7 @@ use Ibexa\Contracts\ContentForms\Data\Content\FieldData;
 use Ibexa\Contracts\ContentForms\FieldType\FieldValueFormMapperInterface;
 use Ibexa\Contracts\Core\Repository\Values\Content\Field;
 use Ibexa\Core\Repository\Values\ContentType\FieldDefinition;
+use Override;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Form\FormInterface;
@@ -25,6 +26,7 @@ class FieldTypeFormMapperDispatcherTest extends TestCase
     /** @var \Ibexa\Contracts\ContentForms\FieldType\FieldValueFormMapperInterface|\PHPUnit\Framework\MockObject\MockObject */
     private FieldValueFormMapperInterface $fieldValueMapperMock;
 
+    #[Override]
     protected function setUp(): void
     {
         $this->dispatcher = new FieldTypeFormMapperDispatcher();

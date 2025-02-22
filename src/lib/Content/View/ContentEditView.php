@@ -14,6 +14,7 @@ use Ibexa\Contracts\Core\Repository\Values\Content\Location;
 use Ibexa\Core\MVC\Symfony\View\BaseView;
 use Ibexa\Core\MVC\Symfony\View\ContentValueView;
 use Ibexa\Core\MVC\Symfony\View\LocationValueView;
+use Override;
 use Symfony\Component\Form\FormInterface;
 
 class ContentEditView extends BaseView implements ContentValueView, LocationValueView
@@ -31,6 +32,7 @@ class ContentEditView extends BaseView implements ContentValueView, LocationValu
         $this->content = $content;
     }
 
+    #[Override]
     public function getContent(): Content
     {
         return $this->content;
@@ -41,6 +43,7 @@ class ContentEditView extends BaseView implements ContentValueView, LocationValu
         $this->location = $location;
     }
 
+    #[Override]
     public function getLocation(): ?Location
     {
         return $this->location;

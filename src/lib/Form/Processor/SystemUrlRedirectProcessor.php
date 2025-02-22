@@ -12,6 +12,7 @@ use Ibexa\ContentForms\Event\ContentFormEvents;
 use Ibexa\ContentForms\Event\FormActionEvent;
 use Ibexa\Contracts\Core\Repository\LocationService;
 use Ibexa\Contracts\Core\Repository\URLAliasService;
+use Override;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Routing\RouterInterface;
@@ -34,6 +35,7 @@ class SystemUrlRedirectProcessor implements EventSubscriberInterface
     /**
      * @return array
      */
+    #[Override]
     public static function getSubscribedEvents(): array
     {
         return [

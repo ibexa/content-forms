@@ -11,6 +11,7 @@ namespace Ibexa\ContentForms\FieldType\Mapper;
 use Ibexa\ContentForms\Form\Type\FieldType\MapLocationFieldType;
 use Ibexa\Contracts\ContentForms\Data\Content\FieldData;
 use Ibexa\Contracts\ContentForms\FieldType\FieldValueFormMapperInterface;
+use Override;
 use Symfony\Component\Form\FormInterface;
 
 /**
@@ -18,6 +19,7 @@ use Symfony\Component\Form\FormInterface;
  */
 class MapLocationFormMapper implements FieldValueFormMapperInterface
 {
+    #[Override]
     public function mapFieldValueForm(FormInterface $fieldForm, FieldData $data): void
     {
         $fieldDefinition = $data->fieldDefinition;

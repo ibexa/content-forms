@@ -10,6 +10,7 @@ namespace Ibexa\ContentForms\Validator\Constraints;
 
 use JMS\TranslationBundle\Model\Message;
 use JMS\TranslationBundle\Translation\TranslationContainerInterface;
+use Override;
 
 /**
  * This class holds translation messages which comes from kernel as ValidationError messages.
@@ -22,6 +23,7 @@ class FieldValueValidatorMessages implements TranslationContainerInterface
      *
      * @return \JMS\TranslationBundle\Model\Message[]
      */
+    #[Override]
     public static function getTranslationMessages(): array
     {
         return [

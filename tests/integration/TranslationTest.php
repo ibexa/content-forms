@@ -9,9 +9,11 @@ declare(strict_types=1);
 namespace Ibexa\Tests\Integration\ContentForms;
 
 use Ibexa\Contracts\Test\Core\Translation\AbstractTranslationCase;
+use Override;
 
 final class TranslationTest extends AbstractTranslationCase
 {
+    #[Override]
     public static function provideConfigNamesForTranslation(): iterable
     {
         yield ['ibexa_content_forms'];

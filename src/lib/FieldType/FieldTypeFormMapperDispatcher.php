@@ -10,6 +10,7 @@ namespace Ibexa\ContentForms\FieldType;
 
 use Ibexa\Contracts\ContentForms\Data\Content\FieldData;
 use Ibexa\Contracts\ContentForms\FieldType\FieldValueFormMapperInterface;
+use Override;
 use Symfony\Component\Form\FormInterface;
 
 /**
@@ -20,27 +21,26 @@ use Symfony\Component\Form\FormInterface;
 class FieldTypeFormMapperDispatcher implements FieldTypeFormMapperDispatcherInterface
 {
     /**
-     * FieldType form mappers, indexed by FieldType identifier.
-     *
-     * @var \Ibexa\Contracts\ContentForms\FieldType\FieldValueFormMapperInterface[]
-     */
-    private array $mappers;
-
-    /**
      * FieldTypeFormMapperDispatcher constructor.
      *
      * @param \Ibexa\Contracts\ContentForms\FieldType\FieldValueFormMapperInterface[] $mappers
      */
-    public function __construct(array $mappers = [])
+    public function __construct(
+        /**
+         * FieldType form mappers, indexed by FieldType identifier.
+         */
+        private array $mappers = []
+    )
     {
-        $this->mappers = $mappers;
     }
 
+    #[Override]
     public function addMapper(FieldValueFormMapperInterface $mapper, string $fieldTypeIdentifier): void
     {
         $this->mappers[$fieldTypeIdentifier] = $mapper;
     }
 
+    #[Override]
     public function map(FormInterface $fieldForm, FieldData $data): void
     {
         $fieldTypeIdentifier = $data->getFieldTypeIdentifier();

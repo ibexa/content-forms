@@ -9,10 +9,12 @@ declare(strict_types=1);
 namespace Ibexa\ContentForms\FieldType\DataTransformer;
 
 use Ibexa\Core\FieldType\Relation\Value;
+use Override;
 use Symfony\Component\Form\DataTransformerInterface;
 
 class RelationValueTransformer implements DataTransformerInterface
 {
+    #[Override]
     public function transform($value)
     {
         if (!$value instanceof Value) {
@@ -26,6 +28,7 @@ class RelationValueTransformer implements DataTransformerInterface
         return $value->destinationContentId;
     }
 
+    #[Override]
     public function reverseTransform($value)
     {
         if ($value === null || !is_numeric($value)) {

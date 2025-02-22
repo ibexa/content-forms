@@ -10,6 +10,7 @@ namespace Ibexa\ContentForms\Form\Type\FieldType;
 
 use Ibexa\ContentForms\FieldType\DataTransformer\FieldValueTransformer;
 use Ibexa\Contracts\Core\Repository\FieldTypeService;
+use Override;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -31,16 +32,19 @@ class TextBlockFieldType extends AbstractType
         return $this->getBlockPrefix();
     }
 
+    #[Override]
     public function getBlockPrefix(): string
     {
         return 'ezplatform_fieldtype_eztext';
     }
 
+    #[Override]
     public function getParent(): ?string
     {
         return TextareaType::class;
     }
 
+    #[Override]
     public function buildView(FormView $view, FormInterface $form, array $options): void
     {
         if (null !== $options['rows']) {
@@ -48,11 +52,13 @@ class TextBlockFieldType extends AbstractType
         }
     }
 
+    #[Override]
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder->addModelTransformer(new FieldValueTransformer($this->fieldTypeService->getFieldType('eztext')));
     }
 
+    #[Override]
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver

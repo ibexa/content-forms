@@ -11,6 +11,7 @@ namespace Ibexa\ContentForms\Form\Type;
 use Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException;
 use Ibexa\Contracts\Core\Repository\Exceptions\UnauthorizedException;
 use Ibexa\Contracts\Core\Repository\LocationService;
+use Override;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\FormInterface;
@@ -28,6 +29,7 @@ class LocationType extends AbstractType
     /**
      * {@inheritdoc}
      */
+    #[Override]
     public function buildView(FormView $view, FormInterface $form, array $options): void
     {
         $view->vars['destination_location'] = null;
@@ -45,6 +47,7 @@ class LocationType extends AbstractType
     /**
      * {@inheritdoc}
      */
+    #[Override]
     public function getParent(): string
     {
         return HiddenType::class;

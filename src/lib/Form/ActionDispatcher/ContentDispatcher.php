@@ -10,10 +10,12 @@ namespace Ibexa\ContentForms\Form\ActionDispatcher;
 
 use Ibexa\ContentForms\Event\ContentFormEvents;
 use Ibexa\Contracts\Core\Repository\Values\Content\Location;
+use Override;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ContentDispatcher extends AbstractActionDispatcher
 {
+    #[Override]
     protected function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefined(['referrerLocation']);
@@ -21,6 +23,7 @@ class ContentDispatcher extends AbstractActionDispatcher
         $resolver->setAllowedTypes('referrerLocation', [Location::class, 'null']);
     }
 
+    #[Override]
     protected function getActionEventBaseName(): string
     {
         return ContentFormEvents::CONTENT_EDIT;

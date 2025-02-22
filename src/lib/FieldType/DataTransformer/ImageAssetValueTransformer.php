@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace Ibexa\ContentForms\FieldType\DataTransformer;
 
 use Ibexa\Core\FieldType\ImageAsset\Value;
+use Override;
 use Symfony\Component\Form\DataTransformerInterface;
 use Symfony\Component\Form\Exception\TransformationFailedException;
 
@@ -21,6 +22,7 @@ class ImageAssetValueTransformer extends AbstractBinaryBaseTransformer implement
      *
      * @return array|null
      */
+    #[Override]
     public function transform($value): ?array
     {
         if ($value === null) {
@@ -49,6 +51,7 @@ class ImageAssetValueTransformer extends AbstractBinaryBaseTransformer implement
      *
      * @return \Ibexa\Core\FieldType\ImageAsset\Value|null
      */
+    #[Override]
     public function reverseTransform($value): ?Value
     {
         if ($value === null) {

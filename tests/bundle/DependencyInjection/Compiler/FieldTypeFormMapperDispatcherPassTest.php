@@ -10,12 +10,14 @@ namespace Ibexa\Tests\Bundle\ContentForms\DependencyInjection\Compiler;
 
 use Ibexa\Bundle\ContentForms\DependencyInjection\Compiler\FieldTypeFormMapperDispatcherPass;
 use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractCompilerPassTestCase;
+use Override;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\DependencyInjection\Reference;
 
 class FieldTypeFormMapperDispatcherPassTest extends AbstractCompilerPassTestCase
 {
+    #[Override]
     protected function setUp(): void
     {
         parent::setUp();
@@ -23,6 +25,7 @@ class FieldTypeFormMapperDispatcherPassTest extends AbstractCompilerPassTestCase
         $this->setDefinition(FieldTypeFormMapperDispatcherPass::FIELD_TYPE_FORM_MAPPER_DISPATCHER, new Definition());
     }
 
+    #[Override]
     protected function registerCompilerPass(ContainerBuilder $container): void
     {
         $container->addCompilerPass(new FieldTypeFormMapperDispatcherPass());

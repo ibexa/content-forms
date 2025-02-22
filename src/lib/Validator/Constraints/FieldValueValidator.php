@@ -13,6 +13,7 @@ use Ibexa\Contracts\Core\FieldType\Value;
 use Ibexa\Contracts\Core\Repository\Values\ContentType\FieldDefinition;
 use Ibexa\Contracts\Core\Repository\Values\ValueObject;
 use Ibexa\Core\FieldType\ValidationError;
+use Override;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\Util\PropertyPath;
 
@@ -27,6 +28,7 @@ class FieldValueValidator extends FieldTypeValidator
      *
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException
      */
+    #[Override]
     public function validate($value, Constraint $constraint): void
     {
         if (!$value instanceof FieldData) {
@@ -86,6 +88,7 @@ class FieldValueValidator extends FieldTypeValidator
         return $value->fieldDefinition->fieldTypeIdentifier;
     }
 
+    #[Override]
     protected function generatePropertyPath($errorIndex, $errorTarget): string
     {
         $basePath = 'value';

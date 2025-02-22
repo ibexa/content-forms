@@ -12,6 +12,7 @@ use Ibexa\ContentForms\Form\EventSubscriber\SuppressValidationSubscriber;
 use Ibexa\ContentForms\Form\EventSubscriber\UserFieldsSubscriber;
 use Ibexa\ContentForms\Form\Type\Content\BaseContentType;
 use JMS\TranslationBundle\Annotation\Desc;
+use Override;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -29,16 +30,19 @@ class BaseUserType extends AbstractType
         return $this->getBlockPrefix();
     }
 
+    #[Override]
     public function getBlockPrefix(): string
     {
         return 'ezplatform_content_forms_user';
     }
 
+    #[Override]
     public function getParent(): ?string
     {
         return BaseContentType::class;
     }
 
+    #[Override]
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
@@ -50,6 +54,7 @@ class BaseUserType extends AbstractType
             ->addEventSubscriber(new SuppressValidationSubscriber());
     }
 
+    #[Override]
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver

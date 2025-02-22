@@ -14,6 +14,7 @@ use Ibexa\Contracts\Core\Repository\UserService;
 use Ibexa\Contracts\Core\Repository\Values\ContentType\ContentType;
 use Ibexa\Contracts\Core\Repository\Values\User\PasswordValidationContext;
 use Ibexa\Core\FieldType\ValidationError;
+use Override;
 use PHPUnit\Framework\TestCase;
 use stdClass;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
@@ -30,6 +31,7 @@ class PasswordValidatorTest extends TestCase
     /** @var \Ibexa\ContentForms\Validator\Constraints\PasswordValidator */
     private PasswordValidator $validator;
 
+    #[Override]
     protected function setUp(): void
     {
         $this->userService = $this->createMock(UserService::class);
