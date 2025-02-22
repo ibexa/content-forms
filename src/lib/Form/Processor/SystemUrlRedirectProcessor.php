@@ -12,21 +12,13 @@ use Ibexa\ContentForms\Event\ContentFormEvents;
 use Ibexa\ContentForms\Event\FormActionEvent;
 use Ibexa\Contracts\Core\Repository\LocationService;
 use Ibexa\Contracts\Core\Repository\URLAliasService;
+use Override;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Routing\RouterInterface;
 
 class SystemUrlRedirectProcessor implements EventSubscriberInterface
 {
-    /** @var \Symfony\Component\Routing\RouterInterface */
-    private $router;
-
-    /** @var \Ibexa\Contracts\Core\Repository\URLAliasService */
-    private $urlAliasService;
-
-    /** @var \Ibexa\Contracts\Core\Repository\LocationService */
-    private $locationService;
-
     /**
      * @param \Symfony\Component\Routing\RouterInterface $router
      * @param \Ibexa\Contracts\Core\Repository\URLAliasService $urlAliasService
@@ -34,18 +26,16 @@ class SystemUrlRedirectProcessor implements EventSubscriberInterface
      * @param array $siteaccessGroups
      */
     public function __construct(
-        RouterInterface $router,
-        URLAliasService $urlAliasService,
-        LocationService $locationService
+        private RouterInterface $router,
+        private URLAliasService $urlAliasService,
+        private LocationService $locationService
     ) {
-        $this->router = $router;
-        $this->urlAliasService = $urlAliasService;
-        $this->locationService = $locationService;
     }
 
     /**
      * @return array
      */
+    #[Override]
     public static function getSubscribedEvents(): array
     {
         return [

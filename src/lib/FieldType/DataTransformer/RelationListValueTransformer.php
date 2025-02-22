@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace Ibexa\ContentForms\FieldType\DataTransformer;
 
 use Ibexa\Core\FieldType\RelationList\Value;
+use Override;
 use Symfony\Component\Form\DataTransformerInterface;
 
 /**
@@ -16,6 +17,7 @@ use Symfony\Component\Form\DataTransformerInterface;
  */
 class RelationListValueTransformer implements DataTransformerInterface
 {
+    #[Override]
     public function transform($value)
     {
         if (!$value instanceof Value) {
@@ -29,6 +31,7 @@ class RelationListValueTransformer implements DataTransformerInterface
         return implode(',', $value->destinationContentIds);
     }
 
+    #[Override]
     public function reverseTransform($value)
     {
         if ($value === null) {

@@ -15,15 +15,12 @@ use PHPUnit\Framework\Assert as Assertion;
 
 final class SelectionFieldTypeFormContext extends RawMinkContext implements SnippetAcceptingContext
 {
-    private static $fieldIdentifier = 'field';
+    private static string $fieldIdentifier = 'field';
 
-    /**
-     * @var \Ibexa\ContentForms\Behat\Context\FieldTypeFormContext
-     */
-    private $fieldTypeFormContext;
+    private FieldTypeFormContext $fieldTypeFormContext;
 
     /** @BeforeScenario */
-    public function gatherContexts(BeforeScenarioScope $scope)
+    public function gatherContexts(BeforeScenarioScope $scope): void
     {
         $this->fieldTypeFormContext = $scope->getEnvironment()->getContext(FieldTypeFormContext::class);
     }
@@ -31,7 +28,7 @@ final class SelectionFieldTypeFormContext extends RawMinkContext implements Snip
     /**
      * @Given /^the field definition is set to single choice$/
      */
-    public function setFieldDefinitionToSingleChoice()
+    public function setFieldDefinitionToSingleChoice(): void
     {
         $this->fieldTypeFormContext->setFieldDefinitionOption('isMultiple', false);
     }
@@ -39,7 +36,7 @@ final class SelectionFieldTypeFormContext extends RawMinkContext implements Snip
     /**
      * @Given /^the field definition is set to multiple choice$/
      */
-    public function setFieldDefinitionToMultipleChoice()
+    public function setFieldDefinitionToMultipleChoice(): void
     {
         $this->fieldTypeFormContext->setFieldDefinitionOption('isMultiple', true);
     }
@@ -47,7 +44,7 @@ final class SelectionFieldTypeFormContext extends RawMinkContext implements Snip
     /**
      * @Then it should contain a select field
      */
-    public function itShouldContainASelectField()
+    public function itShouldContainASelectField(): void
     {
         $this->assertSession()->elementExists(
             'css',
@@ -62,7 +59,7 @@ final class SelectionFieldTypeFormContext extends RawMinkContext implements Snip
     /**
      * @Then the select field should be flagged as required
      */
-    public function theSelectFieldShouldBeFlaggedAsRequired()
+    public function theSelectFieldShouldBeFlaggedAsRequired(): void
     {
         $nodeElements = $this->getSession()->getPage()->findAll(
             'css',
@@ -87,7 +84,7 @@ final class SelectionFieldTypeFormContext extends RawMinkContext implements Snip
     /**
      * @Then the input is a single selection dropdown
      */
-    public function theInputIsASingleSelectionDropdown()
+    public function theInputIsASingleSelectionDropdown(): void
     {
         $selector = sprintf(
             'select[name="ezplatform_content_forms_content_edit[fieldsData][%s][value]"]',
@@ -101,7 +98,7 @@ final class SelectionFieldTypeFormContext extends RawMinkContext implements Snip
     /**
      * @Then the input is a multiple selection dropdown
      */
-    public function theInputIsAMultipleSelectionDropdown()
+    public function theInputIsAMultipleSelectionDropdown(): void
     {
         $selector = sprintf(
             'select[name="ezplatform_content_forms_content_edit[fieldsData][%s][value][]"][multiple=multiple]',

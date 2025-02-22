@@ -11,6 +11,7 @@ namespace Ibexa\Tests\ContentForms\FieldType\Mapper;
 use Ibexa\Contracts\ContentForms\Data\Content\FieldData;
 use Ibexa\Contracts\Core\Repository\FieldType;
 use Ibexa\Contracts\Core\Repository\FieldTypeService;
+use Override;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Form\FormBuilder;
@@ -28,6 +29,7 @@ abstract class BaseMapperTest extends TestCase
 
     protected FieldData & MockObject $data;
 
+    #[Override]
     protected function setUp(): void
     {
         $this->fieldTypeService = $this->getMockBuilder(FieldTypeService::class)

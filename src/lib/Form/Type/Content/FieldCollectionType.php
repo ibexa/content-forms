@@ -18,6 +18,7 @@ use Ibexa\Contracts\Core\Repository\Values\User\UserUpdateStruct;
 use Ibexa\Core\Repository\Values\Content\ContentCreateStruct;
 use Ibexa\Core\Repository\Values\Content\ContentUpdateStruct;
 use Ibexa\Core\Repository\Values\User\UserCreateStruct;
+use Override;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
@@ -28,22 +29,18 @@ use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
 
 class FieldCollectionType extends CollectionType
 {
-    /** @var \Symfony\Contracts\EventDispatcher\EventDispatcherInterface */
-    private $eventDispatcher;
-
-    public function __construct(
-        EventDispatcherInterface $eventDispatcher
-    ) {
-        $this->eventDispatcher = $eventDispatcher;
+    public function __construct(private EventDispatcherInterface $eventDispatcher)
+    {
     }
 
+    #[Override]
     public function buildForm(
         FormBuilderInterface $builder,
         array $options
     ): void {
         parent::buildForm($builder, $options);
 
-        $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) use ($options) {
+        $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) use ($options): void {
             $form = $event->getForm();
             $data = $event->getData();
 
@@ -64,6 +61,7 @@ class FieldCollectionType extends CollectionType
         });
     }
 
+    #[Override]
     public function configureOptions(OptionsResolver $resolver): void
     {
         parent::configureOptions($resolver);

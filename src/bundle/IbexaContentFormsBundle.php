@@ -13,11 +13,13 @@ use Ibexa\Bundle\ContentForms\DependencyInjection\Configuration\Parser\ContentCr
 use Ibexa\Bundle\ContentForms\DependencyInjection\Configuration\Parser\ContentEdit;
 use Ibexa\Bundle\ContentForms\DependencyInjection\Configuration\Parser\ContentEditView;
 use Ibexa\Bundle\ContentForms\DependencyInjection\Configuration\Parser\UserEdit;
+use Override;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 class IbexaContentFormsBundle extends Bundle
 {
+    #[Override]
     public function build(ContainerBuilder $container): void
     {
         parent::build($container);

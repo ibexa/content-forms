@@ -12,6 +12,7 @@ use Ibexa\ContentForms\Content\View\ContentEditView;
 use Ibexa\Core\MVC\Symfony\Matcher\MatcherFactoryInterface;
 use Ibexa\Core\MVC\Symfony\View\View;
 use Ibexa\Core\MVC\Symfony\View\ViewProvider;
+use Override;
 use Symfony\Component\HttpKernel\Controller\ControllerReference;
 
 /**
@@ -19,19 +20,11 @@ use Symfony\Component\HttpKernel\Controller\ControllerReference;
  */
 class Configured implements ViewProvider
 {
-    /**
-     * @var \Ibexa\Core\MVC\Symfony\Matcher\MatcherFactoryInterface
-     */
-    protected $matcherFactory;
-
-    /**
-     * @param \Ibexa\Core\MVC\Symfony\Matcher\MatcherFactoryInterface $matcherFactory
-     */
-    public function __construct(MatcherFactoryInterface $matcherFactory)
+    public function __construct(protected MatcherFactoryInterface $matcherFactory)
     {
-        $this->matcherFactory = $matcherFactory;
     }
 
+    #[Override]
     public function getView(View $view)
     {
         if (($configHash = $this->matcherFactory->match($view)) === null) {

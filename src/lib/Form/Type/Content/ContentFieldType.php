@@ -15,6 +15,7 @@ use Ibexa\Contracts\Core\Repository\Values\Content\ContentStruct;
 use Ibexa\Contracts\Core\Repository\Values\Content\ContentUpdateStruct;
 use Ibexa\Contracts\Core\Repository\Values\User\UserCreateStruct;
 use Ibexa\Contracts\Core\Repository\Values\User\UserUpdateStruct;
+use Override;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
@@ -26,26 +27,22 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ContentFieldType extends AbstractType
 {
-    /**
-     * @var \Ibexa\ContentForms\FieldType\FieldTypeFormMapperDispatcherInterface
-     */
-    private $fieldTypeFormMapper;
-
-    public function __construct(FieldTypeFormMapperDispatcherInterface $fieldTypeFormMapper)
+    public function __construct(private FieldTypeFormMapperDispatcherInterface $fieldTypeFormMapper)
     {
-        $this->fieldTypeFormMapper = $fieldTypeFormMapper;
     }
 
-    public function getName()
+    public function getName(): string
     {
         return $this->getBlockPrefix();
     }
 
+    #[Override]
     public function getBlockPrefix(): string
     {
         return 'ezplatform_content_forms_content_field';
     }
 
+    #[Override]
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver
@@ -99,16 +96,18 @@ class ContentFieldType extends AbstractType
             );
     }
 
-    public function buildView(FormView $view, FormInterface $form, array $options)
+    #[Override]
+    public function buildView(FormView $view, FormInterface $form, array $options): void
     {
         $view->vars['location'] = $options['location'];
         $view->vars['languageCode'] = $options['languageCode'];
         $view->vars['mainLanguageCode'] = $options['mainLanguageCode'];
     }
 
+    #[Override]
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) {
+        $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event): void {
             $this->fieldTypeFormMapper->map($event->getForm(), $event->getData());
         });
     }

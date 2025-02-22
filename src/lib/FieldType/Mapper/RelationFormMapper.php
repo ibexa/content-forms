@@ -10,11 +10,13 @@ namespace Ibexa\ContentForms\FieldType\Mapper;
 
 use Ibexa\ContentForms\Form\Type\FieldType\RelationFieldType;
 use Ibexa\Contracts\ContentForms\Data\Content\FieldData;
+use Override;
 use Symfony\Component\Form\FormInterface;
 
 class RelationFormMapper extends AbstractRelationFormMapper
 {
-    public function mapFieldValueForm(FormInterface $fieldForm, FieldData $data)
+    #[Override]
+    public function mapFieldValueForm(FormInterface $fieldForm, FieldData $data): void
     {
         $fieldDefinition = $data->fieldDefinition;
         $formConfig = $fieldForm->getConfig();

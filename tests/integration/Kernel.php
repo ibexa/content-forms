@@ -10,10 +10,12 @@ namespace Ibexa\Tests\Integration\ContentForms;
 
 use Ibexa\Bundle\ContentForms\IbexaContentFormsBundle;
 use Ibexa\Contracts\Test\Core\IbexaTestKernel;
+use Override;
 use Symfony\Component\Config\Loader\LoaderInterface;
 
 final class Kernel extends IbexaTestKernel
 {
+    #[Override]
     public function registerBundles(): iterable
     {
         yield from parent::registerBundles();
@@ -21,6 +23,7 @@ final class Kernel extends IbexaTestKernel
         yield new IbexaContentFormsBundle();
     }
 
+    #[Override]
     public function registerContainerConfiguration(LoaderInterface $loader): void
     {
         parent::registerContainerConfiguration($loader);

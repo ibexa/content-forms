@@ -14,6 +14,7 @@ use Ibexa\Contracts\Core\Repository\Values\Content\Field;
 use Ibexa\Core\FieldType\TextLine\Value;
 use Ibexa\Core\Helper\FieldsGroups\FieldsGroupsList;
 use Ibexa\Core\Repository\Values\ContentType\FieldDefinition;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Form\FormInterface;
 
@@ -74,7 +75,7 @@ final class GroupedContentFormFieldsProviderTest extends TestCase
     private function getFormMockWithFieldData(
         string $fieldDefIdentifier,
         string $fieldTypeIdentifier
-    ) {
+    ): MockObject {
         $formMock = $this
             ->getMockBuilder(FormInterface::class)
             ->disableOriginalConstructor()

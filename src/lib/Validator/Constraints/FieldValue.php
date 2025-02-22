@@ -8,6 +8,7 @@ declare(strict_types=1);
 
 namespace Ibexa\ContentForms\Validator\Constraints;
 
+use Override;
 use Symfony\Component\Validator\Constraint;
 
 /**
@@ -17,11 +18,13 @@ class FieldValue extends Constraint
 {
     public $message = 'ez.field.value';
 
+    #[Override]
     public function getTargets(): string
     {
         return self::CLASS_CONSTRAINT;
     }
 
+    #[Override]
     public function validatedBy(): string
     {
         return FieldValueValidator::class;

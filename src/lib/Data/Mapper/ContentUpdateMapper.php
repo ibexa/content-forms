@@ -12,6 +12,7 @@ use Ibexa\ContentForms\Data\Content\ContentUpdateData;
 use Ibexa\Contracts\ContentForms\Data\Content\FieldData;
 use Ibexa\Contracts\Core\Repository\Values\ContentType\ContentType;
 use Ibexa\Contracts\Core\Repository\Values\ValueObject;
+use Override;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ContentUpdateMapper implements FormDataMapperInterface
@@ -24,7 +25,8 @@ class ContentUpdateMapper implements FormDataMapperInterface
      *
      * @return \Ibexa\ContentForms\Data\Content\ContentUpdateData
      */
-    public function mapToFormData(ValueObject $contentDraft, array $params = [])
+    #[Override]
+    public function mapToFormData(ValueObject $contentDraft, array $params = []): ContentUpdateData
     {
         $optionsResolver = new OptionsResolver();
         $this->configureOptions($optionsResolver);
@@ -58,7 +60,7 @@ class ContentUpdateMapper implements FormDataMapperInterface
         return $data;
     }
 
-    private function configureOptions(OptionsResolver $optionsResolver)
+    private function configureOptions(OptionsResolver $optionsResolver): void
     {
         $optionsResolver
             ->setRequired(['languageCode', 'contentType', 'currentFields'])

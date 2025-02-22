@@ -23,23 +23,11 @@ use Symfony\Component\HttpFoundation\Request;
 
 class ContentEditController extends Controller
 {
-    /** @var \Ibexa\Contracts\Core\Repository\ContentTypeService */
-    private $contentTypeService;
-
-    /** @var \Ibexa\Contracts\Core\Repository\ContentService */
-    private $contentService;
-
-    /** @var \Ibexa\ContentForms\Form\ActionDispatcher\ActionDispatcherInterface */
-    private $contentActionDispatcher;
-
     public function __construct(
-        ContentTypeService $contentTypeService,
-        ContentService $contentService,
-        ActionDispatcherInterface $contentActionDispatcher
+        private ContentTypeService $contentTypeService,
+        private ContentService $contentService,
+        private ActionDispatcherInterface $contentActionDispatcher
     ) {
-        $this->contentTypeService = $contentTypeService;
-        $this->contentService = $contentService;
-        $this->contentActionDispatcher = $contentActionDispatcher;
     }
 
     /**

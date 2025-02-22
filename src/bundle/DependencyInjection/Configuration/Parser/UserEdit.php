@@ -10,6 +10,7 @@ namespace Ibexa\Bundle\ContentForms\DependencyInjection\Configuration\Parser;
 
 use Ibexa\Bundle\Core\DependencyInjection\Configuration\AbstractParser;
 use Ibexa\Bundle\Core\DependencyInjection\Configuration\SiteAccessAware\ContextualizerInterface;
+use Override;
 use Symfony\Component\Config\Definition\Builder\NodeBuilder;
 
 class UserEdit extends AbstractParser
@@ -19,7 +20,8 @@ class UserEdit extends AbstractParser
      *
      * @param \Symfony\Component\Config\Definition\Builder\NodeBuilder $nodeBuilder Node just under ezpublish.system.<siteaccess>
      */
-    public function addSemanticConfig(NodeBuilder $nodeBuilder)
+    #[Override]
+    public function addSemanticConfig(NodeBuilder $nodeBuilder): void
     {
         $nodeBuilder
             ->arrayNode('user_edit')
@@ -40,7 +42,8 @@ class UserEdit extends AbstractParser
             ->end();
     }
 
-    public function mapConfig(array &$scopeSettings, $currentScope, ContextualizerInterface $contextualizer)
+    #[Override]
+    public function mapConfig(array &$scopeSettings, $currentScope, ContextualizerInterface $contextualizer): void
     {
         if (empty($scopeSettings['user_edit'])) {
             return;

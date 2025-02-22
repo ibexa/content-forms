@@ -8,6 +8,7 @@ declare(strict_types=1);
 
 namespace Ibexa\ContentForms\Form\EventSubscriber;
 
+use Override;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Form\Event\PostSubmitEvent;
 use Symfony\Component\Form\FormEvent;
@@ -18,6 +19,7 @@ use Symfony\Component\Form\FormEvents;
  */
 class SuppressValidationSubscriber implements EventSubscriberInterface
 {
+    #[Override]
     public static function getSubscribedEvents(): array
     {
         return [
@@ -29,7 +31,7 @@ class SuppressValidationSubscriber implements EventSubscriberInterface
         ];
     }
 
-    public function suppressValidationOnCancel(FormEvent $event)
+    public function suppressValidationOnCancel(FormEvent $event): void
     {
         $form = $event->getForm();
 
@@ -38,7 +40,7 @@ class SuppressValidationSubscriber implements EventSubscriberInterface
         }
     }
 
-    public function suppressValidationOnSaveDraft(PostSubmitEvent $event)
+    public function suppressValidationOnSaveDraft(PostSubmitEvent $event): void
     {
         $form = $event->getForm();
 
@@ -50,7 +52,7 @@ class SuppressValidationSubscriber implements EventSubscriberInterface
         }
     }
 
-    public function suppressValidationOnAutosaveDraft(PostSubmitEvent $event)
+    public function suppressValidationOnAutosaveDraft(PostSubmitEvent $event): void
     {
         $form = $event->getForm();
 

@@ -67,7 +67,7 @@ class UserUpdateMapper
         return $data;
     }
 
-    private function configureOptions(OptionsResolver $optionsResolver)
+    private function configureOptions(OptionsResolver $optionsResolver): void
     {
         $optionsResolver->define('filter')->allowedTypes('callable', 'null')->default(null);
         $optionsResolver->setRequired(['languageCode']);

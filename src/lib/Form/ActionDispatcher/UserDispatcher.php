@@ -9,10 +9,12 @@ declare(strict_types=1);
 namespace Ibexa\ContentForms\Form\ActionDispatcher;
 
 use Ibexa\ContentForms\Event\ContentFormEvents;
+use Override;
 
 class UserDispatcher extends AbstractActionDispatcher
 {
-    protected function getActionEventBaseName()
+    #[Override]
+    protected function getActionEventBaseName(): string
     {
         return ContentFormEvents::USER_EDIT;
     }

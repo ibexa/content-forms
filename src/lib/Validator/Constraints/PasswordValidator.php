@@ -11,28 +11,26 @@ namespace Ibexa\ContentForms\Validator\Constraints;
 use Ibexa\ContentForms\Validator\ValidationErrorsProcessor;
 use Ibexa\Contracts\Core\Repository\UserService;
 use Ibexa\Contracts\Core\Repository\Values\User\PasswordValidationContext;
+use Override;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 
 class PasswordValidator extends ConstraintValidator
 {
-    /** @var \Ibexa\Contracts\Core\Repository\UserService */
-    private $userService;
-
     /**
      * @param \Ibexa\Contracts\Core\Repository\UserService $userService
      */
-    public function __construct(UserService $userService)
+    public function __construct(private UserService $userService)
     {
-        $this->userService = $userService;
     }
 
     /**
      * {@inheritdoc}
      */
+    #[Override]
     public function validate($value, Constraint $constraint): void
     {
-        if (!\is_string($value) || empty($value)) {
+        if (!is_string($value) || empty($value)) {
             return;
         }
 

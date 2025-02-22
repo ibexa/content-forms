@@ -14,6 +14,7 @@ use Ibexa\Contracts\Core\Repository\Repository;
 use Ibexa\Core\FieldType\Author\Author;
 use Ibexa\Core\FieldType\Author\Type as AuthorType;
 use Ibexa\Core\FieldType\Author\Value;
+use Override;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\CallbackTransformer;
 use Symfony\Component\Form\DataTransformerInterface;
@@ -29,24 +30,20 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 class AuthorFieldType extends AbstractType
 {
-    /** @var \Ibexa\Contracts\Core\Repository\Repository */
-    private $repository;
-
     /** @var int */
     private $defaultAuthor;
 
     /**
      * @param \Ibexa\Contracts\Core\Repository\Repository $repository
      */
-    public function __construct(Repository $repository)
+    public function __construct(private Repository $repository)
     {
-        $this->repository = $repository;
     }
 
     /**
      * @return string
      */
-    public function getName()
+    public function getName(): string
     {
         return $this->getBlockPrefix();
     }
@@ -54,6 +51,7 @@ class AuthorFieldType extends AbstractType
     /**
      * @return string
      */
+    #[Override]
     public function getBlockPrefix(): string
     {
         return 'ezplatform_fieldtype_ezauthor';
@@ -63,6 +61,7 @@ class AuthorFieldType extends AbstractType
      * @param \Symfony\Component\Form\FormBuilderInterface $builder
      * @param array
      */
+    #[Override]
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $this->defaultAuthor = $options['default_author'];
@@ -78,7 +77,8 @@ class AuthorFieldType extends AbstractType
      * @param \Symfony\Component\Form\FormInterface $form
      * @param array $options
      */
-    public function buildView(FormView $view, FormInterface $form, array $options)
+    #[Override]
+    public function buildView(FormView $view, FormInterface $form, array $options): void
     {
         $view->vars['attr']['default-author'] = $options['default_author'];
     }
@@ -86,6 +86,7 @@ class AuthorFieldType extends AbstractType
     /**
      * @param \Symfony\Component\OptionsResolver\OptionsResolver $resolver
      */
+    #[Override]
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
@@ -101,7 +102,7 @@ class AuthorFieldType extends AbstractType
      */
     public function getViewTransformer(): DataTransformerInterface
     {
-        return new CallbackTransformer(function (Value $value) {
+        return new CallbackTransformer(function (Value $value): Value {
             if (0 === $value->authors->count()) {
                 if ($this->defaultAuthor === AuthorType::DEFAULT_CURRENT_USER) {
                     $value->authors->append($this->fetchLoggedAuthor());
@@ -111,7 +112,7 @@ class AuthorFieldType extends AbstractType
             }
 
             return $value;
-        }, static function (Value $value) {
+        }, static function (Value $value): Value {
             return $value;
         });
     }
@@ -119,14 +120,14 @@ class AuthorFieldType extends AbstractType
     /**
      * @param \Symfony\Component\Form\FormEvent $event
      */
-    public function filterOutEmptyAuthors(FormEvent $event)
+    public function filterOutEmptyAuthors(FormEvent $event): void
     {
         $value = $event->getData();
 
         $value->authors->exchangeArray(
             array_filter(
                 $value->authors->getArrayCopy(),
-                static function (Author $author) {
+                static function (Author $author): bool {
                     return !empty($author->email) || !empty($author->name);
                 }
             )

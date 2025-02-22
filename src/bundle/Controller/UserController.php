@@ -30,52 +30,17 @@ use Symfony\Component\HttpFoundation\Request;
 
 class UserController extends Controller
 {
-    /** @var \Ibexa\Contracts\Core\Repository\ContentTypeService */
-    private $contentTypeService;
-
-    /** @var \Ibexa\Contracts\Core\Repository\UserService */
-    private $userService;
-
-    /** @var \Ibexa\Contracts\Core\Repository\LocationService */
-    private $locationService;
-
-    /** @var \Ibexa\Contracts\Core\Repository\LanguageService */
-    private $languageService;
-
-    /** @var \Ibexa\ContentForms\Form\ActionDispatcher\ActionDispatcherInterface */
-    private $userActionDispatcher;
-
-    /** @var \Ibexa\Contracts\Core\Repository\PermissionResolver */
-    private $permissionResolver;
-
-    /** @var \Ibexa\Core\MVC\Symfony\Locale\UserLanguagePreferenceProviderInterface */
-    private $userLanguagePreferenceProvider;
-
-    /** @var \Ibexa\Contracts\ContentForms\Content\Form\Provider\GroupedContentFormFieldsProviderInterface */
-    private $groupedContentFormFieldsProvider;
-
-    private ContentService $contentService;
-
     public function __construct(
-        ContentTypeService $contentTypeService,
-        UserService $userService,
-        LocationService $locationService,
-        LanguageService $languageService,
-        ActionDispatcherInterface $userActionDispatcher,
-        PermissionResolver $permissionResolver,
-        UserLanguagePreferenceProviderInterface $userLanguagePreferenceProvider,
-        GroupedContentFormFieldsProviderInterface $groupedContentFormFieldsProvider,
-        ContentService $contentService
+        private ContentTypeService $contentTypeService,
+        private UserService $userService,
+        private LocationService $locationService,
+        private LanguageService $languageService,
+        private ActionDispatcherInterface $userActionDispatcher,
+        private PermissionResolver $permissionResolver,
+        private UserLanguagePreferenceProviderInterface $userLanguagePreferenceProvider,
+        private GroupedContentFormFieldsProviderInterface $groupedContentFormFieldsProvider,
+        private ContentService $contentService
     ) {
-        $this->contentTypeService = $contentTypeService;
-        $this->userService = $userService;
-        $this->locationService = $locationService;
-        $this->languageService = $languageService;
-        $this->userActionDispatcher = $userActionDispatcher;
-        $this->permissionResolver = $permissionResolver;
-        $this->userLanguagePreferenceProvider = $userLanguagePreferenceProvider;
-        $this->groupedContentFormFieldsProvider = $groupedContentFormFieldsProvider;
-        $this->contentService = $contentService;
     }
 
     /**

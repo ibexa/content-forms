@@ -10,6 +10,7 @@ namespace Ibexa\ContentForms\Validator\Constraints;
 
 use Ibexa\ContentForms\Data\User\UserAccountFieldData;
 use Ibexa\ContentForms\Validator\ValidationErrorsProcessor;
+use Override;
 use Symfony\Component\Validator\Constraint;
 
 class UserAccountPasswordValidator extends PasswordValidator
@@ -17,6 +18,7 @@ class UserAccountPasswordValidator extends PasswordValidator
     /**
      * {@inheritdoc}
      */
+    #[Override]
     public function validate($value, Constraint $constraint): void
     {
         if (!($value instanceof UserAccountFieldData)) {
@@ -29,9 +31,10 @@ class UserAccountPasswordValidator extends PasswordValidator
     /**
      * {@inheritdoc}
      */
+    #[Override]
     protected function createValidationErrorsProcessor(): ValidationErrorsProcessor
     {
-        return new ValidationErrorsProcessor($this->context, static function () {
+        return new ValidationErrorsProcessor($this->context, static function (): string {
             return 'password';
         });
     }

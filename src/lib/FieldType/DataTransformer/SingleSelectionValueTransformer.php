@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace Ibexa\ContentForms\FieldType\DataTransformer;
 
 use Ibexa\Core\FieldType\Selection\Value;
+use Override;
 use Symfony\Component\Form\DataTransformerInterface;
 
 /**
@@ -16,6 +17,7 @@ use Symfony\Component\Form\DataTransformerInterface;
  */
 class SingleSelectionValueTransformer implements DataTransformerInterface
 {
+    #[Override]
     public function transform($value)
     {
         if (!$value instanceof Value) {
@@ -29,6 +31,7 @@ class SingleSelectionValueTransformer implements DataTransformerInterface
         return $value->selection[0];
     }
 
+    #[Override]
     public function reverseTransform($value)
     {
         if ($value === null) {

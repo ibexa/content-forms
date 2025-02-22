@@ -11,11 +11,13 @@ namespace Ibexa\ContentForms\FieldType\Mapper;
 use Ibexa\ContentForms\Form\Type\FieldType\SelectionFieldType;
 use Ibexa\Contracts\ContentForms\Data\Content\FieldData;
 use Ibexa\Contracts\ContentForms\FieldType\FieldValueFormMapperInterface;
+use Override;
 use Symfony\Component\Form\FormInterface;
 
 class SelectionFormMapper implements FieldValueFormMapperInterface
 {
-    public function mapFieldValueForm(FormInterface $fieldForm, FieldData $data)
+    #[Override]
+    public function mapFieldValueForm(FormInterface $fieldForm, FieldData $data): void
     {
         $fieldDefinition = $data->fieldDefinition;
         $formConfig = $fieldForm->getConfig();

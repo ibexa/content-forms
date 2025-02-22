@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace Ibexa\ContentForms\FieldType\DataTransformer;
 
 use Ibexa\Core\FieldType\Country\Value;
+use Override;
 use Symfony\Component\Form\DataTransformerInterface;
 use Symfony\Component\Form\Exception\TransformationFailedException;
 
@@ -19,19 +20,14 @@ use Symfony\Component\Form\Exception\TransformationFailedException;
 class SingleCountryValueTransformer implements DataTransformerInterface
 {
     /**
-     * @var array Array of countries from "ibexa.field_type.country.data"
-     */
-    protected $countriesInfo;
-
-    /**
      * @param array $countriesInfo
      */
-    public function __construct(array $countriesInfo)
+    public function __construct(protected array $countriesInfo)
     {
-        $this->countriesInfo = $countriesInfo;
     }
 
-    public function transform($value)
+    #[Override]
+    public function transform($value): ?array
     {
         if (!$value instanceof Value) {
             return null;
@@ -53,7 +49,8 @@ class SingleCountryValueTransformer implements DataTransformerInterface
         return $country['Alpha2'];
     }
 
-    public function reverseTransform($value)
+    #[Override]
+    public function reverseTransform($value): ?Value
     {
         if (empty($value)) {
             return null;

@@ -9,17 +9,20 @@ declare(strict_types=1);
 namespace Ibexa\ContentForms\Form\Type;
 
 use Ibexa\ContentForms\Form\Transformer\JsonToArrayTransformer;
+use Override;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\FormBuilderInterface;
 
 final class JsonArrayType extends AbstractType
 {
+    #[Override]
     public function getParent(): ?string
     {
         return HiddenType::class;
     }
 
+    #[Override]
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder->addModelTransformer(new JsonToArrayTransformer());

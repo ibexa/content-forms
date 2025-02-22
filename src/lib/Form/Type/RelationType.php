@@ -12,6 +12,7 @@ use Ibexa\ContentForms\Form\Transformer\RelationTransformer;
 use Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException;
 use Ibexa\Contracts\Core\Repository\Exceptions\UnauthorizedException;
 use Ibexa\Contracts\Core\Repository\LocationService;
+use Override;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormInterface;
@@ -21,27 +22,23 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 final class RelationType extends AbstractType
 {
-    public const LOCATION_DEFAULT = 0;
-    public const LOCATION_BROWSE = 1;
-    public const LOCATION_SELF = -1;
-
-    private LocationService $locationService;
-
-    private TranslatorInterface $translator;
+    public const int LOCATION_DEFAULT = 0;
+    public const int LOCATION_BROWSE = 1;
+    public const int LOCATION_SELF = -1;
 
     public function __construct(
-        LocationService $locationService,
-        TranslatorInterface $translator
+        private LocationService $locationService,
+        private TranslatorInterface $translator
     ) {
-        $this->locationService = $locationService;
-        $this->translator = $translator;
     }
 
+    #[Override]
     public function getBlockPrefix(): string
     {
         return 'ibexa_form_type_relation';
     }
 
+    #[Override]
     public function buildForm(
         FormBuilderInterface $builder,
         array $options
@@ -65,11 +62,12 @@ final class RelationType extends AbstractType
         $builder->addModelTransformer(new RelationTransformer());
     }
 
+    #[Override]
     public function buildView(
         FormView $view,
         FormInterface $form,
         array $options
-    ) {
+    ): void {
         $view->vars['destination_location'] = null;
         $value = $form->getData();
 
@@ -83,6 +81,7 @@ final class RelationType extends AbstractType
         }
     }
 
+    #[Override]
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver

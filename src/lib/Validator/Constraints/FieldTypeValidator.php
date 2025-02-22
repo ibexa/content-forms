@@ -14,14 +14,8 @@ use Symfony\Component\Validator\ConstraintValidator;
 
 abstract class FieldTypeValidator extends ConstraintValidator
 {
-    /**
-     * @var \Ibexa\Contracts\Core\Repository\FieldTypeService
-     */
-    protected $fieldTypeService;
-
-    public function __construct(FieldTypeService $fieldTypeService)
+    public function __construct(protected FieldTypeService $fieldTypeService)
     {
-        $this->fieldTypeService = $fieldTypeService;
     }
 
     /**

@@ -12,11 +12,13 @@ use Ibexa\ContentForms\Data\User\UserCreateData;
 use Ibexa\ContentForms\FieldType\Mapper\UserAccountFieldValueFormMapper;
 use Ibexa\Contracts\Core\Repository\Values\ContentType\ContentType;
 use Ibexa\Core\Repository\Values\ContentType\FieldDefinition;
+use Override;
 use Symfony\Component\Form\FormConfigInterface;
 use Symfony\Component\Form\FormInterface;
 
 class UserAccountFieldValueFormMapperTest extends BaseMapperTest
 {
+    #[Override]
     protected function setUp(): void
     {
         parent::setUp();
@@ -44,7 +46,7 @@ class UserAccountFieldValueFormMapperTest extends BaseMapperTest
             ->willReturn($userEditForm);
     }
 
-    public function testMapFieldValueFormNoLanguageCode()
+    public function testMapFieldValueFormNoLanguageCode(): void
     {
         $mapper = new UserAccountFieldValueFormMapper();
 
@@ -65,7 +67,7 @@ class UserAccountFieldValueFormMapperTest extends BaseMapperTest
         $mapper->mapFieldValueForm($this->fieldForm, $this->data);
     }
 
-    public function testMapFieldValueFormWithLanguageCode()
+    public function testMapFieldValueFormWithLanguageCode(): void
     {
         $mapper = new UserAccountFieldValueFormMapper();
 

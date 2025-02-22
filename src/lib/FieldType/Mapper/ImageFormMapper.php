@@ -14,19 +14,17 @@ use Ibexa\Contracts\ContentForms\Data\Content\FieldData;
 use Ibexa\Contracts\ContentForms\FieldType\FieldValueFormMapperInterface;
 use Ibexa\Contracts\Core\Repository\FieldTypeService;
 use Ibexa\Core\FieldType\Image\Value;
+use Override;
 use Symfony\Component\Form\FormInterface;
 
 class ImageFormMapper implements FieldValueFormMapperInterface
 {
-    /** @var \Ibexa\Contracts\Core\Repository\FieldTypeService */
-    private $fieldTypeService;
-
-    public function __construct(FieldTypeService $fieldTypeService)
+    public function __construct(private FieldTypeService $fieldTypeService)
     {
-        $this->fieldTypeService = $fieldTypeService;
     }
 
-    public function mapFieldValueForm(FormInterface $fieldForm, FieldData $data)
+    #[Override]
+    public function mapFieldValueForm(FormInterface $fieldForm, FieldData $data): void
     {
         $fieldDefinition = $data->fieldDefinition;
         $formConfig = $fieldForm->getConfig();

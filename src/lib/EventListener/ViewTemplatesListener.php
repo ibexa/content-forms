@@ -15,6 +15,7 @@ use Ibexa\ContentForms\User\View\UserUpdateView;
 use Ibexa\Contracts\Core\SiteAccess\ConfigResolverInterface;
 use Ibexa\Core\MVC\Symfony\Event\PreContentViewEvent;
 use Ibexa\Core\MVC\Symfony\MVCEvents;
+use Override;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 /**
@@ -22,14 +23,11 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
  */
 class ViewTemplatesListener implements EventSubscriberInterface
 {
-    /** @var \Ibexa\Contracts\Core\SiteAccess\ConfigResolverInterface */
-    private $configResolver;
-
-    public function __construct(ConfigResolverInterface $configResolver)
+    public function __construct(private ConfigResolverInterface $configResolver)
     {
-        $this->configResolver = $configResolver;
     }
 
+    #[Override]
     public static function getSubscribedEvents(): array
     {
         return [MVCEvents::PRE_CONTENT_VIEW => 'setViewTemplates'];

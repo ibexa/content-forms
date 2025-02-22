@@ -15,20 +15,13 @@ use Symfony\Component\Form\FormInterface;
 
 final class UserUpdateFieldOptionsEvent extends StructFieldOptionsEvent
 {
-    private Content $content;
-
-    private UserUpdateStruct $userUpdateStruct;
-
     public function __construct(
-        Content $content,
-        UserUpdateStruct $userUpdateStruct,
+        private Content $content,
+        private UserUpdateStruct $userUpdateStruct,
         FormInterface $parentForm,
         FieldData $fieldData,
         array $options
     ) {
-        $this->content = $content;
-        $this->userUpdateStruct = $userUpdateStruct;
-
         parent::__construct($parentForm, $fieldData, $options);
     }
 

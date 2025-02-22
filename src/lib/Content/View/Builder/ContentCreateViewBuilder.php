@@ -14,6 +14,7 @@ use Ibexa\Contracts\Core\Repository\Values\Content\Location;
 use Ibexa\Contracts\Core\Repository\Values\ContentType\ContentType;
 use Ibexa\Core\Base\Exceptions\InvalidArgumentException;
 use Ibexa\Core\MVC\Symfony\View\Builder\ViewBuilder;
+use Override;
 
 /**
  * Builds ContentCreateView objects.
@@ -22,6 +23,7 @@ use Ibexa\Core\MVC\Symfony\View\Builder\ViewBuilder;
  */
 class ContentCreateViewBuilder extends AbstractContentViewBuilder implements ViewBuilder
 {
+    #[Override]
     public function matches($argument)
     {
         return 'ibexa_content_edit::createWithoutDraftAction' === $argument;
@@ -36,6 +38,7 @@ class ContentCreateViewBuilder extends AbstractContentViewBuilder implements Vie
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\InvalidArgumentException
      */
+    #[Override]
     public function buildView(array $parameters)
     {
         $view = new ContentCreateView($this->configResolver->getParameter('content_edit.templates.create'));

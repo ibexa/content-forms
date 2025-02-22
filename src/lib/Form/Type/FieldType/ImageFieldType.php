@@ -10,6 +10,7 @@ namespace Ibexa\ContentForms\Form\Type\FieldType;
 
 use Ibexa\ContentForms\Form\Type\JsonArrayType;
 use JMS\TranslationBundle\Annotation\Desc;
+use Override;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -23,28 +24,28 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 class ImageFieldType extends AbstractType
 {
-    private MimeTypesInterface $mimeTypes;
-
-    public function __construct(MimeTypesInterface $mimeTypes)
+    public function __construct(private MimeTypesInterface $mimeTypes)
     {
-        $this->mimeTypes = $mimeTypes;
     }
 
-    public function getName()
+    public function getName(): string
     {
         return $this->getBlockPrefix();
     }
 
+    #[Override]
     public function getBlockPrefix(): string
     {
         return 'ezplatform_fieldtype_ezimage';
     }
 
+    #[Override]
     public function getParent(): ?string
     {
         return BinaryBaseFieldType::class;
     }
 
+    #[Override]
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
@@ -63,7 +64,8 @@ class ImageFieldType extends AbstractType
             );
     }
 
-    public function buildView(FormView $view, FormInterface $form, array $options)
+    #[Override]
+    public function buildView(FormView $view, FormInterface $form, array $options): void
     {
         $view->vars += [
             'is_alternative_text_required' => $options['is_alternative_text_required'],
@@ -72,6 +74,7 @@ class ImageFieldType extends AbstractType
         ];
     }
 
+    #[Override]
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([

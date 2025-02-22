@@ -18,9 +18,9 @@ use PHPUnit\Framework\Assert as Assertion;
 
 final class FieldTypeFormContext extends RawMinkContext implements SnippetAcceptingContext
 {
-    private static $fieldIdentifier = 'field';
+    private static string $fieldIdentifier = 'field';
 
-    private static $fieldTypeIdentifierMap = [
+    private static array $fieldTypeIdentifierMap = [
         'user' => 'ezuser',
         'textline' => 'ezstring',
         'selection' => 'ezselection',
@@ -30,7 +30,7 @@ final class FieldTypeFormContext extends RawMinkContext implements SnippetAccept
     private $contentTypeContext;
 
     /** @BeforeScenario */
-    public function gatherContexts(BeforeScenarioScope $scope)
+    public function gatherContexts(BeforeScenarioScope $scope): void
     {
         $environment = $scope->getEnvironment();
         $this->contentTypeContext = $environment->getContext(ContentTypeContext::class);
@@ -40,7 +40,7 @@ final class FieldTypeFormContext extends RawMinkContext implements SnippetAccept
      * @Given a content type with a(n) :fieldTypeIdentifier field definition
      * @Given a content type :contentTypeName with a(n) :fieldTypeIdentifier field definition
      */
-    public function aContentTypeWithAGivenFieldDefinition($fieldTypeIdentifier, $contentTypeName = null)
+    public function aContentTypeWithAGivenFieldDefinition($fieldTypeIdentifier, $contentTypeName = null): void
     {
         if (isset(self::$fieldTypeIdentifierMap[$fieldTypeIdentifier])) {
             $fieldTypeIdentifier = self::$fieldTypeIdentifierMap[$fieldTypeIdentifier];
@@ -80,7 +80,7 @@ final class FieldTypeFormContext extends RawMinkContext implements SnippetAccept
     /**
      * @When /^I view the edit form for this field$/
      */
-    public function iEditOrCreateContentOfThisType()
+    public function iEditOrCreateContentOfThisType(): void
     {
         $this->visitPath(
             sprintf(
@@ -93,7 +93,7 @@ final class FieldTypeFormContext extends RawMinkContext implements SnippetAccept
     /**
      * @When /^I view the edit user form for this field$/
      */
-    public function iEditOrCreateContentOfUserType()
+    public function iEditOrCreateContentOfUserType(): void
     {
         $this->visitPath(
             sprintf(
@@ -106,7 +106,7 @@ final class FieldTypeFormContext extends RawMinkContext implements SnippetAccept
     /**
      * @Then the edit form should contain an identifiable widget for :fieldTypeIdentifier field definition
      */
-    public function theEditFormShouldContainAFieldsetNamedAfterTheFieldDefinition($fieldTypeIdentifier)
+    public function theEditFormShouldContainAFieldsetNamedAfterTheFieldDefinition(string $fieldTypeIdentifier): void
     {
         $this->assertSession()->elementTextContains(
             'css',
@@ -118,7 +118,7 @@ final class FieldTypeFormContext extends RawMinkContext implements SnippetAccept
     /**
      * @Given it should contain a :type input field
      */
-    public function itShouldContainAGivenTypeInputField($inputType)
+    public function itShouldContainAGivenTypeInputField($inputType): void
     {
         $this->assertSession()->elementExists(
             'css',
@@ -134,7 +134,7 @@ final class FieldTypeFormContext extends RawMinkContext implements SnippetAccept
     /**
      * @Given /^it should contain the following set of labels, and input fields of the following types:$/
      */
-    public function itShouldContainTheFollowingSetOfLabelsAndInputFieldsTypes(TableNode $table)
+    public function itShouldContainTheFollowingSetOfLabelsAndInputFieldsTypes(TableNode $table): void
     {
         $inputNodeElements = $this->getSession()->getPage()->findAll(
             'css',
@@ -162,7 +162,7 @@ final class FieldTypeFormContext extends RawMinkContext implements SnippetAccept
      * @Given /^the field definition is required$/
      * @Given /^the field definition is marked as required$/
      */
-    public function theFieldDefinitionIsMarkedAsRequired()
+    public function theFieldDefinitionIsMarkedAsRequired(): void
     {
         $this->contentTypeContext->updateFieldDefinition(
             self::$fieldIdentifier,
@@ -173,7 +173,7 @@ final class FieldTypeFormContext extends RawMinkContext implements SnippetAccept
     /**
      * @Then the value input fields for :fieldIdentifier field should be flagged as required
      */
-    public function theInputFieldsShouldBeFlaggedAsRequired(string $fieldTypeIdentifier)
+    public function theInputFieldsShouldBeFlaggedAsRequired(string $fieldTypeIdentifier): void
     {
         $inputNodeElements = $this->getSession()->getPage()->findAll(
             'css',
@@ -212,7 +212,7 @@ final class FieldTypeFormContext extends RawMinkContext implements SnippetAccept
      * @param $option string The field definition option
      * @param $value mixed The option value
      */
-    public function setFieldDefinitionOption($option, $value)
+    public function setFieldDefinitionOption($option, $value): void
     {
         $this->contentTypeContext->updateFieldDefinition(
             self::$fieldIdentifier,

@@ -15,32 +15,9 @@ use Symfony\Component\HttpFoundation\Response;
 class FormActionEvent extends FormEvent
 {
     /**
-     * Name of the button used to submit the form.
-     *
-     * @var string
-     */
-    private $clickedButton;
-
-    /**
-     * Hash of options.
-     *
-     * @var array
-     */
-    private $options;
-
-    /**
      * Response to return after form post-processing. Typically a RedirectResponse.
-     *
-     * @var \Symfony\Component\HttpFoundation\Response
      */
-    private $response;
-
-    /**
-     * Additional payload populated for event listeners next in priority.
-     *
-     * @var array
-     */
-    private $payloads;
+    private ?Response $response = null;
 
     /**
      * @param \Symfony\Component\Form\FormInterface $form
@@ -48,13 +25,14 @@ class FormActionEvent extends FormEvent
      * @param $clickedButton
      * @param array $options
      * @param array $payloads
+     * @param string $clickedButton
      */
-    public function __construct(FormInterface $form, $data, $clickedButton, array $options = [], array $payloads = [])
+    public function __construct(FormInterface $form, mixed $data, /**
+     * Name of the button used to submit the form.
+     */
+    private $clickedButton, private array $options = [], private array $payloads = [])
     {
         parent::__construct($form, $data);
-        $this->clickedButton = $clickedButton;
-        $this->options = $options;
-        $this->payloads = $payloads;
     }
 
     /**
@@ -68,7 +46,7 @@ class FormActionEvent extends FormEvent
     /**
      * @return array
      */
-    public function getOptions()
+    public function getOptions(): array
     {
         return $this->options;
     }
@@ -93,7 +71,7 @@ class FormActionEvent extends FormEvent
      *
      * @return bool
      */
-    public function hasOption($optionName)
+    public function hasOption($optionName): bool
     {
         return isset($this->options[$optionName]);
     }
@@ -101,7 +79,7 @@ class FormActionEvent extends FormEvent
     /**
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function getResponse()
+    public function getResponse(): ?Response
     {
         return $this->response;
     }
@@ -109,12 +87,12 @@ class FormActionEvent extends FormEvent
     /**
      * @param \Symfony\Component\HttpFoundation\Response $response
      */
-    public function setResponse(Response $response)
+    public function setResponse(Response $response): void
     {
         $this->response = $response;
     }
 
-    public function hasResponse()
+    public function hasResponse(): bool
     {
         return $this->response !== null;
     }

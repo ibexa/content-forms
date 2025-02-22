@@ -17,6 +17,7 @@ use Ibexa\Contracts\Core\Repository\Values\Content\Location;
 use Ibexa\Contracts\Core\Repository\Values\ContentType\ContentType;
 use Ibexa\Core\Base\Exceptions\InvalidArgumentException;
 use Ibexa\Core\MVC\Symfony\View\Builder\ViewBuilder;
+use Override;
 use Symfony\Component\Form\FormError;
 
 /**
@@ -26,6 +27,7 @@ use Symfony\Component\Form\FormError;
  */
 class ContentEditViewBuilder extends AbstractContentViewBuilder implements ViewBuilder
 {
+    #[Override]
     public function matches($argument)
     {
         return 'ibexa_content_edit::editVersionDraftAction' === $argument;
@@ -42,6 +44,7 @@ class ContentEditViewBuilder extends AbstractContentViewBuilder implements ViewB
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\InvalidArgumentException
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\UnauthorizedException
      */
+    #[Override]
     public function buildView(array $parameters)
     {
         $view = new ContentEditView($this->configResolver->getParameter('content_edit.templates.edit'));

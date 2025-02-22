@@ -18,24 +18,13 @@ use Ibexa\Contracts\Core\Repository\Values\ContentType\ContentType;
 use Ibexa\Core\MVC\Symfony\Locale\UserLanguagePreferenceProviderInterface;
 use Ibexa\Core\MVC\Symfony\View\Event\FilterViewBuilderParametersEvent;
 use Ibexa\Core\MVC\Symfony\View\ViewEvents;
+use Override;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\Form\FormInterface;
 
 class ContentCreateViewFilter implements EventSubscriberInterface
 {
-    /** @var \Ibexa\Contracts\Core\Repository\LocationService */
-    private $locationService;
-
-    /** @var \Ibexa\Contracts\Core\Repository\ContentTypeService */
-    private $contentTypeService;
-
-    /** @var \Symfony\Component\Form\FormFactoryInterface */
-    private $formFactory;
-
-    /** @var \Ibexa\Core\MVC\Symfony\Locale\UserLanguagePreferenceProviderInterface */
-    private $languagePreferenceProvider;
-
     /**
      * @param \Ibexa\Contracts\Core\Repository\LocationService $locationService
      * @param \Ibexa\Contracts\Core\Repository\ContentTypeService $contentTypeService
@@ -43,17 +32,14 @@ class ContentCreateViewFilter implements EventSubscriberInterface
      * @param \Ibexa\Core\MVC\Symfony\Locale\UserLanguagePreferenceProviderInterface $languagePreferenceProvider
      */
     public function __construct(
-        LocationService $locationService,
-        ContentTypeService $contentTypeService,
-        FormFactoryInterface $formFactory,
-        UserLanguagePreferenceProviderInterface $languagePreferenceProvider
+        private LocationService $locationService,
+        private ContentTypeService $contentTypeService,
+        private FormFactoryInterface $formFactory,
+        private UserLanguagePreferenceProviderInterface $languagePreferenceProvider
     ) {
-        $this->locationService = $locationService;
-        $this->contentTypeService = $contentTypeService;
-        $this->formFactory = $formFactory;
-        $this->languagePreferenceProvider = $languagePreferenceProvider;
     }
 
+    #[Override]
     public static function getSubscribedEvents(): array
     {
         return [ViewEvents::FILTER_BUILDER_PARAMETERS => 'handleContentCreateForm'];
@@ -66,7 +52,7 @@ class ContentCreateViewFilter implements EventSubscriberInterface
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\UnauthorizedException
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException
      */
-    public function handleContentCreateForm(FilterViewBuilderParametersEvent $event)
+    public function handleContentCreateForm(FilterViewBuilderParametersEvent $event): void
     {
         if ('ibexa_content_edit::createWithoutDraftAction' !== $event->getParameters()->get('_controller')) {
             return;

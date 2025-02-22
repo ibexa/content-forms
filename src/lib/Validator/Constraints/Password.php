@@ -8,6 +8,7 @@ declare(strict_types=1);
 
 namespace Ibexa\ContentForms\Validator\Constraints;
 
+use Override;
 use Symfony\Component\Validator\Constraint;
 
 /**
@@ -24,6 +25,7 @@ class Password extends Constraint
     /**
      * {@inheritdoc}
      */
+    #[Override]
     public function getTargets(): array
     {
         return [self::CLASS_CONSTRAINT, self::PROPERTY_CONSTRAINT];

@@ -13,6 +13,7 @@ use Ibexa\ContentForms\Event\ContentFormEvents;
 use Ibexa\ContentForms\Event\FormActionEvent;
 use Ibexa\Contracts\Core\Repository\ContentService;
 use Ibexa\Contracts\Core\Repository\UserService;
+use Override;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
@@ -22,25 +23,14 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
  */
 class UserUpdateFormProcessor implements EventSubscriberInterface
 {
-    /** @var \Ibexa\Contracts\Core\Repository\UserService */
-    private $userService;
-
-    /** @var \Ibexa\Contracts\Core\Repository\ContentService */
-    private $contentService;
-
-    /** @var \Symfony\Component\Routing\Generator\UrlGeneratorInterface */
-    private $urlGenerator;
-
     public function __construct(
-        UserService $userService,
-        ContentService $contentService,
-        UrlGeneratorInterface $urlGenerator
+        private UserService $userService,
+        private ContentService $contentService,
+        private UrlGeneratorInterface $urlGenerator
     ) {
-        $this->userService = $userService;
-        $this->contentService = $contentService;
-        $this->urlGenerator = $urlGenerator;
     }
 
+    #[Override]
     public static function getSubscribedEvents(): array
     {
         return [
@@ -48,7 +38,7 @@ class UserUpdateFormProcessor implements EventSubscriberInterface
         ];
     }
 
-    public function processUpdate(FormActionEvent $event)
+    public function processUpdate(FormActionEvent $event): void
     {
         $data = $event->getData();
 

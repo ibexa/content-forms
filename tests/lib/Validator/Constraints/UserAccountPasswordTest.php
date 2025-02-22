@@ -10,29 +10,30 @@ namespace Ibexa\Tests\ContentForms\Validator\Constraints;
 
 use Ibexa\ContentForms\Validator\Constraints\UserAccountPassword;
 use Ibexa\ContentForms\Validator\Constraints\UserAccountPasswordValidator;
+use Override;
 use PHPUnit\Framework\TestCase;
 
 class UserAccountPasswordTest extends TestCase
 {
-    /** @var \Ibexa\ContentForms\Validator\Constraints\Password */
-    private $constraint;
+    private UserAccountPassword $constraint;
 
+    #[Override]
     protected function setUp(): void
     {
         $this->constraint = new UserAccountPassword();
     }
 
-    public function testConstruct()
+    public function testConstruct(): void
     {
         self::assertSame('ez.user.password.invalid', $this->constraint->message);
     }
 
-    public function testValidatedBy()
+    public function testValidatedBy(): void
     {
         self::assertSame(UserAccountPasswordValidator::class, $this->constraint->validatedBy());
     }
 
-    public function testGetTargets()
+    public function testGetTargets(): void
     {
         self::assertSame([UserAccountPassword::CLASS_CONSTRAINT, UserAccountPassword::PROPERTY_CONSTRAINT], $this->constraint->getTargets());
     }

@@ -14,6 +14,7 @@ use Ibexa\Contracts\Core\Repository\ContentTypeService;
 use Ibexa\Contracts\Core\Repository\Exceptions\UnauthorizedException;
 use Ibexa\Contracts\Core\Repository\Values\Content\Location;
 use Ibexa\Core\FieldType\RelationList\Value;
+use Override;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -26,43 +27,41 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 class RelationListFieldType extends AbstractType
 {
-    /** @var \Ibexa\Contracts\Core\Repository\ContentService */
-    private $contentService;
-
-    /** @var \Ibexa\Contracts\Core\Repository\ContentTypeService */
-    private $contentTypeService;
-
     /**
      * @param \Ibexa\Contracts\Core\Repository\ContentService $contentService
      * @param \Ibexa\Contracts\Core\Repository\ContentTypeService $contentTypeService
      */
-    public function __construct(ContentService $contentService, ContentTypeService $contentTypeService)
-    {
-        $this->contentService = $contentService;
-        $this->contentTypeService = $contentTypeService;
+    public function __construct(
+        private ContentService $contentService,
+        private ContentTypeService $contentTypeService
+    ) {
     }
 
-    public function getName()
+    public function getName(): string
     {
         return $this->getBlockPrefix();
     }
 
+    #[Override]
     public function getBlockPrefix(): string
     {
         return 'ezplatform_fieldtype_ezobjectrelationlist';
     }
 
+    #[Override]
     public function getParent(): ?string
     {
         return TextType::class;
     }
 
+    #[Override]
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder->addModelTransformer(new RelationListValueTransformer());
     }
 
-    public function finishView(FormView $view, FormInterface $form, array $options)
+    #[Override]
+    public function finishView(FormView $view, FormInterface $form, array $options): void
     {
         $view->vars['relations'] = [];
         $view->vars['default_location'] = $options['default_location'];
@@ -99,6 +98,7 @@ class RelationListFieldType extends AbstractType
     /**
      * {@inheritdoc}
      */
+    #[Override]
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([

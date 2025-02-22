@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace Ibexa\ContentForms\FieldType\DataTransformer;
 
 use Ibexa\Core\FieldType\Keyword\Value;
+use Override;
 use Symfony\Component\Form\DataTransformerInterface;
 
 /**
@@ -16,6 +17,7 @@ use Symfony\Component\Form\DataTransformerInterface;
  */
 class KeywordValueTransformer implements DataTransformerInterface
 {
+    #[Override]
     public function transform($value)
     {
         if (!$value instanceof Value) {
@@ -25,6 +27,7 @@ class KeywordValueTransformer implements DataTransformerInterface
         return implode(', ', $value->values);
     }
 
+    #[Override]
     public function reverseTransform($value)
     {
         if (empty($value)) {

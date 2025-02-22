@@ -12,17 +12,15 @@ use Ibexa\Contracts\ContentForms\Content\Form\Provider\GroupedContentFormFieldsP
 use Ibexa\Core\Helper\FieldsGroups\FieldsGroupsList;
 use JMS\TranslationBundle\Model\Message;
 use JMS\TranslationBundle\Translation\TranslationContainerInterface;
+use Override;
 
 final class GroupedContentFormFieldsProvider implements GroupedContentFormFieldsProviderInterface, TranslationContainerInterface
 {
-    /** @var \Ibexa\Core\Helper\FieldsGroups\FieldsGroupsList */
-    private $fieldsGroupsList;
-
-    public function __construct(FieldsGroupsList $fieldsGroupsList)
+    public function __construct(private FieldsGroupsList $fieldsGroupsList)
     {
-        $this->fieldsGroupsList = $fieldsGroupsList;
     }
 
+    #[Override]
     public function getGroupedFields(array $fieldsDataForm): array
     {
         $fieldsGroups = $this->fieldsGroupsList->getGroups();
@@ -40,6 +38,7 @@ final class GroupedContentFormFieldsProvider implements GroupedContentFormFields
         return $groupedFields;
     }
 
+    #[Override]
     public static function getTranslationMessages(): array
     {
         return [

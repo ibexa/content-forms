@@ -10,6 +10,7 @@ namespace Ibexa\ContentForms\Form\Processor\User;
 
 use Ibexa\ContentForms\Event\ContentFormEvents;
 use Ibexa\ContentForms\Event\FormActionEvent;
+use Override;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
@@ -19,18 +20,14 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
  */
 class UserCancelFormProcessor implements EventSubscriberInterface
 {
-    /** @var \Symfony\Component\Routing\Generator\UrlGeneratorInterface */
-    private $urlGenerator;
-
     /**
      * @param \Symfony\Component\Routing\Generator\UrlGeneratorInterface $urlGenerator
      */
-    public function __construct(
-        UrlGeneratorInterface $urlGenerator
-    ) {
-        $this->urlGenerator = $urlGenerator;
+    public function __construct(private UrlGeneratorInterface $urlGenerator)
+    {
     }
 
+    #[Override]
     public static function getSubscribedEvents(): array
     {
         return [
@@ -38,7 +35,7 @@ class UserCancelFormProcessor implements EventSubscriberInterface
         ];
     }
 
-    public function processCancel(FormActionEvent $event)
+    public function processCancel(FormActionEvent $event): void
     {
         /** @var \Ibexa\ContentForms\Data\User\UserUpdateData|\Ibexa\ContentForms\Data\User\UserCreateData $data */
         $data = $event->getData();

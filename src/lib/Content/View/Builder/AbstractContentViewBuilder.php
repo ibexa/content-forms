@@ -25,48 +25,16 @@ use Ibexa\Core\MVC\Symfony\View\ParametersInjector;
  */
 abstract class AbstractContentViewBuilder
 {
-    /** @var \Ibexa\Contracts\Core\Repository\Repository */
-    protected $repository;
-
-    /** @var \Ibexa\Core\MVC\Symfony\View\Configurator */
-    protected $viewConfigurator;
-
-    /** @var \Ibexa\Core\MVC\Symfony\View\ParametersInjector */
-    protected $viewParametersInjector;
-
-    /** @var \Ibexa\ContentForms\Form\ActionDispatcher\ActionDispatcherInterface */
-    protected $contentActionDispatcher;
-
-    /** @var \Ibexa\Core\MVC\Symfony\Locale\UserLanguagePreferenceProviderInterface */
-    protected $languagePreferenceProvider;
-
-    /** @var \Ibexa\Contracts\Core\SiteAccess\ConfigResolverInterface */
-    protected $configResolver;
-
-    /** @var \Ibexa\Contracts\ContentForms\Content\Form\Provider\GroupedContentFormFieldsProviderInterface */
-    protected $groupedContentFormFieldsProvider;
-
-    /** @var \Ibexa\Contracts\Core\Repository\ContentService */
-    protected $contentService;
-
     public function __construct(
-        Repository $repository,
-        Configurator $viewConfigurator,
-        ParametersInjector $viewParametersInjector,
-        ActionDispatcherInterface $contentActionDispatcher,
-        UserLanguagePreferenceProviderInterface $languagePreferenceProvider,
-        ConfigResolverInterface $configResolver,
-        GroupedContentFormFieldsProviderInterface $groupedContentFormFieldsProvider,
-        ContentService $contentService
+        protected Repository $repository,
+        protected Configurator $viewConfigurator,
+        protected ParametersInjector $viewParametersInjector,
+        protected ActionDispatcherInterface $contentActionDispatcher,
+        protected UserLanguagePreferenceProviderInterface $languagePreferenceProvider,
+        protected ConfigResolverInterface $configResolver,
+        protected GroupedContentFormFieldsProviderInterface $groupedContentFormFieldsProvider,
+        protected ContentService $contentService
     ) {
-        $this->repository = $repository;
-        $this->viewConfigurator = $viewConfigurator;
-        $this->viewParametersInjector = $viewParametersInjector;
-        $this->contentActionDispatcher = $contentActionDispatcher;
-        $this->languagePreferenceProvider = $languagePreferenceProvider;
-        $this->configResolver = $configResolver;
-        $this->groupedContentFormFieldsProvider = $groupedContentFormFieldsProvider;
-        $this->contentService = $contentService;
     }
 
     /**

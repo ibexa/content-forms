@@ -10,6 +10,7 @@ namespace Ibexa\ContentForms\Form\Type\FieldType;
 
 use Ibexa\ContentForms\FieldType\DataTransformer\MultipleCountryValueTransformer;
 use Ibexa\ContentForms\FieldType\DataTransformer\SingleCountryValueTransformer;
+use Override;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -20,32 +21,31 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 class CountryFieldType extends AbstractType
 {
-    /** @var array */
-    protected $countriesInfo;
-
     /**
      * @param array $countriesInfo
      */
-    public function __construct(array $countriesInfo)
+    public function __construct(protected array $countriesInfo)
     {
-        $this->countriesInfo = $countriesInfo;
     }
 
-    public function getName()
+    public function getName(): string
     {
         return $this->getBlockPrefix();
     }
 
+    #[Override]
     public function getBlockPrefix(): string
     {
         return 'ezplatform_fieldtype_ezcountry';
     }
 
+    #[Override]
     public function getParent(): ?string
     {
         return ChoiceType::class;
     }
 
+    #[Override]
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder->addModelTransformer(
@@ -55,6 +55,7 @@ class CountryFieldType extends AbstractType
         );
     }
 
+    #[Override]
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
@@ -63,7 +64,10 @@ class CountryFieldType extends AbstractType
         ]);
     }
 
-    private function getCountryChoices(array $countriesInfo)
+    /**
+     * @return mixed[]
+     */
+    private function getCountryChoices(array $countriesInfo): array
     {
         $choices = [];
         foreach ($countriesInfo as $country) {

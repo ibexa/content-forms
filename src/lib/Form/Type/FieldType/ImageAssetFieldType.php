@@ -14,6 +14,7 @@ use Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException;
 use Ibexa\Contracts\Core\Repository\Exceptions\UnauthorizedException;
 use Ibexa\Core\FieldType\ImageAsset\AssetMapper;
 use JMS\TranslationBundle\Annotation\Desc;
+use Override;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
@@ -27,39 +28,26 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ImageAssetFieldType extends AbstractType
 {
-    /** @var \Ibexa\Contracts\Core\Repository\ContentService */
-    private $contentService;
-
-    /** @var \Ibexa\Core\FieldType\ImageAsset\AssetMapper */
-    private $assetMapper;
-
-    /** @var \Ibexa\ContentForms\ConfigResolver\MaxUploadSize */
-    private $maxUploadSize;
-
-    private MimeTypesInterface $mimeTypes;
-
     public function __construct(
-        ContentService $contentService,
-        AssetMapper $mapper,
-        MaxUploadSize $maxUploadSize,
-        MimeTypesInterface $mimeTypes
+        private ContentService $contentService,
+        private AssetMapper $assetMapper,
+        private MaxUploadSize $maxUploadSize,
+        private MimeTypesInterface $mimeTypes
     ) {
-        $this->contentService = $contentService;
-        $this->maxUploadSize = $maxUploadSize;
-        $this->assetMapper = $mapper;
-        $this->mimeTypes = $mimeTypes;
     }
 
-    public function getName()
+    public function getName(): string
     {
         return $this->getBlockPrefix();
     }
 
+    #[Override]
     public function getBlockPrefix(): string
     {
         return 'ezplatform_fieldtype_ezimageasset';
     }
 
+    #[Override]
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
@@ -91,7 +79,8 @@ class ImageAssetFieldType extends AbstractType
             );
     }
 
-    public function buildView(FormView $view, FormInterface $form, array $options)
+    #[Override]
+    public function buildView(FormView $view, FormInterface $form, array $options): void
     {
         $view->vars['destination_content'] = null;
 
@@ -120,6 +109,7 @@ class ImageAssetFieldType extends AbstractType
         $view->vars['max_file_size'] = $this->getMaxFileSize();
     }
 
+    #[Override]
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([

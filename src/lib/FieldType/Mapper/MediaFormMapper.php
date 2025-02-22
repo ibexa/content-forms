@@ -15,22 +15,20 @@ use Ibexa\Contracts\ContentForms\FieldType\FieldValueFormMapperInterface;
 use Ibexa\Contracts\Core\Repository\FieldTypeService;
 use Ibexa\Core\FieldType\Media\Type;
 use Ibexa\Core\FieldType\Media\Value;
+use Override;
 use Symfony\Component\Form\FormInterface;
 
 class MediaFormMapper implements FieldValueFormMapperInterface
 {
-    /** @var \Ibexa\Contracts\Core\Repository\FieldTypeService */
-    private $fieldTypeService;
-
     protected const ACCEPT_VIDEO = 'video/*';
     protected const ACCEPT_AUDIO = 'audio/*';
 
-    public function __construct(FieldTypeService $fieldTypeService)
+    public function __construct(private FieldTypeService $fieldTypeService)
     {
-        $this->fieldTypeService = $fieldTypeService;
     }
 
-    public function mapFieldValueForm(FormInterface $fieldForm, FieldData $data)
+    #[Override]
+    public function mapFieldValueForm(FormInterface $fieldForm, FieldData $data): void
     {
         $fieldDefinition = $data->fieldDefinition;
         $formConfig = $fieldForm->getConfig();

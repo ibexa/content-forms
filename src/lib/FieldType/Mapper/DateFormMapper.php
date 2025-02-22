@@ -11,6 +11,7 @@ namespace Ibexa\ContentForms\FieldType\Mapper;
 use Ibexa\ContentForms\Form\Type\FieldType\DateFieldType;
 use Ibexa\Contracts\ContentForms\Data\Content\FieldData;
 use Ibexa\Contracts\ContentForms\FieldType\FieldValueFormMapperInterface;
+use Override;
 use Symfony\Component\Form\FormInterface;
 
 /**
@@ -18,7 +19,8 @@ use Symfony\Component\Form\FormInterface;
  */
 class DateFormMapper implements FieldValueFormMapperInterface
 {
-    public function mapFieldValueForm(FormInterface $fieldForm, FieldData $data)
+    #[Override]
+    public function mapFieldValueForm(FormInterface $fieldForm, FieldData $data): void
     {
         $fieldDefinition = $data->fieldDefinition;
         $formConfig = $fieldForm->getConfig();
