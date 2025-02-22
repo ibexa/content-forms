@@ -23,7 +23,7 @@ class FieldTypeFormMapperDispatcherTest extends TestCase
     private FieldTypeFormMapperDispatcher $dispatcher;
 
     /** @var \Ibexa\Contracts\ContentForms\FieldType\FieldValueFormMapperInterface|\PHPUnit\Framework\MockObject\MockObject */
-    private MockObject $fieldValueMapperMock;
+    private FieldValueFormMapperInterface $fieldValueMapperMock;
 
     protected function setUp(): void
     {
