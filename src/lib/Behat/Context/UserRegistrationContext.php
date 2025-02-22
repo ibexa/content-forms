@@ -54,25 +54,13 @@ class UserRegistrationContext extends RawMinkContext implements Context, Snippet
      */
     private int $adminUserId = 14;
 
-    private PermissionResolver $permissionResolver;
-
-    private RoleService $roleService;
-
-    private UserService $userService;
-
-    private ContentTypeService $contentTypeService;
-
     public function __construct(
-        PermissionResolver $permissionResolver,
-        RoleService $roleService,
-        UserService $userService,
-        ContentTypeService $contentTypeService
+        private PermissionResolver $permissionResolver,
+        private RoleService $roleService,
+        private UserService $userService,
+        private ContentTypeService $contentTypeService
     ) {
-        $permissionResolver->setCurrentUserReference(new UserReference($this->adminUserId));
-        $this->permissionResolver = $permissionResolver;
-        $this->roleService = $roleService;
-        $this->userService = $userService;
-        $this->contentTypeService = $contentTypeService;
+        $this->permissionResolver->setCurrentUserReference(new UserReference($this->adminUserId));
     }
 
     /** @BeforeScenario */

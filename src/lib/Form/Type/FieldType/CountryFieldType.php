@@ -20,14 +20,11 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 class CountryFieldType extends AbstractType
 {
-    protected array $countriesInfo;
-
     /**
      * @param array $countriesInfo
      */
-    public function __construct(array $countriesInfo)
+    public function __construct(protected array $countriesInfo)
     {
-        $this->countriesInfo = $countriesInfo;
     }
 
     public function getName(): string

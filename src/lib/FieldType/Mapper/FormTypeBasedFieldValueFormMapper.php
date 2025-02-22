@@ -39,11 +39,8 @@ final class FormTypeBasedFieldValueFormMapper implements FieldValueFormMapperInt
      */
     private $formType;
 
-    private FieldTypeService $fieldTypeService;
-
-    public function __construct(FieldTypeService $fieldTypeService)
+    public function __construct(private FieldTypeService $fieldTypeService)
     {
-        $this->fieldTypeService = $fieldTypeService;
     }
 
     public function setFormType($formType): void

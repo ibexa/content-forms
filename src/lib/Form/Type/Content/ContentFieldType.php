@@ -26,11 +26,8 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ContentFieldType extends AbstractType
 {
-    private FieldTypeFormMapperDispatcherInterface $fieldTypeFormMapper;
-
-    public function __construct(FieldTypeFormMapperDispatcherInterface $fieldTypeFormMapper)
+    public function __construct(private FieldTypeFormMapperDispatcherInterface $fieldTypeFormMapper)
     {
-        $this->fieldTypeFormMapper = $fieldTypeFormMapper;
     }
 
     public function getName(): string

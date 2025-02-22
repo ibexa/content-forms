@@ -30,12 +30,6 @@ use Symfony\Component\Routing\RouterInterface;
  */
 class ContentFormProcessor implements EventSubscriberInterface
 {
-    private ContentService $contentService;
-
-    private LocationService $locationService;
-
-    private RouterInterface $router;
-
     /**
      * @param \Ibexa\Contracts\Core\Repository\ContentService $contentService
      * @param \Ibexa\Contracts\Core\Repository\LocationService $locationService
@@ -43,13 +37,10 @@ class ContentFormProcessor implements EventSubscriberInterface
      * @param \Ibexa\Contracts\Core\Repository\URLAliasService $urlAliasService
      */
     public function __construct(
-        ContentService $contentService,
-        LocationService $locationService,
-        RouterInterface $router
+        private ContentService $contentService,
+        private LocationService $locationService,
+        private RouterInterface $router
     ) {
-        $this->contentService = $contentService;
-        $this->locationService = $locationService;
-        $this->router = $router;
     }
 
     /**

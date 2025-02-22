@@ -28,12 +28,8 @@ use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
 
 class FieldCollectionType extends CollectionType
 {
-    private EventDispatcherInterface $eventDispatcher;
-
-    public function __construct(
-        EventDispatcherInterface $eventDispatcher
-    ) {
-        $this->eventDispatcher = $eventDispatcher;
+    public function __construct(private EventDispatcherInterface $eventDispatcher)
+    {
     }
 
     public function buildForm(

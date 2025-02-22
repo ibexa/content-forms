@@ -23,11 +23,8 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 class ImageFieldType extends AbstractType
 {
-    private MimeTypesInterface $mimeTypes;
-
-    public function __construct(MimeTypesInterface $mimeTypes)
+    public function __construct(private MimeTypesInterface $mimeTypes)
     {
-        $this->mimeTypes = $mimeTypes;
     }
 
     public function getName(): string

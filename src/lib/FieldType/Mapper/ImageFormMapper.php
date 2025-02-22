@@ -18,11 +18,8 @@ use Symfony\Component\Form\FormInterface;
 
 class ImageFormMapper implements FieldValueFormMapperInterface
 {
-    private FieldTypeService $fieldTypeService;
-
-    public function __construct(FieldTypeService $fieldTypeService)
+    public function __construct(private FieldTypeService $fieldTypeService)
     {
-        $this->fieldTypeService = $fieldTypeService;
     }
 
     public function mapFieldValueForm(FormInterface $fieldForm, FieldData $data): void

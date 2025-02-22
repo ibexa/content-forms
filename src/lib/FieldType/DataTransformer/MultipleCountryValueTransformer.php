@@ -18,16 +18,10 @@ use Symfony\Component\Form\DataTransformerInterface;
 class MultipleCountryValueTransformer implements DataTransformerInterface
 {
     /**
-     * @var array Array of countries from "ibexa.field_type.country.data"
-     */
-    protected array $countriesInfo;
-
-    /**
      * @param array $countriesInfo
      */
-    public function __construct(array $countriesInfo)
+    public function __construct(protected array $countriesInfo)
     {
-        $this->countriesInfo = $countriesInfo;
     }
 
     public function transform($value)

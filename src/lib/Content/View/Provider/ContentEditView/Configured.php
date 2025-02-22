@@ -19,11 +19,8 @@ use Symfony\Component\HttpKernel\Controller\ControllerReference;
  */
 class Configured implements ViewProvider
 {
-    protected MatcherFactoryInterface $matcherFactory;
-
-    public function __construct(MatcherFactoryInterface $matcherFactory)
+    public function __construct(protected MatcherFactoryInterface $matcherFactory)
     {
-        $this->matcherFactory = $matcherFactory;
     }
 
     public function getView(View $view)

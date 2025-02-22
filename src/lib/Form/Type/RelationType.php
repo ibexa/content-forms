@@ -25,16 +25,10 @@ final class RelationType extends AbstractType
     public const LOCATION_BROWSE = 1;
     public const LOCATION_SELF = -1;
 
-    private LocationService $locationService;
-
-    private TranslatorInterface $translator;
-
     public function __construct(
-        LocationService $locationService,
-        TranslatorInterface $translator
+        private LocationService $locationService,
+        private TranslatorInterface $translator
     ) {
-        $this->locationService = $locationService;
-        $this->translator = $translator;
     }
 
     public function getBlockPrefix(): string

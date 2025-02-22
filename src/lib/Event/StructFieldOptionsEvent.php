@@ -14,21 +14,12 @@ use Symfony\Contracts\EventDispatcher\Event;
 
 abstract class StructFieldOptionsEvent extends Event
 {
-    protected FormInterface $parentForm;
-
-    protected FieldData $fieldData;
-
-    /** @var array<string, mixed> */
-    protected array $options;
-
     public function __construct(
-        FormInterface $parentForm,
-        FieldData $fieldData,
-        array $options
+        protected FormInterface $parentForm,
+        protected FieldData $fieldData,
+        /** @var array<string, mixed> */
+        protected array $options
     ) {
-        $this->parentForm = $parentForm;
-        $this->fieldData = $fieldData;
-        $this->options = $options;
     }
 
     public function getParentForm(): FormInterface

@@ -27,16 +27,6 @@ use Symfony\Component\Form\FormInterface;
 
 class ContentEditViewFilter implements EventSubscriberInterface
 {
-    private ContentService $contentService;
-
-    private ContentTypeService $contentTypeService;
-
-    private FormFactoryInterface $formFactory;
-
-    private UserLanguagePreferenceProviderInterface $languagePreferenceProvider;
-
-    private LocationService $locationService;
-
     /**
      * @param \Ibexa\Contracts\Core\Repository\ContentService $contentService
      * @param \Ibexa\Contracts\Core\Repository\ContentTypeService $contentTypeService
@@ -44,17 +34,12 @@ class ContentEditViewFilter implements EventSubscriberInterface
      * @param \Ibexa\Core\MVC\Symfony\Locale\UserLanguagePreferenceProviderInterface $languagePreferenceProvider
      */
     public function __construct(
-        ContentService $contentService,
-        LocationService $locationService,
-        ContentTypeService $contentTypeService,
-        FormFactoryInterface $formFactory,
-        UserLanguagePreferenceProviderInterface $languagePreferenceProvider
+        private ContentService $contentService,
+        private LocationService $locationService,
+        private ContentTypeService $contentTypeService,
+        private FormFactoryInterface $formFactory,
+        private UserLanguagePreferenceProviderInterface $languagePreferenceProvider
     ) {
-        $this->contentService = $contentService;
-        $this->contentTypeService = $contentTypeService;
-        $this->formFactory = $formFactory;
-        $this->languagePreferenceProvider = $languagePreferenceProvider;
-        $this->locationService = $locationService;
     }
 
     public static function getSubscribedEvents(): array

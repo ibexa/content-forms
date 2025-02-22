@@ -19,11 +19,8 @@ class PagelayoutContext extends RawMinkContext implements Context, SnippetAccept
     /** @var string Regex matching the way the Twig template name is inserted in debug mode */
     public const TWIG_DEBUG_STOP_REGEX = '<!-- STOP .*%s.* -->';
 
-    private ConfigResolverInterface $configResolver;
-
-    public function __construct(ConfigResolverInterface $configResolver)
+    public function __construct(private ConfigResolverInterface $configResolver)
     {
-        $this->configResolver = $configResolver;
     }
 
     /**

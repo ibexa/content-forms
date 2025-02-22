@@ -18,11 +18,8 @@ use Symfony\Component\Form\DataTransformerInterface;
  */
 class FieldValueTransformer implements DataTransformerInterface
 {
-    private FieldType $fieldType;
-
-    public function __construct(FieldType $fieldType)
+    public function __construct(private FieldType $fieldType)
     {
-        $this->fieldType = $fieldType;
     }
 
     /**

@@ -23,25 +23,21 @@ use PHPUnit\Framework\Assert as Assertion;
 
 final class ContentTypeContext extends RawMinkContext implements Context, SnippetAcceptingContext
 {
-    private ContentTypeService $contentTypeService;
-
     /**
      * Current content type within this context.
      */
     private ContentType $currentContentType;
-
-    private PermissionResolver $permissionResolver;
 
     /**
      * Default Administrator user id.
      */
     private int $adminUserId = 14;
 
-    public function __construct(PermissionResolver $permissionResolver, ContentTypeService $contentTypeService)
-    {
-        $permissionResolver->setCurrentUserReference(new UserReference($this->adminUserId));
-        $this->permissionResolver = $permissionResolver;
-        $this->contentTypeService = $contentTypeService;
+    public function __construct(
+        private PermissionResolver $permissionResolver,
+        private ContentTypeService $contentTypeService
+    ) {
+        $this->permissionResolver->setCurrentUserReference(new UserReference($this->adminUserId));
     }
 
     /**

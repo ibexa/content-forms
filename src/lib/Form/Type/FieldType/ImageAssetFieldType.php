@@ -27,24 +27,12 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ImageAssetFieldType extends AbstractType
 {
-    private ContentService $contentService;
-
-    private AssetMapper $assetMapper;
-
-    private MaxUploadSize $maxUploadSize;
-
-    private MimeTypesInterface $mimeTypes;
-
     public function __construct(
-        ContentService $contentService,
-        AssetMapper $mapper,
-        MaxUploadSize $maxUploadSize,
-        MimeTypesInterface $mimeTypes
+        private ContentService $contentService,
+        private AssetMapper $assetMapper,
+        private MaxUploadSize $maxUploadSize,
+        private MimeTypesInterface $mimeTypes
     ) {
-        $this->contentService = $contentService;
-        $this->maxUploadSize = $maxUploadSize;
-        $this->assetMapper = $mapper;
-        $this->mimeTypes = $mimeTypes;
     }
 
     public function getName(): string

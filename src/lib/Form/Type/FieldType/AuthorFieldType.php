@@ -29,17 +29,14 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 class AuthorFieldType extends AbstractType
 {
-    private Repository $repository;
-
     /** @var int */
     private $defaultAuthor;
 
     /**
      * @param \Ibexa\Contracts\Core\Repository\Repository $repository
      */
-    public function __construct(Repository $repository)
+    public function __construct(private Repository $repository)
     {
-        $this->repository = $repository;
     }
 
     /**

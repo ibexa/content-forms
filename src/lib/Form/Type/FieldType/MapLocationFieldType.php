@@ -24,11 +24,8 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 class MapLocationFieldType extends AbstractType
 {
-    protected FieldTypeService $fieldTypeService;
-
-    public function __construct(FieldTypeService $fieldTypeService)
+    public function __construct(protected FieldTypeService $fieldTypeService)
     {
-        $this->fieldTypeService = $fieldTypeService;
     }
 
     public function getName(): string

@@ -22,11 +22,8 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 class TextLineFieldType extends AbstractType
 {
-    private FieldTypeService $fieldTypeService;
-
-    public function __construct(FieldTypeService $fieldTypeService)
+    public function __construct(private FieldTypeService $fieldTypeService)
     {
-        $this->fieldTypeService = $fieldTypeService;
     }
 
     public function getName(): string

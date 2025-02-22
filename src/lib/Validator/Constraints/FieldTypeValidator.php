@@ -14,11 +14,8 @@ use Symfony\Component\Validator\ConstraintValidator;
 
 abstract class FieldTypeValidator extends ConstraintValidator
 {
-    protected FieldTypeService $fieldTypeService;
-
-    public function __construct(FieldTypeService $fieldTypeService)
+    public function __construct(protected FieldTypeService $fieldTypeService)
     {
-        $this->fieldTypeService = $fieldTypeService;
     }
 
     /**

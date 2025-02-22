@@ -19,14 +19,11 @@ use Symfony\Component\Form\FormInterface;
 
 class MediaFormMapper implements FieldValueFormMapperInterface
 {
-    private FieldTypeService $fieldTypeService;
-
     protected const ACCEPT_VIDEO = 'video/*';
     protected const ACCEPT_AUDIO = 'audio/*';
 
-    public function __construct(FieldTypeService $fieldTypeService)
+    public function __construct(private FieldTypeService $fieldTypeService)
     {
-        $this->fieldTypeService = $fieldTypeService;
     }
 
     public function mapFieldValueForm(FormInterface $fieldForm, FieldData $data): void

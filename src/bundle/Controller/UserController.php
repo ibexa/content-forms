@@ -30,44 +30,17 @@ use Symfony\Component\HttpFoundation\Request;
 
 class UserController extends Controller
 {
-    private ContentTypeService $contentTypeService;
-
-    private UserService $userService;
-
-    private LocationService $locationService;
-
-    private LanguageService $languageService;
-
-    private ActionDispatcherInterface $userActionDispatcher;
-
-    private PermissionResolver $permissionResolver;
-
-    private UserLanguagePreferenceProviderInterface $userLanguagePreferenceProvider;
-
-    private GroupedContentFormFieldsProviderInterface $groupedContentFormFieldsProvider;
-
-    private ContentService $contentService;
-
     public function __construct(
-        ContentTypeService $contentTypeService,
-        UserService $userService,
-        LocationService $locationService,
-        LanguageService $languageService,
-        ActionDispatcherInterface $userActionDispatcher,
-        PermissionResolver $permissionResolver,
-        UserLanguagePreferenceProviderInterface $userLanguagePreferenceProvider,
-        GroupedContentFormFieldsProviderInterface $groupedContentFormFieldsProvider,
-        ContentService $contentService
+        private ContentTypeService $contentTypeService,
+        private UserService $userService,
+        private LocationService $locationService,
+        private LanguageService $languageService,
+        private ActionDispatcherInterface $userActionDispatcher,
+        private PermissionResolver $permissionResolver,
+        private UserLanguagePreferenceProviderInterface $userLanguagePreferenceProvider,
+        private GroupedContentFormFieldsProviderInterface $groupedContentFormFieldsProvider,
+        private ContentService $contentService
     ) {
-        $this->contentTypeService = $contentTypeService;
-        $this->userService = $userService;
-        $this->locationService = $locationService;
-        $this->languageService = $languageService;
-        $this->userActionDispatcher = $userActionDispatcher;
-        $this->permissionResolver = $permissionResolver;
-        $this->userLanguagePreferenceProvider = $userLanguagePreferenceProvider;
-        $this->groupedContentFormFieldsProvider = $groupedContentFormFieldsProvider;
-        $this->contentService = $contentService;
     }
 
     /**

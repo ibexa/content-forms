@@ -15,11 +15,8 @@ use JMS\TranslationBundle\Translation\TranslationContainerInterface;
 
 final class GroupedContentFormFieldsProvider implements GroupedContentFormFieldsProviderInterface, TranslationContainerInterface
 {
-    private FieldsGroupsList $fieldsGroupsList;
-
-    public function __construct(FieldsGroupsList $fieldsGroupsList)
+    public function __construct(private FieldsGroupsList $fieldsGroupsList)
     {
-        $this->fieldsGroupsList = $fieldsGroupsList;
     }
 
     public function getGroupedFields(array $fieldsDataForm): array

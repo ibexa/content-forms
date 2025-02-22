@@ -21,20 +21,14 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
  */
 class UserCreateFormProcessor implements EventSubscriberInterface
 {
-    private UserService $userService;
-
-    private UrlGeneratorInterface $urlGenerator;
-
     /**
      * @param \Ibexa\Contracts\Core\Repository\UserService $userService
      * @param \Symfony\Component\Routing\Generator\UrlGeneratorInterface $urlGenerator
      */
     public function __construct(
-        UserService $userService,
-        UrlGeneratorInterface $urlGenerator
+        private UserService $userService,
+        private UrlGeneratorInterface $urlGenerator
     ) {
-        $this->userService = $userService;
-        $this->urlGenerator = $urlGenerator;
     }
 
     public static function getSubscribedEvents(): array

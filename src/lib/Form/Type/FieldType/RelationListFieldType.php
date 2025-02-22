@@ -26,18 +26,14 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 class RelationListFieldType extends AbstractType
 {
-    private ContentService $contentService;
-
-    private ContentTypeService $contentTypeService;
-
     /**
      * @param \Ibexa\Contracts\Core\Repository\ContentService $contentService
      * @param \Ibexa\Contracts\Core\Repository\ContentTypeService $contentTypeService
      */
-    public function __construct(ContentService $contentService, ContentTypeService $contentTypeService)
-    {
-        $this->contentService = $contentService;
-        $this->contentTypeService = $contentTypeService;
+    public function __construct(
+        private ContentService $contentService,
+        private ContentTypeService $contentTypeService
+    ) {
     }
 
     public function getName(): string

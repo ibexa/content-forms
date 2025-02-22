@@ -22,20 +22,11 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
  */
 class UserUpdateFormProcessor implements EventSubscriberInterface
 {
-    private UserService $userService;
-
-    private ContentService $contentService;
-
-    private UrlGeneratorInterface $urlGenerator;
-
     public function __construct(
-        UserService $userService,
-        ContentService $contentService,
-        UrlGeneratorInterface $urlGenerator
+        private UserService $userService,
+        private ContentService $contentService,
+        private UrlGeneratorInterface $urlGenerator
     ) {
-        $this->userService = $userService;
-        $this->contentService = $contentService;
-        $this->urlGenerator = $urlGenerator;
     }
 
     public static function getSubscribedEvents(): array

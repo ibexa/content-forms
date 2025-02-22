@@ -19,23 +19,16 @@ use Symfony\Component\Form\Exception\TransformationFailedException;
  */
 abstract class AbstractBinaryBaseTransformer
 {
-    protected FieldType $fieldType;
-
-    protected Value $initialValue;
-
-    /** @var string */
-    protected $valueClass;
-
     /**
      * @param \Ibexa\Contracts\Core\Repository\FieldType $fieldType
      * @param \Ibexa\Core\FieldType\Value $initialValue
      * @param string $valueClass
      */
-    public function __construct(FieldType $fieldType, Value $initialValue, $valueClass)
-    {
-        $this->fieldType = $fieldType;
-        $this->initialValue = $initialValue;
-        $this->valueClass = $valueClass;
+    public function __construct(
+        protected FieldType $fieldType,
+        protected Value $initialValue,
+        protected $valueClass
+    ) {
     }
 
     /**

@@ -18,12 +18,6 @@ use Symfony\Component\Routing\RouterInterface;
 
 class SystemUrlRedirectProcessor implements EventSubscriberInterface
 {
-    private RouterInterface $router;
-
-    private URLAliasService $urlAliasService;
-
-    private LocationService $locationService;
-
     /**
      * @param \Symfony\Component\Routing\RouterInterface $router
      * @param \Ibexa\Contracts\Core\Repository\URLAliasService $urlAliasService
@@ -31,13 +25,10 @@ class SystemUrlRedirectProcessor implements EventSubscriberInterface
      * @param array $siteaccessGroups
      */
     public function __construct(
-        RouterInterface $router,
-        URLAliasService $urlAliasService,
-        LocationService $locationService
+        private RouterInterface $router,
+        private URLAliasService $urlAliasService,
+        private LocationService $locationService
     ) {
-        $this->router = $router;
-        $this->urlAliasService = $urlAliasService;
-        $this->locationService = $locationService;
     }
 
     /**

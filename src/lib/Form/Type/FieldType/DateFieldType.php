@@ -23,11 +23,8 @@ class DateFieldType extends AbstractType
 {
     private const EDIT_VIEWS = ['ibexa.content.draft.edit', 'ibexa.content.translate', 'ibexa.content.translate_with_location', 'ibexa.user.update'];
 
-    private RequestStack $requestStack;
-
-    public function __construct(RequestStack $requestStack)
+    public function __construct(private RequestStack $requestStack)
     {
-        $this->requestStack = $requestStack;
     }
 
     public function getName(): string

@@ -20,23 +20,13 @@ abstract class AbstractRelationFormMapper implements FieldValueFormMapperInterfa
     protected const SELECTION_SELF = -1;
 
     /**
-     * @var \Ibexa\Contracts\Core\Repository\ContentTypeService Used to fetch list of available content types
-     */
-    protected ContentTypeService $contentTypeService;
-
-    /**
-     * @var \Ibexa\Contracts\Core\Repository\LocationService Used to fetch selection root
-     */
-    protected LocationService $locationService;
-
-    /**
      * @param \Ibexa\Contracts\Core\Repository\ContentTypeService $contentTypeService
      * @param \Ibexa\Contracts\Core\Repository\LocationService $locationService
      */
-    public function __construct(ContentTypeService $contentTypeService, LocationService $locationService)
-    {
-        $this->contentTypeService = $contentTypeService;
-        $this->locationService = $locationService;
+    public function __construct(
+        protected ContentTypeService $contentTypeService,
+        protected LocationService $locationService
+    ) {
     }
 
     /**
