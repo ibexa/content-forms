@@ -19,15 +19,14 @@ use Symfony\Component\Form\FormBuilderInterface;
  */
 class ISBNFieldType extends AbstractType
 {
-    /** @var \Ibexa\Contracts\Core\Repository\FieldTypeService */
-    protected $fieldTypeService;
+    protected FieldTypeService $fieldTypeService;
 
     public function __construct(FieldTypeService $fieldTypeService)
     {
         $this->fieldTypeService = $fieldTypeService;
     }
 
-    public function getName()
+    public function getName(): string
     {
         return $this->getBlockPrefix();
     }

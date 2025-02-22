@@ -23,7 +23,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 class ContentEditType extends AbstractType
 {
-    public function getName()
+    public function getName(): string
     {
         return $this->getBlockPrefix();
     }

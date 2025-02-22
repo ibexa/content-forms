@@ -22,7 +22,7 @@ class UrlFormMapper implements FieldValueFormMapperInterface
      * @param \Symfony\Component\Form\FormInterface $fieldForm
      * @param \Ibexa\Contracts\ContentForms\Data\Content\FieldData $data
      */
-    public function mapFieldValueForm(FormInterface $fieldForm, FieldData $data)
+    public function mapFieldValueForm(FormInterface $fieldForm, FieldData $data): void
     {
         $fieldDefinition = $data->fieldDefinition;
         $formConfig = $fieldForm->getConfig();

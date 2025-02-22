@@ -17,7 +17,7 @@ final class RelationListValueTransformerTest extends TestCase
     /**
      * @dataProvider dataProviderForTestReverseTransform
      */
-    public function testReverseTransform($value, ?Value $expectedValue): void
+    public function testReverseTransform(?string $value, ?Value $expectedValue): void
     {
         $transformer = new RelationListValueTransformer();
 

@@ -20,7 +20,7 @@ class MultipleCountryValueTransformer implements DataTransformerInterface
     /**
      * @var array Array of countries from "ibexa.field_type.country.data"
      */
-    protected $countriesInfo;
+    protected array $countriesInfo;
 
     /**
      * @param array $countriesInfo

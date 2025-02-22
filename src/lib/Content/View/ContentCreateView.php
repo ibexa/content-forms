@@ -17,78 +17,50 @@ use Symfony\Component\Form\FormInterface;
 
 class ContentCreateView extends BaseView implements LocationValueView, ContentTypeValueView
 {
-    /** @var \Ibexa\Contracts\Core\Repository\Values\ContentType\ContentType */
-    private $contentType;
+    private ContentType $contentType;
 
-    /** @var \Ibexa\Contracts\Core\Repository\Values\Content\Location */
-    private $location;
+    private Location $location;
 
-    /** @var \Ibexa\Contracts\Core\Repository\Values\Content\Language */
-    private $language;
+    private Language $language;
 
-    /** @var \Symfony\Component\Form\FormInterface */
-    private $form;
+    private FormInterface $form;
 
-    /**
-     * @param \Ibexa\Contracts\Core\Repository\Values\ContentType\ContentType $contentType
-     */
-    public function setContentType(ContentType $contentType)
+    public function setContentType(ContentType $contentType): void
     {
         $this->contentType = $contentType;
     }
 
-    /**
-     * @return \Ibexa\Contracts\Core\Repository\Values\ContentType\ContentType
-     */
     public function getContentType(): ContentType
     {
         return $this->contentType;
     }
 
-    /**
-     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Location $location
-     */
-    public function setLocation(Location $location)
+    public function setLocation(Location $location): void
     {
         $this->location = $location;
     }
 
-    /**
-     * @return \Ibexa\Contracts\Core\Repository\Values\Content\Location
-     */
     public function getLocation(): Location
     {
         return $this->location;
     }
 
-    /**
-     * @return \Ibexa\Contracts\Core\Repository\Values\Content\Language
-     */
     public function getLanguage(): Language
     {
         return $this->language;
     }
 
-    /**
-     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Language $language
-     */
-    public function setLanguage(Language $language)
+    public function setLanguage(Language $language): void
     {
         $this->language = $language;
     }
 
-    /**
-     * @return \Symfony\Component\Form\FormInterface
-     */
     public function getForm(): FormInterface
     {
         return $this->form;
     }
 
-    /**
-     * @param \Symfony\Component\Form\FormInterface $form
-     */
-    public function setForm(FormInterface $form)
+    public function setForm(FormInterface $form): void
     {
         $this->form = $form;
     }

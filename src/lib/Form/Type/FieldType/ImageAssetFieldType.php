@@ -27,14 +27,11 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ImageAssetFieldType extends AbstractType
 {
-    /** @var \Ibexa\Contracts\Core\Repository\ContentService */
-    private $contentService;
+    private ContentService $contentService;
 
-    /** @var \Ibexa\Core\FieldType\ImageAsset\AssetMapper */
-    private $assetMapper;
+    private AssetMapper $assetMapper;
 
-    /** @var \Ibexa\ContentForms\ConfigResolver\MaxUploadSize */
-    private $maxUploadSize;
+    private MaxUploadSize $maxUploadSize;
 
     private MimeTypesInterface $mimeTypes;
 
@@ -50,7 +47,7 @@ class ImageAssetFieldType extends AbstractType
         $this->mimeTypes = $mimeTypes;
     }
 
-    public function getName()
+    public function getName(): string
     {
         return $this->getBlockPrefix();
     }
@@ -91,7 +88,7 @@ class ImageAssetFieldType extends AbstractType
             );
     }
 
-    public function buildView(FormView $view, FormInterface $form, array $options)
+    public function buildView(FormView $view, FormInterface $form, array $options): void
     {
         $view->vars['destination_content'] = null;
 

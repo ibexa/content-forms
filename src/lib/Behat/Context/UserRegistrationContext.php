@@ -20,6 +20,7 @@ use Ibexa\Contracts\Core\Repository\RoleService;
 use Ibexa\Contracts\Core\Repository\UserService;
 use Ibexa\Contracts\Core\Repository\Values\User\Role;
 use Ibexa\Contracts\Core\Repository\Values\User\User;
+use Ibexa\Contracts\Core\Repository\Values\User\UserGroup;
 use Ibexa\Core\Repository\Values\User\RoleCreateStruct;
 use Ibexa\Core\Repository\Values\User\UserReference;
 use PHPUnit\Framework\Assert as Assertion;
@@ -30,47 +31,36 @@ class UserRegistrationContext extends RawMinkContext implements Context, Snippet
 {
     /**
      * Regex matching the way the Twig template name is inserted in debug mode.
-     *
-     * @var string
      */
-    public const TWIG_DEBUG_STOP_REGEX = '<!-- STOP .*%s.* -->';
+    public const string TWIG_DEBUG_STOP_REGEX = '<!-- STOP .*%s.* -->';
 
-    private static $password = 'PassWord42';
+    private static string $password = 'PassWord42';
 
-    private static $language = 'eng-GB';
+    private static string $language = 'eng-GB';
 
-    private static $groupId = 4;
+    private static int $groupId = 4;
 
-    private $registrationUsername;
+    private ?string $registrationUsername = null;
 
     /**
      * Used to cover registration group customization.
-     *
-     * @var \Ibexa\Contracts\Core\Repository\Values\User\UserGroup
      */
-    private $customUserGroup;
+    private UserGroup $customUserGroup;
 
-    /**
-     * @var \Ibexa\Bundle\Core\Features\Context\YamlConfigurationContext
-     */
-    private $yamlConfigurationContext;
+    private YamlConfigurationContext $yamlConfigurationContext;
 
     /**
      * Default Administrator user id.
      */
-    private $adminUserId = 14;
+    private int $adminUserId = 14;
 
-    /** @var \Ibexa\Contracts\Core\Repository\PermissionResolver */
-    private $permissionResolver;
+    private PermissionResolver $permissionResolver;
 
-    /** @var \Ibexa\Contracts\Core\Repository\RoleService */
-    private $roleService;
+    private RoleService $roleService;
 
-    /** @var \Ibexa\Contracts\Core\Repository\UserService */
-    private $userService;
+    private UserService $userService;
 
-    /** @var \Ibexa\Contracts\Core\Repository\ContentTypeService */
-    private $contentTypeService;
+    private ContentTypeService $contentTypeService;
 
     public function __construct(
         PermissionResolver $permissionResolver,
@@ -86,7 +76,7 @@ class UserRegistrationContext extends RawMinkContext implements Context, Snippet
     }
 
     /** @BeforeScenario */
-    public function gatherContexts(BeforeScenarioScope $scope)
+    public function gatherContexts(BeforeScenarioScope $scope): void
     {
         $this->yamlConfigurationContext = $scope->getEnvironment()->getContext(YamlConfigurationContext::class);
     }
@@ -94,7 +84,7 @@ class UserRegistrationContext extends RawMinkContext implements Context, Snippet
     /**
      * @Given /^I do not have the user\/register policy$/
      */
-    public function loginAsUserWithoutRegisterPolicy()
+    public function loginAsUserWithoutRegisterPolicy(): void
     {
         $role = $this->createRegistrationRole(false);
         $user = $this->createUserWithRole($role);
@@ -104,7 +94,7 @@ class UserRegistrationContext extends RawMinkContext implements Context, Snippet
     /**
      * @Given /^I do have the user\/register policy$/
      */
-    public function loginAsUserWithUserRegisterPolicy()
+    public function loginAsUserWithUserRegisterPolicy(): void
     {
         $role = $this->createRegistrationRole(true);
         $user = $this->createUserWithRole($role);
@@ -145,7 +135,7 @@ class UserRegistrationContext extends RawMinkContext implements Context, Snippet
      *
      * @return \Ibexa\Contracts\Core\Repository\Values\User\Role
      */
-    private function createRegistrationRole($withUserRegisterPolicy = true)
+    private function createRegistrationRole(bool $withUserRegisterPolicy = true): Role
     {
         $roleIdentifier = uniqid(
             'anonymous_role_' . ($withUserRegisterPolicy ? 'with' : 'without') . '_register',
@@ -174,7 +164,7 @@ class UserRegistrationContext extends RawMinkContext implements Context, Snippet
     /**
      * @Then /^I see an error message saying that I can not register$/
      */
-    public function iSeeAnErrorMessageSayingThatICanNotRegister()
+    public function iSeeAnErrorMessageSayingThatICanNotRegister(): void
     {
         $this->assertSession()->pageTextContains('You are not allowed to register a new account');
     }
@@ -184,7 +174,7 @@ class UserRegistrationContext extends RawMinkContext implements Context, Snippet
      *
      * @throws \Behat\Mink\Exception\ElementNotFoundException
      */
-    private function loginAs(User $user)
+    private function loginAs(User $user): void
     {
         $this->visitPath('/login');
         $page = $this->getSession()->getPage();
@@ -197,7 +187,7 @@ class UserRegistrationContext extends RawMinkContext implements Context, Snippet
     /**
      * @Then /^I can see the registration form$/
      */
-    public function iCanSeeTheRegistrationForm()
+    public function iCanSeeTheRegistrationForm(): void
     {
         $this->assertSession()->pageTextNotContains('You are not allowed to register a new account');
         $this->assertSession()->elementExists('css', 'form[name=ezplatform_content_forms_user_register]');
@@ -206,7 +196,7 @@ class UserRegistrationContext extends RawMinkContext implements Context, Snippet
     /**
      * @Given /^it matches the structure of the configured registration user content type$/
      */
-    public function itMatchesTheStructureOfTheConfiguredRegistrationUserContentType()
+    public function itMatchesTheStructureOfTheConfiguredRegistrationUserContentType(): void
     {
         $userContentType = $this->contentTypeService->loadContentTypeByIdentifier('user');
         foreach ($userContentType->getFieldDefinitions() as $fieldDefinition) {
@@ -224,7 +214,7 @@ class UserRegistrationContext extends RawMinkContext implements Context, Snippet
     /**
      * @Given /^it has a register button$/
      */
-    public function itHasARegisterButton()
+    public function itHasARegisterButton(): void
     {
         $this->assertSession()->elementExists(
             'css',
@@ -235,7 +225,7 @@ class UserRegistrationContext extends RawMinkContext implements Context, Snippet
     /**
      * @When /^I fill in the form with valid values$/
      */
-    public function iFillInTheFormWithValidValues()
+    public function iFillInTheFormWithValidValues(): void
     {
         $page = $this->getSession()->getPage();
 
@@ -252,7 +242,7 @@ class UserRegistrationContext extends RawMinkContext implements Context, Snippet
     /**
      * @When /^I click on the register button$/
      */
-    public function iClickOnTheRegisterButton()
+    public function iClickOnTheRegisterButton(): void
     {
         $this->getSession()->getPage()->pressButton('ezplatform_content_forms_user_register[register]');
         $this->assertSession()->statusCodeEquals(200);
@@ -261,7 +251,7 @@ class UserRegistrationContext extends RawMinkContext implements Context, Snippet
     /**
      * @Then /^I am on the registration confirmation page$/
      */
-    public function iAmOnTheRegistrationConfirmationPage()
+    public function iAmOnTheRegistrationConfirmationPage(): void
     {
         $this->assertSession()->addressEquals('/register-confirm');
     }
@@ -269,7 +259,7 @@ class UserRegistrationContext extends RawMinkContext implements Context, Snippet
     /**
      * @Given /^I see a registration confirmation message$/
      */
-    public function iSeeARegistrationConfirmationMessage()
+    public function iSeeARegistrationConfirmationMessage(): void
     {
         $this->assertSession()->pageTextContains('Your account has been created');
     }
@@ -277,7 +267,7 @@ class UserRegistrationContext extends RawMinkContext implements Context, Snippet
     /**
      * @Given /^the user account has been created$/
      */
-    public function theUserAccountHasBeenCreated()
+    public function theUserAccountHasBeenCreated(): void
     {
         $this->userService->loadUserByLogin($this->registrationUsername);
     }
@@ -285,7 +275,7 @@ class UserRegistrationContext extends RawMinkContext implements Context, Snippet
     /**
      * @Given a User Group :userGroupName
      */
-    public function createUserGroup(string $userGroupName)
+    public function createUserGroup(string $userGroupName): void
     {
         $groupCreateStruct = $this->userService->newUserGroupCreateStruct(self::$language);
         $groupCreateStruct->setField('name', $userGroupName);
@@ -298,7 +288,7 @@ class UserRegistrationContext extends RawMinkContext implements Context, Snippet
     /**
      * @Given /^the following user registration group configuration:$/
      */
-    public function addUserRegistrationConfiguration(PyStringNode $extraConfigurationString)
+    public function addUserRegistrationConfiguration(PyStringNode $extraConfigurationString): void
     {
         $extraConfigurationString = str_replace(
             '<userGroupContentId>',
@@ -312,7 +302,7 @@ class UserRegistrationContext extends RawMinkContext implements Context, Snippet
     /**
      * @When /^I register a user account$/
      */
-    public function iRegisterAUserAccount()
+    public function iRegisterAUserAccount(): void
     {
         $this->loginAsUserWithUserRegisterPolicy();
         $this->visitPath('/register');
@@ -326,7 +316,7 @@ class UserRegistrationContext extends RawMinkContext implements Context, Snippet
     /**
      * @Then /^the user is created in :userGroupName user group$/
      */
-    public function theUserIsCreatedInThisUserGroup(string $userGroupName)
+    public function theUserIsCreatedInThisUserGroup(string $userGroupName): void
     {
         $user = $this->userService->loadUserByLogin($this->registrationUsername);
         $userGroups = $this->userService->loadUserGroupsOfUser($user);
@@ -340,7 +330,7 @@ class UserRegistrationContext extends RawMinkContext implements Context, Snippet
     /**
      * @Given /^the following user registration templates configuration:$/
      */
-    public function addRegistrationTemplatesConfiguration(PyStringNode $pyStringNode)
+    public function addRegistrationTemplatesConfiguration(PyStringNode $pyStringNode): void
     {
         $this->yamlConfigurationContext->addConfiguration(Yaml::parse((string) $pyStringNode));
     }
@@ -348,7 +338,7 @@ class UserRegistrationContext extends RawMinkContext implements Context, Snippet
     /**
      * @Given /^the following template in "([^"]*)":$/
      */
-    public function createTemplateAt($path, PyStringNode $contents)
+    public function createTemplateAt(string $path, PyStringNode $contents): void
     {
         $fs = new Filesystem();
         $fs->mkdir(dirname($path));
@@ -364,7 +354,7 @@ class UserRegistrationContext extends RawMinkContext implements Context, Snippet
      *        If relative to app/Resources/views (example: user/register.html.twig),
      *        the path is checked with the :path:file.html.twig syntax as well.
      */
-    public function thePageIsRenderedUsingTheTemplateConfiguredIn($template)
+    public function thePageIsRenderedUsingTheTemplateConfiguredIn($template): void
     {
         $html = $this->getSession()->getPage()->getOuterHtml();
         $searchedPattern = sprintf(self::TWIG_DEBUG_STOP_REGEX, preg_quote($template, null));

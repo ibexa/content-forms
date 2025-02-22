@@ -31,7 +31,7 @@ class UserAccountPasswordValidator extends PasswordValidator
      */
     protected function createValidationErrorsProcessor(): ValidationErrorsProcessor
     {
-        return new ValidationErrorsProcessor($this->context, static function () {
+        return new ValidationErrorsProcessor($this->context, static function (): string {
             return 'password';
         });
     }

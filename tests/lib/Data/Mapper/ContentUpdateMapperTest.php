@@ -8,6 +8,7 @@ declare(strict_types=1);
 
 namespace Ibexa\Tests\ContentForms\Data\Mapper;
 
+use DateTime;
 use Ibexa\ContentForms\Data\Mapper\ContentUpdateMapper;
 use Ibexa\Contracts\Core\Repository\Values\Content\ContentInfo;
 use Ibexa\Contracts\Core\Repository\Values\Content\Field as APIField;
@@ -104,8 +105,8 @@ final class ContentUpdateMapperTest extends TestCase
                         'id' => 2,
                         'identifier' => 'foo_section_identifier',
                     ]),
-                    'publishedDate' => new \DateTime('2020-10-30T11:40:09+00:00'),
-                    'modificationDate' => new \DateTime('2020-10-30T11:40:09+00:00'),
+                    'publishedDate' => new DateTime('2020-10-30T11:40:09+00:00'),
+                    'modificationDate' => new DateTime('2020-10-30T11:40:09+00:00'),
                     'mainLocation' => new APILocation([
                         'parentLocationId' => 1,
                         'hidden' => true,

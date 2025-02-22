@@ -19,14 +19,8 @@ use Symfony\Component\HttpKernel\Controller\ControllerReference;
  */
 class Configured implements ViewProvider
 {
-    /**
-     * @var \Ibexa\Core\MVC\Symfony\Matcher\MatcherFactoryInterface
-     */
-    protected $matcherFactory;
+    protected MatcherFactoryInterface $matcherFactory;
 
-    /**
-     * @param \Ibexa\Core\MVC\Symfony\Matcher\MatcherFactoryInterface $matcherFactory
-     */
     public function __construct(MatcherFactoryInterface $matcherFactory)
     {
         $this->matcherFactory = $matcherFactory;

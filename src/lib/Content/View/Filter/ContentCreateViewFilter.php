@@ -24,17 +24,13 @@ use Symfony\Component\Form\FormInterface;
 
 class ContentCreateViewFilter implements EventSubscriberInterface
 {
-    /** @var \Ibexa\Contracts\Core\Repository\LocationService */
-    private $locationService;
+    private LocationService $locationService;
 
-    /** @var \Ibexa\Contracts\Core\Repository\ContentTypeService */
-    private $contentTypeService;
+    private ContentTypeService $contentTypeService;
 
-    /** @var \Symfony\Component\Form\FormFactoryInterface */
-    private $formFactory;
+    private FormFactoryInterface $formFactory;
 
-    /** @var \Ibexa\Core\MVC\Symfony\Locale\UserLanguagePreferenceProviderInterface */
-    private $languagePreferenceProvider;
+    private UserLanguagePreferenceProviderInterface $languagePreferenceProvider;
 
     /**
      * @param \Ibexa\Contracts\Core\Repository\LocationService $locationService
@@ -66,7 +62,7 @@ class ContentCreateViewFilter implements EventSubscriberInterface
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\UnauthorizedException
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException
      */
-    public function handleContentCreateForm(FilterViewBuilderParametersEvent $event)
+    public function handleContentCreateForm(FilterViewBuilderParametersEvent $event): void
     {
         if ('ibexa_content_edit::createWithoutDraftAction' !== $event->getParameters()->get('_controller')) {
             return;

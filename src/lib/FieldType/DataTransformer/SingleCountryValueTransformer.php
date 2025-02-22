@@ -21,7 +21,7 @@ class SingleCountryValueTransformer implements DataTransformerInterface
     /**
      * @var array Array of countries from "ibexa.field_type.country.data"
      */
-    protected $countriesInfo;
+    protected array $countriesInfo;
 
     /**
      * @param array $countriesInfo
@@ -31,7 +31,7 @@ class SingleCountryValueTransformer implements DataTransformerInterface
         $this->countriesInfo = $countriesInfo;
     }
 
-    public function transform($value)
+    public function transform($value): ?array
     {
         if (!$value instanceof Value) {
             return null;
@@ -53,7 +53,7 @@ class SingleCountryValueTransformer implements DataTransformerInterface
         return $country['Alpha2'];
     }
 
-    public function reverseTransform($value)
+    public function reverseTransform($value): ?Value
     {
         if (empty($value)) {
             return null;

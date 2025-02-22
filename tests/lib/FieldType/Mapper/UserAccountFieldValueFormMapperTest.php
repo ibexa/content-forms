@@ -44,7 +44,7 @@ class UserAccountFieldValueFormMapperTest extends BaseMapperTest
             ->willReturn($userEditForm);
     }
 
-    public function testMapFieldValueFormNoLanguageCode()
+    public function testMapFieldValueFormNoLanguageCode(): void
     {
         $mapper = new UserAccountFieldValueFormMapper();
 
@@ -65,7 +65,7 @@ class UserAccountFieldValueFormMapperTest extends BaseMapperTest
         $mapper->mapFieldValueForm($this->fieldForm, $this->data);
     }
 
-    public function testMapFieldValueFormWithLanguageCode()
+    public function testMapFieldValueFormWithLanguageCode(): void
     {
         $mapper = new UserAccountFieldValueFormMapper();
 

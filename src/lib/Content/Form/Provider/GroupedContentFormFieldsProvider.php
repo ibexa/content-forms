@@ -15,8 +15,7 @@ use JMS\TranslationBundle\Translation\TranslationContainerInterface;
 
 final class GroupedContentFormFieldsProvider implements GroupedContentFormFieldsProviderInterface, TranslationContainerInterface
 {
-    /** @var \Ibexa\Core\Helper\FieldsGroups\FieldsGroupsList */
-    private $fieldsGroupsList;
+    private FieldsGroupsList $fieldsGroupsList;
 
     public function __construct(FieldsGroupsList $fieldsGroupsList)
     {

@@ -22,15 +22,14 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 class IntegerFieldType extends AbstractType
 {
-    /** @var \Ibexa\Contracts\Core\Repository\FieldTypeService */
-    private $fieldTypeService;
+    private FieldTypeService $fieldTypeService;
 
     public function __construct(FieldTypeService $fieldTypeService)
     {
         $this->fieldTypeService = $fieldTypeService;
     }
 
-    public function getName()
+    public function getName(): string
     {
         return $this->getBlockPrefix();
     }
@@ -60,7 +59,7 @@ class IntegerFieldType extends AbstractType
         $builder->addModelTransformer(new FieldValueTransformer($this->fieldTypeService->getFieldType('ezinteger')));
     }
 
-    public function buildView(FormView $view, FormInterface $form, array $options)
+    public function buildView(FormView $view, FormInterface $form, array $options): void
     {
         $attributes = ['step' => 1];
 

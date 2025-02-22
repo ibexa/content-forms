@@ -18,10 +18,7 @@ use Symfony\Component\Form\DataTransformerInterface;
  */
 class FieldValueTransformer implements DataTransformerInterface
 {
-    /**
-     * @var \Ibexa\Contracts\Core\Repository\FieldType
-     */
-    private $fieldType;
+    private FieldType $fieldType;
 
     public function __construct(FieldType $fieldType)
     {
@@ -50,8 +47,6 @@ class FieldValueTransformer implements DataTransformerInterface
      * The FieldValue is compatible with `transform()`.
      *
      * @param mixed $value
-     *
-     * @return \Ibexa\Contracts\Core\FieldType\Value
      */
     public function reverseTransform($value)
     {

@@ -21,7 +21,7 @@ class ContentUpdateData extends ContentUpdateStruct implements NewnessCheckable
 
     protected $contentDraft;
 
-    public function isNew()
+    public function isNew(): bool
     {
         return false;
     }

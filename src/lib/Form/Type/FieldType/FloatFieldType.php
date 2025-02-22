@@ -22,15 +22,14 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 class FloatFieldType extends AbstractType
 {
-    /** @var \Ibexa\Contracts\Core\Repository\FieldTypeService */
-    protected $fieldTypeService;
+    protected FieldTypeService $fieldTypeService;
 
     public function __construct(FieldTypeService $fieldTypeService)
     {
         $this->fieldTypeService = $fieldTypeService;
     }
 
-    public function getName()
+    public function getName(): string
     {
         return $this->getBlockPrefix();
     }
@@ -52,7 +51,7 @@ class FloatFieldType extends AbstractType
         $builder->resetViewTransformers();
     }
 
-    public function buildView(FormView $view, FormInterface $form, array $options)
+    public function buildView(FormView $view, FormInterface $form, array $options): void
     {
         $attributes = ['step' => 'any'];
 

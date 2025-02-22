@@ -21,11 +21,9 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
  */
 class UserCreateFormProcessor implements EventSubscriberInterface
 {
-    /** @var \Ibexa\Contracts\Core\Repository\UserService */
-    private $userService;
+    private UserService $userService;
 
-    /** @var \Symfony\Component\Routing\Generator\UrlGeneratorInterface */
-    private $urlGenerator;
+    private UrlGeneratorInterface $urlGenerator;
 
     /**
      * @param \Ibexa\Contracts\Core\Repository\UserService $userService
@@ -46,7 +44,7 @@ class UserCreateFormProcessor implements EventSubscriberInterface
         ];
     }
 
-    public function processCreate(FormActionEvent $event)
+    public function processCreate(FormActionEvent $event): void
     {
         $data = $data = $event->getData();
 

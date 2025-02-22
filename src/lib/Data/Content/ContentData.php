@@ -15,9 +15,9 @@ trait ContentData
     /**
      * @var \Ibexa\Contracts\ContentForms\Data\Content\FieldData[]
      */
-    protected $fieldsData;
+    protected array $fieldsData;
 
-    public function addFieldData(FieldData $fieldData)
+    public function addFieldData(FieldData $fieldData): void
     {
         $this->fieldsData[$fieldData->fieldDefinition->identifier] = $fieldData;
     }

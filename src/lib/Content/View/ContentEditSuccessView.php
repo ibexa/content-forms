@@ -16,12 +16,9 @@ use Symfony\Component\HttpKernel\Controller\ControllerReference;
 
 class ContentEditSuccessView extends BaseView implements LocationValueView
 {
-    /** @var \Ibexa\Contracts\Core\Repository\Values\Content\Location|null */
-    private $location;
+    private ?Location $location = null;
 
     /**
-     * @param \Symfony\Component\HttpFoundation\Response $response
-     *
      * @throws \Ibexa\Core\Base\Exceptions\InvalidArgumentType
      */
     public function __construct(Response $response)
@@ -32,17 +29,11 @@ class ContentEditSuccessView extends BaseView implements LocationValueView
         $this->setControllerReference(new ControllerReference('ibexa_content_edit::editVersionDraftSuccessAction'));
     }
 
-    /**
-     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Location|null $location
-     */
     public function setLocation(?Location $location): void
     {
         $this->location = $location;
     }
 
-    /**
-     * @return \Ibexa\Contracts\Core\Repository\Values\Content\Location|null
-     */
     public function getLocation(): ?Location
     {
         return $this->location;

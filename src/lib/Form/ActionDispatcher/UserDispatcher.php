@@ -12,7 +12,7 @@ use Ibexa\ContentForms\Event\ContentFormEvents;
 
 class UserDispatcher extends AbstractActionDispatcher
 {
-    protected function getActionEventBaseName()
+    protected function getActionEventBaseName(): string
     {
         return ContentFormEvents::USER_EDIT;
     }

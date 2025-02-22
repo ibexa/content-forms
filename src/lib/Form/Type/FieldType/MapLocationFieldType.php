@@ -24,15 +24,14 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 class MapLocationFieldType extends AbstractType
 {
-    /** @var \Ibexa\Contracts\Core\Repository\FieldTypeService */
-    protected $fieldTypeService;
+    protected FieldTypeService $fieldTypeService;
 
     public function __construct(FieldTypeService $fieldTypeService)
     {
         $this->fieldTypeService = $fieldTypeService;
     }
 
-    public function getName()
+    public function getName(): string
     {
         return $this->getBlockPrefix();
     }
@@ -87,7 +86,7 @@ class MapLocationFieldType extends AbstractType
             );
     }
 
-    public function finishView(FormView $view, FormInterface $form, array $options)
+    public function finishView(FormView $view, FormInterface $form, array $options): void
     {
         $view->children['latitude']->vars['type'] = 'number';
         $view->children['longitude']->vars['type'] = 'number';

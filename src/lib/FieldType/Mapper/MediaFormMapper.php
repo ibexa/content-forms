@@ -19,8 +19,7 @@ use Symfony\Component\Form\FormInterface;
 
 class MediaFormMapper implements FieldValueFormMapperInterface
 {
-    /** @var \Ibexa\Contracts\Core\Repository\FieldTypeService */
-    private $fieldTypeService;
+    private FieldTypeService $fieldTypeService;
 
     protected const ACCEPT_VIDEO = 'video/*';
     protected const ACCEPT_AUDIO = 'audio/*';
@@ -30,7 +29,7 @@ class MediaFormMapper implements FieldValueFormMapperInterface
         $this->fieldTypeService = $fieldTypeService;
     }
 
-    public function mapFieldValueForm(FormInterface $fieldForm, FieldData $data)
+    public function mapFieldValueForm(FormInterface $fieldForm, FieldData $data): void
     {
         $fieldDefinition = $data->fieldDefinition;
         $formConfig = $fieldForm->getConfig();

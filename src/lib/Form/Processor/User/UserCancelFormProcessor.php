@@ -19,8 +19,7 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
  */
 class UserCancelFormProcessor implements EventSubscriberInterface
 {
-    /** @var \Symfony\Component\Routing\Generator\UrlGeneratorInterface */
-    private $urlGenerator;
+    private UrlGeneratorInterface $urlGenerator;
 
     /**
      * @param \Symfony\Component\Routing\Generator\UrlGeneratorInterface $urlGenerator
@@ -38,7 +37,7 @@ class UserCancelFormProcessor implements EventSubscriberInterface
         ];
     }
 
-    public function processCancel(FormActionEvent $event)
+    public function processCancel(FormActionEvent $event): void
     {
         /** @var \Ibexa\ContentForms\Data\User\UserUpdateData|\Ibexa\ContentForms\Data\User\UserCreateData $data */
         $data = $event->getData();

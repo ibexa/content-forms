@@ -19,7 +19,7 @@ class SwitcherType extends AbstractType
         return CheckboxType::class;
     }
 
-    public function getName()
+    public function getName(): string
     {
         return $this->getBlockPrefix();
     }
