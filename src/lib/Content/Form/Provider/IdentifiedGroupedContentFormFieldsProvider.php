@@ -8,14 +8,9 @@ declare(strict_types=1);
 
 namespace Ibexa\ContentForms\Content\Form\Provider;
 
-class IdentifiedGroupedContentFormFieldsProvider extends AbstractGroupedContentFormFieldsProvider
+final class IdentifiedGroupedContentFormFieldsProvider extends AbstractGroupedContentFormFieldsProvider
 {
-    protected function prepareGroupContext(): array
-    {
-        return [];
-    }
-
-    protected function getGroupKey(string $fieldGroupIdentifier, array $groupContext): string
+    protected function getGroupKey(string $fieldGroupIdentifier): string
     {
         return $fieldGroupIdentifier;
     }

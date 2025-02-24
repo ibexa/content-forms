@@ -13,13 +13,10 @@ namespace Ibexa\ContentForms\Content\Form\Provider;
  */
 final class GroupedContentFormFieldsProvider extends AbstractGroupedContentFormFieldsProvider
 {
-    protected function prepareGroupContext(): array
+    protected function getGroupKey(string $fieldGroupIdentifier): string
     {
-        return $this->fieldsGroupsList->getGroups();
-    }
+        $this->groupContext = $this->groupContext ?: $this->fieldsGroupsList->getGroups();
 
-    protected function getGroupKey(string $fieldGroupIdentifier, array $groupContext): string
-    {
-        return $groupContext[$fieldGroupIdentifier] ?? $this->fieldsGroupsList->getDefaultGroup();
+        return $this->groupContext[$fieldGroupIdentifier] ?? $this->fieldsGroupsList->getDefaultGroup();
     }
 }
