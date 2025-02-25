@@ -10,7 +10,7 @@ namespace Ibexa\Tests\ContentForms\Content\Form\Provider;
 
 use Ibexa\ContentForms\Content\Form\Provider\IdentifiedGroupedContentFormFieldsProvider;
 
-class IdentifiedGroupedContentFormFieldsProviderTest extends AbstractGroupedContentFormFieldsProviderTest
+final class IdentifiedGroupedContentFormFieldsProviderTest extends AbstractGroupedContentFormFieldsProviderTest
 {
     public function testGetGroupedFields(): void
     {

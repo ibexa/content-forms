@@ -18,10 +18,10 @@ use Symfony\Component\Form\FormInterface;
 
 abstract class AbstractGroupedContentFormFieldsProviderTest extends TestCase
 {
-    protected function getFieldsGroupsListMock(): FieldsGroupsList
+    final protected function getFieldsGroupsListMock(): FieldsGroupsList
     {
         $mock = $this->createMock(FieldsGroupsList::class);
-        $matcher = $this->exactly(3);
+        $matcher = self::exactly(3);
         $expectedGroups = [1 => 'group_1', 2 => 'group_2', 3 => 'group_2'];
 
         $mock
@@ -34,7 +34,7 @@ abstract class AbstractGroupedContentFormFieldsProviderTest extends TestCase
         return $mock;
     }
 
-    protected function getFormMockWithFieldData(
+    final protected function getFormMockWithFieldData(
         string $fieldDefIdentifier,
         string $fieldTypeIdentifier
     ): FormInterface {
@@ -44,7 +44,7 @@ abstract class AbstractGroupedContentFormFieldsProviderTest extends TestCase
             ->getMock();
 
         $formMock
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('getViewData')
             ->willReturn(new FieldData([
                 'field' => new Field(['fieldDefIdentifier' => $fieldDefIdentifier]),
@@ -53,14 +53,14 @@ abstract class AbstractGroupedContentFormFieldsProviderTest extends TestCase
             ]));
 
         $formMock
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('getName')
             ->willReturn($fieldDefIdentifier);
 
         return $formMock;
     }
 
-    protected function getTestForms(): array
+    final protected function getTestForms(): array
     {
         return [
             $this->getFormMockWithFieldData('first_field', 'first_field_type'),
