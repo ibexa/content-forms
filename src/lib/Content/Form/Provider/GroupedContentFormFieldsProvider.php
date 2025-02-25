@@ -8,43 +8,17 @@ declare(strict_types=1);
 
 namespace Ibexa\ContentForms\Content\Form\Provider;
 
-use Ibexa\Contracts\ContentForms\Content\Form\Provider\GroupedContentFormFieldsProviderInterface;
-use Ibexa\Core\Helper\FieldsGroups\FieldsGroupsList;
-use JMS\TranslationBundle\Model\Message;
-use JMS\TranslationBundle\Translation\TranslationContainerInterface;
-
-final class GroupedContentFormFieldsProvider implements GroupedContentFormFieldsProviderInterface, TranslationContainerInterface
+/**
+ * @deprecated 4.6.17 The "GroupedContentFormFieldsProvider" class is deprecated.
+ */
+final class GroupedContentFormFieldsProvider extends AbstractGroupedContentFormFieldsProvider
 {
-    /** @var \Ibexa\Core\Helper\FieldsGroups\FieldsGroupsList */
-    private $fieldsGroupsList;
+    protected array $groupContext;
 
-    public function __construct(FieldsGroupsList $fieldsGroupsList)
+    protected function getGroupKey(string $fieldGroupIdentifier): string
     {
-        $this->fieldsGroupsList = $fieldsGroupsList;
-    }
+        $this->groupContext ??= $this->fieldsGroupsList->getGroups();
 
-    public function getGroupedFields(array $fieldsDataForm): array
-    {
-        $fieldsGroups = $this->fieldsGroupsList->getGroups();
-        $groupedFields = [];
-
-        foreach ($fieldsDataForm as $fieldForm) {
-            /** @var \Ibexa\Contracts\ContentForms\Data\Content\FieldData $fieldData */
-            $fieldData = $fieldForm->getViewData();
-            $fieldGroupIdentifier = $this->fieldsGroupsList->getFieldGroup($fieldData->fieldDefinition);
-            $fieldGroupName = $fieldsGroups[$fieldGroupIdentifier] ?? $this->fieldsGroupsList->getDefaultGroup();
-
-            $groupedFields[$fieldGroupName][] = $fieldForm->getName();
-        }
-
-        return $groupedFields;
-    }
-
-    public static function getTranslationMessages(): array
-    {
-        return [
-            Message::create('content', 'ibexa_fields_groups')->setDesc('Content'),
-            Message::create('metadata', 'ibexa_fields_groups')->setDesc('Metadata'),
-        ];
+        return $this->groupContext[$fieldGroupIdentifier] ?? $this->fieldsGroupsList->getDefaultGroup();
     }
 }
