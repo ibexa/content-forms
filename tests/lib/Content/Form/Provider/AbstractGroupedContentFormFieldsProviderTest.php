@@ -21,11 +21,15 @@ abstract class AbstractGroupedContentFormFieldsProviderTest extends TestCase
     protected function getFieldsGroupsListMock(): FieldsGroupsList
     {
         $mock = $this->createMock(FieldsGroupsList::class);
+        $matcher = $this->exactly(3);
+        $expectedGroups = [1 => 'group_1', 2 => 'group_2', 3 => 'group_2'];
+
         $mock
-            ->expects($this->exactly(3))
+            ->expects($matcher)
             ->method('getFieldGroup')
-            ->withConsecutive()
-            ->willReturnOnConsecutiveCalls('group_1', 'group_2', 'group_2');
+            ->willReturnCallback(static function () use ($matcher, $expectedGroups) {
+                return $expectedGroups[$matcher->getInvocationCount()];
+            });
 
         return $mock;
     }
