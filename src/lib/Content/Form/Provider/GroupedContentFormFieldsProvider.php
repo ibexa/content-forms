@@ -15,7 +15,7 @@ final class GroupedContentFormFieldsProvider extends AbstractGroupedContentFormF
 {
     protected function getGroupKey(string $fieldGroupIdentifier): string
     {
-        $this->groupContext = $this->groupContext ?: $this->fieldsGroupsList->getGroups();
+        $this->groupContext ??= $this->fieldsGroupsList->getGroups();
 
         return $this->groupContext[$fieldGroupIdentifier] ?? $this->fieldsGroupsList->getDefaultGroup();
     }

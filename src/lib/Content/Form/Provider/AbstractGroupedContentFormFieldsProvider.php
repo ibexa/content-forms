@@ -17,7 +17,7 @@ abstract class AbstractGroupedContentFormFieldsProvider implements GroupedConten
 {
     protected FieldsGroupsList $fieldsGroupsList;
 
-    protected array $groupContext = [];
+    protected array $groupContext;
 
     public function __construct(FieldsGroupsList $fieldsGroupsList)
     {
