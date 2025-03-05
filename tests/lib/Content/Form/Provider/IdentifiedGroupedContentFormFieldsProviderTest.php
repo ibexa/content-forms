@@ -8,29 +8,22 @@ declare(strict_types=1);
 
 namespace Ibexa\Tests\ContentForms\Content\Form\Provider;
 
-use Ibexa\ContentForms\Content\Form\Provider\GroupedContentFormFieldsProvider;
+use Ibexa\ContentForms\Content\Form\Provider\IdentifiedGroupedContentFormFieldsProvider;
 
-final class GroupedContentFormFieldsProviderTest extends AbstractGroupedContentFormFieldsProviderTest
+final class IdentifiedGroupedContentFormFieldsProviderTest extends AbstractGroupedContentFormFieldsProviderTest
 {
     public function testGetGroupedFields(): void
     {
         $fieldsGroupsListMock = $this->getFieldsGroupsListMock();
-        $fieldsGroupsListMock
-            ->expects($this->once())
-            ->method('getGroups')
-            ->willReturn([
-                'group_1' => 'Group 1',
-                'group_2' => 'Group 2',
-            ]);
 
-        $subject = new GroupedContentFormFieldsProvider($fieldsGroupsListMock);
+        $subject = new IdentifiedGroupedContentFormFieldsProvider($fieldsGroupsListMock);
         $result = $subject->getGroupedFields($this->getTestForms());
 
         $expected = [
-            'Group 1' => [
+            'group_1' => [
                 0 => 'first_field',
             ],
-            'Group 2' => [
+            'group_2' => [
                 0 => 'second_field',
                 1 => 'third_field',
             ],
