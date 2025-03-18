@@ -21,7 +21,7 @@ class ContentDispatcher extends AbstractActionDispatcher
         $resolver->setAllowedTypes('referrerLocation', [Location::class, 'null']);
     }
 
-    protected function getActionEventBaseName()
+    protected function getActionEventBaseName(): string
     {
         return ContentFormEvents::CONTENT_EDIT;
     }

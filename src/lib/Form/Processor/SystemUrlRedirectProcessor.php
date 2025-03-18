@@ -18,14 +18,11 @@ use Symfony\Component\Routing\RouterInterface;
 
 class SystemUrlRedirectProcessor implements EventSubscriberInterface
 {
-    /** @var \Symfony\Component\Routing\RouterInterface */
-    private $router;
+    private RouterInterface $router;
 
-    /** @var \Ibexa\Contracts\Core\Repository\URLAliasService */
-    private $urlAliasService;
+    private URLAliasService $urlAliasService;
 
-    /** @var \Ibexa\Contracts\Core\Repository\LocationService */
-    private $locationService;
+    private LocationService $locationService;
 
     /**
      * @param \Symfony\Component\Routing\RouterInterface $router

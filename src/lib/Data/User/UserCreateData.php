@@ -25,13 +25,13 @@ class UserCreateData extends UserCreateStruct implements NewnessCheckable
     /**
      * @var \Ibexa\Contracts\Core\Repository\Values\User\UserGroup[]
      */
-    private $parentGroups;
+    private ?array $parentGroups = null;
 
     private ?Role $role = null;
 
     private ?RoleLimitation $roleLimitation = null;
 
-    public function isNew()
+    public function isNew(): bool
     {
         return true;
     }
@@ -49,7 +49,7 @@ class UserCreateData extends UserCreateStruct implements NewnessCheckable
      *
      * @param \Ibexa\Contracts\Core\Repository\Values\User\UserGroup $parentGroup
      */
-    public function addParentGroup(UserGroup $parentGroup)
+    public function addParentGroup(UserGroup $parentGroup): void
     {
         $this->parentGroups[] = $parentGroup;
     }
@@ -57,7 +57,7 @@ class UserCreateData extends UserCreateStruct implements NewnessCheckable
     /**
      * @param \Ibexa\Contracts\Core\Repository\Values\User\UserGroup[] $parentGroups
      */
-    public function setParentGroups(array $parentGroups)
+    public function setParentGroups(array $parentGroups): void
     {
         $this->parentGroups = $parentGroups;
     }

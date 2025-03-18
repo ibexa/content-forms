@@ -35,7 +35,7 @@ final class UserAccountFieldValueFormMapper implements FieldValueFormMapperInter
      * @throws \Symfony\Component\Form\Exception\UnexpectedTypeException
      * @throws \Symfony\Component\OptionsResolver\Exception\InvalidOptionsException
      */
-    public function mapFieldValueForm(FormInterface $fieldForm, FieldData $data)
+    public function mapFieldValueForm(FormInterface $fieldForm, FieldData $data): void
     {
         $fieldDefinition = $data->fieldDefinition;
         $formConfig = $fieldForm->getConfig();
@@ -67,7 +67,7 @@ final class UserAccountFieldValueFormMapper implements FieldValueFormMapperInter
      *
      * @throws \Symfony\Component\OptionsResolver\Exception\AccessException
      */
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver
             ->setDefaults([
@@ -83,7 +83,7 @@ final class UserAccountFieldValueFormMapper implements FieldValueFormMapperInter
     public function getModelTransformerForTranslation(FieldDefinition $fieldDefinition): CallbackTransformer
     {
         return new CallbackTransformer(
-            static function (ApiUserValue $data) {
+            static function (ApiUserValue $data): UserAccountFieldData {
                 return new UserAccountFieldData($data->login, null, $data->email, $data->enabled);
             },
             static function (UserAccountFieldData $submittedData) use ($fieldDefinition) {
@@ -103,10 +103,10 @@ final class UserAccountFieldValueFormMapper implements FieldValueFormMapperInter
     public function getModelTransformer(): CallbackTransformer
     {
         return new CallbackTransformer(
-            static function (ApiUserValue $data) {
+            static function (ApiUserValue $data): UserAccountFieldData {
                 return new UserAccountFieldData($data->login, null, $data->email, $data->enabled);
             },
-            static function (UserAccountFieldData $submittedData) {
+            static function (UserAccountFieldData $submittedData): UserAccountFieldData {
                 return $submittedData;
             }
         );

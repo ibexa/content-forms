@@ -22,12 +22,12 @@ abstract class AbstractRelationFormMapper implements FieldValueFormMapperInterfa
     /**
      * @var \Ibexa\Contracts\Core\Repository\ContentTypeService Used to fetch list of available content types
      */
-    protected $contentTypeService;
+    protected ContentTypeService $contentTypeService;
 
     /**
      * @var \Ibexa\Contracts\Core\Repository\LocationService Used to fetch selection root
      */
-    protected $locationService;
+    protected LocationService $locationService;
 
     /**
      * @param \Ibexa\Contracts\Core\Repository\ContentTypeService $contentTypeService

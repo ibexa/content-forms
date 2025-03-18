@@ -29,7 +29,7 @@ class SuppressValidationSubscriber implements EventSubscriberInterface
         ];
     }
 
-    public function suppressValidationOnCancel(FormEvent $event)
+    public function suppressValidationOnCancel(FormEvent $event): void
     {
         $form = $event->getForm();
 
@@ -38,7 +38,7 @@ class SuppressValidationSubscriber implements EventSubscriberInterface
         }
     }
 
-    public function suppressValidationOnSaveDraft(PostSubmitEvent $event)
+    public function suppressValidationOnSaveDraft(PostSubmitEvent $event): void
     {
         $form = $event->getForm();
 
@@ -50,7 +50,7 @@ class SuppressValidationSubscriber implements EventSubscriberInterface
         }
     }
 
-    public function suppressValidationOnAutosaveDraft(PostSubmitEvent $event)
+    public function suppressValidationOnAutosaveDraft(PostSubmitEvent $event): void
     {
         $form = $event->getForm();
 

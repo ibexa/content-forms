@@ -30,14 +30,11 @@ use Symfony\Component\Routing\RouterInterface;
  */
 class ContentFormProcessor implements EventSubscriberInterface
 {
-    /** @var \Ibexa\Contracts\Core\Repository\ContentService */
-    private $contentService;
+    private ContentService $contentService;
 
-    /** @var \Ibexa\Contracts\Core\Repository\LocationService */
-    private $locationService;
+    private LocationService $locationService;
 
-    /** @var \Symfony\Component\Routing\RouterInterface */
-    private $router;
+    private RouterInterface $router;
 
     /**
      * @param \Ibexa\Contracts\Core\Repository\ContentService $contentService
@@ -81,7 +78,7 @@ class ContentFormProcessor implements EventSubscriberInterface
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\UnauthorizedException
      * @throws \Ibexa\Core\Base\Exceptions\InvalidArgumentException
      */
-    public function processSaveDraft(FormActionEvent $event)
+    public function processSaveDraft(FormActionEvent $event): void
     {
         /** @var \Ibexa\ContentForms\Data\Content\ContentCreateData|\Ibexa\ContentForms\Data\Content\ContentUpdateData $data */
         $data = $event->getData();
@@ -169,7 +166,7 @@ class ContentFormProcessor implements EventSubscriberInterface
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\UnauthorizedException
      * @throws \Ibexa\Core\Base\Exceptions\InvalidArgumentException
      */
-    public function processPublish(FormActionEvent $event)
+    public function processPublish(FormActionEvent $event): void
     {
         /** @var \Ibexa\ContentForms\Data\Content\ContentCreateData|\Ibexa\ContentForms\Data\Content\ContentUpdateData $data */
         $data = $event->getData();
@@ -208,7 +205,7 @@ class ContentFormProcessor implements EventSubscriberInterface
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\UnauthorizedException
      * @throws \Ibexa\Core\Base\Exceptions\InvalidArgumentException
      */
-    public function processPublishAndEdit(FormActionEvent $event)
+    public function processPublishAndEdit(FormActionEvent $event): void
     {
         /** @var \Ibexa\ContentForms\Data\Content\ContentCreateData|\Ibexa\ContentForms\Data\Content\ContentUpdateData $data */
         $data = $event->getData();
@@ -244,7 +241,7 @@ class ContentFormProcessor implements EventSubscriberInterface
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\BadStateException
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\UnauthorizedException
      */
-    public function processCancel(FormActionEvent $event)
+    public function processCancel(FormActionEvent $event): void
     {
         /** @var \Ibexa\ContentForms\Data\Content\ContentCreateData|\Ibexa\ContentForms\Data\Content\ContentUpdateData $data */
         $data = $event->getData();
@@ -299,7 +296,7 @@ class ContentFormProcessor implements EventSubscriberInterface
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\UnauthorizedException
      */
-    public function processCreateDraft(FormActionEvent $event)
+    public function processCreateDraft(FormActionEvent $event): void
     {
         /** @var $createContentDraft \Ibexa\ContentForms\Data\Content\CreateContentDraftData */
         $createContentDraft = $event->getData();
@@ -364,7 +361,7 @@ class ContentFormProcessor implements EventSubscriberInterface
      *
      * @throws \Ibexa\Core\Base\Exceptions\InvalidArgumentException
      */
-    private function resolveMainLanguageCode($data): string
+    private function resolveMainLanguageCode(ContentStruct $data): string
     {
         if (!$data instanceof ContentUpdateData && !$data instanceof ContentCreateData) {
             throw new InvalidArgumentException(

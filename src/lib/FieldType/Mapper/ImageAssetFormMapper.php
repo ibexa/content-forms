@@ -18,8 +18,7 @@ use Symfony\Component\Form\FormInterface;
 
 class ImageAssetFormMapper implements FieldValueFormMapperInterface
 {
-    /** @var \Ibexa\Contracts\Core\Repository\FieldTypeService */
-    private $fieldTypeService;
+    private FieldTypeService $fieldTypeService;
 
     /**
      * @param \Ibexa\Contracts\Core\Repository\FieldTypeService $fieldTypeService

@@ -20,8 +20,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 class CountryFieldType extends AbstractType
 {
-    /** @var array */
-    protected $countriesInfo;
+    protected array $countriesInfo;
 
     /**
      * @param array $countriesInfo
@@ -31,7 +30,7 @@ class CountryFieldType extends AbstractType
         $this->countriesInfo = $countriesInfo;
     }
 
-    public function getName()
+    public function getName(): string
     {
         return $this->getBlockPrefix();
     }
@@ -63,7 +62,10 @@ class CountryFieldType extends AbstractType
         ]);
     }
 
-    private function getCountryChoices(array $countriesInfo)
+    /**
+     * @return mixed[]
+     */
+    private function getCountryChoices(array $countriesInfo): array
     {
         $choices = [];
         foreach ($countriesInfo as $country) {

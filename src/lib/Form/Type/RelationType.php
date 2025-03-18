@@ -69,7 +69,7 @@ final class RelationType extends AbstractType
         FormView $view,
         FormInterface $form,
         array $options
-    ) {
+    ): void {
         $view->vars['destination_location'] = null;
         $value = $form->getData();
 

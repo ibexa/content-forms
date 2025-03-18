@@ -24,7 +24,7 @@ class ContentUpdateMapper implements FormDataMapperInterface
      *
      * @return \Ibexa\ContentForms\Data\Content\ContentUpdateData
      */
-    public function mapToFormData(ValueObject $contentDraft, array $params = [])
+    public function mapToFormData(ValueObject $contentDraft, array $params = []): ContentUpdateData
     {
         $optionsResolver = new OptionsResolver();
         $this->configureOptions($optionsResolver);
@@ -58,7 +58,7 @@ class ContentUpdateMapper implements FormDataMapperInterface
         return $data;
     }
 
-    private function configureOptions(OptionsResolver $optionsResolver)
+    private function configureOptions(OptionsResolver $optionsResolver): void
     {
         $optionsResolver
             ->setRequired(['languageCode', 'contentType', 'currentFields'])

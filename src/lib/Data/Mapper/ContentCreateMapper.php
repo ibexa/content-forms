@@ -27,7 +27,7 @@ class ContentCreateMapper implements FormDataMapperInterface
      *
      * @return \Ibexa\ContentForms\Data\Content\ContentCreateData
      */
-    public function mapToFormData(ValueObject $contentType, array $params = [])
+    public function mapToFormData(ValueObject $contentType, array $params = []): ContentCreateData
     {
         $resolver = new OptionsResolver();
         $this->configureOptions($resolver);
@@ -49,7 +49,7 @@ class ContentCreateMapper implements FormDataMapperInterface
         return $data;
     }
 
-    private function configureOptions(OptionsResolver $optionsResolver)
+    private function configureOptions(OptionsResolver $optionsResolver): void
     {
         $optionsResolver
             ->setRequired(['mainLanguageCode', 'parentLocation'])

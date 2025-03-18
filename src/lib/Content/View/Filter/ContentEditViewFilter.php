@@ -27,17 +27,13 @@ use Symfony\Component\Form\FormInterface;
 
 class ContentEditViewFilter implements EventSubscriberInterface
 {
-    /** @var \Ibexa\Contracts\Core\Repository\ContentService */
-    private $contentService;
+    private ContentService $contentService;
 
-    /** @var \Ibexa\Contracts\Core\Repository\ContentTypeService */
-    private $contentTypeService;
+    private ContentTypeService $contentTypeService;
 
-    /** @var \Symfony\Component\Form\FormFactoryInterface */
-    private $formFactory;
+    private FormFactoryInterface $formFactory;
 
-    /** @var \Ibexa\Core\MVC\Symfony\Locale\UserLanguagePreferenceProviderInterface */
-    private $languagePreferenceProvider;
+    private UserLanguagePreferenceProviderInterface $languagePreferenceProvider;
 
     private LocationService $locationService;
 
@@ -73,7 +69,7 @@ class ContentEditViewFilter implements EventSubscriberInterface
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\UnauthorizedException
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException
      */
-    public function handleContentEditForm(FilterViewBuilderParametersEvent $event)
+    public function handleContentEditForm(FilterViewBuilderParametersEvent $event): void
     {
         if ('ibexa_content_edit::editVersionDraftAction' !== $event->getParameters()->get('_controller')) {
             return;

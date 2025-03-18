@@ -19,21 +19,21 @@ use Symfony\Component\Form\FormInterface;
 class ContentEditView extends BaseView implements ContentValueView, LocationValueView
 {
     /** @var \Ibexa\Contracts\Core\Repository\Values\Content\Content */
-    private $content;
+    private Content $content;
 
     /** @var \Ibexa\Contracts\Core\Repository\Values\Content\Location|null */
-    private $location;
+    private ?Location $location = null;
 
     /** @var \Ibexa\Contracts\Core\Repository\Values\Content\Language */
-    private $language;
+    private Language $language;
 
     /** @var \Symfony\Component\Form\FormInterface */
-    private $form;
+    private FormInterface $form;
 
     /**
      * @param \Ibexa\Contracts\Core\Repository\Values\Content\Content $content
      */
-    public function setContent(Content $content)
+    public function setContent(Content $content): void
     {
         $this->content = $content;
     }
@@ -51,7 +51,7 @@ class ContentEditView extends BaseView implements ContentValueView, LocationValu
     /**
      * @param \Ibexa\Contracts\Core\Repository\Values\Content\Location|null $location
      */
-    public function setLocation(?Location $location)
+    public function setLocation(?Location $location): void
     {
         $this->location = $location;
     }
@@ -75,7 +75,7 @@ class ContentEditView extends BaseView implements ContentValueView, LocationValu
     /**
      * @param \Ibexa\Contracts\Core\Repository\Values\Content\Language $language
      */
-    public function setLanguage(Language $language)
+    public function setLanguage(Language $language): void
     {
         $this->language = $language;
     }
@@ -91,7 +91,7 @@ class ContentEditView extends BaseView implements ContentValueView, LocationValu
     /**
      * @param \Symfony\Component\Form\FormInterface $form
      */
-    public function setForm(FormInterface $form)
+    public function setForm(FormInterface $form): void
     {
         $this->form = $form;
     }

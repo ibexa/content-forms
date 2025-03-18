@@ -23,24 +23,18 @@ class FormActionEvent extends FormEvent
 
     /**
      * Hash of options.
-     *
-     * @var array
      */
-    private $options;
+    private array $options;
 
     /**
      * Response to return after form post-processing. Typically a RedirectResponse.
-     *
-     * @var \Symfony\Component\HttpFoundation\Response
      */
-    private $response;
+    private ?Response $response = null;
 
     /**
      * Additional payload populated for event listeners next in priority.
-     *
-     * @var array
      */
-    private $payloads;
+    private array $payloads;
 
     /**
      * @param \Symfony\Component\Form\FormInterface $form
@@ -49,7 +43,7 @@ class FormActionEvent extends FormEvent
      * @param array $options
      * @param array $payloads
      */
-    public function __construct(FormInterface $form, $data, $clickedButton, array $options = [], array $payloads = [])
+    public function __construct(FormInterface $form, mixed $data, $clickedButton, array $options = [], array $payloads = [])
     {
         parent::__construct($form, $data);
         $this->clickedButton = $clickedButton;
@@ -93,7 +87,7 @@ class FormActionEvent extends FormEvent
      *
      * @return bool
      */
-    public function hasOption($optionName)
+    public function hasOption($optionName): bool
     {
         return isset($this->options[$optionName]);
     }
@@ -109,12 +103,12 @@ class FormActionEvent extends FormEvent
     /**
      * @param \Symfony\Component\HttpFoundation\Response $response
      */
-    public function setResponse(Response $response)
+    public function setResponse(Response $response): void
     {
         $this->response = $response;
     }
 
-    public function hasResponse()
+    public function hasResponse(): bool
     {
         return $this->response !== null;
     }

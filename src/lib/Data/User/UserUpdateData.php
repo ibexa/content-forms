@@ -30,7 +30,7 @@ class UserUpdateData extends UserUpdateStruct implements NewnessCheckable
      */
     public $contentType;
 
-    public function isNew()
+    public function isNew(): bool
     {
         return false;
     }

@@ -25,7 +25,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 class BaseContentType extends AbstractType
 {
-    public function getName()
+    public function getName(): string
     {
         return $this->getBlockPrefix();
     }
@@ -58,7 +58,7 @@ class BaseContentType extends AbstractType
             ]);
     }
 
-    public function buildView(FormView $view, FormInterface $form, array $options)
+    public function buildView(FormView $view, FormInterface $form, array $options): void
     {
         $view->vars['languageCode'] = $options['languageCode'];
         $view->vars['mainLanguageCode'] = $options['mainLanguageCode'];

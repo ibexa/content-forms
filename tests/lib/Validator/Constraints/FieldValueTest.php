@@ -15,19 +15,19 @@ use Symfony\Component\Validator\Constraint;
 
 class FieldValueTest extends TestCase
 {
-    public function testConstruct()
+    public function testConstruct(): void
     {
         $constraint = new FieldValue();
         self::assertSame('ez.field.value', $constraint->message);
     }
 
-    public function testValidatedBy()
+    public function testValidatedBy(): void
     {
         $constraint = new FieldValue();
         self::assertSame(FieldValueValidator::class, $constraint->validatedBy());
     }
 
-    public function testGetTargets()
+    public function testGetTargets(): void
     {
         $constraint = new FieldValue();
         self::assertSame(Constraint::CLASS_CONSTRAINT, $constraint->getTargets());
