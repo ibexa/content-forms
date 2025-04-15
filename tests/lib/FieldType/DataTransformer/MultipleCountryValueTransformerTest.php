@@ -110,7 +110,7 @@ class MultipleCountryValueTransformerTest extends TestCase
     /**
      * @dataProvider reverseTransformNullProvider
      */
-    public function testReverseTransformNull(int|string|Value|null $value): void
+    public function testReverseTransformNull(mixed $value): void
     {
         $transformer = new MultipleCountryValueTransformer($this->countriesInfo);
         self::assertNull($transformer->reverseTransform($value));
