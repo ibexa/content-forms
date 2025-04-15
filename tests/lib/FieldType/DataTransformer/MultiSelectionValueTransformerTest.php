@@ -59,7 +59,7 @@ class MultiSelectionValueTransformerTest extends TestCase
     /**
      * @dataProvider transformNullProvider
      */
-    public function testTransformNull(Value|int|bool|array $value): void
+    public function testTransformNull(mixed $value): void
     {
         $transformer = new MultiSelectionValueTransformer();
         self::assertNull($transformer->transform($value));
