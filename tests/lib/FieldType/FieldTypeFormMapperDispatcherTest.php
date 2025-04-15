@@ -19,11 +19,9 @@ use Symfony\Component\Form\FormInterface;
 
 class FieldTypeFormMapperDispatcherTest extends TestCase
 {
-    /** @var \Ibexa\ContentForms\FieldType\FieldTypeFormMapperDispatcherInterface */
     private FieldTypeFormMapperDispatcher $dispatcher;
 
-    /** @var \Ibexa\Contracts\ContentForms\FieldType\FieldValueFormMapperInterface|\PHPUnit\Framework\MockObject\MockObject */
-    private MockObject $fieldValueMapperMock;
+    private FieldValueFormMapperInterface & MockObject $fieldValueMapperMock;
 
     protected function setUp(): void
     {

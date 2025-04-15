@@ -21,13 +21,10 @@ use Symfony\Component\Validator\Violation\ConstraintViolationBuilderInterface;
 
 class PasswordValidatorTest extends TestCase
 {
-    /** @var \Ibexa\Contracts\Core\Repository\UserService|\PHPUnit\Framework\MockObject\MockObject */
-    private MockObject $userService;
+    private UserService & MockObject $userService;
 
-    /** @var \Symfony\Component\Validator\Context\ExecutionContextInterface|\PHPUnit\Framework\MockObject\MockObject */
-    private MockObject $executionContext;
+    private ExecutionContextInterface & MockObject $executionContext;
 
-    /** @var \Ibexa\ContentForms\Validator\Constraints\PasswordValidator */
     private PasswordValidator $validator;
 
     protected function setUp(): void
@@ -41,7 +38,7 @@ class PasswordValidatorTest extends TestCase
     /**
      * @dataProvider dataProviderForValidateNotSupportedValueType
      */
-    public function testValidateShouldBeSkipped(\stdClass|string|null $value): void
+    public function testValidateShouldBeSkipped(mixed $value): void
     {
         $this->userService
             ->expects(self::never())
