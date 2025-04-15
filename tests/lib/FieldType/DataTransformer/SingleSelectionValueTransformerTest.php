@@ -55,7 +55,7 @@ class SingleSelectionValueTransformerTest extends TestCase
     /**
      * @dataProvider transformNullProvider
      */
-    public function testTransformNull(Value|bool|string|array $value): void
+    public function testTransformNull(mixed $value): void
     {
         $transformer = new SingleSelectionValueTransformer();
         self::assertNull($transformer->transform($value));
