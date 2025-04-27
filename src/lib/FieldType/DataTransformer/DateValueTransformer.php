@@ -24,7 +24,7 @@ class DateValueTransformer implements DataTransformerInterface
      *
      * @throws \Symfony\Component\Form\Exception\TransformationFailedException
      */
-    public function transform($value)
+    public function transform(mixed $value): ?int
     {
         if (null === $value) {
             return null;
@@ -51,7 +51,7 @@ class DateValueTransformer implements DataTransformerInterface
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\InvalidArgumentException
      * @throws \Symfony\Component\Form\Exception\TransformationFailedException
      */
-    public function reverseTransform($value)
+    public function reverseTransform(mixed $value): ?Value
     {
         if (empty($value)) {
             return null;
