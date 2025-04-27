@@ -31,7 +31,7 @@ class SingleCountryValueTransformer implements DataTransformerInterface
         $this->countriesInfo = $countriesInfo;
     }
 
-    public function transform($value)
+    public function transform(mixed $value): ?string
     {
         if (!$value instanceof Value) {
             return null;
@@ -53,7 +53,7 @@ class SingleCountryValueTransformer implements DataTransformerInterface
         return $country['Alpha2'];
     }
 
-    public function reverseTransform($value)
+    public function reverseTransform(mixed $value): ?Value
     {
         if (empty($value)) {
             return null;

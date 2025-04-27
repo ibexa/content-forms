@@ -13,7 +13,7 @@ use Symfony\Component\Form\Exception\TransformationFailedException;
 
 final class JsonToArrayTransformer implements DataTransformerInterface
 {
-    public function transform($value)
+    public function transform(mixed $value): string
     {
         if ($value === null) {
             return '';
@@ -32,7 +32,7 @@ final class JsonToArrayTransformer implements DataTransformerInterface
         return $encoded;
     }
 
-    public function reverseTransform($value)
+    public function reverseTransform(mixed $value): array
     {
         if ($value === null) {
             return [];

@@ -33,7 +33,7 @@ class FieldValueTransformer implements DataTransformerInterface
      *
      * @return array|null the value's hash, or null if $value was not a FieldType Value
      */
-    public function transform($value)
+    public function transform(mixed $value): mixed
     {
         if (!$value instanceof Value) {
             return null;
@@ -50,7 +50,7 @@ class FieldValueTransformer implements DataTransformerInterface
      *
      * @return \Ibexa\Contracts\Core\FieldType\Value
      */
-    public function reverseTransform($value)
+    public function reverseTransform(mixed $value): Value
     {
         if ($value === null) {
             return $this->fieldType->getEmptyValue();
