@@ -16,7 +16,7 @@ use Symfony\Component\Form\DataTransformerInterface;
  */
 class MultiSelectionValueTransformer implements DataTransformerInterface
 {
-    public function transform($value)
+    public function transform(mixed $value): ?array
     {
         if (!$value instanceof Value) {
             return null;
@@ -29,7 +29,7 @@ class MultiSelectionValueTransformer implements DataTransformerInterface
         return $value->selection;
     }
 
-    public function reverseTransform($value)
+    public function reverseTransform(mixed $value): ?Value
     {
         if ($value === null) {
             return null;

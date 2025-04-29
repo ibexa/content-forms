@@ -30,7 +30,7 @@ class MultipleCountryValueTransformer implements DataTransformerInterface
         $this->countriesInfo = $countriesInfo;
     }
 
-    public function transform($value)
+    public function transform(mixed $value): ?array
     {
         if (!$value instanceof Value) {
             return null;
@@ -39,7 +39,7 @@ class MultipleCountryValueTransformer implements DataTransformerInterface
         return array_keys($value->countries);
     }
 
-    public function reverseTransform($value)
+    public function reverseTransform(mixed $value): ?Value
     {
         if (!is_array($value)) {
             return null;

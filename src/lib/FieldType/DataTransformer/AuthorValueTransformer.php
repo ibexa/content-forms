@@ -17,7 +17,7 @@ use Symfony\Component\Form\DataTransformerInterface;
  */
 class AuthorValueTransformer implements DataTransformerInterface
 {
-    public function transform($value)
+    public function transform(mixed $value): array
     {
         if (is_array($value)) {
             return $value;
@@ -39,7 +39,7 @@ class AuthorValueTransformer implements DataTransformerInterface
         return $authors;
     }
 
-    public function reverseTransform($value)
+    public function reverseTransform(mixed $value): ?Value
     {
         if ($value === null || !is_array($value)) {
             return null;
