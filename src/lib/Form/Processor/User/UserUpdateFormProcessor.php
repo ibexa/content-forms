@@ -22,14 +22,11 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
  */
 class UserUpdateFormProcessor implements EventSubscriberInterface
 {
-    /** @var \Ibexa\Contracts\Core\Repository\UserService */
-    private $userService;
+    private UserService $userService;
 
-    /** @var \Ibexa\Contracts\Core\Repository\ContentService */
-    private $contentService;
+    private ContentService $contentService;
 
-    /** @var \Symfony\Component\Routing\Generator\UrlGeneratorInterface */
-    private $urlGenerator;
+    private UrlGeneratorInterface $urlGenerator;
 
     public function __construct(
         UserService $userService,
@@ -48,7 +45,7 @@ class UserUpdateFormProcessor implements EventSubscriberInterface
         ];
     }
 
-    public function processUpdate(FormActionEvent $event)
+    public function processUpdate(FormActionEvent $event): void
     {
         $data = $event->getData();
 

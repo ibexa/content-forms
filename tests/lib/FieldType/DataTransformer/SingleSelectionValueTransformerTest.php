@@ -14,7 +14,7 @@ use PHPUnit\Framework\TestCase;
 
 class SingleSelectionValueTransformerTest extends TestCase
 {
-    public function transformProvider()
+    public function transformProvider(): array
     {
         return [
             [0],
@@ -26,7 +26,7 @@ class SingleSelectionValueTransformerTest extends TestCase
     /**
      * @dataProvider transformProvider
      */
-    public function testTransform($value)
+    public function testTransform(int $value): void
     {
         $transformer = new SingleSelectionValueTransformer();
         self::assertSame($value, $transformer->transform(new Value([$value])));
@@ -35,14 +35,14 @@ class SingleSelectionValueTransformerTest extends TestCase
     /**
      * @dataProvider transformProvider
      */
-    public function testReverseTransform($value)
+    public function testReverseTransform(int $value): void
     {
         $transformer = new SingleSelectionValueTransformer();
         $expectedValue = new Value([$value]);
         self::assertEquals($expectedValue, $transformer->reverseTransform($value));
     }
 
-    public function transformNullProvider()
+    public function transformNullProvider(): array
     {
         return [
             [new Value()],
@@ -55,13 +55,13 @@ class SingleSelectionValueTransformerTest extends TestCase
     /**
      * @dataProvider transformNullProvider
      */
-    public function testTransformNull($value)
+    public function testTransformNull(mixed $value): void
     {
         $transformer = new SingleSelectionValueTransformer();
         self::assertNull($transformer->transform($value));
     }
 
-    public function testReverseTransformNull()
+    public function testReverseTransformNull(): void
     {
         $transformer = new SingleSelectionValueTransformer();
         self::assertNull($transformer->reverseTransform(null));

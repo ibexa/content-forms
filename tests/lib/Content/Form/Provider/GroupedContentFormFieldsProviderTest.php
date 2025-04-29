@@ -36,6 +36,6 @@ final class GroupedContentFormFieldsProviderTest extends AbstractGroupedContentF
             ],
         ];
 
-        $this->assertEquals($expected, $result);
+        self::assertEquals($expected, $result);
     }
 }

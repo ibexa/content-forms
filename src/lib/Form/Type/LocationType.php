@@ -18,8 +18,7 @@ use Symfony\Component\Form\FormView;
 
 class LocationType extends AbstractType
 {
-    /** @var \Ibexa\Contracts\Core\Repository\LocationService */
-    private $locationService;
+    private LocationService $locationService;
 
     /**
      * @param \Ibexa\Contracts\Core\Repository\LocationService $locationService

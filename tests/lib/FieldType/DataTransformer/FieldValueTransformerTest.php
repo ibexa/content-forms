@@ -16,7 +16,7 @@ use stdClass;
 
 class FieldValueTransformerTest extends TestCase
 {
-    public function testTransformNull()
+    public function testTransformNull(): void
     {
         $value = new stdClass();
 
@@ -30,7 +30,7 @@ class FieldValueTransformerTest extends TestCase
         self::assertNull($result);
     }
 
-    public function testTransform()
+    public function testTransform(): void
     {
         $value = $this->createMock(Value::class);
         $valueHash = ['lorem' => 'Lorem ipsum dolor...'];
@@ -47,7 +47,7 @@ class FieldValueTransformerTest extends TestCase
         self::assertEquals($result, $valueHash);
     }
 
-    public function testReverseTransformNull()
+    public function testReverseTransformNull(): void
     {
         $emptyValue = $this->createMock(Value::class);
 
@@ -65,7 +65,7 @@ class FieldValueTransformerTest extends TestCase
         self::assertSame($emptyValue, $result);
     }
 
-    public function testReverseTransform()
+    public function testReverseTransform(): void
     {
         $value = 'Lorem ipsum dolor...';
         $expected = $this->createMock(Value::class);

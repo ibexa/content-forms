@@ -26,17 +26,14 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ContentFieldType extends AbstractType
 {
-    /**
-     * @var \Ibexa\ContentForms\FieldType\FieldTypeFormMapperDispatcherInterface
-     */
-    private $fieldTypeFormMapper;
+    private FieldTypeFormMapperDispatcherInterface $fieldTypeFormMapper;
 
     public function __construct(FieldTypeFormMapperDispatcherInterface $fieldTypeFormMapper)
     {
         $this->fieldTypeFormMapper = $fieldTypeFormMapper;
     }
 
-    public function getName()
+    public function getName(): string
     {
         return $this->getBlockPrefix();
     }
@@ -99,7 +96,7 @@ class ContentFieldType extends AbstractType
             );
     }
 
-    public function buildView(FormView $view, FormInterface $form, array $options)
+    public function buildView(FormView $view, FormInterface $form, array $options): void
     {
         $view->vars['location'] = $options['location'];
         $view->vars['languageCode'] = $options['languageCode'];
@@ -108,7 +105,7 @@ class ContentFieldType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) {
+        $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event): void {
             $this->fieldTypeFormMapper->map($event->getForm(), $event->getData());
         });
     }

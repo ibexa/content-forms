@@ -30,7 +30,7 @@ class ImageFieldType extends AbstractType
         $this->mimeTypes = $mimeTypes;
     }
 
-    public function getName()
+    public function getName(): string
     {
         return $this->getBlockPrefix();
     }
@@ -63,7 +63,7 @@ class ImageFieldType extends AbstractType
             );
     }
 
-    public function buildView(FormView $view, FormInterface $form, array $options)
+    public function buildView(FormView $view, FormInterface $form, array $options): void
     {
         $view->vars += [
             'is_alternative_text_required' => $options['is_alternative_text_required'],

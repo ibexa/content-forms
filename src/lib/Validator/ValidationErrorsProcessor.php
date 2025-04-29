@@ -16,8 +16,7 @@ use Symfony\Component\Validator\Context\ExecutionContextInterface;
  */
 final class ValidationErrorsProcessor
 {
-    /** @var \Symfony\Component\Validator\Context\ExecutionContextInterface */
-    private $context;
+    private ExecutionContextInterface $context;
 
     /** @var callable|null */
     private $propertyPathGenerator;

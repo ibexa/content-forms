@@ -14,7 +14,7 @@ use Symfony\Component\Form\FormInterface;
 
 class RelationFormMapper extends AbstractRelationFormMapper
 {
-    public function mapFieldValueForm(FormInterface $fieldForm, FieldData $data)
+    public function mapFieldValueForm(FormInterface $fieldForm, FieldData $data): void
     {
         $fieldDefinition = $data->fieldDefinition;
         $formConfig = $fieldForm->getConfig();

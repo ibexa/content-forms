@@ -17,7 +17,7 @@ use Symfony\Component\HttpKernel\Controller\ControllerReference;
 class ContentCreateSuccessView extends BaseView implements LocationValueView
 {
     /** @var \Ibexa\Contracts\Core\Repository\Values\Content\Location|null */
-    private $location;
+    private ?Location $location = null;
 
     /**
      * @param \Symfony\Component\HttpFoundation\Response $response

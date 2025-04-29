@@ -18,21 +18,21 @@ use Symfony\Component\Form\FormInterface;
 class ContentCreateView extends BaseView implements LocationValueView, ContentTypeValueView
 {
     /** @var \Ibexa\Contracts\Core\Repository\Values\ContentType\ContentType */
-    private $contentType;
+    private ContentType $contentType;
 
     /** @var \Ibexa\Contracts\Core\Repository\Values\Content\Location */
-    private $location;
+    private Location $location;
 
     /** @var \Ibexa\Contracts\Core\Repository\Values\Content\Language */
-    private $language;
+    private Language $language;
 
     /** @var \Symfony\Component\Form\FormInterface */
-    private $form;
+    private FormInterface $form;
 
     /**
      * @param \Ibexa\Contracts\Core\Repository\Values\ContentType\ContentType $contentType
      */
-    public function setContentType(ContentType $contentType)
+    public function setContentType(ContentType $contentType): void
     {
         $this->contentType = $contentType;
     }
@@ -48,7 +48,7 @@ class ContentCreateView extends BaseView implements LocationValueView, ContentTy
     /**
      * @param \Ibexa\Contracts\Core\Repository\Values\Content\Location $location
      */
-    public function setLocation(Location $location)
+    public function setLocation(Location $location): void
     {
         $this->location = $location;
     }
@@ -72,7 +72,7 @@ class ContentCreateView extends BaseView implements LocationValueView, ContentTy
     /**
      * @param \Ibexa\Contracts\Core\Repository\Values\Content\Language $language
      */
-    public function setLanguage(Language $language)
+    public function setLanguage(Language $language): void
     {
         $this->language = $language;
     }
@@ -88,7 +88,7 @@ class ContentCreateView extends BaseView implements LocationValueView, ContentTy
     /**
      * @param \Symfony\Component\Form\FormInterface $form
      */
-    public function setForm(FormInterface $form)
+    public function setForm(FormInterface $form): void
     {
         $this->form = $form;
     }

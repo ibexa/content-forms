@@ -28,8 +28,7 @@ use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
 
 class FieldCollectionType extends CollectionType
 {
-    /** @var \Symfony\Contracts\EventDispatcher\EventDispatcherInterface */
-    private $eventDispatcher;
+    private EventDispatcherInterface $eventDispatcher;
 
     public function __construct(
         EventDispatcherInterface $eventDispatcher
@@ -43,7 +42,7 @@ class FieldCollectionType extends CollectionType
     ): void {
         parent::buildForm($builder, $options);
 
-        $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) use ($options) {
+        $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) use ($options): void {
             $form = $event->getForm();
             $data = $event->getData();
 

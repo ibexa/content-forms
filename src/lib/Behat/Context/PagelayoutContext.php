@@ -19,10 +19,7 @@ class PagelayoutContext extends RawMinkContext implements Context, SnippetAccept
     /** @var string Regex matching the way the Twig template name is inserted in debug mode */
     public const TWIG_DEBUG_STOP_REGEX = '<!-- STOP .*%s.* -->';
 
-    /**
-     * @var \Ibexa\Contracts\Core\SiteAccess\ConfigResolverInterface
-     */
-    private $configResolver;
+    private ConfigResolverInterface $configResolver;
 
     public function __construct(ConfigResolverInterface $configResolver)
     {
@@ -32,7 +29,7 @@ class PagelayoutContext extends RawMinkContext implements Context, SnippetAccept
     /**
      * @Given /^a pagelayout is configured$/
      */
-    public function aPagelayoutIsConfigured()
+    public function aPagelayoutIsConfigured(): void
     {
         Assertion::assertTrue($this->configResolver->hasParameter('page_layout'));
     }
@@ -40,7 +37,7 @@ class PagelayoutContext extends RawMinkContext implements Context, SnippetAccept
     /**
      * @Then /^it is rendered using the configured pagelayout$/
      */
-    public function itIsRenderedUsingTheConfiguredPagelayout()
+    public function itIsRenderedUsingTheConfiguredPagelayout(): void
     {
         $pageLayout = $this->getPageLayout();
 

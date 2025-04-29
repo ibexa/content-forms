@@ -19,7 +19,7 @@ trait NewnessChecker
      *
      * @return bool
      */
-    public function isNew()
+    public function isNew(): bool
     {
         return strpos($this->getIdentifierValue(), '__new__') === 0;
     }

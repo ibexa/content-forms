@@ -19,22 +19,19 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 abstract class AbstractActionDispatcher implements ActionDispatcherInterface
 {
-    /**
-     * @var \Symfony\Component\EventDispatcher\EventDispatcherInterface
-     */
-    private $eventDispatcher;
+    private ?EventDispatcherInterface $eventDispatcher = null;
 
     /**
      * @var \Symfony\Component\HttpFoundation\Response
      */
     protected $response;
 
-    public function setEventDispatcher(EventDispatcherInterface $eventDispatcher)
+    public function setEventDispatcher(EventDispatcherInterface $eventDispatcher): void
     {
         $this->eventDispatcher = $eventDispatcher;
     }
 
-    public function dispatchFormAction(FormInterface $form, ValueObject $data, $actionName = null, array $options = [])
+    public function dispatchFormAction(FormInterface $form, ValueObject $data, $actionName = null, array $options = []): void
     {
         $resolver = new OptionsResolver();
         $this->configureOptions($resolver);
@@ -74,7 +71,7 @@ abstract class AbstractActionDispatcher implements ActionDispatcherInterface
      * @param $defaultActionEventName
      * @param $event
      */
-    protected function dispatchDefaultAction($defaultActionEventName, FormActionEvent $event)
+    protected function dispatchDefaultAction(?string $defaultActionEventName, FormActionEvent $event)
     {
         $this->eventDispatcher->dispatch($event, $defaultActionEventName);
     }
@@ -83,7 +80,7 @@ abstract class AbstractActionDispatcher implements ActionDispatcherInterface
      * @param $actionEventName
      * @param $event
      */
-    protected function dispatchAction($actionEventName, FormActionEvent $event)
+    protected function dispatchAction(?string $actionEventName, FormActionEvent $event)
     {
         $this->eventDispatcher->dispatch($event, $actionEventName);
     }

@@ -21,7 +21,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 class TimeFieldType extends AbstractType
 {
-    public function getName()
+    public function getName(): string
     {
         return $this->getBlockPrefix();
     }
@@ -42,7 +42,7 @@ class TimeFieldType extends AbstractType
             ->addModelTransformer(new TimeValueTransformer());
     }
 
-    public function buildView(FormView $view, FormInterface $form, array $options)
+    public function buildView(FormView $view, FormInterface $form, array $options): void
     {
         $view->vars['attr']['data-seconds'] = (int) $options['with_seconds'];
     }

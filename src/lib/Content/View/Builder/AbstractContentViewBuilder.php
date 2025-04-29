@@ -25,29 +25,21 @@ use Ibexa\Core\MVC\Symfony\View\ParametersInjector;
  */
 abstract class AbstractContentViewBuilder
 {
-    /** @var \Ibexa\Contracts\Core\Repository\Repository */
-    protected $repository;
+    protected Repository $repository;
 
-    /** @var \Ibexa\Core\MVC\Symfony\View\Configurator */
-    protected $viewConfigurator;
+    protected Configurator $viewConfigurator;
 
-    /** @var \Ibexa\Core\MVC\Symfony\View\ParametersInjector */
-    protected $viewParametersInjector;
+    protected ParametersInjector $viewParametersInjector;
 
-    /** @var \Ibexa\ContentForms\Form\ActionDispatcher\ActionDispatcherInterface */
-    protected $contentActionDispatcher;
+    protected ActionDispatcherInterface $contentActionDispatcher;
 
-    /** @var \Ibexa\Core\MVC\Symfony\Locale\UserLanguagePreferenceProviderInterface */
-    protected $languagePreferenceProvider;
+    protected UserLanguagePreferenceProviderInterface $languagePreferenceProvider;
 
-    /** @var \Ibexa\Contracts\Core\SiteAccess\ConfigResolverInterface */
-    protected $configResolver;
+    protected ConfigResolverInterface $configResolver;
 
-    /** @var \Ibexa\Contracts\ContentForms\Content\Form\Provider\GroupedContentFormFieldsProviderInterface */
-    protected $groupedContentFormFieldsProvider;
+    protected GroupedContentFormFieldsProviderInterface $groupedContentFormFieldsProvider;
 
-    /** @var \Ibexa\Contracts\Core\Repository\ContentService */
-    protected $contentService;
+    protected ContentService $contentService;
 
     public function __construct(
         Repository $repository,

@@ -44,7 +44,7 @@ class MultipleCountryValueTransformerTest extends TestCase
         'ZW' => ['Name' => 'Zimbabwe', 'Alpha2' => 'ZW', 'Alpha3' => 'ZWE', 'IDC' => '263'],
     ];
 
-    public function transformProvider()
+    public function transformProvider(): array
     {
         return [
             [[
@@ -61,7 +61,7 @@ class MultipleCountryValueTransformerTest extends TestCase
     /**
      * @dataProvider transformProvider
      */
-    public function testTransform($valueAsArray)
+    public function testTransform(array $valueAsArray): void
     {
         $transformer = new MultipleCountryValueTransformer($this->countriesInfo);
         $value = new Value($valueAsArray);
@@ -71,14 +71,14 @@ class MultipleCountryValueTransformerTest extends TestCase
     /**
      * @dataProvider transformProvider
      */
-    public function testReverseTransform($valueAsArray)
+    public function testReverseTransform(array $valueAsArray): void
     {
         $transformer = new MultipleCountryValueTransformer($this->countriesInfo);
         $expectedValue = new Value($valueAsArray);
         self::assertEquals($expectedValue, $transformer->reverseTransform(array_keys($valueAsArray)));
     }
 
-    public function transformNullProvider()
+    public function transformNullProvider(): array
     {
         return [
             [42],
@@ -91,26 +91,26 @@ class MultipleCountryValueTransformerTest extends TestCase
     /**
      * @dataProvider transformNullProvider
      */
-    public function testTransformNull($value)
+    public function testTransformNull(int|string|array|null $value): void
     {
         $transformer = new MultipleCountryValueTransformer($this->countriesInfo);
         self::assertNull($transformer->transform($value));
     }
 
-    public function reverseTransformNullProvider()
+    public function reverseTransformNullProvider(): array
     {
         return [
             [42],
             ['snafu'],
             [null],
-            [new \Ibexa\Core\FieldType\Country\Value()],
+            [new Value()],
         ];
     }
 
     /**
      * @dataProvider reverseTransformNullProvider
      */
-    public function testReverseTransformNull($value)
+    public function testReverseTransformNull(mixed $value): void
     {
         $transformer = new MultipleCountryValueTransformer($this->countriesInfo);
         self::assertNull($transformer->reverseTransform($value));

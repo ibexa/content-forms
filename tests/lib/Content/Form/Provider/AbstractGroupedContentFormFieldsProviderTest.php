@@ -27,7 +27,7 @@ abstract class AbstractGroupedContentFormFieldsProviderTest extends TestCase
         $mock
             ->expects($matcher)
             ->method('getFieldGroup')
-            ->willReturnCallback(static function () use ($matcher, $expectedGroups) {
+            ->willReturnCallback(static function () use ($matcher, $expectedGroups): string {
                 return $expectedGroups[$matcher->getInvocationCount()];
             });
 

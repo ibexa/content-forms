@@ -24,7 +24,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 class BaseUserType extends AbstractType
 {
-    public function getName()
+    public function getName(): string
     {
         return $this->getBlockPrefix();
     }

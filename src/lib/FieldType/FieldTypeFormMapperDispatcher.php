@@ -24,7 +24,7 @@ class FieldTypeFormMapperDispatcher implements FieldTypeFormMapperDispatcherInte
      *
      * @var \Ibexa\Contracts\ContentForms\FieldType\FieldValueFormMapperInterface[]
      */
-    private $mappers;
+    private array $mappers;
 
     /**
      * FieldTypeFormMapperDispatcher constructor.

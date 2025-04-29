@@ -16,8 +16,7 @@ use Symfony\Component\Validator\ConstraintValidator;
 
 class PasswordValidator extends ConstraintValidator
 {
-    /** @var \Ibexa\Contracts\Core\Repository\UserService */
-    private $userService;
+    private UserService $userService;
 
     /**
      * @param \Ibexa\Contracts\Core\Repository\UserService $userService

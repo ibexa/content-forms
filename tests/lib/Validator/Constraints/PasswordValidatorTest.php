@@ -14,20 +14,18 @@ use Ibexa\Contracts\Core\Repository\UserService;
 use Ibexa\Contracts\Core\Repository\Values\ContentType\ContentType;
 use Ibexa\Contracts\Core\Repository\Values\User\PasswordValidationContext;
 use Ibexa\Core\FieldType\ValidationError;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
 use Symfony\Component\Validator\Violation\ConstraintViolationBuilderInterface;
 
 class PasswordValidatorTest extends TestCase
 {
-    /** @var \Ibexa\Contracts\Core\Repository\UserService|\PHPUnit\Framework\MockObject\MockObject */
-    private $userService;
+    private UserService & MockObject $userService;
 
-    /** @var \Symfony\Component\Validator\Context\ExecutionContextInterface|\PHPUnit\Framework\MockObject\MockObject */
-    private $executionContext;
+    private ExecutionContextInterface & MockObject $executionContext;
 
-    /** @var \Ibexa\ContentForms\Validator\Constraints\PasswordValidator */
-    private $validator;
+    private PasswordValidator $validator;
 
     protected function setUp(): void
     {
@@ -40,7 +38,7 @@ class PasswordValidatorTest extends TestCase
     /**
      * @dataProvider dataProviderForValidateNotSupportedValueType
      */
-    public function testValidateShouldBeSkipped($value)
+    public function testValidateShouldBeSkipped(mixed $value): void
     {
         $this->userService
             ->expects(self::never())
@@ -53,7 +51,7 @@ class PasswordValidatorTest extends TestCase
         $this->validator->validate($value, new Password());
     }
 
-    public function testValid()
+    public function testValid(): void
     {
         $password = 'pass';
         $contentType = $this->createMock(ContentType::class);
@@ -61,7 +59,7 @@ class PasswordValidatorTest extends TestCase
         $this->userService
             ->expects(self::once())
             ->method('validatePassword')
-            ->willReturnCallback(function ($actualPassword, $actualContext) use ($password, $contentType) {
+            ->willReturnCallback(function ($actualPassword, $actualContext) use ($password, $contentType): array {
                 $this->assertEquals($password, $actualPassword);
                 $this->assertInstanceOf(PasswordValidationContext::class, $actualContext);
                 $this->assertSame($contentType, $actualContext->contentType);
@@ -78,7 +76,7 @@ class PasswordValidatorTest extends TestCase
         ]));
     }
 
-    public function testInvalid()
+    public function testInvalid(): void
     {
         $contentType = $this->createMock(ContentType::class);
         $password = 'pass';
@@ -88,7 +86,7 @@ class PasswordValidatorTest extends TestCase
         $this->userService
             ->expects(self::once())
             ->method('validatePassword')
-            ->willReturnCallback(function ($actualPassword, $actualContext) use ($password, $contentType, $errorMessage, $errorParameter) {
+            ->willReturnCallback(function ($actualPassword, $actualContext) use ($password, $contentType, $errorMessage, $errorParameter): array {
                 $this->assertEquals($password, $actualPassword);
                 $this->assertInstanceOf(PasswordValidationContext::class, $actualContext);
                 $this->assertSame($contentType, $actualContext->contentType);

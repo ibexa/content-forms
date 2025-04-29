@@ -26,11 +26,9 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 class RelationListFieldType extends AbstractType
 {
-    /** @var \Ibexa\Contracts\Core\Repository\ContentService */
-    private $contentService;
+    private ContentService $contentService;
 
-    /** @var \Ibexa\Contracts\Core\Repository\ContentTypeService */
-    private $contentTypeService;
+    private ContentTypeService $contentTypeService;
 
     /**
      * @param \Ibexa\Contracts\Core\Repository\ContentService $contentService
@@ -42,7 +40,7 @@ class RelationListFieldType extends AbstractType
         $this->contentTypeService = $contentTypeService;
     }
 
-    public function getName()
+    public function getName(): string
     {
         return $this->getBlockPrefix();
     }
@@ -62,7 +60,7 @@ class RelationListFieldType extends AbstractType
         $builder->addModelTransformer(new RelationListValueTransformer());
     }
 
-    public function finishView(FormView $view, FormInterface $form, array $options)
+    public function finishView(FormView $view, FormInterface $form, array $options): void
     {
         $view->vars['relations'] = [];
         $view->vars['default_location'] = $options['default_location'];

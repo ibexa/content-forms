@@ -14,7 +14,7 @@ use PHPUnit\Framework\TestCase;
 
 class MultiSelectionValueTransformerTest extends TestCase
 {
-    public function transformProvider()
+    public function transformProvider(): array
     {
         return [
             [[0]],
@@ -28,7 +28,7 @@ class MultiSelectionValueTransformerTest extends TestCase
     /**
      * @dataProvider transformProvider
      */
-    public function testTransform($valueAsArray)
+    public function testTransform(array $valueAsArray): void
     {
         $transformer = new MultiSelectionValueTransformer();
         $value = new Value($valueAsArray);
@@ -38,14 +38,14 @@ class MultiSelectionValueTransformerTest extends TestCase
     /**
      * @dataProvider transformProvider
      */
-    public function testReverseTransform($valueAsArray)
+    public function testReverseTransform(array $valueAsArray): void
     {
         $transformer = new MultiSelectionValueTransformer();
         $expectedValue = new Value($valueAsArray);
         self::assertEquals($expectedValue, $transformer->reverseTransform($valueAsArray));
     }
 
-    public function transformNullProvider()
+    public function transformNullProvider(): array
     {
         return [
             [new Value()],
@@ -59,13 +59,13 @@ class MultiSelectionValueTransformerTest extends TestCase
     /**
      * @dataProvider transformNullProvider
      */
-    public function testTransformNull($value)
+    public function testTransformNull(mixed $value): void
     {
         $transformer = new MultiSelectionValueTransformer();
         self::assertNull($transformer->transform($value));
     }
 
-    public function testReverseTransformNull()
+    public function testReverseTransformNull(): void
     {
         $transformer = new MultiSelectionValueTransformer();
         self::assertNull($transformer->reverseTransform(null));
