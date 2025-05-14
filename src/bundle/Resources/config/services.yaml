@@ -16,8 +16,7 @@ services:
             - { name: form.type, alias: ezplatform_content_forms_content_field }
 
     # Validators
-    Ibexa\AdminUi\Validator\Constraints\FieldTypeValidator:
-        class: Ibexa\ContentForms\Validator\Constraints\FieldTypeValidator
+    Ibexa\ContentForms\Validator\Constraints\FieldTypeValidator:
         arguments: ['@ibexa.api.service.field_type']
         abstract: true
 
@@ -34,7 +33,7 @@ services:
             - { name: validator.constraint_validator }
 
     Ibexa\ContentForms\Validator\Constraints\FieldValueValidator:
-        parent: Ibexa\AdminUi\Validator\Constraints\FieldTypeValidator
+        parent: Ibexa\ContentForms\Validator\Constraints\FieldTypeValidator
         class: Ibexa\ContentForms\Validator\Constraints\FieldValueValidator
         tags:
             - { name: validator.constraint_validator, alias: ezplatform.content_forms.validator.field_value }
