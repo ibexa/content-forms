@@ -8,13 +8,11 @@ declare(strict_types=1);
 
 namespace Ibexa\ContentForms\FieldType\DataTransformer;
 
-use Ibexa\Rest\Value;
+use Ibexa\Core\FieldType\Image\Value;
 use Symfony\Component\Form\DataTransformerInterface;
 
 /**
- * Data transformer for ezimage field type.
- *
- * {@inheritdoc}
+ * Data transformer for the `ezimage` field type.
  */
 class ImageValueTransformer extends AbstractBinaryBaseTransformer implements DataTransformerInterface
 {
@@ -39,9 +37,7 @@ class ImageValueTransformer extends AbstractBinaryBaseTransformer implements Dat
     }
 
     /**
-     * @param array $value
-     *
-     * @return \Ibexa\Core\FieldType\Image\Value
+     * @param array<string, mixed> $value
      *
      * @throws \Symfony\Component\Form\Exception\TransformationFailedException
      */

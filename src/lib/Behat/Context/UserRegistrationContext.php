@@ -296,13 +296,13 @@ class UserRegistrationContext extends RawMinkContext implements Context, Snippet
      */
     public function addUserRegistrationConfiguration(PyStringNode $extraConfigurationString): void
     {
-        $extraConfigurationString = str_replace(
-            '<userGroupContentId>',
-            (string)$this->customUserGroup->id,
-            $extraConfigurationString->getRaw()
-        );
-
-        $this->yamlConfigurationContext->addConfiguration(Yaml::parse($extraConfigurationString));
+        $this->yamlConfigurationContext->addConfiguration(Yaml::parse(
+            str_replace(
+                '<userGroupContentRemoteId>',
+                $this->customUserGroup->getContentInfo()->remoteId,
+                $extraConfigurationString->getRaw()
+            )
+        ));
     }
 
     /**
