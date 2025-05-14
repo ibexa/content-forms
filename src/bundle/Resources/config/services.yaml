@@ -36,7 +36,7 @@ services:
         parent: Ibexa\ContentForms\Validator\Constraints\FieldTypeValidator
         class: Ibexa\ContentForms\Validator\Constraints\FieldValueValidator
         tags:
-            - { name: validator.constraint_validator, alias: ezplatform.content_forms.validator.field_value }
+            - { name: validator.constraint_validator }
 
     # Action dispatchers
     Ibexa\ContentForms\Form\ActionDispatcher\AbstractActionDispatcher:
