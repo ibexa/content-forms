@@ -42,7 +42,7 @@ class FieldCollectionType extends CollectionType
     ): void {
         parent::buildForm($builder, $options);
 
-        $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) use ($options): void {
+        $builder->addEventListener(FormEvents::POST_SET_DATA, function (FormEvent $event) use ($options): void {
             $form = $event->getForm();
             $data = $event->getData();
 
