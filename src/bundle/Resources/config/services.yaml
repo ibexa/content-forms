@@ -8,7 +8,9 @@ parameters:
     ibexa.content_forms.user_content_type_identifier: "user"
 
 services:
-    Ibexa\ContentForms\FieldType\FieldTypeFormMapperDispatcher: ~
+    Ibexa\ContentForms\FieldType\FieldTypeFormMapperDispatcher:
+        arguments:
+            $fieldTypeAliasResolver: '@Ibexa\Core\FieldType\FieldTypeAliasResolverInterface'
 
     Ibexa\ContentForms\Form\Type\Content\ContentFieldType:
         arguments: ['@Ibexa\ContentForms\FieldType\FieldTypeFormMapperDispatcher']
