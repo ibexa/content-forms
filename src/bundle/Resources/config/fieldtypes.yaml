@@ -94,7 +94,7 @@ services:
 
     Ibexa\ContentForms\FieldType\Mapper\TextLineFormMapper:
         tags:
-            - { name: ibexa.admin_ui.field_type.form.mapper.value, fieldType: ezstring }
+            - { name: ibexa.admin_ui.field_type.form.mapper.value, fieldType: ibexa_string }
 
     Ibexa\ContentForms\FieldType\Mapper\TextBlockFormMapper:
         tags:

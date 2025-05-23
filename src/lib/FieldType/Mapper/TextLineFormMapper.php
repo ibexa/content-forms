@@ -14,7 +14,7 @@ use Ibexa\Contracts\ContentForms\FieldType\FieldValueFormMapperInterface;
 use Symfony\Component\Form\FormInterface;
 
 /**
- * FormMapper for ezstring FieldType.
+ * FormMapper for ibexa_string FieldType.
  */
 class TextLineFormMapper implements FieldValueFormMapperInterface
 {
