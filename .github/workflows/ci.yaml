@@ -63,6 +63,9 @@ jobs:
             - name: Run unit test suite
               run: composer test
 
+            - name: Run PHPStan analysis
+              run: composer run-script phpstan
+
     integration-tests:
         name: Runs integration tests
         runs-on: "ubuntu-22.04"
