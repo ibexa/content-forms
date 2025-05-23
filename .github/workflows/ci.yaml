@@ -32,7 +32,7 @@ jobs:
               run: composer run-script check-cs -- --format=checkstyle | cs2pr
 
     tests:
-        name: Unit tests
+        name: Unit tests & PHPStan static analysis
         runs-on: "ubuntu-22.04"
         timeout-minutes: 15
 
@@ -62,6 +62,9 @@ jobs:
 
             - name: Run unit test suite
               run: composer test
+
+            - name: Run PHPStan analysis
+              run: composer run-script phpstan
 
     integration-tests:
         name: Runs integration tests
