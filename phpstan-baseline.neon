@@ -37,22 +37,10 @@ parameters:
 			path: src/bundle/Controller/UserController.php
 
 		-
-			message: '#^Method Ibexa\\Bundle\\ContentForms\\DependencyInjection\\Compiler\\FieldTypeFormMapperDispatcherPass\:\:process\(\) has no return type specified\.$#'
-			identifier: missingType.return
+			message: '#^Parameter \#1 \$array of function array_shift expects array, iterable\<Ibexa\\Contracts\\Core\\Repository\\Values\\Content\\Location\> given\.$#'
+			identifier: argument.type
 			count: 1
-			path: src/bundle/DependencyInjection/Compiler/FieldTypeFormMapperDispatcherPass.php
-
-		-
-			message: '#^Method Ibexa\\Bundle\\ContentForms\\DependencyInjection\\Configuration\\Parser\\ContentEdit\:\:addSemanticConfig\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/bundle/DependencyInjection/Configuration/Parser/ContentEdit.php
-
-		-
-			message: '#^Method Ibexa\\Bundle\\ContentForms\\DependencyInjection\\Configuration\\Parser\\ContentEdit\:\:mapConfig\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/bundle/DependencyInjection/Configuration/Parser/ContentEdit.php
+			path: src/bundle/Controller/UserController.php
 
 		-
 			message: '#^Method Ibexa\\Bundle\\ContentForms\\DependencyInjection\\Configuration\\Parser\\ContentEdit\:\:mapConfig\(\) has parameter \$scopeSettings with no value type specified in iterable type array\.$#'
@@ -61,40 +49,10 @@ parameters:
 			path: src/bundle/DependencyInjection/Configuration/Parser/ContentEdit.php
 
 		-
-			message: '#^Method Ibexa\\Bundle\\ContentForms\\DependencyInjection\\Configuration\\Parser\\UserEdit\:\:addSemanticConfig\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/bundle/DependencyInjection/Configuration/Parser/UserEdit.php
-
-		-
-			message: '#^Method Ibexa\\Bundle\\ContentForms\\DependencyInjection\\Configuration\\Parser\\UserEdit\:\:mapConfig\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/bundle/DependencyInjection/Configuration/Parser/UserEdit.php
-
-		-
 			message: '#^Method Ibexa\\Bundle\\ContentForms\\DependencyInjection\\Configuration\\Parser\\UserEdit\:\:mapConfig\(\) has parameter \$scopeSettings with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/bundle/DependencyInjection/Configuration/Parser/UserEdit.php
-
-		-
-			message: '#^Call to an undefined method Symfony\\Component\\DependencyInjection\\Extension\\ExtensionInterface\:\:addConfigParser\(\)\.$#'
-			identifier: method.notFound
-			count: 4
-			path: src/bundle/IbexaContentFormsBundle.php
-
-		-
-			message: '#^Call to an undefined method Symfony\\Component\\DependencyInjection\\Extension\\ExtensionInterface\:\:addDefaultSettings\(\)\.$#'
-			identifier: method.notFound
-			count: 1
-			path: src/bundle/IbexaContentFormsBundle.php
-
-		-
-			message: '#^Method Ibexa\\Bundle\\ContentForms\\IbexaContentFormsBundle\:\:build\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/bundle/IbexaContentFormsBundle.php
 
 		-
 			message: '#^Method Ibexa\\Contracts\\ContentForms\\Content\\Form\\Provider\\GroupedContentFormFieldsProviderInterface\:\:getGroupedFields\(\) has parameter \$fieldsDataForm with generic interface Symfony\\Component\\Form\\FormInterface but does not specify its types\: TData$#'
@@ -103,22 +61,10 @@ parameters:
 			path: src/contracts/Content/Form/Provider/GroupedContentFormFieldsProviderInterface.php
 
 		-
-			message: '#^Class EzSystems\\RepositoryForms\\Data\\Content\\FieldData not found\.$#'
-			identifier: class.notFound
-			count: 1
-			path: src/contracts/Data/Content/FieldData.php
-
-		-
 			message: '#^Method Ibexa\\Contracts\\ContentForms\\Data\\Content\\FieldData\:\:getFieldTypeIdentifier\(\) has no return type specified\.$#'
 			identifier: missingType.return
 			count: 1
 			path: src/contracts/Data/Content/FieldData.php
-
-		-
-			message: '#^Class EzSystems\\RepositoryForms\\FieldType\\FieldValueFormMapperInterface not found\.$#'
-			identifier: class.notFound
-			count: 1
-			path: src/contracts/FieldType/FieldValueFormMapperInterface.php
 
 		-
 			message: '#^Method Ibexa\\Contracts\\ContentForms\\FieldType\\FieldValueFormMapperInterface\:\:mapFieldValueForm\(\) has no return type specified\.$#'
@@ -145,116 +91,8 @@ parameters:
 			path: src/lib/Behat/Context/ContentEditContext.php
 
 		-
-			message: '#^Method Ibexa\\ContentForms\\Behat\\Context\\ContentEditContext\:\:aContentCreationFormIsDisplayed\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Behat/Context/ContentEditContext.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Behat\\Context\\ContentEditContext\:\:gatherContexts\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Behat/Context/ContentEditContext.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Behat\\Context\\ContentEditContext\:\:iAmOnTheViewOfTheContentThatWasPublished\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Behat/Context/ContentEditContext.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Behat\\Context\\ContentEditContext\:\:iAmShownTheContentCreationForm\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Behat/Context/ContentEditContext.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Behat\\Context\\ContentEditContext\:\:iFillInTheConstrainedFieldWithAnInvalidValue\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Behat/Context/ContentEditContext.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Behat\\Context\\ContentEditContext\:\:iFillInTheFolderEditForm\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Behat/Context/ContentEditContext.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Behat\\Context\\ContentEditContext\:\:iGoToTheContentCreationPageForThisType\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Behat/Context/ContentEditContext.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Behat\\Context\\ContentEditContext\:\:iShouldSeeAContentEditForm\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Behat/Context/ContentEditContext.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Behat\\Context\\ContentEditContext\:\:thatIHavePermissionToCreateContentOfThisType\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Behat/Context/ContentEditContext.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Behat\\Context\\ContentEditContext\:\:thatIHavePermissionToCreateFolders\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Behat/Context/ContentEditContext.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Behat\\Context\\ContentEditContext\:\:thereIsAContentTypeWithAnyKindOfConstraintsOnAFieldDefinition\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Behat/Context/ContentEditContext.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Behat\\Context\\ContentEditContext\:\:thereIsARelevantErrorMessageLinkedToTheInvalidField\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Behat/Context/ContentEditContext.php
-
-		-
-			message: '#^Property Ibexa\\ContentForms\\Behat\\Context\\ContentEditContext\:\:\$createdContentName \(string\) in isset\(\) is not nullable\.$#'
-			identifier: isset.property
-			count: 1
-			path: src/lib/Behat/Context/ContentEditContext.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Behat\\Context\\ContentTypeContext\:\:addFieldsTo\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Behat/Context/ContentTypeContext.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Behat\\Context\\ContentTypeContext\:\:addFieldsTo\(\) has parameter \$contentTypeIdentifier with no type specified\.$#'
-			identifier: missingType.parameter
-			count: 1
-			path: src/lib/Behat/Context/ContentTypeContext.php
-
-		-
 			message: '#^Method Ibexa\\ContentForms\\Behat\\Context\\ContentTypeContext\:\:addFieldsTo\(\) has parameter \$fieldDefinitions with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
-			count: 1
-			path: src/lib/Behat/Context/ContentTypeContext.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Behat\\Context\\ContentTypeContext\:\:createContentType\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Behat/Context/ContentTypeContext.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Behat\\Context\\ContentTypeContext\:\:iRemoveFieldFromContentType\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Behat/Context/ContentTypeContext.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Behat\\Context\\ContentTypeContext\:\:iRemoveFieldFromContentType\(\) has parameter \$contentTypeIdentifier with no type specified\.$#'
-			identifier: missingType.parameter
 			count: 1
 			path: src/lib/Behat/Context/ContentTypeContext.php
 
@@ -271,26 +109,8 @@ parameters:
 			path: src/lib/Behat/Context/ContentTypeContext.php
 
 		-
-			message: '#^Method Ibexa\\ContentForms\\Behat\\Context\\ContentTypeContext\:\:thereIsAContentTypeWithId\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Behat/Context/ContentTypeContext.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Behat\\Context\\ContentTypeContext\:\:thereIsAContentTypeWithId\(\) has parameter \$contentTypeIdentifier with no type specified\.$#'
-			identifier: missingType.parameter
-			count: 1
-			path: src/lib/Behat/Context/ContentTypeContext.php
-
-		-
 			message: '#^Method Ibexa\\ContentForms\\Behat\\Context\\ContentTypeContext\:\:thereIsAContentTypeWithId\(\) has parameter \$id with no type specified\.$#'
 			identifier: missingType.parameter
-			count: 1
-			path: src/lib/Behat/Context/ContentTypeContext.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Behat\\Context\\ContentTypeContext\:\:updateFieldDefinition\(\) has no return type specified\.$#'
-			identifier: missingType.return
 			count: 1
 			path: src/lib/Behat/Context/ContentTypeContext.php
 
@@ -309,12 +129,6 @@ parameters:
 		-
 			message: '#^Parameter \#2 \$fieldDefinition of method Ibexa\\Contracts\\Core\\Repository\\ContentTypeService\:\:updateFieldDefinition\(\) expects Ibexa\\Contracts\\Core\\Repository\\Values\\ContentType\\FieldDefinition, Ibexa\\Contracts\\Core\\Repository\\Values\\ContentType\\FieldDefinition\|null given\.$#'
 			identifier: argument.type
-			count: 1
-			path: src/lib/Behat/Context/ContentTypeContext.php
-
-		-
-			message: '#^Property Ibexa\\ContentForms\\Behat\\Context\\ContentTypeContext\:\:\$adminUserId has no type specified\.$#'
-			identifier: missingType.property
 			count: 1
 			path: src/lib/Behat/Context/ContentTypeContext.php
 
@@ -349,12 +163,6 @@ parameters:
 			path: src/lib/Behat/Context/FieldTypeFormContext.php
 
 		-
-			message: '#^Method Ibexa\\ContentForms\\Behat\\Context\\FieldTypeFormContext\:\:aContentTypeWithAGivenFieldDefinition\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Behat/Context/FieldTypeFormContext.php
-
-		-
 			message: '#^Method Ibexa\\ContentForms\\Behat\\Context\\FieldTypeFormContext\:\:aContentTypeWithAGivenFieldDefinition\(\) has parameter \$contentTypeName with no type specified\.$#'
 			identifier: missingType.parameter
 			count: 1
@@ -367,50 +175,14 @@ parameters:
 			path: src/lib/Behat/Context/FieldTypeFormContext.php
 
 		-
-			message: '#^Method Ibexa\\ContentForms\\Behat\\Context\\FieldTypeFormContext\:\:gatherContexts\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Behat/Context/FieldTypeFormContext.php
-
-		-
 			message: '#^Method Ibexa\\ContentForms\\Behat\\Context\\FieldTypeFormContext\:\:getRequiredFieldTypeExceptions\(\) return type has no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/lib/Behat/Context/FieldTypeFormContext.php
 
 		-
-			message: '#^Method Ibexa\\ContentForms\\Behat\\Context\\FieldTypeFormContext\:\:iEditOrCreateContentOfThisType\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Behat/Context/FieldTypeFormContext.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Behat\\Context\\FieldTypeFormContext\:\:iEditOrCreateContentOfUserType\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Behat/Context/FieldTypeFormContext.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Behat\\Context\\FieldTypeFormContext\:\:itShouldContainAGivenTypeInputField\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Behat/Context/FieldTypeFormContext.php
-
-		-
 			message: '#^Method Ibexa\\ContentForms\\Behat\\Context\\FieldTypeFormContext\:\:itShouldContainAGivenTypeInputField\(\) has parameter \$inputType with no type specified\.$#'
 			identifier: missingType.parameter
-			count: 1
-			path: src/lib/Behat/Context/FieldTypeFormContext.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Behat\\Context\\FieldTypeFormContext\:\:itShouldContainTheFollowingSetOfLabelsAndInputFieldsTypes\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Behat/Context/FieldTypeFormContext.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Behat\\Context\\FieldTypeFormContext\:\:setFieldDefinitionOption\(\) has no return type specified\.$#'
-			identifier: missingType.return
 			count: 1
 			path: src/lib/Behat/Context/FieldTypeFormContext.php
 
@@ -427,110 +199,8 @@ parameters:
 			path: src/lib/Behat/Context/FieldTypeFormContext.php
 
 		-
-			message: '#^Method Ibexa\\ContentForms\\Behat\\Context\\FieldTypeFormContext\:\:theEditFormShouldContainAFieldsetNamedAfterTheFieldDefinition\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Behat/Context/FieldTypeFormContext.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Behat\\Context\\FieldTypeFormContext\:\:theEditFormShouldContainAFieldsetNamedAfterTheFieldDefinition\(\) has parameter \$fieldTypeIdentifier with no type specified\.$#'
-			identifier: missingType.parameter
-			count: 1
-			path: src/lib/Behat/Context/FieldTypeFormContext.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Behat\\Context\\FieldTypeFormContext\:\:theFieldDefinitionIsMarkedAsRequired\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Behat/Context/FieldTypeFormContext.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Behat\\Context\\FieldTypeFormContext\:\:theInputFieldsShouldBeFlaggedAsRequired\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Behat/Context/FieldTypeFormContext.php
-
-		-
-			message: '#^Property Ibexa\\ContentForms\\Behat\\Context\\FieldTypeFormContext\:\:\$fieldIdentifier has no type specified\.$#'
-			identifier: missingType.property
-			count: 1
-			path: src/lib/Behat/Context/FieldTypeFormContext.php
-
-		-
-			message: '#^Property Ibexa\\ContentForms\\Behat\\Context\\FieldTypeFormContext\:\:\$fieldTypeIdentifierMap has no type specified\.$#'
-			identifier: missingType.property
-			count: 1
-			path: src/lib/Behat/Context/FieldTypeFormContext.php
-
-		-
-			message: '#^Call to an undefined static method PHPUnit\\Framework\\Assert\:\:assertMatchesRegularExpression\(\)\.$#'
-			identifier: staticMethod.notFound
-			count: 1
-			path: src/lib/Behat/Context/PagelayoutContext.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Behat\\Context\\PagelayoutContext\:\:aPagelayoutIsConfigured\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Behat/Context/PagelayoutContext.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Behat\\Context\\PagelayoutContext\:\:itIsRenderedUsingTheConfiguredPagelayout\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Behat/Context/PagelayoutContext.php
-
-		-
 			message: '#^Call to an undefined method Behat\\Testwork\\Environment\\Environment\:\:getContext\(\)\.$#'
 			identifier: method.notFound
-			count: 1
-			path: src/lib/Behat/Context/SelectionFieldTypeFormContext.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Behat\\Context\\SelectionFieldTypeFormContext\:\:gatherContexts\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Behat/Context/SelectionFieldTypeFormContext.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Behat\\Context\\SelectionFieldTypeFormContext\:\:itShouldContainASelectField\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Behat/Context/SelectionFieldTypeFormContext.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Behat\\Context\\SelectionFieldTypeFormContext\:\:setFieldDefinitionToMultipleChoice\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Behat/Context/SelectionFieldTypeFormContext.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Behat\\Context\\SelectionFieldTypeFormContext\:\:setFieldDefinitionToSingleChoice\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Behat/Context/SelectionFieldTypeFormContext.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Behat\\Context\\SelectionFieldTypeFormContext\:\:theInputIsAMultipleSelectionDropdown\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Behat/Context/SelectionFieldTypeFormContext.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Behat\\Context\\SelectionFieldTypeFormContext\:\:theInputIsASingleSelectionDropdown\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Behat/Context/SelectionFieldTypeFormContext.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Behat\\Context\\SelectionFieldTypeFormContext\:\:theSelectFieldShouldBeFlaggedAsRequired\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Behat/Context/SelectionFieldTypeFormContext.php
-
-		-
-			message: '#^Property Ibexa\\ContentForms\\Behat\\Context\\SelectionFieldTypeFormContext\:\:\$fieldIdentifier has no type specified\.$#'
-			identifier: missingType.property
 			count: 1
 			path: src/lib/Behat/Context/SelectionFieldTypeFormContext.php
 
@@ -553,166 +223,22 @@ parameters:
 			path: src/lib/Behat/Context/UserRegistrationContext.php
 
 		-
-			message: '#^Method Ibexa\\ContentForms\\Behat\\Context\\UserRegistrationContext\:\:addRegistrationTemplatesConfiguration\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Behat/Context/UserRegistrationContext.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Behat\\Context\\UserRegistrationContext\:\:addUserRegistrationConfiguration\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Behat/Context/UserRegistrationContext.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Behat\\Context\\UserRegistrationContext\:\:createTemplateAt\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Behat/Context/UserRegistrationContext.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Behat\\Context\\UserRegistrationContext\:\:createTemplateAt\(\) has parameter \$path with no type specified\.$#'
-			identifier: missingType.parameter
-			count: 1
-			path: src/lib/Behat/Context/UserRegistrationContext.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Behat\\Context\\UserRegistrationContext\:\:createUserGroup\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Behat/Context/UserRegistrationContext.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Behat\\Context\\UserRegistrationContext\:\:gatherContexts\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Behat/Context/UserRegistrationContext.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Behat\\Context\\UserRegistrationContext\:\:iAmOnTheRegistrationConfirmationPage\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Behat/Context/UserRegistrationContext.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Behat\\Context\\UserRegistrationContext\:\:iCanSeeTheRegistrationForm\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Behat/Context/UserRegistrationContext.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Behat\\Context\\UserRegistrationContext\:\:iClickOnTheRegisterButton\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Behat/Context/UserRegistrationContext.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Behat\\Context\\UserRegistrationContext\:\:iFillInTheFormWithValidValues\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Behat/Context/UserRegistrationContext.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Behat\\Context\\UserRegistrationContext\:\:iRegisterAUserAccount\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Behat/Context/UserRegistrationContext.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Behat\\Context\\UserRegistrationContext\:\:iSeeARegistrationConfirmationMessage\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Behat/Context/UserRegistrationContext.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Behat\\Context\\UserRegistrationContext\:\:iSeeAnErrorMessageSayingThatICanNotRegister\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Behat/Context/UserRegistrationContext.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Behat\\Context\\UserRegistrationContext\:\:itHasARegisterButton\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Behat/Context/UserRegistrationContext.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Behat\\Context\\UserRegistrationContext\:\:itMatchesTheStructureOfTheConfiguredRegistrationUserContentType\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Behat/Context/UserRegistrationContext.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Behat\\Context\\UserRegistrationContext\:\:loginAs\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Behat/Context/UserRegistrationContext.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Behat\\Context\\UserRegistrationContext\:\:loginAsUserWithUserRegisterPolicy\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Behat/Context/UserRegistrationContext.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Behat\\Context\\UserRegistrationContext\:\:loginAsUserWithoutRegisterPolicy\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Behat/Context/UserRegistrationContext.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Behat\\Context\\UserRegistrationContext\:\:thePageIsRenderedUsingTheTemplateConfiguredIn\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Behat/Context/UserRegistrationContext.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Behat\\Context\\UserRegistrationContext\:\:theUserAccountHasBeenCreated\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Behat/Context/UserRegistrationContext.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Behat\\Context\\UserRegistrationContext\:\:theUserIsCreatedInThisUserGroup\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Behat/Context/UserRegistrationContext.php
-
-		-
-			message: '#^Property Ibexa\\ContentForms\\Behat\\Context\\UserRegistrationContext\:\:\$adminUserId has no type specified\.$#'
-			identifier: missingType.property
-			count: 1
-			path: src/lib/Behat/Context/UserRegistrationContext.php
-
-		-
-			message: '#^Property Ibexa\\ContentForms\\Behat\\Context\\UserRegistrationContext\:\:\$groupId has no type specified\.$#'
-			identifier: missingType.property
-			count: 1
-			path: src/lib/Behat/Context/UserRegistrationContext.php
-
-		-
-			message: '#^Property Ibexa\\ContentForms\\Behat\\Context\\UserRegistrationContext\:\:\$language has no type specified\.$#'
-			identifier: missingType.property
-			count: 1
-			path: src/lib/Behat/Context/UserRegistrationContext.php
-
-		-
-			message: '#^Property Ibexa\\ContentForms\\Behat\\Context\\UserRegistrationContext\:\:\$password has no type specified\.$#'
-			identifier: missingType.property
-			count: 1
-			path: src/lib/Behat/Context/UserRegistrationContext.php
-
-		-
 			message: '#^Property Ibexa\\ContentForms\\Behat\\Context\\UserRegistrationContext\:\:\$permissionResolver is never read, only written\.$#'
 			identifier: property.onlyWritten
 			count: 1
 			path: src/lib/Behat/Context/UserRegistrationContext.php
 
 		-
-			message: '#^Property Ibexa\\ContentForms\\Behat\\Context\\UserRegistrationContext\:\:\$registrationUsername has no type specified\.$#'
-			identifier: missingType.property
+			message: '#^Binary operation "\*\=" between float\|int\|string and 1024 results in an error\.$#'
+			identifier: assignOp.invalid
 			count: 1
-			path: src/lib/Behat/Context/UserRegistrationContext.php
+			path: src/lib/ConfigResolver/MaxUploadSize.php
+
+		-
+			message: '#^Binary operation "\*\=" between string and 1024 results in an error\.$#'
+			identifier: assignOp.invalid
+			count: 1
+			path: src/lib/ConfigResolver/MaxUploadSize.php
 
 		-
 			message: '#^Parameter \#1 \$str of method Ibexa\\ContentForms\\ConfigResolver\\MaxUploadSize\:\:stringToBytes\(\) expects string, string\|false given\.$#'
@@ -799,6 +325,12 @@ parameters:
 			path: src/lib/Content/View/Builder/ContentEditViewBuilder.php
 
 		-
+			message: '#^Parameter \#1 \$array of function array_shift expects array, iterable\<Ibexa\\Contracts\\Core\\Repository\\Values\\Content\\Location\> given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/lib/Content/View/Builder/ContentEditViewBuilder.php
+
+		-
 			message: '#^Strict comparison using \!\=\= between null and Ibexa\\Contracts\\Core\\Repository\\Values\\Content\\Language will always evaluate to true\.$#'
 			identifier: notIdentical.alwaysTrue
 			count: 1
@@ -811,32 +343,8 @@ parameters:
 			path: src/lib/Content/View/ContentCreateView.php
 
 		-
-			message: '#^Method Ibexa\\ContentForms\\Content\\View\\ContentCreateView\:\:setContentType\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Content/View/ContentCreateView.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Content\\View\\ContentCreateView\:\:setForm\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Content/View/ContentCreateView.php
-
-		-
 			message: '#^Method Ibexa\\ContentForms\\Content\\View\\ContentCreateView\:\:setForm\(\) has parameter \$form with generic interface Symfony\\Component\\Form\\FormInterface but does not specify its types\: TData$#'
 			identifier: missingType.generics
-			count: 1
-			path: src/lib/Content/View/ContentCreateView.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Content\\View\\ContentCreateView\:\:setLanguage\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Content/View/ContentCreateView.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Content\\View\\ContentCreateView\:\:setLocation\(\) has no return type specified\.$#'
-			identifier: missingType.return
 			count: 1
 			path: src/lib/Content/View/ContentCreateView.php
 
@@ -853,32 +361,8 @@ parameters:
 			path: src/lib/Content/View/ContentEditView.php
 
 		-
-			message: '#^Method Ibexa\\ContentForms\\Content\\View\\ContentEditView\:\:setContent\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Content/View/ContentEditView.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Content\\View\\ContentEditView\:\:setForm\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Content/View/ContentEditView.php
-
-		-
 			message: '#^Method Ibexa\\ContentForms\\Content\\View\\ContentEditView\:\:setForm\(\) has parameter \$form with generic interface Symfony\\Component\\Form\\FormInterface but does not specify its types\: TData$#'
 			identifier: missingType.generics
-			count: 1
-			path: src/lib/Content/View/ContentEditView.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Content\\View\\ContentEditView\:\:setLanguage\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Content/View/ContentEditView.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Content\\View\\ContentEditView\:\:setLocation\(\) has no return type specified\.$#'
-			identifier: missingType.return
 			count: 1
 			path: src/lib/Content/View/ContentEditView.php
 
@@ -887,12 +371,6 @@ parameters:
 			identifier: missingType.generics
 			count: 1
 			path: src/lib/Content/View/ContentEditView.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Content\\View\\Filter\\ContentCreateViewFilter\:\:handleContentCreateForm\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Content/View/Filter/ContentCreateViewFilter.php
 
 		-
 			message: '#^Method Ibexa\\ContentForms\\Content\\View\\Filter\\ContentCreateViewFilter\:\:resolveContentCreateForm\(\) return type with generic interface Symfony\\Component\\Form\\FormInterface does not specify its types\: TData$#'
@@ -905,12 +383,6 @@ parameters:
 			identifier: arguments.count
 			count: 1
 			path: src/lib/Content/View/Filter/ContentCreateViewFilter.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Content\\View\\Filter\\ContentEditViewFilter\:\:handleContentEditForm\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Content/View/Filter/ContentEditViewFilter.php
 
 		-
 			message: '#^Method Ibexa\\ContentForms\\Content\\View\\Filter\\ContentEditViewFilter\:\:resolveContentEditForm\(\) return type with generic interface Symfony\\Component\\Form\\FormInterface does not specify its types\: TData$#'
@@ -949,24 +421,6 @@ parameters:
 			path: src/lib/Content/View/Provider/ContentEditView/Configured.php
 
 		-
-			message: '#^Method Ibexa\\ContentForms\\Data\\Content\\ContentCreateData\:\:addFieldData\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Data/Content/ContentCreateData.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Data\\Content\\ContentCreateData\:\:addLocationStruct\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Data/Content/ContentCreateData.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Data\\Content\\ContentUpdateData\:\:addFieldData\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Data/Content/ContentUpdateData.php
-
-		-
 			message: '#^Property Ibexa\\ContentForms\\Data\\Content\\ContentUpdateData\:\:\$contentDraft has no type specified\.$#'
 			identifier: missingType.property
 			count: 1
@@ -1003,12 +457,6 @@ parameters:
 			path: src/lib/Data/Mapper/ContentCreateMapper.php
 
 		-
-			message: '#^Method Ibexa\\ContentForms\\Data\\Mapper\\ContentCreateMapper\:\:configureOptions\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Data/Mapper/ContentCreateMapper.php
-
-		-
 			message: '#^Method Ibexa\\ContentForms\\Data\\Mapper\\ContentCreateMapper\:\:mapToFormData\(\) has parameter \$params with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
@@ -1023,12 +471,6 @@ parameters:
 		-
 			message: '#^Call to an undefined method Ibexa\\Contracts\\Core\\Repository\\Values\\ValueObject\:\:getVersionInfo\(\)\.$#'
 			identifier: method.notFound
-			count: 1
-			path: src/lib/Data/Mapper/ContentUpdateMapper.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Data\\Mapper\\ContentUpdateMapper\:\:configureOptions\(\) has no return type specified\.$#'
-			identifier: missingType.return
 			count: 1
 			path: src/lib/Data/Mapper/ContentUpdateMapper.php
 
@@ -1051,18 +493,6 @@ parameters:
 			path: src/lib/Data/Mapper/UserCreateMapper.php
 
 		-
-			message: '#^Cannot access offset string on iterable\<Ibexa\\Contracts\\Core\\Repository\\Values\\Content\\Field\>\.$#'
-			identifier: offsetAccess.nonOffsetAccessible
-			count: 1
-			path: src/lib/Data/Mapper/UserUpdateMapper.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Data\\Mapper\\UserUpdateMapper\:\:configureOptions\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Data/Mapper/UserUpdateMapper.php
-
-		-
 			message: '#^Method Ibexa\\ContentForms\\Data\\Mapper\\UserUpdateMapper\:\:mapToFormData\(\) has parameter \$params with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
@@ -1073,30 +503,6 @@ parameters:
 			identifier: trait.unused
 			count: 1
 			path: src/lib/Data/NewnessChecker.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Data\\User\\UserCreateData\:\:addFieldData\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Data/User/UserCreateData.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Data\\User\\UserCreateData\:\:addParentGroup\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Data/User/UserCreateData.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Data\\User\\UserCreateData\:\:setParentGroups\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Data/User/UserCreateData.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Data\\User\\UserUpdateData\:\:addFieldData\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Data/User/UserUpdateData.php
 
 		-
 			message: '#^Method Ibexa\\ContentForms\\Event\\ContentCreateFieldOptionsEvent\:\:__construct\(\) has parameter \$options with no value type specified in iterable type array\.$#'
@@ -1123,68 +529,8 @@ parameters:
 			path: src/lib/Event/ContentUpdateFieldOptionsEvent.php
 
 		-
-			message: '#^Method Ibexa\\ContentForms\\Event\\FormActionEvent\:\:__construct\(\) has parameter \$clickedButton with no type specified\.$#'
-			identifier: missingType.parameter
-			count: 1
-			path: src/lib/Event/FormActionEvent.php
-
-		-
 			message: '#^Method Ibexa\\ContentForms\\Event\\FormActionEvent\:\:__construct\(\) has parameter \$form with generic interface Symfony\\Component\\Form\\FormInterface but does not specify its types\: TData$#'
 			identifier: missingType.generics
-			count: 1
-			path: src/lib/Event/FormActionEvent.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Event\\FormActionEvent\:\:__construct\(\) has parameter \$options with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/lib/Event/FormActionEvent.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Event\\FormActionEvent\:\:__construct\(\) has parameter \$payloads with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/lib/Event/FormActionEvent.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Event\\FormActionEvent\:\:getOptions\(\) return type has no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/lib/Event/FormActionEvent.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Event\\FormActionEvent\:\:getPayloads\(\) return type has no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/lib/Event/FormActionEvent.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Event\\FormActionEvent\:\:hasResponse\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Event/FormActionEvent.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Event\\FormActionEvent\:\:setPayloads\(\) has parameter \$payloads with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/lib/Event/FormActionEvent.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Event\\FormActionEvent\:\:setResponse\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Event/FormActionEvent.php
-
-		-
-			message: '#^Property Ibexa\\ContentForms\\Event\\FormActionEvent\:\:\$options type has no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/lib/Event/FormActionEvent.php
-
-		-
-			message: '#^Property Ibexa\\ContentForms\\Event\\FormActionEvent\:\:\$payloads type has no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
 			count: 1
 			path: src/lib/Event/FormActionEvent.php
 
@@ -1237,40 +583,10 @@ parameters:
 			path: src/lib/Event/UserUpdateFieldOptionsEvent.php
 
 		-
-			message: '#^Method Ibexa\\ContentForms\\FieldType\\DataTransformer\\AbstractBinaryBaseTransformer\:\:getDefaultProperties\(\) return type has no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/lib/FieldType/DataTransformer/AbstractBinaryBaseTransformer.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\FieldType\\DataTransformer\\AbstractBinaryBaseTransformer\:\:getReverseTransformedValue\(\) has parameter \$value with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/lib/FieldType/DataTransformer/AbstractBinaryBaseTransformer.php
-
-		-
 			message: '#^Method Ibexa\\ContentForms\\FieldType\\DataTransformer\\AbstractBinaryBaseTransformer\:\:getReverseTransformedValue\(\) should return Ibexa\\Core\\FieldType\\Value but returns object\.$#'
 			identifier: return.type
 			count: 1
 			path: src/lib/FieldType/DataTransformer/AbstractBinaryBaseTransformer.php
-
-		-
-			message: '#^Class Ibexa\\ContentForms\\FieldType\\DataTransformer\\AuthorValueTransformer implements generic interface Symfony\\Component\\Form\\DataTransformerInterface but does not specify its types\: T, R$#'
-			identifier: missingType.generics
-			count: 1
-			path: src/lib/FieldType/DataTransformer/AuthorValueTransformer.php
-
-		-
-			message: '#^Class Ibexa\\ContentForms\\FieldType\\DataTransformer\\BinaryFileValueTransformer implements generic interface Symfony\\Component\\Form\\DataTransformerInterface but does not specify its types\: T, R$#'
-			identifier: missingType.generics
-			count: 1
-			path: src/lib/FieldType/DataTransformer/BinaryFileValueTransformer.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\FieldType\\DataTransformer\\BinaryFileValueTransformer\:\:reverseTransform\(\) has parameter \$value with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/lib/FieldType/DataTransformer/BinaryFileValueTransformer.php
 
 		-
 			message: '#^Method Ibexa\\ContentForms\\FieldType\\DataTransformer\\BinaryFileValueTransformer\:\:transform\(\) return type has no value type specified in iterable type array\.$#'
@@ -1279,46 +595,10 @@ parameters:
 			path: src/lib/FieldType/DataTransformer/BinaryFileValueTransformer.php
 
 		-
-			message: '#^Class Ibexa\\ContentForms\\FieldType\\DataTransformer\\DateTimeValueTransformer implements generic interface Symfony\\Component\\Form\\DataTransformerInterface but does not specify its types\: T, R$#'
-			identifier: missingType.generics
-			count: 1
-			path: src/lib/FieldType/DataTransformer/DateTimeValueTransformer.php
-
-		-
-			message: '#^Parameter \#1 \$timestamp of static method Ibexa\\Core\\FieldType\\DateAndTime\\Value\:\:fromTimestamp\(\) expects int, float\|int\<min, \-1\>\|int\<1, max\>\|string given\.$#'
-			identifier: argument.type
-			count: 1
-			path: src/lib/FieldType/DataTransformer/DateTimeValueTransformer.php
-
-		-
-			message: '#^Class Ibexa\\ContentForms\\FieldType\\DataTransformer\\DateValueTransformer implements generic interface Symfony\\Component\\Form\\DataTransformerInterface but does not specify its types\: T, R$#'
-			identifier: missingType.generics
-			count: 1
-			path: src/lib/FieldType/DataTransformer/DateValueTransformer.php
-
-		-
 			message: '#^Parameter \#1 \$timestamp of static method Ibexa\\Core\\FieldType\\Date\\Value\:\:fromTimestamp\(\) expects int, float\|int\<min, \-1\>\|int\<1, max\>\|string given\.$#'
 			identifier: argument.type
 			count: 1
 			path: src/lib/FieldType/DataTransformer/DateValueTransformer.php
-
-		-
-			message: '#^Class Ibexa\\ContentForms\\FieldType\\DataTransformer\\FieldValueTransformer implements generic interface Symfony\\Component\\Form\\DataTransformerInterface but does not specify its types\: T, R$#'
-			identifier: missingType.generics
-			count: 1
-			path: src/lib/FieldType/DataTransformer/FieldValueTransformer.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\FieldType\\DataTransformer\\FieldValueTransformer\:\:transform\(\) return type has no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/lib/FieldType/DataTransformer/FieldValueTransformer.php
-
-		-
-			message: '#^Class Ibexa\\ContentForms\\FieldType\\DataTransformer\\ImageAssetValueTransformer implements generic interface Symfony\\Component\\Form\\DataTransformerInterface but does not specify its types\: T, R$#'
-			identifier: missingType.generics
-			count: 1
-			path: src/lib/FieldType/DataTransformer/ImageAssetValueTransformer.php
 
 		-
 			message: '#^Method Ibexa\\ContentForms\\FieldType\\DataTransformer\\ImageAssetValueTransformer\:\:reverseTransform\(\) has parameter \$value with no value type specified in iterable type array\.$#'
@@ -1327,46 +607,10 @@ parameters:
 			path: src/lib/FieldType/DataTransformer/ImageAssetValueTransformer.php
 
 		-
-			message: '#^Method Ibexa\\ContentForms\\FieldType\\DataTransformer\\ImageAssetValueTransformer\:\:transform\(\) return type has no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/lib/FieldType/DataTransformer/ImageAssetValueTransformer.php
-
-		-
-			message: '#^Class Ibexa\\ContentForms\\FieldType\\DataTransformer\\ImageValueTransformer implements generic interface Symfony\\Component\\Form\\DataTransformerInterface but does not specify its types\: T, R$#'
-			identifier: missingType.generics
-			count: 1
-			path: src/lib/FieldType/DataTransformer/ImageValueTransformer.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\FieldType\\DataTransformer\\ImageValueTransformer\:\:reverseTransform\(\) has parameter \$value with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/lib/FieldType/DataTransformer/ImageValueTransformer.php
-
-		-
 			message: '#^Method Ibexa\\ContentForms\\FieldType\\DataTransformer\\ImageValueTransformer\:\:transform\(\) return type has no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/lib/FieldType/DataTransformer/ImageValueTransformer.php
-
-		-
-			message: '#^Class Ibexa\\ContentForms\\FieldType\\DataTransformer\\KeywordValueTransformer implements generic interface Symfony\\Component\\Form\\DataTransformerInterface but does not specify its types\: T, R$#'
-			identifier: missingType.generics
-			count: 1
-			path: src/lib/FieldType/DataTransformer/KeywordValueTransformer.php
-
-		-
-			message: '#^Class Ibexa\\ContentForms\\FieldType\\DataTransformer\\MediaValueTransformer implements generic interface Symfony\\Component\\Form\\DataTransformerInterface but does not specify its types\: T, R$#'
-			identifier: missingType.generics
-			count: 1
-			path: src/lib/FieldType/DataTransformer/MediaValueTransformer.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\FieldType\\DataTransformer\\MediaValueTransformer\:\:reverseTransform\(\) has parameter \$value with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/lib/FieldType/DataTransformer/MediaValueTransformer.php
 
 		-
 			message: '#^Method Ibexa\\ContentForms\\FieldType\\DataTransformer\\MediaValueTransformer\:\:transform\(\) return type has no value type specified in iterable type array\.$#'
@@ -1375,82 +619,10 @@ parameters:
 			path: src/lib/FieldType/DataTransformer/MediaValueTransformer.php
 
 		-
-			message: '#^Class Ibexa\\ContentForms\\FieldType\\DataTransformer\\MultiSelectionValueTransformer implements generic interface Symfony\\Component\\Form\\DataTransformerInterface but does not specify its types\: T, R$#'
-			identifier: missingType.generics
-			count: 1
-			path: src/lib/FieldType/DataTransformer/MultiSelectionValueTransformer.php
-
-		-
-			message: '#^Class Ibexa\\ContentForms\\FieldType\\DataTransformer\\MultipleCountryValueTransformer implements generic interface Symfony\\Component\\Form\\DataTransformerInterface but does not specify its types\: T, R$#'
-			identifier: missingType.generics
-			count: 1
-			path: src/lib/FieldType/DataTransformer/MultipleCountryValueTransformer.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\FieldType\\DataTransformer\\MultipleCountryValueTransformer\:\:__construct\(\) has parameter \$countriesInfo with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/lib/FieldType/DataTransformer/MultipleCountryValueTransformer.php
-
-		-
-			message: '#^Property Ibexa\\ContentForms\\FieldType\\DataTransformer\\MultipleCountryValueTransformer\:\:\$countriesInfo type has no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/lib/FieldType/DataTransformer/MultipleCountryValueTransformer.php
-
-		-
-			message: '#^Class Ibexa\\ContentForms\\FieldType\\DataTransformer\\RelationListValueTransformer implements generic interface Symfony\\Component\\Form\\DataTransformerInterface but does not specify its types\: T, R$#'
-			identifier: missingType.generics
-			count: 1
-			path: src/lib/FieldType/DataTransformer/RelationListValueTransformer.php
-
-		-
-			message: '#^Class Ibexa\\ContentForms\\FieldType\\DataTransformer\\RelationValueTransformer implements generic interface Symfony\\Component\\Form\\DataTransformerInterface but does not specify its types\: T, R$#'
-			identifier: missingType.generics
-			count: 1
-			path: src/lib/FieldType/DataTransformer/RelationValueTransformer.php
-
-		-
-			message: '#^Class Ibexa\\ContentForms\\FieldType\\DataTransformer\\SingleCountryValueTransformer implements generic interface Symfony\\Component\\Form\\DataTransformerInterface but does not specify its types\: T, R$#'
-			identifier: missingType.generics
-			count: 1
-			path: src/lib/FieldType/DataTransformer/SingleCountryValueTransformer.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\FieldType\\DataTransformer\\SingleCountryValueTransformer\:\:__construct\(\) has parameter \$countriesInfo with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/lib/FieldType/DataTransformer/SingleCountryValueTransformer.php
-
-		-
-			message: '#^Property Ibexa\\ContentForms\\FieldType\\DataTransformer\\SingleCountryValueTransformer\:\:\$countriesInfo type has no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/lib/FieldType/DataTransformer/SingleCountryValueTransformer.php
-
-		-
-			message: '#^Class Ibexa\\ContentForms\\FieldType\\DataTransformer\\SingleSelectionValueTransformer implements generic interface Symfony\\Component\\Form\\DataTransformerInterface but does not specify its types\: T, R$#'
-			identifier: missingType.generics
-			count: 1
-			path: src/lib/FieldType/DataTransformer/SingleSelectionValueTransformer.php
-
-		-
-			message: '#^Class Ibexa\\ContentForms\\FieldType\\DataTransformer\\TimeValueTransformer implements generic interface Symfony\\Component\\Form\\DataTransformerInterface but does not specify its types\: T, R$#'
-			identifier: missingType.generics
-			count: 1
-			path: src/lib/FieldType/DataTransformer/TimeValueTransformer.php
-
-		-
 			message: '#^Method Ibexa\\ContentForms\\FieldType\\FieldTypeFormMapperDispatcher\:\:map\(\) has parameter \$fieldForm with generic interface Symfony\\Component\\Form\\FormInterface but does not specify its types\: TData$#'
 			identifier: missingType.generics
 			count: 1
 			path: src/lib/FieldType/FieldTypeFormMapperDispatcher.php
-
-		-
-			message: '#^Class EzSystems\\RepositoryForms\\FieldType\\FieldTypeFormMapperDispatcherInterface not found\.$#'
-			identifier: class.notFound
-			count: 1
-			path: src/lib/FieldType/FieldTypeFormMapperDispatcherInterface.php
 
 		-
 			message: '#^Method Ibexa\\ContentForms\\FieldType\\FieldTypeFormMapperDispatcherInterface\:\:map\(\) has parameter \$form with generic interface Symfony\\Component\\Form\\FormInterface but does not specify its types\: TData$#'
@@ -1477,22 +649,10 @@ parameters:
 			path: src/lib/FieldType/Mapper/AbstractRelationFormMapper.php
 
 		-
-			message: '#^Method Ibexa\\ContentForms\\FieldType\\Mapper\\AuthorFormMapper\:\:mapFieldValueForm\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/FieldType/Mapper/AuthorFormMapper.php
-
-		-
 			message: '#^Method Ibexa\\ContentForms\\FieldType\\Mapper\\AuthorFormMapper\:\:mapFieldValueForm\(\) has parameter \$fieldForm with generic interface Symfony\\Component\\Form\\FormInterface but does not specify its types\: TData$#'
 			identifier: missingType.generics
 			count: 1
 			path: src/lib/FieldType/Mapper/AuthorFormMapper.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\FieldType\\Mapper\\BinaryFileFormMapper\:\:mapFieldValueForm\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/FieldType/Mapper/BinaryFileFormMapper.php
 
 		-
 			message: '#^Method Ibexa\\ContentForms\\FieldType\\Mapper\\BinaryFileFormMapper\:\:mapFieldValueForm\(\) has parameter \$fieldForm with generic interface Symfony\\Component\\Form\\FormInterface but does not specify its types\: TData$#'
@@ -1501,22 +661,10 @@ parameters:
 			path: src/lib/FieldType/Mapper/BinaryFileFormMapper.php
 
 		-
-			message: '#^Method Ibexa\\ContentForms\\FieldType\\Mapper\\CheckboxFormMapper\:\:mapFieldValueForm\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/FieldType/Mapper/CheckboxFormMapper.php
-
-		-
 			message: '#^Method Ibexa\\ContentForms\\FieldType\\Mapper\\CheckboxFormMapper\:\:mapFieldValueForm\(\) has parameter \$fieldForm with generic interface Symfony\\Component\\Form\\FormInterface but does not specify its types\: TData$#'
 			identifier: missingType.generics
 			count: 1
 			path: src/lib/FieldType/Mapper/CheckboxFormMapper.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\FieldType\\Mapper\\CountryFormMapper\:\:mapFieldValueForm\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/FieldType/Mapper/CountryFormMapper.php
 
 		-
 			message: '#^Method Ibexa\\ContentForms\\FieldType\\Mapper\\CountryFormMapper\:\:mapFieldValueForm\(\) has parameter \$fieldForm with generic interface Symfony\\Component\\Form\\FormInterface but does not specify its types\: TData$#'
@@ -1525,22 +673,10 @@ parameters:
 			path: src/lib/FieldType/Mapper/CountryFormMapper.php
 
 		-
-			message: '#^Method Ibexa\\ContentForms\\FieldType\\Mapper\\DateFormMapper\:\:mapFieldValueForm\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/FieldType/Mapper/DateFormMapper.php
-
-		-
 			message: '#^Method Ibexa\\ContentForms\\FieldType\\Mapper\\DateFormMapper\:\:mapFieldValueForm\(\) has parameter \$fieldForm with generic interface Symfony\\Component\\Form\\FormInterface but does not specify its types\: TData$#'
 			identifier: missingType.generics
 			count: 1
 			path: src/lib/FieldType/Mapper/DateFormMapper.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\FieldType\\Mapper\\DateTimeFormMapper\:\:mapFieldValueForm\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/FieldType/Mapper/DateTimeFormMapper.php
 
 		-
 			message: '#^Method Ibexa\\ContentForms\\FieldType\\Mapper\\DateTimeFormMapper\:\:mapFieldValueForm\(\) has parameter \$fieldForm with generic interface Symfony\\Component\\Form\\FormInterface but does not specify its types\: TData$#'
@@ -1549,22 +685,10 @@ parameters:
 			path: src/lib/FieldType/Mapper/DateTimeFormMapper.php
 
 		-
-			message: '#^Method Ibexa\\ContentForms\\FieldType\\Mapper\\FloatFormMapper\:\:mapFieldValueForm\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/FieldType/Mapper/FloatFormMapper.php
-
-		-
 			message: '#^Method Ibexa\\ContentForms\\FieldType\\Mapper\\FloatFormMapper\:\:mapFieldValueForm\(\) has parameter \$fieldForm with generic interface Symfony\\Component\\Form\\FormInterface but does not specify its types\: TData$#'
 			identifier: missingType.generics
 			count: 1
 			path: src/lib/FieldType/Mapper/FloatFormMapper.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\FieldType\\Mapper\\FormTypeBasedFieldValueFormMapper\:\:mapFieldValueForm\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/FieldType/Mapper/FormTypeBasedFieldValueFormMapper.php
 
 		-
 			message: '#^Method Ibexa\\ContentForms\\FieldType\\Mapper\\FormTypeBasedFieldValueFormMapper\:\:mapFieldValueForm\(\) has parameter \$fieldForm with generic interface Symfony\\Component\\Form\\FormInterface but does not specify its types\: TData$#'
@@ -1573,22 +697,10 @@ parameters:
 			path: src/lib/FieldType/Mapper/FormTypeBasedFieldValueFormMapper.php
 
 		-
-			message: '#^Method Ibexa\\ContentForms\\FieldType\\Mapper\\FormTypeBasedFieldValueFormMapper\:\:setFormType\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/FieldType/Mapper/FormTypeBasedFieldValueFormMapper.php
-
-		-
 			message: '#^Method Ibexa\\ContentForms\\FieldType\\Mapper\\FormTypeBasedFieldValueFormMapper\:\:setFormType\(\) has parameter \$formType with no type specified\.$#'
 			identifier: missingType.parameter
 			count: 1
 			path: src/lib/FieldType/Mapper/FormTypeBasedFieldValueFormMapper.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\FieldType\\Mapper\\ISBNFormMapper\:\:mapFieldValueForm\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/FieldType/Mapper/ISBNFormMapper.php
 
 		-
 			message: '#^Method Ibexa\\ContentForms\\FieldType\\Mapper\\ISBNFormMapper\:\:mapFieldValueForm\(\) has parameter \$fieldForm with generic interface Symfony\\Component\\Form\\FormInterface but does not specify its types\: TData$#'
@@ -1603,22 +715,10 @@ parameters:
 			path: src/lib/FieldType/Mapper/ImageAssetFormMapper.php
 
 		-
-			message: '#^Method Ibexa\\ContentForms\\FieldType\\Mapper\\ImageFormMapper\:\:mapFieldValueForm\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/FieldType/Mapper/ImageFormMapper.php
-
-		-
 			message: '#^Method Ibexa\\ContentForms\\FieldType\\Mapper\\ImageFormMapper\:\:mapFieldValueForm\(\) has parameter \$fieldForm with generic interface Symfony\\Component\\Form\\FormInterface but does not specify its types\: TData$#'
 			identifier: missingType.generics
 			count: 1
 			path: src/lib/FieldType/Mapper/ImageFormMapper.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\FieldType\\Mapper\\IntegerFormMapper\:\:mapFieldValueForm\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/FieldType/Mapper/IntegerFormMapper.php
 
 		-
 			message: '#^Method Ibexa\\ContentForms\\FieldType\\Mapper\\IntegerFormMapper\:\:mapFieldValueForm\(\) has parameter \$fieldForm with generic interface Symfony\\Component\\Form\\FormInterface but does not specify its types\: TData$#'
@@ -1627,22 +727,10 @@ parameters:
 			path: src/lib/FieldType/Mapper/IntegerFormMapper.php
 
 		-
-			message: '#^Method Ibexa\\ContentForms\\FieldType\\Mapper\\KeywordFormMapper\:\:mapFieldValueForm\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/FieldType/Mapper/KeywordFormMapper.php
-
-		-
 			message: '#^Method Ibexa\\ContentForms\\FieldType\\Mapper\\KeywordFormMapper\:\:mapFieldValueForm\(\) has parameter \$fieldForm with generic interface Symfony\\Component\\Form\\FormInterface but does not specify its types\: TData$#'
 			identifier: missingType.generics
 			count: 1
 			path: src/lib/FieldType/Mapper/KeywordFormMapper.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\FieldType\\Mapper\\MapLocationFormMapper\:\:mapFieldValueForm\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/FieldType/Mapper/MapLocationFormMapper.php
 
 		-
 			message: '#^Method Ibexa\\ContentForms\\FieldType\\Mapper\\MapLocationFormMapper\:\:mapFieldValueForm\(\) has parameter \$fieldForm with generic interface Symfony\\Component\\Form\\FormInterface but does not specify its types\: TData$#'
@@ -1651,22 +739,10 @@ parameters:
 			path: src/lib/FieldType/Mapper/MapLocationFormMapper.php
 
 		-
-			message: '#^Method Ibexa\\ContentForms\\FieldType\\Mapper\\MediaFormMapper\:\:mapFieldValueForm\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/FieldType/Mapper/MediaFormMapper.php
-
-		-
 			message: '#^Method Ibexa\\ContentForms\\FieldType\\Mapper\\MediaFormMapper\:\:mapFieldValueForm\(\) has parameter \$fieldForm with generic interface Symfony\\Component\\Form\\FormInterface but does not specify its types\: TData$#'
 			identifier: missingType.generics
 			count: 1
 			path: src/lib/FieldType/Mapper/MediaFormMapper.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\FieldType\\Mapper\\RelationFormMapper\:\:mapFieldValueForm\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/FieldType/Mapper/RelationFormMapper.php
 
 		-
 			message: '#^Method Ibexa\\ContentForms\\FieldType\\Mapper\\RelationFormMapper\:\:mapFieldValueForm\(\) has parameter \$fieldForm with generic interface Symfony\\Component\\Form\\FormInterface but does not specify its types\: TData$#'
@@ -1675,22 +751,10 @@ parameters:
 			path: src/lib/FieldType/Mapper/RelationFormMapper.php
 
 		-
-			message: '#^Method Ibexa\\ContentForms\\FieldType\\Mapper\\RelationListFormMapper\:\:mapFieldValueForm\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/FieldType/Mapper/RelationListFormMapper.php
-
-		-
 			message: '#^Method Ibexa\\ContentForms\\FieldType\\Mapper\\RelationListFormMapper\:\:mapFieldValueForm\(\) has parameter \$fieldForm with generic interface Symfony\\Component\\Form\\FormInterface but does not specify its types\: TData$#'
 			identifier: missingType.generics
 			count: 1
 			path: src/lib/FieldType/Mapper/RelationListFormMapper.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\FieldType\\Mapper\\SelectionFormMapper\:\:mapFieldValueForm\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/FieldType/Mapper/SelectionFormMapper.php
 
 		-
 			message: '#^Method Ibexa\\ContentForms\\FieldType\\Mapper\\SelectionFormMapper\:\:mapFieldValueForm\(\) has parameter \$fieldForm with generic interface Symfony\\Component\\Form\\FormInterface but does not specify its types\: TData$#'
@@ -1699,22 +763,10 @@ parameters:
 			path: src/lib/FieldType/Mapper/SelectionFormMapper.php
 
 		-
-			message: '#^Method Ibexa\\ContentForms\\FieldType\\Mapper\\TextBlockFormMapper\:\:mapFieldValueForm\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/FieldType/Mapper/TextBlockFormMapper.php
-
-		-
 			message: '#^Method Ibexa\\ContentForms\\FieldType\\Mapper\\TextBlockFormMapper\:\:mapFieldValueForm\(\) has parameter \$fieldForm with generic interface Symfony\\Component\\Form\\FormInterface but does not specify its types\: TData$#'
 			identifier: missingType.generics
 			count: 1
 			path: src/lib/FieldType/Mapper/TextBlockFormMapper.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\FieldType\\Mapper\\TextLineFormMapper\:\:mapFieldValueForm\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/FieldType/Mapper/TextLineFormMapper.php
 
 		-
 			message: '#^Method Ibexa\\ContentForms\\FieldType\\Mapper\\TextLineFormMapper\:\:mapFieldValueForm\(\) has parameter \$fieldForm with generic interface Symfony\\Component\\Form\\FormInterface but does not specify its types\: TData$#'
@@ -1723,40 +775,16 @@ parameters:
 			path: src/lib/FieldType/Mapper/TextLineFormMapper.php
 
 		-
-			message: '#^Method Ibexa\\ContentForms\\FieldType\\Mapper\\TimeFormMapper\:\:mapFieldValueForm\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/FieldType/Mapper/TimeFormMapper.php
-
-		-
 			message: '#^Method Ibexa\\ContentForms\\FieldType\\Mapper\\TimeFormMapper\:\:mapFieldValueForm\(\) has parameter \$fieldForm with generic interface Symfony\\Component\\Form\\FormInterface but does not specify its types\: TData$#'
 			identifier: missingType.generics
 			count: 1
 			path: src/lib/FieldType/Mapper/TimeFormMapper.php
 
 		-
-			message: '#^Method Ibexa\\ContentForms\\FieldType\\Mapper\\UrlFormMapper\:\:mapFieldValueForm\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/FieldType/Mapper/UrlFormMapper.php
-
-		-
 			message: '#^Method Ibexa\\ContentForms\\FieldType\\Mapper\\UrlFormMapper\:\:mapFieldValueForm\(\) has parameter \$fieldForm with generic interface Symfony\\Component\\Form\\FormInterface but does not specify its types\: TData$#'
 			identifier: missingType.generics
 			count: 1
 			path: src/lib/FieldType/Mapper/UrlFormMapper.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\FieldType\\Mapper\\UserAccountFieldValueFormMapper\:\:configureOptions\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/FieldType/Mapper/UserAccountFieldValueFormMapper.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\FieldType\\Mapper\\UserAccountFieldValueFormMapper\:\:mapFieldValueForm\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/FieldType/Mapper/UserAccountFieldValueFormMapper.php
 
 		-
 			message: '#^Method Ibexa\\ContentForms\\FieldType\\Mapper\\UserAccountFieldValueFormMapper\:\:mapFieldValueForm\(\) has parameter \$fieldForm with generic interface Symfony\\Component\\Form\\FormInterface but does not specify its types\: TData$#'
@@ -1771,64 +799,10 @@ parameters:
 			path: src/lib/FieldType/Mapper/UserAccountFieldValueFormMapper.php
 
 		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\ActionDispatcher\\AbstractActionDispatcher\:\:configureOptions\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Form/ActionDispatcher/AbstractActionDispatcher.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\ActionDispatcher\\AbstractActionDispatcher\:\:dispatchAction\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Form/ActionDispatcher/AbstractActionDispatcher.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\ActionDispatcher\\AbstractActionDispatcher\:\:dispatchAction\(\) has parameter \$actionEventName with no type specified\.$#'
-			identifier: missingType.parameter
-			count: 1
-			path: src/lib/Form/ActionDispatcher/AbstractActionDispatcher.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\ActionDispatcher\\AbstractActionDispatcher\:\:dispatchDefaultAction\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Form/ActionDispatcher/AbstractActionDispatcher.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\ActionDispatcher\\AbstractActionDispatcher\:\:dispatchDefaultAction\(\) has parameter \$defaultActionEventName with no type specified\.$#'
-			identifier: missingType.parameter
-			count: 1
-			path: src/lib/Form/ActionDispatcher/AbstractActionDispatcher.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\ActionDispatcher\\AbstractActionDispatcher\:\:dispatchFormAction\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Form/ActionDispatcher/AbstractActionDispatcher.php
-
-		-
 			message: '#^Method Ibexa\\ContentForms\\Form\\ActionDispatcher\\AbstractActionDispatcher\:\:dispatchFormAction\(\) has parameter \$form with generic interface Symfony\\Component\\Form\\FormInterface but does not specify its types\: TData$#'
 			identifier: missingType.generics
 			count: 1
 			path: src/lib/Form/ActionDispatcher/AbstractActionDispatcher.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\ActionDispatcher\\AbstractActionDispatcher\:\:dispatchFormAction\(\) has parameter \$options with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/lib/Form/ActionDispatcher/AbstractActionDispatcher.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\ActionDispatcher\\AbstractActionDispatcher\:\:setEventDispatcher\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Form/ActionDispatcher/AbstractActionDispatcher.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\ActionDispatcher\\ActionDispatcherInterface\:\:dispatchFormAction\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Form/ActionDispatcher/ActionDispatcherInterface.php
 
 		-
 			message: '#^Method Ibexa\\ContentForms\\Form\\ActionDispatcher\\ActionDispatcherInterface\:\:dispatchFormAction\(\) has parameter \$form with generic interface Symfony\\Component\\Form\\FormInterface but does not specify its types\: TData$#'
@@ -1837,39 +811,9 @@ parameters:
 			path: src/lib/Form/ActionDispatcher/ActionDispatcherInterface.php
 
 		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\ActionDispatcher\\ActionDispatcherInterface\:\:dispatchFormAction\(\) has parameter \$options with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/lib/Form/ActionDispatcher/ActionDispatcherInterface.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\ActionDispatcher\\ContentDispatcher\:\:configureOptions\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Form/ActionDispatcher/ContentDispatcher.php
-
-		-
 			message: '#^Call to an undefined method Symfony\\Component\\Form\\FormInterface\:\:isClicked\(\)\.$#'
 			identifier: method.notFound
 			count: 4
-			path: src/lib/Form/EventSubscriber/SuppressValidationSubscriber.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\EventSubscriber\\SuppressValidationSubscriber\:\:suppressValidationOnAutosaveDraft\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Form/EventSubscriber/SuppressValidationSubscriber.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\EventSubscriber\\SuppressValidationSubscriber\:\:suppressValidationOnCancel\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Form/EventSubscriber/SuppressValidationSubscriber.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\EventSubscriber\\SuppressValidationSubscriber\:\:suppressValidationOnSaveDraft\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
 			path: src/lib/Form/EventSubscriber/SuppressValidationSubscriber.php
 
 		-
@@ -1881,30 +825,6 @@ parameters:
 		-
 			message: '#^Cannot access property \$value on Ibexa\\Contracts\\Core\\Repository\\Values\\Content\\Field\|null\.$#'
 			identifier: property.nonObject
-			count: 1
-			path: src/lib/Form/EventSubscriber/UserFieldsSubscriber.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\EventSubscriber\\UserFieldsSubscriber\:\:handleUserAccountField\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Form/EventSubscriber/UserFieldsSubscriber.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\EventSubscriber\\UserFieldsSubscriber\:\:handleUserCreateData\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Form/EventSubscriber/UserFieldsSubscriber.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\EventSubscriber\\UserFieldsSubscriber\:\:handleUserUpdateData\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Form/EventSubscriber/UserFieldsSubscriber.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\EventSubscriber\\UserFieldsSubscriber\:\:handleUserUpdateData\(\) has parameter \$languageCode with no type specified\.$#'
-			identifier: missingType.parameter
 			count: 1
 			path: src/lib/Form/EventSubscriber/UserFieldsSubscriber.php
 
@@ -1987,36 +907,6 @@ parameters:
 			path: src/lib/Form/Processor/ContentFormProcessor.php
 
 		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\Processor\\ContentFormProcessor\:\:processCancel\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Form/Processor/ContentFormProcessor.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\Processor\\ContentFormProcessor\:\:processCreateDraft\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Form/Processor/ContentFormProcessor.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\Processor\\ContentFormProcessor\:\:processPublish\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Form/Processor/ContentFormProcessor.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\Processor\\ContentFormProcessor\:\:processPublishAndEdit\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Form/Processor/ContentFormProcessor.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\Processor\\ContentFormProcessor\:\:processSaveDraft\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Form/Processor/ContentFormProcessor.php
-
-		-
 			message: '#^Method Ibexa\\ContentForms\\Form\\Processor\\ContentFormProcessor\:\:saveDraft\(\) has parameter \$fieldIdentifiersToValidate with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
@@ -2048,6 +938,12 @@ parameters:
 
 		-
 			message: '#^Parameter \#1 \$locationId of method Ibexa\\Contracts\\Core\\Repository\\LocationService\:\:loadLocation\(\) expects int, int\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/lib/Form/Processor/ContentFormProcessor.php
+
+		-
+			message: '#^Parameter \#1 \$value of function count expects array\|Countable, iterable\<int, Ibexa\\Contracts\\Core\\Repository\\Values\\Content\\VersionInfo\> given\.$#'
 			identifier: argument.type
 			count: 1
 			path: src/lib/Form/Processor/ContentFormProcessor.php
@@ -2089,20 +985,8 @@ parameters:
 			path: src/lib/Form/Processor/User/UserCancelFormProcessor.php
 
 		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\Processor\\User\\UserCancelFormProcessor\:\:processCancel\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Form/Processor/User/UserCancelFormProcessor.php
-
-		-
 			message: '#^Cannot call method getData\(\) on Symfony\\Component\\Form\\FormInterface\<mixed\>\|null\.$#'
 			identifier: method.nonObject
-			count: 1
-			path: src/lib/Form/Processor/User/UserCreateFormProcessor.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\Processor\\User\\UserCreateFormProcessor\:\:processCreate\(\) has no return type specified\.$#'
-			identifier: missingType.return
 			count: 1
 			path: src/lib/Form/Processor/User/UserCreateFormProcessor.php
 
@@ -2111,24 +995,6 @@ parameters:
 			identifier: method.nonObject
 			count: 1
 			path: src/lib/Form/Processor/User/UserUpdateFormProcessor.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\Processor\\User\\UserUpdateFormProcessor\:\:processUpdate\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Form/Processor/User/UserUpdateFormProcessor.php
-
-		-
-			message: '#^Class Ibexa\\ContentForms\\Form\\Transformer\\JsonToArrayTransformer implements generic interface Symfony\\Component\\Form\\DataTransformerInterface but does not specify its types\: T, R$#'
-			identifier: missingType.generics
-			count: 1
-			path: src/lib/Form/Transformer/JsonToArrayTransformer.php
-
-		-
-			message: '#^Class Ibexa\\ContentForms\\Form\\Transformer\\RelationTransformer implements generic interface Symfony\\Component\\Form\\DataTransformerInterface but does not specify its types\: T, R$#'
-			identifier: missingType.generics
-			count: 1
-			path: src/lib/Form/Transformer/RelationTransformer.php
 
 		-
 			message: '#^Method Ibexa\\ContentForms\\Form\\Transformer\\RelationTransformer\:\:transform\(\) return type has no value type specified in iterable type array\.$#'
@@ -2143,50 +1009,8 @@ parameters:
 			path: src/lib/Form/Type/Content/BaseContentType.php
 
 		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\Type\\Content\\BaseContentType\:\:buildForm\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Form/Type/Content/BaseContentType.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\Type\\Content\\BaseContentType\:\:buildView\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Form/Type/Content/BaseContentType.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\Type\\Content\\BaseContentType\:\:configureOptions\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Form/Type/Content/BaseContentType.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\Type\\Content\\BaseContentType\:\:getName\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Form/Type/Content/BaseContentType.php
-
-		-
 			message: '#^Class Ibexa\\ContentForms\\Form\\Type\\Content\\ContentDraftCreateType extends generic class Symfony\\Component\\Form\\AbstractType but does not specify its types\: TData$#'
 			identifier: missingType.generics
-			count: 1
-			path: src/lib/Form/Type/Content/ContentDraftCreateType.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\Type\\Content\\ContentDraftCreateType\:\:buildForm\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Form/Type/Content/ContentDraftCreateType.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\Type\\Content\\ContentDraftCreateType\:\:configureOptions\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Form/Type/Content/ContentDraftCreateType.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\Type\\Content\\ContentDraftCreateType\:\:getName\(\) has no return type specified\.$#'
-			identifier: missingType.return
 			count: 1
 			path: src/lib/Form/Type/Content/ContentDraftCreateType.php
 
@@ -2197,58 +1021,10 @@ parameters:
 			path: src/lib/Form/Type/Content/ContentEditType.php
 
 		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\Type\\Content\\ContentEditType\:\:buildForm\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Form/Type/Content/ContentEditType.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\Type\\Content\\ContentEditType\:\:configureOptions\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Form/Type/Content/ContentEditType.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\Type\\Content\\ContentEditType\:\:getName\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Form/Type/Content/ContentEditType.php
-
-		-
 			message: '#^Class Ibexa\\ContentForms\\Form\\Type\\Content\\ContentFieldType extends generic class Symfony\\Component\\Form\\AbstractType but does not specify its types\: TData$#'
 			identifier: missingType.generics
 			count: 1
 			path: src/lib/Form/Type/Content/ContentFieldType.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\Type\\Content\\ContentFieldType\:\:buildForm\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Form/Type/Content/ContentFieldType.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\Type\\Content\\ContentFieldType\:\:buildView\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Form/Type/Content/ContentFieldType.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\Type\\Content\\ContentFieldType\:\:configureOptions\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Form/Type/Content/ContentFieldType.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\Type\\Content\\ContentFieldType\:\:getName\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Form/Type/Content/ContentFieldType.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\Type\\Content\\FieldCollectionType\:\:buildForm\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Form/Type/Content/FieldCollectionType.php
 
 		-
 			message: '#^Method Ibexa\\ContentForms\\Form\\Type\\Content\\FieldCollectionType\:\:dispatchContentCreateEvent\(\) has parameter \$form with generic interface Symfony\\Component\\Form\\FormInterface but does not specify its types\: TData$#'
@@ -2293,32 +1069,20 @@ parameters:
 			path: src/lib/Form/Type/FieldDefinition/User/PasswordConstraintCheckboxType.php
 
 		-
+			message: '#^Parameter \#1 \$string of function strtolower expects string, string\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/lib/Form/Type/FieldDefinition/User/PasswordConstraintCheckboxType.php
+
+		-
 			message: '#^Class Ibexa\\ContentForms\\Form\\Type\\FieldType\\Author\\AuthorCollectionType extends generic class Symfony\\Component\\Form\\AbstractType but does not specify its types\: TData$#'
 			identifier: missingType.generics
 			count: 1
 			path: src/lib/Form/Type/FieldType/Author/AuthorCollectionType.php
 
 		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\Type\\FieldType\\Author\\AuthorCollectionType\:\:configureOptions\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Form/Type/FieldType/Author/AuthorCollectionType.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\Type\\FieldType\\Author\\AuthorCollectionType\:\:getName\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Form/Type/FieldType/Author/AuthorCollectionType.php
-
-		-
 			message: '#^Class Ibexa\\ContentForms\\Form\\Type\\FieldType\\Author\\AuthorEntryType extends generic class Symfony\\Component\\Form\\AbstractType but does not specify its types\: TData$#'
 			identifier: missingType.generics
-			count: 1
-			path: src/lib/Form/Type/FieldType/Author/AuthorEntryType.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\Type\\FieldType\\Author\\AuthorEntryType\:\:buildForm\(\) has no return type specified\.$#'
-			identifier: missingType.return
 			count: 1
 			path: src/lib/Form/Type/FieldType/Author/AuthorEntryType.php
 
@@ -2335,32 +1099,14 @@ parameters:
 			path: src/lib/Form/Type/FieldType/Author/AuthorEntryType.php
 
 		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\Type\\FieldType\\Author\\AuthorEntryType\:\:configureOptions\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Form/Type/FieldType/Author/AuthorEntryType.php
-
-		-
 			message: '#^Class Ibexa\\ContentForms\\Form\\Type\\FieldType\\AuthorFieldType extends generic class Symfony\\Component\\Form\\AbstractType but does not specify its types\: TData$#'
 			identifier: missingType.generics
 			count: 1
 			path: src/lib/Form/Type/FieldType/AuthorFieldType.php
 
 		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\Type\\FieldType\\AuthorFieldType\:\:buildForm\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Form/Type/FieldType/AuthorFieldType.php
-
-		-
 			message: '#^Method Ibexa\\ContentForms\\Form\\Type\\FieldType\\AuthorFieldType\:\:buildForm\(\) has parameter \$builder with generic interface Symfony\\Component\\Form\\FormBuilderInterface but does not specify its types\: TData$#'
 			identifier: missingType.generics
-			count: 1
-			path: src/lib/Form/Type/FieldType/AuthorFieldType.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\Type\\FieldType\\AuthorFieldType\:\:buildView\(\) has no return type specified\.$#'
-			identifier: missingType.return
 			count: 1
 			path: src/lib/Form/Type/FieldType/AuthorFieldType.php
 
@@ -2373,18 +1119,6 @@ parameters:
 		-
 			message: '#^Method Ibexa\\ContentForms\\Form\\Type\\FieldType\\AuthorFieldType\:\:buildView\(\) has parameter \$options with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
-			count: 1
-			path: src/lib/Form/Type/FieldType/AuthorFieldType.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\Type\\FieldType\\AuthorFieldType\:\:configureOptions\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Form/Type/FieldType/AuthorFieldType.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\Type\\FieldType\\AuthorFieldType\:\:filterOutEmptyAuthors\(\) has no return type specified\.$#'
-			identifier: missingType.return
 			count: 1
 			path: src/lib/Form/Type/FieldType/AuthorFieldType.php
 
@@ -2413,56 +1147,14 @@ parameters:
 			path: src/lib/Form/Type/FieldType/BinaryBaseFieldType.php
 
 		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\Type\\FieldType\\BinaryBaseFieldType\:\:buildForm\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Form/Type/FieldType/BinaryBaseFieldType.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\Type\\FieldType\\BinaryBaseFieldType\:\:buildView\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Form/Type/FieldType/BinaryBaseFieldType.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\Type\\FieldType\\BinaryBaseFieldType\:\:configureOptions\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Form/Type/FieldType/BinaryBaseFieldType.php
-
-		-
 			message: '#^Class Ibexa\\ContentForms\\Form\\Type\\FieldType\\BinaryFileFieldType extends generic class Symfony\\Component\\Form\\AbstractType but does not specify its types\: TData$#'
 			identifier: missingType.generics
 			count: 1
 			path: src/lib/Form/Type/FieldType/BinaryFileFieldType.php
 
 		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\Type\\FieldType\\BinaryFileFieldType\:\:configureOptions\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Form/Type/FieldType/BinaryFileFieldType.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\Type\\FieldType\\BinaryFileFieldType\:\:getName\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Form/Type/FieldType/BinaryFileFieldType.php
-
-		-
 			message: '#^Class Ibexa\\ContentForms\\Form\\Type\\FieldType\\CheckboxFieldType extends generic class Symfony\\Component\\Form\\AbstractType but does not specify its types\: TData$#'
 			identifier: missingType.generics
-			count: 1
-			path: src/lib/Form/Type/FieldType/CheckboxFieldType.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\Type\\FieldType\\CheckboxFieldType\:\:buildForm\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Form/Type/FieldType/CheckboxFieldType.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\Type\\FieldType\\CheckboxFieldType\:\:getName\(\) has no return type specified\.$#'
-			identifier: missingType.return
 			count: 1
 			path: src/lib/Form/Type/FieldType/CheckboxFieldType.php
 
@@ -2479,32 +1171,8 @@ parameters:
 			path: src/lib/Form/Type/FieldType/CountryFieldType.php
 
 		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\Type\\FieldType\\CountryFieldType\:\:buildForm\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Form/Type/FieldType/CountryFieldType.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\Type\\FieldType\\CountryFieldType\:\:configureOptions\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Form/Type/FieldType/CountryFieldType.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\Type\\FieldType\\CountryFieldType\:\:getCountryChoices\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Form/Type/FieldType/CountryFieldType.php
-
-		-
 			message: '#^Method Ibexa\\ContentForms\\Form\\Type\\FieldType\\CountryFieldType\:\:getCountryChoices\(\) has parameter \$countriesInfo with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
-			count: 1
-			path: src/lib/Form/Type/FieldType/CountryFieldType.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\Type\\FieldType\\CountryFieldType\:\:getName\(\) has no return type specified\.$#'
-			identifier: missingType.return
 			count: 1
 			path: src/lib/Form/Type/FieldType/CountryFieldType.php
 
@@ -2527,50 +1195,8 @@ parameters:
 			path: src/lib/Form/Type/FieldType/DateFieldType.php
 
 		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\Type\\FieldType\\DateFieldType\:\:buildForm\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Form/Type/FieldType/DateFieldType.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\Type\\FieldType\\DateFieldType\:\:buildView\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Form/Type/FieldType/DateFieldType.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\Type\\FieldType\\DateFieldType\:\:getName\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Form/Type/FieldType/DateFieldType.php
-
-		-
 			message: '#^Class Ibexa\\ContentForms\\Form\\Type\\FieldType\\DateTimeFieldType extends generic class Symfony\\Component\\Form\\AbstractType but does not specify its types\: TData$#'
 			identifier: missingType.generics
-			count: 1
-			path: src/lib/Form/Type/FieldType/DateTimeFieldType.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\Type\\FieldType\\DateTimeFieldType\:\:buildForm\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Form/Type/FieldType/DateTimeFieldType.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\Type\\FieldType\\DateTimeFieldType\:\:buildView\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Form/Type/FieldType/DateTimeFieldType.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\Type\\FieldType\\DateTimeFieldType\:\:configureOptions\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Form/Type/FieldType/DateTimeFieldType.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\Type\\FieldType\\DateTimeFieldType\:\:getName\(\) has no return type specified\.$#'
-			identifier: missingType.return
 			count: 1
 			path: src/lib/Form/Type/FieldType/DateTimeFieldType.php
 
@@ -2581,74 +1207,14 @@ parameters:
 			path: src/lib/Form/Type/FieldType/FloatFieldType.php
 
 		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\Type\\FieldType\\FloatFieldType\:\:buildForm\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Form/Type/FieldType/FloatFieldType.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\Type\\FieldType\\FloatFieldType\:\:buildView\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Form/Type/FieldType/FloatFieldType.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\Type\\FieldType\\FloatFieldType\:\:configureOptions\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Form/Type/FieldType/FloatFieldType.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\Type\\FieldType\\FloatFieldType\:\:getName\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Form/Type/FieldType/FloatFieldType.php
-
-		-
 			message: '#^Class Ibexa\\ContentForms\\Form\\Type\\FieldType\\ISBNFieldType extends generic class Symfony\\Component\\Form\\AbstractType but does not specify its types\: TData$#'
 			identifier: missingType.generics
 			count: 1
 			path: src/lib/Form/Type/FieldType/ISBNFieldType.php
 
 		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\Type\\FieldType\\ISBNFieldType\:\:buildForm\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Form/Type/FieldType/ISBNFieldType.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\Type\\FieldType\\ISBNFieldType\:\:getName\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Form/Type/FieldType/ISBNFieldType.php
-
-		-
 			message: '#^Class Ibexa\\ContentForms\\Form\\Type\\FieldType\\ImageAssetFieldType extends generic class Symfony\\Component\\Form\\AbstractType but does not specify its types\: TData$#'
 			identifier: missingType.generics
-			count: 1
-			path: src/lib/Form/Type/FieldType/ImageAssetFieldType.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\Type\\FieldType\\ImageAssetFieldType\:\:buildForm\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Form/Type/FieldType/ImageAssetFieldType.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\Type\\FieldType\\ImageAssetFieldType\:\:buildView\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Form/Type/FieldType/ImageAssetFieldType.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\Type\\FieldType\\ImageAssetFieldType\:\:configureOptions\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Form/Type/FieldType/ImageAssetFieldType.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\Type\\FieldType\\ImageAssetFieldType\:\:getName\(\) has no return type specified\.$#'
-			identifier: missingType.return
 			count: 1
 			path: src/lib/Form/Type/FieldType/ImageAssetFieldType.php
 
@@ -2665,56 +1231,8 @@ parameters:
 			path: src/lib/Form/Type/FieldType/ImageFieldType.php
 
 		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\Type\\FieldType\\ImageFieldType\:\:buildForm\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Form/Type/FieldType/ImageFieldType.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\Type\\FieldType\\ImageFieldType\:\:buildView\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Form/Type/FieldType/ImageFieldType.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\Type\\FieldType\\ImageFieldType\:\:configureOptions\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Form/Type/FieldType/ImageFieldType.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\Type\\FieldType\\ImageFieldType\:\:getName\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Form/Type/FieldType/ImageFieldType.php
-
-		-
 			message: '#^Class Ibexa\\ContentForms\\Form\\Type\\FieldType\\IntegerFieldType extends generic class Symfony\\Component\\Form\\AbstractType but does not specify its types\: TData$#'
 			identifier: missingType.generics
-			count: 1
-			path: src/lib/Form/Type/FieldType/IntegerFieldType.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\Type\\FieldType\\IntegerFieldType\:\:buildForm\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Form/Type/FieldType/IntegerFieldType.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\Type\\FieldType\\IntegerFieldType\:\:buildView\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Form/Type/FieldType/IntegerFieldType.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\Type\\FieldType\\IntegerFieldType\:\:configureOptions\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Form/Type/FieldType/IntegerFieldType.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\Type\\FieldType\\IntegerFieldType\:\:getName\(\) has no return type specified\.$#'
-			identifier: missingType.return
 			count: 1
 			path: src/lib/Form/Type/FieldType/IntegerFieldType.php
 
@@ -2725,44 +1243,8 @@ parameters:
 			path: src/lib/Form/Type/FieldType/KeywordFieldType.php
 
 		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\Type\\FieldType\\KeywordFieldType\:\:buildForm\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Form/Type/FieldType/KeywordFieldType.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\Type\\FieldType\\KeywordFieldType\:\:getName\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Form/Type/FieldType/KeywordFieldType.php
-
-		-
 			message: '#^Class Ibexa\\ContentForms\\Form\\Type\\FieldType\\MapLocationFieldType extends generic class Symfony\\Component\\Form\\AbstractType but does not specify its types\: TData$#'
 			identifier: missingType.generics
-			count: 1
-			path: src/lib/Form/Type/FieldType/MapLocationFieldType.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\Type\\FieldType\\MapLocationFieldType\:\:buildForm\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Form/Type/FieldType/MapLocationFieldType.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\Type\\FieldType\\MapLocationFieldType\:\:configureOptions\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Form/Type/FieldType/MapLocationFieldType.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\Type\\FieldType\\MapLocationFieldType\:\:finishView\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Form/Type/FieldType/MapLocationFieldType.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\Type\\FieldType\\MapLocationFieldType\:\:getName\(\) has no return type specified\.$#'
-			identifier: missingType.return
 			count: 1
 			path: src/lib/Form/Type/FieldType/MapLocationFieldType.php
 
@@ -2773,50 +1255,8 @@ parameters:
 			path: src/lib/Form/Type/FieldType/MediaFieldType.php
 
 		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\Type\\FieldType\\MediaFieldType\:\:buildForm\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Form/Type/FieldType/MediaFieldType.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\Type\\FieldType\\MediaFieldType\:\:configureOptions\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Form/Type/FieldType/MediaFieldType.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\Type\\FieldType\\MediaFieldType\:\:getName\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Form/Type/FieldType/MediaFieldType.php
-
-		-
 			message: '#^Class Ibexa\\ContentForms\\Form\\Type\\FieldType\\RelationFieldType extends generic class Symfony\\Component\\Form\\AbstractType but does not specify its types\: TData$#'
 			identifier: missingType.generics
-			count: 1
-			path: src/lib/Form/Type/FieldType/RelationFieldType.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\Type\\FieldType\\RelationFieldType\:\:buildForm\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Form/Type/FieldType/RelationFieldType.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\Type\\FieldType\\RelationFieldType\:\:configureOptions\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Form/Type/FieldType/RelationFieldType.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\Type\\FieldType\\RelationFieldType\:\:finishView\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Form/Type/FieldType/RelationFieldType.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\Type\\FieldType\\RelationFieldType\:\:getName\(\) has no return type specified\.$#'
-			identifier: missingType.return
 			count: 1
 			path: src/lib/Form/Type/FieldType/RelationFieldType.php
 
@@ -2827,44 +1267,8 @@ parameters:
 			path: src/lib/Form/Type/FieldType/RelationListFieldType.php
 
 		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\Type\\FieldType\\RelationListFieldType\:\:buildForm\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Form/Type/FieldType/RelationListFieldType.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\Type\\FieldType\\RelationListFieldType\:\:finishView\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Form/Type/FieldType/RelationListFieldType.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\Type\\FieldType\\RelationListFieldType\:\:getName\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Form/Type/FieldType/RelationListFieldType.php
-
-		-
 			message: '#^Class Ibexa\\ContentForms\\Form\\Type\\FieldType\\SelectionFieldType extends generic class Symfony\\Component\\Form\\AbstractType but does not specify its types\: TData$#'
 			identifier: missingType.generics
-			count: 1
-			path: src/lib/Form/Type/FieldType/SelectionFieldType.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\Type\\FieldType\\SelectionFieldType\:\:buildForm\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Form/Type/FieldType/SelectionFieldType.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\Type\\FieldType\\SelectionFieldType\:\:configureOptions\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Form/Type/FieldType/SelectionFieldType.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\Type\\FieldType\\SelectionFieldType\:\:getName\(\) has no return type specified\.$#'
-			identifier: missingType.return
 			count: 1
 			path: src/lib/Form/Type/FieldType/SelectionFieldType.php
 
@@ -2875,56 +1279,8 @@ parameters:
 			path: src/lib/Form/Type/FieldType/TextBlockFieldType.php
 
 		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\Type\\FieldType\\TextBlockFieldType\:\:buildForm\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Form/Type/FieldType/TextBlockFieldType.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\Type\\FieldType\\TextBlockFieldType\:\:buildView\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Form/Type/FieldType/TextBlockFieldType.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\Type\\FieldType\\TextBlockFieldType\:\:configureOptions\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Form/Type/FieldType/TextBlockFieldType.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\Type\\FieldType\\TextBlockFieldType\:\:getName\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Form/Type/FieldType/TextBlockFieldType.php
-
-		-
 			message: '#^Class Ibexa\\ContentForms\\Form\\Type\\FieldType\\TextLineFieldType extends generic class Symfony\\Component\\Form\\AbstractType but does not specify its types\: TData$#'
 			identifier: missingType.generics
-			count: 1
-			path: src/lib/Form/Type/FieldType/TextLineFieldType.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\Type\\FieldType\\TextLineFieldType\:\:buildForm\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Form/Type/FieldType/TextLineFieldType.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\Type\\FieldType\\TextLineFieldType\:\:buildView\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Form/Type/FieldType/TextLineFieldType.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\Type\\FieldType\\TextLineFieldType\:\:configureOptions\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Form/Type/FieldType/TextLineFieldType.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\Type\\FieldType\\TextLineFieldType\:\:getName\(\) has no return type specified\.$#'
-			identifier: missingType.return
 			count: 1
 			path: src/lib/Form/Type/FieldType/TextLineFieldType.php
 
@@ -2935,50 +1291,8 @@ parameters:
 			path: src/lib/Form/Type/FieldType/TimeFieldType.php
 
 		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\Type\\FieldType\\TimeFieldType\:\:buildForm\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Form/Type/FieldType/TimeFieldType.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\Type\\FieldType\\TimeFieldType\:\:buildView\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Form/Type/FieldType/TimeFieldType.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\Type\\FieldType\\TimeFieldType\:\:configureOptions\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Form/Type/FieldType/TimeFieldType.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\Type\\FieldType\\TimeFieldType\:\:getName\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Form/Type/FieldType/TimeFieldType.php
-
-		-
 			message: '#^Class Ibexa\\ContentForms\\Form\\Type\\FieldType\\UrlFieldType extends generic class Symfony\\Component\\Form\\AbstractType but does not specify its types\: TData$#'
 			identifier: missingType.generics
-			count: 1
-			path: src/lib/Form/Type/FieldType/UrlFieldType.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\Type\\FieldType\\UrlFieldType\:\:buildForm\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Form/Type/FieldType/UrlFieldType.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\Type\\FieldType\\UrlFieldType\:\:configureOptions\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Form/Type/FieldType/UrlFieldType.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\Type\\FieldType\\UrlFieldType\:\:getName\(\) has no return type specified\.$#'
-			identifier: missingType.return
 			count: 1
 			path: src/lib/Form/Type/FieldType/UrlFieldType.php
 
@@ -2989,32 +1303,8 @@ parameters:
 			path: src/lib/Form/Type/FieldType/UserAccountFieldType.php
 
 		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\Type\\FieldType\\UserAccountFieldType\:\:buildForm\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Form/Type/FieldType/UserAccountFieldType.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\Type\\FieldType\\UserAccountFieldType\:\:configureOptions\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Form/Type/FieldType/UserAccountFieldType.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\Type\\FieldType\\UserAccountFieldType\:\:getName\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Form/Type/FieldType/UserAccountFieldType.php
-
-		-
 			message: '#^Class Ibexa\\ContentForms\\Form\\Type\\JsonArrayType extends generic class Symfony\\Component\\Form\\AbstractType but does not specify its types\: TData$#'
 			identifier: missingType.generics
-			count: 1
-			path: src/lib/Form/Type/JsonArrayType.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\Type\\JsonArrayType\:\:buildForm\(\) has no return type specified\.$#'
-			identifier: missingType.return
 			count: 1
 			path: src/lib/Form/Type/JsonArrayType.php
 
@@ -3043,18 +1333,6 @@ parameters:
 			path: src/lib/Form/Type/RelationType.php
 
 		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\Type\\RelationType\:\:buildForm\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Form/Type/RelationType.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\Type\\RelationType\:\:buildView\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Form/Type/RelationType.php
-
-		-
 			message: '#^Property Ibexa\\ContentForms\\Form\\Type\\RelationType\:\:\$translator is never read, only written\.$#'
 			identifier: property.onlyWritten
 			count: 1
@@ -3067,38 +1345,8 @@ parameters:
 			path: src/lib/Form/Type/SwitcherType.php
 
 		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\Type\\SwitcherType\:\:configureOptions\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Form/Type/SwitcherType.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\Type\\SwitcherType\:\:getName\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Form/Type/SwitcherType.php
-
-		-
 			message: '#^Class Ibexa\\ContentForms\\Form\\Type\\User\\BaseUserType extends generic class Symfony\\Component\\Form\\AbstractType but does not specify its types\: TData$#'
 			identifier: missingType.generics
-			count: 1
-			path: src/lib/Form/Type/User/BaseUserType.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\Type\\User\\BaseUserType\:\:buildForm\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Form/Type/User/BaseUserType.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\Type\\User\\BaseUserType\:\:configureOptions\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Form/Type/User/BaseUserType.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\Type\\User\\BaseUserType\:\:getName\(\) has no return type specified\.$#'
-			identifier: missingType.return
 			count: 1
 			path: src/lib/Form/Type/User/BaseUserType.php
 
@@ -3109,52 +1357,16 @@ parameters:
 			path: src/lib/Form/Type/User/UserCreateType.php
 
 		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\Type\\User\\UserCreateType\:\:buildForm\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Form/Type/User/UserCreateType.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\Type\\User\\UserCreateType\:\:getName\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Form/Type/User/UserCreateType.php
-
-		-
 			message: '#^Class Ibexa\\ContentForms\\Form\\Type\\User\\UserUpdateType extends generic class Symfony\\Component\\Form\\AbstractType but does not specify its types\: TData$#'
 			identifier: missingType.generics
 			count: 1
 			path: src/lib/Form/Type/User/UserUpdateType.php
 
 		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\Type\\User\\UserUpdateType\:\:buildForm\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Form/Type/User/UserUpdateType.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\Type\\User\\UserUpdateType\:\:getName\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Form/Type/User/UserUpdateType.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Validator\\Constraints\\FieldTypeValidator\:\:processValidationErrors\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Validator/Constraints/FieldTypeValidator.php
-
-		-
 			message: '#^Property Ibexa\\ContentForms\\Validator\\Constraints\\FieldValue\:\:\$message has no type specified\.$#'
 			identifier: missingType.property
 			count: 1
 			path: src/lib/Validator/Constraints/FieldValue.php
-
-		-
-			message: '#^Access to an undefined property Ibexa\\Contracts\\Core\\Repository\\Values\\ValueObject\:\:\$fieldDefinition\.$#'
-			identifier: property.notFound
-			count: 1
-			path: src/lib/Validator/Constraints/FieldValueValidator.php
 
 		-
 			message: '#^Parameter \#1 \$validationErrors of method Ibexa\\ContentForms\\Validator\\Constraints\\FieldTypeValidator\:\:processValidationErrors\(\) expects array\<Ibexa\\Contracts\\Core\\FieldType\\ValidationError\>, iterable\<Ibexa\\Contracts\\Core\\FieldType\\ValidationError\> given\.$#'
@@ -3167,12 +1379,6 @@ parameters:
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/lib/Validator/Constraints/Password.php
-
-		-
-			message: '#^Access to an undefined property Symfony\\Component\\Validator\\Constraint\:\:\$contentType\.$#'
-			identifier: property.notFound
-			count: 1
-			path: src/lib/Validator/Constraints/PasswordValidator.php
 
 		-
 			message: '#^Access to an undefined property Ibexa\\Contracts\\Core\\Repository\\Values\\Translation\:\:\$message\.$#'
@@ -3199,12 +1405,6 @@ parameters:
 			path: tests/bundle/DependencyInjection/Compiler/FieldTypeFormMapperDispatcherPassTest.php
 
 		-
-			message: '#^Method Ibexa\\Tests\\Bundle\\ContentForms\\DependencyInjection\\Compiler\\FieldTypeFormMapperDispatcherPassTest\:\:testRegisterMappers\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: tests/bundle/DependencyInjection/Compiler/FieldTypeFormMapperDispatcherPassTest.php
-
-		-
 			message: '#^Method Ibexa\\Tests\\ContentForms\\Content\\Form\\Provider\\AbstractGroupedContentFormFieldsProviderTest\:\:getFormMockWithFieldData\(\) return type with generic interface Symfony\\Component\\Form\\FormInterface does not specify its types\: TData$#'
 			identifier: missingType.generics
 			count: 1
@@ -3223,364 +1423,10 @@ parameters:
 			path: tests/lib/Content/Form/Provider/GroupedContentFormFieldsProviderTest.php
 
 		-
-			message: '#^Method Ibexa\\Tests\\ContentForms\\Event\\FormActionEventTest\:\:testConstruct\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: tests/lib/Event/FormActionEventTest.php
-
-		-
-			message: '#^Method Ibexa\\Tests\\ContentForms\\Event\\FormActionEventTest\:\:testEventDoesntHaveResponse\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: tests/lib/Event/FormActionEventTest.php
-
-		-
-			message: '#^Method Ibexa\\Tests\\ContentForms\\Event\\FormActionEventTest\:\:testEventSetResponse\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: tests/lib/Event/FormActionEventTest.php
-
-		-
-			message: '#^Method Ibexa\\Tests\\ContentForms\\Event\\FormActionEventTest\:\:testGetOption\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: tests/lib/Event/FormActionEventTest.php
-
-		-
-			message: '#^Method Ibexa\\Tests\\ContentForms\\FieldType\\DataTransformer\\FieldValueTransformerTest\:\:testReverseTransform\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: tests/lib/FieldType/DataTransformer/FieldValueTransformerTest.php
-
-		-
-			message: '#^Method Ibexa\\Tests\\ContentForms\\FieldType\\DataTransformer\\FieldValueTransformerTest\:\:testReverseTransformNull\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: tests/lib/FieldType/DataTransformer/FieldValueTransformerTest.php
-
-		-
-			message: '#^Method Ibexa\\Tests\\ContentForms\\FieldType\\DataTransformer\\FieldValueTransformerTest\:\:testTransform\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: tests/lib/FieldType/DataTransformer/FieldValueTransformerTest.php
-
-		-
-			message: '#^Method Ibexa\\Tests\\ContentForms\\FieldType\\DataTransformer\\FieldValueTransformerTest\:\:testTransformNull\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: tests/lib/FieldType/DataTransformer/FieldValueTransformerTest.php
-
-		-
-			message: '#^Method Ibexa\\Tests\\ContentForms\\FieldType\\DataTransformer\\MultiSelectionValueTransformerTest\:\:testReverseTransform\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: tests/lib/FieldType/DataTransformer/MultiSelectionValueTransformerTest.php
-
-		-
-			message: '#^Method Ibexa\\Tests\\ContentForms\\FieldType\\DataTransformer\\MultiSelectionValueTransformerTest\:\:testReverseTransform\(\) has parameter \$valueAsArray with no type specified\.$#'
-			identifier: missingType.parameter
-			count: 1
-			path: tests/lib/FieldType/DataTransformer/MultiSelectionValueTransformerTest.php
-
-		-
-			message: '#^Method Ibexa\\Tests\\ContentForms\\FieldType\\DataTransformer\\MultiSelectionValueTransformerTest\:\:testReverseTransformNull\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: tests/lib/FieldType/DataTransformer/MultiSelectionValueTransformerTest.php
-
-		-
-			message: '#^Method Ibexa\\Tests\\ContentForms\\FieldType\\DataTransformer\\MultiSelectionValueTransformerTest\:\:testTransform\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: tests/lib/FieldType/DataTransformer/MultiSelectionValueTransformerTest.php
-
-		-
-			message: '#^Method Ibexa\\Tests\\ContentForms\\FieldType\\DataTransformer\\MultiSelectionValueTransformerTest\:\:testTransform\(\) has parameter \$valueAsArray with no type specified\.$#'
-			identifier: missingType.parameter
-			count: 1
-			path: tests/lib/FieldType/DataTransformer/MultiSelectionValueTransformerTest.php
-
-		-
-			message: '#^Method Ibexa\\Tests\\ContentForms\\FieldType\\DataTransformer\\MultiSelectionValueTransformerTest\:\:testTransformNull\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: tests/lib/FieldType/DataTransformer/MultiSelectionValueTransformerTest.php
-
-		-
-			message: '#^Method Ibexa\\Tests\\ContentForms\\FieldType\\DataTransformer\\MultiSelectionValueTransformerTest\:\:testTransformNull\(\) has parameter \$value with no type specified\.$#'
-			identifier: missingType.parameter
-			count: 1
-			path: tests/lib/FieldType/DataTransformer/MultiSelectionValueTransformerTest.php
-
-		-
-			message: '#^Method Ibexa\\Tests\\ContentForms\\FieldType\\DataTransformer\\MultiSelectionValueTransformerTest\:\:transformNullProvider\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: tests/lib/FieldType/DataTransformer/MultiSelectionValueTransformerTest.php
-
-		-
-			message: '#^Method Ibexa\\Tests\\ContentForms\\FieldType\\DataTransformer\\MultiSelectionValueTransformerTest\:\:transformProvider\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: tests/lib/FieldType/DataTransformer/MultiSelectionValueTransformerTest.php
-
-		-
-			message: '#^Method Ibexa\\Tests\\ContentForms\\FieldType\\DataTransformer\\MultipleCountryValueTransformerTest\:\:reverseTransformNullProvider\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: tests/lib/FieldType/DataTransformer/MultipleCountryValueTransformerTest.php
-
-		-
-			message: '#^Method Ibexa\\Tests\\ContentForms\\FieldType\\DataTransformer\\MultipleCountryValueTransformerTest\:\:testReverseTransform\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: tests/lib/FieldType/DataTransformer/MultipleCountryValueTransformerTest.php
-
-		-
-			message: '#^Method Ibexa\\Tests\\ContentForms\\FieldType\\DataTransformer\\MultipleCountryValueTransformerTest\:\:testReverseTransform\(\) has parameter \$valueAsArray with no type specified\.$#'
-			identifier: missingType.parameter
-			count: 1
-			path: tests/lib/FieldType/DataTransformer/MultipleCountryValueTransformerTest.php
-
-		-
-			message: '#^Method Ibexa\\Tests\\ContentForms\\FieldType\\DataTransformer\\MultipleCountryValueTransformerTest\:\:testReverseTransformNull\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: tests/lib/FieldType/DataTransformer/MultipleCountryValueTransformerTest.php
-
-		-
-			message: '#^Method Ibexa\\Tests\\ContentForms\\FieldType\\DataTransformer\\MultipleCountryValueTransformerTest\:\:testReverseTransformNull\(\) has parameter \$value with no type specified\.$#'
-			identifier: missingType.parameter
-			count: 1
-			path: tests/lib/FieldType/DataTransformer/MultipleCountryValueTransformerTest.php
-
-		-
-			message: '#^Method Ibexa\\Tests\\ContentForms\\FieldType\\DataTransformer\\MultipleCountryValueTransformerTest\:\:testTransform\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: tests/lib/FieldType/DataTransformer/MultipleCountryValueTransformerTest.php
-
-		-
-			message: '#^Method Ibexa\\Tests\\ContentForms\\FieldType\\DataTransformer\\MultipleCountryValueTransformerTest\:\:testTransform\(\) has parameter \$valueAsArray with no type specified\.$#'
-			identifier: missingType.parameter
-			count: 1
-			path: tests/lib/FieldType/DataTransformer/MultipleCountryValueTransformerTest.php
-
-		-
-			message: '#^Method Ibexa\\Tests\\ContentForms\\FieldType\\DataTransformer\\MultipleCountryValueTransformerTest\:\:testTransformNull\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: tests/lib/FieldType/DataTransformer/MultipleCountryValueTransformerTest.php
-
-		-
-			message: '#^Method Ibexa\\Tests\\ContentForms\\FieldType\\DataTransformer\\MultipleCountryValueTransformerTest\:\:testTransformNull\(\) has parameter \$value with no type specified\.$#'
-			identifier: missingType.parameter
-			count: 1
-			path: tests/lib/FieldType/DataTransformer/MultipleCountryValueTransformerTest.php
-
-		-
-			message: '#^Method Ibexa\\Tests\\ContentForms\\FieldType\\DataTransformer\\MultipleCountryValueTransformerTest\:\:transformNullProvider\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: tests/lib/FieldType/DataTransformer/MultipleCountryValueTransformerTest.php
-
-		-
-			message: '#^Method Ibexa\\Tests\\ContentForms\\FieldType\\DataTransformer\\MultipleCountryValueTransformerTest\:\:transformProvider\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: tests/lib/FieldType/DataTransformer/MultipleCountryValueTransformerTest.php
-
-		-
-			message: '#^Property Ibexa\\Tests\\ContentForms\\FieldType\\DataTransformer\\MultipleCountryValueTransformerTest\:\:\$countriesInfo type has no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: tests/lib/FieldType/DataTransformer/MultipleCountryValueTransformerTest.php
-
-		-
 			message: '#^Method Ibexa\\Tests\\ContentForms\\FieldType\\DataTransformer\\RelationListValueTransformerTest\:\:dataProviderForTestReverseTransform\(\) return type has no value type specified in iterable type iterable\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: tests/lib/FieldType/DataTransformer/RelationListValueTransformerTest.php
-
-		-
-			message: '#^Method Ibexa\\Tests\\ContentForms\\FieldType\\DataTransformer\\RelationListValueTransformerTest\:\:testReverseTransform\(\) has parameter \$value with no type specified\.$#'
-			identifier: missingType.parameter
-			count: 1
-			path: tests/lib/FieldType/DataTransformer/RelationListValueTransformerTest.php
-
-		-
-			message: '#^Method Ibexa\\Tests\\ContentForms\\FieldType\\DataTransformer\\SingleSelectionValueTransformerTest\:\:testReverseTransform\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: tests/lib/FieldType/DataTransformer/SingleSelectionValueTransformerTest.php
-
-		-
-			message: '#^Method Ibexa\\Tests\\ContentForms\\FieldType\\DataTransformer\\SingleSelectionValueTransformerTest\:\:testReverseTransform\(\) has parameter \$value with no type specified\.$#'
-			identifier: missingType.parameter
-			count: 1
-			path: tests/lib/FieldType/DataTransformer/SingleSelectionValueTransformerTest.php
-
-		-
-			message: '#^Method Ibexa\\Tests\\ContentForms\\FieldType\\DataTransformer\\SingleSelectionValueTransformerTest\:\:testReverseTransformNull\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: tests/lib/FieldType/DataTransformer/SingleSelectionValueTransformerTest.php
-
-		-
-			message: '#^Method Ibexa\\Tests\\ContentForms\\FieldType\\DataTransformer\\SingleSelectionValueTransformerTest\:\:testTransform\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: tests/lib/FieldType/DataTransformer/SingleSelectionValueTransformerTest.php
-
-		-
-			message: '#^Method Ibexa\\Tests\\ContentForms\\FieldType\\DataTransformer\\SingleSelectionValueTransformerTest\:\:testTransform\(\) has parameter \$value with no type specified\.$#'
-			identifier: missingType.parameter
-			count: 1
-			path: tests/lib/FieldType/DataTransformer/SingleSelectionValueTransformerTest.php
-
-		-
-			message: '#^Method Ibexa\\Tests\\ContentForms\\FieldType\\DataTransformer\\SingleSelectionValueTransformerTest\:\:testTransformNull\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: tests/lib/FieldType/DataTransformer/SingleSelectionValueTransformerTest.php
-
-		-
-			message: '#^Method Ibexa\\Tests\\ContentForms\\FieldType\\DataTransformer\\SingleSelectionValueTransformerTest\:\:testTransformNull\(\) has parameter \$value with no type specified\.$#'
-			identifier: missingType.parameter
-			count: 1
-			path: tests/lib/FieldType/DataTransformer/SingleSelectionValueTransformerTest.php
-
-		-
-			message: '#^Method Ibexa\\Tests\\ContentForms\\FieldType\\DataTransformer\\SingleSelectionValueTransformerTest\:\:transformNullProvider\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: tests/lib/FieldType/DataTransformer/SingleSelectionValueTransformerTest.php
-
-		-
-			message: '#^Method Ibexa\\Tests\\ContentForms\\FieldType\\DataTransformer\\SingleSelectionValueTransformerTest\:\:transformProvider\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: tests/lib/FieldType/DataTransformer/SingleSelectionValueTransformerTest.php
-
-		-
-			message: '#^Method Ibexa\\Tests\\ContentForms\\FieldType\\DataTransformer\\TimeValueTransformerTest\:\:testTransform\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: tests/lib/FieldType/DataTransformer/TimeValueTransformerTest.php
-
-		-
-			message: '#^Method Ibexa\\Tests\\ContentForms\\FieldType\\DataTransformer\\TimeValueTransformerTest\:\:testTransformInvalidValue\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: tests/lib/FieldType/DataTransformer/TimeValueTransformerTest.php
-
-		-
-			message: '#^Method Ibexa\\Tests\\ContentForms\\FieldType\\DataTransformer\\TimeValueTransformerTest\:\:testTransformNull\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: tests/lib/FieldType/DataTransformer/TimeValueTransformerTest.php
-
-		-
-			message: '#^Method Ibexa\\Tests\\ContentForms\\FieldType\\DataTransformer\\TimeValueTransformerTest\:\:testTransformZero\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: tests/lib/FieldType/DataTransformer/TimeValueTransformerTest.php
-
-		-
-			message: '#^Parameter \#1 \$value of method Ibexa\\ContentForms\\FieldType\\DataTransformer\\TimeValueTransformer\:\:transform\(\) expects Ibexa\\Core\\FieldType\\Time\\Value, object\{time\: int\}&stdClass given\.$#'
-			identifier: argument.type
-			count: 1
-			path: tests/lib/FieldType/DataTransformer/TimeValueTransformerTest.php
-
-		-
-			message: '#^Method Ibexa\\Tests\\ContentForms\\FieldType\\FieldTypeFormMapperDispatcherTest\:\:testMapFieldValue\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: tests/lib/FieldType/FieldTypeFormMapperDispatcherTest.php
-
-		-
-			message: '#^Property Ibexa\\Tests\\ContentForms\\FieldType\\Mapper\\BaseMapperTest\:\:\$config has no type specified\.$#'
-			identifier: missingType.property
-			count: 1
-			path: tests/lib/FieldType/Mapper/BaseMapperTest.php
-
-		-
-			message: '#^Property Ibexa\\Tests\\ContentForms\\FieldType\\Mapper\\BaseMapperTest\:\:\$data has no type specified\.$#'
-			identifier: missingType.property
-			count: 1
-			path: tests/lib/FieldType/Mapper/BaseMapperTest.php
-
-		-
-			message: '#^Property Ibexa\\Tests\\ContentForms\\FieldType\\Mapper\\BaseMapperTest\:\:\$fieldForm has no type specified\.$#'
-			identifier: missingType.property
-			count: 1
-			path: tests/lib/FieldType/Mapper/BaseMapperTest.php
-
-		-
-			message: '#^Property Ibexa\\Tests\\ContentForms\\FieldType\\Mapper\\BaseMapperTest\:\:\$fieldTypeService has no type specified\.$#'
-			identifier: missingType.property
-			count: 1
-			path: tests/lib/FieldType/Mapper/BaseMapperTest.php
-
-		-
-			message: '#^Method Ibexa\\Tests\\ContentForms\\FieldType\\Mapper\\FormTypeBasedFieldValueFormMapperTest\:\:testMapFieldValueFormNoLanguageCode\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: tests/lib/FieldType/Mapper/FormTypeBasedFieldValueFormMapperTest.php
-
-		-
-			message: '#^Method Ibexa\\Tests\\ContentForms\\FieldType\\Mapper\\FormTypeBasedFieldValueFormMapperTest\:\:testMapFieldValueFormWithLanguageCode\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: tests/lib/FieldType/Mapper/FormTypeBasedFieldValueFormMapperTest.php
-
-		-
-			message: '#^Method Ibexa\\Tests\\ContentForms\\FieldType\\Mapper\\UserAccountFieldValueFormMapperTest\:\:testMapFieldValueFormNoLanguageCode\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: tests/lib/FieldType/Mapper/UserAccountFieldValueFormMapperTest.php
-
-		-
-			message: '#^Method Ibexa\\Tests\\ContentForms\\FieldType\\Mapper\\UserAccountFieldValueFormMapperTest\:\:testMapFieldValueFormWithLanguageCode\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: tests/lib/FieldType/Mapper/UserAccountFieldValueFormMapperTest.php
-
-		-
-			message: '#^Method Ibexa\\Tests\\ContentForms\\Validator\\Constraints\\FieldValueTest\:\:testConstruct\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: tests/lib/Validator/Constraints/FieldValueTest.php
-
-		-
-			message: '#^Method Ibexa\\Tests\\ContentForms\\Validator\\Constraints\\FieldValueTest\:\:testGetTargets\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: tests/lib/Validator/Constraints/FieldValueTest.php
-
-		-
-			message: '#^Method Ibexa\\Tests\\ContentForms\\Validator\\Constraints\\FieldValueTest\:\:testValidatedBy\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: tests/lib/Validator/Constraints/FieldValueTest.php
-
-		-
-			message: '#^Method Ibexa\\Tests\\ContentForms\\Validator\\Constraints\\PasswordTest\:\:testConstruct\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: tests/lib/Validator/Constraints/PasswordTest.php
-
-		-
-			message: '#^Method Ibexa\\Tests\\ContentForms\\Validator\\Constraints\\PasswordTest\:\:testGetTargets\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: tests/lib/Validator/Constraints/PasswordTest.php
-
-		-
-			message: '#^Method Ibexa\\Tests\\ContentForms\\Validator\\Constraints\\PasswordTest\:\:testValidatedBy\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: tests/lib/Validator/Constraints/PasswordTest.php
 
 		-
 			message: '#^Method Ibexa\\Tests\\ContentForms\\Validator\\Constraints\\PasswordValidatorTest\:\:dataProviderForValidateNotSupportedValueType\(\) return type has no value type specified in iterable type array\.$#'
@@ -3589,132 +1435,7 @@ parameters:
 			path: tests/lib/Validator/Constraints/PasswordValidatorTest.php
 
 		-
-			message: '#^Method Ibexa\\Tests\\ContentForms\\Validator\\Constraints\\PasswordValidatorTest\:\:testInvalid\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: tests/lib/Validator/Constraints/PasswordValidatorTest.php
-
-		-
-			message: '#^Method Ibexa\\Tests\\ContentForms\\Validator\\Constraints\\PasswordValidatorTest\:\:testValid\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: tests/lib/Validator/Constraints/PasswordValidatorTest.php
-
-		-
-			message: '#^Method Ibexa\\Tests\\ContentForms\\Validator\\Constraints\\PasswordValidatorTest\:\:testValidateShouldBeSkipped\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: tests/lib/Validator/Constraints/PasswordValidatorTest.php
-
-		-
-			message: '#^Method Ibexa\\Tests\\ContentForms\\Validator\\Constraints\\PasswordValidatorTest\:\:testValidateShouldBeSkipped\(\) has parameter \$value with no type specified\.$#'
-			identifier: missingType.parameter
-			count: 1
-			path: tests/lib/Validator/Constraints/PasswordValidatorTest.php
-
-		-
-			message: '#^Method Ibexa\\Tests\\ContentForms\\Validator\\Constraints\\UserAccountPasswordTest\:\:testConstruct\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: tests/lib/Validator/Constraints/UserAccountPasswordTest.php
-
-		-
-			message: '#^Method Ibexa\\Tests\\ContentForms\\Validator\\Constraints\\UserAccountPasswordTest\:\:testGetTargets\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: tests/lib/Validator/Constraints/UserAccountPasswordTest.php
-
-		-
-			message: '#^Method Ibexa\\Tests\\ContentForms\\Validator\\Constraints\\UserAccountPasswordTest\:\:testValidatedBy\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: tests/lib/Validator/Constraints/UserAccountPasswordTest.php
-
-		-
 			message: '#^Method Ibexa\\Tests\\ContentForms\\Validator\\Constraints\\UserAccountPasswordValidatorTest\:\:dataProviderForValidateNotSupportedValueType\(\) return type has no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: tests/lib/Validator/Constraints/UserAccountPasswordValidatorTest.php
-
-		-
-			message: '#^Method Ibexa\\Tests\\ContentForms\\Validator\\Constraints\\UserAccountPasswordValidatorTest\:\:testInvalid\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: tests/lib/Validator/Constraints/UserAccountPasswordValidatorTest.php
-
-		-
-			message: '#^Method Ibexa\\Tests\\ContentForms\\Validator\\Constraints\\UserAccountPasswordValidatorTest\:\:testValid\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: tests/lib/Validator/Constraints/UserAccountPasswordValidatorTest.php
-
-		-
-			message: '#^Method Ibexa\\Tests\\ContentForms\\Validator\\Constraints\\UserAccountPasswordValidatorTest\:\:testValidateShouldBeSkipped\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: tests/lib/Validator/Constraints/UserAccountPasswordValidatorTest.php
-
-		-
-			message: '#^Method Ibexa\\Tests\\ContentForms\\Validator\\Constraints\\UserAccountPasswordValidatorTest\:\:testValidateShouldBeSkipped\(\) has parameter \$value with no type specified\.$#'
-			identifier: missingType.parameter
-			count: 1
-			path: tests/lib/Validator/Constraints/UserAccountPasswordValidatorTest.php
-		-
-			message: '#^Parameter \#1 \$array of function array_shift expects array, iterable\<Ibexa\\Contracts\\Core\\Repository\\Values\\Content\\Location\> given\.$#'
-			identifier: argument.type
-			count: 1
-			path: src/bundle/Controller/UserController.php
-
-		-
-			message: '#^Binary operation "\*\=" between float\|int\|string and 1024 results in an error\.$#'
-			identifier: assignOp.invalid
-			count: 1
-			path: src/lib/ConfigResolver/MaxUploadSize.php
-
-		-
-			message: '#^Binary operation "\*\=" between string and 1024 results in an error\.$#'
-			identifier: assignOp.invalid
-			count: 1
-			path: src/lib/ConfigResolver/MaxUploadSize.php
-
-		-
-			message: '#^Parameter \#1 \$array of function array_shift expects array, iterable\<Ibexa\\Contracts\\Core\\Repository\\Values\\Content\\Location\> given\.$#'
-			identifier: argument.type
-			count: 1
-			path: src/lib/Content/View/Builder/ContentEditViewBuilder.php
-
-		-
-			message: '#^Parameter \#1 \.\.\.\$arrays of function array_merge expects array, array\|null given\.$#'
-			identifier: argument.type
-			count: 1
-			path: src/lib/FieldType/DataTransformer/BinaryFileValueTransformer.php
-
-		-
-			message: '#^Parameter \#1 \.\.\.\$arrays of function array_merge expects array, array\|null given\.$#'
-			identifier: argument.type
-			count: 1
-			path: src/lib/FieldType/DataTransformer/ImageAssetValueTransformer.php
-
-		-
-			message: '#^Parameter \#1 \.\.\.\$arrays of function array_merge expects array, array\|null given\.$#'
-			identifier: argument.type
-			count: 1
-			path: src/lib/FieldType/DataTransformer/ImageValueTransformer.php
-
-		-
-			message: '#^Parameter \#1 \.\.\.\$arrays of function array_merge expects array, array\|null given\.$#'
-			identifier: argument.type
-			count: 1
-			path: src/lib/FieldType/DataTransformer/MediaValueTransformer.php
-
-		-
-			message: '#^Parameter \#1 \$value of function count expects array\|Countable, iterable\<int, Ibexa\\Contracts\\Core\\Repository\\Values\\Content\\VersionInfo\> given\.$#'
-			identifier: argument.type
-			count: 1
-			path: src/lib/Form/Processor/ContentFormProcessor.php
-
-		-
-			message: '#^Parameter \#1 \$string of function strtolower expects string, string\|null given\.$#'
-			identifier: argument.type
-			count: 1
-			path: src/lib/Form/Type/FieldDefinition/User/PasswordConstraintCheckboxType.php
