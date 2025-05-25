@@ -35,7 +35,10 @@
         "ibexa/rest": "~5.0.x-dev",
         "ibexa/test-core": "~5.0.x-dev",
         "matthiasnoback/symfony-dependency-injection-test": "^5.0",
-        "phpunit/phpunit": "^9.6"
+        "phpunit/phpunit": "^9.6",
+        "phpstan/phpstan": "^2.1",
+        "phpstan/phpstan-phpunit": "^2.0",
+        "phpstan/phpstan-symfony": "^2.0"
     },
     "autoload": {
         "psr-4": {
@@ -65,6 +68,7 @@
     "scripts": {
         "fix-cs": "php-cs-fixer fix --config=.php-cs-fixer.php -v --show-progress=dots",
         "check-cs": "@fix-cs --dry-run",
+        "phpstan": "phpstan analyse",
         "test": "phpunit -c phpunit.xml.dist",
         "test-integration": "phpunit -c phpunit.integration.xml.dist"
     }
