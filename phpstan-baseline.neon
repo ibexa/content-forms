@@ -37,12 +37,6 @@ parameters:
 			path: src/bundle/Controller/UserController.php
 
 		-
-			message: '#^Parameter \#1 \$array of function array_shift expects array, iterable\<Ibexa\\Contracts\\Core\\Repository\\Values\\Content\\Location\> given\.$#'
-			identifier: argument.type
-			count: 1
-			path: src/bundle/Controller/UserController.php
-
-		-
 			message: '#^Method Ibexa\\Bundle\\ContentForms\\Controller\\UserRegisterController\:\:registerAction\(\) has Symfony\\Component\\HttpKernel\\Exception\\UnauthorizedHttpException in PHPDoc @throws tag but it''s not thrown\.$#'
 			identifier: throws.unusedType
 			count: 1
@@ -727,18 +721,6 @@ parameters:
 			path: src/lib/Behat/Context/UserRegistrationContext.php
 
 		-
-			message: '#^Binary operation "\*\=" between float\|int\|string and 1024 results in an error\.$#'
-			identifier: assignOp.invalid
-			count: 1
-			path: src/lib/ConfigResolver/MaxUploadSize.php
-
-		-
-			message: '#^Binary operation "\*\=" between string and 1024 results in an error\.$#'
-			identifier: assignOp.invalid
-			count: 1
-			path: src/lib/ConfigResolver/MaxUploadSize.php
-
-		-
 			message: '#^Parameter \#1 \$str of method Ibexa\\ContentForms\\ConfigResolver\\MaxUploadSize\:\:stringToBytes\(\) expects string, string\|false given\.$#'
 			identifier: argument.type
 			count: 1
@@ -819,12 +801,6 @@ parameters:
 		-
 			message: '#^Method Ibexa\\ContentForms\\Content\\View\\Builder\\ContentEditViewBuilder\:\:resolveLocation\(\) has parameter \$parameters with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
-			count: 1
-			path: src/lib/Content/View/Builder/ContentEditViewBuilder.php
-
-		-
-			message: '#^Parameter \#1 \$array of function array_shift expects array, iterable\<Ibexa\\Contracts\\Core\\Repository\\Values\\Content\\Location\> given\.$#'
-			identifier: argument.type
 			count: 1
 			path: src/lib/Content/View/Builder/ContentEditViewBuilder.php
 
@@ -1309,12 +1285,6 @@ parameters:
 			path: src/lib/FieldType/DataTransformer/BinaryFileValueTransformer.php
 
 		-
-			message: '#^Parameter \#1 \.\.\.\$arrays of function array_merge expects array, array\|null given\.$#'
-			identifier: argument.type
-			count: 1
-			path: src/lib/FieldType/DataTransformer/BinaryFileValueTransformer.php
-
-		-
 			message: '#^Class Ibexa\\ContentForms\\FieldType\\DataTransformer\\DateTimeValueTransformer implements generic interface Symfony\\Component\\Form\\DataTransformerInterface but does not specify its types\: T, R$#'
 			identifier: missingType.generics
 			count: 1
@@ -1369,12 +1339,6 @@ parameters:
 			path: src/lib/FieldType/DataTransformer/ImageAssetValueTransformer.php
 
 		-
-			message: '#^Parameter \#1 \.\.\.\$arrays of function array_merge expects array, array\|null given\.$#'
-			identifier: argument.type
-			count: 1
-			path: src/lib/FieldType/DataTransformer/ImageAssetValueTransformer.php
-
-		-
 			message: '#^Class Ibexa\\ContentForms\\FieldType\\DataTransformer\\ImageValueTransformer implements generic interface Symfony\\Component\\Form\\DataTransformerInterface but does not specify its types\: T, R$#'
 			identifier: missingType.generics
 			count: 1
@@ -1389,12 +1353,6 @@ parameters:
 		-
 			message: '#^Method Ibexa\\ContentForms\\FieldType\\DataTransformer\\ImageValueTransformer\:\:transform\(\) return type has no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
-			count: 1
-			path: src/lib/FieldType/DataTransformer/ImageValueTransformer.php
-
-		-
-			message: '#^Parameter \#1 \.\.\.\$arrays of function array_merge expects array, array\|null given\.$#'
-			identifier: argument.type
 			count: 1
 			path: src/lib/FieldType/DataTransformer/ImageValueTransformer.php
 
@@ -1419,12 +1377,6 @@ parameters:
 		-
 			message: '#^Method Ibexa\\ContentForms\\FieldType\\DataTransformer\\MediaValueTransformer\:\:transform\(\) return type has no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
-			count: 1
-			path: src/lib/FieldType/DataTransformer/MediaValueTransformer.php
-
-		-
-			message: '#^Parameter \#1 \.\.\.\$arrays of function array_merge expects array, array\|null given\.$#'
-			identifier: argument.type
 			count: 1
 			path: src/lib/FieldType/DataTransformer/MediaValueTransformer.php
 
@@ -2107,12 +2059,6 @@ parameters:
 			path: src/lib/Form/Processor/ContentFormProcessor.php
 
 		-
-			message: '#^Parameter \#1 \$value of function count expects array\|Countable, iterable\<int, Ibexa\\Contracts\\Core\\Repository\\Values\\Content\\VersionInfo\> given\.$#'
-			identifier: argument.type
-			count: 1
-			path: src/lib/Form/Processor/ContentFormProcessor.php
-
-		-
 			message: '#^Parameter \#2 \$contentUpdateStruct of method Ibexa\\Contracts\\Core\\Repository\\ContentService\:\:updateContent\(\) expects Ibexa\\Contracts\\Core\\Repository\\Values\\Content\\ContentUpdateStruct, Ibexa\\Contracts\\Core\\Repository\\Values\\Content\\ContentStruct given\.$#'
 			identifier: argument.type
 			count: 1
@@ -2349,12 +2295,6 @@ parameters:
 		-
 			message: '#^Class Ibexa\\ContentForms\\Form\\Type\\FieldDefinition\\User\\PasswordConstraintCheckboxType extends generic class Symfony\\Component\\Form\\AbstractType but does not specify its types\: TData$#'
 			identifier: missingType.generics
-			count: 1
-			path: src/lib/Form/Type/FieldDefinition/User/PasswordConstraintCheckboxType.php
-
-		-
-			message: '#^Parameter \#1 \$string of function strtolower expects string, string\|null given\.$#'
-			identifier: argument.type
 			count: 1
 			path: src/lib/Form/Type/FieldDefinition/User/PasswordConstraintCheckboxType.php
 
