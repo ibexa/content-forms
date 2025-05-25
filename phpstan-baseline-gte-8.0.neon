@@ -1,0 +1,61 @@
+parameters:
+	ignoreErrors:
+		-
+			message: '#^Parameter \#1 \$array of function array_shift expects array, iterable\<Ibexa\\Contracts\\Core\\Repository\\Values\\Content\\Location\> given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/bundle/Controller/UserController.php
+
+		-
+			message: '#^Binary operation "\*\=" between float\|int\|string and 1024 results in an error\.$#'
+			identifier: assignOp.invalid
+			count: 1
+			path: src/lib/ConfigResolver/MaxUploadSize.php
+
+		-
+			message: '#^Binary operation "\*\=" between string and 1024 results in an error\.$#'
+			identifier: assignOp.invalid
+			count: 1
+			path: src/lib/ConfigResolver/MaxUploadSize.php
+
+		-
+			message: '#^Parameter \#1 \$array of function array_shift expects array, iterable\<Ibexa\\Contracts\\Core\\Repository\\Values\\Content\\Location\> given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/lib/Content/View/Builder/ContentEditViewBuilder.php
+
+		-
+			message: '#^Parameter \#1 \.\.\.\$arrays of function array_merge expects array, array\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/lib/FieldType/DataTransformer/BinaryFileValueTransformer.php
+
+		-
+			message: '#^Parameter \#1 \.\.\.\$arrays of function array_merge expects array, array\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/lib/FieldType/DataTransformer/ImageAssetValueTransformer.php
+
+		-
+			message: '#^Parameter \#1 \.\.\.\$arrays of function array_merge expects array, array\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/lib/FieldType/DataTransformer/ImageValueTransformer.php
+
+		-
+			message: '#^Parameter \#1 \.\.\.\$arrays of function array_merge expects array, array\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/lib/FieldType/DataTransformer/MediaValueTransformer.php
+
+		-
+			message: '#^Parameter \#1 \$value of function count expects array\|Countable, iterable\<int, Ibexa\\Contracts\\Core\\Repository\\Values\\Content\\VersionInfo\> given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/lib/Form/Processor/ContentFormProcessor.php
+
+		-
+			message: '#^Parameter \#1 \$string of function strtolower expects string, string\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/lib/Form/Type/FieldDefinition/User/PasswordConstraintCheckboxType.php
