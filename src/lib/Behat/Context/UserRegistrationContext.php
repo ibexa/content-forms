@@ -275,6 +275,10 @@ class UserRegistrationContext extends RawMinkContext implements Context, Snippet
      */
     public function theUserAccountHasBeenCreated(): void
     {
+        if (null === $this->registrationUsername) {
+            throw new \LogicException('You need to call iFillInTheFormWithValidValues before this step');
+        }
+
         $this->userService->loadUserByLogin($this->registrationUsername);
     }
 
@@ -324,6 +328,10 @@ class UserRegistrationContext extends RawMinkContext implements Context, Snippet
      */
     public function theUserIsCreatedInThisUserGroup(string $userGroupName): void
     {
+        if (null === $this->registrationUsername) {
+            throw new \LogicException('You need to call iFillInTheFormWithValidValues before this step');
+        }
+
         $user = $this->userService->loadUserByLogin($this->registrationUsername);
         $userGroups = $this->userService->loadUserGroupsOfUser($user);
 
