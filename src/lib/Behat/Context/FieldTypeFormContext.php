@@ -20,14 +20,14 @@ final class FieldTypeFormContext extends RawMinkContext implements SnippetAccept
 {
     private static string $fieldIdentifier = 'field';
 
+    /** @var array<string, string> */
     private static array $fieldTypeIdentifierMap = [
         'user' => 'ezuser',
         'textline' => 'ezstring',
         'selection' => 'ezselection',
     ];
 
-    /** @var \Ibexa\ContentForms\Behat\Context\ContentTypeContext */
-    private $contentTypeContext;
+    private ContentTypeContext $contentTypeContext;
 
     /** @BeforeScenario */
     public function gatherContexts(BeforeScenarioScope $scope): void
