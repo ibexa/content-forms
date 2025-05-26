@@ -14,10 +14,7 @@ use Symfony\Component\Validator\Constraint;
 
 class UserAccountPasswordValidator extends PasswordValidator
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function validate($value, Constraint $constraint): void
+    public function validate(mixed $value, Constraint $constraint): void
     {
         if (!($value instanceof UserAccountFieldData)) {
             return;

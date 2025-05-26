@@ -27,9 +27,11 @@ class PasswordValidator extends ConstraintValidator
     }
 
     /**
-     * {@inheritdoc}
+     * @param \Ibexa\ContentForms\Validator\Constraints\Password $constraint
+     *
+     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\ContentValidationException
      */
-    public function validate($value, Constraint $constraint): void
+    public function validate(mixed $value, Constraint $constraint): void
     {
         if (!\is_string($value) || empty($value)) {
             return;

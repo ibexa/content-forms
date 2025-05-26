@@ -8,6 +8,7 @@ declare(strict_types=1);
 
 namespace Ibexa\ContentForms\Validator\Constraints;
 
+use Ibexa\Contracts\Core\Repository\Values\ContentType\ContentType;
 use Symfony\Component\Validator\Constraint;
 
 /**
@@ -15,15 +16,10 @@ use Symfony\Component\Validator\Constraint;
  */
 class Password extends Constraint
 {
-    /** @var string */
-    public $message = 'ez.user.password.invalid';
+    public string $message = 'ez.user.password.invalid';
 
-    /** @var \Ibexa\Contracts\Core\Repository\Values\ContentType\ContentType|null */
-    public $contentType;
+    public ?ContentType $contentType;
 
-    /**
-     * {@inheritdoc}
-     */
     public function getTargets(): array
     {
         return [self::CLASS_CONSTRAINT, self::PROPERTY_CONSTRAINT];

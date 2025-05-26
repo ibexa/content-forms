@@ -27,7 +27,7 @@ class FieldValueValidator extends FieldTypeValidator
      *
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException
      */
-    public function validate($value, Constraint $constraint): void
+    public function validate(mixed $value, Constraint $constraint): void
     {
         if (!$value instanceof FieldData) {
             return;
@@ -77,16 +77,14 @@ class FieldValueValidator extends FieldTypeValidator
     /**
      * Returns the fieldTypeIdentifier for the field value to validate.
      *
-     * @param \Ibexa\Contracts\ContentForms\Data\Content\FieldData|\Ibexa\Contracts\Core\Repository\Values\ValueObject $value fieldData ValueObject holding the field value to validate
-     *
-     * @return string
+     * @param \Ibexa\Contracts\ContentForms\Data\Content\FieldData $value fieldData ValueObject holding the field value to validate
      */
     protected function getFieldTypeIdentifier(ValueObject $value): string
     {
         return $value->fieldDefinition->fieldTypeIdentifier;
     }
 
-    protected function generatePropertyPath($errorIndex, $errorTarget): string
+    protected function generatePropertyPath(int $errorIndex, ?string $errorTarget): string
     {
         $basePath = 'value';
 

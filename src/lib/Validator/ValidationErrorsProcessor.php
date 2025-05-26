@@ -45,7 +45,6 @@ final class ValidationErrorsProcessor
         $propertyPathGenerator = $this->propertyPathGenerator;
         foreach ($validationErrors as $i => $error) {
             $message = $error->getTranslatableMessage();
-            /** @var \Symfony\Component\Validator\Violation\ConstraintViolationBuilderInterface $violationBuilder */
             $violationBuilder = $this->context->buildViolation($message instanceof Plural ? $message->plural : $message->message);
             $violationBuilder->setParameters($message->values);
 
