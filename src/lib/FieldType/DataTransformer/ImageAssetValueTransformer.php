@@ -12,14 +12,15 @@ use Ibexa\Core\FieldType\ImageAsset\Value;
 use Symfony\Component\Form\DataTransformerInterface;
 use Symfony\Component\Form\Exception\TransformationFailedException;
 
+/**
+ * @phpstan-type TImageAssetData array{file: string|null, remove: boolean, destinationContentId: int, alternativeText: string|null}
+ *
+ * @implements \Symfony\Component\Form\DataTransformerInterface<\Ibexa\Core\FieldType\ImageAsset\Value, TImageAssetData|null>
+ */
 class ImageAssetValueTransformer extends AbstractBinaryBaseTransformer implements DataTransformerInterface
 {
     /**
-     * @param \Ibexa\Core\FieldType\ImageAsset\Value|null $value
-     *
      * @throws \Symfony\Component\Form\Exception\TransformationFailedException
-     *
-     * @return array|null
      */
     public function transform($value): ?array
     {
@@ -36,7 +37,7 @@ class ImageAssetValueTransformer extends AbstractBinaryBaseTransformer implement
         return array_merge(
             $this->getDefaultProperties(),
             [
-                'destinationContentId' => $value->destinationContentId,
+                'destinationContentId' => (int)$value->destinationContentId,
                 'alternativeText' => $value->alternativeText,
             ]
         );

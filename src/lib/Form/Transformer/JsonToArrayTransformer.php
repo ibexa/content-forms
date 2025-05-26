@@ -11,6 +11,9 @@ namespace Ibexa\ContentForms\Form\Transformer;
 use Symfony\Component\Form\DataTransformerInterface;
 use Symfony\Component\Form\Exception\TransformationFailedException;
 
+/**
+ * @implements \Symfony\Component\Form\DataTransformerInterface<array<string, mixed>, string>
+ */
 final class JsonToArrayTransformer implements DataTransformerInterface
 {
     public function transform(mixed $value): string
@@ -32,6 +35,9 @@ final class JsonToArrayTransformer implements DataTransformerInterface
         return $encoded;
     }
 
+    /**
+     * @return array<string, mixed>
+     */
     public function reverseTransform(mixed $value): array
     {
         if ($value === null) {

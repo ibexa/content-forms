@@ -10,12 +10,9 @@ namespace Ibexa\ContentForms\FieldType\DataTransformer;
 
 use Ibexa\Contracts\Core\Repository\FieldType;
 use Ibexa\Core\FieldType\Value;
-use Symfony\Component\Form\Exception\TransformationFailedException;
 
 /**
- * Base transformer for binary file based field types.
- *
- * {@inheritdoc}
+ * Base transformer for binary file-based field types.
  */
 abstract class AbstractBinaryBaseTransformer
 {
@@ -23,15 +20,13 @@ abstract class AbstractBinaryBaseTransformer
 
     protected Value $initialValue;
 
-    /** @var string */
-    protected $valueClass;
+    /** @phpstan-var class-string */
+    protected string $valueClass;
 
     /**
-     * @param \Ibexa\Contracts\Core\Repository\FieldType $fieldType
-     * @param \Ibexa\Core\FieldType\Value $initialValue
-     * @param string $valueClass
+     * @phpstan-param class-string $valueClass
      */
-    public function __construct(FieldType $fieldType, Value $initialValue, $valueClass)
+    public function __construct(FieldType $fieldType, Value $initialValue, string $valueClass)
     {
         $this->fieldType = $fieldType;
         $this->initialValue = $initialValue;
@@ -39,9 +34,9 @@ abstract class AbstractBinaryBaseTransformer
     }
 
     /**
-     * @return array|null
+     * @return array{file: string|null, remove: bool}
      */
-    public function getDefaultProperties()
+    public function getDefaultProperties(): array
     {
         return [
             'file' => null,
@@ -50,23 +45,17 @@ abstract class AbstractBinaryBaseTransformer
     }
 
     /**
-     * @param array $value
-     *
-     * @return \Ibexa\Core\FieldType\Value
+     * @param array<string, mixed> $value
      *
      * @throws \Symfony\Component\Form\Exception\TransformationFailedException
      */
-    public function getReverseTransformedValue($value)
+    public function getReverseTransformedValue(array $value): Value
     {
-        if (!is_array($value)) {
-            throw new TransformationFailedException(sprintf('Received %s instead of an array', gettype($value)));
-        }
-
         if ($value['remove']) {
             return $this->fieldType->getEmptyValue();
         }
 
-        /* in case file is not modified, overwrite settings only */
+        /* in case the file is not modified, overwrite settings only */
         if (null === $value['file']) {
             return clone $this->initialValue;
         }

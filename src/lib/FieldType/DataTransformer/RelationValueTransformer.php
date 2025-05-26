@@ -11,6 +11,9 @@ namespace Ibexa\ContentForms\FieldType\DataTransformer;
 use Ibexa\Core\FieldType\Relation\Value;
 use Symfony\Component\Form\DataTransformerInterface;
 
+/**
+ * @implements \Symfony\Component\Form\DataTransformerInterface<\Ibexa\Core\FieldType\Relation\Value, int|null>
+ */
 class RelationValueTransformer implements DataTransformerInterface
 {
     public function transform(mixed $value): ?int
@@ -19,16 +22,12 @@ class RelationValueTransformer implements DataTransformerInterface
             return null;
         }
 
-        if ($value->destinationContentId === null) {
-            return null;
-        }
-
-        return $value->destinationContentId;
+        return $value->destinationContentId ?? null;
     }
 
     public function reverseTransform(mixed $value): ?Value
     {
-        if ($value === null || !is_numeric($value)) {
+        if (!is_numeric($value)) {
             return null;
         }
 

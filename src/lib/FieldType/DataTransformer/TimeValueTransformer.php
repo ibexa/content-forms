@@ -14,14 +14,12 @@ use Symfony\Component\Form\Exception\TransformationFailedException;
 
 /**
  * DataTransformer for Time\Value.
+ *
+ * @implements \Symfony\Component\Form\DataTransformerInterface<\Ibexa\Core\FieldType\Time\Value, int|null>
  */
 class TimeValueTransformer implements DataTransformerInterface
 {
     /**
-     * @param \Ibexa\Core\FieldType\Time\Value $value
-     *
-     * @return int|null
-     *
      * @throws \Symfony\Component\Form\Exception\TransformationFailedException
      */
     public function transform(mixed $value): ?int
@@ -32,18 +30,10 @@ class TimeValueTransformer implements DataTransformerInterface
             );
         }
 
-        if (null === $value->time) {
-            return null;
-        }
-
-        return $value->time;
+        return $value->time ?? null;
     }
 
     /**
-     * @param int $value
-     *
-     * @return \Ibexa\Core\FieldType\Time\Value|null
-     *
      * @throws \Symfony\Component\Form\Exception\TransformationFailedException
      */
     public function reverseTransform(mixed $value): ?Value

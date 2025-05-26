@@ -15,16 +15,27 @@ use Symfony\Component\Form\Exception\TransformationFailedException;
 /**
  * DataTransformer for Country\Value to be used with form type handling only single selection.
  * Needed to display the form field correctly and transform it back to an appropriate value object.
+ *
+ * @phpstan-type TCountryValueData array{
+ *       Name: string,
+ *       Alpha2: string,
+ *       Alpha3: string,
+ *       IDC: string
+ * }
+ *
+ * @implements \Symfony\Component\Form\DataTransformerInterface<\Ibexa\Core\FieldType\Country\Value, string|null>
  */
 class SingleCountryValueTransformer implements DataTransformerInterface
 {
     /**
-     * @var array Array of countries from "ibexa.field_type.country.data"
+     * Array of countries from "ibexa.field_type.country.data".
+     *
+     * @phpstan-var array<string, TCountryValueData>
      */
     protected array $countriesInfo;
 
     /**
-     * @param array $countriesInfo
+     * @phpstan-param array<string, TCountryValueData> $countriesInfo
      */
     public function __construct(array $countriesInfo)
     {
@@ -33,15 +44,7 @@ class SingleCountryValueTransformer implements DataTransformerInterface
 
     public function transform(mixed $value): ?string
     {
-        if (!$value instanceof Value) {
-            return null;
-        }
-
-        if (empty($value->countries)) {
-            return null;
-        }
-
-        if (empty($value->countries)) {
+        if (!$value instanceof Value || empty($value->countries)) {
             return null;
         }
 

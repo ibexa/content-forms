@@ -13,6 +13,8 @@ use Symfony\Component\Form\DataTransformerInterface;
 
 /**
  * DataTransformer for RelationList\Value in single select mode.
+ *
+ * @implements \Symfony\Component\Form\DataTransformerInterface<\Ibexa\Core\FieldType\RelationList\Value, string|null>
  */
 class RelationListValueTransformer implements DataTransformerInterface
 {

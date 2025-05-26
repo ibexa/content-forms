@@ -13,6 +13,10 @@ use Symfony\Component\Form\DataTransformerInterface;
 
 /**
  * Data transformer for the `ezimage` field type.
+ *
+ * @phpstan-type TImageData array{file: string|null, remove: boolean, alternativeText: string|null, additionalData: array<string>}
+ *
+ * @implements \Symfony\Component\Form\DataTransformerInterface<\Ibexa\Core\FieldType\Image\Value, array<string, mixed>>
  */
 class ImageValueTransformer extends AbstractBinaryBaseTransformer implements DataTransformerInterface
 {

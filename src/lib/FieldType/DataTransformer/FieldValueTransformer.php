@@ -15,6 +15,8 @@ use Symfony\Component\Form\DataTransformerInterface;
 /**
  * Generic data transformer for FieldTypes values.
  * Uses FieldType::toHash() / FieldType::fromHash().
+ *
+ * @implements \Symfony\Component\Form\DataTransformerInterface<mixed, mixed>
  */
 class FieldValueTransformer implements DataTransformerInterface
 {
@@ -29,9 +31,7 @@ class FieldValueTransformer implements DataTransformerInterface
      * Transforms a FieldType Value into a hash using `FieldTpe::toHash()`.
      * This hash is compatible with `reverseTransform()`.
      *
-     * @param mixed $value
-     *
-     * @return array|null the value's hash, or null if $value was not a FieldType Value
+     * @return mixed the value's hash, or null if $value was not a FieldType Value
      */
     public function transform(mixed $value): mixed
     {
@@ -45,10 +45,6 @@ class FieldValueTransformer implements DataTransformerInterface
     /**
      * Transforms a hash into a FieldType Value using `FieldType::fromHash()`.
      * The FieldValue is compatible with `transform()`.
-     *
-     * @param mixed $value
-     *
-     * @return \Ibexa\Contracts\Core\FieldType\Value
      */
     public function reverseTransform(mixed $value): Value
     {

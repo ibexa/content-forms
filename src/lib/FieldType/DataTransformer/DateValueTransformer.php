@@ -14,14 +14,12 @@ use Symfony\Component\Form\Exception\TransformationFailedException;
 
 /**
  * DataTransformer for Date\Value.
+ *
+ * @implements \Symfony\Component\Form\DataTransformerInterface<\Ibexa\Core\FieldType\Date\Value, int|null>
  */
 class DateValueTransformer implements DataTransformerInterface
 {
     /**
-     * @param mixed $value
-     *
-     * @return int|null
-     *
      * @throws \Symfony\Component\Form\Exception\TransformationFailedException
      */
     public function transform(mixed $value): ?int

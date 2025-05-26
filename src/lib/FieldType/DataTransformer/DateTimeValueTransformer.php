@@ -14,14 +14,12 @@ use Symfony\Component\Form\Exception\TransformationFailedException;
 
 /**
  * DataTransformer for DateAndTime\Value.
+ *
+ * @implements \Symfony\Component\Form\DataTransformerInterface<\Ibexa\Core\FieldType\DateAndTime\Value, int|null>
  */
 class DateTimeValueTransformer implements DataTransformerInterface
 {
     /**
-     * @param mixed $value
-     *
-     * @return int|null
-     *
      * @throws \Symfony\Component\Form\Exception\TransformationFailedException
      */
     public function transform(mixed $value): ?int
@@ -44,10 +42,7 @@ class DateTimeValueTransformer implements DataTransformerInterface
     }
 
     /**
-     * @param mixed $value
-     *
-     * @return \Ibexa\Core\FieldType\DateAndTime\Value|null
-     *
+     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\InvalidArgumentException
      * @throws \Symfony\Component\Form\Exception\TransformationFailedException
      */
     public function reverseTransform(mixed $value): ?Value

@@ -14,15 +14,12 @@ use Symfony\Component\Form\DataTransformerInterface;
 /**
  * Data transformer for ezmedia field type.
  *
- * {@inheritdoc}
+ * @phpstan-type TMediaData array{file: string|null, remove: bool, hasController: bool, loop: bool, autoplay: bool, width: int, height: int}
+ *
+ * @implements \Symfony\Component\Form\DataTransformerInterface<\Ibexa\Core\FieldType\Media\Value, TMediaData>
  */
 class MediaValueTransformer extends AbstractBinaryBaseTransformer implements DataTransformerInterface
 {
-    /**
-     * @param \Ibexa\Core\FieldType\Media\Value $value
-     *
-     * @return array
-     */
     public function transform(mixed $value): array
     {
         if (null === $value) {
@@ -42,9 +39,7 @@ class MediaValueTransformer extends AbstractBinaryBaseTransformer implements Dat
     }
 
     /**
-     * @param array $value
-     *
-     * @return \Ibexa\Core\FieldType\Media\Value
+     * @phpstan-param TMediaData $value
      *
      * @throws \Symfony\Component\Form\Exception\TransformationFailedException
      */

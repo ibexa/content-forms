@@ -12,17 +12,14 @@ use Ibexa\Core\FieldType\BinaryFile\Value;
 use Symfony\Component\Form\DataTransformerInterface;
 
 /**
- * Data transformer for ezbinaryfile field type.
+ * Data transformer for an `ezbinaryfile` field type.
  *
- * {@inheritdoc}
+ * @phpstan-type TBinaryFileData array{file: string|null, remove: bool, downloadCount: int}
+ *
+ * @implements \Symfony\Component\Form\DataTransformerInterface<\Ibexa\Core\FieldType\BinaryFile\Value, TBinaryFileData>
  */
 class BinaryFileValueTransformer extends AbstractBinaryBaseTransformer implements DataTransformerInterface
 {
-    /**
-     * @param \Ibexa\Core\FieldType\BinaryFile\Value $value
-     *
-     * @return array
-     */
     public function transform(mixed $value): array
     {
         if (null === $value) {
@@ -36,21 +33,13 @@ class BinaryFileValueTransformer extends AbstractBinaryBaseTransformer implement
     }
 
     /**
-     * @param array $value
-     *
-     * @return \Ibexa\Core\FieldType\BinaryFile\Value
+     * @phpstan-param TBinaryFileData $value
      *
      * @throws \Symfony\Component\Form\Exception\TransformationFailedException
      */
     public function reverseTransform(mixed $value): ?Value
     {
-        /** @var \Ibexa\Core\FieldType\BinaryFile\Value $valueObject */
-        $valueObject = $this->getReverseTransformedValue($value);
-
-        if ($this->fieldType->isEmptyValue($valueObject)) {
-            return $valueObject;
-        }
-
-        return $valueObject;
+        /** @var \Ibexa\Core\FieldType\BinaryFile\Value */
+        return $this->getReverseTransformedValue($value);
     }
 }

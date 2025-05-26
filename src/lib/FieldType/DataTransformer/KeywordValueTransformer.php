@@ -13,6 +13,8 @@ use Symfony\Component\Form\DataTransformerInterface;
 
 /**
  * DataTransformer for Keyword\Value.
+ *
+ * @implements \Symfony\Component\Form\DataTransformerInterface<\Ibexa\Core\FieldType\Keyword\Value, string|null>
  */
 class KeywordValueTransformer implements DataTransformerInterface
 {

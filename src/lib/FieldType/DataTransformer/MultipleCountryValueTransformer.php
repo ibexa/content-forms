@@ -12,18 +12,24 @@ use Ibexa\Core\FieldType\Country\Value;
 use Symfony\Component\Form\DataTransformerInterface;
 
 /**
- * DataTransformer for Country\Value to be used with form type handling multiple selections.
+ * DataTransformer for Country\Value to be used with a form type handling multiple selections.
  * Needed to display the form field correctly and transform it back to an appropriate value object.
+ *
+ * @phpstan-import-type TCountryValueData from \Ibexa\ContentForms\FieldType\DataTransformer\SingleCountryValueTransformer
+ *
+ * @implements \Symfony\Component\Form\DataTransformerInterface<\Ibexa\Core\FieldType\Country\Value, string[]|null>
  */
 class MultipleCountryValueTransformer implements DataTransformerInterface
 {
     /**
-     * @var array Array of countries from "ibexa.field_type.country.data"
+     * Array of countries from "ibexa.field_type.country.data".
+     *
+     * @phpstan-var array<string, TCountryValueData>
      */
     protected array $countriesInfo;
 
     /**
-     * @param array $countriesInfo
+     * @phpstan-param array<string, TCountryValueData> $countriesInfo
      */
     public function __construct(array $countriesInfo)
     {

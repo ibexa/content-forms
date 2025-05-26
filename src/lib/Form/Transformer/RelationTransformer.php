@@ -11,9 +11,12 @@ namespace Ibexa\ContentForms\Form\Transformer;
 use Ibexa\ContentForms\Form\Type\RelationType;
 use Symfony\Component\Form\DataTransformerInterface;
 
+/**
+ * @implements \Symfony\Component\Form\DataTransformerInterface<string, array{location: int|null, location_type: string}>
+ */
 final class RelationTransformer implements DataTransformerInterface
 {
-    public function transform($value): array
+    public function transform(mixed $value): array
     {
         $location = (int)$value;
 
@@ -32,7 +35,7 @@ final class RelationTransformer implements DataTransformerInterface
         ];
     }
 
-    public function reverseTransform($value): string
+    public function reverseTransform(mixed $value): string
     {
         if ($value === null || $value['location_type'] === RelationType::LOCATION_DEFAULT) {
             return '';

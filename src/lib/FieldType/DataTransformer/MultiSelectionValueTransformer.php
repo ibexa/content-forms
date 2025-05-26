@@ -13,6 +13,8 @@ use Symfony\Component\Form\DataTransformerInterface;
 
 /**
  * DataTransformer for Selection\Value in multi select mode.
+ *
+ * @implements \Symfony\Component\Form\DataTransformerInterface<\Ibexa\Core\FieldType\Selection\Value, int[]|null>
  */
 class MultiSelectionValueTransformer implements DataTransformerInterface
 {
