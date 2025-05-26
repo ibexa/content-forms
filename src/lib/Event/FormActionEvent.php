@@ -16,53 +16,54 @@ class FormActionEvent extends FormEvent
 {
     /**
      * Name of the button used to submit the form.
-     *
-     * @var string
      */
-    private $clickedButton;
+    private string $clickedButton;
 
     /**
      * Hash of options.
+     *
+     * @var array<string, mixed>
      */
     private array $options;
 
     /**
-     * Response to return after form post-processing. Typically a RedirectResponse.
+     * Response to return after form post-processing. Typically, a RedirectResponse.
      */
     private ?Response $response = null;
 
     /**
      * Additional payload populated for event listeners next in priority.
+     *
+     * @var array<string, mixed>
      */
     private array $payloads;
 
     /**
-     * @param \Symfony\Component\Form\FormInterface $form
-     * @param $data
-     * @param $clickedButton
-     * @param array $options
-     * @param array $payloads
+     * @param array<string, mixed> $options
+     * @param array<string, mixed> $payloads
      */
-    public function __construct(FormInterface $form, mixed $data, $clickedButton, array $options = [], array $payloads = [])
-    {
+    public function __construct(
+        FormInterface $form,
+        mixed $data,
+        string $clickedButton,
+        array $options = [],
+        array $payloads = []
+    ) {
         parent::__construct($form, $data);
         $this->clickedButton = $clickedButton;
         $this->options = $options;
         $this->payloads = $payloads;
     }
 
-    /**
-     * @return string
-     */
-    public function getClickedButton()
+    public function getClickedButton(): string
     {
         return $this->clickedButton;
     }
 
     /**
-     * @return array
+     * @return array<string, mixed>
      */
-    public function getOptions()
+    public function getOptions(): array
     {
         return $this->options;
     }
@@ -73,7 +74,7 @@ class FormActionEvent extends FormEvent
      *
      * @return mixed
      */
-    public function getOption($optionName, $defaultValue = null)
+    public function getOption(string $optionName, mixed $defaultValue = null): mixed
     {
         if (!isset($this->options[$optionName])) {
             return $defaultValue;
@@ -82,27 +83,16 @@ class FormActionEvent extends FormEvent
         return $this->options[$optionName];
     }
 
-    /**
-     * @param string $optionName
-     *
-     * @return bool
-     */
-    public function hasOption($optionName): bool
+    public function hasOption(string $optionName): bool
     {
         return isset($this->options[$optionName]);
     }
 
-    /**
-     * @return \Symfony\Component\HttpFoundation\Response
-     */
-    public function getResponse()
+    public function getResponse(): ?Response
     {
         return $this->response;
     }
 
-    /**
-     * @param \Symfony\Component\HttpFoundation\Response $response
-     */
     public function setResponse(Response $response): void
     {
         $this->response = $response;
@@ -114,7 +104,7 @@ class FormActionEvent extends FormEvent
     }
 
     /**
-     * @return array
+     * @return array<string, mixed>
      */
     public function getPayloads(): array
     {
@@ -122,38 +112,24 @@ class FormActionEvent extends FormEvent
     }
 
     /**
-     * @param array $payloads
+     * @param array<string, mixed> $payloads
      */
     public function setPayloads(array $payloads): void
     {
         $this->payloads = $payloads;
     }
 
-    /**
-     * @param string $name
-     *
-     * @return bool
-     */
     public function hasPayload(string $name): bool
     {
         return isset($this->payloads[$name]);
     }
 
-    /**
-     * @param string $name
-     *
-     * @return mixed
-     */
-    public function getPayload(string $name)
+    public function getPayload(string $name): mixed
     {
         return $this->payloads[$name];
     }
 
-    /**
-     * @param string $name
-     * @param mixed $payload
-     */
-    public function setPayload(string $name, $payload): void
+    public function setPayload(string $name, mixed $payload): void
     {
         $this->payloads[$name] = $payload;
     }

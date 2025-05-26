@@ -12,6 +12,7 @@ use Ibexa\ContentForms\Event\FormActionEvent;
 use Ibexa\Contracts\Core\Repository\Values\ValueObject;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Form\FormInterface;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
@@ -21,10 +22,7 @@ abstract class AbstractActionDispatcher implements ActionDispatcherInterface
 {
     private ?EventDispatcherInterface $eventDispatcher = null;
 
-    /**
-     * @var \Symfony\Component\HttpFoundation\Response
-     */
-    protected $response;
+    protected ?Response $response;
 
     public function setEventDispatcher(EventDispatcherInterface $eventDispatcher): void
     {
@@ -37,13 +35,13 @@ abstract class AbstractActionDispatcher implements ActionDispatcherInterface
         $this->configureOptions($resolver);
         $options = $resolver->resolve($options);
 
-        // First dispatch default action, then $actionName.
-        $event = new FormActionEvent($form, $data, $actionName, $options);
+        // First dispatch the default action, then $actionName.
+        $event = new FormActionEvent($form, $data, $actionName ?? '', $options);
         $defaultActionEventName = $this->getActionEventBaseName();
         $this->dispatchDefaultAction($defaultActionEventName, $event);
         // Action name is not set e.g. when pressing return in a text field.
         // We have already run the default action, no need to run it again in that case.
-        if ($actionName) {
+        if (!empty($actionName)) {
             $this->dispatchAction("$defaultActionEventName.$actionName", $event);
         }
         $this->response = $event->getResponse();
@@ -52,40 +50,28 @@ abstract class AbstractActionDispatcher implements ActionDispatcherInterface
     /**
      * Configures options to pass to the form action event.
      * Might do nothing if there are no options.
-     *
-     * @param \Symfony\Component\OptionsResolver\OptionsResolver $resolver
      */
-    protected function configureOptions(OptionsResolver $resolver)
+    protected function configureOptions(OptionsResolver $resolver): void
     {
     }
 
     /**
      * Returns base for action event name. It will be used as default action event name.
      * By convention, other action event names will have the format "<actionEventBaseName>.<actionName>".
-     *
-     * @return string
      */
-    abstract protected function getActionEventBaseName();
+    abstract protected function getActionEventBaseName(): string;
 
-    /**
-     * @param $defaultActionEventName
-     * @param $event
-     */
-    protected function dispatchDefaultAction(?string $defaultActionEventName, FormActionEvent $event)
+    protected function dispatchDefaultAction(?string $defaultActionEventName, FormActionEvent $event): void
     {
-        $this->eventDispatcher->dispatch($event, $defaultActionEventName);
+        $this->eventDispatcher?->dispatch($event, $defaultActionEventName);
     }
 
-    /**
-     * @param $actionEventName
-     * @param $event
-     */
-    protected function dispatchAction(?string $actionEventName, FormActionEvent $event)
+    protected function dispatchAction(?string $actionEventName, FormActionEvent $event): void
     {
-        $this->eventDispatcher->dispatch($event, $actionEventName);
+        $this->eventDispatcher?->dispatch($event, $actionEventName);
     }
 
-    public function getResponse()
+    public function getResponse(): ?Response
     {
         return $this->response;
     }

@@ -14,7 +14,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ContentDispatcher extends AbstractActionDispatcher
 {
-    protected function configureOptions(OptionsResolver $resolver)
+    protected function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefined(['referrerLocation']);
         $resolver->setDefault('referrerLocation', null);
