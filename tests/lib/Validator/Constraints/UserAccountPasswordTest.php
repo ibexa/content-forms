@@ -11,10 +11,10 @@ namespace Ibexa\Tests\ContentForms\Validator\Constraints;
 use Ibexa\ContentForms\Validator\Constraints\UserAccountPassword;
 use Ibexa\ContentForms\Validator\Constraints\UserAccountPasswordValidator;
 use PHPUnit\Framework\TestCase;
+use Symfony\Component\Validator\Constraint;
 
-class UserAccountPasswordTest extends TestCase
+final class UserAccountPasswordTest extends TestCase
 {
-    /** @var \Ibexa\ContentForms\Validator\Constraints\Password */
     private UserAccountPassword $constraint;
 
     protected function setUp(): void
@@ -34,6 +34,6 @@ class UserAccountPasswordTest extends TestCase
 
     public function testGetTargets(): void
     {
-        self::assertSame([UserAccountPassword::CLASS_CONSTRAINT, UserAccountPassword::PROPERTY_CONSTRAINT], $this->constraint->getTargets());
+        self::assertSame([Constraint::CLASS_CONSTRAINT, Constraint::PROPERTY_CONSTRAINT], $this->constraint->getTargets());
     }
 }
