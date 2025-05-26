@@ -49,7 +49,7 @@ class UserUpdateMapper
 
         $filter = $params['filter'];
 
-        $fields = $user->getFieldsByLanguage($params['languageCode']);
+        $fields = iterator_to_array($user->getFieldsByLanguage($params['languageCode']));
         foreach ($contentType->fieldDefinitions as $fieldDef) {
             $field = $fields[$fieldDef->identifier];
 

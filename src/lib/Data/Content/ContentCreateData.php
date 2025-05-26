@@ -22,7 +22,7 @@ class ContentCreateData extends ContentCreateStruct implements NewnessCheckable
     /**
      * @var \Ibexa\Contracts\Core\Repository\Values\Content\LocationCreateStruct[]
      */
-    private ?array $locationStructs = null;
+    private array $locationStructs = [];
 
     public function isNew(): bool
     {
@@ -32,7 +32,7 @@ class ContentCreateData extends ContentCreateStruct implements NewnessCheckable
     /**
      * @return \Ibexa\Contracts\Core\Repository\Values\Content\LocationCreateStruct[]
      */
-    public function getLocationStructs()
+    public function getLocationStructs(): array
     {
         return $this->locationStructs;
     }
@@ -40,8 +40,6 @@ class ContentCreateData extends ContentCreateStruct implements NewnessCheckable
     /**
      * Adds a location struct.
      * A location will be created out of it, bound to the created content.
-     *
-     * @param \Ibexa\Contracts\Core\Repository\Values\Content\LocationCreateStruct $locationStruct
      */
     public function addLocationStruct(LocationCreateStruct $locationStruct): void
     {
