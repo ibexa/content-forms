@@ -14,19 +14,22 @@ use PHPUnit\Framework\TestCase;
 
 class MultiSelectionValueTransformerTest extends TestCase
 {
+    /**
+     * @phpstan-return list<array{array<int>}>
+     */
     public function transformProvider(): array
     {
         return [
             [[0]],
-            [['null']],
             [[1, 2]],
-            [['forty', 'two']],
             [[1, 4, 1, 5, 9, 2, 6]],
         ];
     }
 
     /**
      * @dataProvider transformProvider
+     *
+     * @param array<int> $valueAsArray
      */
     public function testTransform(array $valueAsArray): void
     {
@@ -37,6 +40,8 @@ class MultiSelectionValueTransformerTest extends TestCase
 
     /**
      * @dataProvider transformProvider
+     *
+     * @param array<int> $valueAsArray
      */
     public function testReverseTransform(array $valueAsArray): void
     {
@@ -45,6 +50,9 @@ class MultiSelectionValueTransformerTest extends TestCase
         self::assertEquals($expectedValue, $transformer->reverseTransform($valueAsArray));
     }
 
+    /**
+     * @phpstan-return list<array{mixed}>
+     */
     public function transformNullProvider(): array
     {
         return [

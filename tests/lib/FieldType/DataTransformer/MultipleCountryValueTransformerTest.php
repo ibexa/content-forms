@@ -12,12 +12,17 @@ use Ibexa\ContentForms\FieldType\DataTransformer\MultipleCountryValueTransformer
 use Ibexa\Core\FieldType\Country\Value;
 use PHPUnit\Framework\TestCase;
 
-class MultipleCountryValueTransformerTest extends TestCase
+/**
+ * @phpstan-import-type TCountryValueData from \Ibexa\ContentForms\FieldType\DataTransformer\MultipleCountryValueTransformer
+ */
+final class MultipleCountryValueTransformerTest extends TestCase
 {
     /**
-     * @var array Array of countries from "ibexa.field_type.country.data"
+     * Array of countries from "ibexa.field_type.country.data".
+     *
+     * @phpstan-var array<string, TCountryValueData>
      */
-    protected $countriesInfo = [
+    protected array $countriesInfo = [
         'AF' => ['Name' => 'Afghanistan', 'Alpha2' => 'AF', 'Alpha3' => 'AFG', 'IDC' => '93'],
         'AX' => ['Name' => 'Åland', 'Alpha2' => 'AX', 'Alpha3' => 'ALA', 'IDC' => '358'],
         'AQ' => ['Name' => 'Antarctica', 'Alpha2' => 'AQ', 'Alpha3' => 'ATA', 'IDC' => '672'],
@@ -44,22 +49,31 @@ class MultipleCountryValueTransformerTest extends TestCase
         'ZW' => ['Name' => 'Zimbabwe', 'Alpha2' => 'ZW', 'Alpha3' => 'ZWE', 'IDC' => '263'],
     ];
 
+    /**
+     * @phpstan-return list<array{array<string, TCountryValueData>}>
+     */
     public function transformProvider(): array
     {
         return [
-            [[
-                  'BN' => ['Name' => 'Brunei Darussalam', 'Alpha2' => 'BN', 'Alpha3' => 'BRN', 'IDC' => '673'],
-              ]],
-            [[
-                  'AX' => ['Name' => 'Åland', 'Alpha2' => 'AX', 'Alpha3' => 'ALA', 'IDC' => '358'],
-                  'BL' => ['Name' => 'Saint Barthélemy', 'Alpha2' => 'BL', 'Alpha3' => 'BLM', 'IDC' => '590'],
-                  'GS' => ['Name' => 'South Georgia and The South Sandwich Islands', 'Alpha2' => 'GS', 'Alpha3' => 'SGS', 'IDC' => '500'],
-              ]],
+            [
+                [
+                    'BN' => ['Name' => 'Brunei Darussalam', 'Alpha2' => 'BN', 'Alpha3' => 'BRN', 'IDC' => '673'],
+                ],
+            ],
+            [
+                [
+                    'AX' => ['Name' => 'Åland', 'Alpha2' => 'AX', 'Alpha3' => 'ALA', 'IDC' => '358'],
+                    'BL' => ['Name' => 'Saint Barthélemy', 'Alpha2' => 'BL', 'Alpha3' => 'BLM', 'IDC' => '590'],
+                    'GS' => ['Name' => 'South Georgia and The South Sandwich Islands', 'Alpha2' => 'GS', 'Alpha3' => 'SGS', 'IDC' => '500'],
+                ],
+            ],
         ];
     }
 
     /**
      * @dataProvider transformProvider
+     *
+     * @phpstan-param array<string, TCountryValueData> $valueAsArray
      */
     public function testTransform(array $valueAsArray): void
     {
@@ -70,6 +84,8 @@ class MultipleCountryValueTransformerTest extends TestCase
 
     /**
      * @dataProvider transformProvider
+     *
+     * @phpstan-param array<string, TCountryValueData> $valueAsArray
      */
     public function testReverseTransform(array $valueAsArray): void
     {
@@ -78,6 +94,9 @@ class MultipleCountryValueTransformerTest extends TestCase
         self::assertEquals($expectedValue, $transformer->reverseTransform(array_keys($valueAsArray)));
     }
 
+    /**
+     * @phpstan-return list<array{int|string|array<mixed>|null}>
+     */
     public function transformNullProvider(): array
     {
         return [
@@ -91,12 +110,15 @@ class MultipleCountryValueTransformerTest extends TestCase
     /**
      * @dataProvider transformNullProvider
      */
-    public function testTransformNull(int|string|array|null $value): void
+    public function testTransformNull(mixed $value): void
     {
         $transformer = new MultipleCountryValueTransformer($this->countriesInfo);
         self::assertNull($transformer->transform($value));
     }
 
+    /**
+     * @phpstan-return list<array{mixed}>
+     */
     public function reverseTransformNullProvider(): array
     {
         return [

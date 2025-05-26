@@ -14,6 +14,9 @@ use PHPUnit\Framework\TestCase;
 
 class SingleSelectionValueTransformerTest extends TestCase
 {
+    /**
+     * @phpstan-return list<array{int}>
+     */
     public function transformProvider(): array
     {
         return [
@@ -42,6 +45,9 @@ class SingleSelectionValueTransformerTest extends TestCase
         self::assertEquals($expectedValue, $transformer->reverseTransform($value));
     }
 
+    /**
+     * @phpstan-return list<array{mixed}>
+     */
     public function transformNullProvider(): array
     {
         return [

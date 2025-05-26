@@ -47,6 +47,7 @@ class TimeValueTransformerTest extends TestCase
         $transformer = new TimeValueTransformer();
 
         $this->expectException(TransformationFailedException::class);
+        /** @phpstan-ignore argument.type */
         $transformer->transform((object) ['time' => 1]);
     }
 }
