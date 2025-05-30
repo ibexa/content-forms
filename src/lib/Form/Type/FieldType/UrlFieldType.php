@@ -18,7 +18,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * Form Type representing ezurl field type.
+ * Form Type representing ibexa_url field type.
  */
 class UrlFieldType extends AbstractType
 {
@@ -36,7 +36,7 @@ class UrlFieldType extends AbstractType
 
     public function getBlockPrefix(): string
     {
-        return 'ezplatform_fieldtype_ezurl';
+        return 'ezplatform_fieldtype_ibexa_url';
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
@@ -46,7 +46,7 @@ class UrlFieldType extends AbstractType
                 'link',
                 UrlType::class,
                 [
-                    'label' => /** @Desc("URL") */ 'content.field_type.ezurl.link',
+                    'label' => /** @Desc("URL") */ 'content.field_type.ibexa_url.link',
                     'required' => $options['required'],
                     'default_protocol' => 'https',
                 ]
@@ -55,11 +55,11 @@ class UrlFieldType extends AbstractType
                 'text',
                 TextType::class,
                 [
-                    'label' => /** @Desc("Text") */ 'content.field_type.ezurl.text',
+                    'label' => /** @Desc("Text") */ 'content.field_type.ibexa_url.text',
                     'required' => false,
                 ]
             )
-            ->addModelTransformer(new FieldValueTransformer($this->fieldTypeService->getFieldType('ezurl')));
+            ->addModelTransformer(new FieldValueTransformer($this->fieldTypeService->getFieldType('ibexa_url')));
     }
 
     public function configureOptions(OptionsResolver $resolver): void

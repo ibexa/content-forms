@@ -21,13 +21,13 @@ use Symfony\Component\Form\FormInterface;
  *
  * Example in YAML service definition:
  * ```
- * ezrepoforms.field_type.form_mapper.ezuser:
+ * ezrepoforms.field_type.form_mapper.ibexa_user:
  *   class: "%ezrepoforms.field_type.form_mapper.form_type_based.class%"
  *   parent: ezrepoforms.field_type.form_mapper.form_type_based
  *   tags:
- *     - { name: "ez.formMapper.fieldValue", fieldType: "ezuser" }
+ *     - { name: "ez.formMapper.fieldValue", fieldType: "ibexa_user" }
  *   calls:
- *     - [setFormType, ["ezuser"]]
+ *     - [setFormType, ["ibexa_user"]]
  * ```
  */
 final class FormTypeBasedFieldValueFormMapper implements FieldValueFormMapperInterface

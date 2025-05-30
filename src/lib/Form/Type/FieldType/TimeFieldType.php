@@ -17,7 +17,7 @@ use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * Form Type representing eztime field type.
+ * Form Type representing ibexa_time field type.
  */
 class TimeFieldType extends AbstractType
 {
@@ -28,7 +28,7 @@ class TimeFieldType extends AbstractType
 
     public function getBlockPrefix(): string
     {
-        return 'ezplatform_fieldtype_eztime';
+        return 'ezplatform_fieldtype_ibexa_time';
     }
 
     public function getParent(): ?string

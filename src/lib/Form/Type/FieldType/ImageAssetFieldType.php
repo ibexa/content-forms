@@ -54,7 +54,7 @@ class ImageAssetFieldType extends AbstractType
 
     public function getBlockPrefix(): string
     {
-        return 'ezplatform_fieldtype_ezimageasset';
+        return 'ezplatform_fieldtype_ibexa_image_asset';
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
@@ -82,7 +82,7 @@ class ImageAssetFieldType extends AbstractType
                 'alternativeText',
                 TextType::class,
                 [
-                    'label' => /** @Desc("Alternative text") */ 'content.field_type.ezimageasset.alternative_text',
+                    'label' => /** @Desc("Alternative text") */ 'content.field_type.ibexa_image_asset.alternative_text',
                     'block_prefix' => 'ibexa_fieldtype_ezimage_alternative_text',
                 ]
             );

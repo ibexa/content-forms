@@ -20,7 +20,7 @@ use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * Form Type representing ezgmaplocation field type.
+ * Form Type representing ibexa_gmap_location field type.
  */
 class MapLocationFieldType extends AbstractType
 {
@@ -38,7 +38,7 @@ class MapLocationFieldType extends AbstractType
 
     public function getBlockPrefix(): string
     {
-        return 'ezplatform_fieldtype_ezgmaplocation';
+        return 'ezplatform_fieldtype_ibexa_gmap_location';
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
@@ -48,7 +48,7 @@ class MapLocationFieldType extends AbstractType
                 'latitude',
                 NumberType::class,
                 [
-                    'label' => /** @Desc("Latitude") */ 'content.field_type.ezgmaplocation.latitude',
+                    'label' => /** @Desc("Latitude") */ 'content.field_type.ibexa_gmap_location.latitude',
                     'required' => $options['required'],
                     'scale' => 6,
                     'attr' => [
@@ -62,7 +62,7 @@ class MapLocationFieldType extends AbstractType
                 'longitude',
                 NumberType::class,
                 [
-                    'label' => /** @Desc("Longitude") */ 'content.field_type.ezgmaplocation.longitude',
+                    'label' => /** @Desc("Longitude") */ 'content.field_type.ibexa_gmap_location.longitude',
                     'required' => $options['required'],
                     'scale' => 6,
                     'attr' => [
@@ -76,13 +76,13 @@ class MapLocationFieldType extends AbstractType
                 'address',
                 TextType::class,
                 [
-                    'label' => /** @Desc("Address") */ 'content.field_type.ezgmaplocation.address',
+                    'label' => /** @Desc("Address") */ 'content.field_type.ibexa_gmap_location.address',
                     'required' => false,
                     'empty_data' => '',
                 ]
             )
             ->addModelTransformer(
-                new FieldValueTransformer($this->fieldTypeService->getFieldType('ezgmaplocation'))
+                new FieldValueTransformer($this->fieldTypeService->getFieldType('ibexa_gmap_location'))
             );
     }
 

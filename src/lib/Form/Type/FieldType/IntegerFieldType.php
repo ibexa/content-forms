@@ -18,7 +18,7 @@ use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * Form Type representing ezinteger field type.
+ * Form Type representing ibexa_integer field type.
  */
 class IntegerFieldType extends AbstractType
 {
@@ -36,7 +36,7 @@ class IntegerFieldType extends AbstractType
 
     public function getBlockPrefix(): string
     {
-        return 'ezplatform_fieldtype_ezinteger';
+        return 'ezplatform_fieldtype_ibexa_integer';
     }
 
     public function getParent(): ?string
@@ -56,7 +56,7 @@ class IntegerFieldType extends AbstractType
             $attributes['max'] = $options['max'];
         }
 
-        $builder->addModelTransformer(new FieldValueTransformer($this->fieldTypeService->getFieldType('ezinteger')));
+        $builder->addModelTransformer(new FieldValueTransformer($this->fieldTypeService->getFieldType('ibexa_integer')));
     }
 
     public function buildView(FormView $view, FormInterface $form, array $options): void

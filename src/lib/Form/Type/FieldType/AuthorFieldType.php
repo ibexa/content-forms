@@ -25,7 +25,7 @@ use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * Form Type representing ezauthor field type.
+ * Form Type representing ibexa_author field type.
  */
 class AuthorFieldType extends AbstractType
 {
@@ -55,7 +55,7 @@ class AuthorFieldType extends AbstractType
      */
     public function getBlockPrefix(): string
     {
-        return 'ezplatform_fieldtype_ezauthor';
+        return 'ezplatform_fieldtype_ibexa_author';
     }
 
     /**

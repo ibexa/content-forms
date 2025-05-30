@@ -16,7 +16,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * Form Type representing ezmedia field type.
+ * Form Type representing ibexa_media field type.
  */
 class MediaFieldType extends AbstractType
 {
@@ -27,7 +27,7 @@ class MediaFieldType extends AbstractType
 
     public function getBlockPrefix(): string
     {
-        return 'ezplatform_fieldtype_ezmedia';
+        return 'ezplatform_fieldtype_ibexa_media';
     }
 
     public function getParent(): ?string
@@ -42,7 +42,7 @@ class MediaFieldType extends AbstractType
                 'hasController',
                 CheckboxType::class,
                 [
-                    'label' => /** @Desc("Display controls") */ 'content.field_type.ezmedia.display_controls',
+                    'label' => /** @Desc("Display controls") */ 'content.field_type.ibexa_media.display_controls',
                     'required' => false,
                 ]
             )
@@ -50,7 +50,7 @@ class MediaFieldType extends AbstractType
                 'autoplay',
                 CheckboxType::class,
                 [
-                    'label' => /** @Desc("Autoplay") */ 'content.field_type.ezmedia.autoplay',
+                    'label' => /** @Desc("Autoplay") */ 'content.field_type.ibexa_media.autoplay',
                     'required' => false,
                 ]
             )
@@ -58,7 +58,7 @@ class MediaFieldType extends AbstractType
                 'loop',
                 CheckboxType::class,
                 [
-                    'label' => /** @Desc("Loop") */ 'content.field_type.ezmedia.loop',
+                    'label' => /** @Desc("Loop") */ 'content.field_type.ibexa_media.loop',
                     'required' => false,
                 ]
             )
@@ -66,7 +66,7 @@ class MediaFieldType extends AbstractType
                 'width',
                 IntegerType::class,
                 [
-                    'label' => /** @Desc("Width") */ 'content.field_type.ezmedia.width',
+                    'label' => /** @Desc("Width") */ 'content.field_type.ibexa_media.width',
                     'required' => true,
                     'empty_data' => 0,
                     'attr' => [
@@ -79,7 +79,7 @@ class MediaFieldType extends AbstractType
                 'height',
                 IntegerType::class,
                 [
-                    'label' => /** @Desc("Height") */ 'content.field_type.ezmedia.height',
+                    'label' => /** @Desc("Height") */ 'content.field_type.ibexa_media.height',
                     'required' => true,
                     'empty_data' => 0,
                     'attr' => [

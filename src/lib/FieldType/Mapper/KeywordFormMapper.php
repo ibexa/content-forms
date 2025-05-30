@@ -14,7 +14,7 @@ use Ibexa\Contracts\ContentForms\FieldType\FieldValueFormMapperInterface;
 use Symfony\Component\Form\FormInterface;
 
 /**
- * FormMapper for ezkeyword FieldType.
+ * FormMapper for ibexa_keyword FieldType.
  */
 class KeywordFormMapper implements FieldValueFormMapperInterface
 {

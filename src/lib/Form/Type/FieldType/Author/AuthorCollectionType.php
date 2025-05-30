@@ -13,7 +13,7 @@ use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * Combined Type for ezauthor.
+ * Combined Type for ibexa_author.
  */
 class AuthorCollectionType extends AbstractType
 {
@@ -24,7 +24,7 @@ class AuthorCollectionType extends AbstractType
 
     public function getBlockPrefix(): string
     {
-        return 'ezplatform_fieldtype_ezauthor_authors';
+        return 'ezplatform_fieldtype_ibexa_author_authors';
     }
 
     public function configureOptions(OptionsResolver $resolver): void

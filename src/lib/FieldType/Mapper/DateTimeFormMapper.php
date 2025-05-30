@@ -14,7 +14,7 @@ use Ibexa\Contracts\ContentForms\FieldType\FieldValueFormMapperInterface;
 use Symfony\Component\Form\FormInterface;
 
 /**
- * FormMapper for ezdatetime FieldType.
+ * FormMapper for ibexa_datetime FieldType.
  */
 class DateTimeFormMapper implements FieldValueFormMapperInterface
 {

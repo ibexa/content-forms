@@ -15,7 +15,7 @@ use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\FormBuilderInterface;
 
 /**
- * Form Type representing ezboolean field type.
+ * Form Type representing ibexa_boolean field type.
  */
 class CheckboxFieldType extends AbstractType
 {
@@ -33,7 +33,7 @@ class CheckboxFieldType extends AbstractType
 
     public function getBlockPrefix(): string
     {
-        return 'ezplatform_fieldtype_ezboolean';
+        return 'ezplatform_fieldtype_ibexa_boolean';
     }
 
     public function getParent(): ?string
@@ -44,6 +44,6 @@ class CheckboxFieldType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->addModelTransformer(new FieldValueTransformer($this->fieldTypeService->getFieldType('ezboolean')));
+            ->addModelTransformer(new FieldValueTransformer($this->fieldTypeService->getFieldType('ibexa_boolean')));
     }
 }

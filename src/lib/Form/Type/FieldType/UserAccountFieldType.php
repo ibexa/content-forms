@@ -28,7 +28,7 @@ class UserAccountFieldType extends AbstractType
 
     public function getBlockPrefix(): string
     {
-        return 'ezplatform_fieldtype_ezuser';
+        return 'ezplatform_fieldtype_ibexa_user';
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
@@ -37,7 +37,7 @@ class UserAccountFieldType extends AbstractType
 
         $builder
             ->add('username', TextType::class, [
-                'label' => /** @Desc("Username") */ 'content.field_type.ezuser.username',
+                'label' => /** @Desc("Username") */ 'content.field_type.ibexa_user.username',
                 'required' => true,
                 'attr' => $isUpdateForm ? ['readonly' => 'readonly'] : [],
             ])
@@ -45,12 +45,12 @@ class UserAccountFieldType extends AbstractType
                 'type' => PasswordType::class,
                 'required' => !$isUpdateForm,
                 'invalid_message' => /** @Desc("Passwords do not match.") */ 'content.field_type.passwords_must_match',
-                'first_options' => ['label' => /** @Desc("Password") */ 'content.field_type.ezuser.password'],
-                'second_options' => ['label' => /** @Desc("Confirm password") */ 'content.field_type.ezuser.password_confirm'],
+                'first_options' => ['label' => /** @Desc("Password") */ 'content.field_type.ibexa_user.password'],
+                'second_options' => ['label' => /** @Desc("Confirm password") */ 'content.field_type.ibexa_user.password_confirm'],
             ])
             ->add('email', EmailType::class, [
                 'required' => true,
-                'label' => /** @Desc("Email") */ 'content.field_type.ezuser.email',
+                'label' => /** @Desc("Email") */ 'content.field_type.ibexa_user.email',
                 'attr' => [
                     'readonly' => $options['intent'] === 'invitation',
                 ],
@@ -59,7 +59,7 @@ class UserAccountFieldType extends AbstractType
         if (in_array($options['intent'], ['create', 'update'], true)) {
             $builder->add('enabled', SwitcherType::class, [
                 'required' => false,
-                'label' => /** @Desc("Enabled") */ 'content.field_type.ezuser.enabled',
+                'label' => /** @Desc("Enabled") */ 'content.field_type.ibexa_user.enabled',
             ]);
         }
     }

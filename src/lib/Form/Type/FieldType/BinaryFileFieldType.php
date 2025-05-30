@@ -12,7 +12,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * Form Type representing ezbinaryfile field type.
+ * Form Type representing ibexa_binaryfile field type.
  */
 class BinaryFileFieldType extends AbstractType
 {
@@ -23,7 +23,7 @@ class BinaryFileFieldType extends AbstractType
 
     public function getBlockPrefix(): string
     {
-        return 'ezplatform_fieldtype_ezbinaryfile';
+        return 'ezplatform_fieldtype_ibexa_binaryfile';
     }
 
     public function getParent(): ?string

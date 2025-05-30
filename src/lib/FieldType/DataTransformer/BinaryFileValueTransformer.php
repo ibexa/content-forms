@@ -12,7 +12,7 @@ use Ibexa\Core\FieldType\BinaryFile\Value;
 use Symfony\Component\Form\DataTransformerInterface;
 
 /**
- * Data transformer for an `ezbinaryfile` field type.
+ * Data transformer for an `ibexa_binaryfile` field type.
  *
  * @phpstan-type TBinaryFileData array{file: string|null, remove: bool, downloadCount: int}
  *

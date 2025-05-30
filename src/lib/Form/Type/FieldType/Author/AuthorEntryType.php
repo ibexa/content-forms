@@ -18,7 +18,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * Combined entry type for ezauthor.
+ * Combined entry type for ibexa_author.
  */
 class AuthorEntryType extends AbstractType
 {
@@ -35,7 +35,7 @@ class AuthorEntryType extends AbstractType
      */
     public function getBlockPrefix(): string
     {
-        return 'ezplatform_fieldtype_ezauthor_authors_entry';
+        return 'ezplatform_fieldtype_ibexa_author_authors_entry';
     }
 
     /**
@@ -57,7 +57,7 @@ class AuthorEntryType extends AbstractType
                 TextType::class,
                 [
                     'label' => /** @Desc("Name") */
-                        'content.field_type.ezauthor.name',
+                        'content.field_type.ibexa_author.name',
                     'required' => $options['required'],
                 ]
             )
@@ -66,7 +66,7 @@ class AuthorEntryType extends AbstractType
                 EmailType::class,
                 [
                     'label' => /** @Desc("Email") */
-                        'content.field_type.ezauthor.email',
+                        'content.field_type.ibexa_author.email',
                     'required' => $options['required'],
                 ]
             );
