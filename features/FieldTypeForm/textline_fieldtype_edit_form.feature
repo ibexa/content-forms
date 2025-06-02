@@ -1,7 +1,7 @@
 Feature: TextLine field value edit form
     In order to edit content of a TextLine fields
     As an integrator
-    I want the ezuser field form to implement the FieldType's behaviour
+    I want the ibexa_user field form to implement the FieldType's behaviour
 
 Background:
     Given a content type with a textline field definition

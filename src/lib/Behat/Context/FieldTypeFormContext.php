@@ -22,9 +22,9 @@ final class FieldTypeFormContext extends RawMinkContext implements SnippetAccept
 
     /** @var array<string, string> */
     private static array $fieldTypeIdentifierMap = [
-        'user' => 'ezuser',
-        'textline' => 'ezstring',
-        'selection' => 'ezselection',
+        'user' => 'ibexa_user',
+        'textline' => 'ibexa_string',
+        'selection' => 'ibexa_selection',
     ];
 
     private ContentTypeContext $contentTypeContext;
@@ -56,7 +56,7 @@ final class FieldTypeFormContext extends RawMinkContext implements SnippetAccept
             'fieldTypeIdentifier' => $fieldTypeIdentifier,
             'names' => ['eng-GB' => 'Field'],
         ];
-        if ($fieldTypeIdentifier === 'ezselection') {
+        if ($fieldTypeIdentifier === 'ibexa_selection') {
             $fieldDefinition = array_merge(
                 $fieldDefinition,
                 [

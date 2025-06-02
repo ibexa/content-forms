@@ -83,7 +83,7 @@ class ImageAssetFieldType extends AbstractType
                 TextType::class,
                 [
                     'label' => /** @Desc("Alternative text") */ 'content.field_type.ibexa_image_asset.alternative_text',
-                    'block_prefix' => 'ibexa_fieldtype_ezimage_alternative_text',
+                    'block_prefix' => 'ibexa_fieldtype_ibexa_image_alternative_text',
                 ]
             );
     }
