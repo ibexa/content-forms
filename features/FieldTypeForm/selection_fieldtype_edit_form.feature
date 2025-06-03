@@ -4,11 +4,11 @@ Feature: Selection field value edit form
     I want the Selection field form to implement the FieldType's behaviour
 
 Background:
-    Given a content type with an ezselection field definition
+    Given a content type with an ibexa_selection field definition
 
 Scenario: The attributes of the field have a form representation
     Given I view the edit form for this field
-     Then the edit form should contain an identifiable widget for ezselection field definition
+     Then the edit form should contain an identifiable widget for ibexa_selection field definition
       And it should contain a select field
 
 Scenario: The options added to a field definition have a form representation
