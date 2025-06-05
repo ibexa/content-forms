@@ -14,7 +14,7 @@ use Ibexa\Contracts\ContentForms\FieldType\FieldValueFormMapperInterface;
 use Symfony\Component\Form\FormInterface;
 
 /**
- * FormMapper for ezurl FieldType.
+ * FormMapper for ibexa_url FieldType.
  */
 class UrlFormMapper implements FieldValueFormMapperInterface
 {

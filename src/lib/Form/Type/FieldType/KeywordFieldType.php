@@ -14,7 +14,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 
 /**
- * Form Type representing ezkeyword field type.
+ * Form Type representing ibexa_keyword field type.
  */
 class KeywordFieldType extends AbstractType
 {
@@ -25,7 +25,7 @@ class KeywordFieldType extends AbstractType
 
     public function getBlockPrefix(): string
     {
-        return 'ezplatform_fieldtype_ezkeyword';
+        return 'ezplatform_fieldtype_ibexa_keyword';
     }
 
     public function getParent(): ?string

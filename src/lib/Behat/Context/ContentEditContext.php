@@ -57,8 +57,8 @@ final class ContentEditContext extends MinkContext implements Context, SnippetAc
             throw new \Exception('No created content name set');
         }
 
-        $this->assertElementOnPage('span.ezstring-field');
-        $this->assertElementContainsText('span.ezstring-field', $this->createdContentName);
+        $this->assertElementOnPage('span.ibexa_string-field');
+        $this->assertElementContainsText('span.ibexa_string-field', $this->createdContentName);
     }
 
     /**
@@ -169,7 +169,7 @@ final class ContentEditContext extends MinkContext implements Context, SnippetAc
             new FieldDefinitionCreateStruct(
                 [
                     'identifier' => self::$constrainedFieldIdentifier,
-                    'fieldTypeIdentifier' => 'ezstring',
+                    'fieldTypeIdentifier' => 'ibexa_string',
                     'names' => ['eng-GB' => 'Field'],
                     'validatorConfiguration' => [
                         'StringLengthValidator' => ['minStringLength' => 5, 'maxStringLength' => 10],

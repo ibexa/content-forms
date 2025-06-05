@@ -19,7 +19,7 @@ use Symfony\Component\Mime\MimeTypesInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * Form Type representing ezimage field type.
+ * Form Type representing ibexa_image field type.
  */
 class ImageFieldType extends AbstractType
 {
@@ -37,7 +37,7 @@ class ImageFieldType extends AbstractType
 
     public function getBlockPrefix(): string
     {
-        return 'ezplatform_fieldtype_ezimage';
+        return 'ezplatform_fieldtype_ibexa_image';
     }
 
     public function getParent(): ?string
@@ -52,9 +52,9 @@ class ImageFieldType extends AbstractType
                 'alternativeText',
                 TextType::class,
                 [
-                    'label' => /** @Desc("Alternative text") */ 'content.field_type.ezimage.alternative_text',
+                    'label' => /** @Desc("Alternative text") */ 'content.field_type.ibexa_image.alternative_text',
                     'required' => $options['is_alternative_text_required'],
-                    'block_prefix' => 'ibexa_fieldtype_ezimage_alternative_text',
+                    'block_prefix' => 'ibexa_fieldtype_ibexa_image_alternative_text',
                 ]
             )
             ->add(

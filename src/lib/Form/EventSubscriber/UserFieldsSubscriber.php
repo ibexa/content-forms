@@ -30,8 +30,8 @@ class UserFieldsSubscriber implements EventSubscriberInterface
     /**
      * Handles User Account field in create/update struct.
      *
-     * Workaround to quirky ezuser field type, it copies user data from field Data class to general User update/create
-     * struct and injects proper Value for ezuser field type in order to pass validation.
+     * Workaround to quirky ibexa_user field type, it copies user data from field Data class to general User update/create
+     * struct and injects proper Value for ibexa_user field type in order to pass validation.
      *
      * @param \Symfony\Component\Form\FormEvent $event
      */
@@ -55,7 +55,7 @@ class UserFieldsSubscriber implements EventSubscriberInterface
     private function handleUserCreateData(UserCreateData $data): void
     {
         foreach ($data->fieldsData as $fieldData) {
-            if ('ezuser' !== $fieldData->getFieldTypeIdentifier()) {
+            if ('ibexa_user' !== $fieldData->getFieldTypeIdentifier()) {
                 continue;
             }
 
@@ -87,7 +87,7 @@ class UserFieldsSubscriber implements EventSubscriberInterface
     private function handleUserUpdateData(UserUpdateData $data, ?string $languageCode): void
     {
         foreach ($data->fieldsData as $fieldData) {
-            if ('ezuser' !== $fieldData->getFieldTypeIdentifier()) {
+            if ('ibexa_user' !== $fieldData->getFieldTypeIdentifier()) {
                 continue;
             }
 

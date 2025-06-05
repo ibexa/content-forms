@@ -17,7 +17,7 @@ use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * Form Type representing ezdatetime field type.
+ * Form Type representing ibexa_datetime field type.
  */
 class DateTimeFieldType extends AbstractType
 {
@@ -28,7 +28,7 @@ class DateTimeFieldType extends AbstractType
 
     public function getBlockPrefix(): string
     {
-        return 'ezplatform_fieldtype_ezdatetime';
+        return 'ezplatform_fieldtype_ibexa_datetime';
     }
 
     public function getParent(): ?string

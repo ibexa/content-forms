@@ -16,7 +16,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * Form Type representing ezselection field type.
+ * Form Type representing ibexa_selection field type.
  */
 class SelectionFieldType extends AbstractType
 {
@@ -27,7 +27,7 @@ class SelectionFieldType extends AbstractType
 
     public function getBlockPrefix(): string
     {
-        return 'ezplatform_fieldtype_ezselection';
+        return 'ezplatform_fieldtype_ibexa_selection';
     }
 
     public function getParent(): ?string

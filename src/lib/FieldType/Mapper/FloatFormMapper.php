@@ -14,7 +14,7 @@ use Ibexa\Contracts\ContentForms\FieldType\FieldValueFormMapperInterface;
 use Symfony\Component\Form\FormInterface;
 
 /**
- * FormMapper for ezfloat FieldType.
+ * FormMapper for ibexa_float FieldType.
  */
 class FloatFormMapper implements FieldValueFormMapperInterface
 {

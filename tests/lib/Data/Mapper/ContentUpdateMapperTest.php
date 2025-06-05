@@ -28,13 +28,13 @@ final class ContentUpdateMapperTest extends TestCase
         $currentFields = [
             new APIField([
                 'fieldDefIdentifier' => 'name',
-                'fieldTypeIdentifier' => 'ezstring',
+                'fieldTypeIdentifier' => 'ibexa_string',
                 'languageCode' => 'eng-GB',
                 'value' => 'Name',
             ]),
             new APIField([
                 'fieldDefIdentifier' => 'short_name',
-                'fieldTypeIdentifier' => 'ezstring',
+                'fieldTypeIdentifier' => 'ibexa_string',
                 'languageCode' => 'eng-DE',
                 'value' => $expectedShortName = 'Nontranslateable short name',
             ]),
@@ -61,13 +61,13 @@ final class ContentUpdateMapperTest extends TestCase
         $currentFields = [
             new APIField([
                 'fieldDefIdentifier' => 'name',
-                'fieldTypeIdentifier' => 'ezstring',
+                'fieldTypeIdentifier' => 'ibexa_string',
                 'languageCode' => 'eng-GB',
                 'value' => 'Name',
             ]),
             new APIField([
                 'fieldDefIdentifier' => 'short_name',
-                'fieldTypeIdentifier' => 'ezstring',
+                'fieldTypeIdentifier' => 'ibexa_string',
                 'languageCode' => 'eng-GB',
                 'value' => 'Short name',
             ]),
@@ -119,13 +119,13 @@ final class ContentUpdateMapperTest extends TestCase
             'internalFields' => [
                 new APIField([
                     'fieldDefIdentifier' => 'name',
-                    'fieldTypeIdentifier' => 'ezstring',
+                    'fieldTypeIdentifier' => 'ibexa_string',
                     'languageCode' => $languageCode,
                     'value' => $name,
                 ]),
                 new APIField([
                     'fieldDefIdentifier' => 'short_name',
-                    'fieldTypeIdentifier' => 'ezstring',
+                    'fieldTypeIdentifier' => 'ibexa_string',
                     'languageCode' => $languageCode,
                     'value' => $shortName,
                 ]),

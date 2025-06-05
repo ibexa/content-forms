@@ -1,7 +1,7 @@
 Feature: User field value edit form
-    In order to edit content of ezuser fields
+    In order to edit content of ibexa_user fields
     As an integrator
-    I want the ezuser field form to implement the FieldType's behaviour
+    I want the ibexa_user field form to implement the FieldType's behaviour
 
 Background:
     Given a content type with a user field definition

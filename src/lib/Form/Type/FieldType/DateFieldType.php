@@ -17,7 +17,7 @@ use Symfony\Component\Form\FormView;
 use Symfony\Component\HttpFoundation\RequestStack;
 
 /**
- * Form Type representing ezdate field type.
+ * Form Type representing ibexa_date field type.
  */
 class DateFieldType extends AbstractType
 {
@@ -37,7 +37,7 @@ class DateFieldType extends AbstractType
 
     public function getBlockPrefix(): string
     {
-        return 'ezplatform_fieldtype_ezdate';
+        return 'ezplatform_fieldtype_ibexa_date';
     }
 
     public function getParent(): ?string

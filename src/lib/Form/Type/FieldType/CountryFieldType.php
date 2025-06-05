@@ -16,7 +16,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * Form Type representing ezcountry field type.
+ * Form Type representing ibexa_country field type.
  */
 class CountryFieldType extends AbstractType
 {
@@ -37,7 +37,7 @@ class CountryFieldType extends AbstractType
 
     public function getBlockPrefix(): string
     {
-        return 'ezplatform_fieldtype_ezcountry';
+        return 'ezplatform_fieldtype_ibexa_country';
     }
 
     public function getParent(): ?string

@@ -18,7 +18,7 @@ use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * Form Type representing eztext field type.
+ * Form Type representing ibexa_text field type.
  */
 class TextBlockFieldType extends AbstractType
 {
@@ -36,7 +36,7 @@ class TextBlockFieldType extends AbstractType
 
     public function getBlockPrefix(): string
     {
-        return 'ezplatform_fieldtype_eztext';
+        return 'ezplatform_fieldtype_ibexa_text';
     }
 
     public function getParent(): ?string
@@ -53,7 +53,7 @@ class TextBlockFieldType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $builder->addModelTransformer(new FieldValueTransformer($this->fieldTypeService->getFieldType('eztext')));
+        $builder->addModelTransformer(new FieldValueTransformer($this->fieldTypeService->getFieldType('ibexa_text')));
     }
 
     public function configureOptions(OptionsResolver $resolver): void

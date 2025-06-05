@@ -14,7 +14,7 @@ use Ibexa\Contracts\ContentForms\FieldType\FieldValueFormMapperInterface;
 use Symfony\Component\Form\FormInterface;
 
 /**
- * FormMapper for ezboolean FieldType.
+ * FormMapper for ibexa_boolean FieldType.
  */
 class CheckboxFormMapper implements FieldValueFormMapperInterface
 {

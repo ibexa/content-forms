@@ -14,7 +14,7 @@ use Ibexa\Contracts\ContentForms\FieldType\FieldValueFormMapperInterface;
 use Symfony\Component\Form\FormInterface;
 
 /**
- * FormMapper for ezgmaplocation FieldType.
+ * FormMapper for ibexa_gmap_location FieldType.
  */
 class MapLocationFormMapper implements FieldValueFormMapperInterface
 {

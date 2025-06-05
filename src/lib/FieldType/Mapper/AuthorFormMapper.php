@@ -14,7 +14,7 @@ use Ibexa\Contracts\ContentForms\FieldType\FieldValueFormMapperInterface;
 use Symfony\Component\Form\FormInterface;
 
 /**
- * FormMapper for ezauthor FieldType.
+ * FormMapper for ibexa_author FieldType.
  */
 class AuthorFormMapper implements FieldValueFormMapperInterface
 {

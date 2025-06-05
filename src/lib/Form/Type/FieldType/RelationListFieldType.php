@@ -22,7 +22,7 @@ use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * Form Type representing ezobjectrelationlist field type.
+ * Form Type representing ibexa_object_relation_list field type.
  */
 class RelationListFieldType extends AbstractType
 {
@@ -47,7 +47,7 @@ class RelationListFieldType extends AbstractType
 
     public function getBlockPrefix(): string
     {
-        return 'ezplatform_fieldtype_ezobjectrelationlist';
+        return 'ezplatform_fieldtype_ibexa_object_relation_list';
     }
 
     public function getParent(): ?string

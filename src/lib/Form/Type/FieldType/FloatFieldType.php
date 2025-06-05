@@ -18,7 +18,7 @@ use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * Form Type representing ezfloat field type.
+ * Form Type representing ibexa_float field type.
  */
 class FloatFieldType extends AbstractType
 {
@@ -36,7 +36,7 @@ class FloatFieldType extends AbstractType
 
     public function getBlockPrefix(): string
     {
-        return 'ezplatform_fieldtype_ezfloat';
+        return 'ezplatform_fieldtype_ibexa_float';
     }
 
     public function getParent(): ?string
@@ -46,7 +46,7 @@ class FloatFieldType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $builder->addModelTransformer(new FieldValueTransformer($this->fieldTypeService->getFieldType('ezfloat')));
+        $builder->addModelTransformer(new FieldValueTransformer($this->fieldTypeService->getFieldType('ibexa_float')));
         // Removes NumberToLocalizedStringTransformer which breaks "number" type HTML input
         $builder->resetViewTransformers();
     }

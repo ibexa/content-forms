@@ -15,7 +15,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 
 /**
- * Form Type representing ezisbn field type.
+ * Form Type representing ibexa_isbn field type.
  */
 class ISBNFieldType extends AbstractType
 {
@@ -33,7 +33,7 @@ class ISBNFieldType extends AbstractType
 
     public function getBlockPrefix(): string
     {
-        return 'ezplatform_fieldtype_ezisbn';
+        return 'ezplatform_fieldtype_ibexa_isbn';
     }
 
     public function getParent(): ?string
@@ -43,6 +43,6 @@ class ISBNFieldType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $builder->addModelTransformer(new FieldValueTransformer($this->fieldTypeService->getFieldType('ezisbn')));
+        $builder->addModelTransformer(new FieldValueTransformer($this->fieldTypeService->getFieldType('ibexa_isbn')));
     }
 }

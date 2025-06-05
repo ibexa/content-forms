@@ -20,7 +20,7 @@ class FormTypeBasedFieldValueFormMapperTest extends BaseMapperTest
         $fieldDefinition = new FieldDefinition([
             'names' => [],
             'isRequired' => false,
-            'fieldTypeIdentifier' => 'ezselection',
+            'fieldTypeIdentifier' => 'ibexa_selection',
             'fieldSettings' => ['isMultiple' => false, 'options' => []],
         ]);
 
@@ -46,7 +46,7 @@ class FormTypeBasedFieldValueFormMapperTest extends BaseMapperTest
         $fieldDefinition = new FieldDefinition([
             'names' => ['eng-GB' => 'foo'],
             'isRequired' => false,
-            'fieldTypeIdentifier' => 'ezselection',
+            'fieldTypeIdentifier' => 'ibexa_selection',
             'fieldSettings' => ['isMultiple' => false, 'options' => []],
         ]);
         $this->data->expects(self::once())

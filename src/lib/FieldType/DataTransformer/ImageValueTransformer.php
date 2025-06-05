@@ -12,7 +12,7 @@ use Ibexa\Core\FieldType\Image\Value;
 use Symfony\Component\Form\DataTransformerInterface;
 
 /**
- * Data transformer for the `ezimage` field type.
+ * Data transformer for the `ibexa_image` field type.
  *
  * @phpstan-type TImageData array{file: string|null, remove: boolean, alternativeText: string|null, additionalData: array<string>}
  *
