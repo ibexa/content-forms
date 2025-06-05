@@ -12,6 +12,7 @@ use Ibexa\ContentForms\FieldType\FieldTypeFormMapperDispatcher;
 use Ibexa\Contracts\ContentForms\Data\Content\FieldData;
 use Ibexa\Contracts\ContentForms\FieldType\FieldValueFormMapperInterface;
 use Ibexa\Contracts\Core\Repository\Values\Content\Field;
+use Ibexa\Core\FieldType\FieldTypeAliasResolverInterface;
 use Ibexa\Core\Repository\Values\ContentType\FieldDefinition;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
@@ -21,13 +22,16 @@ class FieldTypeFormMapperDispatcherTest extends TestCase
 {
     private FieldTypeFormMapperDispatcher $dispatcher;
 
+    private FieldTypeAliasResolverInterface & MockObject $fieldTypeAliasResolverMock;
+
     private FieldValueFormMapperInterface & MockObject $fieldValueMapperMock;
 
     protected function setUp(): void
     {
-        $this->dispatcher = new FieldTypeFormMapperDispatcher();
-
         $this->fieldValueMapperMock = $this->createMock(FieldValueFormMapperInterface::class);
+        $this->fieldTypeAliasResolverMock = $this->createMock(FieldTypeAliasResolverInterface::class);
+
+        $this->dispatcher = new FieldTypeFormMapperDispatcher($this->fieldTypeAliasResolverMock);
         $this->dispatcher->addMapper($this->fieldValueMapperMock, 'first_type');
     }
 
@@ -39,6 +43,10 @@ class FieldTypeFormMapperDispatcherTest extends TestCase
         ]);
 
         $formMock = $this->createMock(FormInterface::class);
+
+        $this->fieldTypeAliasResolverMock
+            ->method('resolveIdentifier')
+            ->willReturnArgument(0);
 
         $this->fieldValueMapperMock
             ->expects(self::once())
