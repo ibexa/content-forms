@@ -139,18 +139,6 @@ parameters:
 			path: src/lib/Behat/Context/ContentTypeContext.php
 
 		-
-			message: '#^Property Ibexa\\Contracts\\Core\\Repository\\Values\\ContentType\\ContentTypeCreateStruct\:\:\$mainLanguageCode \(string\) in isset\(\) is not nullable\.$#'
-			identifier: isset.property
-			count: 1
-			path: src/lib/Behat/Context/ContentTypeContext.php
-
-		-
-			message: '#^Property Ibexa\\Contracts\\Core\\Repository\\Values\\ContentType\\ContentTypeCreateStruct\:\:\$names \(array\) in isset\(\) is not nullable\.$#'
-			identifier: isset.property
-			count: 1
-			path: src/lib/Behat/Context/ContentTypeContext.php
-
-		-
 			message: '#^Call to an undefined method Behat\\Testwork\\Environment\\Environment\:\:getContext\(\)\.$#'
 			identifier: method.notFound
 			count: 1
