@@ -104,7 +104,7 @@ final class ContentTypeContext extends RawMinkContext implements Context, Snippe
             $struct->mainLanguageCode = 'eng-GB';
         }
 
-        if (!isset($struct->names)) {
+        if (empty($struct->names)) {
             $struct->names = ['eng-GB' => $struct->identifier];
         }
 
