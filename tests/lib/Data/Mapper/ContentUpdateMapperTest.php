@@ -89,6 +89,38 @@ final class ContentUpdateMapperTest extends TestCase
         self::assertSame($newShortName, $fieldsData['short_name']->value);
     }
 
+    public function testMapToFormDataFallsBackToMainLanguage(): void
+    {
+        $currentFields = [
+            new APIField([
+                'fieldDefIdentifier' => 'name',
+                'fieldTypeIdentifier' => 'ezstring',
+                'languageCode' => 'eng-GB',
+                'value' => 'Name',
+            ]),
+            new APIField([
+                'fieldDefIdentifier' => 'short_name',
+                'fieldTypeIdentifier' => 'ezstring',
+                'languageCode' => 'eng-GB',
+                'value' => $expectedShortName = 'Short name',
+            ]),
+        ];
+
+        $fallbackName = 'Fallback name';
+        $content = $this->getContent($fallbackName, 'Fallback short name', 'eng-GB');
+
+        $data = (new ContentUpdateMapper())->mapToFormData($content, [
+            'languageCode' => 'ger-DE',
+            'contentType' => $this->getContentType(),
+            'currentFields' => $currentFields,
+        ]);
+
+        $fieldsData = $data->fieldsData;
+
+        self::assertSame($fallbackName, $fieldsData['name']->value);
+        self::assertSame($expectedShortName, $fieldsData['short_name']->value);
+    }
+
     private function getContent(string $name, string $shortName, string $languageCode): Content
     {
         return new Content([

@@ -10,6 +10,7 @@ namespace Ibexa\ContentForms\Data\Mapper;
 
 use Ibexa\ContentForms\Data\Content\ContentUpdateData;
 use Ibexa\Contracts\ContentForms\Data\Content\FieldData;
+use Ibexa\Contracts\Core\Repository\Values\Content\Content;
 use Ibexa\Contracts\Core\Repository\Values\ContentType\ContentType;
 use Ibexa\Contracts\Core\Repository\Values\ValueObject;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -26,6 +27,12 @@ class ContentUpdateMapper implements FormDataMapperInterface
      */
     public function mapToFormData(ValueObject $contentDraft, array $params = [])
     {
+        if (!$contentDraft instanceof Content) {
+            throw new \InvalidArgumentException(sprintf(
+                'Expected Content, got %s',
+                get_class($contentDraft)
+            ));
+        }
         $optionsResolver = new OptionsResolver();
         $this->configureOptions($optionsResolver);
 
@@ -37,8 +44,12 @@ class ContentUpdateMapper implements FormDataMapperInterface
         $data = new ContentUpdateData(['contentDraft' => $contentDraft]);
         $data->initialLanguageCode = $languageCode;
 
-        $fields = $contentDraft->getFieldsByLanguage($languageCode);
         $mainLanguageCode = $contentDraft->getVersionInfo()->getContentInfo()->getMainLanguage()->getLanguageCode();
+        $fieldsByLanguage = $contentDraft->getFieldsByLanguage($languageCode);
+        if (empty($fieldsByLanguage)) {
+            $fieldsByLanguage = $contentDraft->getFieldsByLanguage($mainLanguageCode);
+        }
+        $fields = is_array($fieldsByLanguage) ? $fieldsByLanguage : iterator_to_array($fieldsByLanguage);
 
         foreach ($params['contentType']->fieldDefinitions as $fieldDef) {
             $isNonTranslatable = $fieldDef->isTranslatable === false;
