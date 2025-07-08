@@ -1023,7 +1023,7 @@ parameters:
 		-
 			message: '#^Call to an undefined method Ibexa\\Contracts\\Core\\Repository\\Values\\ValueObject\:\:getFieldsByLanguage\(\)\.$#'
 			identifier: method.notFound
-			count: 1
+			count: 2
 			path: src/lib/Data/Mapper/ContentUpdateMapper.php
 
 		-

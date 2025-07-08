@@ -37,8 +37,11 @@ class ContentUpdateMapper implements FormDataMapperInterface
         $data = new ContentUpdateData(['contentDraft' => $contentDraft]);
         $data->initialLanguageCode = $languageCode;
 
-        $fields = $contentDraft->getFieldsByLanguage($languageCode);
         $mainLanguageCode = $contentDraft->getVersionInfo()->getContentInfo()->getMainLanguage()->getLanguageCode();
+        $fields = $contentDraft->getFieldsByLanguage($languageCode);
+        if (empty($fields)) {
+            $fields = $contentDraft->getFieldsByLanguage($mainLanguageCode);
+        }
 
         foreach ($params['contentType']->fieldDefinitions as $fieldDef) {
             $isNonTranslatable = $fieldDef->isTranslatable === false;
