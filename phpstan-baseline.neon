@@ -1021,18 +1021,6 @@ parameters:
 			path: src/lib/Data/Mapper/ContentCreateMapper.php
 
 		-
-			message: '#^Call to an undefined method Ibexa\\Contracts\\Core\\Repository\\Values\\ValueObject\:\:getFieldsByLanguage\(\)\.$#'
-			identifier: method.notFound
-			count: 2
-			path: src/lib/Data/Mapper/ContentUpdateMapper.php
-
-		-
-			message: '#^Call to an undefined method Ibexa\\Contracts\\Core\\Repository\\Values\\ValueObject\:\:getVersionInfo\(\)\.$#'
-			identifier: method.notFound
-			count: 1
-			path: src/lib/Data/Mapper/ContentUpdateMapper.php
-
-		-
 			message: '#^Method Ibexa\\ContentForms\\Data\\Mapper\\ContentUpdateMapper\:\:configureOptions\(\) has no return type specified\.$#'
 			identifier: missingType.return
 			count: 1
