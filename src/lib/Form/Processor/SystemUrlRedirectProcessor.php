@@ -16,33 +16,15 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Routing\RouterInterface;
 
-class SystemUrlRedirectProcessor implements EventSubscriberInterface
+final readonly class SystemUrlRedirectProcessor implements EventSubscriberInterface
 {
-    private RouterInterface $router;
-
-    private URLAliasService $urlAliasService;
-
-    private LocationService $locationService;
-
-    /**
-     * @param \Symfony\Component\Routing\RouterInterface $router
-     * @param \Ibexa\Contracts\Core\Repository\URLAliasService $urlAliasService
-     * @param \Ibexa\Contracts\Core\Repository\LocationService $locationService
-     * @param array $siteaccessGroups
-     */
     public function __construct(
-        RouterInterface $router,
-        URLAliasService $urlAliasService,
-        LocationService $locationService
+        private RouterInterface $router,
+        private URLAliasService $urlAliasService,
+        private LocationService $locationService
     ) {
-        $this->router = $router;
-        $this->urlAliasService = $urlAliasService;
-        $this->locationService = $locationService;
     }
 
-    /**
-     * @return array
-     */
     public static function getSubscribedEvents(): array
     {
         return [
@@ -52,8 +34,6 @@ class SystemUrlRedirectProcessor implements EventSubscriberInterface
     }
 
     /**
-     * @param \Ibexa\ContentForms\Event\FormActionEvent $event
-     *
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\UnauthorizedException
      */
@@ -67,8 +47,6 @@ class SystemUrlRedirectProcessor implements EventSubscriberInterface
     }
 
     /**
-     * @param \Ibexa\ContentForms\Event\FormActionEvent $event
-     *
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\UnauthorizedException
      */
@@ -78,8 +56,6 @@ class SystemUrlRedirectProcessor implements EventSubscriberInterface
     }
 
     /**
-     * @param \Ibexa\ContentForms\Event\FormActionEvent $event
-     *
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\UnauthorizedException
      */
@@ -100,6 +76,8 @@ class SystemUrlRedirectProcessor implements EventSubscriberInterface
 
         $location = $this->locationService->loadLocation($params['locationId']);
 
-        $event->setResponse(new RedirectResponse($this->urlAliasService->reverseLookup($location)->path));
+        $event->setResponse(
+            new RedirectResponse($this->urlAliasService->reverseLookup($location)->path)
+        );
     }
 }

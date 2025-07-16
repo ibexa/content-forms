@@ -28,33 +28,15 @@ use Symfony\Component\Routing\RouterInterface;
 /**
  * Listens for and processes RepositoryForm events: publish, remove draft, save draft...
  */
-class ContentFormProcessor implements EventSubscriberInterface
+final readonly class ContentFormProcessor implements EventSubscriberInterface
 {
-    private ContentService $contentService;
-
-    private LocationService $locationService;
-
-    private RouterInterface $router;
-
-    /**
-     * @param \Ibexa\Contracts\Core\Repository\ContentService $contentService
-     * @param \Ibexa\Contracts\Core\Repository\LocationService $locationService
-     * @param \Symfony\Component\Routing\RouterInterface $router
-     * @param \Ibexa\Contracts\Core\Repository\URLAliasService $urlAliasService
-     */
     public function __construct(
-        ContentService $contentService,
-        LocationService $locationService,
-        RouterInterface $router
+        private ContentService $contentService,
+        private LocationService $locationService,
+        private RouterInterface $router
     ) {
-        $this->contentService = $contentService;
-        $this->locationService = $locationService;
-        $this->router = $router;
     }
 
-    /**
-     * @return array
-     */
     public static function getSubscribedEvents(): array
     {
         return [
@@ -68,8 +50,6 @@ class ContentFormProcessor implements EventSubscriberInterface
     }
 
     /**
-     * @param \Ibexa\ContentForms\Event\FormActionEvent $event
-     *
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\BadStateException
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\ContentFieldValidationException
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\ContentValidationException
@@ -91,13 +71,13 @@ class ContentFormProcessor implements EventSubscriberInterface
         $contentLocation = $this->resolveLocation($draft, $referrerLocation, $data);
 
         $event->setPayload('content', $draft);
-        $event->setPayload('is_new', $draft->contentInfo->isDraft());
+        $event->setPayload('is_new', $draft->getContentInfo()->isDraft());
 
         $defaultUrl = $this->router->generate('ibexa.content.draft.edit', [
             'contentId' => $draft->id,
-            'versionNo' => $draft->getVersionInfo()->versionNo,
+            'versionNo' => $draft->getVersionInfo()->getVersionNo(),
             'language' => $languageCode,
-            'locationId' => null !== $contentLocation ? $contentLocation->id : null,
+            'locationId' => $contentLocation?->id,
         ]);
         $event->setResponse(new RedirectResponse($formConfig->getAction() ?: $defaultUrl));
     }
@@ -130,12 +110,12 @@ class ContentFormProcessor implements EventSubscriberInterface
 
             if ($currentVersion->getVersionInfo()->status === VersionInfo::STATUS_PUBLISHED) {
                 $publishedContentInfo = $currentVersion->getVersionInfo()->getContentInfo();
-                $redirectionLocationId = $publishedContentInfo->mainLocationId;
+                $redirectionLocationId = $publishedContentInfo->getMainLocationId();
                 $redirectionContentId = $publishedContentInfo->getId();
             } else {
                 $parentLocation = $this->locationService->loadParentLocationsForDraftContent($versionInfo)[0];
-                $redirectionLocationId = $parentLocation->id;
-                $redirectionContentId = $parentLocation->contentId;
+                $redirectionLocationId = $parentLocation->getId();
+                $redirectionContentId = $parentLocation->getContentId();
             }
         } else {
             $redirectionLocationId = $referrerLocation->id;
@@ -143,7 +123,7 @@ class ContentFormProcessor implements EventSubscriberInterface
         }
 
         $event->setPayload('content', $draft);
-        $event->setPayload('is_new', $draft->contentInfo->isDraft());
+        $event->setPayload('is_new', $draft->getContentInfo()->isDraft());
 
         $defaultUrl = $this->router->generate(
             'ibexa.content.view',
@@ -157,8 +137,6 @@ class ContentFormProcessor implements EventSubscriberInterface
     }
 
     /**
-     * @param \Ibexa\ContentForms\Event\FormActionEvent $event
-     *
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\BadStateException
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\ContentFieldValidationException
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\ContentValidationException
@@ -174,17 +152,20 @@ class ContentFormProcessor implements EventSubscriberInterface
         $referrerLocation = $event->getOption('referrerLocation');
 
         $draft = $this->saveDraft($data, $form->getConfig()->getOption('languageCode'));
-        $versionInfo = $draft->versionInfo;
-        $content = $this->contentService->publishVersion($versionInfo, [$versionInfo->initialLanguageCode]);
+        $versionInfo = $draft->getVersionInfo();
+        $content = $this->contentService->publishVersion(
+            $versionInfo,
+            [$versionInfo->getInitialLanguage()->getLanguageCode()]
+        );
 
         $event->setPayload('content', $content);
-        $event->setPayload('is_new', $draft->contentInfo->isDraft());
+        $event->setPayload('is_new', $draft->getContentInfo()->isDraft());
 
         $locationId = $referrerLocation !== null && $data instanceof ContentUpdateData
             ? $referrerLocation->id
-            : $content->contentInfo->mainLocationId;
+            : $content->getContentInfo()->getMainLocationId();
 
-        $contentId = $content->id;
+        $contentId = $content->getId();
         $redirectUrl = $form['redirectUrlAfterPublish']->getData() ?: $this->router->generate(
             'ibexa.content.view',
             [
@@ -215,31 +196,28 @@ class ContentFormProcessor implements EventSubscriberInterface
         $formConfig = $form->getConfig();
         $languageCode = $formConfig->getOption('languageCode');
         $draft = $this->saveDraft($data, $languageCode);
-        $versionInfo = $draft->versionInfo;
+        $versionInfo = $draft->getVersionInfo();
         $content = $this->contentService->publishVersion($versionInfo, [$versionInfo->initialLanguageCode]);
 
-        $contentInfo = $content->contentInfo;
+        $contentInfo = $content->getContentInfo();
         $contentVersionInfo = $content->getVersionInfo();
         $newDraft = $this->contentService->createContentDraft($contentInfo, $contentVersionInfo);
 
         $event->setPayload('content', $newDraft);
-        $event->setPayload('is_new', $newDraft->contentInfo->isDraft());
+        $event->setPayload('is_new', $newDraft->getContentInfo()->isDraft());
 
         $redirectUrl = $this->router->generate('ibexa.content.draft.edit', [
-            'contentId' => $newDraft->id,
-            'versionNo' => $newDraft->getVersionInfo()->versionNo,
-            'language' => $newDraft->contentInfo->mainLanguageCode,
-            'locationId' => null !== $referrerLocation ? $referrerLocation->id : null,
+            'contentId' => $newDraft->getId(),
+            'versionNo' => $newDraft->getVersionInfo()->getVersionNo(),
+            'language' => $newDraft->getContentInfo()->getMainLanguageCode(),
+            'locationId' => $referrerLocation?->getId(),
         ]);
 
         $event->setResponse(new RedirectResponse($redirectUrl));
     }
 
     /**
-     * @param \Ibexa\ContentForms\Event\FormActionEvent $event
-     *
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\BadStateException
-     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\UnauthorizedException
      */
     public function processCancel(FormActionEvent $event): void
     {
@@ -247,12 +225,14 @@ class ContentFormProcessor implements EventSubscriberInterface
         $data = $event->getData();
 
         if ($data->isNew()) {
-            $parentLocation = $this->locationService->loadLocation($data->getLocationStructs()[0]->parentLocationId);
+            $parentLocation = $this->locationService->loadLocation(
+                $data->getLocationStructs()[0]->parentLocationId
+            );
             $response = new RedirectResponse($this->router->generate(
                 'ibexa.content.view',
                 [
-                    'contentId' => $parentLocation->contentId,
-                    'locationId' => $parentLocation->id,
+                    'contentId' => $parentLocation->getContentId(),
+                    'locationId' => $parentLocation->getId(),
                 ]
             ));
             $event->setResponse($response);
@@ -261,7 +241,7 @@ class ContentFormProcessor implements EventSubscriberInterface
         }
 
         $content = $data->contentDraft;
-        $contentInfo = $content->contentInfo;
+        $contentInfo = $content->getContentInfo();
         $versionInfo = $data->contentDraft->getVersionInfo();
 
         $event->setPayload('content', $content);
@@ -269,11 +249,11 @@ class ContentFormProcessor implements EventSubscriberInterface
         // if there is only one version you have to remove whole content instead of a version itself
         if (1 === count($this->contentService->loadVersions($contentInfo))) {
             $parentLocation = $this->locationService->loadParentLocationsForDraftContent($versionInfo)[0];
-            $redirectionLocationId = $parentLocation->id;
-            $redirectionContentId = $parentLocation->contentId;
+            $redirectionLocationId = $parentLocation->getId();
+            $redirectionContentId = $parentLocation->getContentId();
         } else {
-            $redirectionLocationId = $contentInfo->mainLocationId;
-            $redirectionContentId = $contentInfo->id;
+            $redirectionLocationId = $contentInfo->getMainLocationId();
+            $redirectionContentId = $contentInfo->getId();
         }
 
         $this->contentService->deleteVersion($versionInfo);
@@ -291,8 +271,6 @@ class ContentFormProcessor implements EventSubscriberInterface
     }
 
     /**
-     * @param \Ibexa\ContentForms\Event\FormActionEvent $event
-     *
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\UnauthorizedException
      */
@@ -301,19 +279,19 @@ class ContentFormProcessor implements EventSubscriberInterface
         /** @var $createContentDraft \Ibexa\ContentForms\Data\Content\CreateContentDraftData */
         $createContentDraft = $event->getData();
 
-        $contentInfo = $this->contentService->loadContentInfo((int)$createContentDraft->contentId);
-        $versionInfo = $this->contentService->loadVersionInfo($contentInfo, (int)$createContentDraft->fromVersionNo);
+        $contentInfo = $this->contentService->loadContentInfo($createContentDraft->contentId);
+        $versionInfo = $this->contentService->loadVersionInfo($contentInfo, $createContentDraft->fromVersionNo);
         $contentDraft = $this->contentService->createContentDraft($contentInfo, $versionInfo);
         $referrerLocation = $event->getOption('referrerLocation');
 
         $event->setPayload('content', $contentDraft);
-        $event->setPayload('is_new', $contentDraft->contentInfo->isDraft());
+        $event->setPayload('is_new', $contentDraft->getContentInfo()->isDraft());
 
         $contentEditUrl = $this->router->generate('ibexa.content.draft.edit', [
-            'contentId' => $contentDraft->id,
-            'versionNo' => $contentDraft->getVersionInfo()->versionNo,
-            'language' => $contentDraft->contentInfo->mainLanguageCode,
-            'locationId' => null !== $referrerLocation ? $referrerLocation->id : null,
+            'contentId' => $contentDraft->getId(),
+            'versionNo' => $contentDraft->getVersionInfo()->getVersionNo(),
+            'language' => $contentDraft->getContentInfo()->getMainLanguageCode(),
+            'locationId' => $referrerLocation?->id,
         ]);
         $event->setResponse(new RedirectResponse($contentEditUrl));
     }
@@ -322,11 +300,6 @@ class ContentFormProcessor implements EventSubscriberInterface
      * Saves content draft corresponding to $data.
      * Depending on the nature of $data (create or update data), the draft will either be created or simply updated.
      *
-     * @param \Ibexa\Contracts\Core\Repository\Values\Content\ContentStruct|\Ibexa\ContentForms\Data\Content\ContentCreateData|\Ibexa\ContentForms\Data\Content\ContentUpdateData $data
-     * @param $languageCode
-     *
-     * @return \Ibexa\Contracts\Core\Repository\Values\Content\Content
-     *
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\BadStateException
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\ContentFieldValidationException
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\ContentValidationException
@@ -334,11 +307,14 @@ class ContentFormProcessor implements EventSubscriberInterface
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\UnauthorizedException
      * @throws \Ibexa\Core\Base\Exceptions\InvalidArgumentException
      */
-    private function saveDraft(ContentStruct $data, string $languageCode, ?array $fieldIdentifiersToValidate = null)
-    {
+    private function saveDraft(
+        ContentStruct|ContentCreateData|ContentUpdateData $data,
+        string $languageCode,
+        ?array $fieldIdentifiersToValidate = null
+    ): Content {
         $mainLanguageCode = $this->resolveMainLanguageCode($data);
         foreach ($data->fieldsData as $fieldDefIdentifier => $fieldData) {
-            if ($mainLanguageCode != $languageCode && !$fieldData->fieldDefinition->isTranslatable) {
+            if ($mainLanguageCode != $languageCode && !$fieldData->getFieldDefinition()->isTranslatable()) {
                 continue;
             }
 
@@ -346,22 +322,26 @@ class ContentFormProcessor implements EventSubscriberInterface
         }
 
         if ($data->isNew()) {
-            $contentDraft = $this->contentService->createContent($data, $data->getLocationStructs(), $fieldIdentifiersToValidate);
+            $contentDraft = $this->contentService->createContent(
+                $data,
+                $data->getLocationStructs(),
+                $fieldIdentifiersToValidate
+            );
         } else {
-            $contentDraft = $this->contentService->updateContent($data->contentDraft->getVersionInfo(), $data, $fieldIdentifiersToValidate);
+            $contentDraft = $this->contentService->updateContent(
+                $data->contentDraft->getVersionInfo(),
+                $data,
+                $fieldIdentifiersToValidate
+            );
         }
 
         return $contentDraft;
     }
 
     /**
-     * @param \Ibexa\ContentForms\Data\Content\ContentCreateData|\Ibexa\ContentForms\Data\Content\ContentUpdateData $data
-     *
-     * @return string
-     *
      * @throws \Ibexa\Core\Base\Exceptions\InvalidArgumentException
      */
-    private function resolveMainLanguageCode(ContentStruct $data): string
+    private function resolveMainLanguageCode(ContentStruct|ContentUpdateData $data): string
     {
         if (!$data instanceof ContentUpdateData && !$data instanceof ContentCreateData) {
             throw new InvalidArgumentException(
@@ -372,25 +352,20 @@ class ContentFormProcessor implements EventSubscriberInterface
 
         return $data->isNew()
             ? $data->mainLanguageCode
-            : $data->contentDraft->getVersionInfo()->getContentInfo()->mainLanguageCode;
+            : $data->contentDraft->getVersionInfo()->getContentInfo()->getMainLanguageCode();
     }
 
     /**
-     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Content $content
-     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Location|null $referrerLocation
-     * @param \Ibexa\ContentForms\Data\NewnessCheckable $data
-     *
-     * @return \Ibexa\Contracts\Core\Repository\Values\Content\Location|null
-     *
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\UnauthorizedException
      */
     private function resolveLocation(Content $content, ?Location $referrerLocation, NewnessCheckable $data): ?Location
     {
-        if ($data->isNew() || (!$content->contentInfo->published && null === $content->contentInfo->mainLocationId)) {
+        $contentInfo = $content->getContentInfo();
+        if ($data->isNew() || (!$contentInfo->isPublished() && null === $contentInfo->getMainLocationId())) {
             return null; // no location exists until new content is published
         }
 
-        return $referrerLocation ?? $this->locationService->loadLocation($content->contentInfo->mainLocationId);
+        return $referrerLocation ?? $this->locationService->loadLocation($contentInfo->getMainLocationId());
     }
 }

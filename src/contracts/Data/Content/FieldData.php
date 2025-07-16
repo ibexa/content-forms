@@ -8,31 +8,35 @@ declare(strict_types=1);
 
 namespace Ibexa\Contracts\ContentForms\Data\Content;
 
+use Ibexa\Contracts\Core\Repository\Values\Content\Field;
+use Ibexa\Contracts\Core\Repository\Values\ContentType\FieldDefinition;
 use Ibexa\Contracts\Core\Repository\Values\ValueObject;
 
-/**
- * @property \Ibexa\Contracts\Core\Repository\Values\Content\Field $field
- * @property \Ibexa\Contracts\Core\Repository\Values\ContentType\FieldDefinition $fieldDefinition
- */
 class FieldData extends ValueObject
 {
-    /**
-     * @var \Ibexa\Contracts\Core\Repository\Values\Content\Field
-     */
-    protected $field;
+    protected Field $field;
 
-    /**
-     * @var \Ibexa\Contracts\Core\Repository\Values\ContentType\FieldDefinition
-     */
-    protected $fieldDefinition;
+    protected FieldDefinition $fieldDefinition;
 
-    /**
-     * @var mixed
-     */
-    public $value;
+    public mixed $value;
 
-    public function getFieldTypeIdentifier()
+    public function getField(): Field
     {
-        return $this->fieldDefinition->fieldTypeIdentifier;
+        return $this->field;
+    }
+
+    public function getFieldDefinition(): FieldDefinition
+    {
+        return $this->fieldDefinition;
+    }
+
+    public function getValue(): mixed
+    {
+        return $this->value;
+    }
+
+    public function getFieldTypeIdentifier(): string
+    {
+        return $this->fieldDefinition->getFieldTypeIdentifier();
     }
 }

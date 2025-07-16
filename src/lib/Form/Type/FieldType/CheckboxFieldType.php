@@ -17,13 +17,10 @@ use Symfony\Component\Form\FormBuilderInterface;
 /**
  * Form Type representing ibexa_boolean field type.
  */
-class CheckboxFieldType extends AbstractType
+final class CheckboxFieldType extends AbstractType
 {
-    protected FieldTypeService $fieldTypeService;
-
-    public function __construct(FieldTypeService $fieldTypeService)
+    public function __construct(private readonly FieldTypeService $fieldTypeService)
     {
-        $this->fieldTypeService = $fieldTypeService;
     }
 
     public function getName(): string
@@ -36,14 +33,15 @@ class CheckboxFieldType extends AbstractType
         return 'ezplatform_fieldtype_ibexa_boolean';
     }
 
-    public function getParent(): ?string
+    public function getParent(): string
     {
         return CheckboxType::class;
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $builder
-            ->addModelTransformer(new FieldValueTransformer($this->fieldTypeService->getFieldType('ibexa_boolean')));
+        $builder->addModelTransformer(
+            new FieldValueTransformer($this->fieldTypeService->getFieldType('ibexa_boolean'))
+        );
     }
 }

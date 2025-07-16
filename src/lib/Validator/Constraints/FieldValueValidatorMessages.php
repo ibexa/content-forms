@@ -15,7 +15,7 @@ use JMS\TranslationBundle\Translation\TranslationContainerInterface;
  * This class holds translation messages which comes from kernel as ValidationError messages.
  * It allows JMSTranslationBundle to extracting those messages.
  */
-class FieldValueValidatorMessages implements TranslationContainerInterface
+final readonly class FieldValueValidatorMessages implements TranslationContainerInterface
 {
     /**
      * Returns an array of messages.

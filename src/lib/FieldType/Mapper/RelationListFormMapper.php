@@ -12,11 +12,11 @@ use Ibexa\ContentForms\Form\Type\FieldType\RelationListFieldType;
 use Ibexa\Contracts\ContentForms\Data\Content\FieldData;
 use Symfony\Component\Form\FormInterface;
 
-class RelationListFormMapper extends AbstractRelationFormMapper
+final class RelationListFormMapper extends AbstractRelationFormMapper
 {
     public function mapFieldValueForm(FormInterface $fieldForm, FieldData $data): void
     {
-        $fieldDefinition = $data->fieldDefinition;
+        $fieldDefinition = $data->getFieldDefinition();
         $formConfig = $fieldForm->getConfig();
         $fieldSettings = $fieldDefinition->getFieldSettings();
 
@@ -27,7 +27,7 @@ class RelationListFormMapper extends AbstractRelationFormMapper
                         'value',
                         RelationListFieldType::class,
                         [
-                            'required' => $fieldDefinition->isRequired,
+                            'required' => $fieldDefinition->isRequired(),
                             'label' => $fieldDefinition->getName(),
                             'default_location' => $this->loadDefaultLocationForSelection(
                                 $fieldSettings['selectionDefaultLocation'],

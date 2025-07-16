@@ -18,7 +18,7 @@ use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Form\FormInterface;
 
-class FieldTypeFormMapperDispatcherTest extends TestCase
+final class FieldTypeFormMapperDispatcherTest extends TestCase
 {
     private FieldTypeFormMapperDispatcher $dispatcher;
 

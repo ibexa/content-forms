@@ -14,17 +14,15 @@ use Ibexa\Contracts\Core\Repository\Values\ContentType\ContentType;
 use Ibexa\Contracts\Core\Repository\Values\ValueObject;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class ContentUpdateMapper implements FormDataMapperInterface
+final readonly class ContentUpdateMapper implements FormDataMapperInterface
 {
     /**
      * Maps a ValueObject from Ibexa content repository to a data usable as underlying form data (e.g. create/update struct).
      *
-     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Content|\Ibexa\Contracts\Core\Repository\Values\ValueObject $contentDraft
-     * @param array $params
-     *
-     * @return \Ibexa\ContentForms\Data\Content\ContentUpdateData
+     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Content $repositoryValueObject
+     * @param array<string, mixed> $params
      */
-    public function mapToFormData(ValueObject $contentDraft, array $params = []): ContentUpdateData
+    public function mapToFormData(ValueObject $repositoryValueObject, array $params = []): ContentUpdateData
     {
         $optionsResolver = new OptionsResolver();
         $this->configureOptions($optionsResolver);
@@ -34,24 +32,31 @@ class ContentUpdateMapper implements FormDataMapperInterface
         $currentFields = $params['currentFields'];
         $mappedCurrentFields = array_column($currentFields, null, 'fieldDefIdentifier');
 
-        $data = new ContentUpdateData(['contentDraft' => $contentDraft]);
+        $data = new ContentUpdateData(['contentDraft' => $repositoryValueObject]);
         $data->initialLanguageCode = $languageCode;
 
-        $fields = $contentDraft->getFieldsByLanguage($languageCode);
-        $mainLanguageCode = $contentDraft->getVersionInfo()->getContentInfo()->getMainLanguage()->getLanguageCode();
+        $fields = $repositoryValueObject->getFieldsByLanguage($languageCode);
+        $mainLanguageCode = $repositoryValueObject
+            ->getVersionInfo()
+            ->getContentInfo()
+            ->getMainLanguage()
+            ->getLanguageCode();
 
-        foreach ($params['contentType']->fieldDefinitions as $fieldDef) {
-            $isNonTranslatable = $fieldDef->isTranslatable === false;
-            $field = $fields[$fieldDef->identifier];
+        foreach ($params['contentType']->getFieldDefinitions() as $fieldDef) {
+            $isNonTranslatable = $fieldDef->isTranslatable() === false;
+            $field = $fields[$fieldDef->getIdentifier()];
+            $fieldDefIdentifier = $fieldDef->getIdentifier();
+
             $shouldUseCurrentFieldValue = $isNonTranslatable
-                && isset($mappedCurrentFields[$fieldDef->identifier])
+                && isset($mappedCurrentFields[$fieldDefIdentifier])
                 && $mainLanguageCode !== $languageCode;
+
             $data->addFieldData(new FieldData([
                 'fieldDefinition' => $fieldDef,
                 'field' => $field,
                 'value' => $shouldUseCurrentFieldValue
-                    ? $mappedCurrentFields[$fieldDef->identifier]->value
-                    : $field->value,
+                    ? $mappedCurrentFields[$fieldDefIdentifier]->getValue()
+                    : $field->getValue(),
             ]));
         }
 

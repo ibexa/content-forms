@@ -10,8 +10,8 @@ namespace Ibexa\Bundle\ContentForms\DependencyInjection\Configuration\Parser;
 
 use Ibexa\Bundle\Core\DependencyInjection\Configuration\Parser\View;
 
-class ContentEditView extends View
+final class ContentEditView extends View
 {
-    public const NODE_KEY = 'content_edit_view';
-    public const INFO = 'Template selection settings when displaying a content edit form';
+    public const string NODE_KEY = 'content_edit_view';
+    public const string INFO = 'Template selection settings when displaying a content edit form';
 }

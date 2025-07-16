@@ -18,16 +18,10 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 /**
  * Form Type representing ibexa_country field type.
  */
-class CountryFieldType extends AbstractType
+final class CountryFieldType extends AbstractType
 {
-    protected array $countriesInfo;
-
-    /**
-     * @param array $countriesInfo
-     */
-    public function __construct(array $countriesInfo)
+    public function __construct(private readonly array $countriesInfo)
     {
-        $this->countriesInfo = $countriesInfo;
     }
 
     public function getName(): string
@@ -40,7 +34,7 @@ class CountryFieldType extends AbstractType
         return 'ezplatform_fieldtype_ibexa_country';
     }
 
-    public function getParent(): ?string
+    public function getParent(): string
     {
         return ChoiceType::class;
     }
@@ -63,7 +57,7 @@ class CountryFieldType extends AbstractType
     }
 
     /**
-     * @return mixed[]
+     * @return array<string, string>
      */
     private function getCountryChoices(array $countriesInfo): array
     {

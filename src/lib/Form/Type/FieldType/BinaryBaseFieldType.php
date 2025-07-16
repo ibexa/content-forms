@@ -22,13 +22,10 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * Parent Form Type for binary file based field types.
  */
-class BinaryBaseFieldType extends AbstractType
+final class BinaryBaseFieldType extends AbstractType
 {
-    private MaxUploadSize $maxUploadSize;
-
-    public function __construct(MaxUploadSize $maxUploadSize)
+    public function __construct(private readonly MaxUploadSize $maxUploadSize)
     {
-        $this->maxUploadSize = $maxUploadSize;
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options): void

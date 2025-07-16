@@ -8,6 +8,6 @@ declare(strict_types=1);
 
 namespace Ibexa\ContentForms\Validator\Constraints;
 
-class UserAccountPassword extends Password
+final class UserAccountPassword extends Password
 {
 }

@@ -25,21 +25,13 @@ use Symfony\Component\Form\Exception\TransformationFailedException;
  *
  * @implements \Symfony\Component\Form\DataTransformerInterface<\Ibexa\Core\FieldType\Country\Value, string|null>
  */
-class SingleCountryValueTransformer implements DataTransformerInterface
+final readonly class SingleCountryValueTransformer implements DataTransformerInterface
 {
-    /**
-     * Array of countries from "ibexa.field_type.country.data".
-     *
-     * @phpstan-var array<string, TCountryValueData>
-     */
-    protected array $countriesInfo;
-
     /**
      * @phpstan-param array<string, TCountryValueData> $countriesInfo
      */
-    public function __construct(array $countriesInfo)
+    public function __construct(private array $countriesInfo)
     {
-        $this->countriesInfo = $countriesInfo;
     }
 
     public function transform(mixed $value): ?string

@@ -10,12 +10,14 @@ namespace Ibexa\Tests\ContentForms\FieldType\Mapper;
 
 use Ibexa\ContentForms\FieldType\Mapper\FormTypeBasedFieldValueFormMapper;
 use Ibexa\Core\Repository\Values\ContentType\FieldDefinition;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
-class FormTypeBasedFieldValueFormMapperTest extends BaseMapperTest
+final class FormTypeBasedFieldValueFormMapperTest extends BaseMapperTest
 {
     public function testMapFieldValueFormNoLanguageCode(): void
     {
         $mapper = new FormTypeBasedFieldValueFormMapper($this->fieldTypeService);
+        $mapper->setFormType(TextType::class);
 
         $fieldDefinition = new FieldDefinition([
             'names' => [],
@@ -24,9 +26,9 @@ class FormTypeBasedFieldValueFormMapperTest extends BaseMapperTest
             'fieldSettings' => ['isMultiple' => false, 'options' => []],
         ]);
 
-        $this->data->expects(self::once())
-            ->method('__get')
-            ->with('fieldDefinition')
+        $this->data
+            ->expects(self::once())
+            ->method('getFieldDefinition')
             ->willReturn($fieldDefinition);
 
         $this->config
@@ -42,6 +44,7 @@ class FormTypeBasedFieldValueFormMapperTest extends BaseMapperTest
     public function testMapFieldValueFormWithLanguageCode(): void
     {
         $mapper = new FormTypeBasedFieldValueFormMapper($this->fieldTypeService);
+        $mapper->setFormType(TextType::class);
 
         $fieldDefinition = new FieldDefinition([
             'names' => ['eng-GB' => 'foo'],
@@ -49,9 +52,10 @@ class FormTypeBasedFieldValueFormMapperTest extends BaseMapperTest
             'fieldTypeIdentifier' => 'ibexa_selection',
             'fieldSettings' => ['isMultiple' => false, 'options' => []],
         ]);
-        $this->data->expects(self::once())
-            ->method('__get')
-            ->with('fieldDefinition')
+
+        $this->data
+            ->expects(self::once())
+            ->method('getFieldDefinition')
             ->willReturn($fieldDefinition);
 
         $this->config

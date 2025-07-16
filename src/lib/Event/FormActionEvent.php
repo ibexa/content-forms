@@ -12,31 +12,12 @@ use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Response;
 
-class FormActionEvent extends FormEvent
+final class FormActionEvent extends FormEvent
 {
-    /**
-     * Name of the button used to submit the form.
-     */
-    private string $clickedButton;
-
-    /**
-     * Hash of options.
-     *
-     * @var array<string, mixed>
-     */
-    private array $options;
-
     /**
      * Response to return after form post-processing. Typically, a RedirectResponse.
      */
     private ?Response $response = null;
-
-    /**
-     * Additional payload populated for event listeners next in priority.
-     *
-     * @var array<string, mixed>
-     */
-    private array $payloads;
 
     /**
      * @param array<string, mixed> $options
@@ -45,14 +26,11 @@ class FormActionEvent extends FormEvent
     public function __construct(
         FormInterface $form,
         mixed $data,
-        string $clickedButton,
-        array $options = [],
-        array $payloads = []
+        private readonly string $clickedButton,
+        private readonly array $options = [],
+        private array $payloads = []
     ) {
         parent::__construct($form, $data);
-        $this->clickedButton = $clickedButton;
-        $this->options = $options;
-        $this->payloads = $payloads;
     }
 
     public function getClickedButton(): string
@@ -68,12 +46,6 @@ class FormActionEvent extends FormEvent
         return $this->options;
     }
 
-    /**
-     * @param string $optionName The option name
-     * @param mixed $defaultValue default value to return if option is not set
-     *
-     * @return mixed
-     */
     public function getOption(string $optionName, mixed $defaultValue = null): mixed
     {
         if (!isset($this->options[$optionName])) {

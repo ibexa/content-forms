@@ -14,7 +14,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 /**
  * Form Type representing ibexa_binaryfile field type.
  */
-class BinaryFileFieldType extends AbstractType
+final class BinaryFileFieldType extends AbstractType
 {
     public function getName(): string
     {
@@ -26,7 +26,7 @@ class BinaryFileFieldType extends AbstractType
         return 'ezplatform_fieldtype_ibexa_binaryfile';
     }
 
-    public function getParent(): ?string
+    public function getParent(): string
     {
         return BinaryBaseFieldType::class;
     }

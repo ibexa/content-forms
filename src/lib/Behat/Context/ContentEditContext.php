@@ -12,6 +12,7 @@ use Behat\Behat\Context\Context;
 use Behat\Behat\Context\SnippetAcceptingContext;
 use Behat\Behat\Hook\Scope\BeforeScenarioScope;
 use Behat\MinkExtension\Context\MinkContext;
+use Exception;
 use Ibexa\Contracts\Core\Repository\Values\ContentType\FieldDefinitionCreateStruct;
 
 final class ContentEditContext extends MinkContext implements Context, SnippetAcceptingContext
@@ -21,10 +22,7 @@ final class ContentEditContext extends MinkContext implements Context, SnippetAc
      */
     private ?string $createdContentName = null;
 
-    /**
-     * @var \Ibexa\ContentForms\Behat\Context\ContentTypeContext
-     */
-    private $contentTypeContext;
+    private ContentTypeContext $contentTypeContext;
 
     /**
      * Identifier of the FieldDefinition used to cover validation.
@@ -54,7 +52,7 @@ final class ContentEditContext extends MinkContext implements Context, SnippetAc
     public function iAmOnTheViewOfTheContentThatWasPublished(): void
     {
         if (!isset($this->createdContentName)) {
-            throw new \Exception('No created content name set');
+            throw new Exception('No created content name set');
         }
 
         $this->assertElementOnPage('span.ibexa_string-field');

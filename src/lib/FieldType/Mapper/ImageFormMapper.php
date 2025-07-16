@@ -16,21 +16,21 @@ use Ibexa\Contracts\Core\Repository\FieldTypeService;
 use Ibexa\Core\FieldType\Image\Value;
 use Symfony\Component\Form\FormInterface;
 
-class ImageFormMapper implements FieldValueFormMapperInterface
+final readonly class ImageFormMapper implements FieldValueFormMapperInterface
 {
-    private FieldTypeService $fieldTypeService;
-
-    public function __construct(FieldTypeService $fieldTypeService)
+    public function __construct(private FieldTypeService $fieldTypeService)
     {
-        $this->fieldTypeService = $fieldTypeService;
     }
 
     public function mapFieldValueForm(FormInterface $fieldForm, FieldData $data): void
     {
-        $fieldDefinition = $data->fieldDefinition;
+        $fieldDefinition = $data->getFieldDefinition();
         $formConfig = $fieldForm->getConfig();
-        $fieldType = $this->fieldTypeService->getFieldType($fieldDefinition->fieldTypeIdentifier);
-        $isAlternativeTextRequired = $fieldDefinition->validatorConfiguration['AlternativeTextValidator']['required'] ?? false;
+        $fieldType = $this->fieldTypeService->getFieldType(
+            $fieldDefinition->getFieldTypeIdentifier()
+        );
+
+        $isAlternativeTextRequired = $fieldDefinition->getValidatorConfiguration()['AlternativeTextValidator']['required'] ?? false;
 
         $fieldForm
             ->add(
@@ -39,12 +39,14 @@ class ImageFormMapper implements FieldValueFormMapperInterface
                         'value',
                         ImageFieldType::class,
                         [
-                            'required' => $fieldDefinition->isRequired,
+                            'required' => $fieldDefinition->isRequired(),
                             'label' => $fieldDefinition->getName(),
                             'is_alternative_text_required' => $isAlternativeTextRequired,
                         ]
                     )
-                    ->addModelTransformer(new ImageValueTransformer($fieldType, $data->value, Value::class))
+                    ->addModelTransformer(
+                        new ImageValueTransformer($fieldType, $data->getValue(), Value::class)
+                    )
                     ->setAutoInitialize(false)
                     ->getForm()
             );

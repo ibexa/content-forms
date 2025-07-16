@@ -17,17 +17,11 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 /**
  * Listens for and processes User cancel events.
  */
-class UserCancelFormProcessor implements EventSubscriberInterface
+final readonly class UserCancelFormProcessor implements EventSubscriberInterface
 {
-    private UrlGeneratorInterface $urlGenerator;
-
-    /**
-     * @param \Symfony\Component\Routing\Generator\UrlGeneratorInterface $urlGenerator
-     */
     public function __construct(
-        UrlGeneratorInterface $urlGenerator
+        private UrlGeneratorInterface $urlGenerator
     ) {
-        $this->urlGenerator = $urlGenerator;
     }
 
     public static function getSubscribedEvents(): array
@@ -43,13 +37,14 @@ class UserCancelFormProcessor implements EventSubscriberInterface
         $data = $event->getData();
 
         $contentInfo = $data->isNew()
-            ? $data->getParentGroups()[0]->contentInfo
-            : $data->user->contentInfo;
+            ? $data->getParentGroups()[0]->getContentInfo()
+            : $data->user->getContentInfo();
 
         $response = new RedirectResponse($this->urlGenerator->generate('ibexa.content.view', [
-            'contentId' => $contentInfo->id,
-            'locationId' => $contentInfo->mainLocationId,
+            'contentId' => $contentInfo->getId(),
+            'locationId' => $contentInfo->getMainLocationId(),
         ]));
+
         $event->setResponse($response);
     }
 }

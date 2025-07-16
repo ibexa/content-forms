@@ -17,25 +17,24 @@ use Ibexa\Core\FieldType\Media\Type;
 use Ibexa\Core\FieldType\Media\Value;
 use Symfony\Component\Form\FormInterface;
 
-class MediaFormMapper implements FieldValueFormMapperInterface
+final readonly class MediaFormMapper implements FieldValueFormMapperInterface
 {
-    private FieldTypeService $fieldTypeService;
+    private const string ACCEPT_VIDEO = 'video/*';
+    private const string ACCEPT_AUDIO = 'audio/*';
 
-    protected const ACCEPT_VIDEO = 'video/*';
-    protected const ACCEPT_AUDIO = 'audio/*';
-
-    public function __construct(FieldTypeService $fieldTypeService)
+    public function __construct(private FieldTypeService $fieldTypeService)
     {
-        $this->fieldTypeService = $fieldTypeService;
     }
 
     public function mapFieldValueForm(FormInterface $fieldForm, FieldData $data): void
     {
-        $fieldDefinition = $data->fieldDefinition;
+        $fieldDefinition = $data->getFieldDefinition();
         $formConfig = $fieldForm->getConfig();
-        $fieldType = $this->fieldTypeService->getFieldType($fieldDefinition->fieldTypeIdentifier);
+        $fieldType = $this->fieldTypeService->getFieldType(
+            $fieldDefinition->getFieldTypeIdentifier()
+        );
 
-        $acceptedFormat = Type::TYPE_HTML5_AUDIO === $fieldDefinition->fieldSettings['mediaType']
+        $acceptedFormat = Type::TYPE_HTML5_AUDIO === $fieldDefinition->getFieldSettings()['mediaType']
             ? self::ACCEPT_AUDIO
             : self::ACCEPT_VIDEO;
 
@@ -46,14 +45,16 @@ class MediaFormMapper implements FieldValueFormMapperInterface
                         'value',
                         MediaFieldType::class,
                         [
-                            'required' => $fieldDefinition->isRequired,
+                            'required' => $fieldDefinition->isRequired(),
                             'label' => $fieldDefinition->getName(),
                             'attr' => [
                                 'accept' => $acceptedFormat,
                             ],
                         ]
                     )
-                    ->addModelTransformer(new MediaValueTransformer($fieldType, $data->value, Value::class))
+                    ->addModelTransformer(
+                        new MediaValueTransformer($fieldType, $data->getValue(), Value::class)
+                    )
                     ->setAutoInitialize(false)
                     ->getForm()
             );

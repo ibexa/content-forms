@@ -16,7 +16,7 @@ use Symfony\Component\Form\FormEvents;
 /**
  * Suppresses validation on cancel button submit.
  */
-class SuppressValidationSubscriber implements EventSubscriberInterface
+final readonly class SuppressValidationSubscriber implements EventSubscriberInterface
 {
     public static function getSubscribedEvents(): array
     {

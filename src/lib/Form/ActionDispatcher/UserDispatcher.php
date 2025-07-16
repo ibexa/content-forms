@@ -10,7 +10,7 @@ namespace Ibexa\ContentForms\Form\ActionDispatcher;
 
 use Ibexa\ContentForms\Event\ContentFormEvents;
 
-class UserDispatcher extends AbstractActionDispatcher
+final class UserDispatcher extends AbstractActionDispatcher
 {
     protected function getActionEventBaseName(): string
     {

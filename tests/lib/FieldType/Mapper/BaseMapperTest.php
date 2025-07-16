@@ -20,47 +20,43 @@ use Symfony\Component\Form\FormInterface;
 
 abstract class BaseMapperTest extends TestCase
 {
-    protected FieldTypeService & MockObject $fieldTypeService;
+    protected FieldTypeService&MockObject $fieldTypeService;
 
-    /**
-     * @phpstan-var \Symfony\Component\Form\FormConfigInterface<\Ibexa\Contracts\ContentForms\Data\Content\FieldData> & \PHPUnit\Framework\MockObject\MockObject
-     */
-    protected FormConfigInterface & MockObject $config;
+    /** @phpstan-var \Symfony\Component\Form\FormConfigInterface<\Ibexa\Contracts\ContentForms\Data\Content\FieldData>&\PHPUnit\Framework\MockObject\MockObject */
+    protected FormConfigInterface&MockObject $config;
 
-    /**
-     * @phpstan-var \Symfony\Component\Form\FormInterface<\Ibexa\Contracts\ContentForms\Data\Content\FieldData> & \PHPUnit\Framework\MockObject\MockObject
-     */
-    protected FormInterface & MockObject $fieldForm;
+    /** @phpstan-var \Symfony\Component\Form\FormInterface<\Ibexa\Contracts\ContentForms\Data\Content\FieldData>&\PHPUnit\Framework\MockObject\MockObject */
+    protected FormInterface&MockObject $fieldForm;
 
-    protected FieldData & MockObject $data;
+    protected FieldData&MockObject $data;
 
     protected function setUp(): void
     {
-        $this->fieldTypeService = $this->getMockBuilder(FieldTypeService::class)
-            ->getMock();
+        $this->fieldTypeService = $this->createMock(FieldTypeService::class);
         $this->fieldTypeService
             ->method('getFieldType')
-            ->willReturn($this->getMockBuilder(FieldType::class)->getMock());
+            ->willReturn($this->createMock(FieldType::class));
 
-        $this->config = $this->getMockBuilder(FormConfigInterface::class)->getMock();
-
+        $this->config = $this->createMock(FormConfigInterface::class);
         $this->fieldForm = $this->createMock(FormInterface::class);
+
         $formBuilder = $this->createMock(FormBuilder::class);
         $formFactory = $this->createMock(FormFactoryInterface::class);
-        $formFactory->expects(self::once())
+        $formFactory
+            ->expects(self::once())
             ->method('createBuilder')
             ->willReturn($formBuilder);
 
-        $this->config->expects(self::once())
+        $this->config
+            ->expects(self::once())
             ->method('getFormFactory')
             ->willReturn($formFactory);
 
-        $this->fieldForm->expects(self::once())
+        $this->fieldForm
+            ->expects(self::once())
             ->method('getConfig')
             ->willReturn($this->config);
 
-        $this->data = $this->getMockBuilder(FieldData::class)
-            ->disableOriginalConstructor()
-            ->getMock();
+        $this->data = $this->createMock(FieldData::class);
     }
 }

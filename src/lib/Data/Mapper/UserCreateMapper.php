@@ -14,13 +14,11 @@ use Ibexa\Contracts\Core\Repository\Values\Content\Field;
 use Ibexa\Contracts\Core\Repository\Values\ContentType\ContentType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-/**
- * Form data mapper for user creation.
- */
-class UserCreateMapper
+final readonly class UserCreateMapper
 {
     /**
      * @param \Ibexa\Contracts\Core\Repository\Values\User\UserGroup[] $parentGroups
+     * @param array<string, mixed> $params
      *
      * @throws \Symfony\Component\OptionsResolver\Exception\UndefinedOptionsException
      * @throws \Symfony\Component\OptionsResolver\Exception\OptionDefinitionException
@@ -38,14 +36,14 @@ class UserCreateMapper
         $data = new UserCreateData(['contentType' => $contentType, 'mainLanguageCode' => $params['mainLanguageCode']]);
         $data->setParentGroups($parentGroups);
 
-        foreach ($contentType->fieldDefinitions as $fieldDef) {
+        foreach ($contentType->getFieldDefinitions() as $fieldDef) {
             $data->addFieldData(new FieldData([
                 'fieldDefinition' => $fieldDef,
                 'field' => new Field([
-                    'fieldDefIdentifier' => $fieldDef->identifier,
+                    'fieldDefIdentifier' => $fieldDef->getIdentifier(),
                     'languageCode' => $params['mainLanguageCode'],
                 ]),
-                'value' => $fieldDef->defaultValue,
+                'value' => $fieldDef->getDefaultValue(),
             ]));
         }
 

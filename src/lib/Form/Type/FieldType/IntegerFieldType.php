@@ -20,13 +20,10 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 /**
  * Form Type representing ibexa_integer field type.
  */
-class IntegerFieldType extends AbstractType
+final class IntegerFieldType extends AbstractType
 {
-    private FieldTypeService $fieldTypeService;
-
-    public function __construct(FieldTypeService $fieldTypeService)
+    public function __construct(private readonly FieldTypeService $fieldTypeService)
     {
-        $this->fieldTypeService = $fieldTypeService;
     }
 
     public function getName(): string
@@ -39,24 +36,16 @@ class IntegerFieldType extends AbstractType
         return 'ezplatform_fieldtype_ibexa_integer';
     }
 
-    public function getParent(): ?string
+    public function getParent(): string
     {
         return IntegerType::class;
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $attributes = ['step' => 1];
-
-        if (null !== $options['min']) {
-            $attributes['min'] = $options['min'];
-        }
-
-        if (null !== $options['max']) {
-            $attributes['max'] = $options['max'];
-        }
-
-        $builder->addModelTransformer(new FieldValueTransformer($this->fieldTypeService->getFieldType('ibexa_integer')));
+        $builder->addModelTransformer(
+            new FieldValueTransformer($this->fieldTypeService->getFieldType('ibexa_integer'))
+        );
     }
 
     public function buildView(FormView $view, FormInterface $form, array $options): void

@@ -18,7 +18,7 @@ use Symfony\Component\Form\DataTransformerInterface;
  *
  * @implements \Symfony\Component\Form\DataTransformerInterface<\Ibexa\Core\FieldType\BinaryFile\Value, TBinaryFileData>
  */
-class BinaryFileValueTransformer extends AbstractBinaryBaseTransformer implements DataTransformerInterface
+final class BinaryFileValueTransformer extends AbstractBinaryBaseTransformer implements DataTransformerInterface
 {
     public function transform(mixed $value): array
     {
@@ -37,7 +37,7 @@ class BinaryFileValueTransformer extends AbstractBinaryBaseTransformer implement
      *
      * @throws \Symfony\Component\Form\Exception\TransformationFailedException
      */
-    public function reverseTransform(mixed $value): ?Value
+    public function reverseTransform(mixed $value): Value
     {
         /** @var \Ibexa\Core\FieldType\BinaryFile\Value */
         return $this->getReverseTransformedValue($value);

@@ -18,7 +18,7 @@ use Symfony\Component\Form\FormInterface;
  *
  * Adds the form elements matching the given Field Data Definition to a given Form.
  */
-class FieldTypeFormMapperDispatcher implements FieldTypeFormMapperDispatcherInterface
+final class FieldTypeFormMapperDispatcher implements FieldTypeFormMapperDispatcherInterface
 {
     /**
      * FieldTypeFormMapperDispatcher constructor.
@@ -36,13 +36,16 @@ class FieldTypeFormMapperDispatcher implements FieldTypeFormMapperDispatcherInte
         $this->mappers[$fieldTypeIdentifier] = $mapper;
     }
 
-    public function map(FormInterface $fieldForm, FieldData $data): void
+    public function map(FormInterface $form, FieldData $data): void
     {
-        $fieldTypeIdentifier = $this->fieldTypeAliasResolver->resolveIdentifier($data->getFieldTypeIdentifier());
+        $fieldTypeIdentifier = $this->fieldTypeAliasResolver->resolveIdentifier(
+            $data->getFieldTypeIdentifier()
+        );
+
         if (!isset($this->mappers[$fieldTypeIdentifier])) {
             return;
         }
 
-        $this->mappers[$fieldTypeIdentifier]->mapFieldValueForm($fieldForm, $data);
+        $this->mappers[$fieldTypeIdentifier]->mapFieldValueForm($form, $data);
     }
 }

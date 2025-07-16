@@ -22,13 +22,10 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 /**
  * Form Type representing ibexa_gmap_location field type.
  */
-class MapLocationFieldType extends AbstractType
+final class MapLocationFieldType extends AbstractType
 {
-    protected FieldTypeService $fieldTypeService;
-
-    public function __construct(FieldTypeService $fieldTypeService)
+    public function __construct(private readonly FieldTypeService $fieldTypeService)
     {
-        $this->fieldTypeService = $fieldTypeService;
     }
 
     public function getName(): string
@@ -82,7 +79,9 @@ class MapLocationFieldType extends AbstractType
                 ]
             )
             ->addModelTransformer(
-                new FieldValueTransformer($this->fieldTypeService->getFieldType('ibexa_gmap_location'))
+                new FieldValueTransformer(
+                    $this->fieldTypeService->getFieldType('ibexa_gmap_location')
+                )
             );
     }
 

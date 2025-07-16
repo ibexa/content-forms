@@ -21,13 +21,10 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 /**
  * Form Type representing ibexa_image field type.
  */
-class ImageFieldType extends AbstractType
+final class ImageFieldType extends AbstractType
 {
-    private MimeTypesInterface $mimeTypes;
-
-    public function __construct(MimeTypesInterface $mimeTypes)
+    public function __construct(private MimeTypesInterface $mimeTypes)
     {
-        $this->mimeTypes = $mimeTypes;
     }
 
     public function getName(): string
@@ -40,7 +37,7 @@ class ImageFieldType extends AbstractType
         return 'ezplatform_fieldtype_ibexa_image';
     }
 
-    public function getParent(): ?string
+    public function getParent(): string
     {
         return BinaryBaseFieldType::class;
     }

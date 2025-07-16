@@ -16,27 +16,19 @@ use Ibexa\Contracts\Core\Repository\FieldTypeService;
 use Ibexa\Core\FieldType\ImageAsset\Value;
 use Symfony\Component\Form\FormInterface;
 
-class ImageAssetFormMapper implements FieldValueFormMapperInterface
+final readonly class ImageAssetFormMapper implements FieldValueFormMapperInterface
 {
-    private FieldTypeService $fieldTypeService;
-
-    /**
-     * @param \Ibexa\Contracts\Core\Repository\FieldTypeService $fieldTypeService
-     */
-    public function __construct(FieldTypeService $fieldTypeService)
+    public function __construct(private FieldTypeService $fieldTypeService)
     {
-        $this->fieldTypeService = $fieldTypeService;
     }
 
-    /**
-     * @param \Symfony\Component\Form\FormInterface $fieldForm
-     * @param \Ibexa\Contracts\ContentForms\Data\Content\FieldData $data
-     */
     public function mapFieldValueForm(FormInterface $fieldForm, FieldData $data): void
     {
-        $fieldDefinition = $data->fieldDefinition;
+        $fieldDefinition = $data->getFieldDefinition();
         $formConfig = $fieldForm->getConfig();
-        $fieldType = $this->fieldTypeService->getFieldType($fieldDefinition->fieldTypeIdentifier);
+        $fieldType = $this->fieldTypeService->getFieldType(
+            $fieldDefinition->getFieldTypeIdentifier()
+        );
 
         $fieldForm
             ->add(
@@ -45,11 +37,13 @@ class ImageAssetFormMapper implements FieldValueFormMapperInterface
                         'value',
                         ImageAssetFieldType::class,
                         [
-                            'required' => $fieldDefinition->isRequired,
+                            'required' => $fieldDefinition->isRequired(),
                             'label' => $fieldDefinition->getName(),
                         ]
                     )
-                    ->addModelTransformer(new ImageAssetValueTransformer($fieldType, $data->value, Value::class))
+                    ->addModelTransformer(
+                        new ImageAssetValueTransformer($fieldType, $data->getValue(), Value::class)
+                    )
                     ->setAutoInitialize(false)
                     ->getForm()
             );

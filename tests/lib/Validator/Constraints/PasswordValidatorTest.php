@@ -16,10 +16,11 @@ use Ibexa\Contracts\Core\Repository\Values\User\PasswordValidationContext;
 use Ibexa\Core\FieldType\ValidationError;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
+use stdClass;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
 use Symfony\Component\Validator\Violation\ConstraintViolationBuilderInterface;
 
-class PasswordValidatorTest extends TestCase
+final class PasswordValidatorTest extends TestCase
 {
     private UserService & MockObject $userService;
 
@@ -124,7 +125,7 @@ class PasswordValidatorTest extends TestCase
     public function dataProviderForValidateNotSupportedValueType(): array
     {
         return [
-            [new \stdClass()],
+            [new stdClass()],
             [null],
             [''],
         ];
