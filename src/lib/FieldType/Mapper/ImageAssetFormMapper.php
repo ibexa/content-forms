@@ -22,6 +22,9 @@ final readonly class ImageAssetFormMapper implements FieldValueFormMapperInterfa
     {
     }
 
+    /**
+     * @param \Symfony\Component\Form\FormInterface<mixed> $fieldForm
+     */
     public function mapFieldValueForm(FormInterface $fieldForm, FieldData $data): void
     {
         $fieldDefinition = $data->getFieldDefinition();

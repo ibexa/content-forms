@@ -22,32 +22,14 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\Form\FormInterface;
 
-class ContentCreateViewFilter implements EventSubscriberInterface
+final readonly class ContentCreateViewFilter implements EventSubscriberInterface
 {
-    private LocationService $locationService;
-
-    private ContentTypeService $contentTypeService;
-
-    private FormFactoryInterface $formFactory;
-
-    private UserLanguagePreferenceProviderInterface $languagePreferenceProvider;
-
-    /**
-     * @param \Ibexa\Contracts\Core\Repository\LocationService $locationService
-     * @param \Ibexa\Contracts\Core\Repository\ContentTypeService $contentTypeService
-     * @param \Symfony\Component\Form\FormFactoryInterface $formFactory
-     * @param \Ibexa\Core\MVC\Symfony\Locale\UserLanguagePreferenceProviderInterface $languagePreferenceProvider
-     */
     public function __construct(
-        LocationService $locationService,
-        ContentTypeService $contentTypeService,
-        FormFactoryInterface $formFactory,
-        UserLanguagePreferenceProviderInterface $languagePreferenceProvider
+        private LocationService $locationService,
+        private ContentTypeService $contentTypeService,
+        private FormFactoryInterface $formFactory,
+        private UserLanguagePreferenceProviderInterface $languagePreferenceProvider
     ) {
-        $this->locationService = $locationService;
-        $this->contentTypeService = $contentTypeService;
-        $this->formFactory = $formFactory;
-        $this->languagePreferenceProvider = $languagePreferenceProvider;
     }
 
     public static function getSubscribedEvents(): array
@@ -56,8 +38,6 @@ class ContentCreateViewFilter implements EventSubscriberInterface
     }
 
     /**
-     * @param \Ibexa\Core\MVC\Symfony\View\Event\FilterViewBuilderParametersEvent $event
-     *
      * @throws \Symfony\Component\OptionsResolver\Exception\InvalidOptionsException
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\UnauthorizedException
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException
@@ -89,13 +69,6 @@ class ContentCreateViewFilter implements EventSubscriberInterface
         $event->getParameters()->add(['form' => $form->handleRequest($request)]);
     }
 
-    /**
-     * @param \Ibexa\Contracts\Core\Repository\Values\ContentType\ContentType $contentType
-     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Location $location
-     * @param string $languageCode
-     *
-     * @return \Ibexa\ContentForms\Data\Content\ContentCreateData
-     */
     private function resolveContentCreateData(
         ContentType $contentType,
         Location $location,
@@ -107,16 +80,13 @@ class ContentCreateViewFilter implements EventSubscriberInterface
             $contentType,
             [
                 'mainLanguageCode' => $languageCode,
-                'parentLocation' => $this->locationService->newLocationCreateStruct($location->id, $contentType),
+                'parentLocation' => $this->locationService->newLocationCreateStruct($location->id),
             ]
         );
     }
 
     /**
-     * @param \Ibexa\ContentForms\Data\Content\ContentCreateData $contentCreateData
-     * @param string $languageCode
-     *
-     * @return \Symfony\Component\Form\FormInterface
+     * @return \Symfony\Component\Form\FormInterface<mixed>
      */
     private function resolveContentCreateForm(
         ContentCreateData $contentCreateData,

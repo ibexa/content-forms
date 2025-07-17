@@ -25,40 +25,16 @@ use Ibexa\Core\MVC\Symfony\View\ParametersInjector;
  */
 abstract class AbstractContentViewBuilder
 {
-    protected Repository $repository;
-
-    protected Configurator $viewConfigurator;
-
-    protected ParametersInjector $viewParametersInjector;
-
-    protected ActionDispatcherInterface $contentActionDispatcher;
-
-    protected UserLanguagePreferenceProviderInterface $languagePreferenceProvider;
-
-    protected ConfigResolverInterface $configResolver;
-
-    protected GroupedContentFormFieldsProviderInterface $groupedContentFormFieldsProvider;
-
-    protected ContentService $contentService;
-
     public function __construct(
-        Repository $repository,
-        Configurator $viewConfigurator,
-        ParametersInjector $viewParametersInjector,
-        ActionDispatcherInterface $contentActionDispatcher,
-        UserLanguagePreferenceProviderInterface $languagePreferenceProvider,
-        ConfigResolverInterface $configResolver,
-        GroupedContentFormFieldsProviderInterface $groupedContentFormFieldsProvider,
-        ContentService $contentService
+        protected Repository $repository,
+        protected Configurator $viewConfigurator,
+        protected ParametersInjector $viewParametersInjector,
+        protected ActionDispatcherInterface $contentActionDispatcher,
+        protected UserLanguagePreferenceProviderInterface $languagePreferenceProvider,
+        protected ConfigResolverInterface $configResolver,
+        protected GroupedContentFormFieldsProviderInterface $groupedContentFormFieldsProvider,
+        protected ContentService $contentService
     ) {
-        $this->repository = $repository;
-        $this->viewConfigurator = $viewConfigurator;
-        $this->viewParametersInjector = $viewParametersInjector;
-        $this->contentActionDispatcher = $contentActionDispatcher;
-        $this->languagePreferenceProvider = $languagePreferenceProvider;
-        $this->configResolver = $configResolver;
-        $this->groupedContentFormFieldsProvider = $groupedContentFormFieldsProvider;
-        $this->contentService = $contentService;
     }
 
     /**
@@ -81,6 +57,8 @@ abstract class AbstractContentViewBuilder
     }
 
     /**
+     * @param array<string, mixed> $parameters
+     *
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\InvalidArgumentException
      */

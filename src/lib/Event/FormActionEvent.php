@@ -20,6 +20,7 @@ final class FormActionEvent extends FormEvent
     private ?Response $response = null;
 
     /**
+     * @param \Symfony\Component\Form\FormInterface<mixed> $form
      * @param array<string, mixed> $options
      * @param array<string, mixed> $payloads
      */

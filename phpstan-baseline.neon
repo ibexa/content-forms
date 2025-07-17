@@ -25,12 +25,6 @@ parameters:
 			path: src/bundle/Controller/UserController.php
 
 		-
-			message: '#^Method Ibexa\\Contracts\\ContentForms\\Content\\Form\\Provider\\GroupedContentFormFieldsProviderInterface\:\:getGroupedFields\(\) has parameter \$fieldsDataForm with generic interface Symfony\\Component\\Form\\FormInterface but does not specify its types\: TData$#'
-			identifier: missingType.generics
-			count: 1
-			path: src/contracts/Content/Form/Provider/GroupedContentFormFieldsProviderInterface.php
-
-		-
 			message: '#^Method Ibexa\\Contracts\\ContentForms\\FieldType\\FieldValueFormMapperInterface\:\:mapFieldValueForm\(\) has no return type specified\.$#'
 			identifier: missingType.return
 			count: 1
@@ -163,38 +157,8 @@ parameters:
 			path: src/lib/Content/Form/Provider/AbstractGroupedContentFormFieldsProvider.php
 
 		-
-			message: '#^Method Ibexa\\ContentForms\\Content\\View\\Builder\\AbstractContentViewBuilder\:\:resolveLanguage\(\) has parameter \$parameters with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/lib/Content/View/Builder/AbstractContentViewBuilder.php
-
-		-
 			message: '#^Call to an undefined method Symfony\\Component\\Form\\ClickableInterface\|Symfony\\Component\\Form\\FormInterface\:\:getName\(\)\.$#'
 			identifier: method.notFound
-			count: 1
-			path: src/lib/Content/View/Builder/ContentCreateViewBuilder.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Content\\View\\Builder\\ContentCreateViewBuilder\:\:buildView\(\) has parameter \$parameters with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/lib/Content/View/Builder/ContentCreateViewBuilder.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Content\\View\\Builder\\ContentCreateViewBuilder\:\:resolveContentType\(\) has parameter \$languageCodes with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/lib/Content/View/Builder/ContentCreateViewBuilder.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Content\\View\\Builder\\ContentCreateViewBuilder\:\:resolveContentType\(\) has parameter \$parameters with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/lib/Content/View/Builder/ContentCreateViewBuilder.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Content\\View\\Builder\\ContentCreateViewBuilder\:\:resolveLocation\(\) has parameter \$parameters with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
 			count: 1
 			path: src/lib/Content/View/Builder/ContentCreateViewBuilder.php
 
@@ -203,60 +167,6 @@ parameters:
 			identifier: method.notFound
 			count: 1
 			path: src/lib/Content/View/Builder/ContentEditViewBuilder.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Content\\View\\Builder\\ContentEditViewBuilder\:\:buildView\(\) has parameter \$parameters with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/lib/Content/View/Builder/ContentEditViewBuilder.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Content\\View\\Builder\\ContentEditViewBuilder\:\:loadContent\(\) has parameter \$languages with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/lib/Content/View/Builder/ContentEditViewBuilder.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Content\\View\\Builder\\ContentEditViewBuilder\:\:resolveContent\(\) has parameter \$parameters with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/lib/Content/View/Builder/ContentEditViewBuilder.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Content\\View\\Builder\\ContentEditViewBuilder\:\:resolveLocation\(\) has parameter \$parameters with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/lib/Content/View/Builder/ContentEditViewBuilder.php
-
-		-
-			message: '#^Parameter \#1 \$array of function array_shift expects array, iterable\<Ibexa\\Contracts\\Core\\Repository\\Values\\Content\\Location\> given\.$#'
-			identifier: argument.type
-			count: 1
-			path: src/lib/Content/View/Builder/ContentEditViewBuilder.php
-
-		-
-			message: '#^Strict comparison using \!\=\= between null and Ibexa\\Contracts\\Core\\Repository\\Values\\Content\\Language will always evaluate to true\.$#'
-			identifier: notIdentical.alwaysTrue
-			count: 1
-			path: src/lib/Content/View/Builder/ContentEditViewBuilder.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Content\\View\\ContentCreateView\:\:getForm\(\) return type with generic interface Symfony\\Component\\Form\\FormInterface does not specify its types\: TData$#'
-			identifier: missingType.generics
-			count: 1
-			path: src/lib/Content/View/ContentCreateView.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Content\\View\\ContentCreateView\:\:setForm\(\) has parameter \$form with generic interface Symfony\\Component\\Form\\FormInterface but does not specify its types\: TData$#'
-			identifier: missingType.generics
-			count: 1
-			path: src/lib/Content/View/ContentCreateView.php
-
-		-
-			message: '#^Property Ibexa\\ContentForms\\Content\\View\\ContentCreateView\:\:\$form with generic interface Symfony\\Component\\Form\\FormInterface does not specify its types\: TData$#'
-			identifier: missingType.generics
-			count: 1
-			path: src/lib/Content/View/ContentCreateView.php
 
 		-
 			message: '#^Method Ibexa\\ContentForms\\Content\\View\\ContentEditView\:\:getForm\(\) return type with generic interface Symfony\\Component\\Form\\FormInterface does not specify its types\: TData$#'
@@ -269,60 +179,6 @@ parameters:
 			identifier: missingType.generics
 			count: 1
 			path: src/lib/Content/View/ContentEditView.php
-
-		-
-			message: '#^Property Ibexa\\ContentForms\\Content\\View\\ContentEditView\:\:\$form with generic interface Symfony\\Component\\Form\\FormInterface does not specify its types\: TData$#'
-			identifier: missingType.generics
-			count: 1
-			path: src/lib/Content/View/ContentEditView.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Content\\View\\Filter\\ContentCreateViewFilter\:\:resolveContentCreateForm\(\) return type with generic interface Symfony\\Component\\Form\\FormInterface does not specify its types\: TData$#'
-			identifier: missingType.generics
-			count: 1
-			path: src/lib/Content/View/Filter/ContentCreateViewFilter.php
-
-		-
-			message: '#^Method Ibexa\\Contracts\\Core\\Repository\\LocationService\:\:newLocationCreateStruct\(\) invoked with 2 parameters, 1 required\.$#'
-			identifier: arguments.count
-			count: 1
-			path: src/lib/Content/View/Filter/ContentCreateViewFilter.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Content\\View\\Filter\\ContentEditViewFilter\:\:resolveContentEditForm\(\) return type with generic interface Symfony\\Component\\Form\\FormInterface does not specify its types\: TData$#'
-			identifier: missingType.generics
-			count: 1
-			path: src/lib/Content/View/Filter/ContentEditViewFilter.php
-
-		-
-			message: '#^Parameter \#4 \$currentFields of method Ibexa\\ContentForms\\Content\\View\\Filter\\ContentEditViewFilter\:\:resolveContentEditData\(\) expects array\<Ibexa\\Contracts\\Core\\Repository\\Values\\Content\\Field\>, iterable\<Ibexa\\Contracts\\Core\\Repository\\Values\\Content\\Field\> given\.$#'
-			identifier: argument.type
-			count: 1
-			path: src/lib/Content/View/Filter/ContentEditViewFilter.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Content\\View\\Provider\\ContentCreateView\\Configured\:\:buildContentCreateView\(\) has parameter \$viewConfig with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/lib/Content/View/Provider/ContentCreateView/Configured.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Content\\View\\Provider\\ContentCreateView\\Configured\:\:getView\(\) should return Ibexa\\Core\\MVC\\Symfony\\View\\View but returns null\.$#'
-			identifier: return.type
-			count: 1
-			path: src/lib/Content/View/Provider/ContentCreateView/Configured.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Content\\View\\Provider\\ContentEditView\\Configured\:\:buildContentEditView\(\) has parameter \$viewConfig with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/lib/Content/View/Provider/ContentEditView/Configured.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Content\\View\\Provider\\ContentEditView\\Configured\:\:getView\(\) should return Ibexa\\Core\\MVC\\Symfony\\View\\View but returns null\.$#'
-			identifier: return.type
-			count: 1
-			path: src/lib/Content/View/Provider/ContentEditView/Configured.php
 
 		-
 			message: '#^Access to protected property Ibexa\\Contracts\\ContentForms\\Data\\Content\\FieldData\:\:\$fieldDefinition\.$#'
@@ -361,48 +217,6 @@ parameters:
 			path: src/lib/Data/User/UserUpdateData.php
 
 		-
-			message: '#^Method Ibexa\\ContentForms\\Event\\ContentCreateFieldOptionsEvent\:\:__construct\(\) has parameter \$parentForm with generic interface Symfony\\Component\\Form\\FormInterface but does not specify its types\: TData$#'
-			identifier: missingType.generics
-			count: 1
-			path: src/lib/Event/ContentCreateFieldOptionsEvent.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Event\\ContentUpdateFieldOptionsEvent\:\:__construct\(\) has parameter \$parentForm with generic interface Symfony\\Component\\Form\\FormInterface but does not specify its types\: TData$#'
-			identifier: missingType.generics
-			count: 1
-			path: src/lib/Event/ContentUpdateFieldOptionsEvent.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Event\\FormActionEvent\:\:__construct\(\) has parameter \$form with generic interface Symfony\\Component\\Form\\FormInterface but does not specify its types\: TData$#'
-			identifier: missingType.generics
-			count: 1
-			path: src/lib/Event/FormActionEvent.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Event\\StructFieldOptionsEvent\:\:__construct\(\) has parameter \$parentForm with generic interface Symfony\\Component\\Form\\FormInterface but does not specify its types\: TData$#'
-			identifier: missingType.generics
-			count: 1
-			path: src/lib/Event/StructFieldOptionsEvent.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Event\\StructFieldOptionsEvent\:\:getParentForm\(\) return type with generic interface Symfony\\Component\\Form\\FormInterface does not specify its types\: TData$#'
-			identifier: missingType.generics
-			count: 1
-			path: src/lib/Event/StructFieldOptionsEvent.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Event\\UserCreateFieldOptionsEvent\:\:__construct\(\) has parameter \$parentForm with generic interface Symfony\\Component\\Form\\FormInterface but does not specify its types\: TData$#'
-			identifier: missingType.generics
-			count: 1
-			path: src/lib/Event/UserCreateFieldOptionsEvent.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Event\\UserUpdateFieldOptionsEvent\:\:__construct\(\) has parameter \$parentForm with generic interface Symfony\\Component\\Form\\FormInterface but does not specify its types\: TData$#'
-			identifier: missingType.generics
-			count: 1
-			path: src/lib/Event/UserUpdateFieldOptionsEvent.php
-
-		-
 			message: '#^Method Ibexa\\ContentForms\\FieldType\\DataTransformer\\AbstractBinaryBaseTransformer\:\:getReverseTransformedValue\(\) should return Ibexa\\Core\\FieldType\\Value but returns object\.$#'
 			identifier: return.type
 			count: 1
@@ -427,136 +241,10 @@ parameters:
 			path: src/lib/FieldType/DataTransformer/MediaValueTransformer.php
 
 		-
-			message: '#^Method Ibexa\\ContentForms\\FieldType\\FieldTypeFormMapperDispatcher\:\:map\(\) has parameter \$form with generic interface Symfony\\Component\\Form\\FormInterface but does not specify its types\: TData$#'
-			identifier: missingType.generics
-			count: 1
-			path: src/lib/FieldType/FieldTypeFormMapperDispatcher.php
-
-		-
 			message: '#^Method Ibexa\\ContentForms\\FieldType\\FieldTypeFormMapperDispatcherInterface\:\:map\(\) has parameter \$form with generic interface Symfony\\Component\\Form\\FormInterface but does not specify its types\: TData$#'
 			identifier: missingType.generics
 			count: 1
 			path: src/lib/FieldType/FieldTypeFormMapperDispatcherInterface.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\FieldType\\Mapper\\AuthorFormMapper\:\:mapFieldValueForm\(\) has parameter \$fieldForm with generic interface Symfony\\Component\\Form\\FormInterface but does not specify its types\: TData$#'
-			identifier: missingType.generics
-			count: 1
-			path: src/lib/FieldType/Mapper/AuthorFormMapper.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\FieldType\\Mapper\\BinaryFileFormMapper\:\:mapFieldValueForm\(\) has parameter \$fieldForm with generic interface Symfony\\Component\\Form\\FormInterface but does not specify its types\: TData$#'
-			identifier: missingType.generics
-			count: 1
-			path: src/lib/FieldType/Mapper/BinaryFileFormMapper.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\FieldType\\Mapper\\CheckboxFormMapper\:\:mapFieldValueForm\(\) has parameter \$fieldForm with generic interface Symfony\\Component\\Form\\FormInterface but does not specify its types\: TData$#'
-			identifier: missingType.generics
-			count: 1
-			path: src/lib/FieldType/Mapper/CheckboxFormMapper.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\FieldType\\Mapper\\CountryFormMapper\:\:mapFieldValueForm\(\) has parameter \$fieldForm with generic interface Symfony\\Component\\Form\\FormInterface but does not specify its types\: TData$#'
-			identifier: missingType.generics
-			count: 1
-			path: src/lib/FieldType/Mapper/CountryFormMapper.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\FieldType\\Mapper\\DateFormMapper\:\:mapFieldValueForm\(\) has parameter \$fieldForm with generic interface Symfony\\Component\\Form\\FormInterface but does not specify its types\: TData$#'
-			identifier: missingType.generics
-			count: 1
-			path: src/lib/FieldType/Mapper/DateFormMapper.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\FieldType\\Mapper\\DateTimeFormMapper\:\:mapFieldValueForm\(\) has parameter \$fieldForm with generic interface Symfony\\Component\\Form\\FormInterface but does not specify its types\: TData$#'
-			identifier: missingType.generics
-			count: 1
-			path: src/lib/FieldType/Mapper/DateTimeFormMapper.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\FieldType\\Mapper\\FloatFormMapper\:\:mapFieldValueForm\(\) has parameter \$fieldForm with generic interface Symfony\\Component\\Form\\FormInterface but does not specify its types\: TData$#'
-			identifier: missingType.generics
-			count: 1
-			path: src/lib/FieldType/Mapper/FloatFormMapper.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\FieldType\\Mapper\\FormTypeBasedFieldValueFormMapper\:\:mapFieldValueForm\(\) has parameter \$fieldForm with generic interface Symfony\\Component\\Form\\FormInterface but does not specify its types\: TData$#'
-			identifier: missingType.generics
-			count: 1
-			path: src/lib/FieldType/Mapper/FormTypeBasedFieldValueFormMapper.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\FieldType\\Mapper\\ISBNFormMapper\:\:mapFieldValueForm\(\) has parameter \$fieldForm with generic interface Symfony\\Component\\Form\\FormInterface but does not specify its types\: TData$#'
-			identifier: missingType.generics
-			count: 1
-			path: src/lib/FieldType/Mapper/ISBNFormMapper.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\FieldType\\Mapper\\ImageAssetFormMapper\:\:mapFieldValueForm\(\) has parameter \$fieldForm with generic interface Symfony\\Component\\Form\\FormInterface but does not specify its types\: TData$#'
-			identifier: missingType.generics
-			count: 1
-			path: src/lib/FieldType/Mapper/ImageAssetFormMapper.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\FieldType\\Mapper\\ImageFormMapper\:\:mapFieldValueForm\(\) has parameter \$fieldForm with generic interface Symfony\\Component\\Form\\FormInterface but does not specify its types\: TData$#'
-			identifier: missingType.generics
-			count: 1
-			path: src/lib/FieldType/Mapper/ImageFormMapper.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\FieldType\\Mapper\\IntegerFormMapper\:\:mapFieldValueForm\(\) has parameter \$fieldForm with generic interface Symfony\\Component\\Form\\FormInterface but does not specify its types\: TData$#'
-			identifier: missingType.generics
-			count: 1
-			path: src/lib/FieldType/Mapper/IntegerFormMapper.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\FieldType\\Mapper\\KeywordFormMapper\:\:mapFieldValueForm\(\) has parameter \$fieldForm with generic interface Symfony\\Component\\Form\\FormInterface but does not specify its types\: TData$#'
-			identifier: missingType.generics
-			count: 1
-			path: src/lib/FieldType/Mapper/KeywordFormMapper.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\FieldType\\Mapper\\MapLocationFormMapper\:\:mapFieldValueForm\(\) has parameter \$fieldForm with generic interface Symfony\\Component\\Form\\FormInterface but does not specify its types\: TData$#'
-			identifier: missingType.generics
-			count: 1
-			path: src/lib/FieldType/Mapper/MapLocationFormMapper.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\FieldType\\Mapper\\MediaFormMapper\:\:mapFieldValueForm\(\) has parameter \$fieldForm with generic interface Symfony\\Component\\Form\\FormInterface but does not specify its types\: TData$#'
-			identifier: missingType.generics
-			count: 1
-			path: src/lib/FieldType/Mapper/MediaFormMapper.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\FieldType\\Mapper\\RelationFormMapper\:\:mapFieldValueForm\(\) has parameter \$fieldForm with generic interface Symfony\\Component\\Form\\FormInterface but does not specify its types\: TData$#'
-			identifier: missingType.generics
-			count: 1
-			path: src/lib/FieldType/Mapper/RelationFormMapper.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\FieldType\\Mapper\\RelationListFormMapper\:\:mapFieldValueForm\(\) has parameter \$fieldForm with generic interface Symfony\\Component\\Form\\FormInterface but does not specify its types\: TData$#'
-			identifier: missingType.generics
-			count: 1
-			path: src/lib/FieldType/Mapper/RelationListFormMapper.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\FieldType\\Mapper\\SelectionFormMapper\:\:mapFieldValueForm\(\) has parameter \$fieldForm with generic interface Symfony\\Component\\Form\\FormInterface but does not specify its types\: TData$#'
-			identifier: missingType.generics
-			count: 1
-			path: src/lib/FieldType/Mapper/SelectionFormMapper.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\FieldType\\Mapper\\TextBlockFormMapper\:\:mapFieldValueForm\(\) has parameter \$fieldForm with generic interface Symfony\\Component\\Form\\FormInterface but does not specify its types\: TData$#'
-			identifier: missingType.generics
-			count: 1
-			path: src/lib/FieldType/Mapper/TextBlockFormMapper.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\FieldType\\Mapper\\TextLineFormMapper\:\:mapFieldValueForm\(\) has parameter \$fieldForm with generic interface Symfony\\Component\\Form\\FormInterface but does not specify its types\: TData$#'
-			identifier: missingType.generics
-			count: 1
-			path: src/lib/FieldType/Mapper/TextLineFormMapper.php
 
 		-
 			message: '#^Method Ibexa\\ContentForms\\FieldType\\Mapper\\TimeFormMapper\:\:mapFieldValueForm\(\) has parameter \$fieldForm with generic interface Symfony\\Component\\Form\\FormInterface but does not specify its types\: TData$#'
@@ -575,18 +263,6 @@ parameters:
 			identifier: missingType.generics
 			count: 1
 			path: src/lib/FieldType/Mapper/UserAccountFieldValueFormMapper.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\ActionDispatcher\\AbstractActionDispatcher\:\:dispatchFormAction\(\) has parameter \$form with generic interface Symfony\\Component\\Form\\FormInterface but does not specify its types\: TData$#'
-			identifier: missingType.generics
-			count: 1
-			path: src/lib/Form/ActionDispatcher/AbstractActionDispatcher.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\ActionDispatcher\\ActionDispatcherInterface\:\:dispatchFormAction\(\) has parameter \$form with generic interface Symfony\\Component\\Form\\FormInterface but does not specify its types\: TData$#'
-			identifier: missingType.generics
-			count: 1
-			path: src/lib/Form/ActionDispatcher/ActionDispatcherInterface.php
 
 		-
 			message: '#^Call to an undefined method Symfony\\Component\\Form\\FormInterface\:\:isClicked\(\)\.$#'
@@ -621,7 +297,7 @@ parameters:
 		-
 			message: '#^Access to an undefined property Ibexa\\ContentForms\\Data\\Content\\ContentCreateData\|Ibexa\\ContentForms\\Data\\Content\\ContentUpdateData\:\:\$contentDraft\.$#'
 			identifier: property.notFound
-			count: 4
+			count: 1
 			path: src/lib/Form/Processor/ContentFormProcessor.php
 
 		-
@@ -631,15 +307,9 @@ parameters:
 			path: src/lib/Form/Processor/ContentFormProcessor.php
 
 		-
-			message: '#^Access to an undefined property Ibexa\\Contracts\\Core\\Repository\\Values\\Content\\ContentStruct\:\:\$contentDraft\.$#'
-			identifier: property.notFound
-			count: 1
-			path: src/lib/Form/Processor/ContentFormProcessor.php
-
-		-
-			message: '#^Access to an undefined property Ibexa\\Contracts\\Core\\Repository\\Values\\Content\\ContentStruct\:\:\$fieldsData\.$#'
-			identifier: property.notFound
-			count: 1
+			message: '#^Call to an undefined method Ibexa\\ContentForms\\Data\\Content\\ContentCreateData\|Ibexa\\ContentForms\\Data\\Content\\ContentUpdateData\:\:getContentDraft\(\)\.$#'
+			identifier: method.notFound
+			count: 3
 			path: src/lib/Form/Processor/ContentFormProcessor.php
 
 		-
@@ -649,13 +319,7 @@ parameters:
 			path: src/lib/Form/Processor/ContentFormProcessor.php
 
 		-
-			message: '#^Call to an undefined method Ibexa\\Contracts\\Core\\Repository\\Values\\Content\\ContentStruct\:\:getLocationStructs\(\)\.$#'
-			identifier: method.notFound
-			count: 1
-			path: src/lib/Form/Processor/ContentFormProcessor.php
-
-		-
-			message: '#^Call to an undefined method Ibexa\\Contracts\\Core\\Repository\\Values\\Content\\ContentStruct\:\:isNew\(\)\.$#'
+			message: '#^Call to an undefined method Ibexa\\Contracts\\Core\\Repository\\Values\\Content\\ContentStruct\:\:getFieldsData\(\)\.$#'
 			identifier: method.notFound
 			count: 1
 			path: src/lib/Form/Processor/ContentFormProcessor.php
@@ -673,38 +337,14 @@ parameters:
 			path: src/lib/Form/Processor/ContentFormProcessor.php
 
 		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\Processor\\ContentFormProcessor\:\:saveDraft\(\) has parameter \$fieldIdentifiersToValidate with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/lib/Form/Processor/ContentFormProcessor.php
-
-		-
-			message: '#^PHPDoc tag @var has invalid value \(\$createContentDraft \\Ibexa\\ContentForms\\Data\\Content\\CreateContentDraftData\)\: Unexpected token "\$createContentDraft", expected type at offset 9 on line 1$#'
-			identifier: phpDoc.parseError
-			count: 1
-			path: src/lib/Form/Processor/ContentFormProcessor.php
-
-		-
-			message: '#^Parameter \#1 \$contentCreateStruct of method Ibexa\\Contracts\\Core\\Repository\\ContentService\:\:createContent\(\) expects Ibexa\\Contracts\\Core\\Repository\\Values\\Content\\ContentCreateStruct, Ibexa\\Contracts\\Core\\Repository\\Values\\Content\\ContentStruct given\.$#'
-			identifier: argument.type
-			count: 1
-			path: src/lib/Form/Processor/ContentFormProcessor.php
-
-		-
-			message: '#^Parameter \#1 \$locationId of method Ibexa\\Contracts\\Core\\Repository\\LocationService\:\:loadLocation\(\) expects int, int\|null given\.$#'
-			identifier: argument.type
-			count: 1
-			path: src/lib/Form/Processor/ContentFormProcessor.php
-
-		-
 			message: '#^Parameter \#1 \$value of function count expects array\|Countable, iterable\<int, Ibexa\\Contracts\\Core\\Repository\\Values\\Content\\VersionInfo\> given\.$#'
 			identifier: argument.type
 			count: 1
 			path: src/lib/Form/Processor/ContentFormProcessor.php
 
 		-
-			message: '#^Parameter \#2 \$contentUpdateStruct of method Ibexa\\Contracts\\Core\\Repository\\ContentService\:\:updateContent\(\) expects Ibexa\\Contracts\\Core\\Repository\\Values\\Content\\ContentUpdateStruct, Ibexa\\Contracts\\Core\\Repository\\Values\\Content\\ContentStruct given\.$#'
-			identifier: argument.type
+			message: '#^Variable \$contentDraft might not be defined\.$#'
+			identifier: variable.undefined
 			count: 1
 			path: src/lib/Form/Processor/ContentFormProcessor.php
 
@@ -775,18 +415,6 @@ parameters:
 			path: src/lib/Form/Type/Content/FieldCollectionType.php
 
 		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\Type\\Content\\FieldCollectionType\:\:dispatchContentUpdateEvent\(\) has parameter \$form with generic interface Symfony\\Component\\Form\\FormInterface but does not specify its types\: TData$#'
-			identifier: missingType.generics
-			count: 1
-			path: src/lib/Form/Type/Content/FieldCollectionType.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\Type\\Content\\FieldCollectionType\:\:dispatchFieldOptionsEvent\(\) has parameter \$form with generic interface Symfony\\Component\\Form\\FormInterface but does not specify its types\: TData$#'
-			identifier: missingType.generics
-			count: 1
-			path: src/lib/Form/Type/Content/FieldCollectionType.php
-
-		-
 			message: '#^Method Ibexa\\ContentForms\\Form\\Type\\Content\\FieldCollectionType\:\:dispatchUserCreateEvent\(\) has parameter \$form with generic interface Symfony\\Component\\Form\\FormInterface but does not specify its types\: TData$#'
 			identifier: missingType.generics
 			count: 1
@@ -795,12 +423,6 @@ parameters:
 		-
 			message: '#^Method Ibexa\\ContentForms\\Form\\Type\\Content\\FieldCollectionType\:\:dispatchUserUpdateEvent\(\) has parameter \$form with generic interface Symfony\\Component\\Form\\FormInterface but does not specify its types\: TData$#'
 			identifier: missingType.generics
-			count: 1
-			path: src/lib/Form/Type/Content/FieldCollectionType.php
-
-		-
-			message: '#^Variable \$contentUpdateFieldOptionsEvent in PHPDoc tag @var does not match assigned variable \$contentCreateFieldOptionsEvent\.$#'
-			identifier: varTag.differentVariable
 			count: 1
 			path: src/lib/Form/Type/Content/FieldCollectionType.php
 
@@ -1043,12 +665,6 @@ parameters:
 			identifier: missingType.generics
 			count: 1
 			path: src/lib/Form/Type/User/UserUpdateType.php
-
-		-
-			message: '#^Parameter \#1 \$validationErrors of method Ibexa\\ContentForms\\Validator\\Constraints\\FieldTypeValidator\:\:processValidationErrors\(\) expects array\<Ibexa\\Contracts\\Core\\FieldType\\ValidationError\>, iterable\<Ibexa\\Contracts\\Core\\FieldType\\ValidationError\> given\.$#'
-			identifier: argument.type
-			count: 1
-			path: src/lib/Validator/Constraints/FieldValueValidator.php
 
 		-
 			message: '#^Method Ibexa\\ContentForms\\Validator\\Constraints\\Password\:\:getTargets\(\) return type has no value type specified in iterable type array\.$#'

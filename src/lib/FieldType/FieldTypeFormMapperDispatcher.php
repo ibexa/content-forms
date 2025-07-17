@@ -14,15 +14,11 @@ use Ibexa\Core\FieldType\FieldTypeAliasResolverInterface;
 use Symfony\Component\Form\FormInterface;
 
 /**
- * FieldType mappers dispatcher.
- *
  * Adds the form elements matching the given Field Data Definition to a given Form.
  */
 final class FieldTypeFormMapperDispatcher implements FieldTypeFormMapperDispatcherInterface
 {
     /**
-     * FieldTypeFormMapperDispatcher constructor.
-     *
      * @param \Ibexa\Contracts\ContentForms\FieldType\FieldValueFormMapperInterface[] $mappers
      */
     public function __construct(
@@ -36,6 +32,9 @@ final class FieldTypeFormMapperDispatcher implements FieldTypeFormMapperDispatch
         $this->mappers[$fieldTypeIdentifier] = $mapper;
     }
 
+    /**
+     * @param \Symfony\Component\Form\FormInterface<mixed> $form
+     */
     public function map(FormInterface $form, FieldData $data): void
     {
         $fieldTypeIdentifier = $this->fieldTypeAliasResolver->resolveIdentifier(

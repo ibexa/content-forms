@@ -29,7 +29,7 @@ use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
 final class FieldCollectionType extends CollectionType
 {
     public function __construct(
-        private EventDispatcherInterface $eventDispatcher
+        private readonly EventDispatcherInterface $eventDispatcher
     ) {
     }
 
@@ -39,25 +39,28 @@ final class FieldCollectionType extends CollectionType
     ): void {
         parent::buildForm($builder, $options);
 
-        $builder->addEventListener(FormEvents::POST_SET_DATA, function (FormEvent $event) use ($options): void {
-            $form = $event->getForm();
-            $data = $event->getData();
+        $builder->addEventListener(
+            FormEvents::POST_SET_DATA,
+            function (FormEvent $event) use ($options): void {
+                $form = $event->getForm();
+                $data = $event->getData();
 
-            foreach ($form as $name => $child) {
-                $form->remove($name);
+                foreach ($form as $name => $child) {
+                    $form->remove($name);
+                }
+
+                // Then add all rows again in the correct order
+                foreach ($data as $name => $entryData) {
+                    $entryOptions = array_replace([
+                        'property_path' => '[' . $name . ']',
+                    ], $options['entry_options']);
+
+                    $entryOptions = $this->dispatchFieldOptionsEvent($entryData, $entryOptions, $form);
+
+                    $form->add($name, $options['entry_type'], $entryOptions);
+                }
             }
-
-            // Then add all rows again in the correct order
-            foreach ($data as $name => $entryData) {
-                $entryOptions = array_replace([
-                    'property_path' => '[' . $name . ']',
-                ], $options['entry_options']);
-
-                $entryOptions = $this->dispatchFieldOptionsEvent($entryData, $entryOptions, $form);
-
-                $form->add($name, $options['entry_type'], $entryOptions);
-            }
-        });
+        );
     }
 
     public function configureOptions(OptionsResolver $resolver): void
@@ -69,6 +72,7 @@ final class FieldCollectionType extends CollectionType
 
     /**
      * @param array<string, mixed> $entryOptions
+     * @param \Symfony\Component\Form\FormInterface<mixed> $form
      *
      * @return array<string, mixed>
      */
@@ -102,7 +106,7 @@ final class FieldCollectionType extends CollectionType
         array $entryOptions,
         FormInterface $form
     ): array {
-        /** @var \Ibexa\ContentForms\Event\ContentCreateFieldOptionsEvent $contentUpdateFieldOptionsEvent */
+        /** @var \Ibexa\ContentForms\Event\ContentCreateFieldOptionsEvent $contentCreateFieldOptionsEvent */
         $contentCreateFieldOptionsEvent = $this->eventDispatcher->dispatch(
             new ContentCreateFieldOptionsEvent(
                 $entryOptions['struct'],
@@ -167,6 +171,7 @@ final class FieldCollectionType extends CollectionType
 
     /**
      * @param array<string, mixed> $entryOptions
+     * @param \Symfony\Component\Form\FormInterface<mixed> $form
      *
      * @return array<string, mixed>
      */
@@ -181,12 +186,17 @@ final class FieldCollectionType extends CollectionType
 
         $struct = $entryOptions['struct'];
 
-        return match ($struct) {
-            $struct instanceof ContentCreateStruct => $this->dispatchContentCreateEvent($entryData, $entryOptions, $form),
-            $struct instanceof ContentUpdateStruct => $this->dispatchContentUpdateEvent($entryData, $entryOptions, $form),
-            $struct instanceof UserCreateStruct => $this->dispatchUserCreateEvent($entryData, $entryOptions, $form),
-            $struct instanceof UserUpdateStruct => $this->dispatchUserUpdateEvent($entryData, $entryOptions, $form),
-            default => $entryOptions,
-        };
+        switch ($struct) {
+            case $struct instanceof ContentCreateStruct:
+                return $this->dispatchContentCreateEvent($entryData, $entryOptions, $form);
+            case $struct instanceof ContentUpdateStruct:
+                return $this->dispatchContentUpdateEvent($entryData, $entryOptions, $form);
+            case $struct instanceof UserCreateStruct:
+                return $this->dispatchUserCreateEvent($entryData, $entryOptions, $form);
+            case $struct instanceof UserUpdateStruct:
+                return $this->dispatchUserUpdateEvent($entryData, $entryOptions, $form);
+            default:
+                return $entryOptions;
+        }
     }
 }

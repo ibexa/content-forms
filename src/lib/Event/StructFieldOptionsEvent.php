@@ -15,6 +15,7 @@ use Symfony\Contracts\EventDispatcher\Event;
 abstract class StructFieldOptionsEvent extends Event
 {
     /**
+     * @param \Symfony\Component\Form\FormInterface<mixed> $parentForm
      * @param array<string, mixed> $options
      */
     public function __construct(
@@ -24,6 +25,9 @@ abstract class StructFieldOptionsEvent extends Event
     ) {
     }
 
+    /**
+     * @return \Symfony\Component\Form\FormInterface<mixed>
+     */
     public function getParentForm(): FormInterface
     {
         return $this->parentForm;

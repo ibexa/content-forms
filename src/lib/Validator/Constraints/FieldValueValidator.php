@@ -38,7 +38,7 @@ final class FieldValueValidator extends FieldTypeValidator
         $fieldDefinition = $this->getFieldDefinition($value);
         $fieldType = $this->fieldTypeService->getFieldType($fieldTypeIdentifier);
 
-        if ($fieldDefinition->isRequired && ($fieldValue === null || $fieldType->isEmptyValue($fieldValue))) {
+        if ($fieldDefinition->isRequired() && ($fieldValue === null || $fieldType->isEmptyValue($fieldValue))) {
             $validationErrors = [
                 new ValidationError(
                     "Value for required field definition '%identifier%' with language '%languageCode%' is empty",
@@ -56,7 +56,9 @@ final class FieldValueValidator extends FieldTypeValidator
             $validationErrors = [];
         }
 
-        $this->processValidationErrors($validationErrors);
+        $this->processValidationErrors(
+            iterator_to_array($validationErrors)
+        );
     }
 
     /**

@@ -14,6 +14,9 @@ use Symfony\Component\Form\FormInterface;
 
 final class RelationListFormMapper extends AbstractRelationFormMapper
 {
+    /**
+     * @param \Symfony\Component\Form\FormInterface<mixed> $fieldForm
+     */
     public function mapFieldValueForm(FormInterface $fieldForm, FieldData $data): void
     {
         $fieldDefinition = $data->getFieldDefinition();
@@ -30,7 +33,9 @@ final class RelationListFormMapper extends AbstractRelationFormMapper
                             'required' => $fieldDefinition->isRequired(),
                             'label' => $fieldDefinition->getName(),
                             'default_location' => $this->loadDefaultLocationForSelection(
-                                $fieldSettings['selectionDefaultLocation'],
+                                isset($fieldSettings['selectionDefaultLocation'])
+                                    ? (int)$fieldSettings['selectionDefaultLocation']
+                                    : null,
                                 $fieldForm->getConfig()->getOption('location'),
                             ),
                             'root_default_location' => $fieldSettings['rootDefaultLocation'] ?? false,

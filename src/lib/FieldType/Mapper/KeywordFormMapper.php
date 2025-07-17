@@ -18,6 +18,9 @@ use Symfony\Component\Form\FormInterface;
  */
 final readonly class KeywordFormMapper implements FieldValueFormMapperInterface
 {
+    /**
+     * @param \Symfony\Component\Form\FormInterface<mixed> $fieldForm
+     */
     public function mapFieldValueForm(FormInterface $fieldForm, FieldData $data): void
     {
         $fieldDefinition = $data->getFieldDefinition();

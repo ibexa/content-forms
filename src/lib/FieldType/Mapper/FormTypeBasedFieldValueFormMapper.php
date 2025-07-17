@@ -48,6 +48,8 @@ final class FormTypeBasedFieldValueFormMapper implements FieldValueFormMapperInt
 
     /**
      * Maps Field form to current FieldType based on the configured form type (self::$formType).
+     *
+     * @param \Symfony\Component\Form\FormInterface<mixed> $fieldForm
      */
     public function mapFieldValueForm(FormInterface $fieldForm, FieldData $data): void
     {
