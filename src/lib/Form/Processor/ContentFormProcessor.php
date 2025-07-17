@@ -56,7 +56,6 @@ final readonly class ContentFormProcessor implements EventSubscriberInterface
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\InvalidArgumentException
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\UnauthorizedException
-     * @throws \Ibexa\Core\Base\Exceptions\InvalidArgumentException
      */
     public function processSaveDraft(FormActionEvent $event): void
     {
@@ -89,7 +88,6 @@ final readonly class ContentFormProcessor implements EventSubscriberInterface
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\InvalidArgumentException
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\UnauthorizedException
-     * @throws \Ibexa\Core\Base\Exceptions\InvalidArgumentException
      */
     public function processSaveDraftAndClose(FormActionEvent $event): void
     {
@@ -142,7 +140,6 @@ final readonly class ContentFormProcessor implements EventSubscriberInterface
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\ContentValidationException
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\InvalidArgumentException
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\UnauthorizedException
-     * @throws \Ibexa\Core\Base\Exceptions\InvalidArgumentException
      */
     public function processPublish(FormActionEvent $event): void
     {
@@ -184,7 +181,6 @@ final readonly class ContentFormProcessor implements EventSubscriberInterface
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\ContentValidationException
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\InvalidArgumentException
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\UnauthorizedException
-     * @throws \Ibexa\Core\Base\Exceptions\InvalidArgumentException
      */
     public function processPublishAndEdit(FormActionEvent $event): void
     {
@@ -300,12 +296,13 @@ final readonly class ContentFormProcessor implements EventSubscriberInterface
      * Saves content draft corresponding to $data.
      * Depending on the nature of $data (create or update data), the draft will either be created or simply updated.
      *
+     * @param string[]|null $fieldIdentifiersToValidate
+     *
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\BadStateException
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\ContentFieldValidationException
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\ContentValidationException
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\InvalidArgumentException
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\UnauthorizedException
-     * @throws \Ibexa\Core\Base\Exceptions\InvalidArgumentException
      */
     private function saveDraft(
         ContentStruct|ContentCreateData|ContentUpdateData $data,
@@ -313,23 +310,25 @@ final readonly class ContentFormProcessor implements EventSubscriberInterface
         ?array $fieldIdentifiersToValidate = null
     ): Content {
         $mainLanguageCode = $this->resolveMainLanguageCode($data);
-        foreach ($data->fieldsData as $fieldDefIdentifier => $fieldData) {
-            if ($mainLanguageCode != $languageCode && !$fieldData->getFieldDefinition()->isTranslatable()) {
+        foreach ($data->getFieldsData() as $fieldDefIdentifier => $fieldData) {
+            if ($mainLanguageCode !== $languageCode && !$fieldData->getFieldDefinition()->isTranslatable()) {
                 continue;
             }
 
-            $data->setField($fieldDefIdentifier, $fieldData->value, $languageCode);
+            $data->setField($fieldDefIdentifier, $fieldData->getValue(), $languageCode);
         }
 
-        if ($data->isNew()) {
+        if ($data instanceof ContentCreateData && $data->isNew()) {
             $contentDraft = $this->contentService->createContent(
                 $data,
                 $data->getLocationStructs(),
                 $fieldIdentifiersToValidate
             );
-        } else {
+        }
+
+        if ($data instanceof ContentUpdateData && !$data->isNew()) {
             $contentDraft = $this->contentService->updateContent(
-                $data->contentDraft->getVersionInfo(),
+                $data->getContentDraft()->getVersionInfo(),
                 $data,
                 $fieldIdentifiersToValidate
             );
@@ -339,7 +338,7 @@ final readonly class ContentFormProcessor implements EventSubscriberInterface
     }
 
     /**
-     * @throws \Ibexa\Core\Base\Exceptions\InvalidArgumentException
+     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\InvalidArgumentException
      */
     private function resolveMainLanguageCode(ContentStruct|ContentUpdateData $data): string
     {

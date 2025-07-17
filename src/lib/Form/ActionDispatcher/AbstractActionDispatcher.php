@@ -29,8 +29,12 @@ abstract class AbstractActionDispatcher implements ActionDispatcherInterface
         $this->eventDispatcher = $eventDispatcher;
     }
 
-    public function dispatchFormAction(FormInterface $form, ValueObject $data, $actionName = null, array $options = []): void
-    {
+    public function dispatchFormAction(
+        FormInterface $form,
+        ValueObject $data,
+        ?string $actionName = null,
+        array $options = []
+    ): void {
         $resolver = new OptionsResolver();
         $this->configureOptions($resolver);
         $options = $resolver->resolve($options);
@@ -41,7 +45,7 @@ abstract class AbstractActionDispatcher implements ActionDispatcherInterface
         $this->dispatchDefaultAction($defaultActionEventName, $event);
         // Action name is not set e.g. when pressing return in a text field.
         // We have already run the default action, no need to run it again in that case.
-        if (!empty($actionName)) {
+        if ($actionName !== null) {
             $this->dispatchAction("$defaultActionEventName.$actionName", $event);
         }
         $this->response = $event->getResponse();

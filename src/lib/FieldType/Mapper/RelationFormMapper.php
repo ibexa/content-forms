@@ -30,7 +30,9 @@ final class RelationFormMapper extends AbstractRelationFormMapper
                             'required' => $fieldDefinition->isRequired(),
                             'label' => $fieldDefinition->getName(),
                             'default_location' => $this->loadDefaultLocationForSelection(
-                                $fieldSettings['selectionRoot'],
+                                isset($fieldSettings['selectionRoot'])
+                                    ? (int)$fieldSettings['selectionRoot']
+                                    : null,
                                 $fieldForm->getConfig()->getOption('location'),
                             ),
                             'root_default_location' => $fieldSettings['rootDefaultLocation'] ?? false,

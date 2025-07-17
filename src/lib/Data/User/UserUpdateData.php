@@ -14,7 +14,7 @@ use Ibexa\Contracts\Core\Repository\Values\ContentType\ContentType;
 use Ibexa\Contracts\Core\Repository\Values\User\User;
 use Ibexa\Contracts\Core\Repository\Values\User\UserUpdateStruct;
 
-final class UserUpdateData extends UserUpdateStruct implements NewnessCheckable
+class UserUpdateData extends UserUpdateStruct implements NewnessCheckable
 {
     use ContentData;
 
