@@ -16,7 +16,7 @@ use Symfony\Component\Form\DataTransformerInterface;
  *
  * @implements \Symfony\Component\Form\DataTransformerInterface<\Ibexa\Core\FieldType\Selection\Value, int|null>
  */
-class SingleSelectionValueTransformer implements DataTransformerInterface
+final readonly class SingleSelectionValueTransformer implements DataTransformerInterface
 {
     public function transform(mixed $value): ?int
     {

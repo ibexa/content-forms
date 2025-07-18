@@ -26,14 +26,11 @@ use Symfony\Component\Form\FormInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
 
-class FieldCollectionType extends CollectionType
+final class FieldCollectionType extends CollectionType
 {
-    private EventDispatcherInterface $eventDispatcher;
-
     public function __construct(
-        EventDispatcherInterface $eventDispatcher
+        private EventDispatcherInterface $eventDispatcher
     ) {
-        $this->eventDispatcher = $eventDispatcher;
     }
 
     public function buildForm(
@@ -184,17 +181,12 @@ class FieldCollectionType extends CollectionType
 
         $struct = $entryOptions['struct'];
 
-        switch ($struct) {
-            case $struct instanceof ContentCreateStruct:
-                return $this->dispatchContentCreateEvent($entryData, $entryOptions, $form);
-            case $struct instanceof ContentUpdateStruct:
-                return $this->dispatchContentUpdateEvent($entryData, $entryOptions, $form);
-            case $struct instanceof UserCreateStruct:
-                return $this->dispatchUserCreateEvent($entryData, $entryOptions, $form);
-            case $struct instanceof UserUpdateStruct:
-                return $this->dispatchUserUpdateEvent($entryData, $entryOptions, $form);
-            default:
-                return $entryOptions;
-        }
+        return match ($struct) {
+            $struct instanceof ContentCreateStruct => $this->dispatchContentCreateEvent($entryData, $entryOptions, $form),
+            $struct instanceof ContentUpdateStruct => $this->dispatchContentUpdateEvent($entryData, $entryOptions, $form),
+            $struct instanceof UserCreateStruct => $this->dispatchUserCreateEvent($entryData, $entryOptions, $form),
+            $struct instanceof UserUpdateStruct => $this->dispatchUserUpdateEvent($entryData, $entryOptions, $form),
+            default => $entryOptions,
+        };
     }
 }

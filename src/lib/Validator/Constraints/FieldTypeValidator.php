@@ -14,11 +14,8 @@ use Symfony\Component\Validator\ConstraintValidator;
 
 abstract class FieldTypeValidator extends ConstraintValidator
 {
-    protected FieldTypeService $fieldTypeService;
-
-    public function __construct(FieldTypeService $fieldTypeService)
+    public function __construct(protected readonly FieldTypeService $fieldTypeService)
     {
-        $this->fieldTypeService = $fieldTypeService;
     }
 
     /**
@@ -45,12 +42,9 @@ abstract class FieldTypeValidator extends ConstraintValidator
         return '';
     }
 
-    /**
-     * @return \Ibexa\ContentForms\Validator\ValidationErrorsProcessor
-     */
     private function createValidationErrorProcessor(): ValidationErrorsProcessor
     {
-        return new ValidationErrorsProcessor($this->context, function ($index, $target) {
+        return new ValidationErrorsProcessor($this->context, function ($index, $target): string {
             return $this->generatePropertyPath($index, $target);
         });
     }

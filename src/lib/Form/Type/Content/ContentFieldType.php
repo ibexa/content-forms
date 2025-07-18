@@ -24,13 +24,11 @@ use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class ContentFieldType extends AbstractType
+final class ContentFieldType extends AbstractType
 {
-    private FieldTypeFormMapperDispatcherInterface $fieldTypeFormMapper;
-
-    public function __construct(FieldTypeFormMapperDispatcherInterface $fieldTypeFormMapper)
-    {
-        $this->fieldTypeFormMapper = $fieldTypeFormMapper;
+    public function __construct(
+        private FieldTypeFormMapperDispatcherInterface $fieldTypeFormMapper
+    ) {
     }
 
     public function getName(): string

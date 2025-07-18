@@ -18,7 +18,7 @@ use Symfony\Component\Form\DataTransformerInterface;
  *
  * @implements \Symfony\Component\Form\DataTransformerInterface<\Ibexa\Core\FieldType\Media\Value, TMediaData>
  */
-class MediaValueTransformer extends AbstractBinaryBaseTransformer implements DataTransformerInterface
+final class MediaValueTransformer extends AbstractBinaryBaseTransformer implements DataTransformerInterface
 {
     public function transform(mixed $value): array
     {

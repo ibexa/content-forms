@@ -50,7 +50,7 @@ final class ContentUpdateMapperTest extends TestCase
             'currentFields' => $currentFields,
         ]);
 
-        $fieldsData = $data->fieldsData;
+        $fieldsData = $data->getFieldsData();
 
         self::assertSame($newName, $fieldsData['name']->value);
         self::assertSame($expectedShortName, $fieldsData['short_name']->value);
@@ -83,10 +83,10 @@ final class ContentUpdateMapperTest extends TestCase
             'currentFields' => $currentFields,
         ]);
 
-        $fieldsData = $data->fieldsData;
+        $fieldsData = $data->getFieldsData();
 
-        self::assertSame($newName, $fieldsData['name']->value);
-        self::assertSame($newShortName, $fieldsData['short_name']->value);
+        self::assertSame($newName, $fieldsData['name']->getValue());
+        self::assertSame($newShortName, $fieldsData['short_name']->getValue());
     }
 
     private function getContent(string $name, string $shortName, string $languageCode): Content

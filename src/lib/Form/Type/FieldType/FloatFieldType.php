@@ -20,13 +20,10 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 /**
  * Form Type representing ibexa_float field type.
  */
-class FloatFieldType extends AbstractType
+final class FloatFieldType extends AbstractType
 {
-    protected FieldTypeService $fieldTypeService;
-
-    public function __construct(FieldTypeService $fieldTypeService)
+    public function __construct(private readonly FieldTypeService $fieldTypeService)
     {
-        $this->fieldTypeService = $fieldTypeService;
     }
 
     public function getName(): string
@@ -39,14 +36,18 @@ class FloatFieldType extends AbstractType
         return 'ezplatform_fieldtype_ibexa_float';
     }
 
-    public function getParent(): ?string
+    public function getParent(): string
     {
         return NumberType::class;
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $builder->addModelTransformer(new FieldValueTransformer($this->fieldTypeService->getFieldType('ibexa_float')));
+        $builder->addModelTransformer(
+            new FieldValueTransformer(
+                $this->fieldTypeService->getFieldType('ibexa_float')
+            )
+        );
         // Removes NumberToLocalizedStringTransformer which breaks "number" type HTML input
         $builder->resetViewTransformers();
     }

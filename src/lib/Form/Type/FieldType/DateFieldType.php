@@ -19,15 +19,17 @@ use Symfony\Component\HttpFoundation\RequestStack;
 /**
  * Form Type representing ibexa_date field type.
  */
-class DateFieldType extends AbstractType
+final class DateFieldType extends AbstractType
 {
-    private const EDIT_VIEWS = ['ibexa.content.draft.edit', 'ibexa.content.translate', 'ibexa.content.translate_with_location', 'ibexa.user.update'];
+    private const array EDIT_VIEWS = [
+        'ibexa.content.draft.edit',
+        'ibexa.content.translate',
+        'ibexa.content.translate_with_location',
+        'ibexa.user.update',
+    ];
 
-    private RequestStack $requestStack;
-
-    public function __construct(RequestStack $requestStack)
+    public function __construct(private readonly RequestStack $requestStack)
     {
-        $this->requestStack = $requestStack;
     }
 
     public function getName(): string
@@ -40,20 +42,23 @@ class DateFieldType extends AbstractType
         return 'ezplatform_fieldtype_ibexa_date';
     }
 
-    public function getParent(): ?string
+    public function getParent(): string
     {
         return IntegerType::class;
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $builder
-            ->addModelTransformer(new DateValueTransformer());
+        $builder->addModelTransformer(new DateValueTransformer());
     }
 
     public function buildView(FormView $view, FormInterface $form, array $options): void
     {
         $request = $this->requestStack->getCurrentRequest();
-        $view->vars['isEditView'] = \in_array($request->attributes->get('_route'), self::EDIT_VIEWS);
+
+        $view->vars['isEditView'] = in_array(
+            $request->attributes->get('_route'),
+            self::EDIT_VIEWS
+        );
     }
 }

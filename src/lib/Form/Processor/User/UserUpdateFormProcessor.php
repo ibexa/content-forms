@@ -20,22 +20,13 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 /**
  * Listens for and processes User update events.
  */
-class UserUpdateFormProcessor implements EventSubscriberInterface
+final readonly class UserUpdateFormProcessor implements EventSubscriberInterface
 {
-    private UserService $userService;
-
-    private ContentService $contentService;
-
-    private UrlGeneratorInterface $urlGenerator;
-
     public function __construct(
-        UserService $userService,
-        ContentService $contentService,
-        UrlGeneratorInterface $urlGenerator
+        private UserService $userService,
+        private ContentService $contentService,
+        private UrlGeneratorInterface $urlGenerator
     ) {
-        $this->userService = $userService;
-        $this->contentService = $contentService;
-        $this->urlGenerator = $urlGenerator;
     }
 
     public static function getSubscribedEvents(): array
@@ -62,24 +53,24 @@ class UserUpdateFormProcessor implements EventSubscriberInterface
         $redirectUrl = $form['redirectUrlAfterPublish']->getData() ?: $this->urlGenerator->generate(
             'ibexa.content.view',
             [
-                'contentId' => $user->id,
-                'locationId' => $user->contentInfo->mainLocationId,
+                'contentId' => $user->getUserId(),
+                'locationId' => $user->getContentInfo()->getMainLocationId(),
             ],
             UrlGeneratorInterface::ABSOLUTE_URL
         );
         $event->setResponse(new RedirectResponse($redirectUrl));
     }
 
-    /**
-     * @param \Ibexa\ContentForms\Data\User\UserUpdateData $data
-     * @param string $languageCode
-     */
     private function setContentFields(UserUpdateData $data, string $languageCode): void
     {
         $data->contentUpdateStruct = $this->contentService->newContentUpdateStruct();
 
-        foreach ($data->fieldsData as $fieldDefIdentifier => $fieldData) {
-            $data->contentUpdateStruct->setField($fieldDefIdentifier, $fieldData->value, $languageCode);
+        foreach ($data->getFieldsData() as $fieldDefIdentifier => $fieldData) {
+            $data->contentUpdateStruct->setField(
+                $fieldDefIdentifier,
+                $fieldData->getValue(),
+                $languageCode
+            );
         }
     }
 }

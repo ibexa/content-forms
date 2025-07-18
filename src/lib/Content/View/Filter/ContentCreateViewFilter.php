@@ -129,6 +129,7 @@ class ContentCreateViewFilter implements EventSubscriberInterface
             'contentCreateStruct' => $contentCreateData,
             'drafts_enabled' => true,
             'autosave_enabled' => $autosaveEnabled,
+            'struct' => $contentCreateData,
         ]);
     }
 }

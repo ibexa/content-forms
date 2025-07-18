@@ -21,7 +21,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  * Underlying data will be either \Ibexa\ContentForms\Data\Content\ContentCreateData or \Ibexa\ContentForms\Data\Content\ContentUpdateData
  * depending on the context (create or update).
  */
-class UserCreateType extends AbstractType
+final class UserCreateType extends AbstractType
 {
     public function getName(): string
     {
@@ -33,7 +33,7 @@ class UserCreateType extends AbstractType
         return 'ezplatform_content_forms_user_create';
     }
 
-    public function getParent(): ?string
+    public function getParent(): string
     {
         return BaseUserType::class;
     }
@@ -52,6 +52,6 @@ class UserCreateType extends AbstractType
                 'intent' => 'create',
                 'translation_domain' => 'ibexa_content_forms_user',
             ])
-            ->setAllowedTypes('struct', ['null', UserCreateStruct::class]);
+            ->setAllowedTypes('struct', UserCreateStruct::class);
     }
 }

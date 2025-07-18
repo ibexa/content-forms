@@ -10,15 +10,8 @@ namespace Ibexa\ContentForms\Data;
 
 use Ibexa\Core\Repository\Values\Content\ContentUpdateStruct;
 
-/**
- * @property \Ibexa\Contracts\ContentForms\Data\Content\FieldData[] $fieldsData
- * @property \Ibexa\Contracts\Core\Repository\Values\Content\Content $content
- */
-class ContentTranslationData extends ContentUpdateStruct implements NewnessCheckable
+final class ContentTranslationData extends ContentUpdateStruct implements NewnessCheckable
 {
-    /**
-     * {@inheritdoc}
-     */
     public function isNew(): bool
     {
         return false;

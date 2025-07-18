@@ -13,9 +13,9 @@ use Symfony\Component\Validator\Constraint;
 /**
  * @Annotation
  */
-class FieldValue extends Constraint
+final class FieldValue extends Constraint
 {
-    public $message = 'ez.field.value';
+    public string $message = 'ez.field.value';
 
     public function getTargets(): string
     {

@@ -19,7 +19,7 @@ use Symfony\Component\Form\DataTransformerInterface;
  *
  * @implements \Symfony\Component\Form\DataTransformerInterface<\Ibexa\Core\FieldType\Author\Value, list<TAuthorData>>
  */
-class AuthorValueTransformer implements DataTransformerInterface
+final readonly class AuthorValueTransformer implements DataTransformerInterface
 {
     /**
      * @phpstan-return list<TAuthorData>|array{}

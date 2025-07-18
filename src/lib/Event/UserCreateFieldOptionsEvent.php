@@ -14,16 +14,12 @@ use Symfony\Component\Form\FormInterface;
 
 final class UserCreateFieldOptionsEvent extends StructFieldOptionsEvent
 {
-    private UserCreateStruct $userCreateStruct;
-
     public function __construct(
-        UserCreateStruct $userCreateStruct,
+        private readonly UserCreateStruct $userCreateStruct,
         FormInterface $parentForm,
         FieldData $fieldData,
         array $options
     ) {
-        $this->userCreateStruct = $userCreateStruct;
-
         parent::__construct($parentForm, $fieldData, $options);
     }
 

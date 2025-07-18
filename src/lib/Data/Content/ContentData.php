@@ -12,10 +12,16 @@ use Ibexa\Contracts\ContentForms\Data\Content\FieldData;
 
 trait ContentData
 {
+    /** @var array<string, \Ibexa\Contracts\ContentForms\Data\Content\FieldData> */
+    protected array $fieldsData;
+
     /**
-     * @var \Ibexa\Contracts\ContentForms\Data\Content\FieldData[]
+     * @return array<string, \Ibexa\Contracts\ContentForms\Data\Content\FieldData>
      */
-    protected $fieldsData;
+    public function getFieldsData(): array
+    {
+        return $this->fieldsData;
+    }
 
     public function addFieldData(FieldData $fieldData): void
     {

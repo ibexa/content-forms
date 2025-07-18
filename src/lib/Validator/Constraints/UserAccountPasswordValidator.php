@@ -12,7 +12,7 @@ use Ibexa\ContentForms\Data\User\UserAccountFieldData;
 use Ibexa\ContentForms\Validator\ValidationErrorsProcessor;
 use Symfony\Component\Validator\Constraint;
 
-class UserAccountPasswordValidator extends PasswordValidator
+final class UserAccountPasswordValidator extends PasswordValidator
 {
     public function validate(mixed $value, Constraint $constraint): void
     {
@@ -23,9 +23,6 @@ class UserAccountPasswordValidator extends PasswordValidator
         parent::validate($value->password, $constraint);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     protected function createValidationErrorsProcessor(): ValidationErrorsProcessor
     {
         return new ValidationErrorsProcessor($this->context, static function (): string {

@@ -10,13 +10,13 @@ namespace Ibexa\ContentForms\Data\Content;
 
 use Ibexa\Contracts\Core\Repository\Values\ValueObject;
 
-class CreateContentDraftData extends ValueObject
+final class CreateContentDraftData extends ValueObject
 {
-    public $contentId;
+    public int $contentId;
 
-    public $fromVersionNo;
+    public int $fromVersionNo;
 
-    public $fromLanguage;
+    public string $fromLanguage;
 
-    public $toLanguage;
+    public string $toLanguage;
 }

@@ -20,28 +20,18 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 /**
  * Combined entry type for ibexa_author.
  */
-class AuthorEntryType extends AbstractType
+final class AuthorEntryType extends AbstractType
 {
-    /**
-     * @return string
-     */
     public function getName(): string
     {
         return $this->getBlockPrefix();
     }
 
-    /**
-     * @return string
-     */
-    public function getBlockPrefix(): string
-    {
+   public function getBlockPrefix(): string
+   {
         return 'ezplatform_fieldtype_ibexa_author_authors_entry';
     }
 
-    /**
-     * @param \Symfony\Component\Form\FormBuilderInterface $builder
-     * @param array $options
-     */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder

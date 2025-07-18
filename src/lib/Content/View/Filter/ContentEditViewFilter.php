@@ -98,7 +98,8 @@ class ContentEditViewFilter implements EventSubscriberInterface
                     $contentDraft->contentInfo->mainLocationId
                 )
             );
-        } catch (NotFoundException $e) {
+        } catch (NotFoundException) {
+            //do nothing
         }
 
         $contentUpdate = $this->resolveContentEditData(
@@ -157,9 +158,10 @@ class ContentEditViewFilter implements EventSubscriberInterface
             [
                 'location' => $location,
                 'languageCode' => $languageCode,
-                'mainLanguageCode' => $content->contentInfo->mainLanguageCode,
+                'mainLanguageCode' => $content->getContentInfo()->getMainLanguageCode(),
                 'content' => $content,
                 'contentUpdateStruct' => $contentUpdate,
+                'struct' => $contentUpdate,
                 'drafts_enabled' => true,
             ]
         );

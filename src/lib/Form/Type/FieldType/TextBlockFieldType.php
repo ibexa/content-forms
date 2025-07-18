@@ -20,13 +20,10 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 /**
  * Form Type representing ibexa_text field type.
  */
-class TextBlockFieldType extends AbstractType
+final class TextBlockFieldType extends AbstractType
 {
-    protected FieldTypeService $fieldTypeService;
-
-    public function __construct(FieldTypeService $fieldTypeService)
+    public function __construct(private readonly FieldTypeService $fieldTypeService)
     {
-        $this->fieldTypeService = $fieldTypeService;
     }
 
     public function getName(): string
@@ -39,7 +36,7 @@ class TextBlockFieldType extends AbstractType
         return 'ezplatform_fieldtype_ibexa_text';
     }
 
-    public function getParent(): ?string
+    public function getParent(): string
     {
         return TextareaType::class;
     }
@@ -53,7 +50,9 @@ class TextBlockFieldType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $builder->addModelTransformer(new FieldValueTransformer($this->fieldTypeService->getFieldType('ibexa_text')));
+        $builder->addModelTransformer(new FieldValueTransformer(
+            $this->fieldTypeService->getFieldType('ibexa_text')
+        ));
     }
 
     public function configureOptions(OptionsResolver $resolver): void

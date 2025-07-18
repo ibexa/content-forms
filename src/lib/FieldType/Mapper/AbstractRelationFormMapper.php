@@ -17,34 +17,18 @@ use Ibexa\Contracts\Core\Repository\Values\Content\Location;
 
 abstract class AbstractRelationFormMapper implements FieldValueFormMapperInterface
 {
-    protected const SELECTION_SELF = -1;
+    protected const int SELECTION_SELF = -1;
 
-    /**
-     * @var \Ibexa\Contracts\Core\Repository\ContentTypeService Used to fetch list of available content types
-     */
-    protected ContentTypeService $contentTypeService;
-
-    /**
-     * @var \Ibexa\Contracts\Core\Repository\LocationService Used to fetch selection root
-     */
-    protected LocationService $locationService;
-
-    /**
-     * @param \Ibexa\Contracts\Core\Repository\ContentTypeService $contentTypeService
-     * @param \Ibexa\Contracts\Core\Repository\LocationService $locationService
-     */
-    public function __construct(ContentTypeService $contentTypeService, LocationService $locationService)
-    {
-        $this->contentTypeService = $contentTypeService;
-        $this->locationService = $locationService;
+    public function __construct(
+        protected readonly ContentTypeService $contentTypeService,
+        protected readonly LocationService $locationService
+    ) {
     }
 
     /**
-     * Fill a hash with all content types and their ids.
-     *
-     * @return array
+     * @return array<string, string>
      */
-    protected function getContentTypesHash()
+    protected function getContentTypesHash(): array
     {
         $contentTypeHash = [];
         foreach ($this->contentTypeService->loadContentTypeGroups() as $contentTypeGroup) {
@@ -59,24 +43,23 @@ abstract class AbstractRelationFormMapper implements FieldValueFormMapperInterfa
 
     /**
      * Loads location which is starting point for selecting destination content object.
-     *
-     * @param null $defaultLocationId
-     *
-     * @return \Ibexa\Contracts\Core\Repository\Values\Content\Location|null
      */
-    protected function loadDefaultLocationForSelection($defaultLocationId = null, ?Location $currentLocation = null): ?Location
-    {
-        if (!empty($defaultLocationId)) {
-            try {
-                if ($defaultLocationId === self::SELECTION_SELF) {
-                    return $currentLocation;
-                }
-
-                return $this->locationService->loadLocation((int)$defaultLocationId);
-            } catch (NotFoundException | UnauthorizedException $e) {
-            }
+    protected function loadDefaultLocationForSelection(
+        ?int $defaultLocationId = null,
+        ?Location $currentLocation = null
+    ): ?Location {
+        if (empty($defaultLocationId)) {
+            return null;
         }
 
-        return null;
+        try {
+            if ($defaultLocationId === self::SELECTION_SELF) {
+                return $currentLocation;
+            }
+
+            return $this->locationService->loadLocation($defaultLocationId);
+        } catch (NotFoundException | UnauthorizedException) {
+            return null;
+        }
     }
 }

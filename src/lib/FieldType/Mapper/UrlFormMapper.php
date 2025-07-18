@@ -16,22 +16,18 @@ use Symfony\Component\Form\FormInterface;
 /**
  * FormMapper for ibexa_url FieldType.
  */
-class UrlFormMapper implements FieldValueFormMapperInterface
+final readonly class UrlFormMapper implements FieldValueFormMapperInterface
 {
-    /**
-     * @param \Symfony\Component\Form\FormInterface $fieldForm
-     * @param \Ibexa\Contracts\ContentForms\Data\Content\FieldData $data
-     */
     public function mapFieldValueForm(FormInterface $fieldForm, FieldData $data): void
     {
-        $fieldDefinition = $data->fieldDefinition;
+        $fieldDefinition = $data->getFieldDefinition();
         $formConfig = $fieldForm->getConfig();
 
         $fieldForm
             ->add(
                 $formConfig->getFormFactory()->createBuilder()
                     ->create('value', UrlFieldType::class, [
-                        'required' => $fieldDefinition->isRequired,
+                        'required' => $fieldDefinition->isRequired(),
                         'label' => $fieldDefinition->getName(),
                     ])
                     ->setAutoInitialize(false)

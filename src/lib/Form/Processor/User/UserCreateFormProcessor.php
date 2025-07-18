@@ -19,22 +19,12 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 /**
  * Listens for and processes User create events.
  */
-class UserCreateFormProcessor implements EventSubscriberInterface
+final readonly class UserCreateFormProcessor implements EventSubscriberInterface
 {
-    private UserService $userService;
-
-    private UrlGeneratorInterface $urlGenerator;
-
-    /**
-     * @param \Ibexa\Contracts\Core\Repository\UserService $userService
-     * @param \Symfony\Component\Routing\Generator\UrlGeneratorInterface $urlGenerator
-     */
     public function __construct(
-        UserService $userService,
-        UrlGeneratorInterface $urlGenerator
+        private UserService $userService,
+        private UrlGeneratorInterface $urlGenerator
     ) {
-        $this->userService = $userService;
-        $this->urlGenerator = $urlGenerator;
     }
 
     public static function getSubscribedEvents(): array
@@ -46,8 +36,7 @@ class UserCreateFormProcessor implements EventSubscriberInterface
 
     public function processCreate(FormActionEvent $event): void
     {
-        $data = $data = $event->getData();
-
+        $data = $event->getData();
         if (!$data instanceof UserCreateData) {
             return;
         }
@@ -61,22 +50,18 @@ class UserCreateFormProcessor implements EventSubscriberInterface
         $redirectUrl = $form['redirectUrlAfterPublish']->getData() ?: $this->urlGenerator->generate(
             'ibexa.content.view',
             [
-                'contentId' => $user->id,
-                'locationId' => $user->contentInfo->mainLocationId,
+                'contentId' => $user->getUserId(),
+                'locationId' => $user->getContentInfo()->getMainLocationId(),
             ],
             UrlGeneratorInterface::ABSOLUTE_URL
         );
         $event->setResponse(new RedirectResponse($redirectUrl));
     }
 
-    /**
-     * @param \Ibexa\ContentForms\Data\User\UserCreateData $data
-     * @param string $languageCode
-     */
     private function setContentFields(UserCreateData $data, string $languageCode): void
     {
-        foreach ($data->fieldsData as $fieldDefIdentifier => $fieldData) {
-            $data->setField($fieldDefIdentifier, $fieldData->value, $languageCode);
+        foreach ($data->getFieldsData() as $fieldDefIdentifier => $fieldData) {
+            $data->setField($fieldDefIdentifier, $fieldData->getValue(), $languageCode);
         }
     }
 }

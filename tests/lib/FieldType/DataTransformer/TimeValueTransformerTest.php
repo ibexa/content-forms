@@ -14,7 +14,7 @@ use Ibexa\Core\FieldType\Time\Value;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Form\Exception\TransformationFailedException;
 
-class TimeValueTransformerTest extends TestCase
+final class TimeValueTransformerTest extends TestCase
 {
     public function testTransform(): void
     {

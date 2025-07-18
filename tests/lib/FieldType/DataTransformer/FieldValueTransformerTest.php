@@ -14,7 +14,7 @@ use Ibexa\Contracts\Core\Repository\FieldType;
 use PHPUnit\Framework\TestCase;
 use stdClass;
 
-class FieldValueTransformerTest extends TestCase
+final class FieldValueTransformerTest extends TestCase
 {
     public function testTransformNull(): void
     {

@@ -14,13 +14,16 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\DependencyInjection\Reference;
 
-class FieldTypeFormMapperDispatcherPassTest extends AbstractCompilerPassTestCase
+final class FieldTypeFormMapperDispatcherPassTest extends AbstractCompilerPassTestCase
 {
     protected function setUp(): void
     {
         parent::setUp();
 
-        $this->setDefinition(FieldTypeFormMapperDispatcherPass::FIELD_TYPE_FORM_MAPPER_DISPATCHER, new Definition());
+        $this->setDefinition(
+            FieldTypeFormMapperDispatcherPass::FIELD_TYPE_FORM_MAPPER_DISPATCHER,
+            new Definition()
+        );
     }
 
     protected function registerCompilerPass(ContainerBuilder $container): void
@@ -48,6 +51,9 @@ class FieldTypeFormMapperDispatcherPassTest extends AbstractCompilerPassTestCase
         );
     }
 
+    /**
+     * @return array<string[]>
+     */
     public function tagsProvider(): array
     {
         return [

@@ -16,7 +16,7 @@ use Symfony\Component\Form\DataTransformerInterface;
  *
  * @implements \Symfony\Component\Form\DataTransformerInterface<\Ibexa\Core\FieldType\Selection\Value, int[]|null>
  */
-class MultiSelectionValueTransformer implements DataTransformerInterface
+final readonly class MultiSelectionValueTransformer implements DataTransformerInterface
 {
     public function transform(mixed $value): ?array
     {

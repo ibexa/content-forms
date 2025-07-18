@@ -20,59 +20,31 @@ use Ibexa\ContentForms\Form\Type\Content\ContentDraftCreateType;
 use Ibexa\Contracts\Core\Repository\ContentService;
 use Ibexa\Contracts\Core\Repository\ContentTypeService;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
-class ContentEditController extends Controller
+final class ContentEditController extends Controller
 {
-    private ContentTypeService $contentTypeService;
-
-    private ContentService $contentService;
-
-    private ActionDispatcherInterface $contentActionDispatcher;
-
     public function __construct(
-        ContentTypeService $contentTypeService,
-        ContentService $contentService,
-        ActionDispatcherInterface $contentActionDispatcher
+        private readonly ContentTypeService $contentTypeService,
+        private readonly ContentService $contentService,
+        private readonly ActionDispatcherInterface $contentActionDispatcher
     ) {
-        $this->contentTypeService = $contentTypeService;
-        $this->contentService = $contentService;
-        $this->contentActionDispatcher = $contentActionDispatcher;
     }
 
     /**
      * Displays and processes a content creation form. Showing the form does not create a draft in the repository.
-     *
-     * @param \Ibexa\ContentForms\Content\View\ContentCreateView $view
-     *
-     * @return \Ibexa\ContentForms\Content\View\ContentCreateView
      */
     public function createWithoutDraftAction(ContentCreateView $view): ContentCreateView
     {
         return $view;
     }
 
-    /**
-     * @param \Ibexa\ContentForms\Content\View\ContentCreateSuccessView $view
-     *
-     * @return \Ibexa\ContentForms\Content\View\ContentCreateSuccessView
-     *
-     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\BadStateException
-     */
     public function createWithoutDraftSuccessAction(ContentCreateSuccessView $view): ContentCreateSuccessView
     {
         return $view;
     }
 
     /**
-     * Displays a draft creation form that creates a content draft from an existing content.
-     *
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     * @param int|null $contentId
-     * @param int $fromVersionNo
-     * @param string $fromLanguage
-     *
-     * @return \Ibexa\ContentForms\Content\View\ContentCreateDraftView|\Symfony\Component\HttpFoundation\Response
-     *
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\UnauthorizedException
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException
      * @throws \Ibexa\Core\Base\Exceptions\InvalidArgumentType
@@ -82,7 +54,7 @@ class ContentEditController extends Controller
         ?int $contentId = null,
         ?int $fromVersionNo = null,
         ?string $fromLanguage = null
-    ) {
+    ): ContentCreateDraftView|Response {
         $createContentDraft = new CreateContentDraftData();
         $contentInfo = null;
         $contentType = null;
@@ -93,7 +65,7 @@ class ContentEditController extends Controller
             $contentInfo = $this->contentService->loadContentInfo($contentId);
             $contentType = $this->contentTypeService->loadContentType($contentInfo->contentTypeId);
             $createContentDraft->fromVersionNo = $fromVersionNo ?: $contentInfo->currentVersionNo;
-            $createContentDraft->fromLanguage = $fromLanguage ?: $contentInfo->mainLanguageCode;
+            $createContentDraft->fromLanguage = $fromLanguage ?: $contentInfo->getMainLanguageCode();
         }
 
         $form = $this->createForm(
@@ -120,25 +92,11 @@ class ContentEditController extends Controller
         ]);
     }
 
-    /**
-     * @param \Ibexa\ContentForms\Content\View\ContentEditView $view
-     *
-     * @return \Ibexa\ContentForms\Content\View\ContentEditView
-     *
-     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\BadStateException
-     */
     public function editVersionDraftAction(ContentEditView $view): ContentEditView
     {
         return $view;
     }
 
-    /**
-     * @param \Ibexa\ContentForms\Content\View\ContentEditSuccessView $view
-     *
-     * @return \Ibexa\ContentForms\Content\View\ContentEditSuccessView
-     *
-     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\BadStateException
-     */
     public function editVersionDraftSuccessAction(ContentEditSuccessView $view): ContentEditSuccessView
     {
         return $view;

@@ -27,64 +27,39 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 /**
  * Form Type representing ibexa_author field type.
  */
-class AuthorFieldType extends AbstractType
+final class AuthorFieldType extends AbstractType
 {
-    private Repository $repository;
+    private int $defaultAuthor;
 
-    /** @var int */
-    private $defaultAuthor;
-
-    /**
-     * @param \Ibexa\Contracts\Core\Repository\Repository $repository
-     */
-    public function __construct(Repository $repository)
+    public function __construct(private readonly Repository $repository)
     {
-        $this->repository = $repository;
     }
 
-    /**
-     * @return string
-     */
     public function getName(): string
     {
         return $this->getBlockPrefix();
     }
 
-    /**
-     * @return string
-     */
     public function getBlockPrefix(): string
     {
         return 'ezplatform_fieldtype_ibexa_author';
     }
 
-    /**
-     * @param \Symfony\Component\Form\FormBuilderInterface $builder
-     * @param array
-     */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $this->defaultAuthor = $options['default_author'];
 
         $builder
-            ->add('authors', AuthorCollectionType::class, [])
+            ->add('authors', AuthorCollectionType::class)
             ->addViewTransformer($this->getViewTransformer())
             ->addEventListener(FormEvents::POST_SET_DATA, [$this, 'filterOutEmptyAuthors']);
     }
 
-    /**
-     * @param \Symfony\Component\Form\FormView $view
-     * @param \Symfony\Component\Form\FormInterface $form
-     * @param array $options
-     */
     public function buildView(FormView $view, FormInterface $form, array $options): void
     {
         $view->vars['attr']['default-author'] = $options['default_author'];
     }
 
-    /**
-     * @param \Symfony\Component\OptionsResolver\OptionsResolver $resolver
-     */
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
@@ -95,8 +70,6 @@ class AuthorFieldType extends AbstractType
 
     /**
      * Returns a view transformer which handles empty row needed to display add/remove buttons.
-     *
-     * @return \Symfony\Component\Form\DataTransformerInterface
      */
     public function getViewTransformer(): DataTransformerInterface
     {
@@ -115,9 +88,6 @@ class AuthorFieldType extends AbstractType
         });
     }
 
-    /**
-     * @param \Symfony\Component\Form\FormEvent $event
-     */
     public function filterOutEmptyAuthors(FormEvent $event): void
     {
         $value = $event->getData();
@@ -132,11 +102,6 @@ class AuthorFieldType extends AbstractType
         );
     }
 
-    /**
-     * Returns currently logged user data, or empty Author object if none was found.
-     *
-     * @return \Ibexa\Core\FieldType\Author\Author
-     */
     private function fetchLoggedAuthor(): Author
     {
         $author = new Author();
@@ -149,7 +114,7 @@ class AuthorFieldType extends AbstractType
 
             $author->name = $loggedUserData->getName();
             $author->email = $loggedUserData->email;
-        } catch (NotFoundException $e) {
+        } catch (NotFoundException) {
             //Do nothing
         }
 

@@ -17,13 +17,10 @@ use Symfony\Component\Form\FormBuilderInterface;
 /**
  * Form Type representing ibexa_isbn field type.
  */
-class ISBNFieldType extends AbstractType
+final class ISBNFieldType extends AbstractType
 {
-    protected FieldTypeService $fieldTypeService;
-
-    public function __construct(FieldTypeService $fieldTypeService)
+    public function __construct(private readonly FieldTypeService $fieldTypeService)
     {
-        $this->fieldTypeService = $fieldTypeService;
     }
 
     public function getName(): string
@@ -36,13 +33,15 @@ class ISBNFieldType extends AbstractType
         return 'ezplatform_fieldtype_ibexa_isbn';
     }
 
-    public function getParent(): ?string
+    public function getParent(): string
     {
         return TextType::class;
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $builder->addModelTransformer(new FieldValueTransformer($this->fieldTypeService->getFieldType('ibexa_isbn')));
+        $builder->addModelTransformer(
+            new FieldValueTransformer($this->fieldTypeService->getFieldType('ibexa_isbn'))
+        );
     }
 }

@@ -27,59 +27,24 @@ use Ibexa\Contracts\Core\Repository\UserService;
 use Ibexa\Core\Base\Exceptions\UnauthorizedException as CoreUnauthorizedException;
 use Ibexa\Core\MVC\Symfony\Locale\UserLanguagePreferenceProviderInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
-class UserController extends Controller
+final class UserController extends Controller
 {
-    private ContentTypeService $contentTypeService;
-
-    private UserService $userService;
-
-    private LocationService $locationService;
-
-    private LanguageService $languageService;
-
-    private ActionDispatcherInterface $userActionDispatcher;
-
-    private PermissionResolver $permissionResolver;
-
-    private UserLanguagePreferenceProviderInterface $userLanguagePreferenceProvider;
-
-    private GroupedContentFormFieldsProviderInterface $groupedContentFormFieldsProvider;
-
-    private ContentService $contentService;
-
     public function __construct(
-        ContentTypeService $contentTypeService,
-        UserService $userService,
-        LocationService $locationService,
-        LanguageService $languageService,
-        ActionDispatcherInterface $userActionDispatcher,
-        PermissionResolver $permissionResolver,
-        UserLanguagePreferenceProviderInterface $userLanguagePreferenceProvider,
-        GroupedContentFormFieldsProviderInterface $groupedContentFormFieldsProvider,
-        ContentService $contentService
+        private readonly ContentTypeService $contentTypeService,
+        private readonly UserService $userService,
+        private readonly LocationService $locationService,
+        private readonly LanguageService $languageService,
+        private readonly ActionDispatcherInterface $userActionDispatcher,
+        private readonly PermissionResolver $permissionResolver,
+        private readonly UserLanguagePreferenceProviderInterface $userLanguagePreferenceProvider,
+        private readonly GroupedContentFormFieldsProviderInterface $groupedContentFormFieldsProvider,
+        private readonly ContentService $contentService
     ) {
-        $this->contentTypeService = $contentTypeService;
-        $this->userService = $userService;
-        $this->locationService = $locationService;
-        $this->languageService = $languageService;
-        $this->userActionDispatcher = $userActionDispatcher;
-        $this->permissionResolver = $permissionResolver;
-        $this->userLanguagePreferenceProvider = $userLanguagePreferenceProvider;
-        $this->groupedContentFormFieldsProvider = $groupedContentFormFieldsProvider;
-        $this->contentService = $contentService;
     }
 
     /**
-     * Displays and processes a user creation form.
-     *
-     * @param string $contentTypeIdentifier ContentType id to create
-     * @param string $language Language code to create the content in (eng-GB, ger-DE, ...))
-     * @param int $parentLocationId Location the content should be a child of
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     *
-     * @return \Symfony\Component\HttpFoundation\Response|\Ibexa\ContentForms\User\View\UserCreateView
-     *
      * @throws \Ibexa\Core\Base\Exceptions\InvalidArgumentType
      * @throws \Ibexa\Core\Base\Exceptions\InvalidArgumentException
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\UnauthorizedException
@@ -96,21 +61,22 @@ class UserController extends Controller
         string $language,
         int $parentLocationId,
         Request $request
-    ) {
+    ): Response|UserCreateView {
         $contentType = $this->contentTypeService->loadContentTypeByIdentifier(
             $contentTypeIdentifier,
             $this->userLanguagePreferenceProvider->getPreferredLanguages()
         );
         $location = $this->locationService->loadLocation($parentLocationId);
         $language = $this->languageService->loadLanguage($language);
-        $parentGroup = $this->userService->loadUserGroup($location->contentId);
+        $languageCode = $language->getLanguageCode();
+        $parentGroup = $this->userService->loadUserGroup($location->getContentId());
 
         $data = (new UserCreateMapper())->mapToFormData($contentType, [$parentGroup], [
-            'mainLanguageCode' => $language->languageCode,
+            'mainLanguageCode' => $languageCode,
         ]);
         $form = $this->createForm(UserCreateType::class, $data, [
-            'languageCode' => $language->languageCode,
-            'mainLanguageCode' => $language->languageCode,
+            'languageCode' => $languageCode,
+            'mainLanguageCode' => $languageCode,
             'struct' => $data,
         ]);
         $form->handleRequest($request);
@@ -138,15 +104,6 @@ class UserController extends Controller
     }
 
     /**
-     * Displays a user update form that updates user data and related content item.
-     *
-     * @param int $contentId ContentType id to create
-     * @param int $versionNo Version number the version should be created from. Defaults to the currently published one.
-     * @param string $language Language code to create the version in (eng-GB, ger-DE, ...))
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     *
-     * @return \Symfony\Component\HttpFoundation\Response|\Ibexa\ContentForms\User\View\UserUpdateView
-     *
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\BadStateException
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\InvalidArgumentException
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException
@@ -159,13 +116,13 @@ class UserController extends Controller
         int $versionNo,
         string $language,
         Request $request
-    ) {
+    ): Response|UserUpdateView {
         $user = $this->userService->loadUser($contentId);
         if (!$this->permissionResolver->canUser('content', 'edit', $user)) {
             throw new CoreUnauthorizedException('content', 'edit', ['userId' => $contentId]);
         }
         $contentType = $this->contentTypeService->loadContentType(
-            $user->contentInfo->contentTypeId,
+            $user->getContentInfo()->getContentType()->id,
             $this->userLanguagePreferenceProvider->getPreferredLanguages()
         );
 
@@ -176,12 +133,12 @@ class UserController extends Controller
         try {
             // assume main location if no location was provided
             $location = $this->locationService->loadLocation(
-                (int)$user->versionInfo->contentInfo->mainLocationId
+                (int)$user->getVersionInfo()->getContentInfo()->getMainLocationId()
             );
         } catch (UnauthorizedException $e) {
             // if no access to the main location assume content has multiple locations and first of them can be used
             $availableLocations = $this->locationService->loadLocations(
-                $user->versionInfo->contentInfo
+                $user->getVersionInfo()->getContentInfo()
             );
             $location = array_shift($availableLocations);
         }
@@ -193,7 +150,7 @@ class UserController extends Controller
                 'location' => $location,
                 'content' => $this->contentService->loadContent($contentId),
                 'languageCode' => $language,
-                'mainLanguageCode' => $user->contentInfo->mainLanguageCode,
+                'mainLanguageCode' => $user->getContentInfo()->getMainLanguageCode(),
                 'struct' => $userUpdate,
             ],
         );
@@ -209,7 +166,8 @@ class UserController extends Controller
         $parentLocation = null;
         try {
             $parentLocation = $this->locationService->loadLocation($location->parentLocationId);
-        } catch (UnauthorizedException $e) {
+        } catch (UnauthorizedException) {
+            //do nothing
         }
 
         return new UserUpdateView(

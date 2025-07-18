@@ -12,29 +12,22 @@ use Ibexa\ContentForms\Form\Transformer\RelationTransformer;
 use Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException;
 use Ibexa\Contracts\Core\Repository\Exceptions\UnauthorizedException;
 use Ibexa\Contracts\Core\Repository\LocationService;
+use JMS\TranslationBundle\Annotation\Desc;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Contracts\Translation\TranslatorInterface;
 
 final class RelationType extends AbstractType
 {
-    public const LOCATION_DEFAULT = 0;
-    public const LOCATION_BROWSE = 1;
-    public const LOCATION_SELF = -1;
-
-    private LocationService $locationService;
-
-    private TranslatorInterface $translator;
+    public const int LOCATION_DEFAULT = 0;
+    public const int LOCATION_BROWSE = 1;
+    public const int LOCATION_SELF = -1;
 
     public function __construct(
-        LocationService $locationService,
-        TranslatorInterface $translator
+        private readonly LocationService $locationService
     ) {
-        $this->locationService = $locationService;
-        $this->translator = $translator;
     }
 
     public function getBlockPrefix(): string
@@ -78,7 +71,8 @@ final class RelationType extends AbstractType
                 $view->vars['destination_location'] = $this->locationService->loadLocation(
                     (int)$value
                 );
-            } catch (NotFoundException | UnauthorizedException $e) {
+            } catch (NotFoundException | UnauthorizedException) {
+                // do nothing
             }
         }
     }

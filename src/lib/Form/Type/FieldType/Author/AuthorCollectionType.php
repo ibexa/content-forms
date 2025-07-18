@@ -15,7 +15,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 /**
  * Combined Type for ibexa_author.
  */
-class AuthorCollectionType extends AbstractType
+final class AuthorCollectionType extends AbstractType
 {
     public function getName(): string
     {
@@ -38,7 +38,7 @@ class AuthorCollectionType extends AbstractType
         ]);
     }
 
-    public function getParent(): ?string
+    public function getParent(): string
     {
         return CollectionType::class;
     }

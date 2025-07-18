@@ -14,7 +14,7 @@ use Symfony\Component\Form\DataTransformerInterface;
 /**
  * @implements \Symfony\Component\Form\DataTransformerInterface<\Ibexa\Core\FieldType\Relation\Value, int|null>
  */
-class RelationValueTransformer implements DataTransformerInterface
+final readonly class RelationValueTransformer implements DataTransformerInterface
 {
     public function transform(mixed $value): ?int
     {

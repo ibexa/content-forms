@@ -24,20 +24,12 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 /**
  * Form Type representing ibexa_object_relation_list field type.
  */
-class RelationListFieldType extends AbstractType
+final class RelationListFieldType extends AbstractType
 {
-    private ContentService $contentService;
-
-    private ContentTypeService $contentTypeService;
-
-    /**
-     * @param \Ibexa\Contracts\Core\Repository\ContentService $contentService
-     * @param \Ibexa\Contracts\Core\Repository\ContentTypeService $contentTypeService
-     */
-    public function __construct(ContentService $contentService, ContentTypeService $contentTypeService)
-    {
-        $this->contentService = $contentService;
-        $this->contentTypeService = $contentTypeService;
+    public function __construct(
+        private readonly ContentService $contentService,
+        private readonly ContentTypeService $contentTypeService
+    ) {
     }
 
     public function getName(): string
@@ -50,7 +42,7 @@ class RelationListFieldType extends AbstractType
         return 'ezplatform_fieldtype_ibexa_object_relation_list';
     }
 
-    public function getParent(): ?string
+    public function getParent(): string
     {
         return TextType::class;
     }
@@ -81,7 +73,7 @@ class RelationListFieldType extends AbstractType
             try {
                 $contentInfo = $this->contentService->loadContentInfo($contentId);
                 $contentType = $this->contentTypeService->loadContentType($contentInfo->contentTypeId);
-            } catch (UnauthorizedException $e) {
+            } catch (UnauthorizedException) {
                 $unauthorized = true;
             }
 
@@ -94,9 +86,6 @@ class RelationListFieldType extends AbstractType
         }
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([

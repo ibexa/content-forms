@@ -16,11 +16,11 @@ use Symfony\Component\Form\FormInterface;
 /**
  * FormMapper for ibexa_text FieldType.
  */
-class TextBlockFormMapper implements FieldValueFormMapperInterface
+final readonly class TextBlockFormMapper implements FieldValueFormMapperInterface
 {
     public function mapFieldValueForm(FormInterface $fieldForm, FieldData $data): void
     {
-        $fieldDefinition = $data->fieldDefinition;
+        $fieldDefinition = $data->getFieldDefinition();
         $formConfig = $fieldForm->getConfig();
 
         $fieldForm
@@ -30,9 +30,9 @@ class TextBlockFormMapper implements FieldValueFormMapperInterface
                         'value',
                         TextBlockFieldType::class,
                         [
-                            'required' => $fieldDefinition->isRequired,
+                            'required' => $fieldDefinition->isRequired(),
                             'label' => $fieldDefinition->getName(),
-                            'rows' => $data->fieldDefinition->fieldSettings['textRows'],
+                            'rows' => $fieldDefinition->getFieldSettings()['textRows'],
                         ]
                     )
                     ->setAutoInitialize(false)

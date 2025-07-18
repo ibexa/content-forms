@@ -206,13 +206,7 @@ final class FieldTypeFormContext extends RawMinkContext implements SnippetAccept
         }
     }
 
-    /**
-     * Set a field definition option $option to $value.
-     *
-     * @param $option string The field definition option
-     * @param $value mixed The option value
-     */
-    public function setFieldDefinitionOption($option, $value): void
+    public function setFieldDefinitionOption(string $option, mixed $value): void
     {
         $this->contentTypeContext->updateFieldDefinition(
             self::$fieldIdentifier,

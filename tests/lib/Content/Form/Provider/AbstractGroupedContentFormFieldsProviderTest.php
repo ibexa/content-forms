@@ -13,12 +13,13 @@ use Ibexa\Contracts\Core\Repository\Values\Content\Field;
 use Ibexa\Core\FieldType\TextLine\Value;
 use Ibexa\Core\Helper\FieldsGroups\FieldsGroupsList;
 use Ibexa\Core\Repository\Values\ContentType\FieldDefinition;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Form\FormInterface;
 
 abstract class AbstractGroupedContentFormFieldsProviderTest extends TestCase
 {
-    final protected function getFieldsGroupsListMock(): FieldsGroupsList
+    final protected function getFieldsGroupsListMock(): FieldsGroupsList&MockObject
     {
         $mock = $this->createMock(FieldsGroupsList::class);
         $matcher = self::exactly(3);

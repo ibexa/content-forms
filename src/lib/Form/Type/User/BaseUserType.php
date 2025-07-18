@@ -22,7 +22,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  * Underlying data will be either \Ibexa\ContentForms\Data\Content\ContentCreateData or \Ibexa\ContentForms\Data\Content\ContentUpdateData
  * depending on the context (create or update).
  */
-class BaseUserType extends AbstractType
+final class BaseUserType extends AbstractType
 {
     public function getName(): string
     {
@@ -34,7 +34,7 @@ class BaseUserType extends AbstractType
         return 'ezplatform_content_forms_user';
     }
 
-    public function getParent(): ?string
+    public function getParent(): string
     {
         return BaseContentType::class;
     }

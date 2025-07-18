@@ -16,15 +16,11 @@ use Symfony\Component\Form\FormInterface;
 /**
  * FormMapper for ibexa_author FieldType.
  */
-class AuthorFormMapper implements FieldValueFormMapperInterface
+final readonly class AuthorFormMapper implements FieldValueFormMapperInterface
 {
-    /**
-     * @param \Symfony\Component\Form\FormInterface $fieldForm
-     * @param \Ibexa\Contracts\ContentForms\Data\Content\FieldData $data
-     */
     public function mapFieldValueForm(FormInterface $fieldForm, FieldData $data): void
     {
-        $fieldDefinition = $data->fieldDefinition;
+        $fieldDefinition = $data->getFieldDefinition();
         $fieldSettings = $fieldDefinition->getFieldSettings();
         $formConfig = $fieldForm->getConfig();
 
@@ -33,7 +29,7 @@ class AuthorFormMapper implements FieldValueFormMapperInterface
                 $formConfig->getFormFactory()->createBuilder()
                     ->create('value', AuthorFieldType::class, [
                         'default_author' => $fieldSettings['defaultAuthor'],
-                        'required' => $fieldDefinition->isRequired,
+                        'required' => $fieldDefinition->isRequired(),
                         'label' => $fieldDefinition->getName(),
                     ])
                     ->setAutoInitialize(false)

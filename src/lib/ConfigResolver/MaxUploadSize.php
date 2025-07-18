@@ -8,28 +8,31 @@ declare(strict_types=1);
 
 namespace Ibexa\ContentForms\ConfigResolver;
 
-class MaxUploadSize
-{
-    public const BYTES = 'B';
-    public const KILOBYTES = 'K';
-    public const MEGABYTES = 'M';
-    public const GIGABYTES = 'G';
+use RuntimeException;
 
-    /** @var int */
-    protected $value;
+final class MaxUploadSize
+{
+    public const string BYTES = 'B';
+    public const string KILOBYTES = 'K';
+    public const string MEGABYTES = 'M';
+    public const string GIGABYTES = 'G';
+
+    private int $value;
 
     /**
      * Return value of upload_max_filesize in bytes.
-     *
-     * @param string|null $unit
-     *
-     * @return int
      */
     public function get(?string $unit = null): int
     {
-        if (null === $this->value) {
-            $this->value = $this->stringToBytes(ini_get('upload_max_filesize'));
+        $uploadMaxFilesize = ini_get('upload_max_filesize');
+        if ($uploadMaxFilesize === false) {
+            throw new RuntimeException('Could not retrieve upload_max_filesize from PHP configuration.');
         }
+
+        if (!isset($this->value)) {
+            $this->value = $this->stringToBytes($uploadMaxFilesize);
+        }
+
         $value = $this->value;
 
         switch ($unit) {
@@ -41,22 +44,17 @@ class MaxUploadSize
                 $value /= 1024;
             case self::BYTES:
             default:
-            }
+        }
 
         return $value;
     }
 
-    /**
-     * @param string $str
-     *
-     * @return int
-     */
-    protected function stringToBytes(string $str): int
+    private function stringToBytes(string $str): int
     {
         $str = strtoupper(trim($str));
-
-        $value = substr($str, 0, -1);
+        $value = (int)substr($str, 0, -1);
         $unit = substr($str, -1);
+
         switch ($unit) {
             case self::GIGABYTES:
                 $value *= 1024;
@@ -66,6 +64,6 @@ class MaxUploadSize
                 $value *= 1024;
         }
 
-        return (int) $value;
+        return $value;
     }
 }

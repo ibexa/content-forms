@@ -16,14 +16,8 @@ use Symfony\Component\Validator\ConstraintValidator;
 
 class PasswordValidator extends ConstraintValidator
 {
-    private UserService $userService;
-
-    /**
-     * @param \Ibexa\Contracts\Core\Repository\UserService $userService
-     */
-    public function __construct(UserService $userService)
+    public function __construct(private readonly UserService $userService)
     {
-        $this->userService = $userService;
     }
 
     /**
@@ -33,7 +27,7 @@ class PasswordValidator extends ConstraintValidator
      */
     public function validate(mixed $value, Constraint $constraint): void
     {
-        if (!\is_string($value) || empty($value)) {
+        if (!is_string($value) || empty($value)) {
             return;
         }
 
@@ -48,9 +42,6 @@ class PasswordValidator extends ConstraintValidator
         }
     }
 
-    /**
-     * @return \Ibexa\ContentForms\Validator\ValidationErrorsProcessor
-     */
     protected function createValidationErrorsProcessor(): ValidationErrorsProcessor
     {
         return new ValidationErrorsProcessor($this->context);

@@ -14,16 +14,14 @@ use Behat\MinkExtension\Context\RawMinkContext;
 use Ibexa\Contracts\Core\SiteAccess\ConfigResolverInterface;
 use PHPUnit\Framework\Assert as Assertion;
 
-class PagelayoutContext extends RawMinkContext implements Context, SnippetAcceptingContext
+final class PagelayoutContext extends RawMinkContext implements Context, SnippetAcceptingContext
 {
     /** @var string Regex matching the way the Twig template name is inserted in debug mode */
-    public const TWIG_DEBUG_STOP_REGEX = '<!-- STOP .*%s.* -->';
+    public const string TWIG_DEBUG_STOP_REGEX = '<!-- STOP .*%s.* -->';
 
-    private ConfigResolverInterface $configResolver;
-
-    public function __construct(ConfigResolverInterface $configResolver)
-    {
-        $this->configResolver = $configResolver;
+    public function __construct(
+        private readonly ConfigResolverInterface $configResolver
+    ) {
     }
 
     /**

@@ -17,7 +17,7 @@ use Symfony\Component\Form\Exception\TransformationFailedException;
  *
  * @implements \Symfony\Component\Form\DataTransformerInterface<\Ibexa\Core\FieldType\Date\Value, int|null>
  */
-class DateValueTransformer implements DataTransformerInterface
+final readonly class DateValueTransformer implements DataTransformerInterface
 {
     /**
      * @throws \Symfony\Component\Form\Exception\TransformationFailedException
@@ -42,10 +42,6 @@ class DateValueTransformer implements DataTransformerInterface
     }
 
     /**
-     * @param int|mixed $value
-     *
-     * @return \Ibexa\Core\FieldType\Date\Value|null
-     *
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\InvalidArgumentException
      * @throws \Symfony\Component\Form\Exception\TransformationFailedException
      */

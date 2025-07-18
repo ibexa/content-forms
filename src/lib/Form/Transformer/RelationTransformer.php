@@ -14,7 +14,7 @@ use Symfony\Component\Form\DataTransformerInterface;
 /**
  * @implements \Symfony\Component\Form\DataTransformerInterface<string, array{location: int|null, location_type: string}>
  */
-final class RelationTransformer implements DataTransformerInterface
+final readonly class RelationTransformer implements DataTransformerInterface
 {
     public function transform(mixed $value): array
     {

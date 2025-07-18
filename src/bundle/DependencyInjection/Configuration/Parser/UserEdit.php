@@ -12,13 +12,8 @@ use Ibexa\Bundle\Core\DependencyInjection\Configuration\AbstractParser;
 use Ibexa\Bundle\Core\DependencyInjection\Configuration\SiteAccessAware\ContextualizerInterface;
 use Symfony\Component\Config\Definition\Builder\NodeBuilder;
 
-class UserEdit extends AbstractParser
+final class UserEdit extends AbstractParser
 {
-    /**
-     * Adds semantic configuration definition.
-     *
-     * @param \Symfony\Component\Config\Definition\Builder\NodeBuilder $nodeBuilder Node just under ezpublish.system.<siteaccess>
-     */
     public function addSemanticConfig(NodeBuilder $nodeBuilder): void
     {
         $nodeBuilder
@@ -40,7 +35,10 @@ class UserEdit extends AbstractParser
             ->end();
     }
 
-    public function mapConfig(array &$scopeSettings, $currentScope, ContextualizerInterface $contextualizer): void
+    /**
+     * @param array<string, mixed> $scopeSettings
+     */
+    public function mapConfig(array &$scopeSettings, mixed $currentScope, ContextualizerInterface $contextualizer): void
     {
         if (empty($scopeSettings['user_edit'])) {
             return;

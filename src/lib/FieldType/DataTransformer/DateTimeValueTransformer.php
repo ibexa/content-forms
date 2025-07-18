@@ -17,7 +17,7 @@ use Symfony\Component\Form\Exception\TransformationFailedException;
  *
  * @implements \Symfony\Component\Form\DataTransformerInterface<\Ibexa\Core\FieldType\DateAndTime\Value, int|null>
  */
-class DateTimeValueTransformer implements DataTransformerInterface
+final readonly class DateTimeValueTransformer implements DataTransformerInterface
 {
     /**
      * @throws \Symfony\Component\Form\Exception\TransformationFailedException

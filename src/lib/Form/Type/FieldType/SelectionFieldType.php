@@ -18,7 +18,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 /**
  * Form Type representing ibexa_selection field type.
  */
-class SelectionFieldType extends AbstractType
+final class SelectionFieldType extends AbstractType
 {
     public function getName(): string
     {
@@ -30,7 +30,7 @@ class SelectionFieldType extends AbstractType
         return 'ezplatform_fieldtype_ibexa_selection';
     }
 
-    public function getParent(): ?string
+    public function getParent(): string
     {
         return ChoiceType::class;
     }
@@ -38,9 +38,9 @@ class SelectionFieldType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder->addModelTransformer(
-            $options['multiple'] ?
-                new MultiSelectionValueTransformer() :
-                new SingleSelectionValueTransformer()
+            $options['multiple']
+                ? new MultiSelectionValueTransformer()
+                : new SingleSelectionValueTransformer()
         );
     }
 

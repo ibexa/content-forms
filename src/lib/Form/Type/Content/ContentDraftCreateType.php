@@ -14,7 +14,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class ContentDraftCreateType extends AbstractType
+final class ContentDraftCreateType extends AbstractType
 {
     public function getName(): string
     {

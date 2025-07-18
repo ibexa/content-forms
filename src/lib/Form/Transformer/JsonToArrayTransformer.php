@@ -8,13 +8,14 @@ declare(strict_types=1);
 
 namespace Ibexa\ContentForms\Form\Transformer;
 
+use JsonException;
 use Symfony\Component\Form\DataTransformerInterface;
 use Symfony\Component\Form\Exception\TransformationFailedException;
 
 /**
  * @implements \Symfony\Component\Form\DataTransformerInterface<array<string, mixed>, string>
  */
-final class JsonToArrayTransformer implements DataTransformerInterface
+final readonly class JsonToArrayTransformer implements DataTransformerInterface
 {
     public function transform(mixed $value): string
     {
@@ -24,7 +25,7 @@ final class JsonToArrayTransformer implements DataTransformerInterface
 
         try {
             $encoded = json_encode((object) $value, JSON_THROW_ON_ERROR);
-        } catch (\JsonException $exception) {
+        } catch (JsonException $exception) {
             throw new TransformationFailedException(
                 $exception->getMessage(),
                 $exception->getCode(),
@@ -46,7 +47,7 @@ final class JsonToArrayTransformer implements DataTransformerInterface
 
         try {
             $decoded = json_decode($value, true, 512, JSON_THROW_ON_ERROR);
-        } catch (\JsonException $exception) {
+        } catch (JsonException $exception) {
             throw new TransformationFailedException(
                 $exception->getMessage(),
                 $exception->getCode(),

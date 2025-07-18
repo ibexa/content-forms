@@ -18,7 +18,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 /**
  * Form Type representing ibexa_media field type.
  */
-class MediaFieldType extends AbstractType
+final class MediaFieldType extends AbstractType
 {
     public function getName(): string
     {
@@ -30,7 +30,7 @@ class MediaFieldType extends AbstractType
         return 'ezplatform_fieldtype_ibexa_media';
     }
 
-    public function getParent(): ?string
+    public function getParent(): string
     {
         return BinaryBaseFieldType::class;
     }

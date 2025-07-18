@@ -14,7 +14,7 @@ use Symfony\Component\DependencyInjection\Extension\Extension;
 use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
 use Symfony\Component\DependencyInjection\Loader;
 
-class IbexaContentFormsExtension extends Extension implements PrependExtensionInterface
+final class IbexaContentFormsExtension extends Extension implements PrependExtensionInterface
 {
     /**
      * @throws \Exception

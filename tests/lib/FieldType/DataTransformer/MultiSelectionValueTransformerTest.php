@@ -12,7 +12,7 @@ use Ibexa\ContentForms\FieldType\DataTransformer\MultiSelectionValueTransformer;
 use Ibexa\Core\FieldType\Selection\Value;
 use PHPUnit\Framework\TestCase;
 
-class MultiSelectionValueTransformerTest extends TestCase
+final class MultiSelectionValueTransformerTest extends TestCase
 {
     /**
      * @phpstan-return list<array{array<int>}>

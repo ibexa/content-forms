@@ -13,11 +13,11 @@ use Ibexa\Contracts\ContentForms\Data\Content\FieldData;
 use Ibexa\Contracts\ContentForms\FieldType\FieldValueFormMapperInterface;
 use Symfony\Component\Form\FormInterface;
 
-class CountryFormMapper implements FieldValueFormMapperInterface
+final readonly class CountryFormMapper implements FieldValueFormMapperInterface
 {
     public function mapFieldValueForm(FormInterface $fieldForm, FieldData $data): void
     {
-        $fieldDefinition = $data->fieldDefinition;
+        $fieldDefinition = $data->getFieldDefinition();
         $fieldSettings = $fieldDefinition->getFieldSettings();
         $formConfig = $fieldForm->getConfig();
 
@@ -26,7 +26,7 @@ class CountryFormMapper implements FieldValueFormMapperInterface
                 $formConfig->getFormFactory()->createBuilder()
                     ->create('value', CountryFieldType::class, [
                         'multiple' => $fieldSettings['isMultiple'],
-                        'required' => $fieldDefinition->isRequired,
+                        'required' => $fieldDefinition->isRequired(),
                         'label' => $fieldDefinition->getName(),
                     ])
                     ->setAutoInitialize(false)

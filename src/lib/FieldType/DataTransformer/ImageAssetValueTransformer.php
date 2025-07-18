@@ -17,12 +17,12 @@ use Symfony\Component\Form\Exception\TransformationFailedException;
  *
  * @implements \Symfony\Component\Form\DataTransformerInterface<\Ibexa\Core\FieldType\ImageAsset\Value, TImageAssetData|null>
  */
-class ImageAssetValueTransformer extends AbstractBinaryBaseTransformer implements DataTransformerInterface
+final class ImageAssetValueTransformer extends AbstractBinaryBaseTransformer implements DataTransformerInterface
 {
     /**
      * @throws \Symfony\Component\Form\Exception\TransformationFailedException
      */
-    public function transform($value): ?array
+    public function transform(mixed $value): ?array
     {
         if ($value === null) {
             return null;
@@ -47,10 +47,8 @@ class ImageAssetValueTransformer extends AbstractBinaryBaseTransformer implement
      * @param array|null $value
      *
      * @throws \Symfony\Component\Form\Exception\TransformationFailedException
-     *
-     * @return \Ibexa\Core\FieldType\ImageAsset\Value|null
      */
-    public function reverseTransform($value): ?Value
+    public function reverseTransform(mixed $value): ?Value
     {
         if ($value === null) {
             return null;

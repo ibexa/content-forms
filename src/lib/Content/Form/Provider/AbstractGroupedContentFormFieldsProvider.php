@@ -15,13 +15,15 @@ use JMS\TranslationBundle\Translation\TranslationContainerInterface;
 
 abstract class AbstractGroupedContentFormFieldsProvider implements GroupedContentFormFieldsProviderInterface, TranslationContainerInterface
 {
-    protected FieldsGroupsList $fieldsGroupsList;
-
-    public function __construct(FieldsGroupsList $fieldsGroupsList)
+    public function __construct(protected readonly FieldsGroupsList $fieldsGroupsList)
     {
-        $this->fieldsGroupsList = $fieldsGroupsList;
     }
 
+    /**
+     * @param \Ibexa\Contracts\ContentForms\Data\Content\FieldData[] $fieldsDataForm
+     *
+     * @return array<string, string[]>
+     */
     public function getGroupedFields(array $fieldsDataForm): array
     {
         $groupedFields = [];
@@ -29,7 +31,7 @@ abstract class AbstractGroupedContentFormFieldsProvider implements GroupedConten
         foreach ($fieldsDataForm as $fieldForm) {
             /** @var \Ibexa\Contracts\ContentForms\Data\Content\FieldData $fieldData */
             $fieldData = $fieldForm->getViewData();
-            $fieldGroupIdentifier = $this->fieldsGroupsList->getFieldGroup($fieldData->fieldDefinition);
+            $fieldGroupIdentifier = $this->fieldsGroupsList->getFieldGroup($fieldData->getFieldDefinition());
             $groupKey = $this->getGroupKey($fieldGroupIdentifier);
 
             $groupedFields[$groupKey][] = $fieldForm->getName();

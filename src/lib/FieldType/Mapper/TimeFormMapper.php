@@ -16,11 +16,11 @@ use Symfony\Component\Form\FormInterface;
 /**
  * FormMapper for ibexa_time FieldType.
  */
-class TimeFormMapper implements FieldValueFormMapperInterface
+final readonly class TimeFormMapper implements FieldValueFormMapperInterface
 {
     public function mapFieldValueForm(FormInterface $fieldForm, FieldData $data): void
     {
-        $fieldDefinition = $data->fieldDefinition;
+        $fieldDefinition = $data->getFieldDefinition();
         $fieldSettings = $fieldDefinition->getFieldSettings();
         $formConfig = $fieldForm->getConfig();
 
@@ -29,7 +29,7 @@ class TimeFormMapper implements FieldValueFormMapperInterface
                 $formConfig->getFormFactory()->createBuilder()
                     ->create('value', TimeFieldType::class, [
                         'with_seconds' => $fieldSettings['useSeconds'],
-                        'required' => $fieldDefinition->isRequired,
+                        'required' => $fieldDefinition->isRequired(),
                         'label' => $fieldDefinition->getName(),
                     ])
                     ->setAutoInitialize(false)

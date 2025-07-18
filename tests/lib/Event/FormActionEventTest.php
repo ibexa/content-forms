@@ -14,7 +14,7 @@ use stdClass;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Response;
 
-class FormActionEventTest extends TestCase
+final class FormActionEventTest extends TestCase
 {
     public function testConstruct(): void
     {

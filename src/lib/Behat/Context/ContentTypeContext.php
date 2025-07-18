@@ -11,10 +11,10 @@ namespace Ibexa\ContentForms\Behat\Context;
 use Behat\Behat\Context\Context;
 use Behat\Behat\Context\SnippetAcceptingContext;
 use Behat\MinkExtension\Context\RawMinkContext;
-use Exception;
 use Ibexa\Contracts\Core\Repository\ContentTypeService;
 use Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException;
 use Ibexa\Contracts\Core\Repository\PermissionResolver;
+use Ibexa\Contracts\Core\Repository\Values\ContentType\ContentType;
 use Ibexa\Contracts\Core\Repository\Values\ContentType\ContentTypeCreateStruct;
 use Ibexa\Contracts\Core\Repository\Values\ContentType\FieldDefinitionUpdateStruct;
 use Ibexa\Core\Repository\Values\User\UserReference;
@@ -22,38 +22,24 @@ use PHPUnit\Framework\Assert as Assertion;
 
 final class ContentTypeContext extends RawMinkContext implements Context, SnippetAcceptingContext
 {
-    private ContentTypeService $contentTypeService;
+    private ContentType $currentContentType;
 
-    /**
-     * Current content type within this context.
-     *
-     * @var \Ibexa\Contracts\Core\Repository\Values\ContentType\ContentType
-     */
-    private $currentContentType;
-
-    private PermissionResolver $permissionResolver;
-
-    /**
-     * Default Administrator user id.
-     */
-    private int $adminUserId = 14;
-
-    public function __construct(PermissionResolver $permissionResolver, ContentTypeService $contentTypeService)
-    {
-        $permissionResolver->setCurrentUserReference(new UserReference($this->adminUserId));
-        $this->permissionResolver = $permissionResolver;
-        $this->contentTypeService = $contentTypeService;
+    public function __construct(
+        private readonly ContentTypeService $contentTypeService,
+        readonly PermissionResolver $permissionResolver,
+    ) {
+        $permissionResolver->setCurrentUserReference(new UserReference(14));
     }
 
     /**
      * @Given /^there is a content type "([^"]*)" with the id "([^"]*)"$/
      */
-    public function thereIsAContentTypeWithId(string $contentTypeIdentifier, $id): void
+    public function thereIsAContentTypeWithId(string $contentTypeIdentifier, int $id): void
     {
         try {
             $contentType = $this->contentTypeService->loadContentTypeByIdentifier($contentTypeIdentifier);
             Assertion::assertEquals($id, $contentType->id);
-        } catch (NotFoundException $e) {
+        } catch (NotFoundException) {
             Assertion::fail("No ContentType with the identifier '$contentTypeIdentifier' could be found.");
         }
     }
@@ -84,17 +70,8 @@ final class ContentTypeContext extends RawMinkContext implements Context, Snippe
         $this->contentTypeService->publishContentTypeDraft($contentTypeDraft);
     }
 
-    /**
-     * @return \Ibexa\Contracts\Core\Repository\Values\ContentType\ContentType
-     *
-     * @throws \Exception if no current content type has been defined in the context
-     */
-    public function getCurrentContentType()
+    public function getCurrentContentType(): ContentType
     {
-        if ($this->currentContentType === null) {
-            throw new Exception('No current content type has been defined in the context');
-        }
-
         return $this->currentContentType;
     }
 
@@ -126,7 +103,7 @@ final class ContentTypeContext extends RawMinkContext implements Context, Snippe
     public function newContentTypeCreateStruct($identifier = null): ContentTypeCreateStruct
     {
         return $this->contentTypeService->newContentTypeCreateStruct(
-            $identifier ?: $identifier = str_replace('.', '', uniqid('content_type_', true))
+            $identifier ?: str_replace('.', '', uniqid('content_type_', true))
         );
     }
 

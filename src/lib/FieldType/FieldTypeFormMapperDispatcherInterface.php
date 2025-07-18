@@ -17,21 +17,10 @@ use Symfony\Component\Form\FormInterface;
  */
 interface FieldTypeFormMapperDispatcherInterface
 {
-    /**
-     * Adds a new Field mapper for a fieldtype identifier.
-     *
-     * @param \Ibexa\Contracts\ContentForms\FieldType\FieldValueFormMapperInterface
-     * @param string $fieldTypeIdentifier fieldType identifier this mapper is for
-     *
-     * @return mixed
-     */
     public function addMapper(FieldValueFormMapperInterface $mapper, string $fieldTypeIdentifier): void;
 
     /**
      * Maps, if a mapper is available for the fieldtype, $data to $form.
-     *
-     * @param \Symfony\Component\Form\FormInterface $form
-     * @param \Ibexa\Contracts\ContentForms\Data\Content\FieldData $data
      *
      * @throws \InvalidArgumentException If $data is not a FieldData or FieldDefinitionData
      */

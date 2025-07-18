@@ -16,21 +16,12 @@ use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
 
-class LocationType extends AbstractType
+final class LocationType extends AbstractType
 {
-    private LocationService $locationService;
-
-    /**
-     * @param \Ibexa\Contracts\Core\Repository\LocationService $locationService
-     */
-    public function __construct(LocationService $locationService)
+    public function __construct(private readonly LocationService $locationService)
     {
-        $this->locationService = $locationService;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function buildView(FormView $view, FormInterface $form, array $options): void
     {
         $view->vars['destination_location'] = null;
@@ -40,14 +31,12 @@ class LocationType extends AbstractType
                 $view->vars['destination_location'] = $this->locationService->loadLocation(
                     (int)$view->vars['value']
                 );
-            } catch (NotFoundException | UnauthorizedException $e) {
+            } catch (NotFoundException | UnauthorizedException) {
+                //do nothing
             }
         }
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getParent(): string
     {
         return HiddenType::class;
