@@ -409,24 +409,6 @@ parameters:
 			path: src/lib/Form/Type/Content/ContentFieldType.php
 
 		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\Type\\Content\\FieldCollectionType\:\:dispatchContentCreateEvent\(\) has parameter \$form with generic interface Symfony\\Component\\Form\\FormInterface but does not specify its types\: TData$#'
-			identifier: missingType.generics
-			count: 1
-			path: src/lib/Form/Type/Content/FieldCollectionType.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\Type\\Content\\FieldCollectionType\:\:dispatchUserCreateEvent\(\) has parameter \$form with generic interface Symfony\\Component\\Form\\FormInterface but does not specify its types\: TData$#'
-			identifier: missingType.generics
-			count: 1
-			path: src/lib/Form/Type/Content/FieldCollectionType.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\Type\\Content\\FieldCollectionType\:\:dispatchUserUpdateEvent\(\) has parameter \$form with generic interface Symfony\\Component\\Form\\FormInterface but does not specify its types\: TData$#'
-			identifier: missingType.generics
-			count: 1
-			path: src/lib/Form/Type/Content/FieldCollectionType.php
-
-		-
 			message: '#^Class Ibexa\\ContentForms\\Form\\Type\\FieldDefinition\\User\\PasswordConstraintCheckboxType extends generic class Symfony\\Component\\Form\\AbstractType but does not specify its types\: TData$#'
 			identifier: missingType.generics
 			count: 1

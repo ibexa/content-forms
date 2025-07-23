@@ -98,6 +98,7 @@ final class FieldCollectionType extends CollectionType
 
     /**
      * @param array<string, mixed> $entryOptions
+     * @param \Symfony\Component\Form\FormInterface<mixed> $form
      *
      * @return array<string, mixed>
      */
@@ -122,6 +123,7 @@ final class FieldCollectionType extends CollectionType
 
     /**
      * @param array<string, mixed> $entryOptions
+     * @param \Symfony\Component\Form\FormInterface<mixed> $form
      *
      * @return array<string, mixed>
      */
@@ -146,6 +148,7 @@ final class FieldCollectionType extends CollectionType
 
     /**
      * @param array<string, mixed> $entryOptions
+     * @param \Symfony\Component\Form\FormInterface<mixed> $form
      *
      * @return array<string, mixed>
      */
@@ -154,10 +157,17 @@ final class FieldCollectionType extends CollectionType
         array $entryOptions,
         FormInterface $form
     ): array {
+        $content = $entryOptions['content'];
+        //we return early if content is null, as it means we come from user profile edit form. having non-nullable
+        //content would mean we need to perform permissions checks, which is not the case if you edit your own profile
+        if ($content === null) {
+            return $entryOptions;
+        }
+
         /** @var \Ibexa\ContentForms\Event\UserUpdateFieldOptionsEvent $userUpdateFieldOptionsEvent */
         $userUpdateFieldOptionsEvent = $this->eventDispatcher->dispatch(
             new UserUpdateFieldOptionsEvent(
-                $entryOptions['content'],
+                $content,
                 $entryOptions['struct'],
                 $form,
                 $entryData,
