@@ -16,21 +16,14 @@ use Ibexa\Core\FieldType\Value;
  */
 abstract class AbstractBinaryBaseTransformer
 {
-    protected FieldType $fieldType;
-
-    protected Value $initialValue;
-
-    /** @phpstan-var class-string */
-    protected string $valueClass;
-
     /**
      * @phpstan-param class-string $valueClass
      */
-    public function __construct(FieldType $fieldType, Value $initialValue, string $valueClass)
-    {
-        $this->fieldType = $fieldType;
-        $this->initialValue = $initialValue;
-        $this->valueClass = $valueClass;
+    public function __construct(
+        protected readonly FieldType $fieldType,
+        protected readonly Value $initialValue,
+        protected readonly string $valueClass
+    ) {
     }
 
     /**
@@ -56,14 +49,15 @@ abstract class AbstractBinaryBaseTransformer
         }
 
         /* in case the file is not modified, overwrite settings only */
-        if (null === $value['file']) {
+        $file = $value['file'];
+        if (null === $file) {
             return clone $this->initialValue;
         }
 
         $properties = [
-            'inputUri' => $value['file']->getRealPath(),
-            'fileName' => $value['file']->getClientOriginalName(),
-            'fileSize' => $value['file']->getSize(),
+            'inputUri' => $file->getRealPath(),
+            'fileName' => $file->getClientOriginalName(),
+            'fileSize' => $file->getSize(),
         ];
 
         return new $this->valueClass($properties);

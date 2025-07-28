@@ -14,31 +14,13 @@ namespace Ibexa\ContentForms\Data\User;
  * Used to store submitted user account values, since the clear password is not meant to be part of the
  * User\Value object.
  */
-class UserAccountFieldData
+final class UserAccountFieldData
 {
-    /** @var string */
-    public $username;
-
-    /** @var string */
-    public $password;
-
-    /** @var string */
-    public $email;
-
-    /** @var bool */
-    public $enabled;
-
-    /**
-     * @param string $username
-     * @param string $password
-     * @param string $email
-     * @param bool $enabled
-     */
-    public function __construct($username, $password, $email, $enabled = true)
-    {
-        $this->username = $username;
-        $this->password = $password;
-        $this->email = $email;
-        $this->enabled = $enabled;
+    public function __construct(
+        public ?string $username,
+        public ?string $password,
+        public ?string $email,
+        public ?bool $enabled = true
+    ) {
     }
 }

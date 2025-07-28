@@ -12,9 +12,8 @@ use Ibexa\ContentForms\Validator\Constraints\Password;
 use Ibexa\ContentForms\Validator\Constraints\PasswordValidator;
 use PHPUnit\Framework\TestCase;
 
-class PasswordTest extends TestCase
+final class PasswordTest extends TestCase
 {
-    /** @var \Ibexa\ContentForms\Validator\Constraints\Password */
     private Password $constraint;
 
     protected function setUp(): void
@@ -34,6 +33,12 @@ class PasswordTest extends TestCase
 
     public function testGetTargets(): void
     {
-        self::assertSame([Password::CLASS_CONSTRAINT, Password::PROPERTY_CONSTRAINT], $this->constraint->getTargets());
+        self::assertSame(
+            [
+                Password::CLASS_CONSTRAINT,
+                Password::PROPERTY_CONSTRAINT,
+            ],
+            $this->constraint->getTargets()
+        );
     }
 }

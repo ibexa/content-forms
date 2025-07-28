@@ -8,7 +8,6 @@ declare(strict_types=1);
 
 namespace Ibexa\ContentForms\Form\Type\FieldType;
 
-use Ibexa\ContentForms\ConfigResolver\MaxUploadSize;
 use Ibexa\Contracts\Core\Repository\ContentService;
 use Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException;
 use Ibexa\Contracts\Core\Repository\Exceptions\UnauthorizedException;
@@ -25,26 +24,13 @@ use Symfony\Component\Form\FormView;
 use Symfony\Component\Mime\MimeTypesInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class ImageAssetFieldType extends AbstractType
+final class ImageAssetFieldType extends AbstractType
 {
-    private ContentService $contentService;
-
-    private AssetMapper $assetMapper;
-
-    private MaxUploadSize $maxUploadSize;
-
-    private MimeTypesInterface $mimeTypes;
-
     public function __construct(
-        ContentService $contentService,
-        AssetMapper $mapper,
-        MaxUploadSize $maxUploadSize,
-        MimeTypesInterface $mimeTypes
+        private readonly ContentService $contentService,
+        private readonly AssetMapper $assetMapper,
+        private readonly MimeTypesInterface $mimeTypes
     ) {
-        $this->contentService = $contentService;
-        $this->maxUploadSize = $maxUploadSize;
-        $this->assetMapper = $mapper;
-        $this->mimeTypes = $mimeTypes;
     }
 
     public function getName(): string
@@ -98,10 +84,11 @@ class ImageAssetFieldType extends AbstractType
                     (int)$view->vars['value']['destinationContentId']
                 );
 
-                if (!$content->contentInfo->isTrashed()) {
+                if (!$content->getContentInfo()->isTrashed()) {
                     $view->vars['destination_content'] = $content;
                 }
-            } catch (NotFoundException | UnauthorizedException $exception) {
+            } catch (NotFoundException | UnauthorizedException) {
+                //do nothing
             }
         }
 
@@ -129,7 +116,8 @@ class ImageAssetFieldType extends AbstractType
      */
     private function getMaxFileSize(): float
     {
-        $validatorConfiguration = $this->assetMapper
+        $validatorConfiguration = $this
+            ->assetMapper
             ->getAssetFieldDefinition()
             ->getValidatorConfiguration();
 

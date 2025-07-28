@@ -15,23 +15,17 @@ use Ibexa\Core\MVC\Symfony\View\BaseView;
 use Ibexa\Core\MVC\Symfony\View\LocationValueView;
 use Symfony\Component\Form\FormInterface;
 
-class ContentCreateView extends BaseView implements LocationValueView, ContentTypeValueView
+final class ContentCreateView extends BaseView implements LocationValueView, ContentTypeValueView
 {
-    /** @var \Ibexa\Contracts\Core\Repository\Values\ContentType\ContentType */
     private ContentType $contentType;
 
-    /** @var \Ibexa\Contracts\Core\Repository\Values\Content\Location */
     private Location $location;
 
-    /** @var \Ibexa\Contracts\Core\Repository\Values\Content\Language */
     private Language $language;
 
-    /** @var \Symfony\Component\Form\FormInterface */
+    /** @var \Symfony\Component\Form\FormInterface<mixed> */
     private FormInterface $form;
 
-    /**
-     * @param \Ibexa\Contracts\Core\Repository\Values\ContentType\ContentType $contentType
-     */
     public function setContentType(ContentType $contentType): void
     {
         $this->contentType = $contentType;
@@ -53,32 +47,23 @@ class ContentCreateView extends BaseView implements LocationValueView, ContentTy
         $this->location = $location;
     }
 
-    /**
-     * @return \Ibexa\Contracts\Core\Repository\Values\Content\Location
-     */
     public function getLocation(): Location
     {
         return $this->location;
     }
 
-    /**
-     * @return \Ibexa\Contracts\Core\Repository\Values\Content\Language
-     */
     public function getLanguage(): Language
     {
         return $this->language;
     }
 
-    /**
-     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Language $language
-     */
     public function setLanguage(Language $language): void
     {
         $this->language = $language;
     }
 
     /**
-     * @return \Symfony\Component\Form\FormInterface
+     * @return \Symfony\Component\Form\FormInterface<mixed>
      */
     public function getForm(): FormInterface
     {
@@ -86,7 +71,7 @@ class ContentCreateView extends BaseView implements LocationValueView, ContentTy
     }
 
     /**
-     * @param \Symfony\Component\Form\FormInterface $form
+     * @param \Symfony\Component\Form\FormInterface<mixed> $form
      */
     public function setForm(FormInterface $form): void
     {

@@ -19,11 +19,10 @@ use Symfony\Component\Validator\Util\PropertyPath;
 /**
  * Base class for field value validators.
  */
-class FieldValueValidator extends FieldTypeValidator
+final class FieldValueValidator extends FieldTypeValidator
 {
     /**
      * @param \Ibexa\Contracts\ContentForms\Data\Content\FieldData $value
-     * @param \Symfony\Component\Validator\Constraint $constraint
      *
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException
      */
@@ -39,12 +38,15 @@ class FieldValueValidator extends FieldTypeValidator
         $fieldDefinition = $this->getFieldDefinition($value);
         $fieldType = $this->fieldTypeService->getFieldType($fieldTypeIdentifier);
 
-        if ($fieldDefinition->isRequired && ($fieldValue === null || $fieldType->isEmptyValue($fieldValue))) {
+        if ($fieldDefinition->isRequired() && ($fieldValue === null || $fieldType->isEmptyValue($fieldValue))) {
             $validationErrors = [
                 new ValidationError(
                     "Value for required field definition '%identifier%' with language '%languageCode%' is empty",
                     null,
-                    ['%identifier%' => $fieldDefinition->identifier, '%languageCode%' => $value->field->languageCode],
+                    [
+                        '%identifier%' => $fieldDefinition->getIdentifier(),
+                        '%languageCode%' => $value->getField()->getLanguageCode(),
+                    ],
                     'empty'
                 ),
             ];
@@ -54,7 +56,9 @@ class FieldValueValidator extends FieldTypeValidator
             $validationErrors = [];
         }
 
-        $this->processValidationErrors($validationErrors);
+        $this->processValidationErrors(
+            iterator_to_array($validationErrors)
+        );
     }
 
     /**
@@ -71,7 +75,7 @@ class FieldValueValidator extends FieldTypeValidator
      */
     protected function getFieldDefinition(FieldData $value): FieldDefinition
     {
-        return $value->fieldDefinition;
+        return $value->getFieldDefinition();
     }
 
     /**
@@ -81,7 +85,7 @@ class FieldValueValidator extends FieldTypeValidator
      */
     protected function getFieldTypeIdentifier(ValueObject $value): string
     {
-        return $value->fieldDefinition->fieldTypeIdentifier;
+        return $value->getFieldDefinition()->getFieldTypeIdentifier();
     }
 
     protected function generatePropertyPath(int $errorIndex, ?string $errorTarget): string

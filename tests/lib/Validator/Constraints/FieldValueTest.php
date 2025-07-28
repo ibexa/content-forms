@@ -13,7 +13,7 @@ use Ibexa\ContentForms\Validator\Constraints\FieldValueValidator;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Validator\Constraint;
 
-class FieldValueTest extends TestCase
+final class FieldValueTest extends TestCase
 {
     public function testConstruct(): void
     {

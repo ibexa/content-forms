@@ -16,7 +16,7 @@ use Symfony\Component\Form\DataTransformerInterface;
  *
  * @implements \Symfony\Component\Form\DataTransformerInterface<\Ibexa\Core\FieldType\Keyword\Value, string|null>
  */
-class KeywordValueTransformer implements DataTransformerInterface
+final readonly class KeywordValueTransformer implements DataTransformerInterface
 {
     public function transform(mixed $value): ?string
     {

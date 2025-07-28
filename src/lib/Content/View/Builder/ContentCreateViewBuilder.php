@@ -20,23 +20,21 @@ use Ibexa\Core\MVC\Symfony\View\Builder\ViewBuilder;
  *
  * @internal
  */
-class ContentCreateViewBuilder extends AbstractContentViewBuilder implements ViewBuilder
+final class ContentCreateViewBuilder extends AbstractContentViewBuilder implements ViewBuilder
 {
-    public function matches($argument)
+    public function matches($argument): bool
     {
         return 'ibexa_content_edit::createWithoutDraftAction' === $argument;
     }
 
     /**
-     * @param array $parameters
-     *
-     * @return \Ibexa\ContentForms\Content\View\ContentCreateSuccessView|\Ibexa\ContentForms\Content\View\ContentCreateView
+     * @param array<string, mixed> $parameters
      *
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\UnauthorizedException
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\InvalidArgumentException
      */
-    public function buildView(array $parameters)
+    public function buildView(array $parameters): ContentCreateSuccessView|ContentCreateView
     {
         $view = new ContentCreateView($this->configResolver->getParameter('content_edit.templates.create'));
 
@@ -86,10 +84,7 @@ class ContentCreateViewBuilder extends AbstractContentViewBuilder implements Vie
     /**
      * Loads ContentType with identifier $contentTypeIdentifier.
      *
-     * @param string $contentTypeIdentifier
      * @param string[] $prioritizedLanguages
-     *
-     * @return \Ibexa\Contracts\Core\Repository\Values\ContentType\ContentType
      *
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException
      */
@@ -102,10 +97,8 @@ class ContentCreateViewBuilder extends AbstractContentViewBuilder implements Vie
     }
 
     /**
-     * @param array $parameters
-     * @param array $languageCodes
-     *
-     * @return \Ibexa\Contracts\Core\Repository\Values\ContentType\ContentType
+     * @param array<string, mixed> $parameters
+     * @param string[] $languageCodes
      *
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\InvalidArgumentException
@@ -127,9 +120,7 @@ class ContentCreateViewBuilder extends AbstractContentViewBuilder implements Vie
     }
 
     /**
-     * @param array $parameters
-     *
-     * @return \Ibexa\Contracts\Core\Repository\Values\Content\Location
+     * @param array<string, mixed> $parameters
      *
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\UnauthorizedException
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException

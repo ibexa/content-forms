@@ -17,19 +17,13 @@ use Symfony\Component\HttpKernel\Controller\ControllerReference;
 /**
  * View provider based on configuration.
  */
-class Configured implements ViewProvider
+final readonly class Configured implements ViewProvider
 {
-    protected MatcherFactoryInterface $matcherFactory;
-
-    /**
-     * @param \Ibexa\Core\MVC\Symfony\Matcher\MatcherFactoryInterface $matcherFactory
-     */
-    public function __construct(MatcherFactoryInterface $matcherFactory)
+    public function __construct(private MatcherFactoryInterface $matcherFactory)
     {
-        $this->matcherFactory = $matcherFactory;
     }
 
-    public function getView(View $view)
+    public function getView(View $view): ?ContentCreateView
     {
         if (($configHash = $this->matcherFactory->match($view)) === null) {
             return null;
@@ -39,13 +33,9 @@ class Configured implements ViewProvider
     }
 
     /**
-     * Builds a ContentCreateView object from $viewConfig.
-     *
-     * @param array $viewConfig
-     *
-     * @return \Ibexa\ContentForms\Content\View\ContentCreateView
+     * @param array<string, mixed> $viewConfig
      */
-    protected function buildContentCreateView(array $viewConfig): ContentCreateView
+    private function buildContentCreateView(array $viewConfig): ContentCreateView
     {
         $view = new ContentCreateView();
         $view->setConfigHash($viewConfig);

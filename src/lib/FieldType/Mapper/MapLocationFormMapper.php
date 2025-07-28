@@ -16,11 +16,14 @@ use Symfony\Component\Form\FormInterface;
 /**
  * FormMapper for ibexa_gmap_location FieldType.
  */
-class MapLocationFormMapper implements FieldValueFormMapperInterface
+final readonly class MapLocationFormMapper implements FieldValueFormMapperInterface
 {
+    /**
+     * @param \Symfony\Component\Form\FormInterface<mixed> $fieldForm
+     */
     public function mapFieldValueForm(FormInterface $fieldForm, FieldData $data): void
     {
-        $fieldDefinition = $data->fieldDefinition;
+        $fieldDefinition = $data->getFieldDefinition();
         $formConfig = $fieldForm->getConfig();
 
         $fieldForm
@@ -30,7 +33,7 @@ class MapLocationFormMapper implements FieldValueFormMapperInterface
                         'value',
                         MapLocationFieldType::class,
                         [
-                            'required' => $fieldDefinition->isRequired,
+                            'required' => $fieldDefinition->isRequired(),
                             'label' => $fieldDefinition->getName(),
                         ]
                     )

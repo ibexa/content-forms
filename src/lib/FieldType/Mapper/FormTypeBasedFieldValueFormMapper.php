@@ -34,19 +34,14 @@ final class FormTypeBasedFieldValueFormMapper implements FieldValueFormMapperInt
 {
     /**
      * The FormType used by the mapper. Example: '\Symfony\Component\Form\Extension\Core\Type\TextType'.
-     *
-     * @var string
      */
-    private $formType;
+    private string $formType;
 
-    private FieldTypeService $fieldTypeService;
-
-    public function __construct(FieldTypeService $fieldTypeService)
+    public function __construct(private readonly FieldTypeService $fieldTypeService)
     {
-        $this->fieldTypeService = $fieldTypeService;
     }
 
-    public function setFormType($formType): void
+    public function setFormType(string $formType): void
     {
         $this->formType = $formType;
     }
@@ -54,12 +49,11 @@ final class FormTypeBasedFieldValueFormMapper implements FieldValueFormMapperInt
     /**
      * Maps Field form to current FieldType based on the configured form type (self::$formType).
      *
-     * @param \Symfony\Component\Form\FormInterface $fieldForm form for the current Field
-     * @param \Ibexa\Contracts\ContentForms\Data\Content\FieldData $data underlying data for current Field form
+     * @param \Symfony\Component\Form\FormInterface<mixed> $fieldForm
      */
     public function mapFieldValueForm(FormInterface $fieldForm, FieldData $data): void
     {
-        $fieldDefinition = $data->fieldDefinition;
+        $fieldDefinition = $data->getFieldDefinition();
         $formConfig = $fieldForm->getConfig();
 
         $fieldForm
@@ -69,11 +63,15 @@ final class FormTypeBasedFieldValueFormMapper implements FieldValueFormMapperInt
                         'value',
                         $this->formType,
                         [
-                            'required' => $fieldDefinition->isRequired,
+                            'required' => $fieldDefinition->isRequired(),
                             'label' => $fieldDefinition->getName(),
                         ]
                     )
-                    ->addModelTransformer(new FieldValueTransformer($this->fieldTypeService->getFieldType($fieldDefinition->fieldTypeIdentifier)))
+                    ->addModelTransformer(
+                        new FieldValueTransformer($this->fieldTypeService->getFieldType(
+                            $fieldDefinition->getFieldTypeIdentifier()
+                        ))
+                    )
                     // Deactivate auto-initialize as we're not on the root form.
                     ->setAutoInitialize(false)
                     ->getForm()

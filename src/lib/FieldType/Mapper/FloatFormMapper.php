@@ -16,11 +16,14 @@ use Symfony\Component\Form\FormInterface;
 /**
  * FormMapper for ibexa_float FieldType.
  */
-class FloatFormMapper implements FieldValueFormMapperInterface
+final readonly class FloatFormMapper implements FieldValueFormMapperInterface
 {
+    /**
+     * @param \Symfony\Component\Form\FormInterface<mixed> $fieldForm
+     */
     public function mapFieldValueForm(FormInterface $fieldForm, FieldData $data): void
     {
-        $fieldDefinition = $data->fieldDefinition;
+        $fieldDefinition = $data->getFieldDefinition();
         $formConfig = $fieldForm->getConfig();
         $validatorConfiguration = $fieldDefinition->getValidatorConfiguration();
 
@@ -31,7 +34,7 @@ class FloatFormMapper implements FieldValueFormMapperInterface
                         'value',
                         FloatFieldType::class,
                         [
-                            'required' => $fieldDefinition->isRequired,
+                            'required' => $fieldDefinition->isRequired(),
                             'label' => $fieldDefinition->getName(),
                             'min' => $validatorConfiguration['FloatValueValidator']['minFloatValue'],
                             'max' => $validatorConfiguration['FloatValueValidator']['maxFloatValue'],

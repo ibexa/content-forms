@@ -15,7 +15,7 @@ use Ibexa\Core\Repository\Values\ContentType\FieldDefinition;
 use Symfony\Component\Form\FormConfigInterface;
 use Symfony\Component\Form\FormInterface;
 
-class UserAccountFieldValueFormMapperTest extends BaseMapperTest
+final class UserAccountFieldValueFormMapperTest extends BaseMapperTest
 {
     protected function setUp(): void
     {
@@ -24,23 +24,29 @@ class UserAccountFieldValueFormMapperTest extends BaseMapperTest
         $data = new UserCreateData();
         $data->contentType = $this->createMock(ContentType::class);
 
-        $formRoot = $this->getMockBuilder(FormInterface::class)->getMock();
+        $formRoot = $this->createMock(FormInterface::class);
         $formRoot
             ->method('getData')
             ->willReturn($data);
 
-        $userEditForm = $this->getMockBuilder(FormInterface::class)->getMock();
-        $config = $this->getMockBuilder(FormConfigInterface::class)->getMock();
+        $userEditForm = $this->createMock(FormInterface::class);
+        $config = $this->createMock(FormConfigInterface::class);
 
-        $config->method('getOption')
+        $config
+            ->method('getOption')
             ->with('intent')
             ->willReturn('update');
-        $formRoot->method('getConfig')
+
+        $formRoot
+            ->method('getConfig')
             ->willReturn($config);
-        $userEditForm->method('getRoot')
+
+        $userEditForm
+            ->method('getRoot')
             ->willReturn($formRoot);
 
-        $this->fieldForm->method('getRoot')
+        $this->fieldForm
+            ->method('getRoot')
             ->willReturn($userEditForm);
     }
 
@@ -50,9 +56,9 @@ class UserAccountFieldValueFormMapperTest extends BaseMapperTest
 
         $fieldDefinition = new FieldDefinition(['names' => []]);
 
-        $this->data->expects(self::once())
-            ->method('__get')
-            ->with('fieldDefinition')
+        $this->data
+            ->expects(self::once())
+            ->method('getFieldDefinition')
             ->willReturn($fieldDefinition);
 
         $this->config
@@ -71,9 +77,9 @@ class UserAccountFieldValueFormMapperTest extends BaseMapperTest
 
         $fieldDefinition = new FieldDefinition(['names' => ['eng-GB' => 'foo']]);
 
-        $this->data->expects(self::once())
-            ->method('__get')
-            ->with('fieldDefinition')
+        $this->data
+            ->expects(self::once())
+            ->method('getFieldDefinition')
             ->willReturn($fieldDefinition);
 
         $this->config

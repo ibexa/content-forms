@@ -17,6 +17,8 @@ use Ibexa\Contracts\Core\Repository\Values\Content\Location;
 use Ibexa\Contracts\Core\Repository\Values\ContentType\ContentType;
 use Ibexa\Core\Base\Exceptions\InvalidArgumentException;
 use Ibexa\Core\MVC\Symfony\View\Builder\ViewBuilder;
+use Ibexa\Core\MVC\Symfony\View\ContentView;
+use Ibexa\Core\MVC\Symfony\View\View;
 use Symfony\Component\Form\FormError;
 
 /**
@@ -24,36 +26,39 @@ use Symfony\Component\Form\FormError;
  *
  * @internal
  */
-class ContentEditViewBuilder extends AbstractContentViewBuilder implements ViewBuilder
+final class ContentEditViewBuilder extends AbstractContentViewBuilder implements ViewBuilder
 {
-    public function matches($argument)
+    public function matches(mixed $argument): bool
     {
         return 'ibexa_content_edit::editVersionDraftAction' === $argument;
     }
 
     /**
-     * @param array $parameters
+     * @param array<string, mixed> $parameters
      *
-     * @return \Ibexa\Core\MVC\Symfony\View\ContentView|\Ibexa\Core\MVC\Symfony\View\View
-     *
-     * @throws \Ibexa\Core\Base\Exceptions\InvalidArgumentType
      * @throws \Symfony\Component\OptionsResolver\Exception\InvalidOptionsException
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\BadStateException
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\InvalidArgumentException
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\UnauthorizedException
      */
-    public function buildView(array $parameters)
+    public function buildView(array $parameters): ContentView|View
     {
-        $view = new ContentEditView($this->configResolver->getParameter('content_edit.templates.edit'));
+        $view = new ContentEditView(
+            $this->configResolver->getParameter('content_edit.templates.edit')
+        );
 
         $language = $this->resolveLanguage($parameters);
         $location = $this->resolveLocation($parameters);
         $content = $this->resolveContent($parameters, $location, $language);
-        $contentInfo = $content->contentInfo;
-        $contentType = $this->loadContentType((int) $contentInfo->contentTypeId, $this->languagePreferenceProvider->getPreferredLanguages());
+        $contentInfo = $content->getContentInfo();
+        $contentType = $this->loadContentType(
+            $contentInfo->contentTypeId,
+            $this->languagePreferenceProvider->getPreferredLanguages()
+        );
+
         /** @var \Symfony\Component\Form\Form $form */
         $form = $parameters['form'];
-        $isPublished = null !== $contentInfo->mainLocationId && $contentInfo->published;
+        $isPublished = null !== $contentInfo->getMainLocationId() && $contentInfo->isPublished();
 
         if (!$content->getVersionInfo()->isDraft()) {
             throw new InvalidArgumentException('Version', 'The status is not draft');
@@ -62,16 +67,22 @@ class ContentEditViewBuilder extends AbstractContentViewBuilder implements ViewB
         if (null === $location && $isPublished) {
             try {
                 // assume main location if no location was provided
-                $location = $this->loadLocation((int)$contentInfo->mainLocationId);
-            } catch (UnauthorizedException $e) {
+                $location = $this->loadLocation((int)$contentInfo->getMainLocationId());
+            } catch (UnauthorizedException) {
                 // if no access to the main location assume content has multiple locations and first of them can be used
-                $availableLocations = $this->repository->getLocationService()->loadLocations($contentInfo);
+                $availableLocations = iterator_to_array(
+                    $this->repository->getLocationService()->loadLocations($contentInfo)
+                );
+
                 $location = array_shift($availableLocations);
             }
         }
 
-        if (null !== $location && $location->contentId !== $content->id) {
-            throw new InvalidArgumentException('Location', 'The provided Location does not belong to the selected content');
+        if (null !== $location && $location->getContentId() !== $content->getId()) {
+            throw new InvalidArgumentException(
+                'Location',
+                'The provided Location does not belong to the selected content'
+            );
         }
 
         if ($form->isSubmitted() && $form->isValid() && null !== $form->getClickedButton()) {
@@ -100,7 +111,7 @@ class ContentEditViewBuilder extends AbstractContentViewBuilder implements ViewB
 
             foreach ($validationErrors as $fieldIdentifier => $validationErrorLanguages) {
                 $fieldValueElement = $form->get('fieldsData')->get($fieldIdentifier)->get('value');
-                foreach ($validationErrorLanguages as $languageCode => $validationErrors) {
+                foreach ($validationErrorLanguages as $validationErrors) {
                     if (is_array($validationErrors) === false) {
                         $validationErrors = [$validationErrors];
                     }
@@ -138,16 +149,12 @@ class ContentEditViewBuilder extends AbstractContentViewBuilder implements ViewB
     /**
      * Loads Content with id $contentId.
      *
-     * @param int $contentId
-     * @param array $languages
-     * @param int|null $versionNo
-     *
-     * @return \Ibexa\Contracts\Core\Repository\Values\Content\Content
+     * @param string[] $languages
      *
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\UnauthorizedException
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException
      */
-    private function loadContent(int $contentId, array $languages = [], int $versionNo = null): Content
+    private function loadContent(int $contentId, array $languages = [], ?int $versionNo = null): Content
     {
         return $this->repository->getContentService()->loadContent($contentId, $languages, $versionNo);
     }
@@ -155,10 +162,7 @@ class ContentEditViewBuilder extends AbstractContentViewBuilder implements ViewB
     /**
      * Loads ContentType with id $contentTypeId.
      *
-     * @param int $contentTypeId
      * @param string[] $languageCodes
-     *
-     * @return \Ibexa\Contracts\Core\Repository\Values\ContentType\ContentType
      *
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException
      */
@@ -168,13 +172,11 @@ class ContentEditViewBuilder extends AbstractContentViewBuilder implements ViewB
     }
 
     /**
-     * @param array $parameters
-     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Location|null $location
-     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Language $language
+     * @param array<string, mixed> $parameters
      *
-     * @return \Ibexa\Contracts\Core\Repository\Values\Content\Content
-     *
-     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\InvalidArgumentException
+     * @throws \Ibexa\Core\Base\Exceptions\InvalidArgumentException
+     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\UnauthorizedException
+     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException
      */
     private function resolveContent(array $parameters, ?Location $location, Language $language): Content
     {
@@ -185,7 +187,7 @@ class ContentEditViewBuilder extends AbstractContentViewBuilder implements ViewB
         if (isset($parameters['contentId'])) {
             $contentId = $parameters['contentId'];
         } elseif (null !== $location) {
-            $contentId = $location->contentId;
+            $contentId = $location->getContentId();
         } else {
             throw new InvalidArgumentException(
                 'Content',
@@ -195,15 +197,13 @@ class ContentEditViewBuilder extends AbstractContentViewBuilder implements ViewB
 
         return $this->loadContent(
             (int) $contentId,
-            null !== $language ? [$language->languageCode] : [],
-            (int) $parameters['versionNo'] ?: null
+            [$language->languageCode],
+            (int)$parameters['versionNo'] ?: null
         );
     }
 
     /**
-     * @param array $parameters
-     *
-     * @return \Ibexa\Contracts\Core\Repository\Values\Content\Location|null
+     * @param array<string, mixed> $parameters
      */
     private function resolveLocation(array $parameters): ?Location
     {
@@ -212,7 +212,8 @@ class ContentEditViewBuilder extends AbstractContentViewBuilder implements ViewB
                 // the load error is suppressed because a user can have no permission to this location
                 // but can have access to another location when content is in multiple locations
                 return $this->loadLocation((int)$parameters['locationId']);
-            } catch (UnauthorizedException $e) {
+            } catch (UnauthorizedException) {
+                //do nothing
             }
         }
 

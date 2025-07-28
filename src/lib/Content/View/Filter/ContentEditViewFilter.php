@@ -25,36 +25,15 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\Form\FormInterface;
 
-class ContentEditViewFilter implements EventSubscriberInterface
+final readonly class ContentEditViewFilter implements EventSubscriberInterface
 {
-    private ContentService $contentService;
-
-    private ContentTypeService $contentTypeService;
-
-    private FormFactoryInterface $formFactory;
-
-    private UserLanguagePreferenceProviderInterface $languagePreferenceProvider;
-
-    private LocationService $locationService;
-
-    /**
-     * @param \Ibexa\Contracts\Core\Repository\ContentService $contentService
-     * @param \Ibexa\Contracts\Core\Repository\ContentTypeService $contentTypeService
-     * @param \Symfony\Component\Form\FormFactoryInterface $formFactory
-     * @param \Ibexa\Core\MVC\Symfony\Locale\UserLanguagePreferenceProviderInterface $languagePreferenceProvider
-     */
     public function __construct(
-        ContentService $contentService,
-        LocationService $locationService,
-        ContentTypeService $contentTypeService,
-        FormFactoryInterface $formFactory,
-        UserLanguagePreferenceProviderInterface $languagePreferenceProvider
+        private ContentService $contentService,
+        private LocationService $locationService,
+        private ContentTypeService $contentTypeService,
+        private FormFactoryInterface $formFactory,
+        private UserLanguagePreferenceProviderInterface $languagePreferenceProvider
     ) {
-        $this->contentService = $contentService;
-        $this->contentTypeService = $contentTypeService;
-        $this->formFactory = $formFactory;
-        $this->languagePreferenceProvider = $languagePreferenceProvider;
-        $this->locationService = $locationService;
     }
 
     public static function getSubscribedEvents(): array
@@ -63,8 +42,6 @@ class ContentEditViewFilter implements EventSubscriberInterface
     }
 
     /**
-     * @param \Ibexa\Core\MVC\Symfony\View\Event\FilterViewBuilderParametersEvent $event
-     *
      * @throws \Symfony\Component\OptionsResolver\Exception\InvalidOptionsException
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\UnauthorizedException
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException
@@ -84,10 +61,10 @@ class ContentEditViewFilter implements EventSubscriberInterface
             $request->attributes->getInt('versionNo')
         );
         $currentContent = $this->contentService->loadContent($contentId);
-        $currentFields = $currentContent->getFields();
+        $currentFields = iterator_to_array($currentContent->getFields());
 
         $contentType = $this->contentTypeService->loadContentType(
-            $contentDraft->contentInfo->contentTypeId,
+            $contentDraft->getContentInfo()->getContentType()->id,
             $this->languagePreferenceProvider->getPreferredLanguages()
         );
 
@@ -95,10 +72,11 @@ class ContentEditViewFilter implements EventSubscriberInterface
             $location = $this->locationService->loadLocation(
                 (int)$event->getParameters()->get(
                     'locationId',
-                    $contentDraft->contentInfo->mainLocationId
+                    $contentDraft->getContentInfo()->getMainLocationId()
                 )
             );
-        } catch (NotFoundException $e) {
+        } catch (NotFoundException) {
+            //do nothing
         }
 
         $contentUpdate = $this->resolveContentEditData(
@@ -107,6 +85,7 @@ class ContentEditViewFilter implements EventSubscriberInterface
             $contentType,
             $currentFields
         );
+
         $form = $this->resolveContentEditForm(
             $contentUpdate,
             $languageCode,
@@ -139,11 +118,7 @@ class ContentEditViewFilter implements EventSubscriberInterface
     }
 
     /**
-     * @param \Ibexa\ContentForms\Data\Content\ContentUpdateData $contentUpdate
-     * @param string $languageCode
-     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Content $content
-     *
-     * @return \Symfony\Component\Form\FormInterface
+     * @return \Symfony\Component\Form\FormInterface<mixed>
      */
     private function resolveContentEditForm(
         ContentUpdateData $contentUpdate,
@@ -157,9 +132,10 @@ class ContentEditViewFilter implements EventSubscriberInterface
             [
                 'location' => $location,
                 'languageCode' => $languageCode,
-                'mainLanguageCode' => $content->contentInfo->mainLanguageCode,
+                'mainLanguageCode' => $content->getContentInfo()->getMainLanguageCode(),
                 'content' => $content,
                 'contentUpdateStruct' => $contentUpdate,
+                'struct' => $contentUpdate,
                 'drafts_enabled' => true,
             ]
         );

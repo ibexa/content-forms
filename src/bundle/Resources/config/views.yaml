@@ -36,10 +36,6 @@ services:
             $parameterName: content_edit_view
 
     Ibexa\ContentForms\Content\View\Filter\ContentEditViewFilter:
-        arguments:
-            - '@ibexa.api.service.content'
-            - '@ibexa.api.service.location'
-            - '@ibexa.api.service.content_type'
         tags:
             - { name: kernel.event_subscriber }
 

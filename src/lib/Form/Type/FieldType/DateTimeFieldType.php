@@ -19,7 +19,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 /**
  * Form Type representing ibexa_datetime field type.
  */
-class DateTimeFieldType extends AbstractType
+final class DateTimeFieldType extends AbstractType
 {
     public function getName(): string
     {
@@ -31,15 +31,14 @@ class DateTimeFieldType extends AbstractType
         return 'ezplatform_fieldtype_ibexa_datetime';
     }
 
-    public function getParent(): ?string
+    public function getParent(): string
     {
         return IntegerType::class;
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $builder
-            ->addModelTransformer(new DateTimeValueTransformer());
+        $builder->addModelTransformer(new DateTimeValueTransformer());
     }
 
     public function buildView(FormView $view, FormInterface $form, array $options): void

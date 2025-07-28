@@ -15,13 +15,11 @@ use Ibexa\Core\Repository\Values\Content\ContentCreateStruct;
 /**
  * @property \Ibexa\Contracts\ContentForms\Data\Content\FieldData[] $fieldsData
  */
-class ContentCreateData extends ContentCreateStruct implements NewnessCheckable
+final class ContentCreateData extends ContentCreateStruct implements NewnessCheckable
 {
     use ContentData;
 
-    /**
-     * @var \Ibexa\Contracts\Core\Repository\Values\Content\LocationCreateStruct[]
-     */
+    /** @var \Ibexa\Contracts\Core\Repository\Values\Content\LocationCreateStruct[] */
     private array $locationStructs = [];
 
     public function isNew(): bool

@@ -16,11 +16,14 @@ use Symfony\Component\Form\FormInterface;
 /**
  * FormMapper for ibexa_boolean FieldType.
  */
-class CheckboxFormMapper implements FieldValueFormMapperInterface
+final readonly class CheckboxFormMapper implements FieldValueFormMapperInterface
 {
+    /**
+     * @param \Symfony\Component\Form\FormInterface<mixed> $fieldForm
+     */
     public function mapFieldValueForm(FormInterface $fieldForm, FieldData $data): void
     {
-        $fieldDefinition = $data->fieldDefinition;
+        $fieldDefinition = $data->getFieldDefinition();
         $formConfig = $fieldForm->getConfig();
 
         $fieldForm
@@ -30,7 +33,7 @@ class CheckboxFormMapper implements FieldValueFormMapperInterface
                         'value',
                         CheckboxFieldType::class,
                         [
-                            'required' => $fieldDefinition->isRequired,
+                            'required' => $fieldDefinition->isRequired(),
                             'label' => $fieldDefinition->getName(),
                         ]
                     )

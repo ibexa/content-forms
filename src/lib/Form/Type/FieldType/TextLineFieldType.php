@@ -20,13 +20,10 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 /**
  * Form Type representing ibexa_string field type.
  */
-class TextLineFieldType extends AbstractType
+final class TextLineFieldType extends AbstractType
 {
-    private FieldTypeService $fieldTypeService;
-
-    public function __construct(FieldTypeService $fieldTypeService)
+    public function __construct(private readonly FieldTypeService $fieldTypeService)
     {
-        $this->fieldTypeService = $fieldTypeService;
     }
 
     public function getName(): string
@@ -39,14 +36,16 @@ class TextLineFieldType extends AbstractType
         return 'ibexa_fieldtype_ibexa_string';
     }
 
-    public function getParent(): ?string
+    public function getParent(): string
     {
         return TextType::class;
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $builder->addModelTransformer(new FieldValueTransformer($this->fieldTypeService->getFieldType('ibexa_string')));
+        $builder->addModelTransformer(
+            new FieldValueTransformer($this->fieldTypeService->getFieldType('ibexa_string'))
+        );
     }
 
     public function buildView(FormView $view, FormInterface $form, array $options): void
@@ -70,7 +69,7 @@ class TextLineFieldType extends AbstractType
             'min' => null,
             'max' => null,
         ])
-            ->setAllowedTypes('min', ['integer', 'null'])
-            ->setAllowedTypes('max', ['integer', 'null']);
+        ->setAllowedTypes('min', ['integer', 'null'])
+        ->setAllowedTypes('max', ['integer', 'null']);
     }
 }

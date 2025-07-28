@@ -11,7 +11,7 @@ namespace Ibexa\Contracts\ContentForms\Content\Form\Provider;
 interface GroupedContentFormFieldsProviderInterface
 {
     /**
-     * @param \Symfony\Component\Form\FormInterface[] $fieldsDataForm
+     * @param \Symfony\Component\Form\FormInterface<mixed>[] $fieldsDataForm
      *
      * @phpstan-return array<string, array<int, string>> Array of fieldGroupIdentifier grouped by fieldGroupName.
      */

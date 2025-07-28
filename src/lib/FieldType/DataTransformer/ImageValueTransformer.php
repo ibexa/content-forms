@@ -18,12 +18,12 @@ use Symfony\Component\Form\DataTransformerInterface;
  *
  * @implements \Symfony\Component\Form\DataTransformerInterface<\Ibexa\Core\FieldType\Image\Value, array<string, mixed>>
  */
-class ImageValueTransformer extends AbstractBinaryBaseTransformer implements DataTransformerInterface
+final class ImageValueTransformer extends AbstractBinaryBaseTransformer implements DataTransformerInterface
 {
     /**
      * @param \Ibexa\Core\FieldType\Image\Value $value
      *
-     * @return array
+     * @return array<string, mixed>
      */
     public function transform(mixed $value): array
     {

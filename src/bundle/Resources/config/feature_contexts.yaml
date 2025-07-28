@@ -4,18 +4,8 @@ services:
         autoconfigure: true
         public: true
 
-    Ibexa\ContentForms\Behat\Context\ContentTypeContext:
-        arguments:
-            $permissionResolver: '@Ibexa\Contracts\Core\Repository\PermissionResolver'
-            $contentTypeService: '@ibexa.api.service.content_type'
+    Ibexa\ContentForms\Behat\Context\ContentTypeContext: ~
 
-    Ibexa\ContentForms\Behat\Context\PagelayoutContext:
-        arguments:
-            $configResolver: '@ibexa.config.resolver'
+    Ibexa\ContentForms\Behat\Context\PagelayoutContext: ~
 
-    Ibexa\ContentForms\Behat\Context\UserRegistrationContext:
-        arguments:
-            $permissionResolver: '@Ibexa\Contracts\Core\Repository\PermissionResolver'
-            $roleService: '@ibexa.api.service.role'
-            $userService: '@ibexa.api.service.user'
-            $contentTypeService: '@ibexa.api.service.content_type'
+    Ibexa\ContentForms\Behat\Context\UserRegistrationContext: ~

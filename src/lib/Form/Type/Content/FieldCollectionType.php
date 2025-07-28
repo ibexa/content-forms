@@ -26,14 +26,11 @@ use Symfony\Component\Form\FormInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
 
-class FieldCollectionType extends CollectionType
+final class FieldCollectionType extends CollectionType
 {
-    private EventDispatcherInterface $eventDispatcher;
-
     public function __construct(
-        EventDispatcherInterface $eventDispatcher
+        private readonly EventDispatcherInterface $eventDispatcher
     ) {
-        $this->eventDispatcher = $eventDispatcher;
     }
 
     public function buildForm(
@@ -42,25 +39,28 @@ class FieldCollectionType extends CollectionType
     ): void {
         parent::buildForm($builder, $options);
 
-        $builder->addEventListener(FormEvents::POST_SET_DATA, function (FormEvent $event) use ($options): void {
-            $form = $event->getForm();
-            $data = $event->getData();
+        $builder->addEventListener(
+            FormEvents::POST_SET_DATA,
+            function (FormEvent $event) use ($options): void {
+                $form = $event->getForm();
+                $data = $event->getData();
 
-            foreach ($form as $name => $child) {
-                $form->remove($name);
+                foreach ($form as $name => $child) {
+                    $form->remove($name);
+                }
+
+                // Then add all rows again in the correct order
+                foreach ($data as $name => $entryData) {
+                    $entryOptions = array_replace([
+                        'property_path' => '[' . $name . ']',
+                    ], $options['entry_options']);
+
+                    $entryOptions = $this->dispatchFieldOptionsEvent($entryData, $entryOptions, $form);
+
+                    $form->add($name, $options['entry_type'], $entryOptions);
+                }
             }
-
-            // Then add all rows again in the correct order
-            foreach ($data as $name => $entryData) {
-                $entryOptions = array_replace([
-                    'property_path' => '[' . $name . ']',
-                ], $options['entry_options']);
-
-                $entryOptions = $this->dispatchFieldOptionsEvent($entryData, $entryOptions, $form);
-
-                $form->add($name, $options['entry_type'], $entryOptions);
-            }
-        });
+        );
     }
 
     public function configureOptions(OptionsResolver $resolver): void
@@ -72,6 +72,7 @@ class FieldCollectionType extends CollectionType
 
     /**
      * @param array<string, mixed> $entryOptions
+     * @param \Symfony\Component\Form\FormInterface<mixed> $form
      *
      * @return array<string, mixed>
      */
@@ -97,6 +98,7 @@ class FieldCollectionType extends CollectionType
 
     /**
      * @param array<string, mixed> $entryOptions
+     * @param \Symfony\Component\Form\FormInterface<mixed> $form
      *
      * @return array<string, mixed>
      */
@@ -105,7 +107,7 @@ class FieldCollectionType extends CollectionType
         array $entryOptions,
         FormInterface $form
     ): array {
-        /** @var \Ibexa\ContentForms\Event\ContentCreateFieldOptionsEvent $contentUpdateFieldOptionsEvent */
+        /** @var \Ibexa\ContentForms\Event\ContentCreateFieldOptionsEvent $contentCreateFieldOptionsEvent */
         $contentCreateFieldOptionsEvent = $this->eventDispatcher->dispatch(
             new ContentCreateFieldOptionsEvent(
                 $entryOptions['struct'],
@@ -121,6 +123,7 @@ class FieldCollectionType extends CollectionType
 
     /**
      * @param array<string, mixed> $entryOptions
+     * @param \Symfony\Component\Form\FormInterface<mixed> $form
      *
      * @return array<string, mixed>
      */
@@ -145,6 +148,7 @@ class FieldCollectionType extends CollectionType
 
     /**
      * @param array<string, mixed> $entryOptions
+     * @param \Symfony\Component\Form\FormInterface<mixed> $form
      *
      * @return array<string, mixed>
      */
@@ -153,10 +157,17 @@ class FieldCollectionType extends CollectionType
         array $entryOptions,
         FormInterface $form
     ): array {
+        $content = $entryOptions['content'];
+        //we return early if content is null, as it means we come from user profile edit form. having non-nullable
+        //content would mean we need to perform permissions checks, which is not the case if you edit your own profile
+        if ($content === null) {
+            return $entryOptions;
+        }
+
         /** @var \Ibexa\ContentForms\Event\UserUpdateFieldOptionsEvent $userUpdateFieldOptionsEvent */
         $userUpdateFieldOptionsEvent = $this->eventDispatcher->dispatch(
             new UserUpdateFieldOptionsEvent(
-                $entryOptions['content'],
+                $content,
                 $entryOptions['struct'],
                 $form,
                 $entryData,
@@ -170,6 +181,7 @@ class FieldCollectionType extends CollectionType
 
     /**
      * @param array<string, mixed> $entryOptions
+     * @param \Symfony\Component\Form\FormInterface<mixed> $form
      *
      * @return array<string, mixed>
      */

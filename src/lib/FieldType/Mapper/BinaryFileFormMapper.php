@@ -16,20 +16,22 @@ use Ibexa\Contracts\Core\Repository\FieldTypeService;
 use Ibexa\Core\FieldType\BinaryFile\Value;
 use Symfony\Component\Form\FormInterface;
 
-class BinaryFileFormMapper implements FieldValueFormMapperInterface
+final readonly class BinaryFileFormMapper implements FieldValueFormMapperInterface
 {
-    private FieldTypeService $fieldTypeService;
-
-    public function __construct(FieldTypeService $fieldTypeService)
+    public function __construct(private FieldTypeService $fieldTypeService)
     {
-        $this->fieldTypeService = $fieldTypeService;
     }
 
+    /**
+     * @param \Symfony\Component\Form\FormInterface<mixed> $fieldForm
+     */
     public function mapFieldValueForm(FormInterface $fieldForm, FieldData $data): void
     {
-        $fieldDefinition = $data->fieldDefinition;
+        $fieldDefinition = $data->getFieldDefinition();
         $formConfig = $fieldForm->getConfig();
-        $fieldType = $this->fieldTypeService->getFieldType($fieldDefinition->fieldTypeIdentifier);
+        $fieldType = $this->fieldTypeService->getFieldType(
+            $fieldDefinition->getFieldTypeIdentifier()
+        );
 
         $fieldForm
             ->add(
@@ -38,11 +40,13 @@ class BinaryFileFormMapper implements FieldValueFormMapperInterface
                         'value',
                         BinaryFileFieldType::class,
                         [
-                            'required' => $fieldDefinition->isRequired,
+                            'required' => $fieldDefinition->isRequired(),
                             'label' => $fieldDefinition->getName(),
                         ]
                     )
-                    ->addModelTransformer(new BinaryFileValueTransformer($fieldType, $data->value, Value::class))
+                    ->addModelTransformer(
+                        new BinaryFileValueTransformer($fieldType, $data->getValue(), Value::class)
+                    )
                     ->setAutoInitialize(false)
                     ->getForm()
             );

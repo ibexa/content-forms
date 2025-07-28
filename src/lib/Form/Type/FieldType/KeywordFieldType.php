@@ -16,7 +16,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 /**
  * Form Type representing ibexa_keyword field type.
  */
-class KeywordFieldType extends AbstractType
+final class KeywordFieldType extends AbstractType
 {
     public function getName(): string
     {
@@ -28,7 +28,7 @@ class KeywordFieldType extends AbstractType
         return 'ezplatform_fieldtype_ibexa_keyword';
     }
 
-    public function getParent(): ?string
+    public function getParent(): string
     {
         return TextType::class;
     }

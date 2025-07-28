@@ -20,20 +20,19 @@ use Ibexa\Contracts\Core\Repository\RoleService;
 use Ibexa\Contracts\Core\Repository\UserService;
 use Ibexa\Contracts\Core\Repository\Values\User\Role;
 use Ibexa\Contracts\Core\Repository\Values\User\User;
+use Ibexa\Contracts\Core\Repository\Values\User\UserGroup;
 use Ibexa\Core\Repository\Values\User\RoleCreateStruct;
 use Ibexa\Core\Repository\Values\User\UserReference;
 use PHPUnit\Framework\Assert as Assertion;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Yaml\Yaml;
 
-class UserRegistrationContext extends RawMinkContext implements Context, SnippetAcceptingContext
+final class UserRegistrationContext extends RawMinkContext implements Context, SnippetAcceptingContext
 {
     /**
      * Regex matching the way the Twig template name is inserted in debug mode.
-     *
-     * @var string
      */
-    public const TWIG_DEBUG_STOP_REGEX = '<!-- STOP .*%s.* -->';
+    public const string TWIG_DEBUG_STOP_REGEX = '<!-- STOP .*%s.* -->';
 
     private static string $password = 'PassWord42';
 
@@ -45,40 +44,18 @@ class UserRegistrationContext extends RawMinkContext implements Context, Snippet
 
     /**
      * Used to cover registration group customization.
-     *
-     * @var \Ibexa\Contracts\Core\Repository\Values\User\UserGroup
      */
-    private $customUserGroup;
+    private UserGroup $customUserGroup;
 
-    /**
-     * @var \Ibexa\Bundle\Core\Features\Context\YamlConfigurationContext
-     */
-    private $yamlConfigurationContext;
-
-    /**
-     * Default Administrator user id.
-     */
-    private int $adminUserId = 14;
-
-    private PermissionResolver $permissionResolver;
-
-    private RoleService $roleService;
-
-    private UserService $userService;
-
-    private ContentTypeService $contentTypeService;
+    private YamlConfigurationContext $yamlConfigurationContext;
 
     public function __construct(
-        PermissionResolver $permissionResolver,
-        RoleService $roleService,
-        UserService $userService,
-        ContentTypeService $contentTypeService
+        readonly PermissionResolver $permissionResolver,
+        private readonly RoleService $roleService,
+        private readonly UserService $userService,
+        private readonly ContentTypeService $contentTypeService
     ) {
-        $permissionResolver->setCurrentUserReference(new UserReference($this->adminUserId));
-        $this->permissionResolver = $permissionResolver;
-        $this->roleService = $roleService;
-        $this->userService = $userService;
-        $this->contentTypeService = $contentTypeService;
+        $permissionResolver->setCurrentUserReference(new UserReference(14));
     }
 
     /** @BeforeScenario */
@@ -107,14 +84,7 @@ class UserRegistrationContext extends RawMinkContext implements Context, Snippet
         $this->loginAs($user);
     }
 
-    /**
-     * Creates a user for registration testing, and assigns it the role $role.
-     *
-     * @param \Ibexa\Contracts\Core\Repository\Values\User\Role $role
-     *
-     * @return \Ibexa\Contracts\Core\Repository\Values\User\User
-     */
-    private function createUserWithRole(Role $role)
+    private function createUserWithRole(Role $role): User
     {
         $username = uniqid($role->identifier, true);
         $createStruct = $this->userService->newUserCreateStruct(
@@ -132,15 +102,6 @@ class UserRegistrationContext extends RawMinkContext implements Context, Snippet
         return $user;
     }
 
-    /**
-     * Creates a role for user registration test.
-     *
-     * It always has the minimal set of policies to operate (user/login and content/read).
-     *
-     * @param bool $withUserRegisterPolicy Determines if the role gets the user/register policy
-     *
-     * @return \Ibexa\Contracts\Core\Repository\Values\User\Role
-     */
     private function createRegistrationRole(bool $withUserRegisterPolicy = true): Role
     {
         $roleIdentifier = uniqid(
@@ -176,8 +137,7 @@ class UserRegistrationContext extends RawMinkContext implements Context, Snippet
     }
 
     /**
-     * @param \Ibexa\Contracts\Core\Repository\Values\User\User $user
-     *
+     * @throws \Behat\Mink\Exception\ExpectationException
      * @throws \Behat\Mink\Exception\ElementNotFoundException
      */
     private function loginAs(User $user): void
@@ -363,24 +323,23 @@ class UserRegistrationContext extends RawMinkContext implements Context, Snippet
      * @Then /^the confirmation page is rendered using the "([^"]*)" template$/
      * @Then /^the form is rendered using the "([^"]*)" template$/
      *
-     * @param string $template
      *        The template path to look for.
      *        If relative to app/Resources/views (example: user/register.html.twig),
      *        the path is checked with the :path:file.html.twig syntax as well.
      */
-    public function thePageIsRenderedUsingTheTemplateConfiguredIn($template): void
+    public function thePageIsRenderedUsingTheTemplateConfiguredIn(string $template): void
     {
         $html = $this->getSession()->getPage()->getOuterHtml();
-        $searchedPattern = sprintf(self::TWIG_DEBUG_STOP_REGEX, preg_quote($template, null));
+        $searchedPattern = sprintf(self::TWIG_DEBUG_STOP_REGEX, preg_quote($template));
         $found = preg_match($searchedPattern, $html) === 1;
 
-        if (!$found && strpos($template, ':') === false) {
+        if (!$found && !str_contains($template, ':')) {
             $alternativeTemplate = sprintf(
                 ':%s:%s',
                 dirname($template),
                 basename($template)
             );
-            $searchedPattern = sprintf(self::TWIG_DEBUG_STOP_REGEX, preg_quote($alternativeTemplate, null));
+            $searchedPattern = sprintf(self::TWIG_DEBUG_STOP_REGEX, preg_quote($alternativeTemplate));
             $found = preg_match($searchedPattern, $html) === 1;
         }
 

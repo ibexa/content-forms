@@ -20,13 +20,10 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 /**
  * Form Type representing ibexa_url field type.
  */
-class UrlFieldType extends AbstractType
+final class UrlFieldType extends AbstractType
 {
-    protected FieldTypeService $fieldTypeService;
-
-    public function __construct(FieldTypeService $fieldTypeService)
+    public function __construct(private readonly FieldTypeService $fieldTypeService)
     {
-        $this->fieldTypeService = $fieldTypeService;
     }
 
     public function getName(): string
@@ -59,7 +56,9 @@ class UrlFieldType extends AbstractType
                     'required' => false,
                 ]
             )
-            ->addModelTransformer(new FieldValueTransformer($this->fieldTypeService->getFieldType('ibexa_url')));
+            ->addModelTransformer(
+                new FieldValueTransformer($this->fieldTypeService->getFieldType('ibexa_url'))
+            );
     }
 
     public function configureOptions(OptionsResolver $resolver): void

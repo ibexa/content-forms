@@ -13,37 +13,42 @@ use Ibexa\Contracts\ContentForms\Data\Content\FieldData;
 use Ibexa\Contracts\ContentForms\FieldType\FieldValueFormMapperInterface;
 use Symfony\Component\Form\FormInterface;
 
-class SelectionFormMapper implements FieldValueFormMapperInterface
+final readonly class SelectionFormMapper implements FieldValueFormMapperInterface
 {
+    /**
+     * @param \Symfony\Component\Form\FormInterface<mixed> $fieldForm
+     */
     public function mapFieldValueForm(FormInterface $fieldForm, FieldData $data): void
     {
-        $fieldDefinition = $data->fieldDefinition;
+        $fieldDefinition = $data->getFieldDefinition();
         $formConfig = $fieldForm->getConfig();
         $languageCode = $fieldForm->getConfig()->getOption('languageCode');
 
-        $choices = $fieldDefinition->fieldSettings['options'];
+        $fieldSettings = $fieldDefinition->getFieldSettings();
+        $choices = $fieldSettings['options'];
 
-        if (!empty($fieldDefinition->fieldSettings['multilingualOptions'][$languageCode])) {
-            $choices = $fieldDefinition->fieldSettings['multilingualOptions'][$languageCode];
-        } elseif (!empty($fieldDefinition->fieldSettings['multilingualOptions'][$fieldDefinition->mainLanguageCode])) {
-            $choices = $fieldDefinition->fieldSettings['multilingualOptions'][$fieldDefinition->mainLanguageCode];
+        if (!empty($fieldSettings['multilingualOptions'][$languageCode])) {
+            $choices = $fieldSettings['multilingualOptions'][$languageCode];
+        } elseif (!empty($fieldSettings['multilingualOptions'][$fieldDefinition->getMainLanguageCode()])) {
+            $choices = $fieldSettings['multilingualOptions'][$fieldDefinition->getMainLanguageCode()];
         }
 
         $fieldForm
             ->add(
-                $formConfig->getFormFactory()->createBuilder()
-                           ->create(
-                               'value',
-                               SelectionFieldType::class,
-                               [
-                                   'required' => $fieldDefinition->isRequired,
-                                   'label' => $fieldDefinition->getName(),
-                                   'multiple' => $fieldDefinition->fieldSettings['isMultiple'],
-                                   'choices' => array_flip($choices),
-                               ]
-                           )
-                           ->setAutoInitialize(false)
-                           ->getForm()
+                $formConfig->getFormFactory()
+                    ->createBuilder()
+                    ->create(
+                        'value',
+                        SelectionFieldType::class,
+                        [
+                           'required' => $fieldDefinition->isRequired(),
+                           'label' => $fieldDefinition->getName(),
+                           'multiple' => $fieldSettings['isMultiple'],
+                           'choices' => array_flip($choices),
+                       ]
+                    )
+                   ->setAutoInitialize(false)
+                   ->getForm()
             );
     }
 }

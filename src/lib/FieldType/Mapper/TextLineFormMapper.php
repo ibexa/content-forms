@@ -16,11 +16,14 @@ use Symfony\Component\Form\FormInterface;
 /**
  * FormMapper for ibexa_string FieldType.
  */
-class TextLineFormMapper implements FieldValueFormMapperInterface
+final readonly class TextLineFormMapper implements FieldValueFormMapperInterface
 {
+    /**
+     * @param \Symfony\Component\Form\FormInterface<mixed> $fieldForm
+     */
     public function mapFieldValueForm(FormInterface $fieldForm, FieldData $data): void
     {
-        $fieldDefinition = $data->fieldDefinition;
+        $fieldDefinition = $data->getFieldDefinition();
         $formConfig = $fieldForm->getConfig();
         $validatorConfiguration = $fieldDefinition->getValidatorConfiguration();
 
@@ -31,7 +34,7 @@ class TextLineFormMapper implements FieldValueFormMapperInterface
                         'value',
                         TextLineFieldType::class,
                         [
-                            'required' => $fieldDefinition->isRequired,
+                            'required' => $fieldDefinition->isRequired(),
                             'label' => $fieldDefinition->getName(),
                             'min' => $validatorConfiguration['StringLengthValidator']['minStringLength'],
                             'max' => $validatorConfiguration['StringLengthValidator']['maxStringLength'],

@@ -13,11 +13,14 @@ use Ibexa\Contracts\ContentForms\Data\Content\FieldData;
 use Ibexa\Contracts\ContentForms\FieldType\FieldValueFormMapperInterface;
 use Symfony\Component\Form\FormInterface;
 
-class ISBNFormMapper implements FieldValueFormMapperInterface
+final readonly class ISBNFormMapper implements FieldValueFormMapperInterface
 {
+    /**
+     * @param \Symfony\Component\Form\FormInterface<mixed> $fieldForm
+     */
     public function mapFieldValueForm(FormInterface $fieldForm, FieldData $data): void
     {
-        $fieldDefinition = $data->fieldDefinition;
+        $fieldDefinition = $data->getFieldDefinition();
         $formConfig = $fieldForm->getConfig();
 
         $fieldForm
@@ -27,7 +30,7 @@ class ISBNFormMapper implements FieldValueFormMapperInterface
                         'value',
                         ISBNFieldType::class,
                         [
-                            'required' => $fieldDefinition->isRequired,
+                            'required' => $fieldDefinition->isRequired(),
                             'label' => $fieldDefinition->getName(),
                         ]
                     )

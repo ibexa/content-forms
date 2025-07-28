@@ -20,7 +20,7 @@ use PHPUnit\Framework\TestCase;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
 use Symfony\Component\Validator\Violation\ConstraintViolationBuilderInterface;
 
-class UserAccountPasswordValidatorTest extends TestCase
+final class UserAccountPasswordValidatorTest extends TestCase
 {
     private UserService & MockObject $userService;
 

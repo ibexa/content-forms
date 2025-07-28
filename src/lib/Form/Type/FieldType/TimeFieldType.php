@@ -19,7 +19,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 /**
  * Form Type representing ibexa_time field type.
  */
-class TimeFieldType extends AbstractType
+final class TimeFieldType extends AbstractType
 {
     public function getName(): string
     {
@@ -31,15 +31,14 @@ class TimeFieldType extends AbstractType
         return 'ezplatform_fieldtype_ibexa_time';
     }
 
-    public function getParent(): ?string
+    public function getParent(): string
     {
         return IntegerType::class;
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $builder
-            ->addModelTransformer(new TimeValueTransformer());
+        $builder->addModelTransformer(new TimeValueTransformer());
     }
 
     public function buildView(FormView $view, FormInterface $form, array $options): void

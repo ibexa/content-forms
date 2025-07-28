@@ -16,7 +16,7 @@ use Symfony\Component\Form\DataTransformerInterface;
  *
  * @implements \Symfony\Component\Form\DataTransformerInterface<\Ibexa\Core\FieldType\RelationList\Value, string|null>
  */
-class RelationListValueTransformer implements DataTransformerInterface
+final readonly class RelationListValueTransformer implements DataTransformerInterface
 {
     public function transform(mixed $value): ?string
     {

@@ -16,11 +16,14 @@ use Symfony\Component\Form\FormInterface;
 /**
  * FormMapper for ibexa_integer FieldType.
  */
-class IntegerFormMapper implements FieldValueFormMapperInterface
+final readonly class IntegerFormMapper implements FieldValueFormMapperInterface
 {
+    /**
+     * @param \Symfony\Component\Form\FormInterface<mixed> $fieldForm
+     */
     public function mapFieldValueForm(FormInterface $fieldForm, FieldData $data): void
     {
-        $fieldDefinition = $data->fieldDefinition;
+        $fieldDefinition = $data->getFieldDefinition();
         $formConfig = $fieldForm->getConfig();
         $validatorConfiguration = $fieldDefinition->getValidatorConfiguration();
 
@@ -31,7 +34,7 @@ class IntegerFormMapper implements FieldValueFormMapperInterface
                         'value',
                         IntegerFieldType::class,
                         [
-                            'required' => $fieldDefinition->isRequired,
+                            'required' => $fieldDefinition->isRequired(),
                             'label' => $fieldDefinition->getName(),
                             'min' => $validatorConfiguration['IntegerValueValidator']['minIntegerValue'],
                             'max' => $validatorConfiguration['IntegerValueValidator']['maxIntegerValue'],

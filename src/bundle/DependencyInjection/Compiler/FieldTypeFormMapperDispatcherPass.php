@@ -14,10 +14,7 @@ use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Reference;
 
-/**
- * Compiler pass to register FieldType form mappers in the mapper dispatcher.
- */
-class FieldTypeFormMapperDispatcherPass implements CompilerPassInterface
+final class FieldTypeFormMapperDispatcherPass implements CompilerPassInterface
 {
     public const string FIELD_TYPE_FORM_MAPPER_DISPATCHER = FieldTypeFormMapperDispatcher::class;
     public const string FIELD_TYPE_FORM_MAPPER_VALUE_SERVICE_TAG = 'ibexa.admin_ui.field_type.form.mapper.value';
@@ -46,7 +43,10 @@ class FieldTypeFormMapperDispatcherPass implements CompilerPassInterface
                     );
                 }
 
-                $dispatcherDefinition->addMethodCall('addMapper', [new Reference($serviceId), $tag['fieldType']]);
+                $dispatcherDefinition->addMethodCall(
+                    'addMapper',
+                    [new Reference($serviceId), $tag['fieldType']]
+                );
             }
         }
     }

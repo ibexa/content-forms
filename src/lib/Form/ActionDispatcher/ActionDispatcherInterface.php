@@ -24,18 +24,17 @@ interface ActionDispatcherInterface
     /**
      * Dispatches the action of a given form.
      *
-     * @param \Symfony\Component\Form\FormInterface $form the form that has been submitted
+     * @param \Symfony\Component\Form\FormInterface<mixed> $form the form that has been submitted
      * @param \Ibexa\Contracts\Core\Repository\Values\ValueObject $data Underlying data for the form. Most likely a create or update struct.
-     * @param string|null $actionName The form action itself. Typically, the form clicked button name,
-     *                                or null if the default action is used (e.g., when pressing enter).
+     * @param string|null $actionName The form action itself. Typically, the form clicked button name, or null if the default action is used (e.g., when pressing enter).
      * @param array<string, mixed> $options arbitrary hash of options
      */
-    public function dispatchFormAction(FormInterface $form, ValueObject $data, ?string $actionName = null, array $options = []): void;
+    public function dispatchFormAction(
+        FormInterface $form,
+        ValueObject $data,
+        ?string $actionName = null,
+        array $options = []
+    ): void;
 
-    /**
-     * Returns the generated response, if any. Typically, a RedirectResponse.
-     *
-     * @return \Symfony\Component\HttpFoundation\Response|null
-     */
     public function getResponse(): ?Response;
 }
