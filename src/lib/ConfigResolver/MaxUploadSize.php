@@ -24,12 +24,12 @@ final class MaxUploadSize
      */
     public function get(?string $unit = null): int
     {
-        $uploadMaxFilesize = ini_get('upload_max_filesize');
-        if ($uploadMaxFilesize === false) {
-            throw new RuntimeException('Could not retrieve upload_max_filesize from PHP configuration.');
-        }
-
         if (!isset($this->value)) {
+            $uploadMaxFilesize = ini_get('upload_max_filesize');
+            if ($uploadMaxFilesize === false) {
+                throw new RuntimeException('Could not retrieve upload_max_filesize from PHP configuration.');
+            }
+
             $this->value = $this->stringToBytes($uploadMaxFilesize);
         }
 
