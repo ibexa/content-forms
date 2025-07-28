@@ -35,7 +35,8 @@ final readonly class SelectionFormMapper implements FieldValueFormMapperInterfac
 
         $fieldForm
             ->add(
-                $formConfig->getFormFactory()
+                $formConfig
+                    ->getFormFactory()
                     ->createBuilder()
                     ->create(
                         'value',
