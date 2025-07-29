@@ -16,7 +16,7 @@ use Ibexa\Core\MVC\Symfony\View\ContentValueView;
 use Ibexa\Core\MVC\Symfony\View\LocationValueView;
 use Symfony\Component\Form\FormInterface;
 
-final class ContentEditView extends BaseView implements ContentValueView, LocationValueView
+class ContentEditView extends BaseView implements ContentValueView, LocationValueView
 {
     private Content $content;
 
@@ -57,11 +57,17 @@ final class ContentEditView extends BaseView implements ContentValueView, Locati
         $this->language = $language;
     }
 
+    /**
+     * @return \Symfony\Component\Form\FormInterface<mixed>
+     */
     public function getForm(): FormInterface
     {
         return $this->form;
     }
 
+    /**
+     * @param \Symfony\Component\Form\FormInterface<mixed> $form
+     */
     public function setForm(FormInterface $form): void
     {
         $this->form = $form;
