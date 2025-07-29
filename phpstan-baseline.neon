@@ -169,18 +169,6 @@ parameters:
 			path: src/lib/Content/View/Builder/ContentEditViewBuilder.php
 
 		-
-			message: '#^Method Ibexa\\ContentForms\\Content\\View\\ContentEditView\:\:getForm\(\) return type with generic interface Symfony\\Component\\Form\\FormInterface does not specify its types\: TData$#'
-			identifier: missingType.generics
-			count: 1
-			path: src/lib/Content/View/ContentEditView.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Content\\View\\ContentEditView\:\:setForm\(\) has parameter \$form with generic interface Symfony\\Component\\Form\\FormInterface but does not specify its types\: TData$#'
-			identifier: missingType.generics
-			count: 1
-			path: src/lib/Content/View/ContentEditView.php
-
-		-
 			message: '#^Access to protected property Ibexa\\Contracts\\ContentForms\\Data\\Content\\FieldData\:\:\$fieldDefinition\.$#'
 			identifier: property.protected
 			count: 1
