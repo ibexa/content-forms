@@ -30,6 +30,9 @@ final class BinaryBaseFieldType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        /** @var int<1, max> $maxSize */
+        $maxSize = $this->maxUploadSize->get();
+
         $builder
             ->add(
                 'remove',
@@ -45,9 +48,9 @@ final class BinaryBaseFieldType extends AbstractType
                     'label' => /** @Desc("File") */ 'content.field_type.binary_base.file',
                     'required' => $options['required'],
                     'constraints' => [
-                        new Assert\File([
-                            'maxSize' => $this->maxUploadSize->get(),
-                        ]),
+                        new Assert\File(
+                            maxSize: $maxSize,
+                        ),
                     ],
                 ]
             );
