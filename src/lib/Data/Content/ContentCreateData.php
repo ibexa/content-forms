@@ -15,7 +15,7 @@ use Ibexa\Core\Repository\Values\Content\ContentCreateStruct;
 /**
  * @property \Ibexa\Contracts\ContentForms\Data\Content\FieldData[] $fieldsData
  */
-final class ContentCreateData extends ContentCreateStruct implements NewnessCheckable
+class ContentCreateData extends ContentCreateStruct implements NewnessCheckable
 {
     use ContentData;
 

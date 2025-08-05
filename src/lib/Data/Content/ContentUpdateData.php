@@ -12,7 +12,7 @@ use Ibexa\ContentForms\Data\NewnessCheckable;
 use Ibexa\Contracts\Core\Repository\Values\Content\Content;
 use Ibexa\Core\Repository\Values\Content\ContentUpdateStruct;
 
-final class ContentUpdateData extends ContentUpdateStruct implements NewnessCheckable
+class ContentUpdateData extends ContentUpdateStruct implements NewnessCheckable
 {
     use ContentData;
 
