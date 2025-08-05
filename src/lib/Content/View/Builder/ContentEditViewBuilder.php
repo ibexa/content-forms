@@ -100,7 +100,7 @@ class ContentEditViewBuilder extends AbstractContentViewBuilder implements ViewB
 
             foreach ($validationErrors as $fieldIdentifier => $validationErrorLanguages) {
                 $fieldValueElement = $form->get('fieldsData')->get($fieldIdentifier)->get('value');
-                foreach ($validationErrorLanguages as $languageCode => $validationErrors) {
+                foreach ($validationErrorLanguages as $validationErrors) {
                     if (is_array($validationErrors) === false) {
                         $validationErrors = [$validationErrors];
                     }
@@ -113,6 +113,8 @@ class ContentEditViewBuilder extends AbstractContentViewBuilder implements ViewB
             }
         }
 
+        // Reload content in case it was modified by the form handler.
+        $content = $this->resolveContent($parameters, $location, $language);
         $view->setContent($content);
         $view->setLanguage($language);
         $view->setLocation($location);
