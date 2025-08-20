@@ -124,6 +124,8 @@ final class ContentEditViewBuilder extends AbstractContentViewBuilder implements
             }
         }
 
+        // Reload content in case it was modified by the form handler.
+        $content = $this->resolveContent($parameters, $location, $language);
         $view->setContent($content);
         $view->setLanguage($language);
         $view->setLocation($location);
