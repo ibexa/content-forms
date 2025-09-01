@@ -92,7 +92,7 @@ class AuthorFieldType extends AbstractType
         $resolver->setDefaults([
             'data_class' => Value::class,
             'default_author' => AuthorType::DEFAULT_VALUE_EMPTY,
-            'creator' => null
+            'creator' => null,
         ])->setAllowedTypes('default_author', 'integer')
           ->setAllowedTypes('creator', ['null', User::class]);
     }
