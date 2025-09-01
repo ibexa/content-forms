@@ -28,10 +28,14 @@ class AuthorFormMapper implements FieldValueFormMapperInterface
         $fieldSettings = $fieldDefinition->getFieldSettings();
         $formConfig = $fieldForm->getConfig();
 
+        /** @var \Ibexa\ContentForms\Data\Content\ContentUpdateData $contentUpdateData */
+        $contentUpdateData = $fieldForm->getParent()->getParent()->getData();
+
         $fieldForm
             ->add(
                 $formConfig->getFormFactory()->createBuilder()
                     ->create('value', AuthorFieldType::class, [
+                        'creator' => $contentUpdateData->contentDraft->getVersionInfo()->getCreator(),
                         'default_author' => $fieldSettings['defaultAuthor'],
                         'required' => $fieldDefinition->isRequired,
                         'label' => $fieldDefinition->getName(),
