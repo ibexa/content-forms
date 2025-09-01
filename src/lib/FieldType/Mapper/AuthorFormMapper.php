@@ -8,6 +8,7 @@ declare(strict_types=1);
 
 namespace Ibexa\ContentForms\FieldType\Mapper;
 
+use Ibexa\ContentForms\Data\Content\ContentUpdateData;
 use Ibexa\ContentForms\Form\Type\FieldType\AuthorFieldType;
 use Ibexa\Contracts\ContentForms\Data\Content\FieldData;
 use Ibexa\Contracts\ContentForms\FieldType\FieldValueFormMapperInterface;
@@ -36,8 +37,7 @@ class AuthorFormMapper implements FieldValueFormMapperInterface
         }
 
         $creator = null;
-        if ($contentUpdateData !== null && isset($contentUpdateData->contentDraft)) {
-            /** @var \Ibexa\ContentForms\Data\Content\ContentUpdateData $contentUpdateData */
+        if ($contentUpdateData instanceof ContentUpdateData && isset($contentUpdateData->contentDraft)) {
             $versionInfo = $contentUpdateData->contentDraft->getVersionInfo();
             $creator = $versionInfo->getCreator();
         }
