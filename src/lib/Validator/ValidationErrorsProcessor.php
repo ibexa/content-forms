@@ -25,7 +25,7 @@ final class ValidationErrorsProcessor
      */
     public function __construct(
         private readonly ExecutionContextInterface $context,
-        callable $propertyPathGenerator = null
+        ?callable $propertyPathGenerator = null
     ) {
         $this->propertyPathGenerator = $propertyPathGenerator;
     }
