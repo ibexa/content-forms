@@ -149,7 +149,7 @@ class ContentEditViewBuilder extends AbstractContentViewBuilder implements ViewB
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\UnauthorizedException
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException
      */
-    private function loadContent(int $contentId, array $languages = [], int $versionNo = null): Content
+    private function loadContent(int $contentId, array $languages = [], ?int $versionNo = null): Content
     {
         return $this->repository->getContentService()->loadContent($contentId, $languages, $versionNo);
     }
