@@ -8,6 +8,7 @@ declare(strict_types=1);
 
 namespace Ibexa\ContentForms\FieldType\Mapper;
 
+use Ibexa\ContentForms\Data\Content\ContentUpdateData;
 use Ibexa\ContentForms\Form\Type\FieldType\AuthorFieldType;
 use Ibexa\Contracts\ContentForms\Data\Content\FieldData;
 use Ibexa\Contracts\ContentForms\FieldType\FieldValueFormMapperInterface;
@@ -27,10 +28,24 @@ final readonly class AuthorFormMapper implements FieldValueFormMapperInterface
         $fieldSettings = $fieldDefinition->getFieldSettings();
         $formConfig = $fieldForm->getConfig();
 
+        $parent = $fieldForm->getParent();
+        $contentForm = $parent instanceof FormInterface ? $parent->getParent() : null;
+        $contentUpdateData = null;
+        if ($contentForm instanceof FormInterface) {
+            $contentUpdateData = $contentForm->getData();
+        }
+
+        $creator = null;
+        if ($contentUpdateData instanceof ContentUpdateData) {
+            $versionInfo = $contentUpdateData->getContentDraft()->getVersionInfo();
+            $creator = $versionInfo->getCreator();
+        }
+
         $fieldForm
             ->add(
                 $formConfig->getFormFactory()->createBuilder()
                     ->create('value', AuthorFieldType::class, [
+                        'creator' => $creator,
                         'default_author' => $fieldSettings['defaultAuthor'],
                         'required' => $fieldDefinition->isRequired(),
                         'label' => $fieldDefinition->getName(),
