@@ -11,6 +11,7 @@ namespace Ibexa\ContentForms\Form\Type\FieldType;
 use Ibexa\ContentForms\Form\Type\FieldType\Author\AuthorCollectionType;
 use Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException;
 use Ibexa\Contracts\Core\Repository\Repository;
+use Ibexa\Contracts\Core\Repository\Values\User\User;
 use Ibexa\Core\FieldType\Author\Author;
 use Ibexa\Core\FieldType\Author\Type as AuthorType;
 use Ibexa\Core\FieldType\Author\Value;
@@ -68,8 +69,8 @@ class AuthorFieldType extends AbstractType
         $this->defaultAuthor = $options['default_author'];
 
         $builder
-            ->add('authors', AuthorCollectionType::class, [])
-            ->addViewTransformer($this->getViewTransformer())
+            ->add('authors', AuthorCollectionType::class)
+            ->addViewTransformer($this->getViewTransformer($options['creator']))
             ->addEventListener(FormEvents::POST_SET_DATA, [$this, 'filterOutEmptyAuthors']);
     }
 
@@ -91,7 +92,9 @@ class AuthorFieldType extends AbstractType
         $resolver->setDefaults([
             'data_class' => Value::class,
             'default_author' => AuthorType::DEFAULT_VALUE_EMPTY,
-        ])->setAllowedTypes('default_author', 'integer');
+            'creator' => null,
+        ])->setAllowedTypes('default_author', 'integer')
+          ->setAllowedTypes('creator', ['null', User::class]);
     }
 
     /**
@@ -99,12 +102,12 @@ class AuthorFieldType extends AbstractType
      *
      * @return \Symfony\Component\Form\DataTransformerInterface
      */
-    public function getViewTransformer(): DataTransformerInterface
+    public function getViewTransformer(?User $creator = null): DataTransformerInterface
     {
-        return new CallbackTransformer(function (Value $value) {
+        return new CallbackTransformer(function (Value $value) use ($creator) {
             if (0 === $value->authors->count()) {
                 if ($this->defaultAuthor === AuthorType::DEFAULT_CURRENT_USER) {
-                    $value->authors->append($this->fetchLoggedAuthor());
+                    $value->authors->append($creator !== null ? $this->userToAuthor($creator) : $this->fetchLoggedAuthor());
                 } else {
                     $value->authors->append(new Author());
                 }
@@ -140,19 +143,26 @@ class AuthorFieldType extends AbstractType
      */
     private function fetchLoggedAuthor(): Author
     {
-        $author = new Author();
-
         try {
             $permissionResolver = $this->repository->getPermissionResolver();
             $userService = $this->repository->getUserService();
             $loggedUserId = $permissionResolver->getCurrentUserReference()->getUserId();
             $loggedUserData = $userService->loadUser($loggedUserId);
 
-            $author->name = $loggedUserData->getName();
-            $author->email = $loggedUserData->email;
+            return $this->userToAuthor($loggedUserData);
         } catch (NotFoundException $e) {
             //Do nothing
         }
+
+        return new Author();
+    }
+
+    private function userToAuthor(User $creator): Author
+    {
+        $author = new Author();
+
+        $author->name = $creator->getName();
+        $author->email = $creator->email;
 
         return $author;
     }

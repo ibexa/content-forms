@@ -54,7 +54,7 @@ class ViewTemplatesListener implements EventSubscriberInterface
     }
 
     /**
-     * @return string[]
+     * @return array<class-string, string>
      */
     private function getTemplatesMap(): array
     {
