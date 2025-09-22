@@ -1,0 +1,43 @@
+<?php
+
+/**
+ * @copyright Copyright (C) Ibexa AS. All rights reserved.
+ * @license For full copyright and license information view LICENSE file distributed with this source code.
+ */
+declare(strict_types=1);
+
+namespace Ibexa\Contracts\ContentForms\Event;
+
+use Ibexa\Contracts\Core\Repository\Values\Content\VersionInfo;
+
+class AutosaveEnabled
+{
+    private VersionInfo $versionInfo;
+
+    private bool $autosaveEnabled = true;
+
+    public function __construct(VersionInfo $versionInfo)
+    {
+        $this->versionInfo = $versionInfo;
+    }
+
+    public function getVersionInfo(): VersionInfo
+    {
+        return $this->versionInfo;
+    }
+
+    public function isAutosaveEnabled(): bool
+    {
+        return $this->autosaveEnabled;
+    }
+
+    public function autosaveEnable(): void
+    {
+        $this->autosaveEnabled = true;
+    }
+
+    public function autosaveDisable(): void
+    {
+        $this->autosaveEnabled = false;
+    }
+}
