@@ -9,8 +9,9 @@ declare(strict_types=1);
 namespace Ibexa\Contracts\ContentForms\Event;
 
 use Ibexa\Contracts\Core\Repository\Values\Content\VersionInfo;
+use Symfony\Contracts\EventDispatcher\Event;
 
-class AutosaveEnabled
+final class AutosaveEnabled extends Event
 {
     private VersionInfo $versionInfo;
 
@@ -31,12 +32,12 @@ class AutosaveEnabled
         return $this->autosaveEnabled;
     }
 
-    public function autosaveEnable(): void
+    public function enableAutosave(): void
     {
         $this->autosaveEnabled = true;
     }
 
-    public function autosaveDisable(): void
+    public function disableAutosave(): void
     {
         $this->autosaveEnabled = false;
     }
