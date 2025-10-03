@@ -11,6 +11,7 @@ namespace Ibexa\ContentForms\Content\View\Filter;
 use Ibexa\ContentForms\Data\Content\ContentUpdateData;
 use Ibexa\ContentForms\Data\Mapper\ContentUpdateMapper;
 use Ibexa\ContentForms\Form\Type\Content\ContentEditType;
+use Ibexa\Contracts\ContentForms\Event\AutosaveEnabled;
 use Ibexa\Contracts\Core\Repository\ContentService;
 use Ibexa\Contracts\Core\Repository\ContentTypeService;
 use Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException;
@@ -24,41 +25,36 @@ use Ibexa\Core\MVC\Symfony\View\ViewEvents;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\Form\FormInterface;
+use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
 
 class ContentEditViewFilter implements EventSubscriberInterface
 {
-    /** @var \Ibexa\Contracts\Core\Repository\ContentService */
-    private $contentService;
+    private ContentService $contentService;
 
-    /** @var \Ibexa\Contracts\Core\Repository\ContentTypeService */
-    private $contentTypeService;
+    private ContentTypeService $contentTypeService;
 
-    /** @var \Symfony\Component\Form\FormFactoryInterface */
-    private $formFactory;
+    private FormFactoryInterface $formFactory;
 
-    /** @var \Ibexa\Core\MVC\Symfony\Locale\UserLanguagePreferenceProviderInterface */
-    private $languagePreferenceProvider;
+    private UserLanguagePreferenceProviderInterface $languagePreferenceProvider;
 
     private LocationService $locationService;
 
-    /**
-     * @param \Ibexa\Contracts\Core\Repository\ContentService $contentService
-     * @param \Ibexa\Contracts\Core\Repository\ContentTypeService $contentTypeService
-     * @param \Symfony\Component\Form\FormFactoryInterface $formFactory
-     * @param \Ibexa\Core\MVC\Symfony\Locale\UserLanguagePreferenceProviderInterface $languagePreferenceProvider
-     */
+    private EventDispatcherInterface $eventDispatcher;
+
     public function __construct(
         ContentService $contentService,
         LocationService $locationService,
         ContentTypeService $contentTypeService,
         FormFactoryInterface $formFactory,
-        UserLanguagePreferenceProviderInterface $languagePreferenceProvider
+        UserLanguagePreferenceProviderInterface $languagePreferenceProvider,
+        EventDispatcherInterface $eventDispatcher
     ) {
         $this->contentService = $contentService;
         $this->contentTypeService = $contentTypeService;
         $this->formFactory = $formFactory;
         $this->languagePreferenceProvider = $languagePreferenceProvider;
         $this->locationService = $locationService;
+        $this->eventDispatcher = $eventDispatcher;
     }
 
     public static function getSubscribedEvents()
@@ -111,11 +107,14 @@ class ContentEditViewFilter implements EventSubscriberInterface
             $contentType,
             $currentFields
         );
+
+        $autosaveEnabled = $this->eventDispatcher->dispatch(new AutosaveEnabled($contentDraft->getVersionInfo()))->isAutosaveEnabled();
         $form = $this->resolveContentEditForm(
             $contentUpdate,
             $languageCode,
             $contentDraft,
-            $location ?? null
+            $location ?? null,
+            $autosaveEnabled
         );
 
         $event->getParameters()->add([
@@ -153,7 +152,8 @@ class ContentEditViewFilter implements EventSubscriberInterface
         ContentUpdateData $contentUpdate,
         string $languageCode,
         Content $content,
-        ?Location $location = null
+        ?Location $location = null,
+        bool $autosaveEnabled = true
     ): FormInterface {
         return $this->formFactory->create(
             ContentEditType::class,
@@ -165,6 +165,7 @@ class ContentEditViewFilter implements EventSubscriberInterface
                 'content' => $content,
                 'contentUpdateStruct' => $contentUpdate,
                 'drafts_enabled' => true,
+                'autosave_enabled' => $autosaveEnabled,
             ]
         );
     }
