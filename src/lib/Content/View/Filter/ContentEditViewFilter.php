@@ -11,6 +11,7 @@ namespace Ibexa\ContentForms\Content\View\Filter;
 use Ibexa\ContentForms\Data\Content\ContentUpdateData;
 use Ibexa\ContentForms\Data\Mapper\ContentUpdateMapper;
 use Ibexa\ContentForms\Form\Type\Content\ContentEditType;
+use Ibexa\Contracts\ContentForms\Event\AutosaveEnabled;
 use Ibexa\Contracts\Core\Repository\ContentService;
 use Ibexa\Contracts\Core\Repository\ContentTypeService;
 use Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException;
@@ -24,6 +25,7 @@ use Ibexa\Core\MVC\Symfony\View\ViewEvents;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\Form\FormInterface;
+use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
 
 final readonly class ContentEditViewFilter implements EventSubscriberInterface
 {
@@ -32,7 +34,8 @@ final readonly class ContentEditViewFilter implements EventSubscriberInterface
         private LocationService $locationService,
         private ContentTypeService $contentTypeService,
         private FormFactoryInterface $formFactory,
-        private UserLanguagePreferenceProviderInterface $languagePreferenceProvider
+        private UserLanguagePreferenceProviderInterface $languagePreferenceProvider,
+        private EventDispatcherInterface $eventDispatcher
     ) {
     }
 
@@ -86,11 +89,13 @@ final readonly class ContentEditViewFilter implements EventSubscriberInterface
             $currentFields
         );
 
+        $autosaveEnabled = $this->eventDispatcher->dispatch(new AutosaveEnabled($contentDraft->getVersionInfo()))->isAutosaveEnabled();
         $form = $this->resolveContentEditForm(
             $contentUpdate,
             $languageCode,
             $contentDraft,
-            $location ?? null
+            $location ?? null,
+            $autosaveEnabled
         );
 
         $event->getParameters()->add([
@@ -124,7 +129,8 @@ final readonly class ContentEditViewFilter implements EventSubscriberInterface
         ContentUpdateData $contentUpdate,
         string $languageCode,
         Content $content,
-        ?Location $location = null
+        ?Location $location = null,
+        bool $autosaveEnabled = true
     ): FormInterface {
         return $this->formFactory->create(
             ContentEditType::class,
@@ -137,6 +143,7 @@ final readonly class ContentEditViewFilter implements EventSubscriberInterface
                 'contentUpdateStruct' => $contentUpdate,
                 'struct' => $contentUpdate,
                 'drafts_enabled' => true,
+                'autosave_enabled' => $autosaveEnabled,
             ]
         );
     }

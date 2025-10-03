@@ -211,22 +211,10 @@ parameters:
 			path: src/lib/FieldType/DataTransformer/AbstractBinaryBaseTransformer.php
 
 		-
-			message: '#^Method Ibexa\\ContentForms\\FieldType\\DataTransformer\\BinaryFileValueTransformer\:\:transform\(\) return type has no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/lib/FieldType/DataTransformer/BinaryFileValueTransformer.php
-
-		-
 			message: '#^Method Ibexa\\ContentForms\\FieldType\\DataTransformer\\ImageAssetValueTransformer\:\:reverseTransform\(\) has parameter \$value with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/lib/FieldType/DataTransformer/ImageAssetValueTransformer.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\FieldType\\DataTransformer\\MediaValueTransformer\:\:transform\(\) return type has no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/lib/FieldType/DataTransformer/MediaValueTransformer.php
 
 		-
 			message: '#^Method Ibexa\\ContentForms\\FieldType\\FieldTypeFormMapperDispatcherInterface\:\:map\(\) has parameter \$form with generic interface Symfony\\Component\\Form\\FormInterface but does not specify its types\: TData$#'
@@ -361,8 +349,8 @@ parameters:
 			path: src/lib/Form/Processor/User/UserUpdateFormProcessor.php
 
 		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\Transformer\\RelationTransformer\:\:transform\(\) return type has no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
+			message: '#^Method Ibexa\\ContentForms\\Form\\Transformer\\RelationTransformer\:\:transform\(\) should return array\{location\: int\|null, location_type\: string\} but returns array\{location\: int\<min, \-2\>\|int\<0, max\>\|null, location_type\: \-1\|0\|1\}\.$#'
+			identifier: return.type
 			count: 1
 			path: src/lib/Form/Transformer/RelationTransformer.php
 
@@ -629,12 +617,6 @@ parameters:
 			identifier: missingType.generics
 			count: 1
 			path: src/lib/Form/Type/User/UserUpdateType.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Validator\\Constraints\\Password\:\:getTargets\(\) return type has no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/lib/Validator/Constraints/Password.php
 
 		-
 			message: '#^Access to an undefined property Ibexa\\Contracts\\Core\\Repository\\Values\\Translation\:\:\$message\.$#'
