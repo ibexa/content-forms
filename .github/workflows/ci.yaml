@@ -14,9 +14,9 @@ jobs:
         strategy:
             matrix:
                 php:
-                    - '8.0'
+                    - '8.1'
         steps:
-            - uses: actions/checkout@v4
+            - uses: actions/checkout@v5
 
             - name: Setup PHP Action
               uses: shivammathur/setup-php@v2
@@ -45,7 +45,7 @@ jobs:
                     - '8.3'
 
         steps:
-            - uses: actions/checkout@v4
+            - uses: actions/checkout@v5
 
             - name: Setup PHP Action
               uses: shivammathur/setup-php@v2
@@ -81,7 +81,7 @@ jobs:
                     - '8.3'
 
         steps:
-            - uses: actions/checkout@v4
+            - uses: actions/checkout@v5
 
             - name: Setup PHP Action
               uses: shivammathur/setup-php@v2
