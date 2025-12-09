@@ -1,7 +1,7 @@
 {
     "name": "ibexa/content-forms",
     "description": "Use Symfony Forms with Ibexa Content & User objects",
-    "license": "GPL-2.0-only",
+    "license": "(GPL-2.0-only or proprietary)",
     "type": "ibexa-bundle",
     "replace": {
         "ezsystems/ezplatform-content-forms": "*"
