@@ -11,8 +11,8 @@ namespace Ibexa\ContentForms\Data\User;
 use Ibexa\ContentForms\Data\Content\ContentData;
 use Ibexa\ContentForms\Data\NewnessCheckable;
 use Ibexa\ContentForms\Data\VersionInfoAwareInterface;
+use Ibexa\Contracts\Core\Repository\Values\Content\VersionInfo;
 use Ibexa\Contracts\Core\Repository\Values\User\UserUpdateStruct;
-use Ibexa\Core\Repository\Values\Content\VersionInfo;
 
 /**
  * @property \Ibexa\Contracts\ContentForms\Data\Content\FieldData[] $fieldsData

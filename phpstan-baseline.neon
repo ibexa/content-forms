@@ -7,24 +7,6 @@ parameters:
 			path: src/bundle/Controller/ContentEditController.php
 
 		-
-			message: '#^Method Ibexa\\Bundle\\ContentForms\\Controller\\ContentEditController\:\:createWithoutDraftSuccessAction\(\) has Ibexa\\Contracts\\Core\\Repository\\Exceptions\\BadStateException in PHPDoc @throws tag but it''s not thrown\.$#'
-			identifier: throws.unusedType
-			count: 1
-			path: src/bundle/Controller/ContentEditController.php
-
-		-
-			message: '#^Method Ibexa\\Bundle\\ContentForms\\Controller\\ContentEditController\:\:editVersionDraftAction\(\) has Ibexa\\Contracts\\Core\\Repository\\Exceptions\\BadStateException in PHPDoc @throws tag but it''s not thrown\.$#'
-			identifier: throws.unusedType
-			count: 1
-			path: src/bundle/Controller/ContentEditController.php
-
-		-
-			message: '#^Method Ibexa\\Bundle\\ContentForms\\Controller\\ContentEditController\:\:editVersionDraftSuccessAction\(\) has Ibexa\\Contracts\\Core\\Repository\\Exceptions\\BadStateException in PHPDoc @throws tag but it''s not thrown\.$#'
-			identifier: throws.unusedType
-			count: 1
-			path: src/bundle/Controller/ContentEditController.php
-
-		-
 			message: '#^Call to an undefined method Symfony\\Component\\Form\\FormInterface\<mixed\>\:\:getClickedButton\(\)\.$#'
 			identifier: method.notFound
 			count: 4
@@ -35,12 +17,6 @@ parameters:
 			identifier: property.nonObject
 			count: 1
 			path: src/bundle/Controller/UserController.php
-
-		-
-			message: '#^Method Ibexa\\Bundle\\ContentForms\\Controller\\UserRegisterController\:\:registerAction\(\) has Symfony\\Component\\HttpKernel\\Exception\\UnauthorizedHttpException in PHPDoc @throws tag but it''s not thrown\.$#'
-			identifier: throws.unusedType
-			count: 1
-			path: src/bundle/Controller/UserRegisterController.php
 
 		-
 			message: '#^Method Ibexa\\Bundle\\ContentForms\\DependencyInjection\\Compiler\\FieldTypeFormMapperDispatcherPass\:\:process\(\) has no return type specified\.$#'
