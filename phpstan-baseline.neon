@@ -223,6 +223,12 @@ parameters:
 			path: src/lib/FieldType/FieldTypeFormMapperDispatcherInterface.php
 
 		-
+			message: '#^Parameter \#2 \$type of method Symfony\\Component\\Form\\FormBuilderInterface\<mixed\>\:\:create\(\) expects class\-string\<Symfony\\Component\\Form\\FormTypeInterface\>\|null, string given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/lib/FieldType/Mapper/FormTypeBasedFieldValueFormMapper.php
+
+		-
 			message: '#^Method Ibexa\\ContentForms\\FieldType\\Mapper\\TimeFormMapper\:\:mapFieldValueForm\(\) has parameter \$fieldForm with generic interface Symfony\\Component\\Form\\FormInterface but does not specify its types\: TData$#'
 			identifier: missingType.generics
 			count: 1
@@ -237,6 +243,24 @@ parameters:
 		-
 			message: '#^Method Ibexa\\ContentForms\\FieldType\\Mapper\\UserAccountFieldValueFormMapper\:\:mapFieldValueForm\(\) has parameter \$fieldForm with generic interface Symfony\\Component\\Form\\FormInterface but does not specify its types\: TData$#'
 			identifier: missingType.generics
+			count: 1
+			path: src/lib/FieldType/Mapper/UserAccountFieldValueFormMapper.php
+
+		-
+			message: '#^Property Ibexa\\Core\\FieldType\\User\\Value\:\:\$email \(string\) does not accept string\|null\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: src/lib/FieldType/Mapper/UserAccountFieldValueFormMapper.php
+
+		-
+			message: '#^Property Ibexa\\Core\\FieldType\\User\\Value\:\:\$enabled \(bool\) does not accept bool\|null\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: src/lib/FieldType/Mapper/UserAccountFieldValueFormMapper.php
+
+		-
+			message: '#^Property Ibexa\\Core\\FieldType\\User\\Value\:\:\$login \(string\) does not accept string\|null\.$#'
+			identifier: assign.propertyType
 			count: 1
 			path: src/lib/FieldType/Mapper/UserAccountFieldValueFormMapper.php
 
