@@ -9,10 +9,12 @@ declare(strict_types=1);
 namespace Ibexa\ContentForms\Data\Content;
 
 use Ibexa\ContentForms\Data\NewnessCheckable;
+use Ibexa\ContentForms\Data\VersionInfoAwareInterface;
 use Ibexa\Contracts\Core\Repository\Values\Content\Content;
+use Ibexa\Contracts\Core\Repository\Values\Content\VersionInfo;
 use Ibexa\Core\Repository\Values\Content\ContentUpdateStruct;
 
-class ContentUpdateData extends ContentUpdateStruct implements NewnessCheckable
+class ContentUpdateData extends ContentUpdateStruct implements NewnessCheckable, VersionInfoAwareInterface
 {
     use ContentData;
 
@@ -26,5 +28,10 @@ class ContentUpdateData extends ContentUpdateStruct implements NewnessCheckable
     public function getContentDraft(): Content
     {
         return $this->contentDraft;
+    }
+
+    public function getVersionInfo(): VersionInfo
+    {
+        return $this->contentDraft->versionInfo;
     }
 }

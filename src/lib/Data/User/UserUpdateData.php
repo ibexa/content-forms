@@ -10,11 +10,13 @@ namespace Ibexa\ContentForms\Data\User;
 
 use Ibexa\ContentForms\Data\Content\ContentData;
 use Ibexa\ContentForms\Data\NewnessCheckable;
+use Ibexa\ContentForms\Data\VersionInfoAwareInterface;
+use Ibexa\Contracts\Core\Repository\Values\Content\VersionInfo;
 use Ibexa\Contracts\Core\Repository\Values\ContentType\ContentType;
 use Ibexa\Contracts\Core\Repository\Values\User\User;
 use Ibexa\Contracts\Core\Repository\Values\User\UserUpdateStruct;
 
-class UserUpdateData extends UserUpdateStruct implements NewnessCheckable
+class UserUpdateData extends UserUpdateStruct implements NewnessCheckable, VersionInfoAwareInterface
 {
     use ContentData;
 
@@ -25,5 +27,10 @@ class UserUpdateData extends UserUpdateStruct implements NewnessCheckable
     public function isNew(): bool
     {
         return false;
+    }
+
+    public function getVersionInfo(): VersionInfo
+    {
+        return $this->user->versionInfo;
     }
 }
