@@ -87,7 +87,9 @@ final class UserAccountFieldValueFormMapper implements FieldValueFormMapperInter
                 return new UserAccountFieldData($data->login, null, $data->email, $data->enabled);
             },
             static function (UserAccountFieldData $submittedData) use ($fieldDefinition) {
+                /** @var \Ibexa\Core\FieldType\User\Value $userValue */
                 $userValue = clone $fieldDefinition->defaultValue;
+
                 $userValue->login = $submittedData->username;
                 $userValue->email = $submittedData->email;
                 $userValue->enabled = $submittedData->enabled;

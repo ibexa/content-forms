@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace Ibexa\ContentForms\Data;
 
-use Ibexa\Core\Repository\Values\Content\VersionInfo;
+use Ibexa\Contracts\Core\Repository\Values\Content\VersionInfo;
 
 interface VersionInfoAwareInterface
 {
