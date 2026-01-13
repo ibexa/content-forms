@@ -14,6 +14,7 @@ use Symfony\Component\Form\FormEvents;
 
 class FixUrlProtocolListener implements EventSubscriberInterface
 {
+    /** @var string|null */
     private $defaultProtocol;
 
     /**
@@ -24,7 +25,7 @@ class FixUrlProtocolListener implements EventSubscriberInterface
         $this->defaultProtocol = $defaultProtocol;
     }
 
-    public function onSubmit(FormEvent $event)
+    public function onSubmit(FormEvent $event): void
     {
         $data = $event->getData();
         if (null === $this->defaultProtocol || empty($data) || !\is_string($data)) {
@@ -46,12 +47,12 @@ class FixUrlProtocolListener implements EventSubscriberInterface
         }
     }
 
-    private function hasAuthority($protocol)
+    private function hasAuthority(string $protocol): bool
     {
         return in_array($protocol, ['mailto', 'tel']) ? false : true;
     }
 
-    public static function getSubscribedEvents()
+    public static function getSubscribedEvents(): array
     {
         return [FormEvents::SUBMIT => 'onSubmit'];
     }
