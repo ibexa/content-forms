@@ -57,6 +57,11 @@ final class FixUrlProtocolListenerTest extends TestCase
             ['link' => 'http://example.com'],
         ];
 
+        yield 'keep relative url with leading / intact' => [
+            ['link' => '/foo/bar'],
+            ['link' => '/foo/bar'],
+        ];
+
         yield 'keeps ftp intact' => [
             ['link' => 'ftp://example.com'],
             ['link' => 'ftp://example.com'],
@@ -73,9 +78,14 @@ final class FixUrlProtocolListenerTest extends TestCase
             'tel',
         ];
 
+        yield 'keeps mailto intact' => [
+            ['link' => 'mailto:me@home.com'],
+            ['link' => 'mailto:me@home.com'],
+        ];
+
         yield 'adds default mailto' => [
-            ['link' => 'me@home.de'],
-            ['link' => 'mailto:me@home.de'],
+            ['link' => 'me@home'],
+            ['link' => 'mailto:me@home'],
             'mailto',
         ];
 

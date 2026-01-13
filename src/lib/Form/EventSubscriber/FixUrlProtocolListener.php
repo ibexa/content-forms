@@ -52,8 +52,15 @@ class FixUrlProtocolListener implements EventSubscriberInterface
             return;
         }
 
-        $schemaSeparator = $this->hasAuthority($this->defaultProtocol) ? '://' : ':';
-        if (!preg_match('~^(?:[/.]|[\w+.-]+' . $schemaSeparator . '|[^:/?@#]++@)~', $dataLink)) {
+        if ($this->hasAuthority($this->defaultProtocol)) {
+            $schemaSeparator = '://';
+            $regExp = '~^(?:[/.]|[\w+.-]+//|[^:/?@#]++@)~';
+        } else {
+            $schemaSeparator = ':';
+            $regExp = '~^[\w+.-]+:~'; // allowing emails for non-http/https/file
+        }
+
+        if (!preg_match($regExp, $dataLink)) {
             $data['link'] = $this->defaultProtocol . $schemaSeparator . $dataLink;
             $event->setData($data);
         }
