@@ -43,18 +43,18 @@ final class FixUrlProtocolListenerTest extends TestCase
     public static function provideUrlCases(): iterable
     {
         yield 'adds http when protocol missing' => [
-            ['link' => 'example.com'],
-            ['link' => 'http://example.com'],
+            ['link' => 'example1.com'],
+            ['link' => 'http://example1.com'],
         ];
 
         yield 'does not modify https url' => [
-            ['link' => 'https://example.com'],
-            ['link' => 'https://example.com'],
+            ['link' => 'https://example2.com'],
+            ['link' => 'https://example2.com'],
         ];
 
         yield 'does not modify http url' => [
-            ['link' => 'http://example.com'],
-            ['link' => 'http://example.com'],
+            ['link' => 'http://example3.com'],
+            ['link' => 'http://example3.com'],
         ];
 
         yield 'keep relative url with leading / intact' => [
@@ -63,8 +63,8 @@ final class FixUrlProtocolListenerTest extends TestCase
         ];
 
         yield 'keeps ftp intact' => [
-            ['link' => 'ftp://example.com'],
-            ['link' => 'ftp://example.com'],
+            ['link' => 'ftp://example4.com'],
+            ['link' => 'ftp://example4.com'],
         ];
 
         yield 'keeps tel intact' => [
@@ -79,13 +79,13 @@ final class FixUrlProtocolListenerTest extends TestCase
         ];
 
         yield 'keeps mailto intact' => [
-            ['link' => 'mailto:me@home.com'],
-            ['link' => 'mailto:me@home.com'],
+            ['link' => 'mailto:foo@home.com'],
+            ['link' => 'mailto:foo@home.com'],
         ];
 
         yield 'adds default mailto' => [
-            ['link' => 'me@home'],
-            ['link' => 'mailto:me@home'],
+            ['link' => 'bar@home'],
+            ['link' => 'mailto:bar@home'],
             'mailto',
         ];
 
