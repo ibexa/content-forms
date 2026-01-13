@@ -15,6 +15,16 @@ use Symfony\Component\Form\FormInterface;
 
 final class FixUrlProtocolListenerTest extends TestCase
 {
+    private const DOMAIN = 'example.com';
+    private const MAIL = 'foo@' . self::DOMAIN;
+    private const TEL = '+123456';
+    private const URL_HTTP = 'http://' . self::DOMAIN;
+    private const URL_HTTPS = 'https://' . self::DOMAIN;
+    private const URL_MAILTO = 'mailto:' . self::MAIL;
+    private const URL_RELATIVE = '/foo/bar/';
+    private const URL_SFTP = 'sftp://' . self::DOMAIN;
+    private const URL_TEL = 'tel:' . self::TEL;
+
     /**
      * @dataProvider provideUrlCases
      *
@@ -43,49 +53,49 @@ final class FixUrlProtocolListenerTest extends TestCase
     public static function provideUrlCases(): iterable
     {
         yield 'adds http when protocol missing' => [
-            ['link' => 'example1.com'],
-            ['link' => 'http://example1.com'],
+            ['link' => self::DOMAIN],
+            ['link' => self::URL_HTTP],
         ];
 
         yield 'does not modify https url' => [
-            ['link' => 'https://example2.com'],
-            ['link' => 'https://example2.com'],
+            ['link' => self::URL_HTTPS],
+            ['link' => self::URL_HTTPS],
         ];
 
         yield 'does not modify http url' => [
-            ['link' => 'http://example3.com'],
-            ['link' => 'http://example3.com'],
+            ['link' => self::URL_HTTP],
+            ['link' => self::URL_HTTP],
         ];
 
         yield 'keep relative url with leading / intact' => [
-            ['link' => '/foo/bar'],
-            ['link' => '/foo/bar'],
+            ['link' => self::URL_RELATIVE],
+            ['link' => self::URL_RELATIVE],
         ];
 
         yield 'keeps ftp intact' => [
-            ['link' => 'ftp://example4.com'],
-            ['link' => 'ftp://example4.com'],
+            ['link' => self::URL_SFTP],
+            ['link' => self::URL_SFTP],
         ];
 
         yield 'keeps tel intact' => [
-            ['link' => 'tel:+123456'],
-            ['link' => 'tel:+123456'],
+            ['link' => self::URL_TEL],
+            ['link' => self::URL_TEL],
         ];
 
         yield 'adds default tel' => [
-            ['link' => '+123456'],
-            ['link' => 'tel:+123456'],
+            ['link' => self::TEL],
+            ['link' => self::URL_TEL],
             'tel',
         ];
 
         yield 'keeps mailto intact' => [
-            ['link' => 'mailto:foo@home.com'],
-            ['link' => 'mailto:foo@home.com'],
+            ['link' => self::URL_MAILTO],
+            ['link' => self::URL_MAILTO],
         ];
 
         yield 'adds default mailto' => [
-            ['link' => 'bar@home'],
-            ['link' => 'mailto:bar@home'],
+            ['link' => self::MAIL],
+            ['link' => self::URL_MAILTO],
             'mailto',
         ];
 
