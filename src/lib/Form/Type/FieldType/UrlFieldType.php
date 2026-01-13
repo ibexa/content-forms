@@ -49,8 +49,10 @@ class UrlFieldType extends AbstractType
                 [
                     'label' => /** @Desc("URL") */ 'content.field_type.ezurl.link',
                     'required' => $options['required'],
+                    'default_protocol' => null,
                 ]
             )
+            ->addEventSubscriber(new FixUrlProtocolListener())
             ->add(
                 'text',
                 TextType::class,
