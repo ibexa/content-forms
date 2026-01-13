@@ -68,7 +68,7 @@ class FixUrlProtocolListener implements EventSubscriberInterface
 
     private function hasAuthority(string $protocol): bool
     {
-        return in_array($protocol, ['mailto', 'tel']) ? false : true;
+        return !in_array($protocol, ['mailto', 'tel']);
     }
 
     public static function getSubscribedEvents(): array
