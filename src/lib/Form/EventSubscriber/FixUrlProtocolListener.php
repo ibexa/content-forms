@@ -18,7 +18,7 @@ class FixUrlProtocolListener implements EventSubscriberInterface
     /** @var string|null */
     private $defaultProtocol;
 
-    /** @var Symfony\Component\Form\Extension\Core\EventListener\FixUrlProtocolListener */
+    /** @var \Symfony\Component\Form\Extension\Core\EventListener\FixUrlProtocolListener */
     private $fixUrlProtocolListener;
 
     /**
@@ -34,16 +34,17 @@ class FixUrlProtocolListener implements EventSubscriberInterface
     {
         $data = $event->getData();
         $dataLink = $data['link'] ?? null;
-        if (is_null($this->defaultProtocol) || empty($data) || empty($dataLink) || !\is_string($dataLink)){
+        if (null === $this->defaultProtocol || empty($data) || empty($dataLink) || !\is_string($dataLink)) {
             return;
         }
-        
+
         $protocol = explode(':', $dataLink)[0];
         if ($this->hasAuthority($protocol) && $this->hasAuthority($this->defaultProtocol)) {
             $event->setData($dataLink);
             $this->fixUrlProtocolListener->onSubmit($event);
             $data['link'] = $event->getData();
             $event->setData($data);
+
             return;
         }
 
@@ -52,8 +53,8 @@ class FixUrlProtocolListener implements EventSubscriberInterface
         }
 
         $schemaSeparator = $this->hasAuthority($this->defaultProtocol) ? '://' : ':';
-        if (!preg_match('~^(?:[/.]|[\w+.-]+'. $schemaSeparator. '|[^:/?@#]++@)~', $dataLink)) {
-            $data['link'] = $this->defaultProtocol. $schemaSeparator. $dataLink;
+        if (!preg_match('~^(?:[/.]|[\w+.-]+' . $schemaSeparator . '|[^:/?@#]++@)~', $dataLink)) {
+            $data['link'] = $this->defaultProtocol . $schemaSeparator . $dataLink;
             $event->setData($data);
         }
     }
