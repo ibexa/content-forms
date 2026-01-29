@@ -13,7 +13,10 @@ use Symfony\Component\Form\Extension\Core\EventListener\FixUrlProtocolListener a
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 
-class FixUrlProtocolListener implements EventSubscriberInterface
+/**
+ * @internal
+ */
+final class FixUrlProtocolListener implements EventSubscriberInterface
 {
     /** @var string|null */
     private $defaultProtocol;
@@ -68,7 +71,7 @@ class FixUrlProtocolListener implements EventSubscriberInterface
 
     private function hasAuthority(string $protocol): bool
     {
-        return !in_array($protocol, ['mailto', 'tel']);
+        return !in_array($protocol, ['mailto', 'tel'], true);
     }
 
     public static function getSubscribedEvents(): array
