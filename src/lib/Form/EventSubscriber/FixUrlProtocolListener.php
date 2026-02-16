@@ -18,11 +18,9 @@ use Symfony\Component\Form\FormEvents;
  */
 final class FixUrlProtocolListener implements EventSubscriberInterface
 {
-    /** @var string|null */
-    private $defaultProtocol;
+    private ?string $defaultProtocol;
 
-    /** @var \Symfony\Component\Form\Extension\Core\EventListener\FixUrlProtocolListener */
-    private $fixUrlProtocolListener;
+    private BaseFixUrlProtocolListener $fixUrlProtocolListener;
 
     /**
      * @param string|null $defaultProtocol The URL scheme to add when there is none or null to not modify the data
