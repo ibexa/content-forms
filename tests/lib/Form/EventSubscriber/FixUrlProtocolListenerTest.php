@@ -27,12 +27,8 @@ final class FixUrlProtocolListenerTest extends TestCase
 
     /**
      * @dataProvider provideUrlCases
-     *
-     * @param string|null $inputData
-     * @param string|null $expectedData
-     * @param string $defaultProtocol
      */
-    public function testUrlProtocolHandling(?string $inputData, ?string $expectedData, ?string $defaultProtocol = 'http'): void
+    public function testUrlProtocolHandling(?string $inputData, ?string $expectedData, string $defaultProtocol = 'http'): void
     {
         $form = $this->createMock(FormInterface::class);
         $listener = new FixUrlProtocolListener($defaultProtocol);
@@ -47,7 +43,8 @@ final class FixUrlProtocolListenerTest extends TestCase
     /**
      * @return iterable<string, array{
      *     0: string|null,
-     *     1: string|null
+     *     1: string|null,
+     *     2?: string
      * }>
      */
     public static function provideUrlCases(): iterable
