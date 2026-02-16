@@ -53,7 +53,6 @@ class UrlFieldType extends AbstractType
                     'default_protocol' => null,
                 ]
             )
-            ->addEventSubscriber(new FixUrlProtocolListener())
             ->add(
                 'text',
                 TextType::class,
@@ -63,6 +62,8 @@ class UrlFieldType extends AbstractType
                 ]
             )
             ->addModelTransformer(new FieldValueTransformer($this->fieldTypeService->getFieldType('ezurl')));
+
+        $builder->get('link')->addEventSubscriber(new FixUrlProtocolListener());
     }
 
     public function configureOptions(OptionsResolver $resolver)

@@ -34,22 +34,18 @@ final class FixUrlProtocolListener implements EventSubscriberInterface
     public function onSubmit(FormEvent $event): void
     {
         $data = $event->getData();
-        $dataLink = $data['link'] ?? null;
-        if (null === $this->defaultProtocol || empty($data) || empty($dataLink) || !\is_string($dataLink)) {
+        if (null === $this->defaultProtocol || empty($data) || !\is_string($data)) {
             return;
         }
 
-        $protocol = explode(':', $dataLink)[0];
+        $protocol = explode(':', $data)[0];
         if ($this->hasAuthority($protocol) && $this->hasAuthority($this->defaultProtocol)) {
-            $event->setData($dataLink);
             $this->fixUrlProtocolListener->onSubmit($event);
-            $data['link'] = $event->getData();
-            $event->setData($data);
 
             return;
         }
 
-        if (!$this->hasAuthority($protocol) && preg_match('~^(?:[/.]|[\w+.-]+:|[^:/?@#]++@)~', $dataLink)) {
+        if (!$this->hasAuthority($protocol) && preg_match('~^(?:[/.]|[\w+.-]+:|[^:/?@#]++@)~', $data)) {
             return;
         }
 
@@ -61,9 +57,8 @@ final class FixUrlProtocolListener implements EventSubscriberInterface
             $regExp = '~^[\w+.-]+:~'; // allowing emails for non-http/https/file
         }
 
-        if (!preg_match($regExp, $dataLink)) {
-            $data['link'] = $this->defaultProtocol . $schemaSeparator . $dataLink;
-            $event->setData($data);
+        if (!preg_match($regExp, $data)) {
+            $event->setData($this->defaultProtocol . $schemaSeparator . $data);
         }
     }
 
