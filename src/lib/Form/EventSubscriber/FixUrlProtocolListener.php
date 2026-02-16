@@ -38,7 +38,7 @@ final class FixUrlProtocolListener implements EventSubscriberInterface
             return;
         }
 
-        $protocol = explode(':', $data)[0];
+        $protocol = explode(':', $data, 2)[0];
         if ($this->hasAuthority($protocol) && $this->hasAuthority($this->defaultProtocol)) {
             $this->fixUrlProtocolListener->onSubmit($event);
 
