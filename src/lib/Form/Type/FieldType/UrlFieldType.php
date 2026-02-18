@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace Ibexa\ContentForms\Form\Type\FieldType;
 
 use Ibexa\ContentForms\FieldType\DataTransformer\FieldValueTransformer;
+use Ibexa\ContentForms\Form\EventSubscriber\FixUrlProtocolListener;
 use Ibexa\Contracts\Core\Repository\FieldTypeService;
 use JMS\TranslationBundle\Annotation\Desc;
 use Symfony\Component\Form\AbstractType;
@@ -45,7 +46,7 @@ final class UrlFieldType extends AbstractType
                 [
                     'label' => /** @Desc("URL") */ 'content.field_type.ibexa_url.link',
                     'required' => $options['required'],
-                    'default_protocol' => 'https',
+                    'default_protocol' => null,
                 ]
             )
             ->add(
@@ -56,9 +57,9 @@ final class UrlFieldType extends AbstractType
                     'required' => false,
                 ]
             )
-            ->addModelTransformer(
-                new FieldValueTransformer($this->fieldTypeService->getFieldType('ibexa_url'))
-            );
+            ->addModelTransformer(new FieldValueTransformer($this->fieldTypeService->getFieldType('ezurl')));
+
+        $builder->get('link')->addEventSubscriber(new FixUrlProtocolListener());
     }
 
     public function configureOptions(OptionsResolver $resolver): void
