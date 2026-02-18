@@ -57,7 +57,7 @@ final class UrlFieldType extends AbstractType
                     'required' => false,
                 ]
             )
-            ->addModelTransformer(new FieldValueTransformer($this->fieldTypeService->getFieldType('ezurl')));
+            ->addModelTransformer(new FieldValueTransformer($this->fieldTypeService->getFieldType('ibexa_url')));
 
         $builder->get('link')->addEventSubscriber(new FixUrlProtocolListener());
     }
