@@ -9,7 +9,7 @@
     "require": {
         "php": " >=8.3",
         "ext-json": "*",
-        "ibexa/core": "~5.0.x-dev",
+        "ibexa/core": "dev-fixed-jms-translation-bundle-dependency as 5.0.x-dev",
         "symfony/config": "^7.4",
         "symfony/dependency-injection": "^7.4",
         "symfony/event-dispatcher": "^7.4",
