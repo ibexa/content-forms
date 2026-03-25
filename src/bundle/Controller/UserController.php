@@ -74,6 +74,7 @@ final class UserController extends Controller
         $data = (new UserCreateMapper())->mapToFormData($contentType, [$parentGroup], [
             'mainLanguageCode' => $languageCode,
         ]);
+        $data->sectionId = $location->getContentInfo()->getSectionId();
         $form = $this->createForm(UserCreateType::class, $data, [
             'languageCode' => $languageCode,
             'mainLanguageCode' => $languageCode,
