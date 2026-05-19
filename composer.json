@@ -34,10 +34,11 @@
         "ibexa/rest": "~5.0.x-dev",
         "ibexa/test-core": "~5.0.x-dev",
         "matthiasnoback/symfony-dependency-injection-test": "^5.0",
-        "phpunit/phpunit": "^9.6",
         "phpstan/phpstan": "^2.1",
         "phpstan/phpstan-phpunit": "^2.0",
-        "phpstan/phpstan-symfony": "^2.0"
+        "phpstan/phpstan-symfony": "^2.0",
+        "phpunit/phpunit": "^9.6",
+        "webmozart/assert": "^2.3"
     },
     "autoload": {
         "psr-4": {
