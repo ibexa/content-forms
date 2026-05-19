@@ -14,7 +14,7 @@ use Behat\Gherkin\Node\TableNode;
 use Behat\MinkExtension\Context\RawMinkContext;
 use Ibexa\Contracts\Core\Repository\Values\ContentType\FieldDefinitionCreateStruct;
 use Ibexa\Contracts\Core\Repository\Values\ContentType\FieldDefinitionUpdateStruct;
-use PHPUnit\Framework\Assert as Assertion;
+use Webmozart\Assert\Assert as Assertion;
 
 final class FieldTypeFormContext extends RawMinkContext implements SnippetAcceptingContext
 {
@@ -154,7 +154,7 @@ final class FieldTypeFormContext extends RawMinkContext implements SnippetAccept
         }
 
         foreach ($table->getColumnsHash() as $expectedField) {
-            Assertion::assertContains($expectedField, $actualInputFields);
+            Assertion::inArray($expectedField, $actualInputFields);
         }
     }
 
@@ -184,7 +184,7 @@ final class FieldTypeFormContext extends RawMinkContext implements SnippetAccept
             )
         );
 
-        Assertion::assertNotEmpty($inputNodeElements, 'The input field is not marked as required');
+        Assertion::notEmpty($inputNodeElements, 'The input field is not marked as required');
 
         $exceptions = $this->getRequiredFieldTypeExceptions($fieldTypeIdentifier);
 
@@ -194,9 +194,9 @@ final class FieldTypeFormContext extends RawMinkContext implements SnippetAccept
 
             $expectedState = array_key_exists($label, $exceptions) ? $exceptions[$label] : true;
 
-            Assertion::assertEquals(
-                $expectedState,
+            Assertion::eq(
                 $inputNodeElement->hasAttribute('required'),
+                $expectedState,
                 sprintf(
                     '%s input with id %s is not flagged as required',
                     $inputNodeElement->getAttribute('type'),

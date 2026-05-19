@@ -23,9 +23,9 @@ use Ibexa\Contracts\Core\Repository\Values\User\User;
 use Ibexa\Contracts\Core\Repository\Values\User\UserGroup;
 use Ibexa\Core\Repository\Values\User\RoleCreateStruct;
 use Ibexa\Core\Repository\Values\User\UserReference;
-use PHPUnit\Framework\Assert as Assertion;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Yaml\Yaml;
+use Webmozart\Assert\Assert as Assertion;
 
 final class UserRegistrationContext extends RawMinkContext implements Context, SnippetAcceptingContext
 {
@@ -295,9 +295,9 @@ final class UserRegistrationContext extends RawMinkContext implements Context, S
         $user = $this->userService->loadUserByLogin($this->registrationUsername);
         $userGroups = $this->userService->loadUserGroupsOfUser($user);
 
-        Assertion::assertEquals(
-            $userGroupName,
-            $userGroups[0]->getName()
+        Assertion::eq(
+            $userGroups[0]->getName(),
+            $userGroupName
         );
     }
 
@@ -343,7 +343,7 @@ final class UserRegistrationContext extends RawMinkContext implements Context, S
             $found = preg_match($searchedPattern, $html) === 1;
         }
 
-        Assertion::assertTrue(
+        Assertion::true(
             $found,
             "Couldn't find $template " .
             (isset($alternativeTemplate) ? "nor $alternativeTemplate " : ' ') .

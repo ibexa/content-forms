@@ -12,7 +12,7 @@ use Behat\Behat\Context\Context;
 use Behat\Behat\Context\SnippetAcceptingContext;
 use Behat\MinkExtension\Context\RawMinkContext;
 use Ibexa\Contracts\Core\SiteAccess\ConfigResolverInterface;
-use PHPUnit\Framework\Assert as Assertion;
+use Webmozart\Assert\Assert as Assertion;
 
 final class PagelayoutContext extends RawMinkContext implements Context, SnippetAcceptingContext
 {
@@ -29,7 +29,7 @@ final class PagelayoutContext extends RawMinkContext implements Context, Snippet
      */
     public function aPagelayoutIsConfigured(): void
     {
-        Assertion::assertTrue($this->configResolver->hasParameter('page_layout'));
+        Assertion::true($this->configResolver->hasParameter('page_layout'));
     }
 
     /**
@@ -40,7 +40,7 @@ final class PagelayoutContext extends RawMinkContext implements Context, Snippet
         $pageLayout = $this->getPageLayout();
 
         $searchedPattern = sprintf(self::TWIG_DEBUG_STOP_REGEX, preg_quote($pageLayout, null));
-        Assertion::assertMatchesRegularExpression($searchedPattern, $this->getSession()->getPage()->getOuterHtml());
+        Assertion::regex($this->getSession()->getPage()->getOuterHtml(), $searchedPattern);
     }
 
     public function getPageLayout(): string

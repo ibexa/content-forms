@@ -11,7 +11,7 @@ namespace Ibexa\ContentForms\Behat\Context;
 use Behat\Behat\Context\SnippetAcceptingContext;
 use Behat\Behat\Hook\Scope\BeforeScenarioScope;
 use Behat\MinkExtension\Context\RawMinkContext;
-use PHPUnit\Framework\Assert as Assertion;
+use Webmozart\Assert\Assert as Assertion;
 
 final class SelectionFieldTypeFormContext extends RawMinkContext implements SnippetAcceptingContext
 {
@@ -68,11 +68,11 @@ final class SelectionFieldTypeFormContext extends RawMinkContext implements Snip
                 self::$fieldIdentifier
             )
         );
-        Assertion::assertNotEmpty($nodeElements, 'The select field is not marked as required');
+        Assertion::notEmpty($nodeElements, 'The select field is not marked as required');
         foreach ($nodeElements as $nodeElement) {
-            Assertion::assertEquals(
-                'required',
+            Assertion::eq(
                 $nodeElement->getAttribute('required'),
+                'required',
                 sprintf(
                     'The select with ID %s is not flagged as required',
                     $nodeElement->getAttribute('id')
