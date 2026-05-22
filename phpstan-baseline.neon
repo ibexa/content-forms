@@ -433,7 +433,7 @@ parameters:
 			path: src/lib/Form/Type/FieldType/AuthorFieldType.php
 
 		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\Type\\FieldType\\AuthorFieldType\:\:getViewTransformer\(\) return type with generic interface Symfony\\Component\\Form\\DataTransformerInterface does not specify its types\: T, R$#'
+			message: '#^Method Ibexa\\ContentForms\\Form\\Type\\FieldType\\AuthorFieldType\:\:getViewTransformer\(\) return type with generic interface Symfony\\Component\\Form\\DataTransformerInterface does not specify its types\: TValue, TTransformedValue$#'
 			identifier: missingType.generics
 			count: 1
 			path: src/lib/Form/Type/FieldType/AuthorFieldType.php

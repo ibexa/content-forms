@@ -18,7 +18,8 @@ use Ibexa\Contracts\Core\Repository\Values\ContentType\ContentType;
 use Ibexa\Contracts\Core\Repository\Values\ContentType\ContentTypeCreateStruct;
 use Ibexa\Contracts\Core\Repository\Values\ContentType\FieldDefinitionUpdateStruct;
 use Ibexa\Core\Repository\Values\User\UserReference;
-use PHPUnit\Framework\Assert as Assertion;
+use RuntimeException;
+use Webmozart\Assert\Assert as Assertion;
 
 final class ContentTypeContext extends RawMinkContext implements Context, SnippetAcceptingContext
 {
@@ -38,9 +39,9 @@ final class ContentTypeContext extends RawMinkContext implements Context, Snippe
     {
         try {
             $contentType = $this->contentTypeService->loadContentTypeByIdentifier($contentTypeIdentifier);
-            Assertion::assertEquals($id, $contentType->id);
+            Assertion::eq($contentType->id, $id);
         } catch (NotFoundException) {
-            Assertion::fail("No ContentType with the identifier '$contentTypeIdentifier' could be found.");
+            throw new RuntimeException("No ContentType with the identifier '$contentTypeIdentifier' could be found.");
         }
     }
 
