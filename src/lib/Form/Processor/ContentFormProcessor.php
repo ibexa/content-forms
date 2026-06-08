@@ -8,6 +8,7 @@ declare(strict_types=1);
 
 namespace Ibexa\ContentForms\Form\Processor;
 
+use Ibexa\Bundle\Core\Message\PublishContentAsync;
 use Ibexa\ContentForms\Data\Content\ContentCreateData;
 use Ibexa\ContentForms\Data\Content\ContentUpdateData;
 use Ibexa\ContentForms\Data\NewnessCheckable;
@@ -22,6 +23,7 @@ use Ibexa\Contracts\Core\Repository\Values\Content\VersionInfo;
 use Ibexa\Core\Base\Exceptions\InvalidArgumentException;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\Messenger\MessageBusInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Routing\RouterInterface;
 
@@ -33,7 +35,8 @@ final readonly class ContentFormProcessor implements EventSubscriberInterface
     public function __construct(
         private ContentService $contentService,
         private LocationService $locationService,
-        private RouterInterface $router
+        private RouterInterface $router,
+        private MessageBusInterface $bus,
     ) {
     }
 
@@ -150,10 +153,35 @@ final readonly class ContentFormProcessor implements EventSubscriberInterface
 
         $draft = $this->saveDraft($data, $form->getConfig()->getOption('languageCode'));
         $versionInfo = $draft->getVersionInfo();
-        $content = $this->contentService->publishVersion(
-            $versionInfo,
-            [$versionInfo->getInitialLanguage()->getLanguageCode()]
+
+        /** todo splitting sync/async extension point
+         *  possible extension options based on yaml-configured flag:
+         *  - if-conditioning in code (like atm hardcoded solution)
+         *  - if-subscribers methods
+         *  - if-subscribers
+         *  - messenger routing to dispatching sync/async message (consistent flow with no code conditioning logic - all depends on message's messenger routing config)
+         *  - extract publish content service (\Ibexa\Core\Repository\ContentService::publishVersion) and decorate it with async service
+         *      prons: simplified call-sade, no conditioning
+         *      cons: calling-side not aware of sync/async path
+         * todo cover also all other sync publish paths
+         */
+
+        // todo old sync implementation
+//        $content = $this->contentService->publishVersion(
+//            $versionInfo,
+//            [$versionInfo->getInitialLanguage()->getLanguageCode()]
+//        );
+
+        // todo new async dispatching
+        $this->bus->dispatch(
+            new PublishContentAsync(
+                $versionInfo->getContentInfo()->id,
+                $versionInfo->versionNo,
+                [$versionInfo->getInitialLanguage()->getLanguageCode()],
+            ),
         );
+        // all further dependencies in this path are not content publishing state dependent
+        $content = $draft;
 
         $event->setPayload('content', $content);
         $event->setPayload('is_new', $draft->getContentInfo()->isDraft());

@@ -58,6 +58,7 @@ services:
             - '@ibexa.api.service.content'
             - '@ibexa.api.service.location'
             - '@router'
+            - '@ibexa.messenger.bus'
         tags:
             - { name: kernel.event_subscriber }
 
