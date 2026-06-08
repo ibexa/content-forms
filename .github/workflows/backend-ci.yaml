@@ -17,20 +17,17 @@ jobs:
                     - '8.3'
 
         steps:
-            - uses: actions/checkout@v5
+            -   uses: actions/checkout@v6
 
-            - name: Setup PHP Action
-              uses: shivammathur/setup-php@v2
-              with:
-                  php-version: ${{ matrix.php }}
-                  coverage: none
-                  extensions: 'pdo_sqlite, gd'
-                  tools: cs2pr
+            -   uses: ibexa/gh-workflows/actions/composer-install@main
+                with:
+                    gh-client-id: ${{ secrets.AUTOMATION_CLIENT_ID }}
+                    gh-client-secret: ${{ secrets.AUTOMATION_CLIENT_SECRET }}
+                    satis-network-key: ${{ secrets.SATIS_NETWORK_KEY }}
+                    satis-network-token: ${{ secrets.SATIS_NETWORK_TOKEN }}
 
-            - uses: ./.github/actions/composer-install
-
-            - name: Run code style check
-              run: composer run-script check-cs -- --format=checkstyle | cs2pr
+            -   name: Run code style check
+                run: composer run-script check-cs -- --format=checkstyle | cs2pr
 
     tests:
         name: Unit tests & PHPStan static analysis
@@ -45,26 +42,23 @@ jobs:
                     - '8.4'
 
         steps:
-            - uses: actions/checkout@v5
+            -   uses: actions/checkout@v6
 
-            - name: Setup PHP Action
-              uses: shivammathur/setup-php@v2
-              with:
-                  php-version: ${{ matrix.php }}
-                  coverage: none
-                  extensions: pdo_sqlite, gd
-                  tools: cs2pr
+            -   uses: ibexa/gh-workflows/actions/composer-install@main
+                with:
+                    gh-client-id: ${{ secrets.AUTOMATION_CLIENT_ID }}
+                    gh-client-secret: ${{ secrets.AUTOMATION_CLIENT_SECRET }}
+                    satis-network-key: ${{ secrets.SATIS_NETWORK_KEY }}
+                    satis-network-token: ${{ secrets.SATIS_NETWORK_TOKEN }}
 
-            - uses: ./.github/actions/composer-install
+            -   name: Setup problem matchers for PHPUnit
+                run: echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
 
-            - name: Setup problem matchers for PHPUnit
-              run: echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
+            -   name: Run unit test suite
+                run: composer test
 
-            - name: Run unit test suite
-              run: composer test
-
-            - name: Run PHPStan analysis
-              run: composer run-script phpstan
+            -   name: Run PHPStan analysis
+                run: composer run-script phpstan
 
     integration-tests:
         name: Runs integration tests
@@ -80,20 +74,17 @@ jobs:
                     - '8.4'
 
         steps:
-            - uses: actions/checkout@v5
+            -   uses: actions/checkout@v6
 
-            - name: Setup PHP Action
-              uses: shivammathur/setup-php@v2
-              with:
-                  php-version: ${{ matrix.php }}
-                  coverage: none
-                  extensions: pdo_sqlite, gd
-                  tools: cs2pr
+            -   uses: ibexa/gh-workflows/actions/composer-install@main
+                with:
+                    gh-client-id: ${{ secrets.AUTOMATION_CLIENT_ID }}
+                    gh-client-secret: ${{ secrets.AUTOMATION_CLIENT_SECRET }}
+                    satis-network-key: ${{ secrets.SATIS_NETWORK_KEY }}
+                    satis-network-token: ${{ secrets.SATIS_NETWORK_TOKEN }}
 
-            - uses: ./.github/actions/composer-install
+            -   name: Setup problem matchers for PHPUnit
+                run: echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
 
-            - name: Setup problem matchers for PHPUnit
-              run: echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
-
-            - name: Run unit test suite
-              run: composer run-script test-integration
+            -   name: Run unit test suite
+                run: composer run-script test-integration
