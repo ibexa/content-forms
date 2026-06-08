@@ -1,6 +1,7 @@
 {
     "name": "ibexa/content-forms",
     "description": "Use Symfony Forms with Ibexa Content & User objects",
+    "minimum-stability": "dev",
     "license": "(GPL-2.0-only or proprietary)",
     "type": "ibexa-bundle",
     "replace": {
@@ -10,6 +11,7 @@
         "php": " >=8.3",
         "ext-json": "*",
         "ibexa/core": "~6.0.x-dev",
+        "ibexa/messenger": "~6.0.x-dev",
         "symfony/config": "^7.4",
         "symfony/dependency-injection": "^7.4",
         "symfony/event-dispatcher": "^7.4",
