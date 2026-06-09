@@ -59,6 +59,7 @@ services:
             - '@ibexa.api.service.location'
             - '@router'
             - '@ibexa.messenger.bus'
+            - '@Ibexa\Contracts\Core\Container\ApiLoader\RepositoryConfigurationProviderInterface'
         tags:
             - { name: kernel.event_subscriber }
 

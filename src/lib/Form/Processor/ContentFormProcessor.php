@@ -14,6 +14,7 @@ use Ibexa\ContentForms\Data\Content\ContentUpdateData;
 use Ibexa\ContentForms\Data\NewnessCheckable;
 use Ibexa\ContentForms\Event\ContentFormEvents;
 use Ibexa\ContentForms\Event\FormActionEvent;
+use Ibexa\Contracts\Core\Container\ApiLoader\RepositoryConfigurationProviderInterface;
 use Ibexa\Contracts\Core\Repository\ContentService;
 use Ibexa\Contracts\Core\Repository\LocationService;
 use Ibexa\Contracts\Core\Repository\Values\Content\Content;
@@ -37,6 +38,7 @@ final readonly class ContentFormProcessor implements EventSubscriberInterface
         private LocationService $locationService,
         private RouterInterface $router,
         private MessageBusInterface $bus,
+        private RepositoryConfigurationProviderInterface $repositoryConfigurationProvider,
     ) {
     }
 
@@ -166,22 +168,22 @@ final readonly class ContentFormProcessor implements EventSubscriberInterface
          * todo cover also all other sync publish paths
          */
 
-        // todo old sync implementation
-//        $content = $this->contentService->publishVersion(
-//            $versionInfo,
-//            [$versionInfo->getInitialLanguage()->getLanguageCode()]
-//        );
-
-        // todo new async dispatching
-        $this->bus->dispatch(
-            new PublishContentAsync(
-                $versionInfo->getContentInfo()->id,
-                $versionInfo->versionNo,
+        if ($this->isAsyncContentPublishEnabled()) {
+            $this->bus->dispatch(
+                new PublishContentAsync(
+                    $versionInfo->getContentInfo()->id,
+                    $versionInfo->versionNo,
+                    [$versionInfo->getInitialLanguage()->getLanguageCode()],
+                ),
+            );
+            // all further dependencies in this path are not content publishing state dependent
+            $content = $draft;
+        } else {
+            $content = $this->contentService->publishVersion(
+                $versionInfo,
                 [$versionInfo->getInitialLanguage()->getLanguageCode()],
-            ),
-        );
-        // all further dependencies in this path are not content publishing state dependent
-        $content = $draft;
+            );
+        }
 
         $event->setPayload('content', $content);
         $event->setPayload('is_new', $draft->getContentInfo()->isDraft());
@@ -201,6 +203,11 @@ final readonly class ContentFormProcessor implements EventSubscriberInterface
         );
 
         $event->setResponse(new RedirectResponse($redirectUrl));
+    }
+
+    private function isAsyncContentPublishEnabled(): bool
+    {
+        return (bool) ($this->repositoryConfigurationProvider->getRepositoryConfig()['async_content_publish'] ?? false);
     }
 
     /**
