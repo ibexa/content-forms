@@ -167,7 +167,6 @@ final readonly class ContentFormProcessor implements EventSubscriberInterface
          *      cons: calling-side not aware of sync/async path
          * todo cover also all other sync publish paths
          */
-
         if ($this->isAsyncContentPublishEnabled()) {
             $this->bus->dispatch(
                 new PublishContentAsync(
