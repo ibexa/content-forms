@@ -8,7 +8,6 @@ declare(strict_types=1);
 
 namespace Ibexa\ContentForms\Form\Processor;
 
-use Ibexa\Bundle\Core\Message\PublishContentAsync;
 use Ibexa\ContentForms\Data\Content\ContentCreateData;
 use Ibexa\ContentForms\Data\Content\ContentUpdateData;
 use Ibexa\ContentForms\Data\NewnessCheckable;
@@ -22,9 +21,9 @@ use Ibexa\Contracts\Core\Repository\Values\Content\ContentStruct;
 use Ibexa\Contracts\Core\Repository\Values\Content\Location;
 use Ibexa\Contracts\Core\Repository\Values\Content\VersionInfo;
 use Ibexa\Core\Base\Exceptions\InvalidArgumentException;
+use Ibexa\Core\Repository\ContentService\AsyncPublicationService;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
-use Symfony\Component\Messenger\MessageBusInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Routing\RouterInterface;
 
@@ -37,8 +36,8 @@ final readonly class ContentFormProcessor implements EventSubscriberInterface
         private ContentService $contentService,
         private LocationService $locationService,
         private RouterInterface $router,
-        private MessageBusInterface $bus,
         private RepositoryConfigurationProviderInterface $repositoryConfigurationProvider,
+        private AsyncPublicationService $asyncPublicationService,
     ) {
     }
 
@@ -168,13 +167,12 @@ final readonly class ContentFormProcessor implements EventSubscriberInterface
          * todo cover also all other sync publish paths
          */
         if ($this->isAsyncContentPublishEnabled()) {
-            $this->bus->dispatch(
-                new PublishContentAsync(
-                    $versionInfo->getContentInfo()->id,
-                    $versionInfo->versionNo,
-                    [$versionInfo->getInitialLanguage()->getLanguageCode()],
-                ),
+            $this->asyncPublicationService->registerPublication(
+                $versionInfo->getContentInfo()->id,
+                $versionInfo->versionNo,
+                [$versionInfo->getInitialLanguage()->getLanguageCode()],
             );
+
             // all further dependencies in this path are not content publishing state dependent
             $content = $draft;
         } else {

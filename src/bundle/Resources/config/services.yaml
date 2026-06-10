@@ -58,8 +58,8 @@ services:
             - '@ibexa.api.service.content'
             - '@ibexa.api.service.location'
             - '@router'
-            - '@ibexa.messenger.bus'
             - '@Ibexa\Contracts\Core\Container\ApiLoader\RepositoryConfigurationProviderInterface'
+            - '@Ibexa\Core\Repository\ContentService\AsyncPublicationService'
         tags:
             - { name: kernel.event_subscriber }
 
