@@ -13,7 +13,7 @@ use Ibexa\ContentForms\Data\Content\ContentUpdateData;
 use Ibexa\ContentForms\Data\NewnessCheckable;
 use Ibexa\ContentForms\Event\ContentFormEvents;
 use Ibexa\ContentForms\Event\FormActionEvent;
-use Ibexa\Contracts\Core\Container\ApiLoader\RepositoryConfigurationProviderInterface;
+use Ibexa\Contracts\Core\Repository\ContentPublisherInterface;
 use Ibexa\Contracts\Core\Repository\ContentService;
 use Ibexa\Contracts\Core\Repository\LocationService;
 use Ibexa\Contracts\Core\Repository\Values\Content\Content;
@@ -22,7 +22,6 @@ use Ibexa\Contracts\Core\Repository\Values\Content\Location;
 use Ibexa\Contracts\Core\Repository\Values\Content\VersionInfo;
 use Ibexa\Contracts\Core\SiteAccess\ConfigResolverInterface;
 use Ibexa\Core\Base\Exceptions\InvalidArgumentException;
-use Ibexa\Core\Repository\ContentService\AsyncPublicationService;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
@@ -37,8 +36,7 @@ final readonly class ContentFormProcessor implements EventSubscriberInterface
         private ContentService $contentService,
         private LocationService $locationService,
         private RouterInterface $router,
-        private RepositoryConfigurationProviderInterface $repositoryConfigurationProvider,
-        private AsyncPublicationService $asyncPublicationService,
+        private ContentPublisherInterface $contentPublisher,
         private ConfigResolverInterface $configResolver,
     ) {
     }
@@ -157,30 +155,10 @@ final readonly class ContentFormProcessor implements EventSubscriberInterface
         $draft = $this->saveDraft($data, $form->getConfig()->getOption('languageCode'));
         $versionInfo = $draft->getVersionInfo();
 
-        /** todo splitting sync/async extension point
-         *  possible extension options based on yaml-configured flag:
-         *  - if-conditioning in code (like atm hardcoded solution)
-         *  - if-subscribers methods
-         *  - if-subscribers
-         *  - messenger routing to dispatching sync/async message (consistent flow with no code conditioning logic - all depends on message's messenger routing config)
-         *  - extract publish content service (\Ibexa\Core\Repository\ContentService::publishVersion) and decorate it with async service
-         *      prons: simplified call-sade, no conditioning
-         *      cons: calling-side not aware of sync/async path
-         * todo cover also all other sync publish paths
-         */
-        if ($this->isAsyncContentPublishEnabled()) {
-            $this->asyncPublicationService->registerPublication(
-                $versionInfo->getContentInfo()->id,
-                $versionInfo->versionNo,
-                [$versionInfo->getInitialLanguage()->getLanguageCode()],
-            );
-
-        } else {
-            $this->contentService->publishVersion(
-                $versionInfo,
-                [$versionInfo->getInitialLanguage()->getLanguageCode()],
-            );
-        }
+        $this->contentPublisher->publishVersion(
+            $versionInfo,
+            [$versionInfo->getInitialLanguage()->getLanguageCode()],
+        );
 
         $event->setPayload('content_type', $draft->getContentType());
         $event->setPayload('is_new', $draft->getContentInfo()->isDraft());
@@ -203,11 +181,6 @@ final readonly class ContentFormProcessor implements EventSubscriberInterface
         );
 
         $event->setResponse(new RedirectResponse($redirectUrl));
-    }
-
-    private function isAsyncContentPublishEnabled(): bool
-    {
-        return (bool) ($this->repositoryConfigurationProvider->getRepositoryConfig()['async_content_publish'] ?? false);
     }
 
     /**
