@@ -60,6 +60,7 @@ services:
             - '@router'
             - '@Ibexa\Contracts\Core\Container\ApiLoader\RepositoryConfigurationProviderInterface'
             - '@Ibexa\Core\Repository\ContentService\AsyncPublicationService'
+            - '@ibexa.config.resolver'
         tags:
             - { name: kernel.event_subscriber }
 
