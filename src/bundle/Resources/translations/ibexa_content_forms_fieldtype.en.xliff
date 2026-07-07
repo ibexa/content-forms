@@ -16,97 +16,97 @@
         <target state="new">Remove</target>
         <note>key: content.field_type.binary_base.remove</note>
       </trans-unit>
-      <trans-unit id="db5d6f82fe5ba6f40d1d159dca89c659c76aad06" resname="content.field_type.ibexa_author.email">
+      <trans-unit id="17ad0f9fefecf8d033a72248020daadb6c0d03bb" resname="content.field_type.ibexa_author.email">
         <source>Email</source>
         <target state="new">Email</target>
         <note>key: content.field_type.ibexa_author.email</note>
       </trans-unit>
-      <trans-unit id="05fe48833d61c38f4c532c34c4b6fdad323e1fe1" resname="content.field_type.ibexa_author.name">
+      <trans-unit id="55a6c7fb0666f4245ff4ef4e482ac5167cb6dc1a" resname="content.field_type.ibexa_author.name">
         <source>Name</source>
         <target state="new">Name</target>
         <note>key: content.field_type.ibexa_author.name</note>
       </trans-unit>
-      <trans-unit id="79843ce578133501bb420c52cd410a113dcfaefb" resname="content.field_type.ibexa_gmap_location.address">
+      <trans-unit id="8dc19fb3f609bdbb1a7a502c7d8507e0f21b7bfd" resname="content.field_type.ibexa_gmap_location.address">
         <source>Address</source>
         <target state="new">Address</target>
         <note>key: content.field_type.ibexa_gmap_location.address</note>
       </trans-unit>
-      <trans-unit id="2fcb1cae76dae0c5ddda6446822bf2d656e84601" resname="content.field_type.ibexa_gmap_location.latitude">
+      <trans-unit id="af0e2306228515835fded31d13ff557e6455dd35" resname="content.field_type.ibexa_gmap_location.latitude">
         <source>Latitude</source>
         <target state="new">Latitude</target>
         <note>key: content.field_type.ibexa_gmap_location.latitude</note>
       </trans-unit>
-      <trans-unit id="f598e2bedb749c004e232b9c3f0cffbc08f9c491" resname="content.field_type.ibexa_gmap_location.longitude">
+      <trans-unit id="ddecfb3d270a2040a0b93f7b4a6a5ea6e01b8467" resname="content.field_type.ibexa_gmap_location.longitude">
         <source>Longitude</source>
         <target state="new">Longitude</target>
         <note>key: content.field_type.ibexa_gmap_location.longitude</note>
       </trans-unit>
-      <trans-unit id="aa904d94a0f6df2084d669e82dac178189509aab" resname="content.field_type.ibexa_image.alternative_text">
+      <trans-unit id="cbe65c29c103d30311c84c4dad3b66fcef0d4814" resname="content.field_type.ibexa_image.alternative_text">
         <source>Alternative text</source>
         <target state="new">Alternative text</target>
         <note>key: content.field_type.ibexa_image.alternative_text</note>
       </trans-unit>
-      <trans-unit id="5da12c12b4df6790c55fb4d0b11f72fa621b0d1f" resname="content.field_type.ibexa_image_asset.alternative_text">
+      <trans-unit id="3a38d9e65e1ccab2fc0c35acb9cbc2b33416f90c" resname="content.field_type.ibexa_image_asset.alternative_text">
         <source>Alternative text</source>
         <target state="new">Alternative text</target>
         <note>key: content.field_type.ibexa_image_asset.alternative_text</note>
       </trans-unit>
-      <trans-unit id="7162d22b1be8aaa634e57fa94cc2664026be4390" resname="content.field_type.ibexa_media.autoplay">
+      <trans-unit id="dbefe81d56e0dd1c24f429f195af4a3c735b71bb" resname="content.field_type.ibexa_media.autoplay">
         <source>Autoplay</source>
         <target state="new">Autoplay</target>
         <note>key: content.field_type.ibexa_media.autoplay</note>
       </trans-unit>
-      <trans-unit id="f0176a5e197c6c207e09affb1a027db2ab48a506" resname="content.field_type.ibexa_media.display_controls">
+      <trans-unit id="b360080de75c38752044949ac97cdfff93d17d72" resname="content.field_type.ibexa_media.display_controls">
         <source>Display controls</source>
         <target state="new">Display controls</target>
         <note>key: content.field_type.ibexa_media.display_controls</note>
       </trans-unit>
-      <trans-unit id="eb3b924b6a2d94344ea5e1e51636ef5b92a7a57a" resname="content.field_type.ibexa_media.height">
+      <trans-unit id="3c403b32242f0c2fd33f7943526c0b7aa967b235" resname="content.field_type.ibexa_media.height">
         <source>Height</source>
         <target state="new">Height</target>
         <note>key: content.field_type.ibexa_media.height</note>
       </trans-unit>
-      <trans-unit id="48e4eb02443e58b9ff501ca03bdc4008e842eba4" resname="content.field_type.ibexa_media.loop">
+      <trans-unit id="81c44e76de8bedacd95e425daa21f23ec0ba27ae" resname="content.field_type.ibexa_media.loop">
         <source>Loop</source>
         <target state="new">Loop</target>
         <note>key: content.field_type.ibexa_media.loop</note>
       </trans-unit>
-      <trans-unit id="e5940ee516f3edb1d09e7ac4eed4fe7a28d3cacd" resname="content.field_type.ibexa_media.width">
+      <trans-unit id="f0a041fafa03bdd47c630c9817422fc8282d294b" resname="content.field_type.ibexa_media.width">
         <source>Width</source>
         <target state="new">Width</target>
         <note>key: content.field_type.ibexa_media.width</note>
       </trans-unit>
-      <trans-unit id="25850f96dbb0457a35063e29e92a26cbba2de07d" resname="content.field_type.ibexa_url.link">
+      <trans-unit id="bb40f4f8f12b4311d202e02f4f1255bbb1a648a5" resname="content.field_type.ibexa_url.link">
         <source>URL</source>
         <target state="new">URL</target>
         <note>key: content.field_type.ibexa_url.link</note>
       </trans-unit>
-      <trans-unit id="e6ca454559e2a762b64c43847db1e227b3077540" resname="content.field_type.ibexa_url.text">
+      <trans-unit id="61a20bef775a49c8ae83b62ff8405eedbef9bfd9" resname="content.field_type.ibexa_url.text">
         <source>Text</source>
         <target state="new">Text</target>
         <note>key: content.field_type.ibexa_url.text</note>
       </trans-unit>
-      <trans-unit id="7a3eb3ea13db1c9d6a0bd64c7d249a45e7b83b52" resname="content.field_type.ibexa_user.email">
+      <trans-unit id="28abea9a946fd6ca2fb27df5bfb1455b95543b98" resname="content.field_type.ibexa_user.email">
         <source>Email</source>
         <target state="new">Email</target>
         <note>key: content.field_type.ibexa_user.email</note>
       </trans-unit>
-      <trans-unit id="8ac4ec40153c80fd39d2051802e30ebffb6f1fe1" resname="content.field_type.ibexa_user.enabled">
+      <trans-unit id="85eba9a481a387a4b785938ba476ca2608dad677" resname="content.field_type.ibexa_user.enabled">
         <source>Enabled</source>
         <target state="new">Enabled</target>
         <note>key: content.field_type.ibexa_user.enabled</note>
       </trans-unit>
-      <trans-unit id="4c65e5d17516c19e311161e374bbd39f053b5e6b" resname="content.field_type.ibexa_user.password">
+      <trans-unit id="2134bb8e6a45a5c98b65ae4a086f302067125a74" resname="content.field_type.ibexa_user.password">
         <source>Password</source>
         <target state="new">Password</target>
         <note>key: content.field_type.ibexa_user.password</note>
       </trans-unit>
-      <trans-unit id="d2fe533f4032896195d524038c3abeb2209adece" resname="content.field_type.ibexa_user.password_confirm">
+      <trans-unit id="ac91d11dfd14a88caa93c782669f1b947425b595" resname="content.field_type.ibexa_user.password_confirm">
         <source>Confirm password</source>
         <target state="new">Confirm password</target>
         <note>key: content.field_type.ibexa_user.password_confirm</note>
       </trans-unit>
-      <trans-unit id="d1f5c5fcee7eb206e496dd5073b0f95427431a1c" resname="content.field_type.ibexa_user.username">
+      <trans-unit id="38b71c7d239574a2d71cbcce371a662a414a1506" resname="content.field_type.ibexa_user.username">
         <source>Username</source>
         <target state="new">Username</target>
         <note>key: content.field_type.ibexa_user.username</note>
