@@ -13,12 +13,14 @@ use Ibexa\ContentForms\Data\Content\ContentUpdateData;
 use Ibexa\ContentForms\Data\NewnessCheckable;
 use Ibexa\ContentForms\Event\ContentFormEvents;
 use Ibexa\ContentForms\Event\FormActionEvent;
+use Ibexa\Contracts\Core\Repository\ContentPublisherInterface;
 use Ibexa\Contracts\Core\Repository\ContentService;
 use Ibexa\Contracts\Core\Repository\LocationService;
 use Ibexa\Contracts\Core\Repository\Values\Content\Content;
 use Ibexa\Contracts\Core\Repository\Values\Content\ContentStruct;
 use Ibexa\Contracts\Core\Repository\Values\Content\Location;
 use Ibexa\Contracts\Core\Repository\Values\Content\VersionInfo;
+use Ibexa\Contracts\Core\SiteAccess\ConfigResolverInterface;
 use Ibexa\Core\Base\Exceptions\InvalidArgumentException;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -33,7 +35,9 @@ final readonly class ContentFormProcessor implements EventSubscriberInterface
     public function __construct(
         private ContentService $contentService,
         private LocationService $locationService,
-        private RouterInterface $router
+        private RouterInterface $router,
+        private ContentPublisherInterface $contentPublisher,
+        private ConfigResolverInterface $configResolver,
     ) {
     }
 
@@ -150,26 +154,30 @@ final readonly class ContentFormProcessor implements EventSubscriberInterface
 
         $draft = $this->saveDraft($data, $form->getConfig()->getOption('languageCode'));
         $versionInfo = $draft->getVersionInfo();
-        $content = $this->contentService->publishVersion(
+
+        $this->contentPublisher->publishVersion(
             $versionInfo,
-            [$versionInfo->getInitialLanguage()->getLanguageCode()]
+            [$versionInfo->getInitialLanguage()->getLanguageCode()],
         );
 
-        $event->setPayload('content', $content);
+        $event->setPayload('content_type', $draft->getContentType());
         $event->setPayload('is_new', $draft->getContentInfo()->isDraft());
 
-        $locationId = $referrerLocation !== null && $data instanceof ContentUpdateData
-            ? $referrerLocation->id
-            : $content->getContentInfo()->getMainLocationId();
+        if ($referrerLocation !== null && $data instanceof ContentUpdateData) {
+            $locationId = $referrerLocation->id;
+            $contentId = $draft->getContentInfo()->id;
+        } else {
+            $locationId = (int) $this->configResolver->getParameter('location_ids.content_structure');
+            $contentId = $this->locationService->loadLocation($locationId)->getContentId();
+        }
 
-        $contentId = $content->getId();
         $redirectUrl = $form['redirectUrlAfterPublish']->getData() ?: $this->router->generate(
             'ibexa.content.view',
             [
                 'contentId' => $contentId,
                 'locationId' => $locationId,
                 'publishedContentId' => $contentId,
-            ]
+            ],
         );
 
         $event->setResponse(new RedirectResponse($redirectUrl));

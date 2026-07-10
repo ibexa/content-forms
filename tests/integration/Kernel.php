@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace Ibexa\Tests\Integration\ContentForms;
 
 use Ibexa\Bundle\ContentForms\IbexaContentFormsBundle;
+use Ibexa\Bundle\Messenger\IbexaMessengerBundle;
 use Ibexa\Contracts\Test\Core\IbexaTestKernel;
 use Symfony\Component\Config\Loader\LoaderInterface;
 
@@ -19,6 +20,7 @@ final class Kernel extends IbexaTestKernel
         yield from parent::registerBundles();
 
         yield new IbexaContentFormsBundle();
+        yield new IbexaMessengerBundle();
     }
 
     public function registerContainerConfiguration(LoaderInterface $loader): void
