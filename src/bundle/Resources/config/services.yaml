@@ -58,6 +58,7 @@ services:
             - '@ibexa.api.service.content'
             - '@ibexa.api.service.location'
             - '@router'
+            - '@Ibexa\Contracts\Core\Repository\Strategy\ContentPublication\ContentPublicationStrategyInterface'
         tags:
             - { name: kernel.event_subscriber }
 
