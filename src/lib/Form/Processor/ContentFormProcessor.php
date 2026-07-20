@@ -20,6 +20,7 @@ use Ibexa\Contracts\Core\Repository\Values\Content\Content;
 use Ibexa\Contracts\Core\Repository\Values\Content\ContentStruct;
 use Ibexa\Contracts\Core\Repository\Values\Content\Location;
 use Ibexa\Contracts\Core\Repository\Values\Content\VersionInfo;
+use Ibexa\Contracts\Core\SiteAccess\ConfigResolverInterface;
 use Ibexa\Core\Base\Exceptions\InvalidArgumentException;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -35,6 +36,7 @@ final readonly class ContentFormProcessor implements EventSubscriberInterface
         private ContentService $contentService,
         private LocationService $locationService,
         private RouterInterface $router,
+        private ConfigResolverInterface $configResolver,
         private ContentPublicationStrategyInterface $contentPublicationStrategy
     ) {
     }
@@ -165,18 +167,14 @@ final readonly class ContentFormProcessor implements EventSubscriberInterface
             $locationId = $referrerLocation !== null && $data instanceof ContentUpdateData
                 ? $referrerLocation->id
                 : $publishedContent->getContentInfo()->getMainLocationId();
-
             $contentId = $publishedContent->getId();
         } else {
             // The publication is deferred to background processing; the published version and,
             // for never-published content, its main location do not exist yet.
-
-            // TODO: handle null location for async/content creation path, where we should redirect user to?
             $locationId = $referrerLocation !== null && $data instanceof ContentUpdateData
                 ? $referrerLocation->id
-                : $draft->getContentInfo()->getMainLocationId();
-
-            $contentId = $draft->getContentInfo()->getId();
+                : (int) $this->configResolver->getParameter('content.tree_root.location_id');
+            $contentId = $this->locationService->loadLocation($locationId)->getContentId();
         }
 
         $redirectUrl = $form['redirectUrlAfterPublish']->getData() ?: $this->router->generate(

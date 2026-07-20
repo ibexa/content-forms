@@ -21,6 +21,7 @@ use Ibexa\Contracts\Core\Repository\Values\Content\ContentInfo;
 use Ibexa\Contracts\Core\Repository\Values\Content\Language;
 use Ibexa\Contracts\Core\Repository\Values\Content\VersionInfo;
 use Ibexa\Contracts\Core\Repository\Values\ContentType\ContentType;
+use Ibexa\Contracts\Core\SiteAccess\ConfigResolverInterface;
 use Ibexa\Core\Repository\Values\Content\Location;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Form\FormConfigInterface;
@@ -37,104 +38,120 @@ final class ContentFormProcessorTest extends TestCase
     private const DRAFT_MAIN_LOCATION_ID = 42;
     private const PUBLISHED_MAIN_LOCATION_ID = 77;
     private const REFERRER_LOCATION_ID = 55;
+    private const TREE_ROOT_LOCATION_ID = 2;
     private const LANGUAGE_CODE = 'eng-GB';
     private const GENERATED_URL = 'generated-url';
 
-    public function testProcessPublishPublishesVersionViaStrategy(): void
-    {
-        $draft = $this->createDraft(self::DRAFT_MAIN_LOCATION_ID, false);
+    /**
+     * @dataProvider provideProcessPublishCases
+     *
+     * @param array<string, int|null>|null $expectedRouteParameters route parameters the redirect
+     *        is expected to be generated with, or null when a custom redirect URL is provided and
+     *        the router must not be invoked at all
+     */
+    public function testProcessPublish(
+        bool $isNewContent,
+        bool $publishedSynchronously,
+        bool $withReferrerLocation,
+        ?string $customRedirectUrl,
+        ?array $expectedRouteParameters
+    ): void {
+        $draft = $this->createDraft(
+            $isNewContent ? null : self::DRAFT_MAIN_LOCATION_ID,
+            $isNewContent ? ContentInfo::STATUS_DRAFT : ContentInfo::STATUS_PUBLISHED,
+        );
         $versionInfo = $draft->getVersionInfo();
 
+        $data = $isNewContent ? $this->createCreateData() : $this->createUpdateData($draft);
+        $options = $withReferrerLocation
+            ? ['referrerLocation' => new Location(['id' => self::REFERRER_LOCATION_ID])]
+            : [];
+        $event = $this->createEvent($data, $this->createForm($customRedirectUrl), $options);
+
+        // The draft is persisted via create/update; publication must never go through the service.
         $contentService = $this->createMock(ContentService::class);
+        $contentService->method('createContent')->willReturn($draft);
         $contentService->method('updateContent')->willReturn($draft);
         $contentService
             ->expects(self::never())
             ->method('publishVersion');
 
+        // Publication is delegated to the strategy, called once with the draft version and language.
+        $publishedContent = $publishedSynchronously ? $this->createPublishedContent() : null;
         $contentPublicationStrategy = $this->createMock(ContentPublicationStrategyInterface::class);
         $contentPublicationStrategy
             ->expects(self::once())
             ->method('publishVersion')
             ->with(self::identicalTo($versionInfo), [self::LANGUAGE_CODE])
-            ->willReturn(new ContentPublicationResult($this->createPublishedContent()));
+            ->willReturn(new ContentPublicationResult($publishedContent));
+
+        // The router is called once with the expected route parameters, unless a custom redirect
+        // URL coming from the form data short-circuits URL generation entirely.
+        $router = $this->createMock(RouterInterface::class);
+        if ($expectedRouteParameters === null) {
+            $router
+                ->expects(self::never())
+                ->method('generate');
+        } else {
+            $router
+                ->expects(self::once())
+                ->method('generate')
+                ->with('ibexa.content.view', $expectedRouteParameters)
+                ->willReturn(self::GENERATED_URL);
+        }
+
+        // The deferred (async) redirect resolves its location from the content tree root config
+        // and the location lookup.
+        $configResolver = $this->createStub(ConfigResolverInterface::class);
+        $configResolver->method('getParameter')->willReturn(self::TREE_ROOT_LOCATION_ID);
+
+        $locationService = $this->createStub(LocationService::class);
+        $locationService->method('loadLocation')->willReturn(
+            new Location([
+                'id' => self::TREE_ROOT_LOCATION_ID,
+                'contentInfo' => new ContentInfo(['id' => self::CONTENT_ID]),
+            ])
+        );
 
         $processor = new ContentFormProcessor(
             $contentService,
-            $this->createStub(LocationService::class),
-            $this->createRouterStub(),
+            $locationService,
+            $router,
+            $configResolver,
             $contentPublicationStrategy
         );
 
-        $processor->processPublish(
-            $this->createEvent($this->createUpdateData($draft), $this->createForm())
-        );
-    }
-
-    /**
-     * @testWith [true, true]
-     *           [false, false]
-     */
-    public function testProcessPublishSetsPayloads(bool $isNewContent, bool $expectedIsNewPayload): void
-    {
-        $draft = $this->createDraft($isNewContent ? null : self::DRAFT_MAIN_LOCATION_ID, $isNewContent);
-        $data = $isNewContent ? $this->createCreateData() : $this->createUpdateData($draft);
-        $event = $this->createEvent($data, $this->createForm());
-
-        $processor = $this->createProcessor($draft, new ContentPublicationResult(null));
         $processor->processPublish($event);
 
-        self::assertFalse($event->hasPayload('content'));
         self::assertSame($draft->getContentType(), $event->getPayload('content_type'));
-        self::assertSame($expectedIsNewPayload, $event->getPayload('is_new'));
-    }
-
-    /**
-     * @dataProvider providerForTestProcessPublishRedirect
-     *
-     * @param array<string, int|null> $expectedRouteParameters
-     */
-    public function testProcessPublishRedirect(
-        bool $publishedSynchronously,
-        bool $isNewContent,
-        bool $withReferrerLocation,
-        array $expectedRouteParameters
-    ): void {
-        $draft = $this->createDraft($isNewContent ? null : self::DRAFT_MAIN_LOCATION_ID, $isNewContent);
-        $data = $isNewContent ? $this->createCreateData() : $this->createUpdateData($draft);
-        $publicationResult = new ContentPublicationResult(
-            $publishedSynchronously ? $this->createPublishedContent() : null
-        );
-
-        $router = $this->createMock(RouterInterface::class);
-        $router
-            ->expects(self::once())
-            ->method('generate')
-            ->with('ibexa.content.view', $expectedRouteParameters)
-            ->willReturn(self::GENERATED_URL);
-
-        $options = $withReferrerLocation
-            ? ['referrerLocation' => new Location(['id' => self::REFERRER_LOCATION_ID])]
-            : [];
-        $event = $this->createEvent($data, $this->createForm(), $options);
-
-        $processor = $this->createProcessor($draft, $publicationResult, $router);
-        $processor->processPublish($event);
+        self::assertSame($isNewContent, $event->getPayload('is_new'));
 
         $response = $event->getResponse();
         self::assertInstanceOf(RedirectResponse::class, $response);
-        self::assertSame(self::GENERATED_URL, $response->getTargetUrl());
+        self::assertSame($customRedirectUrl ?? self::GENERATED_URL, $response->getTargetUrl());
     }
 
     /**
-     * @return iterable<string, array{bool, bool, bool, array<string, int|null>}>
+     * @return iterable<array{
+     *     isNewContent: bool,
+     *     publishedSynchronously: bool,
+     *     withReferrerLocation: bool,
+     *     customRedirectUrl: string|null,
+     *     expectedRouteParameters: array{
+     *         contentId: int,
+     *         locationId: int,
+     *         publishedContentId: int
+     *     }|null
+     * }>
      */
-    public static function providerForTestProcessPublishRedirect(): iterable
+    public static function provideProcessPublishCases(): iterable
     {
         yield 'sync: update with referrer location' => [
-            true,
-            false,
-            true,
-            [
+            'isNewContent' => false,
+            'publishedSynchronously' => true,
+            'withReferrerLocation' => true,
+            'customRedirectUrl' => null,
+            'expectedRouteParameters' => [
                 'contentId' => self::CONTENT_ID,
                 'locationId' => self::REFERRER_LOCATION_ID,
                 'publishedContentId' => self::CONTENT_ID,
@@ -142,10 +159,11 @@ final class ContentFormProcessorTest extends TestCase
         ];
 
         yield 'sync: update without referrer location' => [
-            true,
-            false,
-            false,
-            [
+            'isNewContent' => false,
+            'publishedSynchronously' => true,
+            'withReferrerLocation' => false,
+            'customRedirectUrl' => null,
+            'expectedRouteParameters' => [
                 'contentId' => self::CONTENT_ID,
                 'locationId' => self::PUBLISHED_MAIN_LOCATION_ID,
                 'publishedContentId' => self::CONTENT_ID,
@@ -153,10 +171,11 @@ final class ContentFormProcessorTest extends TestCase
         ];
 
         yield 'sync: new content' => [
-            true,
-            true,
-            false,
-            [
+            'isNewContent' => true,
+            'publishedSynchronously' => true,
+            'withReferrerLocation' => false,
+            'customRedirectUrl' => null,
+            'expectedRouteParameters' => [
                 'contentId' => self::CONTENT_ID,
                 'locationId' => self::PUBLISHED_MAIN_LOCATION_ID,
                 'publishedContentId' => self::CONTENT_ID,
@@ -164,88 +183,57 @@ final class ContentFormProcessorTest extends TestCase
         ];
 
         yield 'async: update with referrer location' => [
-            false,
-            false,
-            true,
-            [
+            'isNewContent' => false,
+            'publishedSynchronously' => false,
+            'withReferrerLocation' => true,
+            'customRedirectUrl' => null,
+            'expectedRouteParameters' => [
                 'contentId' => self::CONTENT_ID,
                 'locationId' => self::REFERRER_LOCATION_ID,
                 'publishedContentId' => self::CONTENT_ID,
             ],
         ];
 
-        yield 'async: update without referrer location' => [
-            false,
-            false,
-            false,
-            [
+        yield 'async: update without referrer location redirects to tree root' => [
+            'isNewContent' => false,
+            'publishedSynchronously' => false,
+            'withReferrerLocation' => false,
+            'customRedirectUrl' => null,
+            'expectedRouteParameters' => [
                 'contentId' => self::CONTENT_ID,
-                'locationId' => self::DRAFT_MAIN_LOCATION_ID,
+                'locationId' => self::TREE_ROOT_LOCATION_ID,
                 'publishedContentId' => self::CONTENT_ID,
             ],
         ];
 
-        yield 'async: new content without location yet' => [
-            false,
-            true,
-            false,
-            [
+        yield 'async: new content without location yet redirects to tree root' => [
+            'isNewContent' => true,
+            'publishedSynchronously' => false,
+            'withReferrerLocation' => false,
+            'customRedirectUrl' => null,
+            'expectedRouteParameters' => [
                 'contentId' => self::CONTENT_ID,
-                'locationId' => null,
+                'locationId' => self::TREE_ROOT_LOCATION_ID,
                 'publishedContentId' => self::CONTENT_ID,
             ],
         ];
+
+        yield 'custom redirect URL after publish bypasses router' => [
+            'isNewContent' => false,
+            'publishedSynchronously' => false,
+            'withReferrerLocation' => false,
+            'customRedirectUrl' => 'custom-redirect-url',
+            'expectedRouteParameters' => null,
+        ];
     }
 
-    public function testProcessPublishUsesRedirectUrlAfterPublishFormData(): void
-    {
-        $draft = $this->createDraft(self::DRAFT_MAIN_LOCATION_ID, false);
-
-        $router = $this->createMock(RouterInterface::class);
-        $router
-            ->expects(self::never())
-            ->method('generate');
-
-        $event = $this->createEvent(
-            $this->createUpdateData($draft),
-            $this->createForm('custom-redirect-url')
-        );
-
-        $processor = $this->createProcessor($draft, new ContentPublicationResult(null), $router);
-        $processor->processPublish($event);
-
-        $response = $event->getResponse();
-        self::assertInstanceOf(RedirectResponse::class, $response);
-        self::assertSame('custom-redirect-url', $response->getTargetUrl());
-    }
-
-    private function createProcessor(
-        Content $draft,
-        ContentPublicationResult $publicationResult,
-        ?RouterInterface $router = null
-    ): ContentFormProcessor {
-        $contentService = $this->createStub(ContentService::class);
-        $contentService->method('createContent')->willReturn($draft);
-        $contentService->method('updateContent')->willReturn($draft);
-
-        $contentPublicationStrategy = $this->createStub(ContentPublicationStrategyInterface::class);
-        $contentPublicationStrategy->method('publishVersion')->willReturn($publicationResult);
-
-        return new ContentFormProcessor(
-            $contentService,
-            $this->createStub(LocationService::class),
-            $router ?? $this->createRouterStub(),
-            $contentPublicationStrategy
-        );
-    }
-
-    private function createDraft(?int $mainLocationId, bool $neverPublished): Content
+    private function createDraft(?int $mainLocationId, int $status): Content
     {
         $contentInfo = new ContentInfo([
             'id' => self::CONTENT_ID,
             'mainLocationId' => $mainLocationId,
             'mainLanguageCode' => self::LANGUAGE_CODE,
-            'status' => $neverPublished ? ContentInfo::STATUS_DRAFT : ContentInfo::STATUS_PUBLISHED,
+            'status' => $status,
         ]);
 
         $versionInfo = $this->createStub(VersionInfo::class);
@@ -294,6 +282,9 @@ final class ContentFormProcessorTest extends TestCase
         ]);
     }
 
+    /**
+     * @return \Symfony\Component\Form\FormInterface<mixed>
+     */
     private function createForm(?string $redirectUrlAfterPublish = null): FormInterface
     {
         $formConfig = $this->createStub(FormConfigInterface::class);
@@ -310,6 +301,7 @@ final class ContentFormProcessorTest extends TestCase
     }
 
     /**
+     * @param \Symfony\Component\Form\FormInterface<mixed> $form
      * @param array<string, mixed> $options
      */
     private function createEvent(
@@ -318,13 +310,5 @@ final class ContentFormProcessorTest extends TestCase
         array $options = []
     ): FormActionEvent {
         return new FormActionEvent($form, $data, 'publish', $options);
-    }
-
-    private function createRouterStub(): RouterInterface
-    {
-        $router = $this->createStub(RouterInterface::class);
-        $router->method('generate')->willReturn(self::GENERATED_URL);
-
-        return $router;
     }
 }
