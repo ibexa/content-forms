@@ -34,13 +34,13 @@ use Symfony\Component\Routing\RouterInterface;
  */
 final class ContentFormProcessorTest extends TestCase
 {
-    private const CONTENT_ID = 123;
-    private const DRAFT_MAIN_LOCATION_ID = 42;
-    private const PUBLISHED_MAIN_LOCATION_ID = 77;
-    private const REFERRER_LOCATION_ID = 55;
-    private const TREE_ROOT_LOCATION_ID = 2;
-    private const LANGUAGE_CODE = 'eng-GB';
-    private const GENERATED_URL = 'generated-url';
+    private const int CONTENT_ID = 123;
+    private const int DRAFT_MAIN_LOCATION_ID = 42;
+    private const int PUBLISHED_MAIN_LOCATION_ID = 77;
+    private const int REFERRER_LOCATION_ID = 55;
+    private const int TREE_ROOT_LOCATION_ID = 2;
+    private const string LANGUAGE_CODE = 'eng-GB';
+    private const string GENERATED_URL = 'generated-url';
 
     /**
      * @dataProvider provideProcessPublishCases
@@ -68,10 +68,17 @@ final class ContentFormProcessorTest extends TestCase
             : [];
         $event = $this->createEvent($data, $this->createForm($customRedirectUrl), $options);
 
-        // The draft is persisted via create/update; publication must never go through the service.
+        // The draft is persisted via create for new content or update for existing content;
+        // publication must never go through the service.
         $contentService = $this->createMock(ContentService::class);
-        $contentService->method('createContent')->willReturn($draft);
-        $contentService->method('updateContent')->willReturn($draft);
+        $contentService
+            ->expects($isNewContent ? self::once() : self::never())
+            ->method('createContent')
+            ->willReturn($draft);
+        $contentService
+            ->expects($isNewContent ? self::never() : self::once())
+            ->method('updateContent')
+            ->willReturn($draft);
         $contentService
             ->expects(self::never())
             ->method('publishVersion');
