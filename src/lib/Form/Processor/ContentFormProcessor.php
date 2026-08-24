@@ -15,10 +15,12 @@ use Ibexa\ContentForms\Event\ContentFormEvents;
 use Ibexa\ContentForms\Event\FormActionEvent;
 use Ibexa\Contracts\Core\Repository\ContentService;
 use Ibexa\Contracts\Core\Repository\LocationService;
+use Ibexa\Contracts\Core\Repository\Strategy\ContentPublication\ContentPublicationStrategyInterface;
 use Ibexa\Contracts\Core\Repository\Values\Content\Content;
 use Ibexa\Contracts\Core\Repository\Values\Content\ContentStruct;
 use Ibexa\Contracts\Core\Repository\Values\Content\Location;
 use Ibexa\Contracts\Core\Repository\Values\Content\VersionInfo;
+use Ibexa\Contracts\Core\SiteAccess\ConfigResolverInterface;
 use Ibexa\Core\Base\Exceptions\InvalidArgumentException;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -33,7 +35,9 @@ final readonly class ContentFormProcessor implements EventSubscriberInterface
     public function __construct(
         private ContentService $contentService,
         private LocationService $locationService,
-        private RouterInterface $router
+        private RouterInterface $router,
+        private ConfigResolverInterface $configResolver,
+        private ContentPublicationStrategyInterface $contentPublicationStrategy
     ) {
     }
 
@@ -150,19 +154,29 @@ final readonly class ContentFormProcessor implements EventSubscriberInterface
 
         $draft = $this->saveDraft($data, $form->getConfig()->getOption('languageCode'));
         $versionInfo = $draft->getVersionInfo();
-        $content = $this->contentService->publishVersion(
+        $publicationResult = $this->contentPublicationStrategy->publishVersion(
             $versionInfo,
             [$versionInfo->getInitialLanguage()->getLanguageCode()]
         );
 
-        $event->setPayload('content', $content);
+        $event->setPayload('content_type', $draft->getContentType());
         $event->setPayload('is_new', $draft->getContentInfo()->isDraft());
 
-        $locationId = $referrerLocation !== null && $data instanceof ContentUpdateData
-            ? $referrerLocation->id
-            : $content->getContentInfo()->getMainLocationId();
+        $publishedContent = $publicationResult->publishedContent;
+        if ($publishedContent !== null) {
+            $locationId = $referrerLocation !== null && $data instanceof ContentUpdateData
+                ? $referrerLocation->id
+                : $publishedContent->getContentInfo()->getMainLocationId();
+            $contentId = $publishedContent->getId();
+        } else {
+            // The publication is deferred to background processing; the published version and,
+            // for never-published content, its main location do not exist yet.
+            $locationId = $referrerLocation !== null && $data instanceof ContentUpdateData
+                ? $referrerLocation->id
+                : (int) $this->configResolver->getParameter('content.tree_root.location_id');
+            $contentId = $this->locationService->loadLocation($locationId)->getContentId();
+        }
 
-        $contentId = $content->getId();
         $redirectUrl = $form['redirectUrlAfterPublish']->getData() ?: $this->router->generate(
             'ibexa.content.view',
             [
