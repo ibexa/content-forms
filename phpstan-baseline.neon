@@ -1885,12 +1885,6 @@ parameters:
 			path: src/lib/Form/EventSubscriber/UserFieldsSubscriber.php
 
 		-
-			message: '#^Method Ibexa\\ContentForms\\Form\\EventSubscriber\\UserFieldsSubscriber\:\:handleUserUpdateData\(\) has no return type specified\.$#'
-			identifier: missingType.return
-			count: 1
-			path: src/lib/Form/EventSubscriber/UserFieldsSubscriber.php
-
-		-
 			message: '#^Method Ibexa\\ContentForms\\Form\\EventSubscriber\\UserFieldsSubscriber\:\:handleUserUpdateData\(\) has parameter \$languageCode with no type specified\.$#'
 			identifier: missingType.parameter
 			count: 1
