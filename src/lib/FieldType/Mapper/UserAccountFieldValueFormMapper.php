@@ -8,8 +8,9 @@ declare(strict_types=1);
 
 namespace Ibexa\ContentForms\FieldType\Mapper;
 
-use Ibexa\ContentForms\Data\ContentTranslationData;
 use Ibexa\ContentForms\Data\User\UserAccountFieldData;
+use Ibexa\ContentForms\Data\User\UserCreateData;
+use Ibexa\ContentForms\Data\User\UserUpdateData;
 use Ibexa\ContentForms\Form\Type\FieldType\UserAccountFieldType;
 use Ibexa\Contracts\ContentForms\Data\Content\FieldData;
 use Ibexa\Contracts\ContentForms\FieldType\FieldValueFormMapperInterface;
@@ -41,12 +42,18 @@ final class UserAccountFieldValueFormMapper implements FieldValueFormMapperInter
         $formConfig = $fieldForm->getConfig();
         $rootForm = $fieldForm->getRoot()->getRoot();
         $formIntent = $rootForm->getConfig()->getOption('intent');
-        $isTranslation = $rootForm->getData() instanceof ContentTranslationData;
+        $rootData = $rootForm->getData();
+        $isTranslation = !$rootData instanceof UserCreateData && !$rootData instanceof UserUpdateData;
+        $isNonMainLanguageTranslation = $isTranslation
+            && !$fieldDefinition->isTranslatable
+            && $formConfig->getOption('languageCode') !== $formConfig->getOption('mainLanguageCode');
+
         $formBuilder = $formConfig->getFormFactory()->createBuilder()
             ->create('value', UserAccountFieldType::class, [
                 'required' => true,
                 'label' => $fieldDefinition->getName(),
                 'intent' => $formIntent,
+                'disabled' => $isNonMainLanguageTranslation,
             ]);
 
         if ($isTranslation) {
@@ -82,13 +89,17 @@ final class UserAccountFieldValueFormMapper implements FieldValueFormMapperInter
      */
     public function getModelTransformerForTranslation(FieldDefinition $fieldDefinition): CallbackTransformer
     {
+        /** @var \Ibexa\Core\FieldType\User\Value $currentValue */
+        $currentValue = clone $fieldDefinition->defaultValue;
+
         return new CallbackTransformer(
-            static function (ApiUserValue $data) {
+            static function (ApiUserValue $data) use (&$currentValue) {
+                $currentValue = $data;
+
                 return new UserAccountFieldData($data->login, null, $data->email, $data->enabled);
             },
-            static function (UserAccountFieldData $submittedData) use ($fieldDefinition) {
-                /** @var \Ibexa\Core\FieldType\User\Value $userValue */
-                $userValue = clone $fieldDefinition->defaultValue;
+            static function (UserAccountFieldData $submittedData) use (&$currentValue) {
+                $userValue = clone $currentValue;
 
                 $userValue->login = $submittedData->username;
                 $userValue->email = $submittedData->email;

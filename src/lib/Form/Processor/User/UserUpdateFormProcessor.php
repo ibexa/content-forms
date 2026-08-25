@@ -80,8 +80,14 @@ class UserUpdateFormProcessor implements EventSubscriberInterface
     private function setContentFields(UserUpdateData $data, string $languageCode): void
     {
         $data->contentUpdateStruct = $this->contentService->newContentUpdateStruct();
+        $data->contentUpdateStruct->initialLanguageCode = $languageCode;
+        $mainLanguageCode = $data->user->contentInfo->mainLanguageCode;
 
         foreach ($data->fieldsData as $fieldDefIdentifier => $fieldData) {
+            if ($mainLanguageCode !== $languageCode && !$fieldData->fieldDefinition->isTranslatable) {
+                continue;
+            }
+
             $data->contentUpdateStruct->setField($fieldDefIdentifier, $fieldData->value, $languageCode);
         }
     }
