@@ -50,8 +50,9 @@ class UserUpdateMapper
         $filter = $params['filter'];
 
         $fields = $user->getFieldsByLanguage($params['languageCode']);
+        $mainLanguageCode = $user->contentInfo->mainLanguageCode;
         foreach ($contentType->fieldDefinitions as $fieldDef) {
-            $field = $fields[$fieldDef->identifier];
+            $field = $fields[$fieldDef->identifier] ?? $user->getField($fieldDef->identifier, $mainLanguageCode);
 
             if (is_callable($filter) && !($filter)($field)) {
                 continue;
