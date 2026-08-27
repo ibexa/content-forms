@@ -11,6 +11,7 @@ namespace Ibexa\ContentForms\Behat\Context;
 use Behat\Behat\Context\Context;
 use Behat\Behat\Context\SnippetAcceptingContext;
 use Behat\MinkExtension\Context\RawMinkContext;
+use Behat\Step\Given;
 use Ibexa\Contracts\Core\Repository\ContentTypeService;
 use Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException;
 use Ibexa\Contracts\Core\Repository\PermissionResolver;
@@ -32,9 +33,7 @@ final class ContentTypeContext extends RawMinkContext implements Context, Snippe
         $permissionResolver->setCurrentUserReference(new UserReference(14));
     }
 
-    /**
-     * @Given /^there is a content type "([^"]*)" with the id "([^"]*)"$/
-     */
+    #[Given('/^there is a content type "([^"]*)" with the id "([^"]*)"$/')]
     public function thereIsAContentTypeWithId(string $contentTypeIdentifier, int $id): void
     {
         try {
@@ -45,10 +44,8 @@ final class ContentTypeContext extends RawMinkContext implements Context, Snippe
         }
     }
 
-    /**
-     * @Given I remove :fieldIdentifier field from :contentTypeIdentifier content type
-     */
-    public function iRemoveFieldFromContentType($fieldIdentifier, string $contentTypeIdentifier): void
+    #[Given('I remove :fieldIdentifier field from :contentTypeIdentifier content type')]
+    public function iRemoveFieldFromContentType(string $fieldIdentifier, string $contentTypeIdentifier): void
     {
         $contentType = $this->contentTypeService->loadContentTypeByIdentifier($contentTypeIdentifier);
         $contentTypeDraft = $this->contentTypeService->createContentTypeDraft($contentType);

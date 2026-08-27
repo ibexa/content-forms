@@ -12,7 +12,11 @@ use Behat\Behat\Context\Context;
 use Behat\Behat\Context\SnippetAcceptingContext;
 use Behat\Behat\Hook\Scope\BeforeScenarioScope;
 use Behat\Gherkin\Node\PyStringNode;
+use Behat\Hook\BeforeScenario;
 use Behat\MinkExtension\Context\RawMinkContext;
+use Behat\Step\Given;
+use Behat\Step\Then;
+use Behat\Step\When;
 use Ibexa\Bundle\Core\Features\Context\YamlConfigurationContext;
 use Ibexa\Contracts\Core\Repository\ContentTypeService;
 use Ibexa\Contracts\Core\Repository\PermissionResolver;
@@ -58,15 +62,13 @@ final class UserRegistrationContext extends RawMinkContext implements Context, S
         $permissionResolver->setCurrentUserReference(new UserReference(14));
     }
 
-    /** @BeforeScenario */
+    #[BeforeScenario]
     public function gatherContexts(BeforeScenarioScope $scope): void
     {
         $this->yamlConfigurationContext = $scope->getEnvironment()->getContext(YamlConfigurationContext::class);
     }
 
-    /**
-     * @Given /^I do not have the user\/register policy$/
-     */
+    #[Given('/^I do not have the user\/register policy$/')]
     public function loginAsUserWithoutRegisterPolicy(): void
     {
         $role = $this->createRegistrationRole(false);
@@ -74,9 +76,7 @@ final class UserRegistrationContext extends RawMinkContext implements Context, S
         $this->loginAs($user);
     }
 
-    /**
-     * @Given /^I do have the user\/register policy$/
-     */
+    #[Given('/^I do have the user\/register policy$/')]
     public function loginAsUserWithUserRegisterPolicy(): void
     {
         $role = $this->createRegistrationRole(true);
@@ -128,9 +128,7 @@ final class UserRegistrationContext extends RawMinkContext implements Context, S
         return $this->roleService->loadRoleByIdentifier($roleIdentifier);
     }
 
-    /**
-     * @Then /^I see an error message saying that I can not register$/
-     */
+    #[Then('/^I see an error message saying that I can not register$/')]
     public function iSeeAnErrorMessageSayingThatICanNotRegister(): void
     {
         $this->assertSession()->pageTextContains('You are not allowed to register a new account');
@@ -150,18 +148,14 @@ final class UserRegistrationContext extends RawMinkContext implements Context, S
         $this->assertSession()->statusCodeEquals(200);
     }
 
-    /**
-     * @Then /^I can see the registration form$/
-     */
+    #[Then('/^I can see the registration form$/')]
     public function iCanSeeTheRegistrationForm(): void
     {
         $this->assertSession()->pageTextNotContains('You are not allowed to register a new account');
         $this->assertSession()->elementExists('css', 'form[name=ezplatform_content_forms_user_register]');
     }
 
-    /**
-     * @Given /^it matches the structure of the configured registration user content type$/
-     */
+    #[Given('/^it matches the structure of the configured registration user content type$/')]
     public function itMatchesTheStructureOfTheConfiguredRegistrationUserContentType(): void
     {
         $userContentType = $this->contentTypeService->loadContentTypeByIdentifier('user');
@@ -177,9 +171,7 @@ final class UserRegistrationContext extends RawMinkContext implements Context, S
         }
     }
 
-    /**
-     * @Given /^it has a register button$/
-     */
+    #[Given('/^it has a register button$/')]
     public function itHasARegisterButton(): void
     {
         $this->assertSession()->elementExists(
@@ -188,9 +180,7 @@ final class UserRegistrationContext extends RawMinkContext implements Context, S
         );
     }
 
-    /**
-     * @When /^I fill in the form with valid values$/
-     */
+    #[When('/^I fill in the form with valid values$/')]
     public function iFillInTheFormWithValidValues(): void
     {
         $page = $this->getSession()->getPage();
@@ -205,34 +195,26 @@ final class UserRegistrationContext extends RawMinkContext implements Context, S
         $page->fillField('ezplatform_content_forms_user_register[fieldsData][user_account][value][password][second]', self::$password);
     }
 
-    /**
-     * @When /^I click on the register button$/
-     */
+    #[When('/^I click on the register button$/')]
     public function iClickOnTheRegisterButton(): void
     {
         $this->getSession()->getPage()->pressButton('ezplatform_content_forms_user_register[register]');
         $this->assertSession()->statusCodeEquals(200);
     }
 
-    /**
-     * @Then /^I am on the registration confirmation page$/
-     */
+    #[Then('/^I am on the registration confirmation page$/')]
     public function iAmOnTheRegistrationConfirmationPage(): void
     {
         $this->assertSession()->addressEquals('/register-confirm');
     }
 
-    /**
-     * @Given /^I see a registration confirmation message$/
-     */
+    #[Given('/^I see a registration confirmation message$/')]
     public function iSeeARegistrationConfirmationMessage(): void
     {
         $this->assertSession()->pageTextContains('Your account has been created');
     }
 
-    /**
-     * @Given /^the user account has been created$/
-     */
+    #[Given('/^the user account has been created$/')]
     public function theUserAccountHasBeenCreated(): void
     {
         if (null === $this->registrationUsername) {
@@ -242,9 +224,7 @@ final class UserRegistrationContext extends RawMinkContext implements Context, S
         $this->userService->loadUserByLogin($this->registrationUsername);
     }
 
-    /**
-     * @Given a User Group :userGroupName
-     */
+    #[Given('a User Group :userGroupName')]
     public function createUserGroup(string $userGroupName): void
     {
         $groupCreateStruct = $this->userService->newUserGroupCreateStruct(self::$language);
@@ -255,9 +235,7 @@ final class UserRegistrationContext extends RawMinkContext implements Context, S
         );
     }
 
-    /**
-     * @Given /^the following user registration group configuration:$/
-     */
+    #[Given('/^the following user registration group configuration:$/')]
     public function addUserRegistrationConfiguration(PyStringNode $extraConfigurationString): void
     {
         $this->yamlConfigurationContext->addConfiguration(Yaml::parse(
@@ -269,9 +247,7 @@ final class UserRegistrationContext extends RawMinkContext implements Context, S
         ));
     }
 
-    /**
-     * @When /^I register a user account$/
-     */
+    #[When('/^I register a user account$/')]
     public function iRegisterAUserAccount(): void
     {
         $this->loginAsUserWithUserRegisterPolicy();
@@ -283,9 +259,7 @@ final class UserRegistrationContext extends RawMinkContext implements Context, S
         $this->iSeeARegistrationConfirmationMessage();
     }
 
-    /**
-     * @Then /^the user is created in :userGroupName user group$/
-     */
+    #[Then('/^the user is created in :userGroupName user group$/')]
     public function theUserIsCreatedInThisUserGroup(string $userGroupName): void
     {
         if (null === $this->registrationUsername) {
@@ -301,17 +275,13 @@ final class UserRegistrationContext extends RawMinkContext implements Context, S
         );
     }
 
-    /**
-     * @Given /^the following user registration templates configuration:$/
-     */
+    #[Given('/^the following user registration templates configuration:$/')]
     public function addRegistrationTemplatesConfiguration(PyStringNode $pyStringNode): void
     {
         $this->yamlConfigurationContext->addConfiguration(Yaml::parse((string) $pyStringNode));
     }
 
-    /**
-     * @Given /^the following template in "([^"]*)":$/
-     */
+    #[Given('/^the following template in "([^"]*)":$/')]
     public function createTemplateAt(string $path, PyStringNode $contents): void
     {
         $fs = new Filesystem();
@@ -320,13 +290,12 @@ final class UserRegistrationContext extends RawMinkContext implements Context, S
     }
 
     /**
-     * @Then /^the confirmation page is rendered using the "([^"]*)" template$/
-     * @Then /^the form is rendered using the "([^"]*)" template$/
-     *
-     *        The template path to look for.
-     *        If relative to app/Resources/views (example: user/register.html.twig),
-     *        the path is checked with the :path:file.html.twig syntax as well.
+     * The template path to look for.
+     * If relative to app/Resources/views (example: user/register.html.twig),
+     * the path is checked with the :path:file.html.twig syntax as well.
      */
+    #[Then('/^the confirmation page is rendered using the "([^"]*)" template$/')]
+    #[Then('/^the form is rendered using the "([^"]*)" template$/')]
     public function thePageIsRenderedUsingTheTemplateConfiguredIn(string $template): void
     {
         $html = $this->getSession()->getPage()->getOuterHtml();

@@ -11,7 +11,11 @@ namespace Ibexa\ContentForms\Behat\Context;
 use Behat\Behat\Context\Context;
 use Behat\Behat\Context\SnippetAcceptingContext;
 use Behat\Behat\Hook\Scope\BeforeScenarioScope;
+use Behat\Hook\BeforeScenario;
 use Behat\MinkExtension\Context\MinkContext;
+use Behat\Step\Given;
+use Behat\Step\Then;
+use Behat\Step\When;
 use Exception;
 use Ibexa\Contracts\Core\Repository\Values\ContentType\FieldDefinitionCreateStruct;
 
@@ -29,7 +33,7 @@ final class ContentEditContext extends MinkContext implements Context, SnippetAc
      */
     private static string $constrainedFieldIdentifier = 'constrained_field';
 
-    /** @BeforeScenario */
+    #[BeforeScenario]
     public function gatherContexts(BeforeScenarioScope $scope): void
     {
         $environment = $scope->getEnvironment();
@@ -37,18 +41,14 @@ final class ContentEditContext extends MinkContext implements Context, SnippetAc
         $this->contentTypeContext = $environment->getContext(ContentTypeContext::class);
     }
 
-    /**
-     * @Then /^I should see a folder content edit form$/
-     * @Then /^I should see a content edit form$/
-     */
+    #[Then('/^I should see a folder content edit form$/')]
+    #[Then('/^I should see a content edit form$/')]
     public function iShouldSeeAContentEditForm(): void
     {
         $this->assertSession()->elementExists('css', 'form[name=ezplatform_content_forms_content_edit]');
     }
 
-    /**
-     * @Then /^I am on the View of the Content that was published$/
-     */
+    #[Then('/^I am on the View of the Content that was published$/')]
     public function iAmOnTheViewOfTheContentThatWasPublished(): void
     {
         if (!isset($this->createdContentName)) {
@@ -59,9 +59,7 @@ final class ContentEditContext extends MinkContext implements Context, SnippetAc
         $this->assertElementContainsText('span.ibexa_string-field', $this->createdContentName);
     }
 
-    /**
-     * @When /^I fill in the folder edit form$/
-     */
+    #[When('/^I fill in the folder edit form$/')]
     public function iFillInTheFolderEditForm(): void
     {
         // will only work for single value fields
@@ -69,9 +67,7 @@ final class ContentEditContext extends MinkContext implements Context, SnippetAc
         $this->fillField('ezplatform_content_forms_content_edit_fieldsData_name_value', $this->createdContentName);
     }
 
-    /**
-     * @Given /^that I have permission to create folders$/
-     */
+    #[Given('/^that I have permission to create folders$/')]
     public function thatIHavePermissionToCreateFolders(): void
     {
         $this->visit('/login');
@@ -80,17 +76,13 @@ final class ContentEditContext extends MinkContext implements Context, SnippetAc
         $this->getSession()->getPage()->find('css', 'form')->submit();
     }
 
-    /**
-     * @Given /^that I have permission to create content of this type$/
-     */
+    #[Given('/^that I have permission to create content of this type$/')]
     public function thatIHavePermissionToCreateContentOfThisType(): void
     {
         $this->thatIHavePermissionToCreateFolders();
     }
 
-    /**
-     * @When /^I go to the content creation page for this type$/
-     */
+    #[When('/^I go to the content creation page for this type$/')]
     public function iGoToTheContentCreationPageForThisType(): void
     {
         $uri = sprintf(
@@ -101,9 +93,7 @@ final class ContentEditContext extends MinkContext implements Context, SnippetAc
         $this->visit($uri);
     }
 
-    /**
-     * @Given /^I fill in the constrained field with an invalid value$/
-     */
+    #[Given('/^I fill in the constrained field with an invalid value$/')]
     public function iFillInTheConstrainedFieldWithAnInvalidValue(): void
     {
         $this->fillField(
@@ -123,9 +113,7 @@ final class ContentEditContext extends MinkContext implements Context, SnippetAc
         }
     }
 
-    /**
-     * @Then /^I am shown the content creation form$/
-     */
+    #[Then('/^I am shown the content creation form$/')]
     public function iAmShownTheContentCreationForm(): void
     {
         $uri = sprintf(
@@ -142,9 +130,7 @@ final class ContentEditContext extends MinkContext implements Context, SnippetAc
         );
     }
 
-    /**
-     * @Given /^there is a relevant error message linked to the invalid field$/
-     */
+    #[Given('/^there is a relevant error message linked to the invalid field$/')]
     public function thereIsARelevantErrorMessageLinkedToTheInvalidField(): void
     {
         $selector = sprintf(
@@ -156,9 +142,7 @@ final class ContentEditContext extends MinkContext implements Context, SnippetAc
         $this->assertSession()->elementTextContains('css', $selector, 'The string cannot be shorter than 5 characters.');
     }
 
-    /**
-     * @Given /^that there is a content type with any kind of constraints on a Field Definition$/
-     */
+    #[Given('/^that there is a content type with any kind of constraints on a Field Definition$/')]
     public function thereIsAContentTypeWithAnyKindOfConstraintsOnAFieldDefinition(): void
     {
         $contentTypeCreateStruct = $this->contentTypeContext->newContentTypeCreateStruct();
@@ -179,9 +163,7 @@ final class ContentEditContext extends MinkContext implements Context, SnippetAc
         $this->contentTypeContext->createContentType($contentTypeCreateStruct);
     }
 
-    /**
-     * @When /^a content creation form is displayed$/
-     */
+    #[When('/^a content creation form is displayed$/')]
     public function aContentCreationFormIsDisplayed(): void
     {
         $this->visit('/content/create/nodraft/folder/eng-GB/2');
