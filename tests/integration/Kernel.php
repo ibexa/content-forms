@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace Ibexa\Tests\Integration\ContentForms;
 
 use Ibexa\Bundle\ContentForms\IbexaContentFormsBundle;
+use Ibexa\Bundle\Test\Core\IbexaTestCoreBundle;
 use Ibexa\Contracts\Test\Core\IbexaTestKernel;
 use Symfony\Component\Config\Loader\LoaderInterface;
 
@@ -17,6 +18,8 @@ final class Kernel extends IbexaTestKernel
     public function registerBundles(): iterable
     {
         yield from parent::registerBundles();
+
+        yield new IbexaTestCoreBundle();
 
         yield new IbexaContentFormsBundle();
     }
