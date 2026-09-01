@@ -11,10 +11,19 @@ namespace Ibexa\ContentForms\FieldType\Mapper;
 use Ibexa\ContentForms\Form\Type\FieldType\SelectionFieldType;
 use Ibexa\Contracts\ContentForms\Data\Content\FieldData;
 use Ibexa\Contracts\ContentForms\FieldType\FieldValueFormMapperInterface;
+use JMS\TranslationBundle\Annotation\Desc;
 use Symfony\Component\Form\FormInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class SelectionFormMapper implements FieldValueFormMapperInterface
 {
+    private TranslatorInterface $translator;
+
+    public function __construct(TranslatorInterface $translator)
+    {
+        $this->translator = $translator;
+    }
+
     public function mapFieldValueForm(FormInterface $fieldForm, FieldData $data)
     {
         $fieldDefinition = $data->fieldDefinition;
@@ -29,6 +38,13 @@ class SelectionFormMapper implements FieldValueFormMapperInterface
             $choices = $fieldDefinition->fieldSettings['multilingualOptions'][$fieldDefinition->mainLanguageCode];
         }
 
+        $placeholder = $this->translator->trans(
+            /** @Desc("None") */
+            'content.field_type.ezselection.none',
+            [],
+            'ibexa_content_forms_fieldtype',
+        );
+
         $fieldForm
             ->add(
                 $formConfig->getFormFactory()->createBuilder()
@@ -40,6 +56,7 @@ class SelectionFormMapper implements FieldValueFormMapperInterface
                                    'label' => $fieldDefinition->getName(),
                                    'multiple' => $fieldDefinition->fieldSettings['isMultiple'],
                                    'choices' => array_flip($choices),
+                                   'placeholder' => $placeholder,
                                ]
                            )
                            ->setAutoInitialize(false)

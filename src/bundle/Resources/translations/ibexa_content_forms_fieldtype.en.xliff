@@ -131,6 +131,11 @@
         <target state="new">Content location</target>
         <note>key: content_forms.relation.location_type.self</note>
       </trans-unit>
+      <trans-unit id="3753c5a7d2bddee50d6ffe5148884aa1ff5bfcb8" resname="content.field_type.ezselection.none">
+        <source>None</source>
+        <target state="new">None</target>
+        <note>key: content.field_type.ezselection.none</note>
+      </trans-unit>
     </body>
   </file>
 </xliff>
