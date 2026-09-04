@@ -10,7 +10,10 @@ namespace Ibexa\ContentForms\Behat\Context;
 
 use Behat\Behat\Context\SnippetAcceptingContext;
 use Behat\Behat\Hook\Scope\BeforeScenarioScope;
+use Behat\Hook\BeforeScenario;
 use Behat\MinkExtension\Context\RawMinkContext;
+use Behat\Step\Given;
+use Behat\Step\Then;
 use Webmozart\Assert\Assert as Assertion;
 
 final class SelectionFieldTypeFormContext extends RawMinkContext implements SnippetAcceptingContext
@@ -19,31 +22,25 @@ final class SelectionFieldTypeFormContext extends RawMinkContext implements Snip
 
     private FieldTypeFormContext $fieldTypeFormContext;
 
-    /** @BeforeScenario */
+    #[BeforeScenario]
     public function gatherContexts(BeforeScenarioScope $scope): void
     {
         $this->fieldTypeFormContext = $scope->getEnvironment()->getContext(FieldTypeFormContext::class);
     }
 
-    /**
-     * @Given /^the field definition is set to single choice$/
-     */
+    #[Given('/^the field definition is set to single choice$/')]
     public function setFieldDefinitionToSingleChoice(): void
     {
         $this->fieldTypeFormContext->setFieldDefinitionOption('isMultiple', false);
     }
 
-    /**
-     * @Given /^the field definition is set to multiple choice$/
-     */
+    #[Given('/^the field definition is set to multiple choice$/')]
     public function setFieldDefinitionToMultipleChoice(): void
     {
         $this->fieldTypeFormContext->setFieldDefinitionOption('isMultiple', true);
     }
 
-    /**
-     * @Then it should contain a select field
-     */
+    #[Then('it should contain a select field')]
     public function itShouldContainASelectField(): void
     {
         $this->assertSession()->elementExists(
@@ -56,9 +53,7 @@ final class SelectionFieldTypeFormContext extends RawMinkContext implements Snip
         );
     }
 
-    /**
-     * @Then the select field should be flagged as required
-     */
+    #[Then('the select field should be flagged as required')]
     public function theSelectFieldShouldBeFlaggedAsRequired(): void
     {
         $nodeElements = $this->getSession()->getPage()->findAll(
@@ -81,9 +76,7 @@ final class SelectionFieldTypeFormContext extends RawMinkContext implements Snip
         }
     }
 
-    /**
-     * @Then the input is a single selection dropdown
-     */
+    #[Then('the input is a single selection dropdown')]
     public function theInputIsASingleSelectionDropdown(): void
     {
         $selector = sprintf(
@@ -95,9 +88,7 @@ final class SelectionFieldTypeFormContext extends RawMinkContext implements Snip
         $this->assertSession()->elementNotContains('css', $selector, 'multiple="multiple"');
     }
 
-    /**
-     * @Then the input is a multiple selection dropdown
-     */
+    #[Then('the input is a multiple selection dropdown')]
     public function theInputIsAMultipleSelectionDropdown(): void
     {
         $selector = sprintf(
