@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace Ibexa\ContentForms\Behat\Context;
 
-use Behat\Behat\Context\SnippetAcceptingContext;
+use Behat\Behat\Context\Context;
 use Behat\Behat\Hook\Scope\BeforeScenarioScope;
 use Behat\Hook\BeforeScenario;
 use Behat\MinkExtension\Context\RawMinkContext;
@@ -16,7 +16,7 @@ use Behat\Step\Given;
 use Behat\Step\Then;
 use Webmozart\Assert\Assert as Assertion;
 
-final class SelectionFieldTypeFormContext extends RawMinkContext implements SnippetAcceptingContext
+final class SelectionFieldTypeFormContext extends RawMinkContext implements Context
 {
     private static string $fieldIdentifier = 'field';
 

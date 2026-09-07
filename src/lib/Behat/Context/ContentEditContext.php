@@ -9,7 +9,6 @@ declare(strict_types=1);
 namespace Ibexa\ContentForms\Behat\Context;
 
 use Behat\Behat\Context\Context;
-use Behat\Behat\Context\SnippetAcceptingContext;
 use Behat\Behat\Hook\Scope\BeforeScenarioScope;
 use Behat\Hook\BeforeScenario;
 use Behat\MinkExtension\Context\MinkContext;
@@ -19,7 +18,7 @@ use Behat\Step\When;
 use Exception;
 use Ibexa\Contracts\Core\Repository\Values\ContentType\FieldDefinitionCreateStruct;
 
-final class ContentEditContext extends MinkContext implements Context, SnippetAcceptingContext
+final class ContentEditContext extends MinkContext implements Context
 {
     /**
      * Name of the content that was created using the edit form. Used to validate that the content was created.

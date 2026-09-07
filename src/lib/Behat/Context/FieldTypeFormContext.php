@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace Ibexa\ContentForms\Behat\Context;
 
-use Behat\Behat\Context\SnippetAcceptingContext;
+use Behat\Behat\Context\Context;
 use Behat\Behat\Hook\Scope\BeforeScenarioScope;
 use Behat\Gherkin\Node\TableNode;
 use Behat\Hook\BeforeScenario;
@@ -20,7 +20,7 @@ use Ibexa\Contracts\Core\Repository\Values\ContentType\FieldDefinitionCreateStru
 use Ibexa\Contracts\Core\Repository\Values\ContentType\FieldDefinitionUpdateStruct;
 use Webmozart\Assert\Assert as Assertion;
 
-final class FieldTypeFormContext extends RawMinkContext implements SnippetAcceptingContext
+final class FieldTypeFormContext extends RawMinkContext implements Context
 {
     private static string $fieldIdentifier = 'field';
 

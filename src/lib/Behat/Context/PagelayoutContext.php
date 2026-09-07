@@ -9,14 +9,13 @@ declare(strict_types=1);
 namespace Ibexa\ContentForms\Behat\Context;
 
 use Behat\Behat\Context\Context;
-use Behat\Behat\Context\SnippetAcceptingContext;
 use Behat\MinkExtension\Context\RawMinkContext;
 use Behat\Step\Given;
 use Behat\Step\Then;
 use Ibexa\Contracts\Core\SiteAccess\ConfigResolverInterface;
 use Webmozart\Assert\Assert as Assertion;
 
-final class PagelayoutContext extends RawMinkContext implements Context, SnippetAcceptingContext
+final class PagelayoutContext extends RawMinkContext implements Context
 {
     /** @var string Regex matching the way the Twig template name is inserted in debug mode */
     public const string TWIG_DEBUG_STOP_REGEX = '<!-- STOP .*%s.* -->';
