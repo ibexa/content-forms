@@ -11,6 +11,8 @@ namespace Ibexa\ContentForms\Behat\Context;
 use Behat\Behat\Context\Context;
 use Behat\Behat\Context\SnippetAcceptingContext;
 use Behat\MinkExtension\Context\RawMinkContext;
+use Behat\Step\Given;
+use Behat\Step\Then;
 use Ibexa\Contracts\Core\SiteAccess\ConfigResolverInterface;
 use Webmozart\Assert\Assert as Assertion;
 
@@ -24,17 +26,13 @@ final class PagelayoutContext extends RawMinkContext implements Context, Snippet
     ) {
     }
 
-    /**
-     * @Given /^a pagelayout is configured$/
-     */
+    #[Given('/^a pagelayout is configured$/')]
     public function aPagelayoutIsConfigured(): void
     {
         Assertion::true($this->configResolver->hasParameter('page_layout'));
     }
 
-    /**
-     * @Then /^it is rendered using the configured pagelayout$/
-     */
+    #[Then('/^it is rendered using the configured pagelayout$/')]
     public function itIsRenderedUsingTheConfiguredPagelayout(): void
     {
         $pageLayout = $this->getPageLayout();

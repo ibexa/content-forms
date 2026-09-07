@@ -55,12 +55,6 @@ parameters:
 			path: src/lib/Behat/Context/ContentTypeContext.php
 
 		-
-			message: '#^Method Ibexa\\ContentForms\\Behat\\Context\\ContentTypeContext\:\:iRemoveFieldFromContentType\(\) has parameter \$fieldIdentifier with no type specified\.$#'
-			identifier: missingType.parameter
-			count: 1
-			path: src/lib/Behat/Context/ContentTypeContext.php
-
-		-
 			message: '#^Method Ibexa\\ContentForms\\Behat\\Context\\ContentTypeContext\:\:newContentTypeCreateStruct\(\) has parameter \$identifier with no type specified\.$#'
 			identifier: missingType.parameter
 			count: 1
@@ -97,26 +91,8 @@ parameters:
 			path: src/lib/Behat/Context/FieldTypeFormContext.php
 
 		-
-			message: '#^Method Ibexa\\ContentForms\\Behat\\Context\\FieldTypeFormContext\:\:aContentTypeWithAGivenFieldDefinition\(\) has parameter \$contentTypeName with no type specified\.$#'
-			identifier: missingType.parameter
-			count: 1
-			path: src/lib/Behat/Context/FieldTypeFormContext.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Behat\\Context\\FieldTypeFormContext\:\:aContentTypeWithAGivenFieldDefinition\(\) has parameter \$fieldTypeIdentifier with no type specified\.$#'
-			identifier: missingType.parameter
-			count: 1
-			path: src/lib/Behat/Context/FieldTypeFormContext.php
-
-		-
 			message: '#^Method Ibexa\\ContentForms\\Behat\\Context\\FieldTypeFormContext\:\:getRequiredFieldTypeExceptions\(\) return type has no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
-			count: 1
-			path: src/lib/Behat/Context/FieldTypeFormContext.php
-
-		-
-			message: '#^Method Ibexa\\ContentForms\\Behat\\Context\\FieldTypeFormContext\:\:itShouldContainAGivenTypeInputField\(\) has parameter \$inputType with no type specified\.$#'
-			identifier: missingType.parameter
 			count: 1
 			path: src/lib/Behat/Context/FieldTypeFormContext.php
 
