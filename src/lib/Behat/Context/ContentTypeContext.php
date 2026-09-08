@@ -9,7 +9,6 @@ declare(strict_types=1);
 namespace Ibexa\ContentForms\Behat\Context;
 
 use Behat\Behat\Context\Context;
-use Behat\Behat\Context\SnippetAcceptingContext;
 use Behat\MinkExtension\Context\RawMinkContext;
 use Behat\Step\Given;
 use Ibexa\Contracts\Core\Repository\ContentTypeService;
@@ -22,7 +21,7 @@ use Ibexa\Core\Repository\Values\User\UserReference;
 use RuntimeException;
 use Webmozart\Assert\Assert as Assertion;
 
-final class ContentTypeContext extends RawMinkContext implements Context, SnippetAcceptingContext
+final class ContentTypeContext extends RawMinkContext implements Context
 {
     private ContentType $currentContentType;
 

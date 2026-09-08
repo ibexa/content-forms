@@ -9,7 +9,6 @@ declare(strict_types=1);
 namespace Ibexa\ContentForms\Behat\Context;
 
 use Behat\Behat\Context\Context;
-use Behat\Behat\Context\SnippetAcceptingContext;
 use Behat\Behat\Hook\Scope\BeforeScenarioScope;
 use Behat\Gherkin\Node\PyStringNode;
 use Behat\Hook\BeforeScenario;
@@ -31,7 +30,7 @@ use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Yaml\Yaml;
 use Webmozart\Assert\Assert as Assertion;
 
-final class UserRegistrationContext extends RawMinkContext implements Context, SnippetAcceptingContext
+final class UserRegistrationContext extends RawMinkContext implements Context
 {
     /**
      * Regex matching the way the Twig template name is inserted in debug mode.
