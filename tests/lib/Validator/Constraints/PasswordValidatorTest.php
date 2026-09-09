@@ -72,9 +72,7 @@ final class PasswordValidatorTest extends TestCase
             ->expects(self::never())
             ->method('buildViolation');
 
-        $this->validator->validate($password, new Password([
-            'contentType' => $contentType,
-        ]));
+        $this->validator->validate($password, new Password(contentType: $contentType));
     }
 
     public function testInvalid(): void
@@ -117,9 +115,7 @@ final class PasswordValidatorTest extends TestCase
             ->expects(self::once())
             ->method('addViolation');
 
-        $this->validator->validate('pass', new Password([
-            'contentType' => $contentType,
-        ]));
+        $this->validator->validate('pass', new Password(contentType: $contentType));
     }
 
     public function dataProviderForValidateNotSupportedValueType(): array

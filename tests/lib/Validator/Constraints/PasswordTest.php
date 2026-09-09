@@ -10,8 +10,12 @@ namespace Ibexa\Tests\ContentForms\Validator\Constraints;
 
 use Ibexa\ContentForms\Validator\Constraints\Password;
 use Ibexa\ContentForms\Validator\Constraints\PasswordValidator;
+use Ibexa\Contracts\Core\Repository\Values\ContentType\ContentType;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @covers \Ibexa\ContentForms\Validator\Constraints\Password
+ */
 final class PasswordTest extends TestCase
 {
     private Password $constraint;
@@ -40,5 +44,35 @@ final class PasswordTest extends TestCase
             ],
             $this->constraint->getTargets()
         );
+    }
+
+    public function testNamedArguments(): void
+    {
+        $contentType = $this->createMock(ContentType::class);
+        $payload = new \stdClass();
+
+        $constraint = new Password(
+            contentType: $contentType,
+            message: 'Custom message',
+            groups: ['custom'],
+            payload: $payload
+        );
+
+        self::assertSame($contentType, $constraint->contentType);
+        self::assertSame('Custom message', $constraint->message);
+        self::assertSame(['custom'], $constraint->groups);
+        self::assertSame($payload, $constraint->payload);
+    }
+
+    public function testLegacyOptionsArray(): void
+    {
+        $contentType = $this->createMock(ContentType::class);
+
+        $constraint = new Password([
+            'contentType' => $contentType,
+        ]);
+
+        self::assertSame($contentType, $constraint->contentType);
+        self::assertSame('ez.user.password.invalid', $constraint->message);
     }
 }
