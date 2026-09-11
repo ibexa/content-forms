@@ -63,16 +63,4 @@ final class PasswordTest extends TestCase
         self::assertSame(['custom'], $constraint->groups);
         self::assertSame($payload, $constraint->payload);
     }
-
-    public function testLegacyOptionsArray(): void
-    {
-        $contentType = $this->createMock(ContentType::class);
-
-        $constraint = new Password([
-            'contentType' => $contentType,
-        ]);
-
-        self::assertSame($contentType, $constraint->contentType);
-        self::assertSame('ez.user.password.invalid', $constraint->message);
-    }
 }

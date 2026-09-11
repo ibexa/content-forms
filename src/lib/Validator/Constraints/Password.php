@@ -24,31 +24,15 @@ class Password extends Constraint
     public ?ContentType $contentType;
 
     /**
-     * @param array<string, mixed>|null $options Deprecated options array
      * @param array<string>|null $groups
      */
     #[HasNamedArguments]
     public function __construct(
-        ?array $options = null,
         ?ContentType $contentType = null,
         ?string $message = null,
         ?array $groups = null,
         mixed $payload = null
     ) {
-        if ($options !== null) {
-            trigger_deprecation(
-                'ibexa/content-forms',
-                '6.0',
-                'Passing an options array to "%s" is deprecated, use named arguments instead.',
-                static::class
-            );
-
-            $contentType ??= $options['contentType'] ?? null;
-            $message ??= $options['message'] ?? null;
-            $groups ??= $options['groups'] ?? null;
-            $payload ??= $options['payload'] ?? null;
-        }
-
         parent::__construct(null, $groups, $payload);
 
         $this->contentType = $contentType;

@@ -46,15 +46,4 @@ final class UserAccountPasswordTest extends TestCase
 
         self::assertSame($contentType, $constraint->contentType);
     }
-
-    public function testLegacyOptionsArray(): void
-    {
-        $contentType = $this->createMock(ContentType::class);
-
-        $constraint = new UserAccountPassword([
-            'contentType' => $contentType,
-        ]);
-
-        self::assertSame($contentType, $constraint->contentType);
-    }
 }
