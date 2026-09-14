@@ -81,9 +81,7 @@ final class UserAccountPasswordValidatorTest extends TestCase
             ->expects(self::never())
             ->method('buildViolation');
 
-        $this->validator->validate($userAccount, new UserAccountPassword([
-            'contentType' => $contentType,
-        ]));
+        $this->validator->validate($userAccount, new UserAccountPassword(contentType: $contentType));
     }
 
     public function testInvalid(): void
@@ -126,8 +124,6 @@ final class UserAccountPasswordValidatorTest extends TestCase
             ->expects(self::once())
             ->method('addViolation');
 
-        $this->validator->validate($userAccount, new UserAccountPassword([
-            'contentType' => $contentType,
-        ]));
+        $this->validator->validate($userAccount, new UserAccountPassword(contentType: $contentType));
     }
 }

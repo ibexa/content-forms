@@ -100,7 +100,7 @@ final readonly class ContentEditViewFilter implements EventSubscriberInterface
 
         $event->getParameters()->add([
             'form' => $form->handleRequest($request),
-            'validate' => (bool)$request->get('validate', false),
+            'validate' => $request->query->getBoolean('validate'),
         ]);
     }
 
