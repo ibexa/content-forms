@@ -16,11 +16,9 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class UserTranslationSecureListener implements EventSubscriberInterface
 {
-    /** @var \Ibexa\Contracts\Core\Repository\UserService */
-    private $userService;
+    private UserService $userService;
 
-    /** @var \Ibexa\Contracts\Core\Repository\ContentService */
-    private $contentService;
+    private ContentService $contentService;
 
     public function __construct(
         UserService $userService,
@@ -34,6 +32,7 @@ class UserTranslationSecureListener implements EventSubscriberInterface
     {
         return [
             ContentFormEvents::CONTENT_PUBLISH => ['onPublish', 5],
+            ContentFormEvents::CONTENT_PUBLISH_AND_EDIT => ['onPublish', 5],
         ];
     }
 

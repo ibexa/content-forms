@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Ibexa\Tests\Integration\ContentForms;
 
+use Ibexa\ContentForms\Event\ContentFormEvents;
+use Ibexa\ContentForms\Event\FormActionEvent;
 use Ibexa\ContentForms\Form\Processor\User\UserTranslationSecureListener;
 use Ibexa\Tests\Integration\Core\RepositoryTestCase;
 use Symfony\Component\EventDispatcher\EventDispatcher;
@@ -16,18 +18,22 @@ use Symfony\Component\Form\FormConfigBuilder;
 
 final class UserTranslationSecureListenerTest extends RepositoryTestCase
 {
-    private const LOGIN = 'jdoe';
-    private const EMAIL = 'jdoe@mail.invalid';
     private const NEW_LANGUAGE = 'ger-DE';
 
-    public function testTranslationFlowDoesNotRemoveUserData(): void
+    /**
+     * @dataProvider providePublishEventNames
+     */
+    public function testTranslationFlowDoesNotRemoveUserData(string $eventName): void
     {
+        $login = 'jdoe_' . md5($eventName);
+        $email = $login . '@mail.invalid';
+
         $ibexaTestCore = $this->getIbexaTestCore();
         $userService = $ibexaTestCore->getUserService();
         $contentService = $ibexaTestCore->getContentService();
         $contentTypeService = $ibexaTestCore->getContentTypeService();
 
-        $user = $this->createUser(self::LOGIN, 'John', 'Doe');
+        $user = $this->createUser($login, 'John', 'Doe');
         $mainLanguageCode = $user->contentInfo->mainLanguageCode;
 
         $userContentType = $contentTypeService->loadContentTypeByIdentifier('user');
@@ -57,25 +63,30 @@ final class UserTranslationSecureListenerTest extends RepositoryTestCase
                 'languageCode' => self::NEW_LANGUAGE,
             ]))->getFormConfig()
         );
-        $listener = new UserTranslationSecureListener($userService, $contentService);
-        $listener->onPublish(new \Ibexa\ContentForms\Event\FormActionEvent(
-            $form,
-            null,
-            'publish',
-            [],
-            ['content' => $publishedContent]
-        ));
 
-        $userAfterTranslation = $userService->loadUserByLogin(self::LOGIN);
-        self::assertSame(self::LOGIN, $userAfterTranslation->login);
-        self::assertSame(self::EMAIL, $userAfterTranslation->email);
+        $eventDispatcher = new EventDispatcher();
+        $eventDispatcher->addSubscriber(new UserTranslationSecureListener($userService, $contentService));
+        $eventDispatcher->dispatch(
+            new FormActionEvent(
+                $form,
+                null,
+                'publish',
+                [],
+                ['content' => $publishedContent]
+            ),
+            $eventName
+        );
+
+        $userAfterTranslation = $userService->loadUserByLogin($login);
+        self::assertSame($login, $userAfterTranslation->login);
+        self::assertSame($email, $userAfterTranslation->email);
         self::assertTrue($userAfterTranslation->enabled);
 
         $contentService->deleteTranslation($publishedContent->contentInfo, self::NEW_LANGUAGE);
-        $userAfterDeletion = $userService->loadUserByLogin(self::LOGIN);
+        $userAfterDeletion = $userService->loadUserByLogin($login);
 
-        self::assertSame(self::LOGIN, $userAfterDeletion->login);
-        self::assertSame(self::EMAIL, $userAfterDeletion->email);
+        self::assertSame($login, $userAfterDeletion->login);
+        self::assertSame($email, $userAfterDeletion->email);
         self::assertTrue($userAfterDeletion->enabled);
         self::assertSame($userAfterTranslation->passwordHash, $userAfterDeletion->passwordHash);
 
@@ -84,5 +95,16 @@ final class UserTranslationSecureListenerTest extends RepositoryTestCase
             [$mainLanguageCode],
             $contentAfterDeletion->versionInfo->languageCodes
         );
+    }
+
+    /**
+     * @return iterable<string, array{0: string}>
+     */
+    public static function providePublishEventNames(): iterable
+    {
+        return [
+            'publish' => [ContentFormEvents::CONTENT_PUBLISH],
+            'publish and edit' => [ContentFormEvents::CONTENT_PUBLISH_AND_EDIT],
+        ];
     }
 }
