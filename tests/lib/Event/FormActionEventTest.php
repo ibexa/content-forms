@@ -18,7 +18,7 @@ final class FormActionEventTest extends TestCase
 {
     public function testConstruct(): void
     {
-        $form = $this->createMock(FormInterface::class);
+        $form = $this->createStub(FormInterface::class);
         $data = new stdClass();
         $clickedButton = 'fooButton';
         $options = ['languageCode' => 'eng-GB', 'foo' => 'bar'];
@@ -33,7 +33,7 @@ final class FormActionEventTest extends TestCase
     public function testEventDoesntHaveResponse(): void
     {
         $event = new FormActionEvent(
-            $this->createMock(FormInterface::class),
+            $this->createStub(FormInterface::class),
             new stdClass(),
             'fooButton'
         );
@@ -44,7 +44,7 @@ final class FormActionEventTest extends TestCase
     public function testEventSetResponse(): void
     {
         $event = new FormActionEvent(
-            $this->createMock(FormInterface::class),
+            $this->createStub(FormInterface::class),
             new stdClass(),
             'fooButton'
         );
@@ -63,7 +63,7 @@ final class FormActionEventTest extends TestCase
         $options = ['languageCode' => 'eng-GB', 'foo' => 'bar', 'obj' => $objectOption];
 
         $event = new FormActionEvent(
-            $this->createMock(FormInterface::class),
+            $this->createStub(FormInterface::class),
             new stdClass(),
             'fooButton',
             $options

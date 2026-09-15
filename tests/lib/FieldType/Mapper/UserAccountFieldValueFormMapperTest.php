@@ -15,7 +15,7 @@ use Ibexa\Core\Repository\Values\ContentType\FieldDefinition;
 use Symfony\Component\Form\FormConfigInterface;
 use Symfony\Component\Form\FormInterface;
 
-final class UserAccountFieldValueFormMapperTest extends BaseMapperTest
+final class UserAccountFieldValueFormMapperTest extends BaseMapperTestCase
 {
     protected function setUp(): void
     {

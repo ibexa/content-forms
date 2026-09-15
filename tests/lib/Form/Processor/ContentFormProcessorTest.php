@@ -23,15 +23,15 @@ use Ibexa\Contracts\Core\Repository\Values\Content\VersionInfo;
 use Ibexa\Contracts\Core\Repository\Values\ContentType\ContentType;
 use Ibexa\Contracts\Core\SiteAccess\ConfigResolverInterface;
 use Ibexa\Core\Repository\Values\Content\Location;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Form\FormConfigInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Routing\RouterInterface;
 
-/**
- * @covers \Ibexa\ContentForms\Form\Processor\ContentFormProcessor
- */
+#[CoversClass(\Ibexa\ContentForms\Form\Processor\ContentFormProcessor::class)]
 final class ContentFormProcessorTest extends TestCase
 {
     private const int CONTENT_ID = 123;
@@ -43,12 +43,11 @@ final class ContentFormProcessorTest extends TestCase
     private const string GENERATED_URL = 'generated-url';
 
     /**
-     * @dataProvider provideProcessPublishCases
-     *
      * @param array<string, int|null>|null $expectedRouteParameters route parameters the redirect
      *        is expected to be generated with, or null when a custom redirect URL is provided and
      *        the router must not be invoked at all
      */
+    #[DataProvider('provideProcessPublishCases')]
     public function testProcessPublish(
         bool $isNewContent,
         bool $publishedSynchronously,

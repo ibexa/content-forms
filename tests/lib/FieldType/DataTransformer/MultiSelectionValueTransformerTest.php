@@ -10,6 +10,7 @@ namespace Ibexa\Tests\ContentForms\FieldType\DataTransformer;
 
 use Ibexa\ContentForms\FieldType\DataTransformer\MultiSelectionValueTransformer;
 use Ibexa\Core\FieldType\Selection\Value;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
 final class MultiSelectionValueTransformerTest extends TestCase
@@ -17,7 +18,7 @@ final class MultiSelectionValueTransformerTest extends TestCase
     /**
      * @phpstan-return list<array{array<int>}>
      */
-    public function transformProvider(): array
+    public static function transformProvider(): array
     {
         return [
             [[0]],
@@ -27,10 +28,9 @@ final class MultiSelectionValueTransformerTest extends TestCase
     }
 
     /**
-     * @dataProvider transformProvider
-     *
      * @param array<int> $valueAsArray
      */
+    #[DataProvider('transformProvider')]
     public function testTransform(array $valueAsArray): void
     {
         $transformer = new MultiSelectionValueTransformer();
@@ -39,10 +39,9 @@ final class MultiSelectionValueTransformerTest extends TestCase
     }
 
     /**
-     * @dataProvider transformProvider
-     *
      * @param array<int> $valueAsArray
      */
+    #[DataProvider('transformProvider')]
     public function testReverseTransform(array $valueAsArray): void
     {
         $transformer = new MultiSelectionValueTransformer();
@@ -53,7 +52,7 @@ final class MultiSelectionValueTransformerTest extends TestCase
     /**
      * @phpstan-return list<array{mixed}>
      */
-    public function transformNullProvider(): array
+    public static function transformNullProvider(): array
     {
         return [
             [new Value()],
@@ -64,9 +63,7 @@ final class MultiSelectionValueTransformerTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider transformNullProvider
-     */
+    #[DataProvider('transformNullProvider')]
     public function testTransformNull(mixed $value): void
     {
         $transformer = new MultiSelectionValueTransformer();
