@@ -22,9 +22,10 @@ final class UserTranslationSecureListenerTest extends RepositoryTestCase
 
     public function testTranslationFlowDoesNotRemoveUserData(): void
     {
-        $userService = self::getUserService();
-        $contentService = self::getContentService();
-        $contentTypeService = self::getContentTypeService();
+        $ibexaTestCore = $this->getIbexaTestCore();
+        $userService = $ibexaTestCore->getUserService();
+        $contentService = $ibexaTestCore->getContentService();
+        $contentTypeService = $ibexaTestCore->getContentTypeService();
 
         $user = $this->createUser(self::LOGIN, 'John', 'Doe');
         $mainLanguageCode = $user->contentInfo->mainLanguageCode;

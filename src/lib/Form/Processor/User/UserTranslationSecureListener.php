@@ -24,7 +24,7 @@ class UserTranslationSecureListener implements EventSubscriberInterface
 
     public function __construct(
         UserService $userService,
-        ContentService $contentService,
+        ContentService $contentService
     ) {
         $this->userService = $userService;
         $this->contentService = $contentService;
