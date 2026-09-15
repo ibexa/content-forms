@@ -11,11 +11,10 @@ namespace Ibexa\Tests\ContentForms\Validator\Constraints;
 use Ibexa\ContentForms\Validator\Constraints\Password;
 use Ibexa\ContentForms\Validator\Constraints\PasswordValidator;
 use Ibexa\Contracts\Core\Repository\Values\ContentType\ContentType;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \Ibexa\ContentForms\Validator\Constraints\Password
- */
+#[CoversClass(\Ibexa\ContentForms\Validator\Constraints\Password::class)]
 final class PasswordTest extends TestCase
 {
     private Password $constraint;
@@ -48,7 +47,7 @@ final class PasswordTest extends TestCase
 
     public function testNamedArguments(): void
     {
-        $contentType = $this->createMock(ContentType::class);
+        $contentType = $this->createStub(ContentType::class);
         $payload = new \stdClass();
 
         $constraint = new Password(

@@ -40,7 +40,7 @@ final class UserAccountPasswordTest extends TestCase
 
     public function testNamedArguments(): void
     {
-        $contentType = $this->createMock(ContentType::class);
+        $contentType = $this->createStub(ContentType::class);
 
         $constraint = new UserAccountPassword(contentType: $contentType);
 

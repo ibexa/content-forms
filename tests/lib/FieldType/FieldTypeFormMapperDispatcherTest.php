@@ -42,7 +42,7 @@ final class FieldTypeFormMapperDispatcherTest extends TestCase
             'fieldDefinition' => new FieldDefinition(['fieldTypeIdentifier' => 'first_type']),
         ]);
 
-        $formMock = $this->createMock(FormInterface::class);
+        $formMock = $this->createStub(FormInterface::class);
 
         $this->fieldTypeAliasResolverMock
             ->method('resolveIdentifier')

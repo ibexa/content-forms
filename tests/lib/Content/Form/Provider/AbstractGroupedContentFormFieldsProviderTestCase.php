@@ -17,7 +17,7 @@ use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Form\FormInterface;
 
-abstract class AbstractGroupedContentFormFieldsProviderTest extends TestCase
+abstract class AbstractGroupedContentFormFieldsProviderTestCase extends TestCase
 {
     final protected function getFieldsGroupsListMock(): FieldsGroupsList&MockObject
     {
@@ -29,7 +29,7 @@ abstract class AbstractGroupedContentFormFieldsProviderTest extends TestCase
             ->expects($matcher)
             ->method('getFieldGroup')
             ->willReturnCallback(static function () use ($matcher, $expectedGroups): string {
-                return $expectedGroups[$matcher->getInvocationCount()];
+                return $expectedGroups[$matcher->numberOfInvocations()];
             });
 
         return $mock;
