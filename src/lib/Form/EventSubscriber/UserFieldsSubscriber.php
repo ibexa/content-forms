@@ -95,12 +95,13 @@ class UserFieldsSubscriber implements EventSubscriberInterface
             $data->email = $userAccountFieldData->email;
             $data->password = $userAccountFieldData->password;
             $data->enabled = $userAccountFieldData->enabled;
+            $fieldIdentifier = $fieldData->field->fieldDefIdentifier;
 
             // The "user_account" field is non-translatable and therefore
             // never stored under a language other than the main one: fall
             // back to it when editing/translating in a different language.
-            $userField = $data->user->getField($fieldData->field->fieldDefIdentifier, $languageCode)
-                ?? $data->user->getField($fieldData->field->fieldDefIdentifier, $data->user->contentInfo->mainLanguageCode);
+            $userField = $data->user->getField($fieldIdentifier, $languageCode)
+                ?? $data->user->getField($fieldIdentifier, $data->user->contentInfo->mainLanguageCode);
 
             /** @var \Ibexa\Core\FieldType\User\Value $userValue */
             $userValue = clone $userField->value;
