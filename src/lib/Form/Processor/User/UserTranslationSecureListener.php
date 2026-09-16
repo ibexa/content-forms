@@ -14,7 +14,22 @@ use Ibexa\Contracts\Core\Repository\ContentService;
 use Ibexa\Contracts\Core\Repository\UserService;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
-class UserTranslationSecureListener implements EventSubscriberInterface
+/**
+ * Re-applies the User data after publishing a non-main-language translation.
+ *
+ * The "user_account" field (ezuser) is non-translatable and its form is disabled while
+ * translating (see UserAccountFieldValueFormMapper::mapFieldValueForm()), so it is never
+ * submitted as part of the translation's content update. Without this listener re-running
+ * UserService::updateUser() for the translated language after publish, translating User
+ * content throws a content field validation error / leaves the user_account field broken
+ * for that language.
+ *
+ * It also prevents data loss on translation removal: without re-persisting the user_account
+ * field for the translation's language here, ContentService::deleteTranslation() on that
+ * language would delete the User itself (login, password, etc.), even though the underlying
+ * content object survives.
+ */
+final class UserTranslationSecureListener implements EventSubscriberInterface
 {
     private UserService $userService;
 

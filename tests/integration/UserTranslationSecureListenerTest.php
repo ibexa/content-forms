@@ -23,9 +23,9 @@ final class UserTranslationSecureListenerTest extends RepositoryTestCase
     /**
      * @dataProvider providePublishEventNames
      */
-    public function testTranslationFlowDoesNotRemoveUserData(string $eventName): void
+    public function testTranslationFlowDoesNotRemoveUserData(string $eventName, string $loginSuffix): void
     {
-        $login = 'jdoe_' . md5($eventName);
+        $login = 'jdoe_' . $loginSuffix;
         $email = $login . '@mail.invalid';
 
         $ibexaTestCore = $this->getIbexaTestCore();
@@ -103,8 +103,8 @@ final class UserTranslationSecureListenerTest extends RepositoryTestCase
     public static function providePublishEventNames(): iterable
     {
         return [
-            'publish' => [ContentFormEvents::CONTENT_PUBLISH],
-            'publish and edit' => [ContentFormEvents::CONTENT_PUBLISH_AND_EDIT],
+            'publish' => [ContentFormEvents::CONTENT_PUBLISH, 'publish'],
+            'publish and edit' => [ContentFormEvents::CONTENT_PUBLISH_AND_EDIT, 'publish_and_edit'],
         ];
     }
 }

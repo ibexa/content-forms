@@ -23,7 +23,7 @@ use PHPUnit\Framework\TestCase;
 use ReflectionMethod;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
-class UserUpdateFormProcessorTest extends TestCase
+final class UserUpdateFormProcessorTest extends TestCase
 {
     private function createUser(string $mainLanguageCode): User
     {
@@ -36,12 +36,9 @@ class UserUpdateFormProcessorTest extends TestCase
 
     private function createField(string $identifier, bool $isTranslatable, string $value): FieldData
     {
-        $field = $this->getMockBuilder(FieldData::class)
-            ->disableOriginalConstructor()
-            ->getMock();
+        $field = $this->createStub(FieldData::class);
         $field->value = $value;
         $field->method('__get')
-            ->with('fieldDefinition')
             ->willReturn(new FieldDefinition(['identifier' => $identifier, 'isTranslatable' => $isTranslatable]));
 
         return $field;
@@ -54,58 +51,70 @@ class UserUpdateFormProcessorTest extends TestCase
         $method->invoke($processor, $data, $languageCode);
     }
 
-    public function testNonTranslatableFieldIsSkippedOnNonMainLanguageUpdate(): void
+    private function createUserUpdateData(): UserUpdateData
     {
         $data = new UserUpdateData();
         $data->user = $this->createUser('eng-GB');
         $data->addFieldData($this->createField('title', true, 'translatable-value'));
         $data->addFieldData($this->createField('user_account', false, 'non-translatable-value'));
 
-        $contentUpdateStruct = $this->getMockBuilder(ContentUpdateStruct::class)->getMock();
-        $contentUpdateStruct->expects($this->once())
-            ->method('setField')
-            ->with('title', 'translatable-value', 'ger-DE');
-
-        $contentService = $this->createMock(ContentService::class);
-        $contentService->method('newContentUpdateStruct')->willReturn($contentUpdateStruct);
-
-        $processor = new UserUpdateFormProcessor(
-            $this->createMock(UserService::class),
-            $contentService,
-            $this->createMock(UrlGeneratorInterface::class)
-        );
-
-        $this->callSetContentFields($processor, $data, 'ger-DE');
-
-        self::assertSame('ger-DE', $contentUpdateStruct->initialLanguageCode);
+        return $data;
     }
 
-    public function testAllFieldsAreUpdatedOnMainLanguageUpdate(): void
+    private function createProcessor(ContentUpdateStruct $contentUpdateStruct): UserUpdateFormProcessor
     {
-        $data = new UserUpdateData();
-        $data->user = $this->createUser('eng-GB');
-        $data->addFieldData($this->createField('title', true, 'translatable-value'));
-        $data->addFieldData($this->createField('user_account', false, 'non-translatable-value'));
+        $contentService = $this->createMock(ContentService::class);
+        $contentService->expects(self::once())
+            ->method('newContentUpdateStruct')
+            ->willReturn($contentUpdateStruct);
+
+        return new UserUpdateFormProcessor(
+            $this->createStub(UserService::class),
+            $contentService,
+            $this->createStub(UrlGeneratorInterface::class)
+        );
+    }
+
+    /**
+     * @dataProvider provideFieldUpdatesForLanguage
+     *
+     * @param list<array{0: string, 1: string, 2: string}> $expectedFieldUpdates
+     */
+    public function testSetContentFieldsUpdatesFieldsForLanguage(string $languageCode, array $expectedFieldUpdates): void
+    {
+        $data = $this->createUserUpdateData();
 
         $contentUpdateStruct = $this->getMockBuilder(ContentUpdateStruct::class)->getMock();
-        $contentUpdateStruct->expects($this->exactly(2))
+        $contentUpdateStruct
+            ->expects(self::exactly(count($expectedFieldUpdates)))
             ->method('setField')
-            ->withConsecutive(
+            ->withConsecutive(...$expectedFieldUpdates);
+
+        $processor = $this->createProcessor($contentUpdateStruct);
+
+        $this->callSetContentFields($processor, $data, $languageCode);
+
+        self::assertSame($languageCode, $contentUpdateStruct->initialLanguageCode);
+    }
+
+    /**
+     * @return iterable<string, array{0: string, 1: list<array{0: string, 1: string, 2: string}>}>
+     */
+    public function provideFieldUpdatesForLanguage(): iterable
+    {
+        yield 'non-translatable field is skipped on non-main language update' => [
+            'ger-DE',
+            [
+                ['title', 'translatable-value', 'ger-DE'],
+            ],
+        ];
+
+        yield 'all fields are updated on main language update' => [
+            'eng-GB',
+            [
                 ['title', 'translatable-value', 'eng-GB'],
-                ['user_account', 'non-translatable-value', 'eng-GB']
-            );
-
-        $contentService = $this->createMock(ContentService::class);
-        $contentService->method('newContentUpdateStruct')->willReturn($contentUpdateStruct);
-
-        $processor = new UserUpdateFormProcessor(
-            $this->createMock(UserService::class),
-            $contentService,
-            $this->createMock(UrlGeneratorInterface::class)
-        );
-
-        $this->callSetContentFields($processor, $data, 'eng-GB');
-
-        self::assertSame('eng-GB', $contentUpdateStruct->initialLanguageCode);
+                ['user_account', 'non-translatable-value', 'eng-GB'],
+            ],
+        ];
     }
 }
