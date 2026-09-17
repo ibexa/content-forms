@@ -18,7 +18,7 @@ use Symfony\Component\Form\FormConfigInterface;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\Form\FormInterface;
 
-abstract class BaseMapperTest extends TestCase
+abstract class BaseMapperTestCase extends TestCase
 {
     protected FieldTypeService&MockObject $fieldTypeService;
 
@@ -35,17 +35,15 @@ abstract class BaseMapperTest extends TestCase
         $this->fieldTypeService = $this->createMock(FieldTypeService::class);
         $this->fieldTypeService
             ->method('getFieldType')
-            ->willReturn($this->createMock(FieldType::class));
+            ->willReturn($this->createStub(FieldType::class));
 
         $this->config = $this->createMock(FormConfigInterface::class);
         $this->fieldForm = $this->createMock(FormInterface::class);
-
-        $formBuilder = $this->createMock(FormBuilder::class);
         $formFactory = $this->createMock(FormFactoryInterface::class);
         $formFactory
             ->expects(self::once())
             ->method('createBuilder')
-            ->willReturn($formBuilder);
+            ->willReturn($this->createStub(FormBuilder::class));
 
         $this->config
             ->expects(self::once())

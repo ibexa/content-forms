@@ -10,13 +10,12 @@ namespace Ibexa\Tests\ContentForms\FieldType\DataTransformer;
 
 use Ibexa\ContentForms\FieldType\DataTransformer\RelationListValueTransformer;
 use Ibexa\Core\FieldType\RelationList\Value;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
 final class RelationListValueTransformerTest extends TestCase
 {
-    /**
-     * @dataProvider dataProviderForTestReverseTransform
-     */
+    #[DataProvider('dataProviderForTestReverseTransform')]
     public function testReverseTransform(?string $value, ?Value $expectedValue): void
     {
         $transformer = new RelationListValueTransformer();
@@ -27,7 +26,7 @@ final class RelationListValueTransformerTest extends TestCase
         );
     }
 
-    public function dataProviderForTestReverseTransform(): iterable
+    public static function dataProviderForTestReverseTransform(): iterable
     {
         yield 'null' => [
             null,

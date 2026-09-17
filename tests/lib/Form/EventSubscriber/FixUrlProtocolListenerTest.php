@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace Ibexa\Tests\ContentForms\Form\EventSubscriber;
 
 use Ibexa\ContentForms\Form\EventSubscriber\FixUrlProtocolListener;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormInterface;
@@ -25,12 +26,10 @@ final class FixUrlProtocolListenerTest extends TestCase
     private const URL_SFTP = 'sftp://' . self::DOMAIN;
     private const URL_TEL = 'tel:' . self::TEL;
 
-    /**
-     * @dataProvider provideUrlCases
-     */
+    #[DataProvider('provideUrlCases')]
     public function testUrlProtocolHandling(?string $inputData, ?string $expectedData, string $defaultProtocol = 'https'): void
     {
-        $form = $this->createMock(FormInterface::class);
+        $form = $this->createStub(FormInterface::class);
         $listener = new FixUrlProtocolListener($defaultProtocol);
 
         $event = new FormEvent($form, $inputData);

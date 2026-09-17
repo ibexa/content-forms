@@ -1,10 +1,10 @@
+<?xml version="1.0"?>
 <phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.5/phpunit.xsd"
+         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/11.5/phpunit.xsd"
          bootstrap="tests/bootstrap.php"
          beStrictAboutOutputDuringTests="true"
-         beStrictAboutTodoAnnotatedTests="true"
          failOnWarning="true"
-         verbose="true">
+         cacheDirectory=".phpunit.cache">
     <php>
         <env name="KERNEL_CLASS" value="Ibexa\Tests\Integration\ContentForms\Kernel" />
         <env name="SYMFONY_DEPRECATIONS_HELPER" value="max[self]=4&amp;max[direct]=0&amp;verbose=0"/>

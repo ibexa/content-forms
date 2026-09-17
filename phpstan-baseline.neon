@@ -637,16 +637,16 @@ parameters:
 			path: src/lib/Validator/ValidationErrorsProcessor.php
 
 		-
-			message: '#^Method Ibexa\\Tests\\ContentForms\\Content\\Form\\Provider\\AbstractGroupedContentFormFieldsProviderTest\:\:getFormMockWithFieldData\(\) return type with generic interface Symfony\\Component\\Form\\FormInterface does not specify its types\: TData$#'
+			message: '#^Method Ibexa\\Tests\\ContentForms\\Content\\Form\\Provider\\AbstractGroupedContentFormFieldsProviderTestCase\:\:getFormMockWithFieldData\(\) return type with generic interface Symfony\\Component\\Form\\FormInterface does not specify its types\: TData$#'
 			identifier: missingType.generics
 			count: 1
-			path: tests/lib/Content/Form/Provider/AbstractGroupedContentFormFieldsProviderTest.php
+			path: tests/lib/Content/Form/Provider/AbstractGroupedContentFormFieldsProviderTestCase.php
 
 		-
-			message: '#^Method Ibexa\\Tests\\ContentForms\\Content\\Form\\Provider\\AbstractGroupedContentFormFieldsProviderTest\:\:getTestForms\(\) return type has no value type specified in iterable type array\.$#'
+			message: '#^Method Ibexa\\Tests\\ContentForms\\Content\\Form\\Provider\\AbstractGroupedContentFormFieldsProviderTestCase\:\:getTestForms\(\) return type has no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
-			path: tests/lib/Content/Form/Provider/AbstractGroupedContentFormFieldsProviderTest.php
+			path: tests/lib/Content/Form/Provider/AbstractGroupedContentFormFieldsProviderTestCase.php
 
 		-
 			message: '#^Method Ibexa\\Tests\\ContentForms\\FieldType\\DataTransformer\\RelationListValueTransformerTest\:\:dataProviderForTestReverseTransform\(\) return type has no value type specified in iterable type iterable\.$#'

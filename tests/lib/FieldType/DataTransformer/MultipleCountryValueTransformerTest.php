@@ -10,6 +10,7 @@ namespace Ibexa\Tests\ContentForms\FieldType\DataTransformer;
 
 use Ibexa\ContentForms\FieldType\DataTransformer\MultipleCountryValueTransformer;
 use Ibexa\Core\FieldType\Country\Value;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -52,7 +53,7 @@ final class MultipleCountryValueTransformerTest extends TestCase
     /**
      * @phpstan-return list<array{array<string, TCountryValueData>}>
      */
-    public function transformProvider(): array
+    public static function transformProvider(): array
     {
         return [
             [
@@ -71,10 +72,9 @@ final class MultipleCountryValueTransformerTest extends TestCase
     }
 
     /**
-     * @dataProvider transformProvider
-     *
      * @phpstan-param array<string, TCountryValueData> $valueAsArray
      */
+    #[DataProvider('transformProvider')]
     public function testTransform(array $valueAsArray): void
     {
         $transformer = new MultipleCountryValueTransformer($this->countriesInfo);
@@ -83,10 +83,9 @@ final class MultipleCountryValueTransformerTest extends TestCase
     }
 
     /**
-     * @dataProvider transformProvider
-     *
      * @phpstan-param array<string, TCountryValueData> $valueAsArray
      */
+    #[DataProvider('transformProvider')]
     public function testReverseTransform(array $valueAsArray): void
     {
         $transformer = new MultipleCountryValueTransformer($this->countriesInfo);
@@ -97,7 +96,7 @@ final class MultipleCountryValueTransformerTest extends TestCase
     /**
      * @phpstan-return list<array{int|string|array<mixed>|null}>
      */
-    public function transformNullProvider(): array
+    public static function transformNullProvider(): array
     {
         return [
             [42],
@@ -107,9 +106,7 @@ final class MultipleCountryValueTransformerTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider transformNullProvider
-     */
+    #[DataProvider('transformNullProvider')]
     public function testTransformNull(mixed $value): void
     {
         $transformer = new MultipleCountryValueTransformer($this->countriesInfo);
@@ -119,7 +116,7 @@ final class MultipleCountryValueTransformerTest extends TestCase
     /**
      * @phpstan-return list<array{mixed}>
      */
-    public function reverseTransformNullProvider(): array
+    public static function reverseTransformNullProvider(): array
     {
         return [
             [42],
@@ -129,9 +126,7 @@ final class MultipleCountryValueTransformerTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider reverseTransformNullProvider
-     */
+    #[DataProvider('reverseTransformNullProvider')]
     public function testReverseTransformNull(mixed $value): void
     {
         $transformer = new MultipleCountryValueTransformer($this->countriesInfo);

@@ -14,6 +14,7 @@ use Ibexa\Contracts\Core\Repository\UserService;
 use Ibexa\Contracts\Core\Repository\Values\ContentType\ContentType;
 use Ibexa\Contracts\Core\Repository\Values\User\PasswordValidationContext;
 use Ibexa\Core\FieldType\ValidationError;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use stdClass;
@@ -36,9 +37,7 @@ final class PasswordValidatorTest extends TestCase
         $this->validator->initialize($this->executionContext);
     }
 
-    /**
-     * @dataProvider dataProviderForValidateNotSupportedValueType
-     */
+    #[DataProvider('dataProviderForValidateNotSupportedValueType')]
     public function testValidateShouldBeSkipped(mixed $value): void
     {
         $this->userService
@@ -55,7 +54,7 @@ final class PasswordValidatorTest extends TestCase
     public function testValid(): void
     {
         $password = 'pass';
-        $contentType = $this->createMock(ContentType::class);
+        $contentType = $this->createStub(ContentType::class);
 
         $this->userService
             ->expects(self::once())
@@ -77,7 +76,7 @@ final class PasswordValidatorTest extends TestCase
 
     public function testInvalid(): void
     {
-        $contentType = $this->createMock(ContentType::class);
+        $contentType = $this->createStub(ContentType::class);
         $password = 'pass';
         $errorParameter = 'foo';
         $errorMessage = 'error';
@@ -118,7 +117,7 @@ final class PasswordValidatorTest extends TestCase
         $this->validator->validate('pass', new Password(contentType: $contentType));
     }
 
-    public function dataProviderForValidateNotSupportedValueType(): array
+    public static function dataProviderForValidateNotSupportedValueType(): array
     {
         return [
             [new stdClass()],

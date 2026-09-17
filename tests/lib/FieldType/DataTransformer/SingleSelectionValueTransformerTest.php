@@ -10,6 +10,7 @@ namespace Ibexa\Tests\ContentForms\FieldType\DataTransformer;
 
 use Ibexa\ContentForms\FieldType\DataTransformer\SingleSelectionValueTransformer;
 use Ibexa\Core\FieldType\Selection\Value;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
 class SingleSelectionValueTransformerTest extends TestCase
@@ -17,7 +18,7 @@ class SingleSelectionValueTransformerTest extends TestCase
     /**
      * @phpstan-return list<array{int}>
      */
-    public function transformProvider(): array
+    public static function transformProvider(): array
     {
         return [
             [0],
@@ -26,18 +27,14 @@ class SingleSelectionValueTransformerTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider transformProvider
-     */
+    #[DataProvider('transformProvider')]
     public function testTransform(int $value): void
     {
         $transformer = new SingleSelectionValueTransformer();
         self::assertSame($value, $transformer->transform(new Value([$value])));
     }
 
-    /**
-     * @dataProvider transformProvider
-     */
+    #[DataProvider('transformProvider')]
     public function testReverseTransform(int $value): void
     {
         $transformer = new SingleSelectionValueTransformer();
@@ -48,7 +45,7 @@ class SingleSelectionValueTransformerTest extends TestCase
     /**
      * @phpstan-return list<array{mixed}>
      */
-    public function transformNullProvider(): array
+    public static function transformNullProvider(): array
     {
         return [
             [new Value()],
@@ -58,9 +55,7 @@ class SingleSelectionValueTransformerTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider transformNullProvider
-     */
+    #[DataProvider('transformNullProvider')]
     public function testTransformNull(mixed $value): void
     {
         $transformer = new SingleSelectionValueTransformer();

@@ -12,7 +12,7 @@ use Ibexa\ContentForms\FieldType\Mapper\FormTypeBasedFieldValueFormMapper;
 use Ibexa\Core\Repository\Values\ContentType\FieldDefinition;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
-final class FormTypeBasedFieldValueFormMapperTest extends BaseMapperTest
+final class FormTypeBasedFieldValueFormMapperTest extends BaseMapperTestCase
 {
     public function testMapFieldValueFormNoLanguageCode(): void
     {
