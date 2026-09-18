@@ -7,7 +7,9 @@
          cacheDirectory=".phpunit.cache"
          beStrictAboutTestsThatDoNotTestAnything="false"
          displayDetailsOnTestsThatTriggerDeprecations="true"
-         failOnDeprecation="true">
+         failOnDeprecation="true"
+         failOnWarning="true"
+         failOnNotice="true">
     <php>
         <ini name="error_reporting" value="-1" />
     </php>

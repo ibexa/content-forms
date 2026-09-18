@@ -4,6 +4,7 @@
          bootstrap="tests/bootstrap.php"
          beStrictAboutOutputDuringTests="true"
          failOnWarning="true"
+         failOnNotice="true"
          cacheDirectory=".phpunit.cache"
          displayDetailsOnTestsThatTriggerDeprecations="true"
          failOnDeprecation="true">
