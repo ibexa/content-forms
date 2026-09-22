@@ -29,7 +29,7 @@ final class FixUrlProtocolListenerTest extends TestCase
     #[DataProvider('provideUrlCases')]
     public function testUrlProtocolHandling(?string $inputData, ?string $expectedData, string $defaultProtocol = 'https'): void
     {
-        $form = $this->createStub(FormInterface::class);
+        $form = self::createStub(FormInterface::class);
         $listener = new FixUrlProtocolListener($defaultProtocol);
 
         $event = new FormEvent($form, $inputData);

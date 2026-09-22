@@ -35,7 +35,7 @@ abstract class BaseMapperTestCase extends TestCase
         $this->fieldTypeService = $this->createMock(FieldTypeService::class);
         $this->fieldTypeService
             ->method('getFieldType')
-            ->willReturn($this->createStub(FieldType::class));
+            ->willReturn(self::createStub(FieldType::class));
 
         $this->config = $this->createMock(FormConfigInterface::class);
         $this->fieldForm = $this->createMock(FormInterface::class);
@@ -43,7 +43,7 @@ abstract class BaseMapperTestCase extends TestCase
         $formFactory
             ->expects(self::once())
             ->method('createBuilder')
-            ->willReturn($this->createStub(FormBuilder::class));
+            ->willReturn(self::createStub(FormBuilder::class));
 
         $this->config
             ->expects(self::once())

@@ -108,10 +108,10 @@ final class ContentFormProcessorTest extends TestCase
 
         // The deferred (async) redirect resolves its location from the content tree root config
         // and the location lookup.
-        $configResolver = $this->createStub(ConfigResolverInterface::class);
+        $configResolver = self::createStub(ConfigResolverInterface::class);
         $configResolver->method('getParameter')->willReturn(self::TREE_ROOT_LOCATION_ID);
 
-        $locationService = $this->createStub(LocationService::class);
+        $locationService = self::createStub(LocationService::class);
         $locationService->method('loadLocation')->willReturn(
             new Location([
                 'id' => self::TREE_ROOT_LOCATION_ID,
@@ -242,16 +242,16 @@ final class ContentFormProcessorTest extends TestCase
             'status' => $status,
         ]);
 
-        $versionInfo = $this->createStub(VersionInfo::class);
+        $versionInfo = self::createStub(VersionInfo::class);
         $versionInfo->method('getInitialLanguage')->willReturn(
             new Language(['languageCode' => self::LANGUAGE_CODE])
         );
         $versionInfo->method('getContentInfo')->willReturn($contentInfo);
 
-        $draft = $this->createStub(Content::class);
+        $draft = self::createStub(Content::class);
         $draft->method('getVersionInfo')->willReturn($versionInfo);
         $draft->method('getContentInfo')->willReturn($contentInfo);
-        $draft->method('getContentType')->willReturn($this->createStub(ContentType::class));
+        $draft->method('getContentType')->willReturn(self::createStub(ContentType::class));
 
         return $draft;
     }
@@ -265,7 +265,7 @@ final class ContentFormProcessorTest extends TestCase
             'status' => ContentInfo::STATUS_PUBLISHED,
         ]);
 
-        $publishedContent = $this->createStub(Content::class);
+        $publishedContent = self::createStub(Content::class);
         $publishedContent->method('getContentInfo')->willReturn($contentInfo);
         $publishedContent->method('getId')->willReturn(self::CONTENT_ID);
 
@@ -293,13 +293,13 @@ final class ContentFormProcessorTest extends TestCase
      */
     private function createForm(?string $redirectUrlAfterPublish = null): FormInterface
     {
-        $formConfig = $this->createStub(FormConfigInterface::class);
+        $formConfig = self::createStub(FormConfigInterface::class);
         $formConfig->method('getOption')->willReturn(self::LANGUAGE_CODE);
 
-        $redirectUrlField = $this->createStub(FormInterface::class);
+        $redirectUrlField = self::createStub(FormInterface::class);
         $redirectUrlField->method('getData')->willReturn($redirectUrlAfterPublish);
 
-        $form = $this->createStub(FormInterface::class);
+        $form = self::createStub(FormInterface::class);
         $form->method('getConfig')->willReturn($formConfig);
         $form->method('offsetGet')->willReturn($redirectUrlField);
 

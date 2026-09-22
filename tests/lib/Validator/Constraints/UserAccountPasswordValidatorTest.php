@@ -63,15 +63,15 @@ final class UserAccountPasswordValidatorTest extends TestCase
     public function testValid(): void
     {
         $userAccount = new UserAccountFieldData('user', 'pass', 'user@ibexa.co');
-        $contentType = $this->createStub(ContentType::class);
+        $contentType = self::createStub(ContentType::class);
 
         $this->userService
             ->expects(self::once())
             ->method('validatePassword')
-            ->willReturnCallback(function ($actualPassword, $actualContext) use ($userAccount, $contentType): array {
-                $this->assertEquals($userAccount->password, $actualPassword);
-                $this->assertInstanceOf(PasswordValidationContext::class, $actualContext);
-                $this->assertSame($contentType, $actualContext->contentType);
+            ->willReturnCallback(static function ($actualPassword, $actualContext) use ($userAccount, $contentType): array {
+                self::assertEquals($userAccount->password, $actualPassword);
+                self::assertInstanceOf(PasswordValidationContext::class, $actualContext);
+                self::assertSame($contentType, $actualContext->contentType);
 
                 return [];
             });
@@ -85,7 +85,7 @@ final class UserAccountPasswordValidatorTest extends TestCase
 
     public function testInvalid(): void
     {
-        $contentType = $this->createStub(ContentType::class);
+        $contentType = self::createStub(ContentType::class);
         $userAccount = new UserAccountFieldData('user', 'pass', 'user@ibexa.co');
         $errorParameter = 'foo';
         $errorMessage = 'error';
@@ -93,10 +93,10 @@ final class UserAccountPasswordValidatorTest extends TestCase
         $this->userService
             ->expects(self::once())
             ->method('validatePassword')
-            ->willReturnCallback(function ($actualPassword, $actualContext) use ($userAccount, $contentType, $errorMessage, $errorParameter): array {
-                $this->assertEquals($userAccount->password, $actualPassword);
-                $this->assertInstanceOf(PasswordValidationContext::class, $actualContext);
-                $this->assertSame($contentType, $actualContext->contentType);
+            ->willReturnCallback(static function ($actualPassword, $actualContext) use ($userAccount, $contentType, $errorMessage, $errorParameter): array {
+                self::assertEquals($userAccount->password, $actualPassword);
+                self::assertInstanceOf(PasswordValidationContext::class, $actualContext);
+                self::assertSame($contentType, $actualContext->contentType);
 
                 return [
                     new ValidationError($errorMessage, null, ['%foo%' => $errorParameter]),

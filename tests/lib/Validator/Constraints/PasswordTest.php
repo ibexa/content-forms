@@ -47,7 +47,7 @@ final class PasswordTest extends TestCase
 
     public function testNamedArguments(): void
     {
-        $contentType = $this->createStub(ContentType::class);
+        $contentType = self::createStub(ContentType::class);
         $payload = new \stdClass();
 
         $constraint = new Password(
