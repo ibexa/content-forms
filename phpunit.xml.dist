@@ -5,7 +5,11 @@
          bootstrap="./bootstrap.php"
          colors="true"
          cacheDirectory=".phpunit.cache"
-         beStrictAboutTestsThatDoNotTestAnything="false">
+         beStrictAboutTestsThatDoNotTestAnything="false"
+         displayDetailsOnTestsThatTriggerDeprecations="true"
+         failOnDeprecation="true"
+         failOnWarning="true"
+         failOnNotice="true">
     <php>
         <ini name="error_reporting" value="-1" />
     </php>
@@ -17,4 +21,11 @@
             <directory>./tests/bundle</directory>
         </testsuite>
     </testsuites>
+    <source baseline="phpunit.baseline.xml" ignoreIndirectDeprecations="false" ignoreSuppressionOfDeprecations="true">
+        <include>
+            <directory>src/lib</directory>
+            <directory>src/bundle</directory>
+            <directory>src/contracts</directory>
+        </include>
+    </source>
 </phpunit>
