@@ -78,7 +78,7 @@ final readonly class UserAccountFieldValueFormMapper implements FieldValueFormMa
             static function (ApiUserValue $data): UserAccountFieldData {
                 return new UserAccountFieldData($data->login, null, $data->email, $data->enabled);
             },
-            static function (UserAccountFieldData $submittedData) use ($fieldDefinition) {
+            static function (UserAccountFieldData $submittedData) use ($fieldDefinition): ApiUserValue {
                 /** @var \Ibexa\Core\FieldType\User\Value $userValue */
                 $userValue = clone $fieldDefinition->defaultValue;
 

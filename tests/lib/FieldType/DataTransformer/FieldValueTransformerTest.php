@@ -32,7 +32,7 @@ final class FieldValueTransformerTest extends TestCase
 
     public function testTransform(): void
     {
-        $value = $this->createStub(Value::class);
+        $value = self::createStub(Value::class);
         $valueHash = ['lorem' => 'Lorem ipsum dolor...'];
 
         $fieldType = $this->createMock(FieldType::class);
@@ -49,7 +49,7 @@ final class FieldValueTransformerTest extends TestCase
 
     public function testReverseTransformNull(): void
     {
-        $emptyValue = $this->createStub(Value::class);
+        $emptyValue = self::createStub(Value::class);
 
         $fieldType = $this->createMock(FieldType::class);
         $fieldType
@@ -68,7 +68,7 @@ final class FieldValueTransformerTest extends TestCase
     public function testReverseTransform(): void
     {
         $value = 'Lorem ipsum dolor...';
-        $expected = $this->createStub(Value::class);
+        $expected = self::createStub(Value::class);
 
         $fieldType = $this->createMock(FieldType::class);
         $fieldType
