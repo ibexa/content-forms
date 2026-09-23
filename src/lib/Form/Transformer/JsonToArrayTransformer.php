@@ -34,7 +34,7 @@ final class JsonToArrayTransformer implements DataTransformerInterface
 
     public function reverseTransform($value)
     {
-        if ($value === null) {
+        if ($value === null || $value === '') {
             return [];
         }
 
