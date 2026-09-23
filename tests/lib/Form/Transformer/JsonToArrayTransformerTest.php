@@ -12,55 +12,49 @@ use Ibexa\ContentForms\Form\Transformer\JsonToArrayTransformer;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Form\Exception\TransformationFailedException;
 
-class JsonToArrayTransformerTest extends TestCase
+final class JsonToArrayTransformerTest extends TestCase
 {
-    public function testTransformNull(): void
+    /**
+     * @return iterable<string, array{mixed, string}>
+     */
+    public static function provideDataForTestTransform(): iterable
     {
-        $transformer = new JsonToArrayTransformer();
-
-        self::assertSame('', $transformer->transform(null));
+        yield 'null value' => [null, ''];
+        yield 'associative array' => [['foo' => 'bar'], '{"foo":"bar"}'];
+        yield 'empty array' => [[], '{}'];
     }
 
-    public function testTransformArray(): void
+    /**
+     * @param string[]|null $value
+     * @dataProvider provideDataForTestTransform
+     */
+    public function testTransform(?array $value, string $expected): void
     {
         $transformer = new JsonToArrayTransformer();
 
-        self::assertSame('{"foo":"bar"}', $transformer->transform(['foo' => 'bar']));
+        self::assertSame($expected, $transformer->transform($value));
     }
 
-    public function testTransformEmptyArray(): void
+    /**
+     * @return iterable<string, array{string|null, mixed}>
+     */
+    public static function provideDataForTestReverseTransform(): iterable
     {
-        $transformer = new JsonToArrayTransformer();
-
-        self::assertSame('{}', $transformer->transform([]));
+        yield 'null value' => [null, []];
+        yield 'empty string' => ['', []];
+        yield 'JSON string' => ['{"foo":"bar"}', ['foo' => 'bar']];
+        yield 'zero string' => ['0', 0];
     }
 
-    public function testReverseTransformNull(): void
+    /**
+     * @param string[]|int $expected
+     * @dataProvider provideDataForTestReverseTransform
+     */
+    public function testReverseTransform(?string $value, $expected): void
     {
         $transformer = new JsonToArrayTransformer();
 
-        self::assertSame([], $transformer->reverseTransform(null));
-    }
-
-    public function testReverseTransformEmptyString(): void
-    {
-        $transformer = new JsonToArrayTransformer();
-
-        self::assertSame([], $transformer->reverseTransform(''));
-    }
-
-    public function testReverseTransformJsonString(): void
-    {
-        $transformer = new JsonToArrayTransformer();
-
-        self::assertSame(['foo' => 'bar'], $transformer->reverseTransform('{"foo":"bar"}'));
-    }
-
-    public function testReverseTransformZeroString(): void
-    {
-        $transformer = new JsonToArrayTransformer();
-
-        self::assertSame(0, $transformer->reverseTransform('0'));
+        self::assertSame($expected, $transformer->reverseTransform($value));
     }
 
     public function testReverseTransformInvalidJsonThrowsException(): void
