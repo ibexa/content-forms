@@ -27,7 +27,7 @@ final class ContentTypeContext extends RawMinkContext implements Context, Snippe
 
     public function __construct(
         private readonly ContentTypeService $contentTypeService,
-        readonly PermissionResolver $permissionResolver,
+        PermissionResolver $permissionResolver,
     ) {
         $permissionResolver->setCurrentUserReference(new UserReference(14));
     }
