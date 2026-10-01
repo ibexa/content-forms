@@ -53,7 +53,7 @@ final class UserRegistrationContext extends RawMinkContext implements Context
     private YamlConfigurationContext $yamlConfigurationContext;
 
     public function __construct(
-        readonly PermissionResolver $permissionResolver,
+        PermissionResolver $permissionResolver,
         private readonly RoleService $roleService,
         private readonly UserService $userService,
         private readonly ContentTypeService $contentTypeService
