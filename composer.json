@@ -7,7 +7,7 @@
         "ezsystems/ezplatform-content-forms": "*"
     },
     "require": {
-        "php": " >=8.3",
+        "php": ">=8.5",
         "ext-json": "*",
         "ibexa/core": "~6.0.x-dev",
         "symfony/config": "^8.1",
