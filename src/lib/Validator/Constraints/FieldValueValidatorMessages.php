@@ -20,7 +20,7 @@ class FieldValueValidatorMessages implements TranslationContainerInterface
     /**
      * Returns an array of messages.
      *
-     * @return \JMS\TranslationBundle\Model\Message[]
+     * @return Message[]
      */
     public static function getTranslationMessages(): array
     {

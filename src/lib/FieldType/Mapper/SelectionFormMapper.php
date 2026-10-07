@@ -15,8 +15,10 @@ use Symfony\Component\Form\FormInterface;
 
 class SelectionFormMapper implements FieldValueFormMapperInterface
 {
-    public function mapFieldValueForm(FormInterface $fieldForm, FieldData $data)
-    {
+    public function mapFieldValueForm(
+        FormInterface $fieldForm,
+        FieldData $data
+    ) {
         $fieldDefinition = $data->fieldDefinition;
         $formConfig = $fieldForm->getConfig();
         $languageCode = $fieldForm->getConfig()->getOption('languageCode');

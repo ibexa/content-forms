@@ -18,11 +18,11 @@ use Symfony\Component\Form\FormView;
 
 class LocationType extends AbstractType
 {
-    /** @var \Ibexa\Contracts\Core\Repository\LocationService */
+    /** @var LocationService */
     private $locationService;
 
     /**
-     * @param \Ibexa\Contracts\Core\Repository\LocationService $locationService
+     * @param LocationService $locationService
      */
     public function __construct(LocationService $locationService)
     {
@@ -32,8 +32,11 @@ class LocationType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function buildView(FormView $view, FormInterface $form, array $options): void
-    {
+    public function buildView(
+        FormView $view,
+        FormInterface $form,
+        array $options
+    ): void {
         $view->vars['destination_location'] = null;
 
         if ($view->vars['value']) {

@@ -10,14 +10,21 @@ namespace Ibexa\ContentForms\Content\View\Builder;
 
 use Ibexa\ContentForms\Content\View\ContentEditSuccessView;
 use Ibexa\ContentForms\Content\View\ContentEditView;
+use Ibexa\Contracts\Core\Repository\Exceptions\BadStateException;
+use Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException;
 use Ibexa\Contracts\Core\Repository\Exceptions\UnauthorizedException;
 use Ibexa\Contracts\Core\Repository\Values\Content\Content;
 use Ibexa\Contracts\Core\Repository\Values\Content\Language;
 use Ibexa\Contracts\Core\Repository\Values\Content\Location;
 use Ibexa\Contracts\Core\Repository\Values\ContentType\ContentType;
 use Ibexa\Core\Base\Exceptions\InvalidArgumentException;
+use Ibexa\Core\Base\Exceptions\InvalidArgumentType;
 use Ibexa\Core\MVC\Symfony\View\Builder\ViewBuilder;
+use Ibexa\Core\MVC\Symfony\View\ContentView;
+use Ibexa\Core\MVC\Symfony\View\View;
+use Symfony\Component\Form\Form;
 use Symfony\Component\Form\FormError;
+use Symfony\Component\OptionsResolver\Exception\InvalidOptionsException;
 
 /**
  * Builds ContentEditView objects.
@@ -34,13 +41,13 @@ class ContentEditViewBuilder extends AbstractContentViewBuilder implements ViewB
     /**
      * @param array $parameters
      *
-     * @return \Ibexa\Core\MVC\Symfony\View\ContentView|\Ibexa\Core\MVC\Symfony\View\View
+     * @return ContentView|View
      *
-     * @throws \Ibexa\Core\Base\Exceptions\InvalidArgumentType
-     * @throws \Symfony\Component\OptionsResolver\Exception\InvalidOptionsException
-     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\BadStateException
+     * @throws InvalidArgumentType
+     * @throws InvalidOptionsException
+     * @throws BadStateException
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\InvalidArgumentException
-     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\UnauthorizedException
+     * @throws UnauthorizedException
      */
     public function buildView(array $parameters)
     {
@@ -51,7 +58,7 @@ class ContentEditViewBuilder extends AbstractContentViewBuilder implements ViewB
         $content = $this->resolveContent($parameters, $location, $language);
         $contentInfo = $content->contentInfo;
         $contentType = $this->loadContentType((int) $contentInfo->contentTypeId, $this->languagePreferenceProvider->getPreferredLanguages());
-        /** @var \Symfony\Component\Form\Form $form */
+        /** @var Form $form */
         $form = $parameters['form'];
         $isPublished = null !== $contentInfo->mainLocationId && $contentInfo->published;
 
@@ -144,13 +151,16 @@ class ContentEditViewBuilder extends AbstractContentViewBuilder implements ViewB
      * @param array $languages
      * @param int|null $versionNo
      *
-     * @return \Ibexa\Contracts\Core\Repository\Values\Content\Content
+     * @return Content
      *
-     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\UnauthorizedException
-     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException
+     * @throws UnauthorizedException
+     * @throws NotFoundException
      */
-    private function loadContent(int $contentId, array $languages = [], ?int $versionNo = null): Content
-    {
+    private function loadContent(
+        int $contentId,
+        array $languages = [],
+        ?int $versionNo = null
+    ): Content {
         return $this->repository->getContentService()->loadContent($contentId, $languages, $versionNo);
     }
 
@@ -160,26 +170,31 @@ class ContentEditViewBuilder extends AbstractContentViewBuilder implements ViewB
      * @param int $contentTypeId
      * @param string[] $languageCodes
      *
-     * @return \Ibexa\Contracts\Core\Repository\Values\ContentType\ContentType
+     * @return ContentType
      *
-     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException
+     * @throws NotFoundException
      */
-    private function loadContentType(int $contentTypeId, array $languageCodes): ContentType
-    {
+    private function loadContentType(
+        int $contentTypeId,
+        array $languageCodes
+    ): ContentType {
         return $this->repository->getContentTypeService()->loadContentType($contentTypeId, $languageCodes);
     }
 
     /**
      * @param array $parameters
-     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Location|null $location
-     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Language $language
+     * @param Location|null $location
+     * @param Language $language
      *
-     * @return \Ibexa\Contracts\Core\Repository\Values\Content\Content
+     * @return Content
      *
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\InvalidArgumentException
      */
-    private function resolveContent(array $parameters, ?Location $location, Language $language): Content
-    {
+    private function resolveContent(
+        array $parameters,
+        ?Location $location,
+        Language $language
+    ): Content {
         if (isset($parameters['content'])) {
             return $parameters['content'];
         }
@@ -205,7 +220,7 @@ class ContentEditViewBuilder extends AbstractContentViewBuilder implements ViewB
     /**
      * @param array $parameters
      *
-     * @return \Ibexa\Contracts\Core\Repository\Values\Content\Location|null
+     * @return Location|null
      */
     private function resolveLocation(array $parameters): ?Location
     {

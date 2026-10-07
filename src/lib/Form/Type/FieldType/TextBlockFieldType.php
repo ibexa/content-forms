@@ -22,7 +22,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 class TextBlockFieldType extends AbstractType
 {
-    /** @var \Ibexa\Contracts\Core\Repository\FieldTypeService */
+    /** @var FieldTypeService */
     protected $fieldTypeService;
 
     public function __construct(FieldTypeService $fieldTypeService)
@@ -45,15 +45,20 @@ class TextBlockFieldType extends AbstractType
         return TextareaType::class;
     }
 
-    public function buildView(FormView $view, FormInterface $form, array $options)
-    {
+    public function buildView(
+        FormView $view,
+        FormInterface $form,
+        array $options
+    ) {
         if (null !== $options['rows']) {
             $view->vars['attr'] = array_merge($view->vars['attr'], ['rows' => $options['rows']]);
         }
     }
 
-    public function buildForm(FormBuilderInterface $builder, array $options)
-    {
+    public function buildForm(
+        FormBuilderInterface $builder,
+        array $options
+    ) {
         $builder->addModelTransformer(new FieldValueTransformer($this->fieldTypeService->getFieldType('eztext')));
     }
 

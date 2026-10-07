@@ -8,13 +8,14 @@ declare(strict_types=1);
 
 namespace Ibexa\Tests\ContentForms\Validator\Constraints;
 
+use Ibexa\ContentForms\Validator\Constraints\Password;
 use Ibexa\ContentForms\Validator\Constraints\UserAccountPassword;
 use Ibexa\ContentForms\Validator\Constraints\UserAccountPasswordValidator;
 use PHPUnit\Framework\TestCase;
 
 class UserAccountPasswordTest extends TestCase
 {
-    /** @var \Ibexa\ContentForms\Validator\Constraints\Password */
+    /** @var Password */
     private $constraint;
 
     protected function setUp(): void

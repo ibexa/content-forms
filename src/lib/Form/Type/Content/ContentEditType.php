@@ -38,8 +38,10 @@ class ContentEditType extends AbstractType
         return BaseContentType::class;
     }
 
-    public function buildForm(FormBuilderInterface $builder, array $options)
-    {
+    public function buildForm(
+        FormBuilderInterface $builder,
+        array $options
+    ) {
         $builder
             ->add('publish', SubmitType::class, ['label' => 'Publish'])
             ->add('publishAndEdit', SubmitType::class, ['label' => 'Publish and edit']);

@@ -22,13 +22,13 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
  */
 class UserUpdateFormProcessor implements EventSubscriberInterface
 {
-    /** @var \Ibexa\Contracts\Core\Repository\UserService */
+    /** @var UserService */
     private $userService;
 
-    /** @var \Ibexa\Contracts\Core\Repository\ContentService */
+    /** @var ContentService */
     private $contentService;
 
-    /** @var \Symfony\Component\Routing\Generator\UrlGeneratorInterface */
+    /** @var UrlGeneratorInterface */
     private $urlGenerator;
 
     public function __construct(
@@ -74,11 +74,13 @@ class UserUpdateFormProcessor implements EventSubscriberInterface
     }
 
     /**
-     * @param \Ibexa\ContentForms\Data\User\UserUpdateData $data
+     * @param UserUpdateData $data
      * @param string $languageCode
      */
-    private function setContentFields(UserUpdateData $data, string $languageCode): void
-    {
+    private function setContentFields(
+        UserUpdateData $data,
+        string $languageCode
+    ): void {
         $data->contentUpdateStruct = $this->contentService->newContentUpdateStruct();
 
         foreach ($data->fieldsData as $fieldDefIdentifier => $fieldData) {

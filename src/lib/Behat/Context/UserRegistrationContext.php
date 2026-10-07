@@ -12,6 +12,7 @@ use Behat\Behat\Context\Context;
 use Behat\Behat\Context\SnippetAcceptingContext;
 use Behat\Behat\Hook\Scope\BeforeScenarioScope;
 use Behat\Gherkin\Node\PyStringNode;
+use Behat\Mink\Exception\ElementNotFoundException;
 use Behat\MinkExtension\Context\RawMinkContext;
 use Ibexa\Bundle\Core\Features\Context\YamlConfigurationContext;
 use Ibexa\Contracts\Core\Repository\ContentTypeService;
@@ -20,6 +21,7 @@ use Ibexa\Contracts\Core\Repository\RoleService;
 use Ibexa\Contracts\Core\Repository\UserService;
 use Ibexa\Contracts\Core\Repository\Values\User\Role;
 use Ibexa\Contracts\Core\Repository\Values\User\User;
+use Ibexa\Contracts\Core\Repository\Values\User\UserGroup;
 use Ibexa\Core\Repository\Values\User\RoleCreateStruct;
 use Ibexa\Core\Repository\Values\User\UserReference;
 use PHPUnit\Framework\Assert as Assertion;
@@ -46,12 +48,12 @@ class UserRegistrationContext extends RawMinkContext implements Context, Snippet
     /**
      * Used to cover registration group customization.
      *
-     * @var \Ibexa\Contracts\Core\Repository\Values\User\UserGroup
+     * @var UserGroup
      */
     private $customUserGroup;
 
     /**
-     * @var \Ibexa\Bundle\Core\Features\Context\YamlConfigurationContext
+     * @var YamlConfigurationContext
      */
     private $yamlConfigurationContext;
 
@@ -60,16 +62,16 @@ class UserRegistrationContext extends RawMinkContext implements Context, Snippet
      */
     private $adminUserId = 14;
 
-    /** @var \Ibexa\Contracts\Core\Repository\PermissionResolver */
+    /** @var PermissionResolver */
     private $permissionResolver;
 
-    /** @var \Ibexa\Contracts\Core\Repository\RoleService */
+    /** @var RoleService */
     private $roleService;
 
-    /** @var \Ibexa\Contracts\Core\Repository\UserService */
+    /** @var UserService */
     private $userService;
 
-    /** @var \Ibexa\Contracts\Core\Repository\ContentTypeService */
+    /** @var ContentTypeService */
     private $contentTypeService;
 
     public function __construct(
@@ -114,9 +116,9 @@ class UserRegistrationContext extends RawMinkContext implements Context, Snippet
     /**
      * Creates a user for registration testing, and assigns it the role $role.
      *
-     * @param \Ibexa\Contracts\Core\Repository\Values\User\Role $role
+     * @param Role $role
      *
-     * @return \Ibexa\Contracts\Core\Repository\Values\User\User
+     * @return User
      */
     private function createUserWithRole(Role $role)
     {
@@ -143,7 +145,7 @@ class UserRegistrationContext extends RawMinkContext implements Context, Snippet
      *
      * @param bool $withUserRegisterPolicy Determines if the role gets the user/register policy
      *
-     * @return \Ibexa\Contracts\Core\Repository\Values\User\Role
+     * @return Role
      */
     private function createRegistrationRole($withUserRegisterPolicy = true)
     {
@@ -180,9 +182,9 @@ class UserRegistrationContext extends RawMinkContext implements Context, Snippet
     }
 
     /**
-     * @param \Ibexa\Contracts\Core\Repository\Values\User\User $user
+     * @param User $user
      *
-     * @throws \Behat\Mink\Exception\ElementNotFoundException
+     * @throws ElementNotFoundException
      */
     private function loginAs(User $user)
     {
@@ -348,8 +350,10 @@ class UserRegistrationContext extends RawMinkContext implements Context, Snippet
     /**
      * @Given /^the following template in "([^"]*)":$/
      */
-    public function createTemplateAt($path, PyStringNode $contents)
-    {
+    public function createTemplateAt(
+        $path,
+        PyStringNode $contents
+    ) {
         $fs = new Filesystem();
         $fs->mkdir(dirname($path));
         $fs->dumpFile($path, (string) $contents);

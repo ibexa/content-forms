@@ -26,7 +26,7 @@ final class FieldTypeFormContext extends RawMinkContext implements SnippetAccept
         'selection' => 'ezselection',
     ];
 
-    /** @var \Ibexa\ContentForms\Behat\Context\ContentTypeContext */
+    /** @var ContentTypeContext */
     private $contentTypeContext;
 
     /** @BeforeScenario */
@@ -40,8 +40,10 @@ final class FieldTypeFormContext extends RawMinkContext implements SnippetAccept
      * @Given a content type with a(n) :fieldTypeIdentifier field definition
      * @Given a content type :contentTypeName with a(n) :fieldTypeIdentifier field definition
      */
-    public function aContentTypeWithAGivenFieldDefinition($fieldTypeIdentifier, $contentTypeName = null)
-    {
+    public function aContentTypeWithAGivenFieldDefinition(
+        $fieldTypeIdentifier,
+        $contentTypeName = null
+    ) {
         if (isset(self::$fieldTypeIdentifierMap[$fieldTypeIdentifier])) {
             $fieldTypeIdentifier = self::$fieldTypeIdentifierMap[$fieldTypeIdentifier];
         }
@@ -212,8 +214,10 @@ final class FieldTypeFormContext extends RawMinkContext implements SnippetAccept
      * @param $option string The field definition option
      * @param $value mixed The option value
      */
-    public function setFieldDefinitionOption($option, $value)
-    {
+    public function setFieldDefinitionOption(
+        $option,
+        $value
+    ) {
         $this->contentTypeContext->updateFieldDefinition(
             self::$fieldIdentifier,
             new FieldDefinitionUpdateStruct(['fieldSettings' => [$option => $value]])

@@ -13,7 +13,7 @@ use Ibexa\Contracts\ContentForms\Data\Content\FieldData;
 trait ContentData
 {
     /**
-     * @var \Ibexa\Contracts\ContentForms\Data\Content\FieldData[]
+     * @var FieldData[]
      */
     protected $fieldsData;
 

@@ -10,10 +10,13 @@ namespace Ibexa\ContentForms\Content\View\Builder;
 
 use Ibexa\ContentForms\Content\View\ContentCreateSuccessView;
 use Ibexa\ContentForms\Content\View\ContentCreateView;
+use Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException;
+use Ibexa\Contracts\Core\Repository\Exceptions\UnauthorizedException;
 use Ibexa\Contracts\Core\Repository\Values\Content\Location;
 use Ibexa\Contracts\Core\Repository\Values\ContentType\ContentType;
 use Ibexa\Core\Base\Exceptions\InvalidArgumentException;
 use Ibexa\Core\MVC\Symfony\View\Builder\ViewBuilder;
+use Symfony\Component\Form\Form;
 
 /**
  * Builds ContentCreateView objects.
@@ -30,10 +33,10 @@ class ContentCreateViewBuilder extends AbstractContentViewBuilder implements Vie
     /**
      * @param array $parameters
      *
-     * @return \Ibexa\ContentForms\Content\View\ContentCreateSuccessView|\Ibexa\ContentForms\Content\View\ContentCreateView
+     * @return ContentCreateSuccessView|ContentCreateView
      *
-     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\UnauthorizedException
-     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException
+     * @throws UnauthorizedException
+     * @throws NotFoundException
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\InvalidArgumentException
      */
     public function buildView(array $parameters)
@@ -43,7 +46,7 @@ class ContentCreateViewBuilder extends AbstractContentViewBuilder implements Vie
         $language = $this->resolveLanguage($parameters);
         $location = $this->resolveLocation($parameters);
         $contentType = $this->resolveContentType($parameters, $this->languagePreferenceProvider->getPreferredLanguages());
-        /** @var \Symfony\Component\Form\Form $form */
+        /** @var Form $form */
         $form = $parameters['form'];
 
         if ($form->isSubmitted() && $form->isValid() && null !== $form->getClickedButton()) {
@@ -89,12 +92,14 @@ class ContentCreateViewBuilder extends AbstractContentViewBuilder implements Vie
      * @param string $contentTypeIdentifier
      * @param string[] $prioritizedLanguages
      *
-     * @return \Ibexa\Contracts\Core\Repository\Values\ContentType\ContentType
+     * @return ContentType
      *
-     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException
+     * @throws NotFoundException
      */
-    private function loadContentType(string $contentTypeIdentifier, array $prioritizedLanguages = []): ContentType
-    {
+    private function loadContentType(
+        string $contentTypeIdentifier,
+        array $prioritizedLanguages = []
+    ): ContentType {
         return $this->repository->getContentTypeService()->loadContentTypeByIdentifier(
             $contentTypeIdentifier,
             $prioritizedLanguages
@@ -105,13 +110,15 @@ class ContentCreateViewBuilder extends AbstractContentViewBuilder implements Vie
      * @param array $parameters
      * @param array $languageCodes
      *
-     * @return \Ibexa\Contracts\Core\Repository\Values\ContentType\ContentType
+     * @return ContentType
      *
-     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException
+     * @throws NotFoundException
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\InvalidArgumentException
      */
-    private function resolveContentType(array $parameters, array $languageCodes): ContentType
-    {
+    private function resolveContentType(
+        array $parameters,
+        array $languageCodes
+    ): ContentType {
         if (isset($parameters['contentType'])) {
             return $parameters['contentType'];
         }
@@ -129,10 +136,10 @@ class ContentCreateViewBuilder extends AbstractContentViewBuilder implements Vie
     /**
      * @param array $parameters
      *
-     * @return \Ibexa\Contracts\Core\Repository\Values\Content\Location
+     * @return Location
      *
-     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\UnauthorizedException
-     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException
+     * @throws UnauthorizedException
+     * @throws NotFoundException
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\InvalidArgumentException
      */
     private function resolveLocation(array $parameters): Location

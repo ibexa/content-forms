@@ -12,6 +12,8 @@ use Ibexa\ContentForms\Data\Content\ContentCreateData;
 use Ibexa\ContentForms\Data\Mapper\ContentCreateMapper;
 use Ibexa\ContentForms\Form\Type\Content\ContentEditType;
 use Ibexa\Contracts\Core\Repository\ContentTypeService;
+use Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException;
+use Ibexa\Contracts\Core\Repository\Exceptions\UnauthorizedException;
 use Ibexa\Contracts\Core\Repository\LocationService;
 use Ibexa\Contracts\Core\Repository\Values\Content\Location;
 use Ibexa\Contracts\Core\Repository\Values\ContentType\ContentType;
@@ -21,26 +23,27 @@ use Ibexa\Core\MVC\Symfony\View\ViewEvents;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\Form\FormInterface;
+use Symfony\Component\OptionsResolver\Exception\InvalidOptionsException;
 
 class ContentCreateViewFilter implements EventSubscriberInterface
 {
-    /** @var \Ibexa\Contracts\Core\Repository\LocationService */
+    /** @var LocationService */
     private $locationService;
 
-    /** @var \Ibexa\Contracts\Core\Repository\ContentTypeService */
+    /** @var ContentTypeService */
     private $contentTypeService;
 
-    /** @var \Symfony\Component\Form\FormFactoryInterface */
+    /** @var FormFactoryInterface */
     private $formFactory;
 
-    /** @var \Ibexa\Core\MVC\Symfony\Locale\UserLanguagePreferenceProviderInterface */
+    /** @var UserLanguagePreferenceProviderInterface */
     private $languagePreferenceProvider;
 
     /**
-     * @param \Ibexa\Contracts\Core\Repository\LocationService $locationService
-     * @param \Ibexa\Contracts\Core\Repository\ContentTypeService $contentTypeService
-     * @param \Symfony\Component\Form\FormFactoryInterface $formFactory
-     * @param \Ibexa\Core\MVC\Symfony\Locale\UserLanguagePreferenceProviderInterface $languagePreferenceProvider
+     * @param LocationService $locationService
+     * @param ContentTypeService $contentTypeService
+     * @param FormFactoryInterface $formFactory
+     * @param UserLanguagePreferenceProviderInterface $languagePreferenceProvider
      */
     public function __construct(
         LocationService $locationService,
@@ -60,11 +63,11 @@ class ContentCreateViewFilter implements EventSubscriberInterface
     }
 
     /**
-     * @param \Ibexa\Core\MVC\Symfony\View\Event\FilterViewBuilderParametersEvent $event
+     * @param FilterViewBuilderParametersEvent $event
      *
-     * @throws \Symfony\Component\OptionsResolver\Exception\InvalidOptionsException
-     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\UnauthorizedException
-     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException
+     * @throws InvalidOptionsException
+     * @throws UnauthorizedException
+     * @throws NotFoundException
      */
     public function handleContentCreateForm(FilterViewBuilderParametersEvent $event)
     {
@@ -94,11 +97,11 @@ class ContentCreateViewFilter implements EventSubscriberInterface
     }
 
     /**
-     * @param \Ibexa\Contracts\Core\Repository\Values\ContentType\ContentType $contentType
-     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Location $location
+     * @param ContentType $contentType
+     * @param Location $location
      * @param string $languageCode
      *
-     * @return \Ibexa\ContentForms\Data\Content\ContentCreateData
+     * @return ContentCreateData
      */
     private function resolveContentCreateData(
         ContentType $contentType,
@@ -117,10 +120,10 @@ class ContentCreateViewFilter implements EventSubscriberInterface
     }
 
     /**
-     * @param \Ibexa\ContentForms\Data\Content\ContentCreateData $contentCreateData
+     * @param ContentCreateData $contentCreateData
      * @param string $languageCode
      *
-     * @return \Symfony\Component\Form\FormInterface
+     * @return FormInterface
      */
     private function resolveContentCreateForm(
         ContentCreateData $contentCreateData,

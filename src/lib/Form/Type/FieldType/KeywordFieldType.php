@@ -33,8 +33,10 @@ class KeywordFieldType extends AbstractType
         return TextType::class;
     }
 
-    public function buildForm(FormBuilderInterface $builder, array $options)
-    {
+    public function buildForm(
+        FormBuilderInterface $builder,
+        array $options
+    ) {
         $builder->addModelTransformer(new KeywordValueTransformer());
     }
 }

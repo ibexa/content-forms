@@ -8,26 +8,30 @@ declare(strict_types=1);
 
 namespace Ibexa\ContentForms\Validator;
 
+use Ibexa\Contracts\Core\FieldType\ValidationError;
 use Ibexa\Contracts\Core\Repository\Values\Translation\Plural;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
+use Symfony\Component\Validator\Violation\ConstraintViolationBuilderInterface;
 
 /**
  * @internal
  */
 final class ValidationErrorsProcessor
 {
-    /** @var \Symfony\Component\Validator\Context\ExecutionContextInterface */
+    /** @var ExecutionContextInterface */
     private $context;
 
     /** @var callable|null */
     private $propertyPathGenerator;
 
     /**
-     * @param \Symfony\Component\Validator\Context\ExecutionContextInterface $context
+     * @param ExecutionContextInterface $context
      * @param callable|null $propertyPathGenerator
      */
-    public function __construct(ExecutionContextInterface $context, ?callable $propertyPathGenerator = null)
-    {
+    public function __construct(
+        ExecutionContextInterface $context,
+        ?callable $propertyPathGenerator = null
+    ) {
         $this->context = $context;
         $this->propertyPathGenerator = $propertyPathGenerator;
     }
@@ -35,7 +39,7 @@ final class ValidationErrorsProcessor
     /**
      * Builds constraint violations based on given SPI validation errors.
      *
-     * @param \Ibexa\Contracts\Core\FieldType\ValidationError[] $validationErrors
+     * @param ValidationError[] $validationErrors
      */
     public function processValidationErrors(array $validationErrors): void
     {
@@ -46,7 +50,7 @@ final class ValidationErrorsProcessor
         $propertyPathGenerator = $this->propertyPathGenerator;
         foreach ($validationErrors as $i => $error) {
             $message = $error->getTranslatableMessage();
-            /** @var \Symfony\Component\Validator\Violation\ConstraintViolationBuilderInterface $violationBuilder */
+            /** @var ConstraintViolationBuilderInterface $violationBuilder */
             $violationBuilder = $this->context->buildViolation($message instanceof Plural ? $message->plural : $message->message);
             $violationBuilder->setParameters($message->values);
 

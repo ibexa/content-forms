@@ -35,8 +35,10 @@ class MediaFieldType extends AbstractType
         return BinaryBaseFieldType::class;
     }
 
-    public function buildForm(FormBuilderInterface $builder, array $options)
-    {
+    public function buildForm(
+        FormBuilderInterface $builder,
+        array $options
+    ) {
         $builder
             ->add(
                 'hasController',

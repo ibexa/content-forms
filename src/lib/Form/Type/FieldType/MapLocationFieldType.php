@@ -24,7 +24,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 class MapLocationFieldType extends AbstractType
 {
-    /** @var \Ibexa\Contracts\Core\Repository\FieldTypeService */
+    /** @var FieldTypeService */
     protected $fieldTypeService;
 
     public function __construct(FieldTypeService $fieldTypeService)
@@ -42,8 +42,10 @@ class MapLocationFieldType extends AbstractType
         return 'ezplatform_fieldtype_ezgmaplocation';
     }
 
-    public function buildForm(FormBuilderInterface $builder, array $options)
-    {
+    public function buildForm(
+        FormBuilderInterface $builder,
+        array $options
+    ) {
         $builder
             ->add(
                 'latitude',
@@ -87,8 +89,11 @@ class MapLocationFieldType extends AbstractType
             );
     }
 
-    public function finishView(FormView $view, FormInterface $form, array $options)
-    {
+    public function finishView(
+        FormView $view,
+        FormInterface $form,
+        array $options
+    ) {
         $view->children['latitude']->vars['type'] = 'number';
         $view->children['longitude']->vars['type'] = 'number';
     }

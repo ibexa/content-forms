@@ -18,7 +18,7 @@ interface ContentTypeValueView
     /**
      * Returns the ContentType.
      *
-     * @return \Ibexa\Contracts\Core\Repository\Values\ContentType\ContentType
+     * @return ContentType
      */
     public function getContentType(): ContentType;
 }

@@ -38,8 +38,10 @@ class UserCreateType extends AbstractType
         return BaseUserType::class;
     }
 
-    public function buildForm(FormBuilderInterface $builder, array $options)
-    {
+    public function buildForm(
+        FormBuilderInterface $builder,
+        array $options
+    ) {
         $builder
             ->add('create', SubmitType::class, ['label' => /** @Desc("Create") */ 'user.create']);
     }
