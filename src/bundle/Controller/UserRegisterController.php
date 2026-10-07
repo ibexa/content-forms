@@ -18,7 +18,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
 
 /**
- * @deprecated Deprecated in 2.5 and will be removed in 3.0. Please use \Ibexa\Bundle\User\Controller\UserRegisterController instead.
+ * @deprecated Deprecated in 2.5 and will be removed in 3.0. Please use BaseUserRegisterController instead.
  */
 class UserRegisterController extends Controller
 {

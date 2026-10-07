@@ -14,7 +14,6 @@ use Ibexa\ContentForms\Form\Type\FieldType\UserAccountFieldType;
 use Ibexa\Contracts\ContentForms\Data\Content\FieldData;
 use Ibexa\Contracts\ContentForms\FieldType\FieldValueFormMapperInterface;
 use Ibexa\Contracts\Core\Repository\Values\ContentType\FieldDefinition;
-use Ibexa\Core\FieldType\User\Value;
 use Ibexa\Core\FieldType\User\Value as ApiUserValue;
 use Symfony\Component\Form\CallbackTransformer;
 use Symfony\Component\Form\Exception\AlreadySubmittedException;
@@ -95,7 +94,7 @@ final class UserAccountFieldValueFormMapper implements FieldValueFormMapperInter
                 return new UserAccountFieldData($data->login, null, $data->email, $data->enabled);
             },
             static function (UserAccountFieldData $submittedData) use ($fieldDefinition) {
-                /** @var Value $userValue */
+                /** @var ApiUserValue $userValue */
                 $userValue = clone $fieldDefinition->defaultValue;
 
                 $userValue->login = $submittedData->username;
