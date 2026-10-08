@@ -10,20 +10,21 @@ namespace Ibexa\ContentForms\Data\User;
 
 use Ibexa\ContentForms\Data\Content\ContentData;
 use Ibexa\ContentForms\Data\NewnessCheckable;
+use Ibexa\Contracts\ContentForms\Data\Content\FieldData;
 use Ibexa\Contracts\Core\Repository\Values\User\Limitation\RoleLimitation;
 use Ibexa\Contracts\Core\Repository\Values\User\Role;
 use Ibexa\Contracts\Core\Repository\Values\User\UserGroup;
 use Ibexa\Core\Repository\Values\User\UserCreateStruct;
 
 /**
- * @property \Ibexa\Contracts\ContentForms\Data\Content\FieldData[] $fieldsData
+ * @property FieldData[] $fieldsData
  */
 class UserCreateData extends UserCreateStruct implements NewnessCheckable
 {
     use ContentData;
 
     /**
-     * @var \Ibexa\Contracts\Core\Repository\Values\User\UserGroup[]
+     * @var UserGroup[]
      */
     private $parentGroups;
 
@@ -37,7 +38,7 @@ class UserCreateData extends UserCreateStruct implements NewnessCheckable
     }
 
     /**
-     * @return \Ibexa\Contracts\Core\Repository\Values\User\UserGroup[]
+     * @return UserGroup[]
      */
     public function getParentGroups()
     {
@@ -47,7 +48,7 @@ class UserCreateData extends UserCreateStruct implements NewnessCheckable
     /**
      * Adds a parent group.
      *
-     * @param \Ibexa\Contracts\Core\Repository\Values\User\UserGroup $parentGroup
+     * @param UserGroup $parentGroup
      */
     public function addParentGroup(UserGroup $parentGroup)
     {
@@ -55,7 +56,7 @@ class UserCreateData extends UserCreateStruct implements NewnessCheckable
     }
 
     /**
-     * @param \Ibexa\Contracts\Core\Repository\Values\User\UserGroup[] $parentGroups
+     * @param UserGroup[] $parentGroups
      */
     public function setParentGroups(array $parentGroups)
     {

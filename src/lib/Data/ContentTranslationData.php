@@ -8,11 +8,13 @@ declare(strict_types=1);
 
 namespace Ibexa\ContentForms\Data;
 
+use Ibexa\Contracts\ContentForms\Data\Content\FieldData;
+use Ibexa\Contracts\Core\Repository\Values\Content\Content;
 use Ibexa\Core\Repository\Values\Content\ContentUpdateStruct;
 
 /**
- * @property \Ibexa\Contracts\ContentForms\Data\Content\FieldData[] $fieldsData
- * @property \Ibexa\Contracts\Core\Repository\Values\Content\Content $content
+ * @property FieldData[] $fieldsData
+ * @property Content $content
  */
 class ContentTranslationData extends ContentUpdateStruct implements NewnessCheckable
 {

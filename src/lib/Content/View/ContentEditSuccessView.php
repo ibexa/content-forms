@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace Ibexa\ContentForms\Content\View;
 
 use Ibexa\Contracts\Core\Repository\Values\Content\Location;
+use Ibexa\Core\Base\Exceptions\InvalidArgumentType;
 use Ibexa\Core\MVC\Symfony\View\BaseView;
 use Ibexa\Core\MVC\Symfony\View\LocationValueView;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,13 +17,13 @@ use Symfony\Component\HttpKernel\Controller\ControllerReference;
 
 class ContentEditSuccessView extends BaseView implements LocationValueView
 {
-    /** @var \Ibexa\Contracts\Core\Repository\Values\Content\Location|null */
+    /** @var Location|null */
     private $location;
 
     /**
-     * @param \Symfony\Component\HttpFoundation\Response $response
+     * @param Response $response
      *
-     * @throws \Ibexa\Core\Base\Exceptions\InvalidArgumentType
+     * @throws InvalidArgumentType
      */
     public function __construct(Response $response)
     {
@@ -33,7 +34,7 @@ class ContentEditSuccessView extends BaseView implements LocationValueView
     }
 
     /**
-     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Location|null $location
+     * @param Location|null $location
      */
     public function setLocation(?Location $location): void
     {
@@ -41,7 +42,7 @@ class ContentEditSuccessView extends BaseView implements LocationValueView
     }
 
     /**
-     * @return \Ibexa\Contracts\Core\Repository\Values\Content\Location|null
+     * @return Location|null
      */
     public function getLocation(): ?Location
     {

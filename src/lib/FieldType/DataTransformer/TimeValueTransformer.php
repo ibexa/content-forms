@@ -18,11 +18,11 @@ use Symfony\Component\Form\Exception\TransformationFailedException;
 class TimeValueTransformer implements DataTransformerInterface
 {
     /**
-     * @param \Ibexa\Core\FieldType\Time\Value $value
+     * @param Value $value
      *
      * @return int|null
      *
-     * @throws \Symfony\Component\Form\Exception\TransformationFailedException
+     * @throws TransformationFailedException
      */
     public function transform($value)
     {
@@ -42,9 +42,9 @@ class TimeValueTransformer implements DataTransformerInterface
     /**
      * @param int $value
      *
-     * @return \Ibexa\Core\FieldType\Time\Value|null
+     * @return Value|null
      *
-     * @throws \Symfony\Component\Form\Exception\TransformationFailedException
+     * @throws TransformationFailedException
      */
     public function reverseTransform($value)
     {

@@ -15,8 +15,10 @@ use Ibexa\Contracts\ContentForms\Event\AutosaveEnabled;
 use Ibexa\Contracts\Core\Repository\ContentService;
 use Ibexa\Contracts\Core\Repository\ContentTypeService;
 use Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException;
+use Ibexa\Contracts\Core\Repository\Exceptions\UnauthorizedException;
 use Ibexa\Contracts\Core\Repository\LocationService;
 use Ibexa\Contracts\Core\Repository\Values\Content\Content;
+use Ibexa\Contracts\Core\Repository\Values\Content\Field;
 use Ibexa\Contracts\Core\Repository\Values\Content\Location;
 use Ibexa\Contracts\Core\Repository\Values\ContentType\ContentType;
 use Ibexa\Core\MVC\Symfony\Locale\UserLanguagePreferenceProviderInterface;
@@ -25,6 +27,7 @@ use Ibexa\Core\MVC\Symfony\View\ViewEvents;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\Form\FormInterface;
+use Symfony\Component\OptionsResolver\Exception\InvalidOptionsException;
 use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
 
 class ContentEditViewFilter implements EventSubscriberInterface
@@ -63,11 +66,11 @@ class ContentEditViewFilter implements EventSubscriberInterface
     }
 
     /**
-     * @param \Ibexa\Core\MVC\Symfony\View\Event\FilterViewBuilderParametersEvent $event
+     * @param FilterViewBuilderParametersEvent $event
      *
-     * @throws \Symfony\Component\OptionsResolver\Exception\InvalidOptionsException
-     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\UnauthorizedException
-     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException
+     * @throws InvalidOptionsException
+     * @throws UnauthorizedException
+     * @throws NotFoundException
      */
     public function handleContentEditForm(FilterViewBuilderParametersEvent $event)
     {
@@ -124,7 +127,7 @@ class ContentEditViewFilter implements EventSubscriberInterface
     }
 
     /**
-     * @param array<\Ibexa\Contracts\Core\Repository\Values\Content\Field> $currentFields
+     * @param array<Field> $currentFields
      */
     private function resolveContentEditData(
         Content $content,
@@ -142,11 +145,11 @@ class ContentEditViewFilter implements EventSubscriberInterface
     }
 
     /**
-     * @param \Ibexa\ContentForms\Data\Content\ContentUpdateData $contentUpdate
+     * @param ContentUpdateData $contentUpdate
      * @param string $languageCode
-     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Content $content
+     * @param Content $content
      *
-     * @return \Symfony\Component\Form\FormInterface
+     * @return FormInterface
      */
     private function resolveContentEditForm(
         ContentUpdateData $contentUpdate,

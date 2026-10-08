@@ -17,10 +17,13 @@ interface FieldValueFormMapperInterface
      * Maps Field form to current FieldType.
      * Allows to add form fields for content edition.
      *
-     * @param \Symfony\Component\Form\FormInterface $fieldForm form for the current Field
-     * @param \Ibexa\Contracts\ContentForms\Data\Content\FieldData $data underlying data for current Field form
+     * @param FormInterface $fieldForm form for the current Field
+     * @param FieldData $data underlying data for current Field form
      */
-    public function mapFieldValueForm(FormInterface $fieldForm, FieldData $data);
+    public function mapFieldValueForm(
+        FormInterface $fieldForm,
+        FieldData $data
+    );
 }
 
 class_alias(

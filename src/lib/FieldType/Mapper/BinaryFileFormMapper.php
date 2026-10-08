@@ -18,7 +18,7 @@ use Symfony\Component\Form\FormInterface;
 
 class BinaryFileFormMapper implements FieldValueFormMapperInterface
 {
-    /** @var \Ibexa\Contracts\Core\Repository\FieldTypeService */
+    /** @var FieldTypeService */
     private $fieldTypeService;
 
     public function __construct(FieldTypeService $fieldTypeService)
@@ -26,8 +26,10 @@ class BinaryFileFormMapper implements FieldValueFormMapperInterface
         $this->fieldTypeService = $fieldTypeService;
     }
 
-    public function mapFieldValueForm(FormInterface $fieldForm, FieldData $data)
-    {
+    public function mapFieldValueForm(
+        FormInterface $fieldForm,
+        FieldData $data
+    ) {
         $fieldDefinition = $data->fieldDefinition;
         $formConfig = $fieldForm->getConfig();
         $fieldType = $this->fieldTypeService->getFieldType($fieldDefinition->fieldTypeIdentifier);

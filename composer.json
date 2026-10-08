@@ -32,14 +32,15 @@
         "ibexa/rest": "~4.6.0@dev",
         "ibexa/test-core": "^4.6.x-dev",
         "ibexa/user": "^4.6.x-dev",
-        "phpunit/phpunit": "^8.2",
+        "phpunit/phpunit": "^9.6",
         "matthiasnoback/symfony-dependency-injection-test": "^4.0",
         "behat/behat": "^3.5",
         "friendsofphp/php-cs-fixer": "^3.0",
-        "ibexa/code-style": "^1.0",
+        "ibexa/code-style": "~2.3.1",
         "phpstan/phpstan": "^2.1",
         "phpstan/phpstan-phpunit": "^2.0",
-        "phpstan/phpstan-symfony": "^2.0"
+        "phpstan/phpstan-symfony": "^2.0",
+        "ibexa/doctrine-migrations": "~4.6.x-dev"
     },
     "autoload": {
         "psr-4": {

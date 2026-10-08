@@ -24,7 +24,7 @@ final class ContentEditContext extends MinkContext implements Context, SnippetAc
     private $createdContentName;
 
     /**
-     * @var \Ibexa\ContentForms\Behat\Context\ContentTypeContext
+     * @var ContentTypeContext
      */
     private $contentTypeContext;
 

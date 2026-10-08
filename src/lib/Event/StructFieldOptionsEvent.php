@@ -60,8 +60,10 @@ abstract class StructFieldOptionsEvent extends Event
     /**
      * @param mixed $value
      */
-    public function setOption(string $option, $value): void
-    {
+    public function setOption(
+        string $option,
+        $value
+    ): void {
         $this->options[$option] = $value;
     }
 

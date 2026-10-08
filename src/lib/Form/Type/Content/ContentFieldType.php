@@ -27,7 +27,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class ContentFieldType extends AbstractType
 {
     /**
-     * @var \Ibexa\ContentForms\FieldType\FieldTypeFormMapperDispatcherInterface
+     * @var FieldTypeFormMapperDispatcherInterface
      */
     private $fieldTypeFormMapper;
 
@@ -50,7 +50,10 @@ class ContentFieldType extends AbstractType
     {
         $resolver
             ->setRequired(['languageCode', 'mainLanguageCode', 'struct'])
-            ->setDefault('struct', static function (Options $options, ?ContentStruct $value): ?ContentStruct {
+            ->setDefault('struct', static function (
+                Options $options,
+                ?ContentStruct $value
+            ): ?ContentStruct {
                 if ($value !== null) {
                     return $value;
                 }
@@ -99,15 +102,20 @@ class ContentFieldType extends AbstractType
             );
     }
 
-    public function buildView(FormView $view, FormInterface $form, array $options)
-    {
+    public function buildView(
+        FormView $view,
+        FormInterface $form,
+        array $options
+    ) {
         $view->vars['location'] = $options['location'];
         $view->vars['languageCode'] = $options['languageCode'];
         $view->vars['mainLanguageCode'] = $options['mainLanguageCode'];
     }
 
-    public function buildForm(FormBuilderInterface $builder, array $options)
-    {
+    public function buildForm(
+        FormBuilderInterface $builder,
+        array $options
+    ) {
         $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) {
             $this->fieldTypeFormMapper->map($event->getForm(), $event->getData());
         });

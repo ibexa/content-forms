@@ -28,7 +28,7 @@ use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
 
 class FieldCollectionType extends CollectionType
 {
-    /** @var \Symfony\Contracts\EventDispatcher\EventDispatcherInterface */
+    /** @var EventDispatcherInterface */
     private $eventDispatcher;
 
     public function __construct(
@@ -81,7 +81,7 @@ class FieldCollectionType extends CollectionType
         array $entryOptions,
         FormInterface $form
     ): array {
-        /** @var \Ibexa\ContentForms\Event\ContentUpdateFieldOptionsEvent $contentUpdateFieldOptionsEvent */
+        /** @var ContentUpdateFieldOptionsEvent $contentUpdateFieldOptionsEvent */
         $contentUpdateFieldOptionsEvent = $this->eventDispatcher->dispatch(
             new ContentUpdateFieldOptionsEvent(
                 $entryOptions['content'],
@@ -106,7 +106,7 @@ class FieldCollectionType extends CollectionType
         array $entryOptions,
         FormInterface $form
     ): array {
-        /** @var \Ibexa\ContentForms\Event\ContentCreateFieldOptionsEvent $contentUpdateFieldOptionsEvent */
+        /** @var ContentCreateFieldOptionsEvent $contentUpdateFieldOptionsEvent */
         $contentCreateFieldOptionsEvent = $this->eventDispatcher->dispatch(
             new ContentCreateFieldOptionsEvent(
                 $entryOptions['struct'],
@@ -130,7 +130,7 @@ class FieldCollectionType extends CollectionType
         array $entryOptions,
         FormInterface $form
     ): array {
-        /** @var \Ibexa\ContentForms\Event\UserCreateFieldOptionsEvent $userCreateFieldOptionsEvent */
+        /** @var UserCreateFieldOptionsEvent $userCreateFieldOptionsEvent */
         $userCreateFieldOptionsEvent = $this->eventDispatcher->dispatch(
             new UserCreateFieldOptionsEvent(
                 $entryOptions['struct'],
@@ -154,7 +154,7 @@ class FieldCollectionType extends CollectionType
         array $entryOptions,
         FormInterface $form
     ): array {
-        /** @var \Ibexa\ContentForms\Event\UserUpdateFieldOptionsEvent $userUpdateFieldOptionsEvent */
+        /** @var UserUpdateFieldOptionsEvent $userUpdateFieldOptionsEvent */
         $userUpdateFieldOptionsEvent = $this->eventDispatcher->dispatch(
             new UserUpdateFieldOptionsEvent(
                 $entryOptions['content'],

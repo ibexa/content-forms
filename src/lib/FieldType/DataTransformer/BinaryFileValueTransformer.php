@@ -8,7 +8,9 @@ declare(strict_types=1);
 
 namespace Ibexa\ContentForms\FieldType\DataTransformer;
 
+use Ibexa\Core\FieldType\BinaryFile\Value;
 use Symfony\Component\Form\DataTransformerInterface;
+use Symfony\Component\Form\Exception\TransformationFailedException;
 
 /**
  * Data transformer for ezbinaryfile field type.
@@ -18,7 +20,7 @@ use Symfony\Component\Form\DataTransformerInterface;
 class BinaryFileValueTransformer extends AbstractBinaryBaseTransformer implements DataTransformerInterface
 {
     /**
-     * @param \Ibexa\Core\FieldType\BinaryFile\Value $value
+     * @param Value $value
      *
      * @return array
      */
@@ -37,13 +39,13 @@ class BinaryFileValueTransformer extends AbstractBinaryBaseTransformer implement
     /**
      * @param array $value
      *
-     * @return \Ibexa\Core\FieldType\BinaryFile\Value
+     * @return Value
      *
-     * @throws \Symfony\Component\Form\Exception\TransformationFailedException
+     * @throws TransformationFailedException
      */
     public function reverseTransform($value)
     {
-        /** @var \Ibexa\Core\FieldType\BinaryFile\Value $valueObject */
+        /** @var Value $valueObject */
         $valueObject = $this->getReverseTransformedValue($value);
 
         if ($this->fieldType->isEmptyValue($valueObject)) {
