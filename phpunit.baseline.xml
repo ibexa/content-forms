@@ -1,2 +1,13 @@
 <?xml version="1.0"?>
-<files version="1"/>
+<files version="1">
+ <file path="vendor/ibexa/core/src/lib/Repository/Values/MultiLanguageNameTrait.php">
+  <line number="44" hash="2f468c13c326e472f7b8f98735b37f65a85149b9">
+   <issue><![CDATA[Using null as an array offset is deprecated, use an empty string instead]]></issue>
+  </line>
+ </file>
+ <file path="vendor/symfony/deprecation-contracts/function.php">
+  <line number="25" hash="c6af5d66288d0667e424978000f29571e4954b81">
+   <issue><![CDATA[Since symfony/validator 8.1: The "ConstraintValidator::initialize()" method is deprecated. Use the "validateInContext()" method instead of the "initialize()" and "validate()" ones.]]></issue>
+  </line>
+ </file>
+</files>

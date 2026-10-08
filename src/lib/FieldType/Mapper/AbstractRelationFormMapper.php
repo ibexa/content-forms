@@ -33,7 +33,7 @@ abstract class AbstractRelationFormMapper implements FieldValueFormMapperInterfa
         $contentTypeHash = [];
         foreach ($this->contentTypeService->loadContentTypeGroups() as $contentTypeGroup) {
             foreach ($this->contentTypeService->loadContentTypes($contentTypeGroup) as $contentType) {
-                $contentTypeHash[$contentType->getName()] = $contentType->identifier;
+                $contentTypeHash[$contentType->getName() ?? ''] = $contentType->identifier;
             }
         }
         ksort($contentTypeHash);

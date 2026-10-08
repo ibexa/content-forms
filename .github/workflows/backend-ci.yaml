@@ -14,7 +14,7 @@ jobs:
         strategy:
             matrix:
                 php:
-                    - '8.3'
+                    - '8.5'
 
         steps:
             - uses: actions/checkout@v7
@@ -34,6 +34,8 @@ jobs:
               run: |
                   set -euo pipefail
                   composer run-script check-cs -- --format=checkstyle | cs2pr
+              env:
+                  PHP_CS_FIXER_IGNORE_ENV: 1
 
     tests:
         name: Unit tests & PHPStan static analysis
@@ -44,8 +46,7 @@ jobs:
             fail-fast: false
             matrix:
                 php:
-                    - '8.3'
-                    - '8.4'
+                    - '8.5'
 
         steps:
             - uses: actions/checkout@v7
@@ -79,8 +80,7 @@ jobs:
             fail-fast: false
             matrix:
                 php:
-                    - '8.3'
-                    - '8.4'
+                    - '8.5'
 
         steps:
             - uses: actions/checkout@v7
