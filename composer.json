@@ -32,7 +32,7 @@
         "ibexa/rest": "~4.6.0@dev",
         "ibexa/test-core": "^4.6.x-dev",
         "ibexa/user": "^4.6.x-dev",
-        "phpunit/phpunit": "^8.2",
+        "phpunit/phpunit": "^9.6",
         "matthiasnoback/symfony-dependency-injection-test": "^4.0",
         "behat/behat": "^3.5",
         "friendsofphp/php-cs-fixer": "^3.0",
