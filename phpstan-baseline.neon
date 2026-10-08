@@ -445,12 +445,6 @@ parameters:
 			path: src/lib/Behat/Context/FieldTypeFormContext.php
 
 		-
-			message: '#^Call to an undefined static method PHPUnit\\Framework\\Assert\:\:assertMatchesRegularExpression\(\)\.$#'
-			identifier: staticMethod.notFound
-			count: 1
-			path: src/lib/Behat/Context/PagelayoutContext.php
-
-		-
 			message: '#^Method Ibexa\\ContentForms\\Behat\\Context\\PagelayoutContext\:\:aPagelayoutIsConfigured\(\) has no return type specified\.$#'
 			identifier: missingType.return
 			count: 1
