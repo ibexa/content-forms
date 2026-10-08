@@ -39,7 +39,8 @@
         "ibexa/code-style": "~2.3.1",
         "phpstan/phpstan": "^2.1",
         "phpstan/phpstan-phpunit": "^2.0",
-        "phpstan/phpstan-symfony": "^2.0"
+        "phpstan/phpstan-symfony": "^2.0",
+        "ibexa/doctrine-migrations": "~4.6.x-dev"
     },
     "autoload": {
         "psr-4": {
