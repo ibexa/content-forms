@@ -1435,7 +1435,7 @@ parameters:
 			path: src/lib/FieldType/FieldTypeFormMapperDispatcherInterface.php
 
 		-
-			message: '#^PHPDoc tag @param has invalid value \(\\Ibexa\\Contracts\\ContentForms\\FieldType\\FieldValueFormMapperInterface\)\: Unexpected token "\\n     \* ", expected variable at offset 153 on line 4$#'
+			message: '#^PHPDoc tag @param has invalid value \(FieldValueFormMapperInterface\)\: Unexpected token "\\n     \* ", expected variable at offset 113 on line 4$#'
 			identifier: phpDoc.parseError
 			count: 1
 			path: src/lib/FieldType/FieldTypeFormMapperDispatcherInterface.php
@@ -2377,7 +2377,7 @@ parameters:
 			path: src/lib/Form/Type/FieldType/AuthorFieldType.php
 
 		-
-			message: '#^PHPDoc tag @param has invalid value \(array\)\: Unexpected token "\\n     ", expected variable at offset 91 on line 3$#'
+			message: '#^PHPDoc tag @param has invalid value \(array\)\: Unexpected token "\\n     ", expected variable at offset 67 on line 3$#'
 			identifier: phpDoc.parseError
 			count: 1
 			path: src/lib/Form/Type/FieldType/AuthorFieldType.php
