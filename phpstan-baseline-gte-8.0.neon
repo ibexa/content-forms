@@ -7,18 +7,6 @@ parameters:
 			path: src/bundle/Controller/UserController.php
 
 		-
-			message: '#^Binary operation "\*\=" between float\|int\|string and 1024 results in an error\.$#'
-			identifier: assignOp.invalid
-			count: 1
-			path: src/lib/ConfigResolver/MaxUploadSize.php
-
-		-
-			message: '#^Binary operation "\*\=" between string and 1024 results in an error\.$#'
-			identifier: assignOp.invalid
-			count: 1
-			path: src/lib/ConfigResolver/MaxUploadSize.php
-
-		-
 			message: '#^Parameter \#1 \$array of function array_shift expects array, iterable\<Ibexa\\Contracts\\Core\\Repository\\Values\\Content\\Location\> given\.$#'
 			identifier: argument.type
 			count: 1
