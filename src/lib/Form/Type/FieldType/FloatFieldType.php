@@ -22,7 +22,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 class FloatFieldType extends AbstractType
 {
-    /** @var \Ibexa\Contracts\Core\Repository\FieldTypeService */
+    /** @var FieldTypeService */
     protected $fieldTypeService;
 
     public function __construct(FieldTypeService $fieldTypeService)
@@ -45,15 +45,20 @@ class FloatFieldType extends AbstractType
         return NumberType::class;
     }
 
-    public function buildForm(FormBuilderInterface $builder, array $options)
-    {
+    public function buildForm(
+        FormBuilderInterface $builder,
+        array $options
+    ) {
         $builder->addModelTransformer(new FieldValueTransformer($this->fieldTypeService->getFieldType('ezfloat')));
         // Removes NumberToLocalizedStringTransformer which breaks "number" type HTML input
         $builder->resetViewTransformers();
     }
 
-    public function buildView(FormView $view, FormInterface $form, array $options)
-    {
+    public function buildView(
+        FormView $view,
+        FormInterface $form,
+        array $options
+    ) {
         $attributes = ['step' => 'any'];
 
         if (null !== $options['min']) {

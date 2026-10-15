@@ -31,7 +31,7 @@ class FormActionEvent extends FormEvent
     /**
      * Response to return after form post-processing. Typically a RedirectResponse.
      *
-     * @var \Symfony\Component\HttpFoundation\Response
+     * @var Response
      */
     private $response;
 
@@ -43,14 +43,19 @@ class FormActionEvent extends FormEvent
     private $payloads;
 
     /**
-     * @param \Symfony\Component\Form\FormInterface $form
+     * @param FormInterface $form
      * @param $data
      * @param $clickedButton
      * @param array $options
      * @param array $payloads
      */
-    public function __construct(FormInterface $form, $data, $clickedButton, array $options = [], array $payloads = [])
-    {
+    public function __construct(
+        FormInterface $form,
+        $data,
+        $clickedButton,
+        array $options = [],
+        array $payloads = []
+    ) {
         parent::__construct($form, $data);
         $this->clickedButton = $clickedButton;
         $this->options = $options;
@@ -79,8 +84,10 @@ class FormActionEvent extends FormEvent
      *
      * @return mixed
      */
-    public function getOption($optionName, $defaultValue = null)
-    {
+    public function getOption(
+        $optionName,
+        $defaultValue = null
+    ) {
         if (!isset($this->options[$optionName])) {
             return $defaultValue;
         }
@@ -99,7 +106,7 @@ class FormActionEvent extends FormEvent
     }
 
     /**
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      */
     public function getResponse()
     {
@@ -107,7 +114,7 @@ class FormActionEvent extends FormEvent
     }
 
     /**
-     * @param \Symfony\Component\HttpFoundation\Response $response
+     * @param Response $response
      */
     public function setResponse(Response $response)
     {
@@ -159,8 +166,10 @@ class FormActionEvent extends FormEvent
      * @param string $name
      * @param mixed $payload
      */
-    public function setPayload(string $name, $payload): void
-    {
+    public function setPayload(
+        string $name,
+        $payload
+    ): void {
         $this->payloads[$name] = $payload;
     }
 }

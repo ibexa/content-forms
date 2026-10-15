@@ -46,8 +46,10 @@ class CountryFieldType extends AbstractType
         return ChoiceType::class;
     }
 
-    public function buildForm(FormBuilderInterface $builder, array $options)
-    {
+    public function buildForm(
+        FormBuilderInterface $builder,
+        array $options
+    ) {
         $builder->addModelTransformer(
             $options['multiple']
                 ? new MultipleCountryValueTransformer($this->countriesInfo)

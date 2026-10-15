@@ -23,7 +23,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 class UrlFieldType extends AbstractType
 {
-    /** @var \Ibexa\Contracts\Core\Repository\FieldTypeService */
+    /** @var FieldTypeService */
     protected $fieldTypeService;
 
     public function __construct(FieldTypeService $fieldTypeService)
@@ -41,8 +41,10 @@ class UrlFieldType extends AbstractType
         return 'ezplatform_fieldtype_ezurl';
     }
 
-    public function buildForm(FormBuilderInterface $builder, array $options)
-    {
+    public function buildForm(
+        FormBuilderInterface $builder,
+        array $options
+    ) {
         $builder
             ->add(
                 'link',

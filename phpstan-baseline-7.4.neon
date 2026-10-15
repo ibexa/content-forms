@@ -19,18 +19,6 @@ parameters:
 			path: src/lib/Behat/Context/UserRegistrationContext.php
 
 		-
-			message: '#^Binary operation "\*\=" between float\|int\|string\|false and 1024 results in an error\.$#'
-			identifier: assignOp.invalid
-			count: 1
-			path: src/lib/ConfigResolver/MaxUploadSize.php
-
-		-
-			message: '#^Binary operation "\*\=" between string\|false and 1024 results in an error\.$#'
-			identifier: assignOp.invalid
-			count: 1
-			path: src/lib/ConfigResolver/MaxUploadSize.php
-
-		-
 			message: '#^Parameter \#1 \$stack of function array_shift expects array, iterable\<Ibexa\\Contracts\\Core\\Repository\\Values\\Content\\Location\> given\.$#'
 			identifier: argument.type
 			count: 1

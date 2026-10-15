@@ -19,7 +19,7 @@ use Symfony\Component\Form\FormBuilderInterface;
  */
 class ISBNFieldType extends AbstractType
 {
-    /** @var \Ibexa\Contracts\Core\Repository\FieldTypeService */
+    /** @var FieldTypeService */
     protected $fieldTypeService;
 
     public function __construct(FieldTypeService $fieldTypeService)
@@ -42,8 +42,10 @@ class ISBNFieldType extends AbstractType
         return TextType::class;
     }
 
-    public function buildForm(FormBuilderInterface $builder, array $options)
-    {
+    public function buildForm(
+        FormBuilderInterface $builder,
+        array $options
+    ) {
         $builder->addModelTransformer(new FieldValueTransformer($this->fieldTypeService->getFieldType('ezisbn')));
     }
 }

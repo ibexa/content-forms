@@ -11,6 +11,8 @@ namespace Ibexa\ContentForms\Content\View\Builder;
 use Ibexa\ContentForms\Form\ActionDispatcher\ActionDispatcherInterface;
 use Ibexa\Contracts\ContentForms\Content\Form\Provider\GroupedContentFormFieldsProviderInterface;
 use Ibexa\Contracts\Core\Repository\ContentService;
+use Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException;
+use Ibexa\Contracts\Core\Repository\Exceptions\UnauthorizedException;
 use Ibexa\Contracts\Core\Repository\Repository;
 use Ibexa\Contracts\Core\Repository\Values\Content\Language;
 use Ibexa\Contracts\Core\Repository\Values\Content\Location;
@@ -25,28 +27,28 @@ use Ibexa\Core\MVC\Symfony\View\ParametersInjector;
  */
 abstract class AbstractContentViewBuilder
 {
-    /** @var \Ibexa\Contracts\Core\Repository\Repository */
+    /** @var Repository */
     protected $repository;
 
-    /** @var \Ibexa\Core\MVC\Symfony\View\Configurator */
+    /** @var Configurator */
     protected $viewConfigurator;
 
-    /** @var \Ibexa\Core\MVC\Symfony\View\ParametersInjector */
+    /** @var ParametersInjector */
     protected $viewParametersInjector;
 
-    /** @var \Ibexa\ContentForms\Form\ActionDispatcher\ActionDispatcherInterface */
+    /** @var ActionDispatcherInterface */
     protected $contentActionDispatcher;
 
-    /** @var \Ibexa\Core\MVC\Symfony\Locale\UserLanguagePreferenceProviderInterface */
+    /** @var UserLanguagePreferenceProviderInterface */
     protected $languagePreferenceProvider;
 
-    /** @var \Ibexa\Contracts\Core\SiteAccess\ConfigResolverInterface */
+    /** @var ConfigResolverInterface */
     protected $configResolver;
 
-    /** @var \Ibexa\Contracts\ContentForms\Content\Form\Provider\GroupedContentFormFieldsProviderInterface */
+    /** @var GroupedContentFormFieldsProviderInterface */
     protected $groupedContentFormFieldsProvider;
 
-    /** @var \Ibexa\Contracts\Core\Repository\ContentService */
+    /** @var ContentService */
     protected $contentService;
 
     public function __construct(
@@ -72,8 +74,8 @@ abstract class AbstractContentViewBuilder
     /**
      * Loads a visible Location.
      *
-     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\UnauthorizedException
-     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException
+     * @throws UnauthorizedException
+     * @throws NotFoundException
      */
     protected function loadLocation(int $locationId): Location
     {
@@ -81,7 +83,7 @@ abstract class AbstractContentViewBuilder
     }
 
     /**
-     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException
+     * @throws NotFoundException
      */
     private function loadLanguage(string $languageCode): Language
     {
@@ -89,7 +91,7 @@ abstract class AbstractContentViewBuilder
     }
 
     /**
-     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException
+     * @throws NotFoundException
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\InvalidArgumentException
      */
     protected function resolveLanguage(array $parameters): Language

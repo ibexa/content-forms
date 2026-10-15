@@ -31,8 +31,10 @@ class UserAccountFieldType extends AbstractType
         return 'ezplatform_fieldtype_ezuser';
     }
 
-    public function buildForm(FormBuilderInterface $builder, array $options)
-    {
+    public function buildForm(
+        FormBuilderInterface $builder,
+        array $options
+    ) {
         $isUpdateForm = 'update' === $options['intent'];
 
         $builder

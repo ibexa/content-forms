@@ -21,15 +21,15 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
  */
 class UserCreateFormProcessor implements EventSubscriberInterface
 {
-    /** @var \Ibexa\Contracts\Core\Repository\UserService */
+    /** @var UserService */
     private $userService;
 
-    /** @var \Symfony\Component\Routing\Generator\UrlGeneratorInterface */
+    /** @var UrlGeneratorInterface */
     private $urlGenerator;
 
     /**
-     * @param \Ibexa\Contracts\Core\Repository\UserService $userService
-     * @param \Symfony\Component\Routing\Generator\UrlGeneratorInterface $urlGenerator
+     * @param UserService $userService
+     * @param UrlGeneratorInterface $urlGenerator
      */
     public function __construct(
         UserService $userService,
@@ -72,11 +72,13 @@ class UserCreateFormProcessor implements EventSubscriberInterface
     }
 
     /**
-     * @param \Ibexa\ContentForms\Data\User\UserCreateData $data
+     * @param UserCreateData $data
      * @param string $languageCode
      */
-    private function setContentFields(UserCreateData $data, string $languageCode): void
-    {
+    private function setContentFields(
+        UserCreateData $data,
+        string $languageCode
+    ): void {
         foreach ($data->fieldsData as $fieldDefIdentifier => $fieldData) {
             $data->setField($fieldDefIdentifier, $fieldData->value, $languageCode);
         }

@@ -18,7 +18,7 @@ final class SelectionFieldTypeFormContext extends RawMinkContext implements Snip
     private static $fieldIdentifier = 'field';
 
     /**
-     * @var \Ibexa\ContentForms\Behat\Context\FieldTypeFormContext
+     * @var FieldTypeFormContext
      */
     private $fieldTypeFormContext;
 

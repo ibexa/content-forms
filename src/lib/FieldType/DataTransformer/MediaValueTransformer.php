@@ -8,7 +8,9 @@ declare(strict_types=1);
 
 namespace Ibexa\ContentForms\FieldType\DataTransformer;
 
+use Ibexa\Core\FieldType\Media\Value;
 use Symfony\Component\Form\DataTransformerInterface;
+use Symfony\Component\Form\Exception\TransformationFailedException;
 
 /**
  * Data transformer for ezmedia field type.
@@ -18,7 +20,7 @@ use Symfony\Component\Form\DataTransformerInterface;
 class MediaValueTransformer extends AbstractBinaryBaseTransformer implements DataTransformerInterface
 {
     /**
-     * @param \Ibexa\Core\FieldType\Media\Value $value
+     * @param Value $value
      *
      * @return array
      */
@@ -43,13 +45,13 @@ class MediaValueTransformer extends AbstractBinaryBaseTransformer implements Dat
     /**
      * @param array $value
      *
-     * @return \Ibexa\Core\FieldType\Media\Value
+     * @return Value
      *
-     * @throws \Symfony\Component\Form\Exception\TransformationFailedException
+     * @throws TransformationFailedException
      */
     public function reverseTransform($value)
     {
-        /** @var \Ibexa\Core\FieldType\Media\Value $valueObject */
+        /** @var Value $valueObject */
         $valueObject = $this->getReverseTransformedValue($value);
 
         if ($this->fieldType->isEmptyValue($valueObject)) {

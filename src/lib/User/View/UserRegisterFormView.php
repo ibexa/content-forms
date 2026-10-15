@@ -13,8 +13,6 @@ use Ibexa\User\View\Register\FormView as BaseUserRegisterFormView;
 /**
  * @deprecated Deprecated in 2.5 and will be removed in 3.0. Please use Ibexa\User\View\UserRegisterFormView instead.
  */
-class UserRegisterFormView extends BaseUserRegisterFormView
-{
-}
+class UserRegisterFormView extends BaseUserRegisterFormView {}
 
 class_alias(UserRegisterFormView::class, 'EzSystems\EzPlatformContentForms\User\View\UserRegisterFormView');

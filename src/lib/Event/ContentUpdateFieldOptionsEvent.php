@@ -15,10 +15,10 @@ use Symfony\Component\Form\FormInterface;
 
 final class ContentUpdateFieldOptionsEvent extends StructFieldOptionsEvent
 {
-    /** @var \Ibexa\Contracts\Core\Repository\Values\Content\Content */
+    /** @var Content */
     private $content;
 
-    /** @var \Ibexa\Contracts\Core\Repository\Values\Content\ContentUpdateStruct */
+    /** @var ContentUpdateStruct */
     private $contentUpdateStruct;
 
     public function __construct(

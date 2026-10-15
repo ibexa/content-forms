@@ -8,21 +8,23 @@ declare(strict_types=1);
 
 namespace Ibexa\Contracts\ContentForms\Data\Content;
 
+use Ibexa\Contracts\Core\Repository\Values\Content\Field;
+use Ibexa\Contracts\Core\Repository\Values\ContentType\FieldDefinition;
 use Ibexa\Contracts\Core\Repository\Values\ValueObject;
 
 /**
- * @property \Ibexa\Contracts\Core\Repository\Values\Content\Field $field
- * @property \Ibexa\Contracts\Core\Repository\Values\ContentType\FieldDefinition $fieldDefinition
+ * @property Field $field
+ * @property FieldDefinition $fieldDefinition
  */
 class FieldData extends ValueObject
 {
     /**
-     * @var \Ibexa\Contracts\Core\Repository\Values\Content\Field
+     * @var Field
      */
     protected $field;
 
     /**
-     * @var \Ibexa\Contracts\Core\Repository\Values\ContentType\FieldDefinition
+     * @var FieldDefinition
      */
     protected $fieldDefinition;
 

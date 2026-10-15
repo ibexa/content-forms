@@ -16,7 +16,12 @@ use Ibexa\Contracts\ContentForms\FieldType\FieldValueFormMapperInterface;
 use Ibexa\Contracts\Core\Repository\Values\ContentType\FieldDefinition;
 use Ibexa\Core\FieldType\User\Value as ApiUserValue;
 use Symfony\Component\Form\CallbackTransformer;
+use Symfony\Component\Form\Exception\AlreadySubmittedException;
+use Symfony\Component\Form\Exception\LogicException;
+use Symfony\Component\Form\Exception\UnexpectedTypeException;
 use Symfony\Component\Form\FormInterface;
+use Symfony\Component\OptionsResolver\Exception\AccessException;
+use Symfony\Component\OptionsResolver\Exception\InvalidOptionsException;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
@@ -27,16 +32,18 @@ final class UserAccountFieldValueFormMapper implements FieldValueFormMapperInter
     /**
      * Maps Field form to current FieldType based on the configured form type (self::$formType).
      *
-     * @param \Symfony\Component\Form\FormInterface $fieldForm form for the current Field
-     * @param \Ibexa\Contracts\ContentForms\Data\Content\FieldData $data underlying data for current Field form
+     * @param FormInterface $fieldForm form for the current Field
+     * @param FieldData $data underlying data for current Field form
      *
-     * @throws \Symfony\Component\Form\Exception\AlreadySubmittedException
-     * @throws \Symfony\Component\Form\Exception\LogicException
-     * @throws \Symfony\Component\Form\Exception\UnexpectedTypeException
-     * @throws \Symfony\Component\OptionsResolver\Exception\InvalidOptionsException
+     * @throws AlreadySubmittedException
+     * @throws LogicException
+     * @throws UnexpectedTypeException
+     * @throws InvalidOptionsException
      */
-    public function mapFieldValueForm(FormInterface $fieldForm, FieldData $data)
-    {
+    public function mapFieldValueForm(
+        FormInterface $fieldForm,
+        FieldData $data
+    ) {
         $fieldDefinition = $data->fieldDefinition;
         $formConfig = $fieldForm->getConfig();
         $rootForm = $fieldForm->getRoot()->getRoot();
@@ -63,9 +70,9 @@ final class UserAccountFieldValueFormMapper implements FieldValueFormMapperInter
     /**
      * Fake method to set the translation domain for the extractor.
      *
-     * @param \Symfony\Component\OptionsResolver\OptionsResolver $resolver
+     * @param OptionsResolver $resolver
      *
-     * @throws \Symfony\Component\OptionsResolver\Exception\AccessException
+     * @throws AccessException
      */
     public function configureOptions(OptionsResolver $resolver)
     {
@@ -76,9 +83,9 @@ final class UserAccountFieldValueFormMapper implements FieldValueFormMapperInter
     }
 
     /**
-     * @param \Ibexa\Contracts\Core\Repository\Values\ContentType\FieldDefinition $fieldDefinition
+     * @param FieldDefinition $fieldDefinition
      *
-     * @return \Symfony\Component\Form\CallbackTransformer
+     * @return CallbackTransformer
      */
     public function getModelTransformerForTranslation(FieldDefinition $fieldDefinition): CallbackTransformer
     {
@@ -87,7 +94,7 @@ final class UserAccountFieldValueFormMapper implements FieldValueFormMapperInter
                 return new UserAccountFieldData($data->login, null, $data->email, $data->enabled);
             },
             static function (UserAccountFieldData $submittedData) use ($fieldDefinition) {
-                /** @var \Ibexa\Core\FieldType\User\Value $userValue */
+                /** @var ApiUserValue $userValue */
                 $userValue = clone $fieldDefinition->defaultValue;
 
                 $userValue->login = $submittedData->username;
@@ -100,7 +107,7 @@ final class UserAccountFieldValueFormMapper implements FieldValueFormMapperInter
     }
 
     /**
-     * @return \Symfony\Component\Form\CallbackTransformer
+     * @return CallbackTransformer
      */
     public function getModelTransformer(): CallbackTransformer
     {

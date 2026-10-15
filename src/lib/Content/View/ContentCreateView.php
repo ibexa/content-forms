@@ -17,20 +17,20 @@ use Symfony\Component\Form\FormInterface;
 
 class ContentCreateView extends BaseView implements LocationValueView, ContentTypeValueView
 {
-    /** @var \Ibexa\Contracts\Core\Repository\Values\ContentType\ContentType */
+    /** @var ContentType */
     private $contentType;
 
-    /** @var \Ibexa\Contracts\Core\Repository\Values\Content\Location */
+    /** @var Location */
     private $location;
 
-    /** @var \Ibexa\Contracts\Core\Repository\Values\Content\Language */
+    /** @var Language */
     private $language;
 
-    /** @var \Symfony\Component\Form\FormInterface */
+    /** @var FormInterface */
     private $form;
 
     /**
-     * @param \Ibexa\Contracts\Core\Repository\Values\ContentType\ContentType $contentType
+     * @param ContentType $contentType
      */
     public function setContentType(ContentType $contentType)
     {
@@ -38,7 +38,7 @@ class ContentCreateView extends BaseView implements LocationValueView, ContentTy
     }
 
     /**
-     * @return \Ibexa\Contracts\Core\Repository\Values\ContentType\ContentType
+     * @return ContentType
      */
     public function getContentType(): ContentType
     {
@@ -46,7 +46,7 @@ class ContentCreateView extends BaseView implements LocationValueView, ContentTy
     }
 
     /**
-     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Location $location
+     * @param Location $location
      */
     public function setLocation(Location $location)
     {
@@ -54,7 +54,7 @@ class ContentCreateView extends BaseView implements LocationValueView, ContentTy
     }
 
     /**
-     * @return \Ibexa\Contracts\Core\Repository\Values\Content\Location
+     * @return Location
      */
     public function getLocation(): Location
     {
@@ -62,7 +62,7 @@ class ContentCreateView extends BaseView implements LocationValueView, ContentTy
     }
 
     /**
-     * @return \Ibexa\Contracts\Core\Repository\Values\Content\Language
+     * @return Language
      */
     public function getLanguage(): Language
     {
@@ -70,7 +70,7 @@ class ContentCreateView extends BaseView implements LocationValueView, ContentTy
     }
 
     /**
-     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Language $language
+     * @param Language $language
      */
     public function setLanguage(Language $language)
     {
@@ -78,7 +78,7 @@ class ContentCreateView extends BaseView implements LocationValueView, ContentTy
     }
 
     /**
-     * @return \Symfony\Component\Form\FormInterface
+     * @return FormInterface
      */
     public function getForm(): FormInterface
     {
@@ -86,7 +86,7 @@ class ContentCreateView extends BaseView implements LocationValueView, ContentTy
     }
 
     /**
-     * @param \Symfony\Component\Form\FormInterface $form
+     * @param FormInterface $form
      */
     public function setForm(FormInterface $form)
     {

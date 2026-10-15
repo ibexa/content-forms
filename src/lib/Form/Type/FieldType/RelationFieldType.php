@@ -26,18 +26,20 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 class RelationFieldType extends AbstractType
 {
-    /** @var \Ibexa\Contracts\Core\Repository\ContentService */
+    /** @var ContentService */
     private $contentService;
 
-    /** @var \Ibexa\Contracts\Core\Repository\ContentTypeService */
+    /** @var ContentTypeService */
     private $contentTypeService;
 
     /**
-     * @param \Ibexa\Contracts\Core\Repository\ContentService $contentService
-     * @param \Ibexa\Contracts\Core\Repository\ContentTypeService $contentTypeService
+     * @param ContentService $contentService
+     * @param ContentTypeService $contentTypeService
      */
-    public function __construct(ContentService $contentService, ContentTypeService $contentTypeService)
-    {
+    public function __construct(
+        ContentService $contentService,
+        ContentTypeService $contentTypeService
+    ) {
         $this->contentService = $contentService;
         $this->contentTypeService = $contentTypeService;
     }
@@ -57,18 +59,23 @@ class RelationFieldType extends AbstractType
         return IntegerType::class;
     }
 
-    public function buildForm(FormBuilderInterface $builder, array $options)
-    {
+    public function buildForm(
+        FormBuilderInterface $builder,
+        array $options
+    ) {
         $builder->addModelTransformer(new RelationValueTransformer());
     }
 
-    public function finishView(FormView $view, FormInterface $form, array $options)
-    {
+    public function finishView(
+        FormView $view,
+        FormInterface $form,
+        array $options
+    ) {
         $view->vars['relations'] = [];
         $view->vars['default_location'] = $options['default_location'];
         $view->vars['root_default_location'] = $options['root_default_location'];
 
-        /** @var \Ibexa\Core\FieldType\Relation\Value $data */
+        /** @var Value $data */
         $data = $form->getData();
 
         if (!$data instanceof Value || null === $data->destinationContentId) {

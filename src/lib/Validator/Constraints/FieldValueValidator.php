@@ -10,6 +10,7 @@ namespace Ibexa\ContentForms\Validator\Constraints;
 
 use Ibexa\Contracts\ContentForms\Data\Content\FieldData;
 use Ibexa\Contracts\Core\FieldType\Value;
+use Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException;
 use Ibexa\Contracts\Core\Repository\Values\ContentType\FieldDefinition;
 use Ibexa\Contracts\Core\Repository\Values\ValueObject;
 use Ibexa\Core\FieldType\ValidationError;
@@ -22,13 +23,15 @@ use Symfony\Component\Validator\Util\PropertyPath;
 class FieldValueValidator extends FieldTypeValidator
 {
     /**
-     * @param \Ibexa\Contracts\ContentForms\Data\Content\FieldData $value
-     * @param \Symfony\Component\Validator\Constraint $constraint
+     * @param FieldData $value
+     * @param Constraint $constraint
      *
-     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException
+     * @throws NotFoundException
      */
-    public function validate($value, Constraint $constraint): void
-    {
+    public function validate(
+        $value,
+        Constraint $constraint
+    ): void {
         if (!$value instanceof FieldData) {
             return;
         }
@@ -77,7 +80,7 @@ class FieldValueValidator extends FieldTypeValidator
     /**
      * Returns the fieldTypeIdentifier for the field value to validate.
      *
-     * @param \Ibexa\Contracts\ContentForms\Data\Content\FieldData|\Ibexa\Contracts\Core\Repository\Values\ValueObject $value fieldData ValueObject holding the field value to validate
+     * @param FieldData|ValueObject $value fieldData ValueObject holding the field value to validate
      *
      * @return string
      */
@@ -86,8 +89,10 @@ class FieldValueValidator extends FieldTypeValidator
         return $value->fieldDefinition->fieldTypeIdentifier;
     }
 
-    protected function generatePropertyPath($errorIndex, $errorTarget): string
-    {
+    protected function generatePropertyPath(
+        $errorIndex,
+        $errorTarget
+    ): string {
         $basePath = 'value';
 
         return $errorTarget === null

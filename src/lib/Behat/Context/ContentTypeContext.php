@@ -15,6 +15,7 @@ use Exception;
 use Ibexa\Contracts\Core\Repository\ContentTypeService;
 use Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException;
 use Ibexa\Contracts\Core\Repository\PermissionResolver;
+use Ibexa\Contracts\Core\Repository\Values\ContentType\ContentType;
 use Ibexa\Contracts\Core\Repository\Values\ContentType\ContentTypeCreateStruct;
 use Ibexa\Contracts\Core\Repository\Values\ContentType\FieldDefinitionUpdateStruct;
 use Ibexa\Core\Repository\Values\User\UserReference;
@@ -22,17 +23,17 @@ use PHPUnit\Framework\Assert as Assertion;
 
 final class ContentTypeContext extends RawMinkContext implements Context, SnippetAcceptingContext
 {
-    /** @var \Ibexa\Contracts\Core\Repository\ContentTypeService */
+    /** @var ContentTypeService */
     private $contentTypeService;
 
     /**
      * Current content type within this context.
      *
-     * @var \Ibexa\Contracts\Core\Repository\Values\ContentType\ContentType
+     * @var ContentType
      */
     private $currentContentType;
 
-    /** @var \Ibexa\Contracts\Core\Repository\PermissionResolver */
+    /** @var PermissionResolver */
     private $permissionResolver;
 
     /**
@@ -40,8 +41,10 @@ final class ContentTypeContext extends RawMinkContext implements Context, Snippe
      */
     private $adminUserId = 14;
 
-    public function __construct(PermissionResolver $permissionResolver, ContentTypeService $contentTypeService)
-    {
+    public function __construct(
+        PermissionResolver $permissionResolver,
+        ContentTypeService $contentTypeService
+    ) {
         $permissionResolver->setCurrentUserReference(new UserReference($this->adminUserId));
         $this->permissionResolver = $permissionResolver;
         $this->contentTypeService = $contentTypeService;
@@ -50,8 +53,10 @@ final class ContentTypeContext extends RawMinkContext implements Context, Snippe
     /**
      * @Given /^there is a content type "([^"]*)" with the id "([^"]*)"$/
      */
-    public function thereIsAContentTypeWithId($contentTypeIdentifier, $id)
-    {
+    public function thereIsAContentTypeWithId(
+        $contentTypeIdentifier,
+        $id
+    ) {
         try {
             $contentType = $this->contentTypeService->loadContentTypeByIdentifier($contentTypeIdentifier);
             Assertion::assertEquals($id, $contentType->id);
@@ -63,8 +68,10 @@ final class ContentTypeContext extends RawMinkContext implements Context, Snippe
     /**
      * @Given I remove :fieldIdentifier field from :contentTypeIdentifier content type
      */
-    public function iRemoveFieldFromContentType($fieldIdentifier, $contentTypeIdentifier)
-    {
+    public function iRemoveFieldFromContentType(
+        $fieldIdentifier,
+        $contentTypeIdentifier
+    ) {
         $contentType = $this->contentTypeService->loadContentTypeByIdentifier($contentTypeIdentifier);
         $contentTypeDraft = $this->contentTypeService->createContentTypeDraft($contentType);
 
@@ -74,8 +81,10 @@ final class ContentTypeContext extends RawMinkContext implements Context, Snippe
         $this->contentTypeService->publishContentTypeDraft($contentTypeDraft);
     }
 
-    public function addFieldsTo($contentTypeIdentifier, array $fieldDefinitions)
-    {
+    public function addFieldsTo(
+        $contentTypeIdentifier,
+        array $fieldDefinitions
+    ) {
         $contentType = $this->contentTypeService->loadContentTypeByIdentifier($contentTypeIdentifier);
         $contentTypeDraft = $this->contentTypeService->createContentTypeDraft($contentType);
 
@@ -87,9 +96,9 @@ final class ContentTypeContext extends RawMinkContext implements Context, Snippe
     }
 
     /**
-     * @return \Ibexa\Contracts\Core\Repository\Values\ContentType\ContentType
+     * @return ContentType
      *
-     * @throws \Exception if no current content type has been defined in the context
+     * @throws Exception if no current content type has been defined in the context
      */
     public function getCurrentContentType()
     {
@@ -123,7 +132,7 @@ final class ContentTypeContext extends RawMinkContext implements Context, Snippe
     /**
      * Creates a new content type create struct. If the identifier is not specified, a custom one is given.
      *
-     * @return \Ibexa\Contracts\Core\Repository\Values\ContentType\ContentTypeCreateStruct
+     * @return ContentTypeCreateStruct
      */
     public function newContentTypeCreateStruct($identifier = null)
     {
@@ -132,8 +141,10 @@ final class ContentTypeContext extends RawMinkContext implements Context, Snippe
         );
     }
 
-    public function updateFieldDefinition($identifier, FieldDefinitionUpdateStruct $fieldDefinitionUpdateStruct)
-    {
+    public function updateFieldDefinition(
+        $identifier,
+        FieldDefinitionUpdateStruct $fieldDefinitionUpdateStruct
+    ) {
         $contentTypeDraft = $this->contentTypeService->createContentTypeDraft($this->currentContentType);
 
         $this->contentTypeService->updateFieldDefinition(

@@ -20,7 +20,7 @@ class PagelayoutContext extends RawMinkContext implements Context, SnippetAccept
     public const TWIG_DEBUG_STOP_REGEX = '<!-- STOP .*%s.* -->';
 
     /**
-     * @var \Ibexa\Contracts\Core\SiteAccess\ConfigResolverInterface
+     * @var ConfigResolverInterface
      */
     private $configResolver;
 

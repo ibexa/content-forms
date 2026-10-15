@@ -12,6 +12,7 @@ use Ibexa\ContentForms\Event\FormActionEvent;
 use Ibexa\Contracts\Core\Repository\Values\ValueObject;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Form\FormInterface;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
@@ -20,12 +21,12 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 abstract class AbstractActionDispatcher implements ActionDispatcherInterface
 {
     /**
-     * @var \Symfony\Component\EventDispatcher\EventDispatcherInterface
+     * @var EventDispatcherInterface
      */
     private $eventDispatcher;
 
     /**
-     * @var \Symfony\Component\HttpFoundation\Response
+     * @var Response
      */
     protected $response;
 
@@ -34,8 +35,12 @@ abstract class AbstractActionDispatcher implements ActionDispatcherInterface
         $this->eventDispatcher = $eventDispatcher;
     }
 
-    public function dispatchFormAction(FormInterface $form, ValueObject $data, $actionName = null, array $options = [])
-    {
+    public function dispatchFormAction(
+        FormInterface $form,
+        ValueObject $data,
+        $actionName = null,
+        array $options = []
+    ) {
         $resolver = new OptionsResolver();
         $this->configureOptions($resolver);
         $options = $resolver->resolve($options);
@@ -56,11 +61,9 @@ abstract class AbstractActionDispatcher implements ActionDispatcherInterface
      * Configures options to pass to the form action event.
      * Might do nothing if there are no options.
      *
-     * @param \Symfony\Component\OptionsResolver\OptionsResolver $resolver
+     * @param OptionsResolver $resolver
      */
-    protected function configureOptions(OptionsResolver $resolver)
-    {
-    }
+    protected function configureOptions(OptionsResolver $resolver) {}
 
     /**
      * Returns base for action event name. It will be used as default action event name.
@@ -74,8 +77,10 @@ abstract class AbstractActionDispatcher implements ActionDispatcherInterface
      * @param $defaultActionEventName
      * @param $event
      */
-    protected function dispatchDefaultAction($defaultActionEventName, FormActionEvent $event)
-    {
+    protected function dispatchDefaultAction(
+        $defaultActionEventName,
+        FormActionEvent $event
+    ) {
         $this->eventDispatcher->dispatch($event, $defaultActionEventName);
     }
 
@@ -83,8 +88,10 @@ abstract class AbstractActionDispatcher implements ActionDispatcherInterface
      * @param $actionEventName
      * @param $event
      */
-    protected function dispatchAction($actionEventName, FormActionEvent $event)
-    {
+    protected function dispatchAction(
+        $actionEventName,
+        FormActionEvent $event
+    ) {
         $this->eventDispatcher->dispatch($event, $actionEventName);
     }
 

@@ -10,6 +10,8 @@ namespace Ibexa\ContentForms\Form\Processor;
 
 use Ibexa\ContentForms\Event\ContentFormEvents;
 use Ibexa\ContentForms\Event\FormActionEvent;
+use Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException;
+use Ibexa\Contracts\Core\Repository\Exceptions\UnauthorizedException;
 use Ibexa\Contracts\Core\Repository\LocationService;
 use Ibexa\Contracts\Core\Repository\URLAliasService;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
@@ -18,19 +20,19 @@ use Symfony\Component\Routing\RouterInterface;
 
 class SystemUrlRedirectProcessor implements EventSubscriberInterface
 {
-    /** @var \Symfony\Component\Routing\RouterInterface */
+    /** @var RouterInterface */
     private $router;
 
-    /** @var \Ibexa\Contracts\Core\Repository\URLAliasService */
+    /** @var URLAliasService */
     private $urlAliasService;
 
-    /** @var \Ibexa\Contracts\Core\Repository\LocationService */
+    /** @var LocationService */
     private $locationService;
 
     /**
-     * @param \Symfony\Component\Routing\RouterInterface $router
-     * @param \Ibexa\Contracts\Core\Repository\URLAliasService $urlAliasService
-     * @param \Ibexa\Contracts\Core\Repository\LocationService $locationService
+     * @param RouterInterface $router
+     * @param URLAliasService $urlAliasService
+     * @param LocationService $locationService
      * @param array $siteaccessGroups
      */
     public function __construct(
@@ -55,10 +57,10 @@ class SystemUrlRedirectProcessor implements EventSubscriberInterface
     }
 
     /**
-     * @param \Ibexa\ContentForms\Event\FormActionEvent $event
+     * @param FormActionEvent $event
      *
-     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException
-     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\UnauthorizedException
+     * @throws NotFoundException
+     * @throws UnauthorizedException
      */
     public function processRedirectAfterPublish(FormActionEvent $event): void
     {
@@ -70,10 +72,10 @@ class SystemUrlRedirectProcessor implements EventSubscriberInterface
     }
 
     /**
-     * @param \Ibexa\ContentForms\Event\FormActionEvent $event
+     * @param FormActionEvent $event
      *
-     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException
-     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\UnauthorizedException
+     * @throws NotFoundException
+     * @throws UnauthorizedException
      */
     public function processRedirectAfterCancel(FormActionEvent $event): void
     {
@@ -81,14 +83,14 @@ class SystemUrlRedirectProcessor implements EventSubscriberInterface
     }
 
     /**
-     * @param \Ibexa\ContentForms\Event\FormActionEvent $event
+     * @param FormActionEvent $event
      *
-     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException
-     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\UnauthorizedException
+     * @throws NotFoundException
+     * @throws UnauthorizedException
      */
     private function resolveSystemUrlRedirect(FormActionEvent $event): void
     {
-        /** @var \Symfony\Component\HttpFoundation\RedirectResponse $response */
+        /** @var RedirectResponse $response */
         $response = $event->getResponse();
 
         if (!$response instanceof RedirectResponse) {

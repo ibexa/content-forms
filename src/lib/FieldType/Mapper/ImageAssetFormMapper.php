@@ -18,11 +18,11 @@ use Symfony\Component\Form\FormInterface;
 
 class ImageAssetFormMapper implements FieldValueFormMapperInterface
 {
-    /** @var \Ibexa\Contracts\Core\Repository\FieldTypeService */
+    /** @var FieldTypeService */
     private $fieldTypeService;
 
     /**
-     * @param \Ibexa\Contracts\Core\Repository\FieldTypeService $fieldTypeService
+     * @param FieldTypeService $fieldTypeService
      */
     public function __construct(FieldTypeService $fieldTypeService)
     {
@@ -30,11 +30,13 @@ class ImageAssetFormMapper implements FieldValueFormMapperInterface
     }
 
     /**
-     * @param \Symfony\Component\Form\FormInterface $fieldForm
-     * @param \Ibexa\Contracts\ContentForms\Data\Content\FieldData $data
+     * @param FormInterface $fieldForm
+     * @param FieldData $data
      */
-    public function mapFieldValueForm(FormInterface $fieldForm, FieldData $data): void
-    {
+    public function mapFieldValueForm(
+        FormInterface $fieldForm,
+        FieldData $data
+    ): void {
         $fieldDefinition = $data->fieldDefinition;
         $formConfig = $fieldForm->getConfig();
         $fieldType = $this->fieldTypeService->getFieldType($fieldDefinition->fieldTypeIdentifier);

@@ -18,8 +18,10 @@ use Symfony\Component\Form\FormInterface;
  */
 class MapLocationFormMapper implements FieldValueFormMapperInterface
 {
-    public function mapFieldValueForm(FormInterface $fieldForm, FieldData $data)
-    {
+    public function mapFieldValueForm(
+        FormInterface $fieldForm,
+        FieldData $data
+    ) {
         $fieldDefinition = $data->fieldDefinition;
         $formConfig = $fieldForm->getConfig();
 

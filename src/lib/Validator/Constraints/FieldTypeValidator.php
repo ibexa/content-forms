@@ -9,13 +9,14 @@ declare(strict_types=1);
 namespace Ibexa\ContentForms\Validator\Constraints;
 
 use Ibexa\ContentForms\Validator\ValidationErrorsProcessor;
+use Ibexa\Contracts\Core\FieldType\ValidationError;
 use Ibexa\Contracts\Core\Repository\FieldTypeService;
 use Symfony\Component\Validator\ConstraintValidator;
 
 abstract class FieldTypeValidator extends ConstraintValidator
 {
     /**
-     * @var \Ibexa\Contracts\Core\Repository\FieldTypeService
+     * @var FieldTypeService
      */
     protected $fieldTypeService;
 
@@ -25,7 +26,7 @@ abstract class FieldTypeValidator extends ConstraintValidator
     }
 
     /**
-     * @param \Ibexa\Contracts\Core\FieldType\ValidationError[] $validationErrors
+     * @param ValidationError[] $validationErrors
      */
     protected function processValidationErrors(array $validationErrors)
     {
@@ -45,17 +46,22 @@ abstract class FieldTypeValidator extends ConstraintValidator
      *
      * @return string
      */
-    protected function generatePropertyPath($errorIndex, $errorTarget)
-    {
+    protected function generatePropertyPath(
+        $errorIndex,
+        $errorTarget
+    ) {
         return '';
     }
 
     /**
-     * @return \Ibexa\ContentForms\Validator\ValidationErrorsProcessor
+     * @return ValidationErrorsProcessor
      */
     private function createValidationErrorProcessor(): ValidationErrorsProcessor
     {
-        return new ValidationErrorsProcessor($this->context, function ($index, $target) {
+        return new ValidationErrorsProcessor($this->context, function (
+            $index,
+            $target
+        ) {
             return $this->generatePropertyPath($index, $target);
         });
     }

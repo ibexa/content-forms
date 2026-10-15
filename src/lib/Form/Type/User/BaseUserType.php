@@ -39,8 +39,10 @@ class BaseUserType extends AbstractType
         return BaseContentType::class;
     }
 
-    public function buildForm(FormBuilderInterface $builder, array $options)
-    {
+    public function buildForm(
+        FormBuilderInterface $builder,
+        array $options
+    ) {
         $builder
             ->add('cancel', SubmitType::class, [
                 'label' => /** @Desc("Cancel") */ 'user.cancel',

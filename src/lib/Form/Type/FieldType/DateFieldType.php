@@ -23,7 +23,7 @@ class DateFieldType extends AbstractType
 {
     private const EDIT_VIEWS = ['ibexa.content.draft.edit', 'ibexa.content.translate', 'ibexa.content.translate_with_location', 'ibexa.user.update'];
 
-    /** @var \Symfony\Component\HttpFoundation\RequestStack */
+    /** @var RequestStack */
     private $requestStack;
 
     public function __construct(RequestStack $requestStack)
@@ -46,14 +46,19 @@ class DateFieldType extends AbstractType
         return IntegerType::class;
     }
 
-    public function buildForm(FormBuilderInterface $builder, array $options)
-    {
+    public function buildForm(
+        FormBuilderInterface $builder,
+        array $options
+    ) {
         $builder
             ->addModelTransformer(new DateValueTransformer());
     }
 
-    public function buildView(FormView $view, FormInterface $form, array $options)
-    {
+    public function buildView(
+        FormView $view,
+        FormInterface $form,
+        array $options
+    ) {
         $request = $this->requestStack->getCurrentRequest();
         $view->vars['isEditView'] = \in_array($request->attributes->get('_route'), self::EDIT_VIEWS);
     }

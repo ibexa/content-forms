@@ -13,8 +13,6 @@ use Ibexa\User\View\Register\ConfirmView as BaseRegisterConfirmView;
 /**
  * @deprecated Deprecated in 2.5 and will be removed in 3.0. Please use Ibexa\User\View\UserRegisterConfirmView instead.
  */
-class UserRegisterConfirmView extends BaseRegisterConfirmView
-{
-}
+class UserRegisterConfirmView extends BaseRegisterConfirmView {}
 
 class_alias(UserRegisterConfirmView::class, 'EzSystems\EzPlatformContentForms\User\View\UserRegisterConfirmView');

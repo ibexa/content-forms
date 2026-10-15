@@ -103,7 +103,7 @@ class MultipleCountryValueTransformerTest extends TestCase
             [42],
             ['snafu'],
             [null],
-            [new \Ibexa\Core\FieldType\Country\Value()],
+            [new Value()],
         ];
     }
 

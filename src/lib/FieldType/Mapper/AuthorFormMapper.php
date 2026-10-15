@@ -20,11 +20,13 @@ use Symfony\Component\Form\FormInterface;
 class AuthorFormMapper implements FieldValueFormMapperInterface
 {
     /**
-     * @param \Symfony\Component\Form\FormInterface $fieldForm
-     * @param \Ibexa\Contracts\ContentForms\Data\Content\FieldData $data
+     * @param FormInterface $fieldForm
+     * @param FieldData $data
      */
-    public function mapFieldValueForm(FormInterface $fieldForm, FieldData $data)
-    {
+    public function mapFieldValueForm(
+        FormInterface $fieldForm,
+        FieldData $data
+    ) {
         $fieldDefinition = $data->fieldDefinition;
         $fieldSettings = $fieldDefinition->getFieldSettings();
         $formConfig = $fieldForm->getConfig();

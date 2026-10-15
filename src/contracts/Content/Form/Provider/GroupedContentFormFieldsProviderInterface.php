@@ -8,10 +8,13 @@ declare(strict_types=1);
 
 namespace Ibexa\Contracts\ContentForms\Content\Form\Provider;
 
+use Symfony\Component\Form\FormInterface;
+
 interface GroupedContentFormFieldsProviderInterface
 {
     /**
-     * @param \Symfony\Component\Form\FormInterface[] $fieldsDataForm
+     * @param FormInterface[] $fieldsDataForm
+     *
      * @phpstan-return array<string, array<int, string>> Array of fieldGroupIdentifier grouped by fieldGroupName.
      */
     public function getGroupedFields(array $fieldsDataForm): array;

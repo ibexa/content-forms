@@ -20,12 +20,12 @@ use Symfony\Component\HttpKernel\Controller\ControllerReference;
 class Configured implements ViewProvider
 {
     /**
-     * @var \Ibexa\Core\MVC\Symfony\Matcher\MatcherFactoryInterface
+     * @var MatcherFactoryInterface
      */
     protected $matcherFactory;
 
     /**
-     * @param \Ibexa\Core\MVC\Symfony\Matcher\MatcherFactoryInterface $matcherFactory
+     * @param MatcherFactoryInterface $matcherFactory
      */
     public function __construct(MatcherFactoryInterface $matcherFactory)
     {
@@ -46,7 +46,7 @@ class Configured implements ViewProvider
      *
      * @param array $viewConfig
      *
-     * @return \Ibexa\ContentForms\Content\View\ContentEditView
+     * @return ContentEditView
      */
     protected function buildContentEditView(array $viewConfig): ContentEditView
     {

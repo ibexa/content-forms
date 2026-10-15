@@ -27,13 +27,13 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ImageAssetFieldType extends AbstractType
 {
-    /** @var \Ibexa\Contracts\Core\Repository\ContentService */
+    /** @var ContentService */
     private $contentService;
 
-    /** @var \Ibexa\Core\FieldType\ImageAsset\AssetMapper */
+    /** @var AssetMapper */
     private $assetMapper;
 
-    /** @var \Ibexa\ContentForms\ConfigResolver\MaxUploadSize */
+    /** @var MaxUploadSize */
     private $maxUploadSize;
 
     private MimeTypesInterface $mimeTypes;
@@ -60,8 +60,10 @@ class ImageAssetFieldType extends AbstractType
         return 'ezplatform_fieldtype_ezimageasset';
     }
 
-    public function buildForm(FormBuilderInterface $builder, array $options)
-    {
+    public function buildForm(
+        FormBuilderInterface $builder,
+        array $options
+    ) {
         $builder
             ->add('destinationContentId', HiddenType::class)
             ->add(
@@ -91,8 +93,11 @@ class ImageAssetFieldType extends AbstractType
             );
     }
 
-    public function buildView(FormView $view, FormInterface $form, array $options)
-    {
+    public function buildView(
+        FormView $view,
+        FormInterface $form,
+        array $options
+    ) {
         $view->vars['destination_content'] = null;
 
         if ($view->vars['value']['destinationContentId']) {

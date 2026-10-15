@@ -16,11 +16,11 @@ use Symfony\Component\Validator\ConstraintValidator;
 
 class PasswordValidator extends ConstraintValidator
 {
-    /** @var \Ibexa\Contracts\Core\Repository\UserService */
+    /** @var UserService */
     private $userService;
 
     /**
-     * @param \Ibexa\Contracts\Core\Repository\UserService $userService
+     * @param UserService $userService
      */
     public function __construct(UserService $userService)
     {
@@ -30,8 +30,10 @@ class PasswordValidator extends ConstraintValidator
     /**
      * {@inheritdoc}
      */
-    public function validate($value, Constraint $constraint): void
-    {
+    public function validate(
+        $value,
+        Constraint $constraint
+    ): void {
         if (!\is_string($value) || empty($value)) {
             return;
         }
@@ -48,7 +50,7 @@ class PasswordValidator extends ConstraintValidator
     }
 
     /**
-     * @return \Ibexa\ContentForms\Validator\ValidationErrorsProcessor
+     * @return ValidationErrorsProcessor
      */
     protected function createValidationErrorsProcessor(): ValidationErrorsProcessor
     {

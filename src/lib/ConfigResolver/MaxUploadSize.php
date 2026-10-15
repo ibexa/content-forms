@@ -55,7 +55,7 @@ class MaxUploadSize
     {
         $str = strtoupper(trim($str));
 
-        $value = substr($str, 0, -1);
+        $value = (float) substr($str, 0, -1);
         $unit = substr($str, -1);
         switch ($unit) {
             case self::GIGABYTES:

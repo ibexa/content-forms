@@ -10,6 +10,7 @@ namespace Ibexa\ContentForms\Data\Mapper;
 
 use Ibexa\ContentForms\Data\Content\ContentUpdateData;
 use Ibexa\Contracts\ContentForms\Data\Content\FieldData;
+use Ibexa\Contracts\Core\Repository\Values\Content\Content;
 use Ibexa\Contracts\Core\Repository\Values\ContentType\ContentType;
 use Ibexa\Contracts\Core\Repository\Values\ValueObject;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -19,13 +20,15 @@ class ContentUpdateMapper implements FormDataMapperInterface
     /**
      * Maps a ValueObject from Ibexa content repository to a data usable as underlying form data (e.g. create/update struct).
      *
-     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Content|\Ibexa\Contracts\Core\Repository\Values\ValueObject $contentDraft
+     * @param Content|ValueObject $contentDraft
      * @param array $params
      *
-     * @return \Ibexa\ContentForms\Data\Content\ContentUpdateData
+     * @return ContentUpdateData
      */
-    public function mapToFormData(ValueObject $contentDraft, array $params = [])
-    {
+    public function mapToFormData(
+        ValueObject $contentDraft,
+        array $params = []
+    ) {
         $optionsResolver = new OptionsResolver();
         $this->configureOptions($optionsResolver);
 

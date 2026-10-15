@@ -34,8 +34,12 @@ class UserAccountFieldData
      * @param string $email
      * @param bool $enabled
      */
-    public function __construct($username, $password, $email, $enabled = true)
-    {
+    public function __construct(
+        $username,
+        $password,
+        $email,
+        $enabled = true
+    ) {
         $this->username = $username;
         $this->password = $password;
         $this->email = $email;

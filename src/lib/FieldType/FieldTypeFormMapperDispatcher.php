@@ -22,27 +22,31 @@ class FieldTypeFormMapperDispatcher implements FieldTypeFormMapperDispatcherInte
     /**
      * FieldType form mappers, indexed by FieldType identifier.
      *
-     * @var \Ibexa\Contracts\ContentForms\FieldType\FieldValueFormMapperInterface[]
+     * @var FieldValueFormMapperInterface[]
      */
     private $mappers;
 
     /**
      * FieldTypeFormMapperDispatcher constructor.
      *
-     * @param \Ibexa\Contracts\ContentForms\FieldType\FieldValueFormMapperInterface[] $mappers
+     * @param FieldValueFormMapperInterface[] $mappers
      */
     public function __construct(array $mappers = [])
     {
         $this->mappers = $mappers;
     }
 
-    public function addMapper(FieldValueFormMapperInterface $mapper, string $fieldTypeIdentifier): void
-    {
+    public function addMapper(
+        FieldValueFormMapperInterface $mapper,
+        string $fieldTypeIdentifier
+    ): void {
         $this->mappers[$fieldTypeIdentifier] = $mapper;
     }
 
-    public function map(FormInterface $fieldForm, FieldData $data): void
-    {
+    public function map(
+        FormInterface $fieldForm,
+        FieldData $data
+    ): void {
         $fieldTypeIdentifier = $data->getFieldTypeIdentifier();
 
         if (!isset($this->mappers[$fieldTypeIdentifier])) {

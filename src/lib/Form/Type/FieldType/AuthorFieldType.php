@@ -30,14 +30,14 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 class AuthorFieldType extends AbstractType
 {
-    /** @var \Ibexa\Contracts\Core\Repository\Repository */
+    /** @var Repository */
     private $repository;
 
     /** @var int */
     private $defaultAuthor;
 
     /**
-     * @param \Ibexa\Contracts\Core\Repository\Repository $repository
+     * @param Repository $repository
      */
     public function __construct(Repository $repository)
     {
@@ -61,11 +61,13 @@ class AuthorFieldType extends AbstractType
     }
 
     /**
-     * @param \Symfony\Component\Form\FormBuilderInterface $builder
+     * @param FormBuilderInterface $builder
      * @param array
      */
-    public function buildForm(FormBuilderInterface $builder, array $options)
-    {
+    public function buildForm(
+        FormBuilderInterface $builder,
+        array $options
+    ) {
         $this->defaultAuthor = $options['default_author'];
 
         $builder
@@ -75,17 +77,20 @@ class AuthorFieldType extends AbstractType
     }
 
     /**
-     * @param \Symfony\Component\Form\FormView $view
-     * @param \Symfony\Component\Form\FormInterface $form
+     * @param FormView $view
+     * @param FormInterface $form
      * @param array $options
      */
-    public function buildView(FormView $view, FormInterface $form, array $options)
-    {
+    public function buildView(
+        FormView $view,
+        FormInterface $form,
+        array $options
+    ) {
         $view->vars['attr']['default-author'] = $options['default_author'];
     }
 
     /**
-     * @param \Symfony\Component\OptionsResolver\OptionsResolver $resolver
+     * @param OptionsResolver $resolver
      */
     public function configureOptions(OptionsResolver $resolver)
     {
@@ -100,7 +105,7 @@ class AuthorFieldType extends AbstractType
     /**
      * Returns a view transformer which handles empty row needed to display add/remove buttons.
      *
-     * @return \Symfony\Component\Form\DataTransformerInterface
+     * @return DataTransformerInterface
      */
     public function getViewTransformer(?User $creator = null): DataTransformerInterface
     {
@@ -120,7 +125,7 @@ class AuthorFieldType extends AbstractType
     }
 
     /**
-     * @param \Symfony\Component\Form\FormEvent $event
+     * @param FormEvent $event
      */
     public function filterOutEmptyAuthors(FormEvent $event)
     {
@@ -139,7 +144,7 @@ class AuthorFieldType extends AbstractType
     /**
      * Returns currently logged user data, or empty Author object if none was found.
      *
-     * @return \Ibexa\Core\FieldType\Author\Author
+     * @return Author
      */
     private function fetchLoggedAuthor(): Author
     {
