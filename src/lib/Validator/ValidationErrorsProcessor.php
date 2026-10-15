@@ -8,6 +8,7 @@ declare(strict_types=1);
 
 namespace Ibexa\ContentForms\Validator;
 
+use Ibexa\Contracts\Core\FieldType\ValidationError;
 use Ibexa\Contracts\Core\Repository\Values\Translation\Plural;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
@@ -20,7 +21,7 @@ final class ValidationErrorsProcessor
     private $propertyPathGenerator;
 
     /**
-     * @param \Symfony\Component\Validator\Context\ExecutionContextInterface $context
+     * @param ExecutionContextInterface $context
      * @param callable|null $propertyPathGenerator
      */
     public function __construct(
@@ -33,7 +34,7 @@ final class ValidationErrorsProcessor
     /**
      * Builds constraint violations based on given SPI validation errors.
      *
-     * @param \Ibexa\Contracts\Core\FieldType\ValidationError[] $validationErrors
+     * @param ValidationError[] $validationErrors
      */
     public function processValidationErrors(array $validationErrors): void
     {

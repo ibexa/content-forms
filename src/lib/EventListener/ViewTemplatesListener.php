@@ -13,6 +13,7 @@ use Ibexa\ContentForms\User;
 use Ibexa\ContentForms\User\View\UserCreateView;
 use Ibexa\ContentForms\User\View\UserUpdateView;
 use Ibexa\Contracts\Core\SiteAccess\ConfigResolverInterface;
+use Ibexa\Core\Base\Exceptions\InvalidArgumentType;
 use Ibexa\Core\MVC\Symfony\Event\PreContentViewEvent;
 use Ibexa\Core\MVC\Symfony\MVCEvents;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
@@ -22,9 +23,7 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
  */
 final readonly class ViewTemplatesListener implements EventSubscriberInterface
 {
-    public function __construct(private ConfigResolverInterface $configResolver)
-    {
-    }
+    public function __construct(private ConfigResolverInterface $configResolver) {}
 
     public static function getSubscribedEvents(): array
     {
@@ -35,7 +34,7 @@ final readonly class ViewTemplatesListener implements EventSubscriberInterface
      * If the event's view has a defined template, sets the view's template identifier,
      * and the 'page_layout' parameter.
      *
-     * @throws \Ibexa\Core\Base\Exceptions\InvalidArgumentType
+     * @throws InvalidArgumentType
      */
     public function setViewTemplates(PreContentViewEvent $event): void
     {

@@ -20,9 +20,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 final class CountryFieldType extends AbstractType
 {
-    public function __construct(private readonly array $countriesInfo)
-    {
-    }
+    public function __construct(private readonly array $countriesInfo) {}
 
     public function getName(): string
     {
@@ -39,8 +37,10 @@ final class CountryFieldType extends AbstractType
         return ChoiceType::class;
     }
 
-    public function buildForm(FormBuilderInterface $builder, array $options): void
-    {
+    public function buildForm(
+        FormBuilderInterface $builder,
+        array $options
+    ): void {
         $builder->addModelTransformer(
             $options['multiple']
                 ? new MultipleCountryValueTransformer($this->countriesInfo)

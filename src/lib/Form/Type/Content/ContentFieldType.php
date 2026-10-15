@@ -26,8 +26,7 @@ final class ContentFieldType extends AbstractType
 {
     public function __construct(
         private readonly FieldTypeFormMapperDispatcherInterface $fieldTypeFormMapper
-    ) {
-    }
+    ) {}
 
     public function getName(): string
     {
@@ -60,15 +59,20 @@ final class ContentFieldType extends AbstractType
             );
     }
 
-    public function buildView(FormView $view, FormInterface $form, array $options): void
-    {
+    public function buildView(
+        FormView $view,
+        FormInterface $form,
+        array $options
+    ): void {
         $view->vars['location'] = $options['location'];
         $view->vars['languageCode'] = $options['languageCode'];
         $view->vars['mainLanguageCode'] = $options['mainLanguageCode'];
     }
 
-    public function buildForm(FormBuilderInterface $builder, array $options): void
-    {
+    public function buildForm(
+        FormBuilderInterface $builder,
+        array $options
+    ): void {
         $builder->addEventListener(
             FormEvents::PRE_SET_DATA,
             function (FormEvent $event): void {

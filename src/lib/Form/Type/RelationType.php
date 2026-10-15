@@ -27,8 +27,7 @@ final class RelationType extends AbstractType
 
     public function __construct(
         private readonly LocationService $locationService
-    ) {
-    }
+    ) {}
 
     public function getBlockPrefix(): string
     {

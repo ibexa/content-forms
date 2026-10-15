@@ -42,8 +42,10 @@ final class FieldTypeFormContext extends RawMinkContext implements Context
 
     #[Given('a content type with a(n) :fieldTypeIdentifier field definition')]
     #[Given('a content type :contentTypeName with a(n) :fieldTypeIdentifier field definition')]
-    public function aContentTypeWithAGivenFieldDefinition(string $fieldTypeIdentifier, ?string $contentTypeName = null): void
-    {
+    public function aContentTypeWithAGivenFieldDefinition(
+        string $fieldTypeIdentifier,
+        ?string $contentTypeName = null
+    ): void {
         if (isset(self::$fieldTypeIdentifierMap[$fieldTypeIdentifier])) {
             $fieldTypeIdentifier = self::$fieldTypeIdentifierMap[$fieldTypeIdentifier];
         }
@@ -194,8 +196,10 @@ final class FieldTypeFormContext extends RawMinkContext implements Context
         }
     }
 
-    public function setFieldDefinitionOption(string $option, mixed $value): void
-    {
+    public function setFieldDefinitionOption(
+        string $option,
+        mixed $value
+    ): void {
         $this->contentTypeContext->updateFieldDefinition(
             self::$fieldIdentifier,
             new FieldDefinitionUpdateStruct(['fieldSettings' => [$option => $value]])

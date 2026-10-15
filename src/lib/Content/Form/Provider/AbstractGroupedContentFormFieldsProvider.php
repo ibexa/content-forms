@@ -9,18 +9,17 @@ declare(strict_types=1);
 namespace Ibexa\ContentForms\Content\Form\Provider;
 
 use Ibexa\Contracts\ContentForms\Content\Form\Provider\GroupedContentFormFieldsProviderInterface;
+use Ibexa\Contracts\ContentForms\Data\Content\FieldData;
 use Ibexa\Core\Helper\FieldsGroups\FieldsGroupsList;
 use JMS\TranslationBundle\Model\Message;
 use JMS\TranslationBundle\Translation\TranslationContainerInterface;
 
 abstract class AbstractGroupedContentFormFieldsProvider implements GroupedContentFormFieldsProviderInterface, TranslationContainerInterface
 {
-    public function __construct(protected readonly FieldsGroupsList $fieldsGroupsList)
-    {
-    }
+    public function __construct(protected readonly FieldsGroupsList $fieldsGroupsList) {}
 
     /**
-     * @param \Ibexa\Contracts\ContentForms\Data\Content\FieldData[] $fieldsDataForm
+     * @param FieldData[] $fieldsDataForm
      *
      * @return array<string, string[]>
      */
@@ -29,7 +28,7 @@ abstract class AbstractGroupedContentFormFieldsProvider implements GroupedConten
         $groupedFields = [];
 
         foreach ($fieldsDataForm as $fieldForm) {
-            /** @var \Ibexa\Contracts\ContentForms\Data\Content\FieldData $fieldData */
+            /** @var FieldData $fieldData */
             $fieldData = $fieldForm->getViewData();
             $fieldGroupIdentifier = $this->fieldsGroupsList->getFieldGroup($fieldData->getFieldDefinition());
             $groupKey = $this->getGroupKey($fieldGroupIdentifier);

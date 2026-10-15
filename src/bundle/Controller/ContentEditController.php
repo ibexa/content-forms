@@ -19,6 +19,9 @@ use Ibexa\ContentForms\Form\ActionDispatcher\ActionDispatcherInterface;
 use Ibexa\ContentForms\Form\Type\Content\ContentDraftCreateType;
 use Ibexa\Contracts\Core\Repository\ContentService;
 use Ibexa\Contracts\Core\Repository\ContentTypeService;
+use Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException;
+use Ibexa\Contracts\Core\Repository\Exceptions\UnauthorizedException;
+use Ibexa\Core\Base\Exceptions\InvalidArgumentType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -28,8 +31,7 @@ final class ContentEditController extends Controller
         private readonly ContentTypeService $contentTypeService,
         private readonly ContentService $contentService,
         private readonly ActionDispatcherInterface $contentActionDispatcher
-    ) {
-    }
+    ) {}
 
     /**
      * Displays and processes a content creation form. Showing the form does not create a draft in the repository.
@@ -45,16 +47,16 @@ final class ContentEditController extends Controller
     }
 
     /**
-     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\UnauthorizedException
-     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException
-     * @throws \Ibexa\Core\Base\Exceptions\InvalidArgumentType
+     * @throws UnauthorizedException
+     * @throws NotFoundException
+     * @throws InvalidArgumentType
      */
     public function createContentDraftAction(
         Request $request,
         ?int $contentId = null,
         ?int $fromVersionNo = null,
         ?string $fromLanguage = null
-    ): ContentCreateDraftView|Response {
+    ): ContentCreateDraftView | Response {
         $createContentDraft = new CreateContentDraftData();
         $contentInfo = null;
         $contentType = null;

@@ -16,10 +16,12 @@ use Symfony\Component\Form\FormInterface;
 final readonly class SelectionFormMapper implements FieldValueFormMapperInterface
 {
     /**
-     * @param \Symfony\Component\Form\FormInterface<mixed> $fieldForm
+     * @param FormInterface<mixed> $fieldForm
      */
-    public function mapFieldValueForm(FormInterface $fieldForm, FieldData $data): void
-    {
+    public function mapFieldValueForm(
+        FormInterface $fieldForm,
+        FieldData $data
+    ): void {
         $fieldDefinition = $data->getFieldDefinition();
         $formConfig = $fieldForm->getConfig();
         $languageCode = $fieldForm->getConfig()->getOption('languageCode');
@@ -42,11 +44,11 @@ final readonly class SelectionFormMapper implements FieldValueFormMapperInterfac
                         'value',
                         SelectionFieldType::class,
                         [
-                           'required' => $fieldDefinition->isRequired(),
-                           'label' => $fieldDefinition->getName(),
-                           'multiple' => $fieldSettings['isMultiple'],
-                           'choices' => array_flip($choices),
-                       ]
+                            'required' => $fieldDefinition->isRequired(),
+                            'label' => $fieldDefinition->getName(),
+                            'multiple' => $fieldSettings['isMultiple'],
+                            'choices' => array_flip($choices),
+                        ]
                     )
                    ->setAutoInitialize(false)
                    ->getForm()

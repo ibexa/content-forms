@@ -22,8 +22,7 @@ abstract class AbstractRelationFormMapper implements FieldValueFormMapperInterfa
     public function __construct(
         protected readonly ContentTypeService $contentTypeService,
         protected readonly LocationService $locationService
-    ) {
-    }
+    ) {}
 
     /**
      * @return array<string, string>

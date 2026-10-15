@@ -21,6 +21,5 @@ final class UserAccountFieldData
         public ?string $password,
         public ?string $email,
         public ?bool $enabled = true
-    ) {
-    }
+    ) {}
 }

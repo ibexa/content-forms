@@ -12,6 +12,7 @@ use Ibexa\Bundle\ContentForms\DependencyInjection\Compiler\FieldTypeFormMapperDi
 use Ibexa\Bundle\ContentForms\DependencyInjection\Configuration\Parser\ContentCreateView;
 use Ibexa\Bundle\ContentForms\DependencyInjection\Configuration\Parser\ContentEditView;
 use Ibexa\Bundle\ContentForms\DependencyInjection\Configuration\Parser\UserEdit;
+use Ibexa\Bundle\Core\DependencyInjection\IbexaCoreExtension;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
@@ -22,7 +23,7 @@ final class IbexaContentFormsBundle extends Bundle
         parent::build($container);
         $container->addCompilerPass(new FieldTypeFormMapperDispatcherPass());
 
-        /** @var \Ibexa\Bundle\Core\DependencyInjection\IbexaCoreExtension $ibexaCore */
+        /** @var IbexaCoreExtension $ibexaCore */
         $ibexaCore = $container->getExtension('ibexa');
 
         $ibexaCore->addConfigParser(new UserEdit());

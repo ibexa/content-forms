@@ -24,12 +24,12 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 final class BinaryBaseFieldType extends AbstractType
 {
-    public function __construct(private readonly MaxUploadSize $maxUploadSize)
-    {
-    }
+    public function __construct(private readonly MaxUploadSize $maxUploadSize) {}
 
-    public function buildForm(FormBuilderInterface $builder, array $options): void
-    {
+    public function buildForm(
+        FormBuilderInterface $builder,
+        array $options
+    ): void {
         /** @var int<1, max> $maxSize */
         $maxSize = $this->maxUploadSize->get();
 
@@ -56,8 +56,11 @@ final class BinaryBaseFieldType extends AbstractType
             );
     }
 
-    public function buildView(FormView $view, FormInterface $form, array $options): void
-    {
+    public function buildView(
+        FormView $view,
+        FormInterface $form,
+        array $options
+    ): void {
         $view->vars['max_upload_size'] = $this->maxUploadSize->get();
     }
 

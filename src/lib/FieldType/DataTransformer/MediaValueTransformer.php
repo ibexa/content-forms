@@ -10,6 +10,7 @@ namespace Ibexa\ContentForms\FieldType\DataTransformer;
 
 use Ibexa\Core\FieldType\Media\Value;
 use Symfony\Component\Form\DataTransformerInterface;
+use Symfony\Component\Form\Exception\TransformationFailedException;
 
 /**
  * Data transformer for ibexa_media field type.
@@ -41,11 +42,11 @@ final class MediaValueTransformer extends AbstractBinaryBaseTransformer implemen
     /**
      * @phpstan-param TMediaData $value
      *
-     * @throws \Symfony\Component\Form\Exception\TransformationFailedException
+     * @throws TransformationFailedException
      */
     public function reverseTransform(mixed $value): Value
     {
-        /** @var \Ibexa\Core\FieldType\Media\Value $valueObject */
+        /** @var Value $valueObject */
         $valueObject = $this->getReverseTransformedValue($value);
 
         if ($this->fieldType->isEmptyValue($valueObject)) {

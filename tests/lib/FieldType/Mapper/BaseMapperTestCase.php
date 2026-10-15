@@ -20,15 +20,15 @@ use Symfony\Component\Form\FormInterface;
 
 abstract class BaseMapperTestCase extends TestCase
 {
-    protected FieldTypeService&MockObject $fieldTypeService;
+    protected FieldTypeService & MockObject $fieldTypeService;
 
-    /** @phpstan-var \Symfony\Component\Form\FormConfigInterface<\Ibexa\Contracts\ContentForms\Data\Content\FieldData>&\PHPUnit\Framework\MockObject\MockObject */
-    protected FormConfigInterface&MockObject $config;
+    /** @phpstan-var FormConfigInterface<FieldData>&MockObject */
+    protected FormConfigInterface & MockObject $config;
 
-    /** @phpstan-var \Symfony\Component\Form\FormInterface<\Ibexa\Contracts\ContentForms\Data\Content\FieldData>&\PHPUnit\Framework\MockObject\MockObject */
-    protected FormInterface&MockObject $fieldForm;
+    /** @phpstan-var FormInterface<FieldData>&MockObject */
+    protected FormInterface & MockObject $fieldForm;
 
-    protected FieldData&MockObject $data;
+    protected FieldData & MockObject $data;
 
     protected function setUp(): void
     {

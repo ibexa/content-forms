@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Ibexa\ContentForms\Form\Processor\User;
 
+use Ibexa\ContentForms\Data\User\UserCreateData;
+use Ibexa\ContentForms\Data\User\UserUpdateData;
 use Ibexa\ContentForms\Event\ContentFormEvents;
 use Ibexa\ContentForms\Event\FormActionEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
@@ -21,8 +23,7 @@ final readonly class UserCancelFormProcessor implements EventSubscriberInterface
 {
     public function __construct(
         private UrlGeneratorInterface $urlGenerator
-    ) {
-    }
+    ) {}
 
     public static function getSubscribedEvents(): array
     {
@@ -33,7 +34,7 @@ final readonly class UserCancelFormProcessor implements EventSubscriberInterface
 
     public function processCancel(FormActionEvent $event): void
     {
-        /** @var \Ibexa\ContentForms\Data\User\UserUpdateData|\Ibexa\ContentForms\Data\User\UserCreateData $data */
+        /** @var UserUpdateData|UserCreateData $data */
         $data = $event->getData();
 
         $contentInfo = $data->isNew()

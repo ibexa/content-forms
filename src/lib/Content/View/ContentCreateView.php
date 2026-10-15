@@ -23,7 +23,7 @@ final class ContentCreateView extends BaseView implements LocationValueView, Con
 
     private Language $language;
 
-    /** @var \Symfony\Component\Form\FormInterface<mixed> */
+    /** @var FormInterface<mixed> */
     private FormInterface $form;
 
     public function setContentType(ContentType $contentType): void
@@ -32,7 +32,7 @@ final class ContentCreateView extends BaseView implements LocationValueView, Con
     }
 
     /**
-     * @return \Ibexa\Contracts\Core\Repository\Values\ContentType\ContentType
+     * @return ContentType
      */
     public function getContentType(): ContentType
     {
@@ -40,7 +40,7 @@ final class ContentCreateView extends BaseView implements LocationValueView, Con
     }
 
     /**
-     * @param \Ibexa\Contracts\Core\Repository\Values\Content\Location $location
+     * @param Location $location
      */
     public function setLocation(Location $location): void
     {
@@ -63,7 +63,7 @@ final class ContentCreateView extends BaseView implements LocationValueView, Con
     }
 
     /**
-     * @return \Symfony\Component\Form\FormInterface<mixed>
+     * @return FormInterface<mixed>
      */
     public function getForm(): FormInterface
     {
@@ -71,7 +71,7 @@ final class ContentCreateView extends BaseView implements LocationValueView, Con
     }
 
     /**
-     * @param \Symfony\Component\Form\FormInterface<mixed> $form
+     * @param FormInterface<mixed> $form
      */
     public function setForm(FormInterface $form): void
     {

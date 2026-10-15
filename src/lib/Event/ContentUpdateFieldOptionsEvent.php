@@ -16,7 +16,7 @@ use Symfony\Component\Form\FormInterface;
 final class ContentUpdateFieldOptionsEvent extends StructFieldOptionsEvent
 {
     /**
-     * @param \Symfony\Component\Form\FormInterface<mixed> $parentForm
+     * @param FormInterface<mixed> $parentForm
      */
     public function __construct(
         private readonly Content $content,

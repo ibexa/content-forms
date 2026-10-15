@@ -17,12 +17,18 @@ use Symfony\Component\Form\FormInterface;
  */
 interface FieldTypeFormMapperDispatcherInterface
 {
-    public function addMapper(FieldValueFormMapperInterface $mapper, string $fieldTypeIdentifier): void;
+    public function addMapper(
+        FieldValueFormMapperInterface $mapper,
+        string $fieldTypeIdentifier
+    ): void;
 
     /**
      * Maps, if a mapper is available for the fieldtype, $data to $form.
      *
      * @throws \InvalidArgumentException If $data is not a FieldData or FieldDefinitionData
      */
-    public function map(FormInterface $form, FieldData $data): void;
+    public function map(
+        FormInterface $form,
+        FieldData $data
+    ): void;
 }

@@ -24,7 +24,7 @@ class ContentEditView extends BaseView implements ContentValueView, LocationValu
 
     private Language $language;
 
-    /** @var \Symfony\Component\Form\FormInterface<mixed> */
+    /** @var FormInterface<mixed> */
     private FormInterface $form;
 
     public function setContent(Content $content): void
@@ -58,7 +58,7 @@ class ContentEditView extends BaseView implements ContentValueView, LocationValu
     }
 
     /**
-     * @return \Symfony\Component\Form\FormInterface<mixed>
+     * @return FormInterface<mixed>
      */
     public function getForm(): FormInterface
     {
@@ -66,7 +66,7 @@ class ContentEditView extends BaseView implements ContentValueView, LocationValu
     }
 
     /**
-     * @param \Symfony\Component\Form\FormInterface<mixed> $form
+     * @param FormInterface<mixed> $form
      */
     public function setForm(FormInterface $form): void
     {

@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace Ibexa\ContentForms\Validator\Constraints;
 
 use Ibexa\ContentForms\Validator\ValidationErrorsProcessor;
+use Ibexa\Contracts\Core\Repository\Exceptions\ContentValidationException;
 use Ibexa\Contracts\Core\Repository\UserService;
 use Ibexa\Contracts\Core\Repository\Values\User\PasswordValidationContext;
 use Symfony\Component\Validator\Constraint;
@@ -16,17 +17,17 @@ use Symfony\Component\Validator\ConstraintValidator;
 
 class PasswordValidator extends ConstraintValidator
 {
-    public function __construct(private readonly UserService $userService)
-    {
-    }
+    public function __construct(private readonly UserService $userService) {}
 
     /**
-     * @param \Ibexa\ContentForms\Validator\Constraints\Password $constraint
+     * @param Password $constraint
      *
-     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\ContentValidationException
+     * @throws ContentValidationException
      */
-    public function validate(mixed $value, Constraint $constraint): void
-    {
+    public function validate(
+        mixed $value,
+        Constraint $constraint
+    ): void {
         if (!is_string($value) || empty($value)) {
             return;
         }

@@ -30,7 +30,7 @@ abstract class AbstractActionDispatcher implements ActionDispatcherInterface
     }
 
     /**
-     * @param \Symfony\Component\Form\FormInterface<mixed> $form
+     * @param FormInterface<mixed> $form
      */
     public function dispatchFormAction(
         FormInterface $form,
@@ -58,9 +58,7 @@ abstract class AbstractActionDispatcher implements ActionDispatcherInterface
      * Configures options to pass to the form action event.
      * Might do nothing if there are no options.
      */
-    protected function configureOptions(OptionsResolver $resolver): void
-    {
-    }
+    protected function configureOptions(OptionsResolver $resolver): void {}
 
     /**
      * Returns base for action event name. It will be used as default action event name.
@@ -68,13 +66,17 @@ abstract class AbstractActionDispatcher implements ActionDispatcherInterface
      */
     abstract protected function getActionEventBaseName(): string;
 
-    protected function dispatchDefaultAction(?string $defaultActionEventName, FormActionEvent $event): void
-    {
+    protected function dispatchDefaultAction(
+        ?string $defaultActionEventName,
+        FormActionEvent $event
+    ): void {
         $this->eventDispatcher?->dispatch($event, $defaultActionEventName);
     }
 
-    protected function dispatchAction(?string $actionEventName, FormActionEvent $event): void
-    {
+    protected function dispatchAction(
+        ?string $actionEventName,
+        FormActionEvent $event
+    ): void {
         $this->eventDispatcher?->dispatch($event, $actionEventName);
     }
 

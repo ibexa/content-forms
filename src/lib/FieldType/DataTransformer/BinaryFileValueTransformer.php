@@ -10,6 +10,7 @@ namespace Ibexa\ContentForms\FieldType\DataTransformer;
 
 use Ibexa\Core\FieldType\BinaryFile\Value;
 use Symfony\Component\Form\DataTransformerInterface;
+use Symfony\Component\Form\Exception\TransformationFailedException;
 
 /**
  * Data transformer for an `ibexa_binaryfile` field type.
@@ -35,11 +36,11 @@ final class BinaryFileValueTransformer extends AbstractBinaryBaseTransformer imp
     /**
      * @phpstan-param TBinaryFileData $value
      *
-     * @throws \Symfony\Component\Form\Exception\TransformationFailedException
+     * @throws TransformationFailedException
      */
     public function reverseTransform(mixed $value): Value
     {
-        /** @var \Ibexa\Core\FieldType\BinaryFile\Value */
+        /** @var Value */
         return $this->getReverseTransformedValue($value);
     }
 }

@@ -33,8 +33,10 @@ final class BaseContentType extends AbstractType
         return 'ezplatform_content_forms_content';
     }
 
-    public function buildForm(FormBuilderInterface $builder, array $options): void
-    {
+    public function buildForm(
+        FormBuilderInterface $builder,
+        array $options
+    ): void {
         $builder
             ->add('fieldsData', FieldCollectionType::class, [
                 'entry_type' => ContentFieldType::class,
@@ -54,8 +56,11 @@ final class BaseContentType extends AbstractType
             ]);
     }
 
-    public function buildView(FormView $view, FormInterface $form, array $options): void
-    {
+    public function buildView(
+        FormView $view,
+        FormInterface $form,
+        array $options
+    ): void {
         $view->vars['languageCode'] = $options['languageCode'];
         $view->vars['mainLanguageCode'] = $options['mainLanguageCode'];
     }

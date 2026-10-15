@@ -16,10 +16,12 @@ use Symfony\Component\Form\FormInterface;
 final readonly class ISBNFormMapper implements FieldValueFormMapperInterface
 {
     /**
-     * @param \Symfony\Component\Form\FormInterface<mixed> $fieldForm
+     * @param FormInterface<mixed> $fieldForm
      */
-    public function mapFieldValueForm(FormInterface $fieldForm, FieldData $data): void
-    {
+    public function mapFieldValueForm(
+        FormInterface $fieldForm,
+        FieldData $data
+    ): void {
         $fieldDefinition = $data->getFieldDefinition();
         $formConfig = $fieldForm->getConfig();
 

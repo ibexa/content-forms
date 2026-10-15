@@ -12,6 +12,8 @@ use Ibexa\ContentForms\Data\Content\ContentCreateData;
 use Ibexa\ContentForms\Data\Mapper\ContentCreateMapper;
 use Ibexa\ContentForms\Form\Type\Content\ContentEditType;
 use Ibexa\Contracts\Core\Repository\ContentTypeService;
+use Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException;
+use Ibexa\Contracts\Core\Repository\Exceptions\UnauthorizedException;
 use Ibexa\Contracts\Core\Repository\LocationService;
 use Ibexa\Contracts\Core\Repository\Values\Content\Location;
 use Ibexa\Contracts\Core\Repository\Values\ContentType\ContentType;
@@ -21,6 +23,7 @@ use Ibexa\Core\MVC\Symfony\View\ViewEvents;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\Form\FormInterface;
+use Symfony\Component\OptionsResolver\Exception\InvalidOptionsException;
 
 final readonly class ContentCreateViewFilter implements EventSubscriberInterface
 {
@@ -29,8 +32,7 @@ final readonly class ContentCreateViewFilter implements EventSubscriberInterface
         private ContentTypeService $contentTypeService,
         private FormFactoryInterface $formFactory,
         private UserLanguagePreferenceProviderInterface $languagePreferenceProvider
-    ) {
-    }
+    ) {}
 
     public static function getSubscribedEvents(): array
     {
@@ -38,9 +40,9 @@ final readonly class ContentCreateViewFilter implements EventSubscriberInterface
     }
 
     /**
-     * @throws \Symfony\Component\OptionsResolver\Exception\InvalidOptionsException
-     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\UnauthorizedException
-     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException
+     * @throws InvalidOptionsException
+     * @throws UnauthorizedException
+     * @throws NotFoundException
      */
     public function handleContentCreateForm(FilterViewBuilderParametersEvent $event): void
     {
@@ -86,7 +88,7 @@ final readonly class ContentCreateViewFilter implements EventSubscriberInterface
     }
 
     /**
-     * @return \Symfony\Component\Form\FormInterface<mixed>
+     * @return FormInterface<mixed>
      */
     private function resolveContentCreateForm(
         ContentCreateData $contentCreateData,

@@ -22,9 +22,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 final class FloatFieldType extends AbstractType
 {
-    public function __construct(private readonly FieldTypeService $fieldTypeService)
-    {
-    }
+    public function __construct(private readonly FieldTypeService $fieldTypeService) {}
 
     public function getName(): string
     {
@@ -41,8 +39,10 @@ final class FloatFieldType extends AbstractType
         return NumberType::class;
     }
 
-    public function buildForm(FormBuilderInterface $builder, array $options): void
-    {
+    public function buildForm(
+        FormBuilderInterface $builder,
+        array $options
+    ): void {
         $builder->addModelTransformer(
             new FieldValueTransformer(
                 $this->fieldTypeService->getFieldType('ibexa_float')
@@ -52,8 +52,11 @@ final class FloatFieldType extends AbstractType
         $builder->resetViewTransformers();
     }
 
-    public function buildView(FormView $view, FormInterface $form, array $options): void
-    {
+    public function buildView(
+        FormView $view,
+        FormInterface $form,
+        array $options
+    ): void {
         $attributes = ['step' => 'any'];
 
         if (null !== $options['min']) {

@@ -22,8 +22,7 @@ final class PagelayoutContext extends RawMinkContext implements Context
 
     public function __construct(
         private readonly ConfigResolverInterface $configResolver
-    ) {
-    }
+    ) {}
 
     #[Given('/^a pagelayout is configured$/')]
     public function aPagelayoutIsConfigured(): void

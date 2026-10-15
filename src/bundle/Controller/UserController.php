@@ -19,15 +19,25 @@ use Ibexa\ContentForms\User\View\UserUpdateView;
 use Ibexa\Contracts\ContentForms\Content\Form\Provider\GroupedContentFormFieldsProviderInterface;
 use Ibexa\Contracts\Core\Repository\ContentService;
 use Ibexa\Contracts\Core\Repository\ContentTypeService;
+use Ibexa\Contracts\Core\Repository\Exceptions\BadStateException;
+use Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException;
 use Ibexa\Contracts\Core\Repository\Exceptions\UnauthorizedException;
 use Ibexa\Contracts\Core\Repository\LanguageService;
 use Ibexa\Contracts\Core\Repository\LocationService;
 use Ibexa\Contracts\Core\Repository\PermissionResolver;
 use Ibexa\Contracts\Core\Repository\UserService;
+use Ibexa\Core\Base\Exceptions\InvalidArgumentException;
+use Ibexa\Core\Base\Exceptions\InvalidArgumentType;
 use Ibexa\Core\Base\Exceptions\UnauthorizedException as CoreUnauthorizedException;
 use Ibexa\Core\MVC\Symfony\Locale\UserLanguagePreferenceProviderInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\OptionsResolver\Exception\AccessException;
+use Symfony\Component\OptionsResolver\Exception\InvalidOptionsException;
+use Symfony\Component\OptionsResolver\Exception\MissingOptionsException;
+use Symfony\Component\OptionsResolver\Exception\NoSuchOptionException;
+use Symfony\Component\OptionsResolver\Exception\OptionDefinitionException;
+use Symfony\Component\OptionsResolver\Exception\UndefinedOptionsException;
 
 final class UserController extends Controller
 {
@@ -41,27 +51,26 @@ final class UserController extends Controller
         private readonly UserLanguagePreferenceProviderInterface $userLanguagePreferenceProvider,
         private readonly GroupedContentFormFieldsProviderInterface $groupedContentFormFieldsProvider,
         private readonly ContentService $contentService
-    ) {
-    }
+    ) {}
 
     /**
-     * @throws \Ibexa\Core\Base\Exceptions\InvalidArgumentType
-     * @throws \Ibexa\Core\Base\Exceptions\InvalidArgumentException
-     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\UnauthorizedException
-     * @throws \Symfony\Component\OptionsResolver\Exception\UndefinedOptionsException
-     * @throws \Symfony\Component\OptionsResolver\Exception\OptionDefinitionException
-     * @throws \Symfony\Component\OptionsResolver\Exception\NoSuchOptionException
-     * @throws \Symfony\Component\OptionsResolver\Exception\MissingOptionsException
-     * @throws \Symfony\Component\OptionsResolver\Exception\InvalidOptionsException
-     * @throws \Symfony\Component\OptionsResolver\Exception\AccessException
-     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException
+     * @throws InvalidArgumentType
+     * @throws InvalidArgumentException
+     * @throws UnauthorizedException
+     * @throws UndefinedOptionsException
+     * @throws OptionDefinitionException
+     * @throws NoSuchOptionException
+     * @throws MissingOptionsException
+     * @throws InvalidOptionsException
+     * @throws AccessException
+     * @throws NotFoundException
      */
     public function createAction(
         string $contentTypeIdentifier,
         string $language,
         int $parentLocationId,
         Request $request
-    ): Response|UserCreateView {
+    ): Response | UserCreateView {
         $contentType = $this->contentTypeService->loadContentTypeByIdentifier(
             $contentTypeIdentifier,
             $this->userLanguagePreferenceProvider->getPreferredLanguages()
@@ -104,19 +113,19 @@ final class UserController extends Controller
     }
 
     /**
-     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\BadStateException
+     * @throws BadStateException
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\InvalidArgumentException
-     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException
-     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\UnauthorizedException
-     * @throws \Ibexa\Core\Base\Exceptions\InvalidArgumentType
-     * @throws \Ibexa\Core\Base\Exceptions\UnauthorizedException
+     * @throws NotFoundException
+     * @throws UnauthorizedException
+     * @throws InvalidArgumentType
+     * @throws CoreUnauthorizedException
      */
     public function editAction(
         int $contentId,
         int $versionNo,
         string $language,
         Request $request
-    ): Response|UserUpdateView {
+    ): Response | UserUpdateView {
         $user = $this->userService->loadUser($contentId);
         if (!$this->permissionResolver->canUser('content', 'edit', $user)) {
             throw new CoreUnauthorizedException('content', 'edit', ['userId' => $contentId]);

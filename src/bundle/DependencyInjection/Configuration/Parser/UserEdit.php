@@ -38,8 +38,11 @@ final class UserEdit extends AbstractParser
     /**
      * @param array<string, mixed> $scopeSettings
      */
-    public function mapConfig(array &$scopeSettings, mixed $currentScope, ContextualizerInterface $contextualizer): void
-    {
+    public function mapConfig(
+        array &$scopeSettings,
+        mixed $currentScope,
+        ContextualizerInterface $contextualizer
+    ): void {
         if (empty($scopeSettings['user_edit'])) {
             return;
         }

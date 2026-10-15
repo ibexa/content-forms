@@ -35,8 +35,10 @@ final class SelectionFieldType extends AbstractType
         return ChoiceType::class;
     }
 
-    public function buildForm(FormBuilderInterface $builder, array $options): void
-    {
+    public function buildForm(
+        FormBuilderInterface $builder,
+        array $options
+    ): void {
         $builder->addModelTransformer(
             $options['multiple']
                 ? new MultiSelectionValueTransformer()

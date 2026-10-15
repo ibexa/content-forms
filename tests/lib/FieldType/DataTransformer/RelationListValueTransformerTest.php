@@ -16,8 +16,10 @@ use PHPUnit\Framework\TestCase;
 final class RelationListValueTransformerTest extends TestCase
 {
     #[DataProvider('dataProviderForTestReverseTransform')]
-    public function testReverseTransform(?string $value, ?Value $expectedValue): void
-    {
+    public function testReverseTransform(
+        ?string $value,
+        ?Value $expectedValue
+    ): void {
         $transformer = new RelationListValueTransformer();
 
         self::assertEquals(

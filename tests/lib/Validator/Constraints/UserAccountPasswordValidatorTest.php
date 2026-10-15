@@ -33,11 +33,11 @@ final class UserAccountPasswordValidatorTest extends TestCase
     public function testValidateShouldBeSkipped(mixed $value): void
     {
         $this->userService
-            ->expects(self::never())
+            ->expects($this->never())
             ->method('validatePassword');
 
         $this->executionContext
-            ->expects(self::never())
+            ->expects($this->never())
             ->method('buildViolation');
 
         $this->validator->validate($value, new UserAccountPassword());
@@ -66,9 +66,12 @@ final class UserAccountPasswordValidatorTest extends TestCase
         $contentType = self::createStub(ContentType::class);
 
         $this->userService
-            ->expects(self::once())
+            ->expects($this->once())
             ->method('validatePassword')
-            ->willReturnCallback(static function ($actualPassword, $actualContext) use ($userAccount, $contentType): array {
+            ->willReturnCallback(static function (
+                $actualPassword,
+                $actualContext
+            ) use ($userAccount, $contentType): array {
                 self::assertEquals($userAccount->password, $actualPassword);
                 self::assertInstanceOf(PasswordValidationContext::class, $actualContext);
                 self::assertSame($contentType, $actualContext->contentType);
@@ -77,7 +80,7 @@ final class UserAccountPasswordValidatorTest extends TestCase
             });
 
         $this->executionContext
-            ->expects(self::never())
+            ->expects($this->never())
             ->method('buildViolation');
 
         $this->validator->validate($userAccount, new UserAccountPassword(contentType: $contentType));
@@ -91,9 +94,12 @@ final class UserAccountPasswordValidatorTest extends TestCase
         $errorMessage = 'error';
 
         $this->userService
-            ->expects(self::once())
+            ->expects($this->once())
             ->method('validatePassword')
-            ->willReturnCallback(static function ($actualPassword, $actualContext) use ($userAccount, $contentType, $errorMessage, $errorParameter): array {
+            ->willReturnCallback(static function (
+                $actualPassword,
+                $actualContext
+            ) use ($userAccount, $contentType, $errorMessage, $errorParameter): array {
                 self::assertEquals($userAccount->password, $actualPassword);
                 self::assertInstanceOf(PasswordValidationContext::class, $actualContext);
                 self::assertSame($contentType, $actualContext->contentType);
@@ -106,21 +112,21 @@ final class UserAccountPasswordValidatorTest extends TestCase
         $constraintViolationBuilder = $this->createMock(ConstraintViolationBuilderInterface::class);
 
         $this->executionContext
-            ->expects(self::once())
+            ->expects($this->once())
             ->method('buildViolation')
             ->willReturn($constraintViolationBuilder);
         $this->executionContext
-            ->expects(self::once())
+            ->expects($this->once())
             ->method('buildViolation')
             ->with($errorMessage)
             ->willReturn($constraintViolationBuilder);
         $constraintViolationBuilder
-            ->expects(self::once())
+            ->expects($this->once())
             ->method('setParameters')
             ->with(['%foo%' => $errorParameter])
             ->willReturn($constraintViolationBuilder);
         $constraintViolationBuilder
-            ->expects(self::once())
+            ->expects($this->once())
             ->method('addViolation');
 
         $this->validator->validate($userAccount, new UserAccountPassword(contentType: $contentType));

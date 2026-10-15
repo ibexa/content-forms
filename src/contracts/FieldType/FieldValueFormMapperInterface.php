@@ -17,5 +17,8 @@ interface FieldValueFormMapperInterface
      * Maps Field form to current FieldType.
      * Allows to add form fields for content edition.
      */
-    public function mapFieldValueForm(FormInterface $fieldForm, FieldData $data);
+    public function mapFieldValueForm(
+        FormInterface $fieldForm,
+        FieldData $data
+    );
 }

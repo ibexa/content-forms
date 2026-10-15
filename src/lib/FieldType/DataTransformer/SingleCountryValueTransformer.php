@@ -30,9 +30,7 @@ final readonly class SingleCountryValueTransformer implements DataTransformerInt
     /**
      * @phpstan-param array<string, TCountryValueData> $countriesInfo
      */
-    public function __construct(private array $countriesInfo)
-    {
-    }
+    public function __construct(private array $countriesInfo) {}
 
     public function transform(mixed $value): ?string
     {

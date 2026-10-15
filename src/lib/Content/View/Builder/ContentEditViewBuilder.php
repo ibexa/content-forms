@@ -10,6 +10,8 @@ namespace Ibexa\ContentForms\Content\View\Builder;
 
 use Ibexa\ContentForms\Content\View\ContentEditSuccessView;
 use Ibexa\ContentForms\Content\View\ContentEditView;
+use Ibexa\Contracts\Core\Repository\Exceptions\BadStateException;
+use Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException;
 use Ibexa\Contracts\Core\Repository\Exceptions\UnauthorizedException;
 use Ibexa\Contracts\Core\Repository\Values\Content\Content;
 use Ibexa\Contracts\Core\Repository\Values\Content\Language;
@@ -19,7 +21,9 @@ use Ibexa\Core\Base\Exceptions\InvalidArgumentException;
 use Ibexa\Core\MVC\Symfony\View\Builder\ViewBuilder;
 use Ibexa\Core\MVC\Symfony\View\ContentView;
 use Ibexa\Core\MVC\Symfony\View\View;
+use Symfony\Component\Form\Form;
 use Symfony\Component\Form\FormError;
+use Symfony\Component\OptionsResolver\Exception\InvalidOptionsException;
 
 /**
  * Builds ContentEditView objects.
@@ -36,12 +40,12 @@ final class ContentEditViewBuilder extends AbstractContentViewBuilder implements
     /**
      * @param array<string, mixed> $parameters
      *
-     * @throws \Symfony\Component\OptionsResolver\Exception\InvalidOptionsException
-     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\BadStateException
+     * @throws InvalidOptionsException
+     * @throws BadStateException
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\InvalidArgumentException
-     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\UnauthorizedException
+     * @throws UnauthorizedException
      */
-    public function buildView(array $parameters): ContentView|View
+    public function buildView(array $parameters): ContentView | View
     {
         $view = new ContentEditView(
             $this->configResolver->getParameter('content_edit.templates.edit')
@@ -56,7 +60,7 @@ final class ContentEditViewBuilder extends AbstractContentViewBuilder implements
             $this->languagePreferenceProvider->getPreferredLanguages()
         );
 
-        /** @var \Symfony\Component\Form\Form $form */
+        /** @var Form $form */
         $form = $parameters['form'];
         $isPublished = null !== $contentInfo->getMainLocationId() && $contentInfo->isPublished();
 
@@ -153,11 +157,14 @@ final class ContentEditViewBuilder extends AbstractContentViewBuilder implements
      *
      * @param string[] $languages
      *
-     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\UnauthorizedException
-     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException
+     * @throws UnauthorizedException
+     * @throws NotFoundException
      */
-    private function loadContent(int $contentId, array $languages = [], ?int $versionNo = null): Content
-    {
+    private function loadContent(
+        int $contentId,
+        array $languages = [],
+        ?int $versionNo = null
+    ): Content {
         return $this->repository->getContentService()->loadContent($contentId, $languages, $versionNo);
     }
 
@@ -166,22 +173,27 @@ final class ContentEditViewBuilder extends AbstractContentViewBuilder implements
      *
      * @param string[] $languageCodes
      *
-     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException
+     * @throws NotFoundException
      */
-    private function loadContentType(int $contentTypeId, array $languageCodes): ContentType
-    {
+    private function loadContentType(
+        int $contentTypeId,
+        array $languageCodes
+    ): ContentType {
         return $this->repository->getContentTypeService()->loadContentType($contentTypeId, $languageCodes);
     }
 
     /**
      * @param array<string, mixed> $parameters
      *
-     * @throws \Ibexa\Core\Base\Exceptions\InvalidArgumentException
-     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\UnauthorizedException
-     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException
+     * @throws InvalidArgumentException
+     * @throws UnauthorizedException
+     * @throws NotFoundException
      */
-    private function resolveContent(array $parameters, ?Location $location, Language $language): Content
-    {
+    private function resolveContent(
+        array $parameters,
+        ?Location $location,
+        Language $language
+    ): Content {
         if (isset($parameters['content'])) {
             return $parameters['content'];
         }

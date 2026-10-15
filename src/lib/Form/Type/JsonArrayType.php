@@ -20,8 +20,10 @@ final class JsonArrayType extends AbstractType
         return HiddenType::class;
     }
 
-    public function buildForm(FormBuilderInterface $builder, array $options): void
-    {
+    public function buildForm(
+        FormBuilderInterface $builder,
+        array $options
+    ): void {
         $builder->addModelTransformer(new JsonToArrayTransformer());
     }
 }

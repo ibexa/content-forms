@@ -22,9 +22,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 final class TextLineFieldType extends AbstractType
 {
-    public function __construct(private readonly FieldTypeService $fieldTypeService)
-    {
-    }
+    public function __construct(private readonly FieldTypeService $fieldTypeService) {}
 
     public function getName(): string
     {
@@ -41,15 +39,20 @@ final class TextLineFieldType extends AbstractType
         return TextType::class;
     }
 
-    public function buildForm(FormBuilderInterface $builder, array $options): void
-    {
+    public function buildForm(
+        FormBuilderInterface $builder,
+        array $options
+    ): void {
         $builder->addModelTransformer(
             new FieldValueTransformer($this->fieldTypeService->getFieldType('ibexa_string'))
         );
     }
 
-    public function buildView(FormView $view, FormInterface $form, array $options): void
-    {
+    public function buildView(
+        FormView $view,
+        FormInterface $form,
+        array $options
+    ): void {
         $attributes = [];
 
         if (null !== $options['min']) {

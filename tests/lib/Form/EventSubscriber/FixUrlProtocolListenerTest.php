@@ -27,8 +27,11 @@ final class FixUrlProtocolListenerTest extends TestCase
     private const URL_TEL = 'tel:' . self::TEL;
 
     #[DataProvider('provideUrlCases')]
-    public function testUrlProtocolHandling(?string $inputData, ?string $expectedData, string $defaultProtocol = 'https'): void
-    {
+    public function testUrlProtocolHandling(
+        ?string $inputData,
+        ?string $expectedData,
+        string $defaultProtocol = 'https'
+    ): void {
         $form = self::createStub(FormInterface::class);
         $listener = new FixUrlProtocolListener($defaultProtocol);
 
