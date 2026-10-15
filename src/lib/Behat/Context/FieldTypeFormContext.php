@@ -40,8 +40,10 @@ final class FieldTypeFormContext extends RawMinkContext implements SnippetAccept
      * @Given a content type with a(n) :fieldTypeIdentifier field definition
      * @Given a content type :contentTypeName with a(n) :fieldTypeIdentifier field definition
      */
-    public function aContentTypeWithAGivenFieldDefinition($fieldTypeIdentifier, $contentTypeName = null): void
-    {
+    public function aContentTypeWithAGivenFieldDefinition(
+        $fieldTypeIdentifier,
+        $contentTypeName = null
+    ): void {
         if (isset(self::$fieldTypeIdentifierMap[$fieldTypeIdentifier])) {
             $fieldTypeIdentifier = self::$fieldTypeIdentifierMap[$fieldTypeIdentifier];
         }
@@ -206,8 +208,10 @@ final class FieldTypeFormContext extends RawMinkContext implements SnippetAccept
         }
     }
 
-    public function setFieldDefinitionOption(string $option, mixed $value): void
-    {
+    public function setFieldDefinitionOption(
+        string $option,
+        mixed $value
+    ): void {
         $this->contentTypeContext->updateFieldDefinition(
             self::$fieldIdentifier,
             new FieldDefinitionUpdateStruct(['fieldSettings' => [$option => $value]])

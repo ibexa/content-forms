@@ -32,9 +32,7 @@ final class AuthorFieldType extends AbstractType
 {
     private int $defaultAuthor;
 
-    public function __construct(private readonly Repository $repository)
-    {
-    }
+    public function __construct(private readonly Repository $repository) {}
 
     public function getName(): string
     {
@@ -46,8 +44,10 @@ final class AuthorFieldType extends AbstractType
         return 'ezplatform_fieldtype_ibexa_author';
     }
 
-    public function buildForm(FormBuilderInterface $builder, array $options): void
-    {
+    public function buildForm(
+        FormBuilderInterface $builder,
+        array $options
+    ): void {
         $this->defaultAuthor = $options['default_author'];
 
         $builder
@@ -56,8 +56,11 @@ final class AuthorFieldType extends AbstractType
             ->addEventListener(FormEvents::POST_SET_DATA, [$this, 'filterOutEmptyAuthors']);
     }
 
-    public function buildView(FormView $view, FormInterface $form, array $options): void
-    {
+    public function buildView(
+        FormView $view,
+        FormInterface $form,
+        array $options
+    ): void {
         $view->vars['attr']['default-author'] = $options['default_author'];
     }
 

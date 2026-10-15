@@ -18,12 +18,13 @@ use Symfony\Component\Form\FormView;
 
 final class LocationType extends AbstractType
 {
-    public function __construct(private readonly LocationService $locationService)
-    {
-    }
+    public function __construct(private readonly LocationService $locationService) {}
 
-    public function buildView(FormView $view, FormInterface $form, array $options): void
-    {
+    public function buildView(
+        FormView $view,
+        FormInterface $form,
+        array $options
+    ): void {
         $view->vars['destination_location'] = null;
 
         if ($view->vars['value']) {

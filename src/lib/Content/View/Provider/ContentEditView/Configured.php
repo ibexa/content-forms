@@ -19,9 +19,7 @@ use Symfony\Component\HttpKernel\Controller\ControllerReference;
  */
 final readonly class Configured implements ViewProvider
 {
-    public function __construct(private MatcherFactoryInterface $matcherFactory)
-    {
-    }
+    public function __construct(private MatcherFactoryInterface $matcherFactory) {}
 
     public function getView(View $view): ?ContentEditView
     {

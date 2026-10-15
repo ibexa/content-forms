@@ -10,6 +10,7 @@ namespace Ibexa\ContentForms\FieldType\DataTransformer;
 
 use Ibexa\Core\FieldType\Image\Value;
 use Symfony\Component\Form\DataTransformerInterface;
+use Symfony\Component\Form\Exception\TransformationFailedException;
 
 /**
  * Data transformer for the `ibexa_image` field type.
@@ -21,7 +22,7 @@ use Symfony\Component\Form\DataTransformerInterface;
 final class ImageValueTransformer extends AbstractBinaryBaseTransformer implements DataTransformerInterface
 {
     /**
-     * @param \Ibexa\Core\FieldType\Image\Value $value
+     * @param Value $value
      *
      * @return array<string, mixed>
      */
@@ -43,11 +44,11 @@ final class ImageValueTransformer extends AbstractBinaryBaseTransformer implemen
     /**
      * @param array<string, mixed> $value
      *
-     * @throws \Symfony\Component\Form\Exception\TransformationFailedException
+     * @throws TransformationFailedException
      */
     public function reverseTransform(mixed $value): Value
     {
-        /** @var \Ibexa\Core\FieldType\Image\Value $valueObject */
+        /** @var Value $valueObject */
         $valueObject = $this->getReverseTransformedValue($value);
 
         if ($this->fieldType->isEmptyValue($valueObject)) {

@@ -16,7 +16,12 @@ use Ibexa\Contracts\ContentForms\FieldType\FieldValueFormMapperInterface;
 use Ibexa\Contracts\Core\Repository\Values\ContentType\FieldDefinition;
 use Ibexa\Core\FieldType\User\Value as ApiUserValue;
 use Symfony\Component\Form\CallbackTransformer;
+use Symfony\Component\Form\Exception\AlreadySubmittedException;
+use Symfony\Component\Form\Exception\LogicException;
+use Symfony\Component\Form\Exception\UnexpectedTypeException;
 use Symfony\Component\Form\FormInterface;
+use Symfony\Component\OptionsResolver\Exception\AccessException;
+use Symfony\Component\OptionsResolver\Exception\InvalidOptionsException;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
@@ -27,13 +32,15 @@ final readonly class UserAccountFieldValueFormMapper implements FieldValueFormMa
     /**
      * Maps Field form to current FieldType based on the configured form type (self::$formType).
      *
-     * @throws \Symfony\Component\Form\Exception\AlreadySubmittedException
-     * @throws \Symfony\Component\Form\Exception\LogicException
-     * @throws \Symfony\Component\Form\Exception\UnexpectedTypeException
-     * @throws \Symfony\Component\OptionsResolver\Exception\InvalidOptionsException
+     * @throws AlreadySubmittedException
+     * @throws LogicException
+     * @throws UnexpectedTypeException
+     * @throws InvalidOptionsException
      */
-    public function mapFieldValueForm(FormInterface $fieldForm, FieldData $data): void
-    {
+    public function mapFieldValueForm(
+        FormInterface $fieldForm,
+        FieldData $data
+    ): void {
         $fieldDefinition = $data->getFieldDefinition();
         $formConfig = $fieldForm->getConfig();
         $rootForm = $fieldForm->getRoot()->getRoot();
@@ -62,7 +69,7 @@ final readonly class UserAccountFieldValueFormMapper implements FieldValueFormMa
     /**
      * Fake method to set the translation domain for the extractor.
      *
-     * @throws \Symfony\Component\OptionsResolver\Exception\AccessException
+     * @throws AccessException
      */
     public function configureOptions(OptionsResolver $resolver): void
     {
@@ -79,7 +86,7 @@ final readonly class UserAccountFieldValueFormMapper implements FieldValueFormMa
                 return new UserAccountFieldData($data->login, null, $data->email, $data->enabled);
             },
             static function (UserAccountFieldData $submittedData) use ($fieldDefinition) {
-                /** @var \Ibexa\Core\FieldType\User\Value $userValue */
+                /** @var ApiUserValue $userValue */
                 $userValue = clone $fieldDefinition->defaultValue;
 
                 $userValue->login = $submittedData->username;

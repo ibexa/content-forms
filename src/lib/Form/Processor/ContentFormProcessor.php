@@ -10,10 +10,16 @@ namespace Ibexa\ContentForms\Form\Processor;
 
 use Ibexa\ContentForms\Data\Content\ContentCreateData;
 use Ibexa\ContentForms\Data\Content\ContentUpdateData;
+use Ibexa\ContentForms\Data\Content\CreateContentDraftData;
 use Ibexa\ContentForms\Data\NewnessCheckable;
 use Ibexa\ContentForms\Event\ContentFormEvents;
 use Ibexa\ContentForms\Event\FormActionEvent;
 use Ibexa\Contracts\Core\Repository\ContentService;
+use Ibexa\Contracts\Core\Repository\Exceptions\BadStateException;
+use Ibexa\Contracts\Core\Repository\Exceptions\ContentFieldValidationException;
+use Ibexa\Contracts\Core\Repository\Exceptions\ContentValidationException;
+use Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException;
+use Ibexa\Contracts\Core\Repository\Exceptions\UnauthorizedException;
 use Ibexa\Contracts\Core\Repository\LocationService;
 use Ibexa\Contracts\Core\Repository\Values\Content\Content;
 use Ibexa\Contracts\Core\Repository\Values\Content\ContentStruct;
@@ -34,8 +40,7 @@ final readonly class ContentFormProcessor implements EventSubscriberInterface
         private ContentService $contentService,
         private LocationService $locationService,
         private RouterInterface $router
-    ) {
-    }
+    ) {}
 
     public static function getSubscribedEvents(): array
     {
@@ -50,16 +55,16 @@ final readonly class ContentFormProcessor implements EventSubscriberInterface
     }
 
     /**
-     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\BadStateException
-     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\ContentFieldValidationException
-     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\ContentValidationException
+     * @throws BadStateException
+     * @throws ContentFieldValidationException
+     * @throws ContentValidationException
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\InvalidArgumentException
-     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException
-     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\UnauthorizedException
+     * @throws NotFoundException
+     * @throws UnauthorizedException
      */
     public function processSaveDraft(FormActionEvent $event): void
     {
-        /** @var \Ibexa\ContentForms\Data\Content\ContentCreateData|\Ibexa\ContentForms\Data\Content\ContentUpdateData $data */
+        /** @var ContentCreateData|ContentUpdateData $data */
         $data = $event->getData();
         $form = $event->getForm();
 
@@ -82,16 +87,16 @@ final readonly class ContentFormProcessor implements EventSubscriberInterface
     }
 
     /**
-     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\BadStateException
-     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\ContentFieldValidationException
-     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\ContentValidationException
+     * @throws BadStateException
+     * @throws ContentFieldValidationException
+     * @throws ContentValidationException
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\InvalidArgumentException
-     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException
-     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\UnauthorizedException
+     * @throws NotFoundException
+     * @throws UnauthorizedException
      */
     public function processSaveDraftAndClose(FormActionEvent $event): void
     {
-        /** @var \Ibexa\ContentForms\Data\Content\ContentCreateData|\Ibexa\ContentForms\Data\Content\ContentUpdateData $data */
+        /** @var ContentCreateData|ContentUpdateData $data */
         $data = $event->getData();
         $form = $event->getForm();
 
@@ -135,15 +140,15 @@ final readonly class ContentFormProcessor implements EventSubscriberInterface
     }
 
     /**
-     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\BadStateException
-     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\ContentFieldValidationException
-     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\ContentValidationException
+     * @throws BadStateException
+     * @throws ContentFieldValidationException
+     * @throws ContentValidationException
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\InvalidArgumentException
-     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\UnauthorizedException
+     * @throws UnauthorizedException
      */
     public function processPublish(FormActionEvent $event): void
     {
-        /** @var \Ibexa\ContentForms\Data\Content\ContentCreateData|\Ibexa\ContentForms\Data\Content\ContentUpdateData $data */
+        /** @var ContentCreateData|ContentUpdateData $data */
         $data = $event->getData();
         $form = $event->getForm();
         $referrerLocation = $event->getOption('referrerLocation');
@@ -176,15 +181,15 @@ final readonly class ContentFormProcessor implements EventSubscriberInterface
     }
 
     /**
-     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\BadStateException
-     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\ContentFieldValidationException
-     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\ContentValidationException
+     * @throws BadStateException
+     * @throws ContentFieldValidationException
+     * @throws ContentValidationException
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\InvalidArgumentException
-     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\UnauthorizedException
+     * @throws UnauthorizedException
      */
     public function processPublishAndEdit(FormActionEvent $event): void
     {
-        /** @var \Ibexa\ContentForms\Data\Content\ContentCreateData|\Ibexa\ContentForms\Data\Content\ContentUpdateData $data */
+        /** @var ContentCreateData|ContentUpdateData $data */
         $data = $event->getData();
         $form = $event->getForm();
         $referrerLocation = $event->getOption('referrerLocation');
@@ -218,11 +223,11 @@ final readonly class ContentFormProcessor implements EventSubscriberInterface
     }
 
     /**
-     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\BadStateException
+     * @throws BadStateException
      */
     public function processCancel(FormActionEvent $event): void
     {
-        /** @var \Ibexa\ContentForms\Data\Content\ContentCreateData|\Ibexa\ContentForms\Data\Content\ContentUpdateData $data */
+        /** @var ContentCreateData|ContentUpdateData $data */
         $data = $event->getData();
 
         if ($data->isNew()) {
@@ -272,12 +277,12 @@ final readonly class ContentFormProcessor implements EventSubscriberInterface
     }
 
     /**
-     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException
-     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\UnauthorizedException
+     * @throws NotFoundException
+     * @throws UnauthorizedException
      */
     public function processCreateDraft(FormActionEvent $event): void
     {
-        /** @var \Ibexa\ContentForms\Data\Content\CreateContentDraftData $createContentDraft */
+        /** @var CreateContentDraftData $createContentDraft */
         $createContentDraft = $event->getData();
 
         $contentInfo = $this->contentService->loadContentInfo($createContentDraft->contentId);
@@ -303,14 +308,14 @@ final readonly class ContentFormProcessor implements EventSubscriberInterface
      *
      * @param string[]|null $fieldIdentifiersToValidate
      *
-     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\BadStateException
-     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\ContentFieldValidationException
-     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\ContentValidationException
+     * @throws BadStateException
+     * @throws ContentFieldValidationException
+     * @throws ContentValidationException
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\InvalidArgumentException
-     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\UnauthorizedException
+     * @throws UnauthorizedException
      */
     private function saveDraft(
-        ContentStruct|ContentCreateData|ContentUpdateData $data,
+        ContentStruct | ContentCreateData | ContentUpdateData $data,
         string $languageCode,
         ?array $fieldIdentifiersToValidate = null
     ): Content {
@@ -345,7 +350,7 @@ final readonly class ContentFormProcessor implements EventSubscriberInterface
     /**
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\InvalidArgumentException
      */
-    private function resolveMainLanguageCode(ContentStruct|ContentUpdateData $data): string
+    private function resolveMainLanguageCode(ContentStruct | ContentUpdateData $data): string
     {
         if (!$data instanceof ContentUpdateData && !$data instanceof ContentCreateData) {
             throw new InvalidArgumentException(
@@ -360,11 +365,14 @@ final readonly class ContentFormProcessor implements EventSubscriberInterface
     }
 
     /**
-     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException
-     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\UnauthorizedException
+     * @throws NotFoundException
+     * @throws UnauthorizedException
      */
-    private function resolveLocation(Content $content, ?Location $referrerLocation, NewnessCheckable $data): ?Location
-    {
+    private function resolveLocation(
+        Content $content,
+        ?Location $referrerLocation,
+        NewnessCheckable $data
+    ): ?Location {
         $contentInfo = $content->getContentInfo();
         if ($data->isNew() || (!$contentInfo->isPublished() && null === $contentInfo->getMainLocationId())) {
             return null; // no location exists until new content is published

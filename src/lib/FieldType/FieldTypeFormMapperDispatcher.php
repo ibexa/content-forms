@@ -19,24 +19,27 @@ use Symfony\Component\Form\FormInterface;
 final class FieldTypeFormMapperDispatcher implements FieldTypeFormMapperDispatcherInterface
 {
     /**
-     * @param \Ibexa\Contracts\ContentForms\FieldType\FieldValueFormMapperInterface[] $mappers
+     * @param FieldValueFormMapperInterface[] $mappers
      */
     public function __construct(
         private readonly FieldTypeAliasResolverInterface $fieldTypeAliasResolver,
         private array $mappers = []
-    ) {
-    }
+    ) {}
 
-    public function addMapper(FieldValueFormMapperInterface $mapper, string $fieldTypeIdentifier): void
-    {
+    public function addMapper(
+        FieldValueFormMapperInterface $mapper,
+        string $fieldTypeIdentifier
+    ): void {
         $this->mappers[$fieldTypeIdentifier] = $mapper;
     }
 
     /**
-     * @param \Symfony\Component\Form\FormInterface<mixed> $form
+     * @param FormInterface<mixed> $form
      */
-    public function map(FormInterface $form, FieldData $data): void
-    {
+    public function map(
+        FormInterface $form,
+        FieldData $data
+    ): void {
         $fieldTypeIdentifier = $this->fieldTypeAliasResolver->resolveIdentifier(
             $data->getFieldTypeIdentifier()
         );

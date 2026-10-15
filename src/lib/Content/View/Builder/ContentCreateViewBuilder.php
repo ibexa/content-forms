@@ -10,10 +10,13 @@ namespace Ibexa\ContentForms\Content\View\Builder;
 
 use Ibexa\ContentForms\Content\View\ContentCreateSuccessView;
 use Ibexa\ContentForms\Content\View\ContentCreateView;
+use Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException;
+use Ibexa\Contracts\Core\Repository\Exceptions\UnauthorizedException;
 use Ibexa\Contracts\Core\Repository\Values\Content\Location;
 use Ibexa\Contracts\Core\Repository\Values\ContentType\ContentType;
 use Ibexa\Core\Base\Exceptions\InvalidArgumentException;
 use Ibexa\Core\MVC\Symfony\View\Builder\ViewBuilder;
+use Symfony\Component\Form\Form;
 
 /**
  * Builds ContentCreateView objects.
@@ -30,18 +33,18 @@ final class ContentCreateViewBuilder extends AbstractContentViewBuilder implemen
     /**
      * @param array<string, mixed> $parameters
      *
-     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\UnauthorizedException
-     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException
+     * @throws UnauthorizedException
+     * @throws NotFoundException
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\InvalidArgumentException
      */
-    public function buildView(array $parameters): ContentCreateSuccessView|ContentCreateView
+    public function buildView(array $parameters): ContentCreateSuccessView | ContentCreateView
     {
         $view = new ContentCreateView($this->configResolver->getParameter('content_edit.templates.create'));
 
         $language = $this->resolveLanguage($parameters);
         $location = $this->resolveLocation($parameters);
         $contentType = $this->resolveContentType($parameters, $this->languagePreferenceProvider->getPreferredLanguages());
-        /** @var \Symfony\Component\Form\Form $form */
+        /** @var Form $form */
         $form = $parameters['form'];
 
         if ($form->isSubmitted() && $form->isValid() && null !== $form->getClickedButton()) {
@@ -86,10 +89,12 @@ final class ContentCreateViewBuilder extends AbstractContentViewBuilder implemen
      *
      * @param string[] $prioritizedLanguages
      *
-     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException
+     * @throws NotFoundException
      */
-    private function loadContentType(string $contentTypeIdentifier, array $prioritizedLanguages = []): ContentType
-    {
+    private function loadContentType(
+        string $contentTypeIdentifier,
+        array $prioritizedLanguages = []
+    ): ContentType {
         return $this->repository->getContentTypeService()->loadContentTypeByIdentifier(
             $contentTypeIdentifier,
             $prioritizedLanguages
@@ -100,11 +105,13 @@ final class ContentCreateViewBuilder extends AbstractContentViewBuilder implemen
      * @param array<string, mixed> $parameters
      * @param string[] $languageCodes
      *
-     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException
+     * @throws NotFoundException
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\InvalidArgumentException
      */
-    private function resolveContentType(array $parameters, array $languageCodes): ContentType
-    {
+    private function resolveContentType(
+        array $parameters,
+        array $languageCodes
+    ): ContentType {
         if (isset($parameters['contentType'])) {
             return $parameters['contentType'];
         }
@@ -122,8 +129,8 @@ final class ContentCreateViewBuilder extends AbstractContentViewBuilder implemen
     /**
      * @param array<string, mixed> $parameters
      *
-     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\UnauthorizedException
-     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException
+     * @throws UnauthorizedException
+     * @throws NotFoundException
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\InvalidArgumentException
      */
     private function resolveLocation(array $parameters): Location

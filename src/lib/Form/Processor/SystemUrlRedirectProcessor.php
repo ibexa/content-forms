@@ -10,6 +10,8 @@ namespace Ibexa\ContentForms\Form\Processor;
 
 use Ibexa\ContentForms\Event\ContentFormEvents;
 use Ibexa\ContentForms\Event\FormActionEvent;
+use Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException;
+use Ibexa\Contracts\Core\Repository\Exceptions\UnauthorizedException;
 use Ibexa\Contracts\Core\Repository\LocationService;
 use Ibexa\Contracts\Core\Repository\URLAliasService;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
@@ -22,8 +24,7 @@ final readonly class SystemUrlRedirectProcessor implements EventSubscriberInterf
         private RouterInterface $router,
         private URLAliasService $urlAliasService,
         private LocationService $locationService
-    ) {
-    }
+    ) {}
 
     public static function getSubscribedEvents(): array
     {
@@ -34,8 +35,8 @@ final readonly class SystemUrlRedirectProcessor implements EventSubscriberInterf
     }
 
     /**
-     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException
-     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\UnauthorizedException
+     * @throws NotFoundException
+     * @throws UnauthorizedException
      */
     public function processRedirectAfterPublish(FormActionEvent $event): void
     {
@@ -47,8 +48,8 @@ final readonly class SystemUrlRedirectProcessor implements EventSubscriberInterf
     }
 
     /**
-     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException
-     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\UnauthorizedException
+     * @throws NotFoundException
+     * @throws UnauthorizedException
      */
     public function processRedirectAfterCancel(FormActionEvent $event): void
     {
@@ -56,12 +57,12 @@ final readonly class SystemUrlRedirectProcessor implements EventSubscriberInterf
     }
 
     /**
-     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException
-     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\UnauthorizedException
+     * @throws NotFoundException
+     * @throws UnauthorizedException
      */
     private function resolveSystemUrlRedirect(FormActionEvent $event): void
     {
-        /** @var \Symfony\Component\HttpFoundation\RedirectResponse $response */
+        /** @var RedirectResponse $response */
         $response = $event->getResponse();
 
         if (!$response instanceof RedirectResponse) {

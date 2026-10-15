@@ -26,8 +26,10 @@ final class ContentDraftCreateType extends AbstractType
         return 'ezplatform_content_forms_content_draft_create';
     }
 
-    public function buildForm(FormBuilderInterface $builder, array $options): void
-    {
+    public function buildForm(
+        FormBuilderInterface $builder,
+        array $options
+    ): void {
         $builder
             ->add(
                 'contentId',

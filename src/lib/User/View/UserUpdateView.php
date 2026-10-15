@@ -10,6 +10,4 @@ namespace Ibexa\ContentForms\User\View;
 
 use Ibexa\Core\MVC\Symfony\View\BaseView;
 
-final class UserUpdateView extends BaseView
-{
-}
+final class UserUpdateView extends BaseView {}

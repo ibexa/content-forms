@@ -8,8 +8,10 @@ declare(strict_types=1);
 
 namespace Ibexa\ContentForms\Form\EventSubscriber;
 
+use Ibexa\ContentForms\Data\User\UserAccountFieldData;
 use Ibexa\ContentForms\Data\User\UserCreateData;
 use Ibexa\ContentForms\Data\User\UserUpdateData;
+use Ibexa\Core\FieldType\User\Value;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
@@ -34,7 +36,7 @@ final readonly class UserFieldsSubscriber implements EventSubscriberInterface
      */
     public function handleUserAccountField(FormEvent $event): void
     {
-        /** @var \Ibexa\ContentForms\Data\User\UserCreateData|\Ibexa\ContentForms\Data\User\UserUpdateData $data */
+        /** @var UserCreateData|UserUpdateData $data */
         $data = $event->getData();
         $form = $event->getForm();
         $languageCode = $form->getConfig()->getOption('languageCode');
@@ -53,14 +55,14 @@ final readonly class UserFieldsSubscriber implements EventSubscriberInterface
                 continue;
             }
 
-            /** @var \Ibexa\ContentForms\Data\User\UserAccountFieldData $userAccountFieldData */
+            /** @var UserAccountFieldData $userAccountFieldData */
             $userAccountFieldData = $fieldData->value;
             $data->login = $userAccountFieldData->username ?? $data->login;
             $data->email = $userAccountFieldData->email ?? $data->email;
             $data->password = $userAccountFieldData->password ?? $data->password;
             $data->enabled = $userAccountFieldData->enabled ?? $data->enabled;
 
-            /** @var \Ibexa\Core\FieldType\User\Value $userValue */
+            /** @var Value $userValue */
             $userValue = clone $data->contentType->getFieldDefinition(
                 $fieldData->getField()->getFieldDefinitionIdentifier()
             )->getDefaultValue();
@@ -76,20 +78,22 @@ final readonly class UserFieldsSubscriber implements EventSubscriberInterface
         }
     }
 
-    private function handleUserUpdateData(UserUpdateData $data, ?string $languageCode): void
-    {
+    private function handleUserUpdateData(
+        UserUpdateData $data,
+        ?string $languageCode
+    ): void {
         foreach ($data->getFieldsData() as $fieldData) {
             if ('ibexa_user' !== $fieldData->getFieldTypeIdentifier()) {
                 continue;
             }
 
-            /** @var \Ibexa\ContentForms\Data\User\UserAccountFieldData $userAccountFieldData */
+            /** @var UserAccountFieldData $userAccountFieldData */
             $userAccountFieldData = $fieldData->value;
             $data->email = $userAccountFieldData->email ?? $data->email;
             $data->password = $userAccountFieldData->password ?? $data->password;
             $data->enabled = $userAccountFieldData->enabled ?? $data->enabled;
 
-            /** @var \Ibexa\Core\FieldType\User\Value $userValue */
+            /** @var Value $userValue */
             $userValue = clone $data->user->getField(
                 $fieldData->getField()->getFieldDefinitionIdentifier(),
                 $languageCode

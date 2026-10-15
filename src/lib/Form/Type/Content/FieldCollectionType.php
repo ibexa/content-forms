@@ -30,8 +30,7 @@ final class FieldCollectionType extends CollectionType
 {
     public function __construct(
         private readonly EventDispatcherInterface $eventDispatcher
-    ) {
-    }
+    ) {}
 
     public function buildForm(
         FormBuilderInterface $builder,
@@ -72,7 +71,7 @@ final class FieldCollectionType extends CollectionType
 
     /**
      * @param array<string, mixed> $entryOptions
-     * @param \Symfony\Component\Form\FormInterface<mixed> $form
+     * @param FormInterface<mixed> $form
      *
      * @return array<string, mixed>
      */
@@ -81,7 +80,7 @@ final class FieldCollectionType extends CollectionType
         array $entryOptions,
         FormInterface $form
     ): array {
-        /** @var \Ibexa\ContentForms\Event\ContentUpdateFieldOptionsEvent $contentUpdateFieldOptionsEvent */
+        /** @var ContentUpdateFieldOptionsEvent $contentUpdateFieldOptionsEvent */
         $contentUpdateFieldOptionsEvent = $this->eventDispatcher->dispatch(
             new ContentUpdateFieldOptionsEvent(
                 $entryOptions['content'],
@@ -98,7 +97,7 @@ final class FieldCollectionType extends CollectionType
 
     /**
      * @param array<string, mixed> $entryOptions
-     * @param \Symfony\Component\Form\FormInterface<mixed> $form
+     * @param FormInterface<mixed> $form
      *
      * @return array<string, mixed>
      */
@@ -107,7 +106,7 @@ final class FieldCollectionType extends CollectionType
         array $entryOptions,
         FormInterface $form
     ): array {
-        /** @var \Ibexa\ContentForms\Event\ContentCreateFieldOptionsEvent $contentCreateFieldOptionsEvent */
+        /** @var ContentCreateFieldOptionsEvent $contentCreateFieldOptionsEvent */
         $contentCreateFieldOptionsEvent = $this->eventDispatcher->dispatch(
             new ContentCreateFieldOptionsEvent(
                 $entryOptions['struct'],
@@ -123,7 +122,7 @@ final class FieldCollectionType extends CollectionType
 
     /**
      * @param array<string, mixed> $entryOptions
-     * @param \Symfony\Component\Form\FormInterface<mixed> $form
+     * @param FormInterface<mixed> $form
      *
      * @return array<string, mixed>
      */
@@ -132,7 +131,7 @@ final class FieldCollectionType extends CollectionType
         array $entryOptions,
         FormInterface $form
     ): array {
-        /** @var \Ibexa\ContentForms\Event\UserCreateFieldOptionsEvent $userCreateFieldOptionsEvent */
+        /** @var UserCreateFieldOptionsEvent $userCreateFieldOptionsEvent */
         $userCreateFieldOptionsEvent = $this->eventDispatcher->dispatch(
             new UserCreateFieldOptionsEvent(
                 $entryOptions['struct'],
@@ -148,7 +147,7 @@ final class FieldCollectionType extends CollectionType
 
     /**
      * @param array<string, mixed> $entryOptions
-     * @param \Symfony\Component\Form\FormInterface<mixed> $form
+     * @param FormInterface<mixed> $form
      *
      * @return array<string, mixed>
      */
@@ -164,7 +163,7 @@ final class FieldCollectionType extends CollectionType
             return $entryOptions;
         }
 
-        /** @var \Ibexa\ContentForms\Event\UserUpdateFieldOptionsEvent $userUpdateFieldOptionsEvent */
+        /** @var UserUpdateFieldOptionsEvent $userUpdateFieldOptionsEvent */
         $userUpdateFieldOptionsEvent = $this->eventDispatcher->dispatch(
             new UserUpdateFieldOptionsEvent(
                 $content,
@@ -181,7 +180,7 @@ final class FieldCollectionType extends CollectionType
 
     /**
      * @param array<string, mixed> $entryOptions
-     * @param \Symfony\Component\Form\FormInterface<mixed> $form
+     * @param FormInterface<mixed> $form
      *
      * @return array<string, mixed>
      */

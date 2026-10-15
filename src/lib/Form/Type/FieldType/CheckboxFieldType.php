@@ -19,9 +19,7 @@ use Symfony\Component\Form\FormBuilderInterface;
  */
 final class CheckboxFieldType extends AbstractType
 {
-    public function __construct(private readonly FieldTypeService $fieldTypeService)
-    {
-    }
+    public function __construct(private readonly FieldTypeService $fieldTypeService) {}
 
     public function getName(): string
     {
@@ -38,8 +36,10 @@ final class CheckboxFieldType extends AbstractType
         return CheckboxType::class;
     }
 
-    public function buildForm(FormBuilderInterface $builder, array $options): void
-    {
+    public function buildForm(
+        FormBuilderInterface $builder,
+        array $options
+    ): void {
         $builder->addModelTransformer(
             new FieldValueTransformer($this->fieldTypeService->getFieldType('ibexa_boolean'))
         );

@@ -15,8 +15,10 @@ use Ibexa\Contracts\ContentForms\Event\AutosaveEnabled;
 use Ibexa\Contracts\Core\Repository\ContentService;
 use Ibexa\Contracts\Core\Repository\ContentTypeService;
 use Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException;
+use Ibexa\Contracts\Core\Repository\Exceptions\UnauthorizedException;
 use Ibexa\Contracts\Core\Repository\LocationService;
 use Ibexa\Contracts\Core\Repository\Values\Content\Content;
+use Ibexa\Contracts\Core\Repository\Values\Content\Field;
 use Ibexa\Contracts\Core\Repository\Values\Content\Location;
 use Ibexa\Contracts\Core\Repository\Values\ContentType\ContentType;
 use Ibexa\Core\MVC\Symfony\Locale\UserLanguagePreferenceProviderInterface;
@@ -25,6 +27,7 @@ use Ibexa\Core\MVC\Symfony\View\ViewEvents;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\Form\FormInterface;
+use Symfony\Component\OptionsResolver\Exception\InvalidOptionsException;
 use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
 
 final readonly class ContentEditViewFilter implements EventSubscriberInterface
@@ -36,8 +39,7 @@ final readonly class ContentEditViewFilter implements EventSubscriberInterface
         private FormFactoryInterface $formFactory,
         private UserLanguagePreferenceProviderInterface $languagePreferenceProvider,
         private EventDispatcherInterface $eventDispatcher
-    ) {
-    }
+    ) {}
 
     public static function getSubscribedEvents(): array
     {
@@ -45,9 +47,9 @@ final readonly class ContentEditViewFilter implements EventSubscriberInterface
     }
 
     /**
-     * @throws \Symfony\Component\OptionsResolver\Exception\InvalidOptionsException
-     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\UnauthorizedException
-     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException
+     * @throws InvalidOptionsException
+     * @throws UnauthorizedException
+     * @throws NotFoundException
      */
     public function handleContentEditForm(FilterViewBuilderParametersEvent $event): void
     {
@@ -105,7 +107,7 @@ final readonly class ContentEditViewFilter implements EventSubscriberInterface
     }
 
     /**
-     * @param array<\Ibexa\Contracts\Core\Repository\Values\Content\Field> $currentFields
+     * @param array<Field> $currentFields
      */
     private function resolveContentEditData(
         Content $content,
@@ -123,7 +125,7 @@ final readonly class ContentEditViewFilter implements EventSubscriberInterface
     }
 
     /**
-     * @return \Symfony\Component\Form\FormInterface<mixed>
+     * @return FormInterface<mixed>
      */
     private function resolveContentEditForm(
         ContentUpdateData $contentUpdate,

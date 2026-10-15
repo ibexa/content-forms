@@ -11,6 +11,8 @@ namespace Ibexa\ContentForms\Content\View\Builder;
 use Ibexa\ContentForms\Form\ActionDispatcher\ActionDispatcherInterface;
 use Ibexa\Contracts\ContentForms\Content\Form\Provider\GroupedContentFormFieldsProviderInterface;
 use Ibexa\Contracts\Core\Repository\ContentService;
+use Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException;
+use Ibexa\Contracts\Core\Repository\Exceptions\UnauthorizedException;
 use Ibexa\Contracts\Core\Repository\Repository;
 use Ibexa\Contracts\Core\Repository\Values\Content\Language;
 use Ibexa\Contracts\Core\Repository\Values\Content\Location;
@@ -34,14 +36,13 @@ abstract class AbstractContentViewBuilder
         protected ConfigResolverInterface $configResolver,
         protected GroupedContentFormFieldsProviderInterface $groupedContentFormFieldsProvider,
         protected ContentService $contentService
-    ) {
-    }
+    ) {}
 
     /**
      * Loads a visible Location.
      *
-     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\UnauthorizedException
-     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException
+     * @throws UnauthorizedException
+     * @throws NotFoundException
      */
     protected function loadLocation(int $locationId): Location
     {
@@ -49,7 +50,7 @@ abstract class AbstractContentViewBuilder
     }
 
     /**
-     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException
+     * @throws NotFoundException
      */
     private function loadLanguage(string $languageCode): Language
     {
@@ -59,7 +60,7 @@ abstract class AbstractContentViewBuilder
     /**
      * @param array<string, mixed> $parameters
      *
-     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException
+     * @throws NotFoundException
      * @throws \Ibexa\Contracts\Core\Repository\Exceptions\InvalidArgumentException
      */
     protected function resolveLanguage(array $parameters): Language

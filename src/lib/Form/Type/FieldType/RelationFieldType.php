@@ -29,8 +29,7 @@ final class RelationFieldType extends AbstractType
     public function __construct(
         private readonly ContentService $contentService,
         private readonly ContentTypeService $contentTypeService
-    ) {
-    }
+    ) {}
 
     public function getName(): string
     {
@@ -47,18 +46,23 @@ final class RelationFieldType extends AbstractType
         return IntegerType::class;
     }
 
-    public function buildForm(FormBuilderInterface $builder, array $options): void
-    {
+    public function buildForm(
+        FormBuilderInterface $builder,
+        array $options
+    ): void {
         $builder->addModelTransformer(new RelationValueTransformer());
     }
 
-    public function finishView(FormView $view, FormInterface $form, array $options): void
-    {
+    public function finishView(
+        FormView $view,
+        FormInterface $form,
+        array $options
+    ): void {
         $view->vars['relations'] = [];
         $view->vars['default_location'] = $options['default_location'];
         $view->vars['root_default_location'] = $options['root_default_location'];
 
-        /** @var \Ibexa\Core\FieldType\Relation\Value $data */
+        /** @var Value $data */
         $data = $form->getData();
 
         if (!$data instanceof Value || null === $data->destinationContentId) {

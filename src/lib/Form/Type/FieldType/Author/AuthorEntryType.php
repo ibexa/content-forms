@@ -27,13 +27,15 @@ final class AuthorEntryType extends AbstractType
         return $this->getBlockPrefix();
     }
 
-   public function getBlockPrefix(): string
-   {
+    public function getBlockPrefix(): string
+    {
         return 'ezplatform_fieldtype_ibexa_author_authors_entry';
     }
 
-    public function buildForm(FormBuilderInterface $builder, array $options): void
-    {
+    public function buildForm(
+        FormBuilderInterface $builder,
+        array $options
+    ): void {
         $builder
             ->add(
                 'id',

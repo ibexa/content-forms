@@ -23,9 +23,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 final class ImageFieldType extends AbstractType
 {
-    public function __construct(private MimeTypesInterface $mimeTypes)
-    {
-    }
+    public function __construct(private MimeTypesInterface $mimeTypes) {}
 
     public function getName(): string
     {
@@ -42,8 +40,10 @@ final class ImageFieldType extends AbstractType
         return BinaryBaseFieldType::class;
     }
 
-    public function buildForm(FormBuilderInterface $builder, array $options): void
-    {
+    public function buildForm(
+        FormBuilderInterface $builder,
+        array $options
+    ): void {
         $builder
             ->add(
                 'alternativeText',
@@ -60,8 +60,11 @@ final class ImageFieldType extends AbstractType
             );
     }
 
-    public function buildView(FormView $view, FormInterface $form, array $options): void
-    {
+    public function buildView(
+        FormView $view,
+        FormInterface $form,
+        array $options
+    ): void {
         $view->vars += [
             'is_alternative_text_required' => $options['is_alternative_text_required'],
             'mime_types' => $options['mime_types'],

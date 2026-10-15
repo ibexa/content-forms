@@ -26,8 +26,7 @@ final readonly class UserUpdateFormProcessor implements EventSubscriberInterface
         private UserService $userService,
         private ContentService $contentService,
         private UrlGeneratorInterface $urlGenerator
-    ) {
-    }
+    ) {}
 
     public static function getSubscribedEvents(): array
     {
@@ -61,8 +60,10 @@ final readonly class UserUpdateFormProcessor implements EventSubscriberInterface
         $event->setResponse(new RedirectResponse($redirectUrl));
     }
 
-    private function setContentFields(UserUpdateData $data, string $languageCode): void
-    {
+    private function setContentFields(
+        UserUpdateData $data,
+        string $languageCode
+    ): void {
         $data->contentUpdateStruct = $this->contentService->newContentUpdateStruct();
 
         foreach ($data->getFieldsData() as $fieldDefIdentifier => $fieldData) {

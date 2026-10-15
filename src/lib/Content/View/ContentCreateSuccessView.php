@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace Ibexa\ContentForms\Content\View;
 
 use Ibexa\Contracts\Core\Repository\Values\Content\Location;
+use Ibexa\Core\Base\Exceptions\InvalidArgumentType;
 use Ibexa\Core\MVC\Symfony\View\BaseView;
 use Ibexa\Core\MVC\Symfony\View\LocationValueView;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,11 +17,11 @@ use Symfony\Component\HttpKernel\Controller\ControllerReference;
 
 final class ContentCreateSuccessView extends BaseView implements LocationValueView
 {
-    /** @var \Ibexa\Contracts\Core\Repository\Values\Content\Location|null */
+    /** @var Location|null */
     private ?Location $location = null;
 
     /**
-     * @throws \Ibexa\Core\Base\Exceptions\InvalidArgumentType
+     * @throws InvalidArgumentType
      */
     public function __construct(Response $response)
     {

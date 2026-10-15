@@ -20,7 +20,7 @@ use Symfony\Component\Form\Exception\TransformationFailedException;
 final readonly class TimeValueTransformer implements DataTransformerInterface
 {
     /**
-     * @throws \Symfony\Component\Form\Exception\TransformationFailedException
+     * @throws TransformationFailedException
      */
     public function transform(mixed $value): ?int
     {
@@ -34,7 +34,7 @@ final readonly class TimeValueTransformer implements DataTransformerInterface
     }
 
     /**
-     * @throws \Symfony\Component\Form\Exception\TransformationFailedException
+     * @throws TransformationFailedException
      */
     public function reverseTransform(mixed $value): ?Value
     {

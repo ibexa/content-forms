@@ -24,8 +24,7 @@ final readonly class UserCreateFormProcessor implements EventSubscriberInterface
     public function __construct(
         private UserService $userService,
         private UrlGeneratorInterface $urlGenerator
-    ) {
-    }
+    ) {}
 
     public static function getSubscribedEvents(): array
     {
@@ -58,8 +57,10 @@ final readonly class UserCreateFormProcessor implements EventSubscriberInterface
         $event->setResponse(new RedirectResponse($redirectUrl));
     }
 
-    private function setContentFields(UserCreateData $data, string $languageCode): void
-    {
+    private function setContentFields(
+        UserCreateData $data,
+        string $languageCode
+    ): void {
         foreach ($data->getFieldsData() as $fieldDefIdentifier => $fieldData) {
             $data->setField($fieldDefIdentifier, $fieldData->getValue(), $languageCode);
         }

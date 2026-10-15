@@ -69,7 +69,10 @@ final class UserAccountPasswordValidatorTest extends TestCase
         $this->userService
             ->expects(self::once())
             ->method('validatePassword')
-            ->willReturnCallback(function ($actualPassword, $actualContext) use ($userAccount, $contentType): array {
+            ->willReturnCallback(function (
+                $actualPassword,
+                $actualContext
+            ) use ($userAccount, $contentType): array {
                 $this->assertEquals($userAccount->password, $actualPassword);
                 $this->assertInstanceOf(PasswordValidationContext::class, $actualContext);
                 $this->assertSame($contentType, $actualContext->contentType);
@@ -96,7 +99,10 @@ final class UserAccountPasswordValidatorTest extends TestCase
         $this->userService
             ->expects(self::once())
             ->method('validatePassword')
-            ->willReturnCallback(function ($actualPassword, $actualContext) use ($userAccount, $contentType, $errorMessage, $errorParameter): array {
+            ->willReturnCallback(function (
+                $actualPassword,
+                $actualContext
+            ) use ($userAccount, $contentType, $errorMessage, $errorParameter): array {
                 $this->assertEquals($userAccount->password, $actualPassword);
                 $this->assertInstanceOf(PasswordValidationContext::class, $actualContext);
                 $this->assertSame($contentType, $actualContext->contentType);

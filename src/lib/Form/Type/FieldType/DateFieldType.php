@@ -28,9 +28,7 @@ final class DateFieldType extends AbstractType
         'ibexa.user.update',
     ];
 
-    public function __construct(private readonly RequestStack $requestStack)
-    {
-    }
+    public function __construct(private readonly RequestStack $requestStack) {}
 
     public function getName(): string
     {
@@ -47,13 +45,18 @@ final class DateFieldType extends AbstractType
         return IntegerType::class;
     }
 
-    public function buildForm(FormBuilderInterface $builder, array $options): void
-    {
+    public function buildForm(
+        FormBuilderInterface $builder,
+        array $options
+    ): void {
         $builder->addModelTransformer(new DateValueTransformer());
     }
 
-    public function buildView(FormView $view, FormInterface $form, array $options): void
-    {
+    public function buildView(
+        FormView $view,
+        FormInterface $form,
+        array $options
+    ): void {
         $request = $this->requestStack->getCurrentRequest();
 
         $view->vars['isEditView'] = in_array(

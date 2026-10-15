@@ -11,6 +11,4 @@ namespace Ibexa\ContentForms\Content\View;
 use Ibexa\Core\MVC\Symfony\View\BaseView;
 use Ibexa\Core\MVC\Symfony\View\View;
 
-final class ContentCreateDraftView extends BaseView implements View
-{
-}
+final class ContentCreateDraftView extends BaseView implements View {}

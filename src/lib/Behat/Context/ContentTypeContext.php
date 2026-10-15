@@ -35,8 +35,10 @@ final class ContentTypeContext extends RawMinkContext implements Context, Snippe
     /**
      * @Given /^there is a content type "([^"]*)" with the id "([^"]*)"$/
      */
-    public function thereIsAContentTypeWithId(string $contentTypeIdentifier, int $id): void
-    {
+    public function thereIsAContentTypeWithId(
+        string $contentTypeIdentifier,
+        int $id
+    ): void {
         try {
             $contentType = $this->contentTypeService->loadContentTypeByIdentifier($contentTypeIdentifier);
             Assertion::eq($contentType->id, $id);
@@ -48,8 +50,10 @@ final class ContentTypeContext extends RawMinkContext implements Context, Snippe
     /**
      * @Given I remove :fieldIdentifier field from :contentTypeIdentifier content type
      */
-    public function iRemoveFieldFromContentType($fieldIdentifier, string $contentTypeIdentifier): void
-    {
+    public function iRemoveFieldFromContentType(
+        $fieldIdentifier,
+        string $contentTypeIdentifier
+    ): void {
         $contentType = $this->contentTypeService->loadContentTypeByIdentifier($contentTypeIdentifier);
         $contentTypeDraft = $this->contentTypeService->createContentTypeDraft($contentType);
 
@@ -59,8 +63,10 @@ final class ContentTypeContext extends RawMinkContext implements Context, Snippe
         $this->contentTypeService->publishContentTypeDraft($contentTypeDraft);
     }
 
-    public function addFieldsTo(string $contentTypeIdentifier, array $fieldDefinitions): void
-    {
+    public function addFieldsTo(
+        string $contentTypeIdentifier,
+        array $fieldDefinitions
+    ): void {
         $contentType = $this->contentTypeService->loadContentTypeByIdentifier($contentTypeIdentifier);
         $contentTypeDraft = $this->contentTypeService->createContentTypeDraft($contentType);
 
@@ -99,7 +105,7 @@ final class ContentTypeContext extends RawMinkContext implements Context, Snippe
     /**
      * Creates a new content type create struct. If the identifier is not specified, a custom one is given.
      *
-     * @return \Ibexa\Contracts\Core\Repository\Values\ContentType\ContentTypeCreateStruct
+     * @return ContentTypeCreateStruct
      */
     public function newContentTypeCreateStruct($identifier = null): ContentTypeCreateStruct
     {
@@ -108,8 +114,10 @@ final class ContentTypeContext extends RawMinkContext implements Context, Snippe
         );
     }
 
-    public function updateFieldDefinition($identifier, FieldDefinitionUpdateStruct $fieldDefinitionUpdateStruct): void
-    {
+    public function updateFieldDefinition(
+        $identifier,
+        FieldDefinitionUpdateStruct $fieldDefinitionUpdateStruct
+    ): void {
         $contentTypeDraft = $this->contentTypeService->createContentTypeDraft($this->currentContentType);
 
         $this->contentTypeService->updateFieldDefinition(

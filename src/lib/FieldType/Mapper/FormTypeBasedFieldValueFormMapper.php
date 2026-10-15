@@ -37,9 +37,7 @@ final class FormTypeBasedFieldValueFormMapper implements FieldValueFormMapperInt
      */
     private string $formType;
 
-    public function __construct(private readonly FieldTypeService $fieldTypeService)
-    {
-    }
+    public function __construct(private readonly FieldTypeService $fieldTypeService) {}
 
     public function setFormType(string $formType): void
     {
@@ -49,10 +47,12 @@ final class FormTypeBasedFieldValueFormMapper implements FieldValueFormMapperInt
     /**
      * Maps Field form to current FieldType based on the configured form type (self::$formType).
      *
-     * @param \Symfony\Component\Form\FormInterface<mixed> $fieldForm
+     * @param FormInterface<mixed> $fieldForm
      */
-    public function mapFieldValueForm(FormInterface $fieldForm, FieldData $data): void
-    {
+    public function mapFieldValueForm(
+        FormInterface $fieldForm,
+        FieldData $data
+    ): void {
         $fieldDefinition = $data->getFieldDefinition();
         $formConfig = $fieldForm->getConfig();
 

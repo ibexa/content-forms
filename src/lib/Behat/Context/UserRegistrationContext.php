@@ -12,6 +12,8 @@ use Behat\Behat\Context\Context;
 use Behat\Behat\Context\SnippetAcceptingContext;
 use Behat\Behat\Hook\Scope\BeforeScenarioScope;
 use Behat\Gherkin\Node\PyStringNode;
+use Behat\Mink\Exception\ElementNotFoundException;
+use Behat\Mink\Exception\ExpectationException;
 use Behat\MinkExtension\Context\RawMinkContext;
 use Ibexa\Bundle\Core\Features\Context\YamlConfigurationContext;
 use Ibexa\Contracts\Core\Repository\ContentTypeService;
@@ -137,8 +139,8 @@ final class UserRegistrationContext extends RawMinkContext implements Context, S
     }
 
     /**
-     * @throws \Behat\Mink\Exception\ExpectationException
-     * @throws \Behat\Mink\Exception\ElementNotFoundException
+     * @throws ExpectationException
+     * @throws ElementNotFoundException
      */
     private function loginAs(User $user): void
     {
@@ -312,8 +314,10 @@ final class UserRegistrationContext extends RawMinkContext implements Context, S
     /**
      * @Given /^the following template in "([^"]*)":$/
      */
-    public function createTemplateAt(string $path, PyStringNode $contents): void
-    {
+    public function createTemplateAt(
+        string $path,
+        PyStringNode $contents
+    ): void {
         $fs = new Filesystem();
         $fs->mkdir(dirname($path));
         $fs->dumpFile($path, (string) $contents);

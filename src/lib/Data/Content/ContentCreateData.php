@@ -9,17 +9,18 @@ declare(strict_types=1);
 namespace Ibexa\ContentForms\Data\Content;
 
 use Ibexa\ContentForms\Data\NewnessCheckable;
+use Ibexa\Contracts\ContentForms\Data\Content\FieldData;
 use Ibexa\Contracts\Core\Repository\Values\Content\LocationCreateStruct;
 use Ibexa\Core\Repository\Values\Content\ContentCreateStruct;
 
 /**
- * @property \Ibexa\Contracts\ContentForms\Data\Content\FieldData[] $fieldsData
+ * @property FieldData[] $fieldsData
  */
 class ContentCreateData extends ContentCreateStruct implements NewnessCheckable
 {
     use ContentData;
 
-    /** @var \Ibexa\Contracts\Core\Repository\Values\Content\LocationCreateStruct[] */
+    /** @var LocationCreateStruct[] */
     private array $locationStructs = [];
 
     public function isNew(): bool
@@ -28,7 +29,7 @@ class ContentCreateData extends ContentCreateStruct implements NewnessCheckable
     }
 
     /**
-     * @return \Ibexa\Contracts\Core\Repository\Values\Content\LocationCreateStruct[]
+     * @return LocationCreateStruct[]
      */
     public function getLocationStructs(): array
     {

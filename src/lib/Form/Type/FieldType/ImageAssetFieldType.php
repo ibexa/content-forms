@@ -30,8 +30,7 @@ final class ImageAssetFieldType extends AbstractType
         private readonly ContentService $contentService,
         private readonly AssetMapper $assetMapper,
         private readonly MimeTypesInterface $mimeTypes
-    ) {
-    }
+    ) {}
 
     public function getName(): string
     {
@@ -43,8 +42,10 @@ final class ImageAssetFieldType extends AbstractType
         return 'ezplatform_fieldtype_ibexa_image_asset';
     }
 
-    public function buildForm(FormBuilderInterface $builder, array $options): void
-    {
+    public function buildForm(
+        FormBuilderInterface $builder,
+        array $options
+    ): void {
         $builder
             ->add('destinationContentId', HiddenType::class)
             ->add(
@@ -74,8 +75,11 @@ final class ImageAssetFieldType extends AbstractType
             );
     }
 
-    public function buildView(FormView $view, FormInterface $form, array $options): void
-    {
+    public function buildView(
+        FormView $view,
+        FormInterface $form,
+        array $options
+    ): void {
         $view->vars['destination_content'] = null;
 
         if ($view->vars['value']['destinationContentId']) {

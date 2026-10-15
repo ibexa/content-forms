@@ -22,9 +22,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 final class TextBlockFieldType extends AbstractType
 {
-    public function __construct(private readonly FieldTypeService $fieldTypeService)
-    {
-    }
+    public function __construct(private readonly FieldTypeService $fieldTypeService) {}
 
     public function getName(): string
     {
@@ -41,15 +39,20 @@ final class TextBlockFieldType extends AbstractType
         return TextareaType::class;
     }
 
-    public function buildView(FormView $view, FormInterface $form, array $options): void
-    {
+    public function buildView(
+        FormView $view,
+        FormInterface $form,
+        array $options
+    ): void {
         if (null !== $options['rows']) {
             $view->vars['attr'] = array_merge($view->vars['attr'], ['rows' => $options['rows']]);
         }
     }
 
-    public function buildForm(FormBuilderInterface $builder, array $options): void
-    {
+    public function buildForm(
+        FormBuilderInterface $builder,
+        array $options
+    ): void {
         $builder->addModelTransformer(new FieldValueTransformer(
             $this->fieldTypeService->getFieldType('ibexa_text')
         ));

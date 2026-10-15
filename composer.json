@@ -26,7 +26,8 @@
     "require-dev": {
         "behat/behat": "^3.5",
         "ibexa/behat": "~5.0.x-dev",
-        "ibexa/code-style": "~2.0.0",
+        "ibexa/code-style": "~2.3.1",
+        "ibexa/doctrine-migrations": "~5.0.x-dev",
         "ibexa/doctrine-schema": "~5.0.x-dev",
         "ibexa/http-cache": "~5.0.x-dev",
         "ibexa/notifications": "~5.0.x-dev",
