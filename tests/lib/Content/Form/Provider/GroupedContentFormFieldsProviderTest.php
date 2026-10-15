@@ -16,7 +16,7 @@ final class GroupedContentFormFieldsProviderTest extends AbstractGroupedContentF
     {
         $fieldsGroupsListMock = $this->getFieldsGroupsListMock();
         $fieldsGroupsListMock
-            ->expects(self::once())
+            ->expects($this->once())
             ->method('getGroups')
             ->willReturn([
                 'group_1' => 'Group 1',

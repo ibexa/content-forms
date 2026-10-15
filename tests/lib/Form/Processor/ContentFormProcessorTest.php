@@ -31,7 +31,7 @@ use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Routing\RouterInterface;
 
-#[CoversClass(\Ibexa\ContentForms\Form\Processor\ContentFormProcessor::class)]
+#[CoversClass(ContentFormProcessor::class)]
 final class ContentFormProcessorTest extends TestCase
 {
     private const int CONTENT_ID = 123;
@@ -71,22 +71,22 @@ final class ContentFormProcessorTest extends TestCase
         // publication must never go through the service.
         $contentService = $this->createMock(ContentService::class);
         $contentService
-            ->expects($isNewContent ? self::once() : self::never())
+            ->expects($isNewContent ? $this->once() : $this->never())
             ->method('createContent')
             ->willReturn($draft);
         $contentService
-            ->expects($isNewContent ? self::never() : self::once())
+            ->expects($isNewContent ? $this->never() : $this->once())
             ->method('updateContent')
             ->willReturn($draft);
         $contentService
-            ->expects(self::never())
+            ->expects($this->never())
             ->method('publishVersion');
 
         // Publication is delegated to the strategy, called once with the draft version and language.
         $publishedContent = $publishedSynchronously ? $this->createPublishedContent() : null;
         $contentPublicationStrategy = $this->createMock(ContentPublicationStrategyInterface::class);
         $contentPublicationStrategy
-            ->expects(self::once())
+            ->expects($this->once())
             ->method('publishVersion')
             ->with(self::identicalTo($versionInfo), [self::LANGUAGE_CODE])
             ->willReturn(new ContentPublicationResult($publishedContent));
@@ -96,11 +96,11 @@ final class ContentFormProcessorTest extends TestCase
         $router = $this->createMock(RouterInterface::class);
         if ($expectedRouteParameters === null) {
             $router
-                ->expects(self::never())
+                ->expects($this->never())
                 ->method('generate');
         } else {
             $router
-                ->expects(self::once())
+                ->expects($this->once())
                 ->method('generate')
                 ->with('ibexa.content.view', $expectedRouteParameters)
                 ->willReturn(self::GENERATED_URL);
@@ -233,8 +233,10 @@ final class ContentFormProcessorTest extends TestCase
         ];
     }
 
-    private function createDraft(?int $mainLocationId, int $status): Content
-    {
+    private function createDraft(
+        ?int $mainLocationId,
+        int $status
+    ): Content {
         $contentInfo = new ContentInfo([
             'id' => self::CONTENT_ID,
             'mainLocationId' => $mainLocationId,
@@ -289,7 +291,7 @@ final class ContentFormProcessorTest extends TestCase
     }
 
     /**
-     * @return \Symfony\Component\Form\FormInterface<mixed>
+     * @return FormInterface<mixed>
      */
     private function createForm(?string $redirectUrlAfterPublish = null): FormInterface
     {
@@ -307,11 +309,11 @@ final class ContentFormProcessorTest extends TestCase
     }
 
     /**
-     * @param \Symfony\Component\Form\FormInterface<mixed> $form
+     * @param FormInterface<mixed> $form
      * @param array<string, mixed> $options
      */
     private function createEvent(
-        ContentCreateData|ContentUpdateData $data,
+        ContentCreateData | ContentUpdateData $data,
         FormInterface $form,
         array $options = []
     ): FormActionEvent {

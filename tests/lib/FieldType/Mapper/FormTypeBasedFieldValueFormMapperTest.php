@@ -27,7 +27,7 @@ final class FormTypeBasedFieldValueFormMapperTest extends BaseMapperTestCase
         ]);
 
         $this->data
-            ->expects(self::once())
+            ->expects($this->once())
             ->method('getFieldDefinition')
             ->willReturn($fieldDefinition);
 
@@ -54,7 +54,7 @@ final class FormTypeBasedFieldValueFormMapperTest extends BaseMapperTestCase
         ]);
 
         $this->data
-            ->expects(self::once())
+            ->expects($this->once())
             ->method('getFieldDefinition')
             ->willReturn($fieldDefinition);
 

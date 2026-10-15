@@ -57,7 +57,7 @@ final class UserAccountFieldValueFormMapperTest extends BaseMapperTestCase
         $fieldDefinition = new FieldDefinition(['names' => []]);
 
         $this->data
-            ->expects(self::once())
+            ->expects($this->once())
             ->method('getFieldDefinition')
             ->willReturn($fieldDefinition);
 
@@ -78,7 +78,7 @@ final class UserAccountFieldValueFormMapperTest extends BaseMapperTestCase
         $fieldDefinition = new FieldDefinition(['names' => ['eng-GB' => 'foo']]);
 
         $this->data
-            ->expects(self::once())
+            ->expects($this->once())
             ->method('getFieldDefinition')
             ->willReturn($fieldDefinition);
 

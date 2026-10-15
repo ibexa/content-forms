@@ -22,7 +22,7 @@ abstract class AbstractGroupedContentFormFieldsProviderTestCase extends TestCase
     final protected function getFieldsGroupsListMock(): FieldsGroupsList & MockObject
     {
         $mock = $this->createMock(FieldsGroupsList::class);
-        $matcher = self::exactly(3);
+        $matcher = $this->exactly(3);
         $expectedGroups = [1 => 'group_1', 2 => 'group_2', 3 => 'group_2'];
 
         $mock
@@ -45,7 +45,7 @@ abstract class AbstractGroupedContentFormFieldsProviderTestCase extends TestCase
             ->getMock();
 
         $formMock
-            ->expects(self::once())
+            ->expects($this->once())
             ->method('getViewData')
             ->willReturn(new FieldData([
                 'field' => new Field(['fieldDefIdentifier' => $fieldDefIdentifier]),
@@ -54,7 +54,7 @@ abstract class AbstractGroupedContentFormFieldsProviderTestCase extends TestCase
             ]));
 
         $formMock
-            ->expects(self::once())
+            ->expects($this->once())
             ->method('getName')
             ->willReturn($fieldDefIdentifier);
 

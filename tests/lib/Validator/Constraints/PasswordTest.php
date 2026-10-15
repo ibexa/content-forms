@@ -14,7 +14,7 @@ use Ibexa\Contracts\Core\Repository\Values\ContentType\ContentType;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
-#[CoversClass(\Ibexa\ContentForms\Validator\Constraints\Password::class)]
+#[CoversClass(Password::class)]
 final class PasswordTest extends TestCase
 {
     private Password $constraint;
