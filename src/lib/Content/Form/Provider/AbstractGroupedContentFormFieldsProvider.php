@@ -16,12 +16,10 @@ use JMS\TranslationBundle\Translation\TranslationContainerInterface;
 
 abstract class AbstractGroupedContentFormFieldsProvider implements GroupedContentFormFieldsProviderInterface, TranslationContainerInterface
 {
-    public function __construct(protected readonly FieldsGroupsList $fieldsGroupsList)
-    {
-    }
+    public function __construct(protected readonly FieldsGroupsList $fieldsGroupsList) {}
 
     /**
-     * @param \Ibexa\Contracts\ContentForms\Data\Content\FieldData[] $fieldsDataForm
+     * @param FieldData[] $fieldsDataForm
      *
      * @return array<string, string[]>
      */

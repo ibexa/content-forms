@@ -19,7 +19,7 @@ use Symfony\Component\Form\FormInterface;
 
 abstract class AbstractGroupedContentFormFieldsProviderTest extends TestCase
 {
-    final protected function getFieldsGroupsListMock(): FieldsGroupsList&MockObject
+    final protected function getFieldsGroupsListMock(): FieldsGroupsList & MockObject
     {
         $mock = $this->createMock(FieldsGroupsList::class);
         $matcher = self::exactly(3);
