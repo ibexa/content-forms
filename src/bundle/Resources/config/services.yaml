@@ -81,6 +81,13 @@ services:
         tags:
             - { name: kernel.event_subscriber }
 
+    Ibexa\ContentForms\Form\Processor\User\UserTranslationSecureListener:
+        arguments:
+            - '@ibexa.api.service.user'
+            - '@ibexa.api.service.content'
+        tags:
+            - { name: kernel.event_subscriber }
+
     Ibexa\ContentForms\Form\Processor\SystemUrlRedirectProcessor:
         autowire: true
         autoconfigure: true
