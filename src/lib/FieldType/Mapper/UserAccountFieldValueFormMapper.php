@@ -15,6 +15,7 @@ use Ibexa\ContentForms\Form\Type\FieldType\UserAccountFieldType;
 use Ibexa\Contracts\ContentForms\Data\Content\FieldData;
 use Ibexa\Contracts\ContentForms\FieldType\FieldValueFormMapperInterface;
 use Ibexa\Contracts\Core\Repository\Values\ContentType\FieldDefinition;
+use Ibexa\Core\FieldType\User\Value;
 use Ibexa\Core\FieldType\User\Value as ApiUserValue;
 use Symfony\Component\Form\CallbackTransformer;
 use Symfony\Component\Form\Exception\AlreadySubmittedException;
@@ -96,7 +97,7 @@ final class UserAccountFieldValueFormMapper implements FieldValueFormMapperInter
      */
     public function getModelTransformerForTranslation(FieldDefinition $fieldDefinition): CallbackTransformer
     {
-        /** @var \Ibexa\Core\FieldType\User\Value $currentValue */
+        /** @var Value $currentValue */
         $currentValue = clone $fieldDefinition->defaultValue;
 
         return new CallbackTransformer(

@@ -11,6 +11,7 @@ namespace Ibexa\ContentForms\Form\EventSubscriber;
 use Ibexa\ContentForms\Data\User\UserAccountFieldData;
 use Ibexa\ContentForms\Data\User\UserCreateData;
 use Ibexa\ContentForms\Data\User\UserUpdateData;
+use Ibexa\Core\FieldType\User\Value;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
@@ -84,8 +85,10 @@ class UserFieldsSubscriber implements EventSubscriberInterface
      * @param UserUpdateData $data
      * @param $languageCode
      */
-    private function handleUserUpdateData(UserUpdateData $data, $languageCode): void
-    {
+    private function handleUserUpdateData(
+        UserUpdateData $data,
+        $languageCode
+    ): void {
         foreach ($data->fieldsData as $fieldData) {
             if ('ezuser' !== $fieldData->getFieldTypeIdentifier()) {
                 continue;
@@ -104,7 +107,7 @@ class UserFieldsSubscriber implements EventSubscriberInterface
             $userField = $data->user->getField($fieldIdentifier, $languageCode)
                 ?? $data->user->getField($fieldIdentifier, $data->user->contentInfo->mainLanguageCode);
 
-            /** @var \Ibexa\Core\FieldType\User\Value $userValue */
+            /** @var Value $userValue */
             $userValue = clone $userField->value;
             $userValue->email = $data->email;
             $userValue->enabled = $data->enabled;

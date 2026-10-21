@@ -11,6 +11,11 @@ namespace Ibexa\ContentForms\Form\Processor\User;
 use Ibexa\ContentForms\Event\ContentFormEvents;
 use Ibexa\ContentForms\Event\FormActionEvent;
 use Ibexa\Contracts\Core\Repository\ContentService;
+use Ibexa\Contracts\Core\Repository\Exceptions\ContentFieldValidationException;
+use Ibexa\Contracts\Core\Repository\Exceptions\ContentValidationException;
+use Ibexa\Contracts\Core\Repository\Exceptions\InvalidArgumentException;
+use Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException;
+use Ibexa\Contracts\Core\Repository\Exceptions\UnauthorizedException;
 use Ibexa\Contracts\Core\Repository\UserService;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
@@ -52,11 +57,11 @@ final class UserTranslationSecureListener implements EventSubscriberInterface
     }
 
     /**
-     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\InvalidArgumentException
-     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException
-     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\ContentValidationException
-     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\ContentFieldValidationException
-     * @throws \Ibexa\Contracts\Core\Repository\Exceptions\UnauthorizedException
+     * @throws InvalidArgumentException
+     * @throws NotFoundException
+     * @throws ContentValidationException
+     * @throws ContentFieldValidationException
+     * @throws UnauthorizedException
      */
     public function onPublish(FormActionEvent $event): void
     {

@@ -39,8 +39,10 @@ final class UserTranslationSecureListenerTest extends TestCase
         );
     }
 
-    private function createEvent(string $formLanguageCode, string $contentMainLanguageCode): FormActionEvent
-    {
+    private function createEvent(
+        string $formLanguageCode,
+        string $contentMainLanguageCode
+    ): FormActionEvent {
         return new FormActionEvent(
             $this->createForm($formLanguageCode),
             null,

@@ -14,6 +14,7 @@ use Ibexa\ContentForms\Form\EventSubscriber\UserFieldsSubscriber;
 use Ibexa\Contracts\ContentForms\Data\Content\FieldData;
 use Ibexa\Contracts\Core\Repository\Values\Content\ContentInfo;
 use Ibexa\Contracts\Core\Repository\Values\Content\Field;
+use Ibexa\Core\FieldType\User\Value;
 use Ibexa\Core\FieldType\User\Value as ApiUserValue;
 use Ibexa\Core\Repository\Values\Content\Content;
 use Ibexa\Core\Repository\Values\Content\VersionInfo;
@@ -30,8 +31,10 @@ final class UserFieldsSubscriberTest extends TestCase
     /**
      * @param list<Field> $fields
      */
-    private function createUser(string $mainLanguageCode, array $fields): User
-    {
+    private function createUser(
+        string $mainLanguageCode,
+        array $fields
+    ): User {
         $contentInfo = new ContentInfo(['mainLanguageCode' => $mainLanguageCode]);
         $versionInfo = new VersionInfo(['contentInfo' => $contentInfo]);
         $content = new Content(['versionInfo' => $versionInfo, 'internalFields' => $fields]);
@@ -78,7 +81,7 @@ final class UserFieldsSubscriberTest extends TestCase
 
         (new UserFieldsSubscriber())->handleUserAccountField($event);
 
-        /** @var \Ibexa\Core\FieldType\User\Value $result */
+        /** @var Value $result */
         $result = $fieldData->value;
 
         self::assertSame($expectedBaseLogin, $result->login);

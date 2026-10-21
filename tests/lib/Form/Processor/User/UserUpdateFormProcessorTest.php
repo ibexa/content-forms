@@ -34,8 +34,11 @@ final class UserUpdateFormProcessorTest extends TestCase
         return new User(['content' => $content]);
     }
 
-    private function createField(string $identifier, bool $isTranslatable, string $value): FieldData
-    {
+    private function createField(
+        string $identifier,
+        bool $isTranslatable,
+        string $value
+    ): FieldData {
         $field = $this->createStub(FieldData::class);
         $field->value = $value;
         $field->method('__get')
@@ -44,8 +47,11 @@ final class UserUpdateFormProcessorTest extends TestCase
         return $field;
     }
 
-    private function callSetContentFields(UserUpdateFormProcessor $processor, UserUpdateData $data, string $languageCode): void
-    {
+    private function callSetContentFields(
+        UserUpdateFormProcessor $processor,
+        UserUpdateData $data,
+        string $languageCode
+    ): void {
         $method = new ReflectionMethod(UserUpdateFormProcessor::class, 'setContentFields');
         $method->setAccessible(true);
         $method->invoke($processor, $data, $languageCode);
@@ -80,8 +86,10 @@ final class UserUpdateFormProcessorTest extends TestCase
      *
      * @param list<array{0: string, 1: string, 2: string}> $expectedFieldUpdates
      */
-    public function testSetContentFieldsUpdatesFieldsForLanguage(string $languageCode, array $expectedFieldUpdates): void
-    {
+    public function testSetContentFieldsUpdatesFieldsForLanguage(
+        string $languageCode,
+        array $expectedFieldUpdates
+    ): void {
         $data = $this->createUserUpdateData();
 
         $contentUpdateStruct = $this->getMockBuilder(ContentUpdateStruct::class)->getMock();

@@ -23,8 +23,10 @@ final class UserTranslationSecureListenerTest extends RepositoryTestCase
     /**
      * @dataProvider providePublishEventNames
      */
-    public function testTranslationFlowDoesNotRemoveUserData(string $eventName, string $loginSuffix): void
-    {
+    public function testTranslationFlowDoesNotRemoveUserData(
+        string $eventName,
+        string $loginSuffix
+    ): void {
         $login = 'jdoe_' . $loginSuffix;
         $email = $login . '@mail.invalid';
 
