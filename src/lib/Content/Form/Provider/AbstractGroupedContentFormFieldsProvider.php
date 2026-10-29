@@ -13,13 +13,14 @@ use Ibexa\Contracts\ContentForms\Data\Content\FieldData;
 use Ibexa\Core\Helper\FieldsGroups\FieldsGroupsList;
 use JMS\TranslationBundle\Model\Message;
 use JMS\TranslationBundle\Translation\TranslationContainerInterface;
+use Symfony\Component\Form\FormInterface;
 
 abstract class AbstractGroupedContentFormFieldsProvider implements GroupedContentFormFieldsProviderInterface, TranslationContainerInterface
 {
     public function __construct(protected readonly FieldsGroupsList $fieldsGroupsList) {}
 
     /**
-     * @param FieldData[] $fieldsDataForm
+     * @param FormInterface<mixed>[] $fieldsDataForm
      *
      * @return array<string, string[]>
      */
