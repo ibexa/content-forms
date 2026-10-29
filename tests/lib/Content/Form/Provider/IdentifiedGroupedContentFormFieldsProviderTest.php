@@ -9,26 +9,63 @@ declare(strict_types=1);
 namespace Ibexa\Tests\ContentForms\Content\Form\Provider;
 
 use Ibexa\ContentForms\Content\Form\Provider\IdentifiedGroupedContentFormFieldsProvider;
+use Ibexa\Contracts\ContentForms\Data\Content\FieldData;
+use Ibexa\Contracts\Core\Repository\Values\Content\Field;
+use Ibexa\Contracts\Core\Repository\Values\ContentType\FieldDefinition as APIFieldDefinition;
+use Ibexa\Core\FieldType\TextLine\Value;
+use Ibexa\Core\Helper\FieldsGroups\FieldsGroupsList;
+use Ibexa\Core\Repository\Values\ContentType\FieldDefinition;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\TestCase;
+use Symfony\Component\Form\FormInterface;
 
-final class IdentifiedGroupedContentFormFieldsProviderTest extends AbstractGroupedContentFormFieldsProviderTestCase
+#[CoversClass(IdentifiedGroupedContentFormFieldsProvider::class)]
+final class IdentifiedGroupedContentFormFieldsProviderTest extends TestCase
 {
+    private const array FIELD_GROUPS = [
+        'first_field' => 'group_1',
+        'second_field' => 'group_2',
+        'third_field' => 'group_2',
+    ];
+
     public function testGetGroupedFields(): void
     {
-        $fieldsGroupsListMock = $this->getFieldsGroupsListMock();
+        $fieldsGroupsList = self::createStub(FieldsGroupsList::class);
+        $fieldsGroupsList
+            ->method('getFieldGroup')
+            ->willReturnCallback(
+                static fn (APIFieldDefinition $fieldDefinition): string => self::FIELD_GROUPS[$fieldDefinition->identifier]
+            );
 
-        $subject = new IdentifiedGroupedContentFormFieldsProvider($fieldsGroupsListMock);
-        $result = $subject->getGroupedFields($this->getTestForms());
+        $subject = new IdentifiedGroupedContentFormFieldsProvider($fieldsGroupsList);
+        $result = $subject->getGroupedFields([
+            self::createFieldForm('first_field'),
+            self::createFieldForm('second_field'),
+            self::createFieldForm('third_field'),
+        ]);
 
-        $expected = [
-            'group_1' => [
-                0 => 'first_field',
+        self::assertSame(
+            [
+                'group_1' => ['first_field'],
+                'group_2' => ['second_field', 'third_field'],
             ],
-            'group_2' => [
-                0 => 'second_field',
-                1 => 'third_field',
-            ],
-        ];
+            $result
+        );
+    }
 
-        self::assertEquals($expected, $result);
+    /**
+     * @return FormInterface<FieldData>
+     */
+    private static function createFieldForm(string $fieldDefIdentifier): FormInterface
+    {
+        $form = self::createStub(FormInterface::class);
+        $form->method('getViewData')->willReturn(new FieldData([
+            'field' => new Field(['fieldDefIdentifier' => $fieldDefIdentifier]),
+            'fieldDefinition' => new FieldDefinition(['identifier' => $fieldDefIdentifier]),
+            'value' => new Value('value'),
+        ]));
+        $form->method('getName')->willReturn($fieldDefIdentifier);
+
+        return $form;
     }
 }
