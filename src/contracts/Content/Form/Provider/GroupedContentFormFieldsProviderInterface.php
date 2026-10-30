@@ -15,7 +15,7 @@ interface GroupedContentFormFieldsProviderInterface
     /**
      * @param FormInterface<mixed>[] $fieldsDataForm
      *
-     * @phpstan-return array<string, array<int, string>> Array of fieldGroupIdentifier grouped by fieldGroupName.
+     * @phpstan-return array<string, array<int, string>> Field identifiers grouped by field group identifier.
      */
     public function getGroupedFields(array $fieldsDataForm): array;
 }

@@ -101,7 +101,6 @@ services:
         autoconfigure: true
         arguments:
             $userActionDispatcher: '@Ibexa\ContentForms\Form\ActionDispatcher\UserDispatcher'
-            $groupedContentFormFieldsProvider: '@Ibexa\ContentForms\Content\Form\Provider\GroupedContentFormFieldsProvider'
 
     ibexa_content_edit:
         alias: Ibexa\Bundle\ContentForms\Controller\ContentEditController
@@ -116,11 +115,7 @@ services:
     Ibexa\ContentForms\ConfigResolver\MaxUploadSize: ~
 
     Ibexa\Contracts\ContentForms\Content\Form\Provider\GroupedContentFormFieldsProviderInterface:
-        '@Ibexa\ContentForms\Content\Form\Provider\GroupedContentFormFieldsProvider'
-
-    Ibexa\ContentForms\Content\Form\Provider\GroupedContentFormFieldsProvider:
-        arguments:
-            $fieldsGroupsList: '@Ibexa\Core\Helper\FieldsGroups\FieldsGroupsList'
+        '@Ibexa\ContentForms\Content\Form\Provider\IdentifiedGroupedContentFormFieldsProvider'
 
     Ibexa\ContentForms\Content\Form\Provider\IdentifiedGroupedContentFormFieldsProvider:
         arguments:
