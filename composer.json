@@ -24,7 +24,7 @@
         "symfony/yaml": "^8.1"
     },
     "require-dev": {
-        "behat/behat": "^4.0@alpha",
+        "behat/behat": "^4.0",
         "friends-of-behat/mink-extension": "^3.0@alpha",
         "ibexa/behat": "~6.0.x-dev",
         "ibexa/code-style": "~2.3.1",
