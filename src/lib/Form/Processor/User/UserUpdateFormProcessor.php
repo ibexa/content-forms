@@ -65,8 +65,14 @@ final readonly class UserUpdateFormProcessor implements EventSubscriberInterface
         string $languageCode
     ): void {
         $data->contentUpdateStruct = $this->contentService->newContentUpdateStruct();
+        $data->contentUpdateStruct->initialLanguageCode = $languageCode;
+        $mainLanguageCode = $data->user->getContentInfo()->getMainLanguageCode();
 
         foreach ($data->getFieldsData() as $fieldDefIdentifier => $fieldData) {
+            if ($mainLanguageCode !== $languageCode && !$fieldData->getFieldDefinition()->isTranslatable()) {
+                continue;
+            }
+
             $data->contentUpdateStruct->setField(
                 $fieldDefIdentifier,
                 $fieldData->getValue(),
