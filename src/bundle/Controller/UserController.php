@@ -179,7 +179,7 @@ class UserController extends Controller
         string $language,
         Request $request
     ) {
-        $user = $this->userService->loadUser($contentId);
+        $user = $this->userService->loadUser($contentId, [$language]);
         if (!$this->permissionResolver->canUser('content', 'edit', $user)) {
             throw new CoreUnauthorizedException('content', 'edit', ['userId' => $contentId]);
         }
@@ -210,7 +210,7 @@ class UserController extends Controller
             $userUpdate,
             [
                 'location' => $location,
-                'content' => $this->contentService->loadContent($contentId),
+                'content' => $this->contentService->loadContent($contentId, [$language]),
                 'languageCode' => $language,
                 'mainLanguageCode' => $user->contentInfo->mainLanguageCode,
                 'struct' => $userUpdate,
