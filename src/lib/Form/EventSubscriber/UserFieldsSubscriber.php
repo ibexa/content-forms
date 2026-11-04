@@ -93,11 +93,16 @@ final readonly class UserFieldsSubscriber implements EventSubscriberInterface
             $data->password = $userAccountFieldData->password ?? $data->password;
             $data->enabled = $userAccountFieldData->enabled ?? $data->enabled;
 
+            $fieldIdentifier = $fieldData->getField()->getFieldDefinitionIdentifier();
+
+            // The "user_account" field is non-translatable and therefore
+            // never stored under a language other than the main one: fall
+            // back to it when editing/translating in a different language.
+            $userField = $data->user->getField($fieldIdentifier, $languageCode)
+                ?? $data->user->getField($fieldIdentifier, $data->user->getContentInfo()->getMainLanguageCode());
+
             /** @var Value $userValue */
-            $userValue = clone $data->user->getField(
-                $fieldData->getField()->getFieldDefinitionIdentifier(),
-                $languageCode
-            )->getValue();
+            $userValue = clone $userField->getValue();
 
             if ($data->email !== null) {
                 $userValue->email = $data->email;

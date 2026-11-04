@@ -8,12 +8,14 @@ declare(strict_types=1);
 
 namespace Ibexa\ContentForms\FieldType\Mapper;
 
-use Ibexa\ContentForms\Data\ContentTranslationData;
 use Ibexa\ContentForms\Data\User\UserAccountFieldData;
+use Ibexa\ContentForms\Data\User\UserCreateData;
+use Ibexa\ContentForms\Data\User\UserUpdateData;
 use Ibexa\ContentForms\Form\Type\FieldType\UserAccountFieldType;
 use Ibexa\Contracts\ContentForms\Data\Content\FieldData;
 use Ibexa\Contracts\ContentForms\FieldType\FieldValueFormMapperInterface;
 use Ibexa\Contracts\Core\Repository\Values\ContentType\FieldDefinition;
+use Ibexa\Core\FieldType\User\Value;
 use Ibexa\Core\FieldType\User\Value as ApiUserValue;
 use Symfony\Component\Form\CallbackTransformer;
 use Symfony\Component\Form\Exception\AlreadySubmittedException;
@@ -45,12 +47,18 @@ final readonly class UserAccountFieldValueFormMapper implements FieldValueFormMa
         $formConfig = $fieldForm->getConfig();
         $rootForm = $fieldForm->getRoot()->getRoot();
         $formIntent = $rootForm->getConfig()->getOption('intent');
-        $isTranslation = $rootForm->getData() instanceof ContentTranslationData;
+        $rootData = $rootForm->getData();
+        $isTranslation = !$rootData instanceof UserCreateData && !$rootData instanceof UserUpdateData;
+        $isNonMainLanguageTranslation = $isTranslation
+            && !$fieldDefinition->isTranslatable()
+            && $formConfig->getOption('languageCode') !== $formConfig->getOption('mainLanguageCode');
+
         $formBuilder = $formConfig->getFormFactory()->createBuilder()
             ->create('value', UserAccountFieldType::class, [
                 'required' => true,
                 'label' => $fieldDefinition->getName(),
                 'intent' => $formIntent,
+                'disabled' => $isNonMainLanguageTranslation,
             ]);
 
         if ($isTranslation) {
@@ -81,13 +89,17 @@ final readonly class UserAccountFieldValueFormMapper implements FieldValueFormMa
 
     public function getModelTransformerForTranslation(FieldDefinition $fieldDefinition): CallbackTransformer
     {
+        /** @var Value $currentValue */
+        $currentValue = clone $fieldDefinition->getDefaultValue();
+
         return new CallbackTransformer(
-            static function (ApiUserValue $data): UserAccountFieldData {
+            static function (ApiUserValue $data) use (&$currentValue): UserAccountFieldData {
+                $currentValue = $data;
+
                 return new UserAccountFieldData($data->login, null, $data->email, $data->enabled);
             },
-            static function (UserAccountFieldData $submittedData) use ($fieldDefinition) {
-                /** @var ApiUserValue $userValue */
-                $userValue = clone $fieldDefinition->defaultValue;
+            static function (UserAccountFieldData $submittedData) use (&$currentValue) {
+                $userValue = clone $currentValue;
 
                 $userValue->login = $submittedData->username;
                 $userValue->email = $submittedData->email;
