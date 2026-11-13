@@ -13,7 +13,7 @@ use Symfony\Component\Form\DataTransformerInterface;
 use Symfony\Component\Form\Exception\TransformationFailedException;
 
 /**
- * @phpstan-type TImageAssetData array{file: string|null, remove: boolean, destinationContentId: int, alternativeText: string|null}
+ * @phpstan-type TImageAssetData array{file: string|null, remove: boolean, destinationContentId: int|null, alternativeText: string|null}
  *
  * @implements \Symfony\Component\Form\DataTransformerInterface<\Ibexa\Core\FieldType\ImageAsset\Value, TImageAssetData|null>
  */
@@ -37,7 +37,7 @@ final class ImageAssetValueTransformer extends AbstractBinaryBaseTransformer imp
         return array_merge(
             $this->getDefaultProperties(),
             [
-                'destinationContentId' => (int)$value->destinationContentId,
+                'destinationContentId' => $value->destinationContentId !== null ? (int)$value->destinationContentId : null,
                 'alternativeText' => $value->alternativeText,
             ]
         );

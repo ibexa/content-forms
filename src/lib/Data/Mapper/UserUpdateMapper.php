@@ -52,8 +52,14 @@ final readonly class UserUpdateMapper
         $filter = $params['filter'];
 
         $fields = iterator_to_array($user->getFieldsByLanguage($params['languageCode']));
+        $mainLanguageCode = $user->getContentInfo()->getMainLanguageCode();
         foreach ($contentType->getFieldDefinitions() as $fieldDef) {
-            $field = $fields[$fieldDef->getIdentifier()];
+            $field = $fields[$fieldDef->getIdentifier()]
+                ?? $user->getField($fieldDef->getIdentifier(), $mainLanguageCode);
+
+            if ($field === null) {
+                continue;
+            }
 
             if (is_callable($filter) && !($filter)($field)) {
                 continue;
@@ -62,7 +68,7 @@ final readonly class UserUpdateMapper
             $data->addFieldData(new FieldData([
                 'fieldDefinition' => $fieldDef,
                 'field' => $field,
-                'value' => $field->value,
+                'value' => $field->getValue(),
             ]));
         }
 
