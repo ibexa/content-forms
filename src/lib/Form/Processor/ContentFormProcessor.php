@@ -272,6 +272,7 @@ class ContentFormProcessor implements EventSubscriberInterface
         $content = $data->contentDraft;
         $contentInfo = $content->contentInfo;
         $versionInfo = $data->contentDraft->getVersionInfo();
+        $referrerLocation = $event->getOption('referrerLocation');
 
         $event->setPayload('content', $content);
 
@@ -280,9 +281,12 @@ class ContentFormProcessor implements EventSubscriberInterface
             $parentLocation = $this->locationService->loadParentLocationsForDraftContent($versionInfo)[0];
             $redirectionLocationId = $parentLocation->id;
             $redirectionContentId = $parentLocation->contentId;
+        } elseif ($referrerLocation !== null) {
+            $redirectionLocationId = $referrerLocation->getId();
+            $redirectionContentId = $referrerLocation->getContentId();
         } else {
-            $redirectionLocationId = $contentInfo->mainLocationId;
-            $redirectionContentId = $contentInfo->id;
+            $redirectionLocationId = $contentInfo->getMainLocationId();
+            $redirectionContentId = $contentInfo->getId();
         }
 
         $this->contentService->deleteVersion($versionInfo);
